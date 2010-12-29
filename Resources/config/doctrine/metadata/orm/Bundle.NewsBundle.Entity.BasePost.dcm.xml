@@ -13,6 +13,10 @@
         
         <field name="publication_date_start"   type="datetime"   column="publication_date_start"    nullable="true"/>
 
+        <field name="comments_enabled"    type="boolean"   column="comments_enabled" default="true"/>
+        <field name="comments_close_at"   type="datetime"  column="comments_close_at" nullable="true"/>
+        <field name="comments_default_status"   type="integer"  column="comments_default_status" nullable="false"/>
+
         <field name="created_at"    type="datetime"   column="created_at" />
         <field name="updated_at"    type="datetime"   column="updated_at" />
 
@@ -49,9 +53,7 @@
         <one-to-many
             field="comments"
             target-entity="Application\NewsBundle\Entity\Comment"
-            mapped-by="post"
-            orphan-removal="false"
-            fetch="LAZY">
+            mapped-by="post">
 
             <cascade>
                 <cascade-persist/>
@@ -65,7 +67,7 @@
             </join-columns>
 
             <order-by>
-                <order-by-field name="created_at" direction="ASC" />
+                <order-by-field name="created_at" direction="DESC" />
             </order-by>
         </one-to-many>
 

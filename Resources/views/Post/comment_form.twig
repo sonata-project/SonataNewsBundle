@@ -1,0 +1,44 @@
+{#
+
+/*
+ * This file is part of the Sonata package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+#}
+
+<form action="{{ url('news_add_comment', {'id': post_id}) }}" method="POST" >
+
+    {{ form|render_hidden }}
+
+    <p>
+        {{ form.name|render_label }} <br />
+        {{ form.name|render }}
+        {{ form.name|render_errors }}
+    </p>
+
+    <p>
+        {{ form.email|render_label }} <br />
+        {{ form.email|render }}
+        {{ form.email|render_errors }}
+    </p>
+
+    <p>
+        {{ form.url|render_label }} <br />
+        {{ form.url|render }}
+        {{ form.url|render_errors }}
+    </p>
+
+    <p>
+        {{ form.message|render_label }} <br />
+        {{ form.message|render }}
+        {{ form.message|render_errors }}
+    </p>
+
+    <input type="submit" value="{% trans 'btn_add_comment' from 'NewsBundle' %}" />
+</form>
+

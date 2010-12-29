@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://www.symfony-project.org/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/constraint-mapping
+        http://www.symfony-project.org/schema/dic/services/constraint-mapping-1.0.xsd">
+
+    <class name="Application\NewsBundle\Entity\Comment">
+        <property name="name">
+           <constraint name="NotBlank" />
+           <constraint name="NotNull" />
+        </property>
+
+        <property name="email">
+            <constraint name="NotNull" />
+            <constraint name="NotBlank" />
+            <constraint name="Email" />
+        </property>
+
+        <property name="url">
+           <constraint name="Url" />
+        </property>
+
+        <property name="message">
+            <constraint name="NotNull" />
+            <constraint name="NotBlank" />
+        </property>
+
+    </class>
+
+</constraint-mapping>

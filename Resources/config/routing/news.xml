@@ -8,6 +8,11 @@
         <default key="_controller">NewsBundle:Post:view</default>
     </route>
 
+    <route id="news_add_comment" pattern="/add-comment/:id">
+        <default key="_controller">NewsBundle:Post:addComment</default>
+    </route>
+
+    
     <route id="news_archive_daily" pattern="/:year/:month/:day">
         <default key="_controller">NewsBundle:Post:archiveDaily</default>
     </route>
@@ -20,4 +25,8 @@
         <default key="_controller">NewsBundle:Post:archiveYearly</default>
     </route>
 
+    <route id="news_archive" pattern="/">
+        <default key="_controller">NewsBundle:Post:archive</default>
+    </route>
+    
 </routes>

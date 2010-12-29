@@ -26,6 +26,8 @@ class PostAdminController extends Controller
         'title' ,
         'slug',
         'enabled',
+        'comments_enabled',
+        
     );
 
     protected $form_fields = array(
@@ -33,11 +35,20 @@ class PostAdminController extends Controller
         'title',
         'abstract',
         'content',
-        'tags'
+        'tags',
+//        'comments_close_at',
+        'comments_enabled',
+        'comments_default_status'
     );
 
     protected $base_route = 'news_post_admin';
 
     // don't know yet how to get this value
     protected $base_controller_name = 'NewsBundle:PostAdmin';
+
+    public function configureFormFields()
+    {
+        $this->form_fields['comments_default_status']['type'] = 'choice';
+        $this->form_fields['comments_default_status']['options']['choices'] = \Application\NewsBundle\Entity\Comment::getStatusList();
+    }
 }

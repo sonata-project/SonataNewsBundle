@@ -34,6 +34,12 @@ abstract class BasePost
 
     protected $updated_at;
 
+    protected $comments_enabled = true;
+
+    protected $comments_close_at;
+
+    protected $comments_default_status;
+
     public function __construct()
     {
         $this->tags     = new \Doctrine\Common\Collections\ArrayCollection;
@@ -257,5 +263,94 @@ abstract class BasePost
     {
         $this->setUpdatedAt(new \DateTime);
     }
-    
+
+    public function getYear()
+    {
+        return $this->getCreatedAt()->format('Y');
+    }
+
+    public function getMonth()
+    {
+        return $this->getCreatedAt()->format('m');
+    }
+
+    public function getDay()
+    {
+        return $this->getCreatedAt()->format('d');
+    }
+    /**
+     * Set comments_enabled
+     *
+     * @param boolean $commentsEnabled
+     */
+    public function setCommentsEnabled($commentsEnabled)
+    {
+        $this->comments_enabled = $commentsEnabled;
+    }
+
+    /**
+     * Get comments_enabled
+     *
+     * @return boolean $commentsEnabled
+     */
+    public function getCommentsEnabled()
+    {
+        return $this->comments_enabled;
+    }
+
+    /**
+     * Set comments_close_at
+     *
+     * @param datetime $commentsCloseAt
+     */
+    public function setCommentsCloseAt($commentsCloseAt)
+    {
+        $this->comments_close_at = $commentsCloseAt;
+    }
+
+    /**
+     * Get comments_close_at
+     *
+     * @return datetime $commentsCloseAt
+     */
+    public function getCommentsCloseAt()
+    {
+        return $this->comments_close_at;
+    }
+
+    /**
+     * Set comments_default_status
+     *
+     * @param integer $commentsDefaultStatus
+     */
+    public function setCommentsDefaultStatus($commentsDefaultStatus)
+    {
+        $this->comments_default_status = $commentsDefaultStatus;
+    }
+
+    /**
+     * Get comments_default_status
+     *
+     * @return integer $commentsDefaultStatus
+     */
+    public function getCommentsDefaultStatus()
+    {
+        return $this->comments_default_status;
+    }
+
+    public function isCommentable()
+    {
+
+        if(!$this->getCommentsEnabled())
+        {
+            return false;
+        }
+
+        if($this->getCommentsCloseAt() instanceof \DateTime)
+        {
+            return $this->getCommentsCloseAt()->diff(new \DateTime)->invert == 0 ? true : false;
+        }
+
+        return $this->getEnabled();
+    }
 }

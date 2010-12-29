@@ -13,6 +13,7 @@ namespace Bundle\NewsBundle\Entity;
 
 abstract class BaseComment
 {
+    const STATUS_MODERATE   = 2;
     const STATUS_VALID   = 1;
     const STATUS_INVALID = 0;
 
@@ -183,8 +184,10 @@ abstract class BaseComment
     public static function getStatusList()
     {
         return array(
+            self::STATUS_MODERATE => 'moderate',
             self::STATUS_INVALID => 'invalid',
             self::STATUS_VALID   => 'valid',
+
         );
     }
 
@@ -218,5 +221,24 @@ abstract class BaseComment
     public function getStatus()
     {
         return $this->status;
+    }
+    /**
+     * Set post
+     *
+     * @param Application\NewsBundle\Entity\Post $post
+     */
+    public function setPost(\Application\NewsBundle\Entity\Post $post)
+    {
+        $this->post = $post;
+    }
+
+    /**
+     * Get post
+     *
+     * @return Application\NewsBundle\Entity\Post $post
+     */
+    public function getPost()
+    {
+        return $this->post;
     }
 }

@@ -1,0 +1,20 @@
+{#
+
+/*
+ * This file is part of the Sonata package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+#}
+
+<h1>{% trans 'title_archive' from 'NewsBundle' %}</h1>
+
+{% for post in pager.getResults() %}
+    <div>
+        <h2><a href="{{ url('news_view', { 'year': post.year, 'month': post.month, 'day': post.day, 'slug': post.slug}) }}">{{ post.title }}</a></h2>
+    </div>
+{% endfor %}
