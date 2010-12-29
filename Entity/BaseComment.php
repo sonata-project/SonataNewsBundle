@@ -31,8 +31,6 @@ abstract class BaseComment
 
     protected $status = self::STATUS_VALID;
 
-    protected $enabled = false;
-
     protected $post;
 
     /**
@@ -113,26 +111,6 @@ abstract class BaseComment
     public function getMessage()
     {
         return $this->message;
-    }
-
-    /**
-     * Set enabled
-     *
-     * @param boolean $enabled
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-    }
-
-    /**
-     * Get enabled
-     *
-     * @return boolean $enabled
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
     }
 
     /**

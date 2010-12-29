@@ -338,6 +338,11 @@ abstract class BasePost
         return $this->comments_default_status;
     }
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     public function isCommentable()
     {
 

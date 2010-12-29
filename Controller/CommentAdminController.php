@@ -20,37 +20,4 @@ use Application\NewsBundle\Entity\Comment;
 class CommentAdminController extends Controller
 {
 
-    protected $class = 'Application\NewsBundle\Entity\Comment';
-
-    protected $list_fields = array(
-        'id',
-        'enabled',
-        'name' ,
-        'email',
-        'url',
-        'message',
-
-    );
-
-    protected $form_fields = array(
-        'name',
-        'email',
-        'url',
-        'message',
-        'enabled',
-        'status' => array('type' => 'choice'),
-    );
-
-    protected $base_route = 'news_comment_admin';
-
-    // don't know yet how to get this value
-    protected $base_controller_name = 'NewsBundle:CommentAdmin';
-
-    public function configureFormFields()
-    {
-        $this->form_fields['status']['options'] = array(
-            'choices' => Comment::getStatusList(),
-            'expanded' => true
-        );
-    }
 }

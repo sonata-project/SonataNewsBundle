@@ -8,6 +8,8 @@ use Bundle\BaseApplicationBundle\Tool\DoctrinePager as Pager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\Form;
 
+use Application\NewsBundle\Entity\Comment;
+
 class PostController extends Controller
 {
     public function archiveAction()
@@ -56,11 +58,12 @@ class PostController extends Controller
 
         $comments = $em->getRepository('NewsBundle:Comment')
             ->createQueryBuilder('c')
-            ->where('c.post = :post_id')
+            ->where('c.post = :post_id AND c.status = :status')
             ->orderBy('c.created_at', 'ASC')
             ->getQuery()
             ->setParameters(array(
-                'post_id' => $post_id
+                'post_id'   => $post_id,
+                'status'    => Comment::STATUS_VALID,
             ))
             ->execute();
 
@@ -75,7 +78,10 @@ class PostController extends Controller
         if(!$form) {
             $em = $this->get('doctrine.orm.default_entity_manager');
 
-            $post = $em->getReference('NewsBundle:Post', $post_id);
+            $post = $em->getRepository('NewsBundle:Post')
+                ->findOneBy(array(
+                    'id' => $post_id
+                ));
 
             $form = $this->getCommentForm($post);
         }
@@ -92,8 +98,10 @@ class PostController extends Controller
 
         $this->get('session')->start();
         
-        $comment = new \Application\NewsBundle\Entity\Comment;
+        $comment = new Comment;
         $comment->setPost($post);
+        $comment->setStatus($post->getCommentsDefaultStatus());
+        
 
         $form = new Form('comment', $comment, $this->get('validator'));
 
@@ -117,6 +125,19 @@ class PostController extends Controller
 
         if(!$post) {
             throw new NotFoundHttpException(sprintf('Post (%d) not found', $id));
+        }
+
+        if(!$post->isCommentable())
+        {
+
+            // todo add notice
+
+            return $this->redirect($this->generateUrl('news_view', array(
+                'year'  => $post->getYear(),
+                'month' => $post->getMonth(),
+                'day'   => $post->getDay(),
+                'slug'  => $post->getSlug()
+            )));
         }
 
         $form = $this->getCommentForm($post);

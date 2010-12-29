@@ -7,7 +7,6 @@
         <field name="url"               type="string"       column="url"           />
         <field name="email"             type="string"       column="email"           />
         <field name="message"           type="text"         column="message"       />
-        <field name="enabled"           type="boolean"      column="enabled"       default="false" />
         <field name="status"            type="integer"      column="status"        default="false" />
 
         <field name="created_at"    type="datetime"   column="created_at" />
