@@ -30,7 +30,7 @@ class PostAdmin extends Admin
         'title',
         'abstract',
         'content',
-        'tags',
+        'tags' => array('options' => array('expanded' => true)),
         'comments_close_at',
         'comments_enabled',
         'comments_default_status'

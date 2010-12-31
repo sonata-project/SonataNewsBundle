@@ -34,6 +34,7 @@ class CommentAdmin extends Admin
         'email',
         'url',
         'message',
+        'post',
         'status' => array('type' => 'choice'),
     );
 

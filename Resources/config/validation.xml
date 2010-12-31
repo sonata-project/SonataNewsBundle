@@ -4,6 +4,25 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/constraint-mapping
         http://www.symfony-project.org/schema/dic/services/constraint-mapping-1.0.xsd">
 
+
+    <class name="Application\NewsBundle\Entity\Post">
+        <property name="title">
+           <constraint name="NotBlank" />
+           <constraint name="NotNull" />
+        </property>
+
+        <property name="abstract">
+            <constraint name="NotNull" />
+            <constraint name="NotBlank" />
+        </property>
+
+        <property name="content">
+            <constraint name="NotNull" />
+            <constraint name="NotBlank" />
+        </property>
+
+    </class>
+
     <class name="Application\NewsBundle\Entity\Comment">
         <property name="name">
            <constraint name="NotBlank" />
@@ -25,6 +44,13 @@
             <constraint name="NotBlank" />
         </property>
 
+    </class>
+
+    <class name="Application\NewsBundle\Entity\Tag">
+        <property name="name">
+           <constraint name="NotBlank" />
+           <constraint name="NotNull" />
+        </property>
     </class>
 
 </constraint-mapping>
