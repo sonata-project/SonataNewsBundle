@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Bundle\NewsBundle\Controller;
+namespace Bundle\Sonata\NewsBundle\Controller;
 
-use Bundle\BaseApplicationBundle\Controller\CRUDController as Controller;
+use Bundle\Sonata\BaseApplicationBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TagAdminController extends Controller

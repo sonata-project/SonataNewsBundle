@@ -13,30 +13,30 @@
 
 <form action="{{ url('news_add_comment', {'id': post_id}) }}" method="POST" >
 
-    {{ form|render_hidden }}
+    {{ form_hidden(form) }}
 
     <p>
-        {{ form.name|render_label }} <br />
-        {{ form.name|render }}
-        {{ form.name|render_errors }}
+        {{ form_label(form.name) }} <br />
+        {{ form_field(form.name) }}
+        {{ form_errors(form.name) }}
     </p>
 
     <p>
-        {{ form.email|render_label }} <br />
-        {{ form.email|render }}
-        {{ form.email|render_errors }}
+        {{ form_label(form.email) }} <br />
+        {{ form_field(form.email) }}
+        {{ form_errors(form.email) }}
     </p>
 
     <p>
-        {{ form.url|render_label }} <br />
-        {{ form.url|render }}
-        {{ form.url|render_errors }}
+        {{ form_label(form.url) }} <br />
+        {{ form_field(form.url) }}
+        {{ form_errors(form.url) }}
     </p>
 
     <p>
-        {{ form.message|render_label }} <br />
-        {{ form.message|render }}
-        {{ form.message|render_errors }}
+        {{ form_label(form.message) }} <br />
+        {{ form_field(form.message) }}
+        {{ form_errors(form.message) }}
     </p>
 
     <input type="submit" value="{% trans 'btn_add_comment' from 'NewsBundle' %}" />

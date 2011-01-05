@@ -9,14 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Bundle\NewsBundle\Admin;
+namespace Bundle\Sonata\NewsBundle\Admin;
 
-use Bundle\BaseApplicationBundle\Admin\Admin;
-use Application\NewsBundle\Entity\Comment;
+use Bundle\Sonata\BaseApplicationBundle\Admin\Admin;
 
 class TagAdmin extends Admin
 {
-    protected $class = 'Application\NewsBundle\Entity\Tag';
+    protected $class = 'Application\\NewsBundle\\Entity\\Tag';
 
     protected $list_fields = array(
         'name' => array('identifier' => true),
@@ -29,7 +28,7 @@ class TagAdmin extends Admin
         'enabled'
     );
 
-    protected $base_route = 'news_tag_admin';
+    protected $base_route = 'sonata_news_tag_admin';
 
     // don't know yet how to get this value
     protected $base_controller_name = 'NewsBundle:TagAdmin';

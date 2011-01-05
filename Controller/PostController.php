@@ -1,10 +1,10 @@
 <?php
 
-namespace Bundle\NewsBundle\Controller;
+namespace Bundle\Sonata\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Bundle\BaseApplicationBundle\Tool\DoctrinePager as Pager;
+use Bundle\Sonata\BaseApplicationBundle\Tool\DoctrinePager as Pager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\Form;
 
@@ -15,14 +15,10 @@ class PostController extends Controller
     public function archiveAction()
     {
         $qb = $this->get('doctrine.orm.default_entity_manager')
-            ->getRepository('NewsBundle:Post')
+            ->getRepository('Application\\NewsBundle\\Entity\\Post')
             ->findLastPostQueryBuilder(10); // todo : make this configurable
 
-
         $pager = new Pager('Application\\NewsBundle\\Entity\\Post');
-
-        $pager->setRouter($this->get('router'));
-        $pager->setRoute('news_archive');
 
         $pager->setQueryBuilder($qb);
         $pager->setPage($this->get('request')->get('page', 1));
@@ -37,7 +33,7 @@ class PostController extends Controller
     {
 
         $post = $this->get('doctrine.orm.default_entity_manager')
-            ->getRepository('NewsBundle:Post')
+            ->getRepository('Application\\NewsBundle\\Entity\\Post')
             ->findOneBy(array(
                 'slug' => $slug
             ));
@@ -56,7 +52,7 @@ class PostController extends Controller
 
         $em = $this->get('doctrine.orm.default_entity_manager');
 
-        $comments = $em->getRepository('NewsBundle:Comment')
+        $comments = $em->getRepository('Application\\NewsBundle\\Entity\\Comment')
             ->createQueryBuilder('c')
             ->where('c.post = :post_id AND c.status = :status')
             ->orderBy('c.created_at', 'ASC')
@@ -78,7 +74,7 @@ class PostController extends Controller
         if(!$form) {
             $em = $this->get('doctrine.orm.default_entity_manager');
 
-            $post = $em->getRepository('NewsBundle:Post')
+            $post = $em->getRepository('Application\\NewsBundle\\Entity\\Post')
                 ->findOneBy(array(
                     'id' => $post_id
                 ));
@@ -118,7 +114,7 @@ class PostController extends Controller
 
         $em = $this->get('doctrine.orm.default_entity_manager');
         
-        $post = $em->getRepository('NewsBundle:Post')
+        $post = $em->getRepository('Application\\NewsBundle\\Entity\\Post')
             ->findOneBy(array(
                 'id' => $id
             ));

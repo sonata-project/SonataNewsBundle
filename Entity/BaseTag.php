@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Bundle\NewsBundle\Entity;
+namespace Bundle\Sonata\NewsBundle\Entity;
 
 abstract class BaseTag
 {

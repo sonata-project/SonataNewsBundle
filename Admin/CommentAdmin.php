@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Bundle\NewsBundle\Admin;
+namespace Bundle\Sonata\NewsBundle\Admin;
 
-use Bundle\BaseApplicationBundle\Admin\Admin;
+use Bundle\Sonata\BaseApplicationBundle\Admin\Admin;
 
 use Application\NewsBundle\Entity\Comment;
 
 class CommentAdmin extends Admin
 {
 
-    protected $class = 'Application\\NewsBundle\\Entity\\Comment';
+    protected $class = 'Application\NewsBundle\Entity\Comment';
 
     protected $list_fields = array(
         'name' => array('identifier' => true),
@@ -38,7 +38,7 @@ class CommentAdmin extends Admin
         'status' => array('type' => 'choice'),
     );
 
-    protected $base_route = 'news_comment_admin';
+    protected $base_route = 'sonata_news_comment_admin';
 
     // don't know yet how to get this value
     protected $base_controller_name = 'NewsBundle:CommentAdmin';
@@ -48,6 +48,16 @@ class CommentAdmin extends Admin
         $this->form_fields['status']['options'] = array(
             'choices' => Comment::getStatusList(),
             'expanded' => true
+        );
+    }
+
+    public function getBatchActions()
+    {
+
+        return array(
+            'delete'    => 'action_delete',
+            'enabled'   => 'enable_comments',
+            'disabled'  => 'disabled_comments',
         );
     }
 }
