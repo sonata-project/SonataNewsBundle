@@ -16,7 +16,7 @@ use Bundle\Sonata\BaseApplicationBundle\Admin\Admin;
 class PostAdmin extends Admin
 {
 
-    protected $class = 'Application\NewsBundle\Entity\Post';
+    protected $class = 'Application\Sonata\NewsBundle\Entity\Post';
 
     protected $list_fields = array(
         'title' => array('identifier' => true),
@@ -63,7 +63,7 @@ class PostAdmin extends Admin
     public function configureFormFields()
     {
         $this->form_fields['comments_default_status']['type'] = 'choice';
-        $this->form_fields['comments_default_status']['options']['choices'] = \Application\NewsBundle\Entity\Comment::getStatusList();
+        $this->form_fields['comments_default_status']['options']['choices'] = \Application\Sonata\NewsBundle\Entity\Comment::getStatusList();
     }
 
     public function configureFilterFields()
@@ -86,7 +86,7 @@ class PostAdmin extends Admin
 
         $query_builder->leftJoin(sprintf('%s.comments', $alias), 'c');
         $query_builder->andWhere('c.status = :status');
-        $query_builder->setParameter('status', \Application\NewsBundle\Entity\Comment::STATUS_MODERATE);
+        $query_builder->setParameter('status', \Application\Sonata\NewsBundle\Entity\Comment::STATUS_MODERATE);
     }
 
     public function getWithOpenCommentField($filter)

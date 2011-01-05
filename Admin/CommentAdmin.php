@@ -13,12 +13,12 @@ namespace Bundle\Sonata\NewsBundle\Admin;
 
 use Bundle\Sonata\BaseApplicationBundle\Admin\Admin;
 
-use Application\NewsBundle\Entity\Comment;
+use Application\Sonata\NewsBundle\Entity\Comment;
 
 class CommentAdmin extends Admin
 {
 
-    protected $class = 'Application\NewsBundle\Entity\Comment';
+    protected $class = 'Application\Sonata\NewsBundle\Entity\Comment';
 
     protected $list_fields = array(
         'name' => array('identifier' => true),

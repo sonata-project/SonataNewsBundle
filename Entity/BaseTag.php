@@ -177,9 +177,9 @@ abstract class BaseTag
     /**
      * Add posts
      *
-     * @param Application\NewsBundle\Entity\Post $posts
+     * @param Application\Sonata\NewsBundle\Entity\Post $posts
      */
-    public function addPosts(\Application\NewsBundle\Entity\Post $posts)
+    public function addPosts(\Application\Sonata\NewsBundle\Entity\Post $posts)
     {
         $this->posts[] = $posts;
     }

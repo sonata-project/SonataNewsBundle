@@ -8,7 +8,7 @@ use Bundle\Sonata\BaseApplicationBundle\Tool\DoctrinePager as Pager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\Form;
 
-use Application\NewsBundle\Entity\Comment;
+use Application\Sonata\NewsBundle\Entity\Comment;
 
 class PostController extends Controller
 {

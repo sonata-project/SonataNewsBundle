@@ -17,7 +17,7 @@
             <lifecycle-callback type="preUpdate" method="preUpdate"/>
         </lifecycle-callbacks>
 
-        <many-to-one field="post" target-entity="Application\NewsBundle\Entity\Post">
+        <many-to-one field="post" target-entity="Application\Sonata\NewsBundle\Entity\Post">
             <join-column name="post_id" referenced-column-name="id" />
         </many-to-one>
 

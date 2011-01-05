@@ -15,7 +15,7 @@ use Bundle\Sonata\BaseApplicationBundle\Admin\Admin;
 
 class TagAdmin extends Admin
 {
-    protected $class = 'Application\\NewsBundle\\Entity\\Tag';
+    protected $class = 'Application\Sonata\NewsBundle\Entity\Tag';
 
     protected $list_fields = array(
         'name' => array('identifier' => true),

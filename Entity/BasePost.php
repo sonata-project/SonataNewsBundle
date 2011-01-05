@@ -211,9 +211,9 @@ abstract class BasePost
     /**
      * Add comments
      *
-     * @param Application\NewsBundle\Entity\Comment $comments
+     * @param Application\Sonata\NewsBundle\Entity\Comment $comments
      */
-    public function addComments(\Application\NewsBundle\Entity\Comment $comments)
+    public function addComments(\Application\Sonata\NewsBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
     }
@@ -231,9 +231,9 @@ abstract class BasePost
     /**
      * Add tags
      *
-     * @param Application\NewsBundle\Entity\Tag $tags
+     * @param Application\Sonata\NewsBundle\Entity\Tag $tags
      */
-    public function addTags(\Application\NewsBundle\Entity\Tag $tags)
+    public function addTags(\Application\Sonata\NewsBundle\Entity\Tag $tags)
     {
         $this->tags[] = $tags;
     }

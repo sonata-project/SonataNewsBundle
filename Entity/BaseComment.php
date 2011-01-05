@@ -203,9 +203,9 @@ abstract class BaseComment
     /**
      * Set post
      *
-     * @param Application\NewsBundle\Entity\Post $post
+     * @param Application\Sonata\NewsBundle\Entity\Post $post
      */
-    public function setPost(\Application\NewsBundle\Entity\Post $post)
+    public function setPost(\Application\Sonata\NewsBundle\Entity\Post $post)
     {
         $this->post = $post;
     }
@@ -213,7 +213,7 @@ abstract class BaseComment
     /**
      * Get post
      *
-     * @return Application\NewsBundle\Entity\Post $post
+     * @return Application\Sonata\NewsBundle\Entity\Post $post
      */
     public function getPost()
     {

@@ -17,7 +17,7 @@
 
         <many-to-many
             field="posts"
-            target-entity="Application\NewsBundle\Entity\Post"
+            target-entity="Application\Sonata\NewsBundle\Entity\Post"
             mapped-by="tags"
             >
         </many-to-many>

@@ -27,7 +27,7 @@
 
         <many-to-many
             field="tags"
-            target-entity="Application\NewsBundle\Entity\Tag"
+            target-entity="Application\Sonata\NewsBundle\Entity\Tag"
             inversed-by="posts"
             fetch="EAGER"
             >
@@ -52,7 +52,7 @@
 
         <one-to-many
             field="comments"
-            target-entity="Application\NewsBundle\Entity\Comment"
+            target-entity="Application\Sonata\NewsBundle\Entity\Comment"
             mapped-by="post">
 
             <cascade>
