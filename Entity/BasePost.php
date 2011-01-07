@@ -39,7 +39,7 @@ abstract class BasePost
     protected $comments_close_at;
 
     protected $comments_default_status;
-
+    
     public function __construct()
     {
         $this->tags     = new \Doctrine\Common\Collections\ArrayCollection;
