@@ -18,12 +18,12 @@
 </div>
 
 
-{% render 'NewsBundle:Post:comments' with {
+{% render 'Sonata/NewsBundle:Post:comments' with {
     'post_id': post.id
 } %}
 
 {% if post.iscommentable %}
-    {% render 'NewsBundle:Post:addCommentForm' with {
+    {% render 'Sonata/NewsBundle:Post:addCommentForm' with {
         'post_id': post.id,
         'form': form
     } %}

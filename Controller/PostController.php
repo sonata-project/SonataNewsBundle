@@ -15,16 +15,16 @@ class PostController extends Controller
     public function archiveAction()
     {
         $qb = $this->get('doctrine.orm.default_entity_manager')
-            ->getRepository('Application\\NewsBundle\\Entity\\Post')
+            ->getRepository('Application\Sonata\NewsBundle\Entity\Post')
             ->findLastPostQueryBuilder(10); // todo : make this configurable
 
-        $pager = new Pager('Application\\NewsBundle\\Entity\\Post');
+        $pager = new Pager('Application\Sonata\NewsBundle\Entity\Post');
 
         $pager->setQueryBuilder($qb);
         $pager->setPage($this->get('request')->get('page', 1));
         $pager->init();
 
-        return $this->render('NewsBundle:Post:archive.twig', array(
+        return $this->render('Sonata\NewsBundle:Post:archive.twig', array(
             'pager' => $pager,
         ));
     }
@@ -33,7 +33,7 @@ class PostController extends Controller
     {
 
         $post = $this->get('doctrine.orm.default_entity_manager')
-            ->getRepository('Application\\NewsBundle\\Entity\\Post')
+            ->getRepository('Application\Sonata\NewsBundle\Entity\Post')
             ->findOneBy(array(
                 'slug' => $slug
             ));
@@ -42,7 +42,7 @@ class PostController extends Controller
             throw new NotFoundHttpException;
         }
 
-        return $this->render('NewsBundle:Post:view.twig', array(
+        return $this->render('Sonata\NewsBundle:Post:view.twig', array(
             'post' => $post,
         ));
     }
@@ -52,7 +52,7 @@ class PostController extends Controller
 
         $em = $this->get('doctrine.orm.default_entity_manager');
 
-        $comments = $em->getRepository('Application\\NewsBundle\\Entity\\Comment')
+        $comments = $em->getRepository('Application\Sonata\NewsBundle\Entity\Comment')
             ->createQueryBuilder('c')
             ->where('c.post = :post_id AND c.status = :status')
             ->orderBy('c.created_at', 'ASC')
@@ -64,7 +64,7 @@ class PostController extends Controller
             ->execute();
 
 
-        return $this->render('NewsBundle:Post:comments.twig', array(
+        return $this->render('Sonata\NewsBundle:Post:comments.twig', array(
             'comments'  => $comments,
         ));
     }
@@ -74,7 +74,7 @@ class PostController extends Controller
         if(!$form) {
             $em = $this->get('doctrine.orm.default_entity_manager');
 
-            $post = $em->getRepository('Application\\NewsBundle\\Entity\\Post')
+            $post = $em->getRepository('Application\Sonata\NewsBundle\Entity\Post')
                 ->findOneBy(array(
                     'id' => $post_id
                 ));
@@ -82,7 +82,7 @@ class PostController extends Controller
             $form = $this->getCommentForm($post);
         }
 
-        return $this->render('NewsBundle:Post:comment_form.twig', array(
+        return $this->render('Sonata\NewsBundle:Post:comment_form.twig', array(
             'form'      => $form,
             'post_id'   => $post_id
         ));
@@ -114,7 +114,7 @@ class PostController extends Controller
 
         $em = $this->get('doctrine.orm.default_entity_manager');
         
-        $post = $em->getRepository('Application\\NewsBundle\\Entity\\Post')
+        $post = $em->getRepository('Application\Sonata\NewsBundle\Entity\Post')
             ->findOneBy(array(
                 'id' => $id
             ));
@@ -128,7 +128,7 @@ class PostController extends Controller
 
             // todo add notice
 
-            return $this->redirect($this->generateUrl('news_view', array(
+            return $this->redirect($this->generateUrl('sonata_news_view', array(
                 'year'  => $post->getYear(),
                 'month' => $post->getMonth(),
                 'day'   => $post->getDay(),
@@ -145,7 +145,7 @@ class PostController extends Controller
 
             // todo : add notice
 
-            return $this->redirect($this->generateUrl('news_view', array(
+            return $this->redirect($this->generateUrl('sonata_news_view', array(
                 'year'  => $post->getYear(),
                 'month' => $post->getMonth(),
                 'day'   => $post->getDay(),
@@ -153,7 +153,7 @@ class PostController extends Controller
             )));
         }
 
-        return $this->render('NewsBundle:Post:view.twig', array(
+        return $this->render('Sonata\NewsBundle:Post:view.twig', array(
             'post' => $post,
             'form' => $form
         ));

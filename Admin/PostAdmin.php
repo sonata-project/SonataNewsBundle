@@ -44,7 +44,7 @@ class PostAdmin extends Admin
             'fields' => array('tags'),
         ),
         'Options' => array(
-            'fields' => array('comments_enabled', 'comments_default_status'),
+            'fields' => array('enabled', 'comments_enabled', 'comments_default_status'),
             'collapsed' => true
         )
     );
