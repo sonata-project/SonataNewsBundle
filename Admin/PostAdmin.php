@@ -20,7 +20,7 @@ class PostAdmin extends Admin
 
     protected $list_fields = array(
         'title' => array('identifier' => true),
-        'slug',
+        'author',
         'enabled',
         'comments_enabled',
     );
@@ -30,21 +30,22 @@ class PostAdmin extends Admin
         'title',
         'abstract',
         'content',
+        'author',
         'tags' => array('options' => array('expanded' => true)),
-//        'comments_close_at',
+        'comments_close_at',
         'comments_enabled',
         'comments_default_status'
     );
 
     protected $form_groups = array(
         'General' => array(
-            'fields' => array('title', 'abstract', 'content'),
+            'fields' => array('author', 'title', 'abstract', 'content'),
         ),
         'Tags' => array(
             'fields' => array('tags'),
         ),
         'Options' => array(
-            'fields' => array('enabled', 'comments_enabled', 'comments_default_status'),
+            'fields' => array('enabled', 'comments_close_at', 'comments_enabled', 'comments_default_status'),
             'collapsed' => true
         )
     );

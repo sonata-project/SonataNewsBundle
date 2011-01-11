@@ -17,8 +17,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <one-to-one field="image" target-entity="Application\Sonata\MediaBundle\Entity\Media" />
-
+        <one-to-one field="author" target-entity="Application\FOS\UserBundle\Entity\User" />
 
         <many-to-many
             field="tags"

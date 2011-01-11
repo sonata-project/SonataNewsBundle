@@ -39,6 +39,8 @@ abstract class BasePost
     protected $comments_close_at;
 
     protected $comments_default_status;
+
+    protected $author;
     
     public function __construct()
     {
@@ -358,4 +360,15 @@ abstract class BasePost
 
         return $this->getEnabled();
     }
+
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
+
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
 }
