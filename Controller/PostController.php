@@ -140,6 +140,7 @@ class PostController extends Controller
         $form->bind($this->get('request')->get('comment'));
 
         if($form->isValid()) {
+
             $em->persist($form->getData());
             $em->flush();
 

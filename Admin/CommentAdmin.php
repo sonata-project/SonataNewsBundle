@@ -11,7 +11,7 @@
 
 namespace Bundle\Sonata\NewsBundle\Admin;
 
-use Bundle\Sonata\BaseApplicationBundle\Admin\Admin;
+use Bundle\Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -20,7 +20,7 @@ class CommentAdmin extends Admin
 
     protected $class = 'Application\Sonata\NewsBundle\Entity\Comment';
 
-    protected $list_fields = array(
+    protected $listFields = array(
         'name' => array('identifier' => true),
         'getStatusCode' => array('label' => 'status_code'),
         'post',
@@ -29,7 +29,7 @@ class CommentAdmin extends Admin
         'message',
     );
 
-    protected $form_fields = array(
+    protected $formFields = array(
         'name',
         'email',
         'url',
@@ -38,17 +38,20 @@ class CommentAdmin extends Admin
         'status' => array('type' => 'choice'),
     );
 
-    protected $base_route = 'sonata_news_comment_admin';
+    protected $baseRoute = 'sonata_news_comment_admin';
 
     // don't know yet how to get this value
-    protected $base_controller_name = 'NewsBundle:CommentAdmin';
+    protected $baseControllerName = 'NewsBundle:CommentAdmin';
 
     public function configureFormFields()
     {
-        $this->form_fields['status']['options'] = array(
-            'choices' => Comment::getStatusList(),
-            'expanded' => true
-        );
+
+        $this->formFields['status']->setType('choice');
+        $options = $this->formFields['status']->getOption('form_field_options', array());
+        $options['choices'] = Comment::getStatusList();
+        $options['expanded'] = true;
+
+        $this->formFields['status']->setOption('form_field_options', $options);
     }
 
     public function getBatchActions()

@@ -11,25 +11,24 @@
 
 namespace Bundle\Sonata\NewsBundle\Admin;
 
-use Bundle\Sonata\BaseApplicationBundle\Admin\Admin;
+use Bundle\Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
 
 class TagAdmin extends Admin
 {
     protected $class = 'Application\Sonata\NewsBundle\Entity\Tag';
 
-    protected $list_fields = array(
+    protected $listFields = array(
         'name' => array('identifier' => true),
         'slug',
         'enabled',
     );
 
-    protected $form_fields = array(
+    protected $formFields = array(
+        'id',
         'name',
         'enabled'
     );
 
-    protected $base_route = 'sonata_news_tag_admin';
-
     // don't know yet how to get this value
-    protected $base_controller_name = 'NewsBundle:TagAdmin';
+    protected $baseControllerName = 'NewsBundle:TagAdmin';
 }

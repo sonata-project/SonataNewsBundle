@@ -11,33 +11,40 @@
 
 namespace Bundle\Sonata\NewsBundle\Admin;
 
-use Bundle\Sonata\BaseApplicationBundle\Admin\Admin;
+use Bundle\Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
+
+use Bundle\Sonata\BaseApplicationBundle\Admin\FieldDescription;
+use Bundle\Sonata\BaseApplicationBundle\Filter\Filter;
+
+use Application\Sonata\NewsBundle\Entity\Comment;
 
 class PostAdmin extends Admin
 {
 
     protected $class = 'Application\Sonata\NewsBundle\Entity\Post';
 
-    protected $list_fields = array(
+    protected $listFields = array(
         'title' => array('identifier' => true),
         'author',
         'enabled',
         'comments_enabled',
     );
 
-    protected $form_fields = array(
+    protected $formFields = array(
         'enabled',
         'title',
         'abstract',
         'content',
-        'author',
-        'tags' => array('options' => array('expanded' => true)),
+
+        'author'   => array('edit' => 'inline'),
+        'tags'     => array('options' => array('expanded' => true)),
+        
         'comments_close_at',
         'comments_enabled',
         'comments_default_status'
     );
 
-    protected $form_groups = array(
+    protected $formGroups = array(
         'General' => array(
             'fields' => array('author', 'title', 'abstract', 'content'),
         ),
@@ -50,52 +57,71 @@ class PostAdmin extends Admin
         )
     );
 
-    protected $filter_fields = array(
+    protected $filterFields = array(
         'title',
         'enabled',
         'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
     );
 
-    protected $base_route = 'sonata_news_post_admin';
+    protected $baseRoute = 'sonata_news_post_admin';
 
     // don't know yet how to get this value
-    protected $base_controller_name = 'NewsBundle:PostAdmin';
+    protected $baseControllerName = 'NewsBundle:PostAdmin';
 
     public function configureFormFields()
     {
-        $this->form_fields['comments_default_status']['type'] = 'choice';
-        $this->form_fields['comments_default_status']['options']['choices'] = \Application\Sonata\NewsBundle\Entity\Comment::getStatusList();
+        $this->formFields['comments_default_status']->setType('choice');
+
+        $options = $this->formFields['comments_default_status']->getOption('form_field_options', array());
+        $options['choices'] = Comment::getStatusList();
+
+        $this->formFields['comments_default_status']->setOption('form_field_options', $options);
     }
 
     public function configureFilterFields()
     {
-        $this->filter_fields['with_open_comments'] = array(
-            'type'           => 'callback',
-            'filter_options' => array(
-                'filter'  => array($this, 'getWithOpenCommentFilter'),
-                'field'   => array($this, 'getWithOpenCommentField')
-            )
-        );
+        $this->filterFields['with_open_comments'] = new FieldDescription;
+        $this->filterFields['with_open_comments']->setName('label');
+        $this->filterFields['with_open_comments']->setTemplate('Sonata\BaseApplicationBundle:CRUD:filter_callback.twig');
+        $this->filterFields['with_open_comments']->setType('callback');
+        $this->filterFields['with_open_comments']->setOption('filter_options', array(
+            'filter' => array($this, 'getWithOpenCommentFilter'),
+            'field'  => array($this, 'getWithOpenCommentField')
+        ));
     }
 
-    public function getWithOpenCommentFilter($query_builder, $alias, $field, $value)
+    public function getWithOpenCommentFilter($queryBuilder, $alias, $field, $value)
     {
 
         if(!$value) {
             return;
         }
 
-        $query_builder->leftJoin(sprintf('%s.comments', $alias), 'c');
-        $query_builder->andWhere('c.status = :status');
-        $query_builder->setParameter('status', \Application\Sonata\NewsBundle\Entity\Comment::STATUS_MODERATE);
+        $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
+        $queryBuilder->andWhere('c.status = :status');
+        $queryBuilder->setParameter('status', \Application\Sonata\NewsBundle\Entity\Comment::STATUS_MODERATE);
     }
 
-    public function getWithOpenCommentField($filter)
+    public function getWithOpenCommentField(Filter $filter)
     {
 
         return new \Symfony\Component\Form\CheckboxField(
             $filter->getName(),
             array()
         );
+    }
+
+    public function preInsert($post)
+    {
+        parent::preInsert($post);
+
+        $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
+    }
+
+    public function preUpdate($post)
+    {
+        parent::preUpdate($post);
+
+        $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
     }
 }

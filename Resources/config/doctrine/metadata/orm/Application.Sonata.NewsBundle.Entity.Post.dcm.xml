@@ -17,7 +17,17 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <one-to-one field="author" target-entity="Application\FOS\UserBundle\Entity\User" />
+        <one-to-one
+            field="author"
+            target-entity="Application\FOS\UserBundle\Entity\User"
+           >
+            <cascade>
+                <cascade-persist />
+                <!--<cascade-merge />-->
+                <!--<cascade-remove />-->
+                <!--<cascade-refresh />-->
+            </cascade>
+        </one-to-one>
 
         <many-to-many
             field="tags"
