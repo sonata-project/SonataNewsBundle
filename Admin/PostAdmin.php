@@ -63,10 +63,9 @@ class PostAdmin extends Admin
         'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
     );
 
-    protected $baseRoute = 'sonata_news_post_admin';
-
+    
     // don't know yet how to get this value
-    protected $baseControllerName = 'NewsBundle:PostAdmin';
+    protected $baseControllerName = 'SonataNewsBundle:PostAdmin';
 
     public function configureFormFields()
     {
@@ -82,7 +81,7 @@ class PostAdmin extends Admin
     {
         $this->filterFields['with_open_comments'] = new FieldDescription;
         $this->filterFields['with_open_comments']->setName('label');
-        $this->filterFields['with_open_comments']->setTemplate('Sonata\BaseApplicationBundle:CRUD:filter_callback.twig');
+        $this->filterFields['with_open_comments']->setTemplate('SonataBaseApplicationBundle:CRUD:filter_callback.twig.html');
         $this->filterFields['with_open_comments']->setType('callback');
         $this->filterFields['with_open_comments']->setOption('filter_options', array(
             'filter' => array($this, 'getWithOpenCommentFilter'),

@@ -38,10 +38,8 @@ class CommentAdmin extends Admin
         'status' => array('type' => 'choice'),
     );
 
-    protected $baseRoute = 'sonata_news_comment_admin';
-
     // don't know yet how to get this value
-    protected $baseControllerName = 'NewsBundle:CommentAdmin';
+    protected $baseControllerName = 'SonataNewsBundle:CommentAdmin';
 
     public function configureFormFields()
     {

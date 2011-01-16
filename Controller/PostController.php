@@ -24,7 +24,7 @@ class PostController extends Controller
         $pager->setPage($this->get('request')->get('page', 1));
         $pager->init();
 
-        return $this->render('Sonata\NewsBundle:Post:archive.twig', array(
+        return $this->render('SonataNewsBundle:Post:archive.twig.html', array(
             'pager' => $pager,
         ));
     }
@@ -42,7 +42,7 @@ class PostController extends Controller
             throw new NotFoundHttpException;
         }
 
-        return $this->render('Sonata\NewsBundle:Post:view.twig', array(
+        return $this->render('SonataNewsBundle:Post:view.twig.html', array(
             'post' => $post,
         ));
     }
@@ -64,7 +64,7 @@ class PostController extends Controller
             ->execute();
 
 
-        return $this->render('Sonata\NewsBundle:Post:comments.twig', array(
+        return $this->render('SonataNewsBundle:Post:comments.twig.html', array(
             'comments'  => $comments,
         ));
     }
@@ -82,7 +82,7 @@ class PostController extends Controller
             $form = $this->getCommentForm($post);
         }
 
-        return $this->render('Sonata\NewsBundle:Post:comment_form.twig', array(
+        return $this->render('SonataNewsBundle:Post:comment_form.twig.html', array(
             'form'      => $form,
             'post_id'   => $post_id
         ));
@@ -154,7 +154,7 @@ class PostController extends Controller
             )));
         }
 
-        return $this->render('Sonata\NewsBundle:Post:view.twig', array(
+        return $this->render('SonataNewsBundle:Post:view.twig.html', array(
             'post' => $post,
             'form' => $form
         ));

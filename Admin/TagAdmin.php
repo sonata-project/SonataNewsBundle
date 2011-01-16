@@ -30,5 +30,5 @@ class TagAdmin extends Admin
     );
 
     // don't know yet how to get this value
-    protected $baseControllerName = 'NewsBundle:TagAdmin';
+    protected $baseControllerName = 'SonataNewsBundle:TagAdmin';
 }
