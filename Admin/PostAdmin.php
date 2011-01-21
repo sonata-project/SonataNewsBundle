@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Bundle\Sonata\NewsBundle\Admin;
+namespace Sonata\NewsBundle\Admin;
 
-use Bundle\Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
+use Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
 
-use Bundle\Sonata\BaseApplicationBundle\Admin\FieldDescription;
-use Bundle\Sonata\BaseApplicationBundle\Filter\Filter;
+use Sonata\BaseApplicationBundle\Admin\FieldDescription;
+use Sonata\BaseApplicationBundle\Filter\Filter;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -31,17 +31,20 @@ class PostAdmin extends Admin
     );
 
     protected $formFields = array(
+        'comments' => array(
+            'edit' => 'inline',
+            'inline' => 'table',
+            'min'  => 3
+        ),
+        'author' => array('edit' => 'list'),
         'enabled',
-        'title',
-        'abstract',
+        'title' => array('type' => 'text'),
+        'abstract'  => array('type' => 'string'),
         'content',
-
-        'author'   => array('edit' => 'inline'),
         'tags'     => array('options' => array('expanded' => true)),
-        
         'comments_close_at',
         'comments_enabled',
-        'comments_default_status'
+        'comments_default_status',
     );
 
     protected $formGroups = array(
@@ -54,6 +57,10 @@ class PostAdmin extends Admin
         'Options' => array(
             'fields' => array('enabled', 'comments_close_at', 'comments_enabled', 'comments_default_status'),
             'collapsed' => true
+        ),
+        'Comments' => array(
+            'fields' => array('comments'),
+            'collapsed' => true
         )
     );
 
@@ -63,24 +70,25 @@ class PostAdmin extends Admin
         'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
     );
 
-    
     // don't know yet how to get this value
     protected $baseControllerName = 'SonataNewsBundle:PostAdmin';
 
     public function configureFormFields()
     {
-        $this->formFields['comments_default_status']->setType('choice');
+        if(isset($this->formFields['comments_default_status'])) {
+            $this->formFields['comments_default_status']->setType('choice');
 
-        $options = $this->formFields['comments_default_status']->getOption('form_field_options', array());
-        $options['choices'] = Comment::getStatusList();
+            $options = $this->formFields['comments_default_status']->getOption('form_field_options', array());
+            $options['choices'] = Comment::getStatusList();
 
-        $this->formFields['comments_default_status']->setOption('form_field_options', $options);
+            $this->formFields['comments_default_status']->setOption('form_field_options', $options);
+        }
     }
 
     public function configureFilterFields()
     {
         $this->filterFields['with_open_comments'] = new FieldDescription;
-        $this->filterFields['with_open_comments']->setName('label');
+        $this->filterFields['with_open_comments']->setName('with_open_comments');
         $this->filterFields['with_open_comments']->setTemplate('SonataBaseApplicationBundle:CRUD:filter_callback.twig.html');
         $this->filterFields['with_open_comments']->setType('callback');
         $this->filterFields['with_open_comments']->setOption('filter_options', array(
@@ -114,13 +122,17 @@ class PostAdmin extends Admin
     {
         parent::preInsert($post);
 
-        $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
+        if(isset($this->formFields['author'])) {
+            $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
+        }
     }
 
     public function preUpdate($post)
     {
         parent::preUpdate($post);
 
-        $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
+        if(isset($this->formFields['author'])) {
+            $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
+        }
     }
 }

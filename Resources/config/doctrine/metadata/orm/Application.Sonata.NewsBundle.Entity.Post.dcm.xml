@@ -57,7 +57,8 @@
         <one-to-many
             field="comments"
             target-entity="Application\Sonata\NewsBundle\Entity\Comment"
-            mapped-by="post">
+            mapped-by="post"
+            orphan-removal="true">
 
             <cascade>
                 <cascade-persist/>

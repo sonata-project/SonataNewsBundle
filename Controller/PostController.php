@@ -1,10 +1,10 @@
 <?php
 
-namespace Bundle\Sonata\NewsBundle\Controller;
+namespace Sonata\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Bundle\Sonata\BaseApplicationBundle\Tool\DoctrinePager as Pager;
+use Sonata\BaseApplicationBundle\Tool\DoctrinePager as Pager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\Form;
 

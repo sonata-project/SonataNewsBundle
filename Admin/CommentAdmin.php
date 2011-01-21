@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Bundle\Sonata\NewsBundle\Admin;
+namespace Sonata\NewsBundle\Admin;
 
-use Bundle\Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
+use Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -34,7 +34,7 @@ class CommentAdmin extends Admin
         'email',
         'url',
         'message',
-        'post',
+        'post' => array('edit' => 'list'),
         'status' => array('type' => 'choice'),
     );
 
@@ -47,7 +47,7 @@ class CommentAdmin extends Admin
         $this->formFields['status']->setType('choice');
         $options = $this->formFields['status']->getOption('form_field_options', array());
         $options['choices'] = Comment::getStatusList();
-        $options['expanded'] = true;
+//        $options['expanded'] = true;
 
         $this->formFields['status']->setOption('form_field_options', $options);
     }

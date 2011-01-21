@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Bundle\Sonata\NewsBundle\Entity;
+namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

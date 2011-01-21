@@ -1,9 +1,24 @@
 <?php
 
-namespace Bundle\Sonata\NewsBundle;
+namespace Sonata\NewsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataNewsBundle extends Bundle
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getNamespace()
+    {
+        return __NAMESPACE__;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPath()
+    {
+        return strtr(__DIR__, '\\', '/');
+    }
 }

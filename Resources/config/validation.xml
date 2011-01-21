@@ -16,10 +16,28 @@
             <constraint name="NotBlank" />
         </property>
 
+        <!--<property name="author">-->
+            <!--<constraint name="Valid" />-->
+        <!--</property>-->
+
         <property name="content">
             <constraint name="NotNull" />
             <constraint name="NotBlank" />
         </property>
+
+        <!--<property name="comments">-->
+            <!--&lt;!&ndash; Iterate through the Array of comments&ndash;&gt;-->
+            <!--<constraint name="Collection">-->
+                <!--<option name="fields">-->
+                    <!--<value key="0">-->
+                         <!--&lt;!&ndash;<constraint name="Valid" />&ndash;&gt;-->
+                    <!--</value>-->
+                <!--</option>-->
+                <!--<option name="allowExtraFields">true</option>-->
+            <!--</constraint>-->
+
+            <!--<constraint name="Valid" />-->
+        <!--</property>-->
 
     </class>
 

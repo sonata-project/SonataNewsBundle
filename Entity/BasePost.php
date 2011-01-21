@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Bundle\Sonata\NewsBundle\Entity;
+namespace Sonata\NewsBundle\Entity;
 
 abstract class BasePost
 {
@@ -218,6 +218,15 @@ abstract class BasePost
     public function addComments(\Application\Sonata\NewsBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
+    }
+
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
+        foreach($this->comments as $comment) {
+            $comment->setPost($this);
+        }
     }
 
     /**
