@@ -205,7 +205,7 @@ abstract class BaseComment
      *
      * @param Application\Sonata\NewsBundle\Entity\Post $post
      */
-    public function setPost(\Application\Sonata\NewsBundle\Entity\Post $post)
+    public function setPost($post)
     {
         $this->post = $post;
     }

@@ -31,15 +31,10 @@ class PostAdmin extends Admin
     );
 
     protected $formFields = array(
-        'comments' => array(
-            'edit' => 'inline',
-            'inline' => 'table',
-            'min'  => 3
-        ),
         'author' => array('edit' => 'list'),
         'enabled',
-        'title' => array('type' => 'text'),
-        'abstract'  => array('type' => 'string'),
+        'title',
+        'abstract',
         'content',
         'tags'     => array('options' => array('expanded' => true)),
         'comments_close_at',
@@ -56,10 +51,6 @@ class PostAdmin extends Admin
         ),
         'Options' => array(
             'fields' => array('enabled', 'comments_close_at', 'comments_enabled', 'comments_default_status'),
-            'collapsed' => true
-        ),
-        'Comments' => array(
-            'fields' => array('comments'),
             'collapsed' => true
         )
     );
