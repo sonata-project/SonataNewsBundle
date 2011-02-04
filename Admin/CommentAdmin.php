@@ -20,7 +20,7 @@ class CommentAdmin extends Admin
 
     protected $class = 'Application\Sonata\NewsBundle\Entity\Comment';
 
-    protected $listFields = array(
+    protected $list = array(
         'name' => array('identifier' => true),
         'getStatusCode' => array('label' => 'status_code'),
         'post',
@@ -29,7 +29,7 @@ class CommentAdmin extends Admin
         'message',
     );
 
-    protected $formFields = array(
+    protected $form = array(
         'name',
         'email',
         'url',
@@ -41,15 +41,15 @@ class CommentAdmin extends Admin
     // don't know yet how to get this value
     protected $baseControllerName = 'SonataNewsBundle:CommentAdmin';
 
-    public function configureFormFields()
+    public function configureFormFieldDescriptions()
     {
 
-        $this->formFields['status']->setType('choice');
-        $options = $this->formFields['status']->getOption('form_field_options', array());
+        $this->formFieldDescriptions['status']->setType('choice');
+        $options = $this->formFieldDescriptions['status']->getOption('form_field_options', array());
         $options['choices'] = Comment::getStatusList();
 //        $options['expanded'] = true;
 
-        $this->formFields['status']->setOption('form_field_options', $options);
+        $this->formFieldDescriptions['status']->setOption('form_field_options', $options);
     }
 
     public function getBatchActions()

@@ -17,13 +17,13 @@ class TagAdmin extends Admin
 {
     protected $class = 'Application\Sonata\NewsBundle\Entity\Tag';
 
-    protected $listFields = array(
+    protected $list = array(
         'name' => array('identifier' => true),
         'slug',
         'enabled',
     );
 
-    protected $formFields = array(
+    protected $form = array(
         'id',
         'name',
         'enabled'

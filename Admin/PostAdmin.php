@@ -12,7 +12,10 @@
 namespace Sonata\NewsBundle\Admin;
 
 use Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
-
+use Sonata\BaseApplicationBundle\Form\FormMapper;
+use Sonata\BaseApplicationBundle\Datagrid\DatagridMapper;
+use Sonata\BaseApplicationBundle\Datagrid\ListMapper;
+    
 use Sonata\BaseApplicationBundle\Admin\FieldDescription;
 use Sonata\BaseApplicationBundle\Filter\Filter;
 
@@ -23,23 +26,28 @@ class PostAdmin extends Admin
 
     protected $class = 'Application\Sonata\NewsBundle\Entity\Post';
 
-    protected $listFields = array(
+    protected $formOptions = array(
+        'validation_groups' => 'admin'
+    );
+
+    protected $list = array(
         'title' => array('identifier' => true),
         'author',
         'enabled',
         'comments_enabled',
     );
 
-    protected $formFields = array(
-        'author' => array('edit' => 'list'),
+    protected $form = array(
+//        'author' => array('edit' => 'inline'),
         'enabled',
-        'title',
+//        'title',
         'abstract',
         'content',
-        'tags'     => array('options' => array('expanded' => true)),
+        'tags'     => array('form_field_options' => array('expanded' => true)),
         'comments_close_at',
         'comments_enabled',
         'comments_default_status',
+        'comments' => array('edit' => 'inline', 'inline' => 'table')
     );
 
     protected $formGroups = array(
@@ -55,7 +63,7 @@ class PostAdmin extends Admin
         )
     );
 
-    protected $filterFields = array(
+    protected $filter = array(
         'title',
         'enabled',
         'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
@@ -64,27 +72,27 @@ class PostAdmin extends Admin
     // don't know yet how to get this value
     protected $baseControllerName = 'SonataNewsBundle:PostAdmin';
 
-    public function configureFormFields()
+
+    public function configureFormFields(FormMapper $form)
     {
-        if(isset($this->formFields['comments_default_status'])) {
-            $this->formFields['comments_default_status']->setType('choice');
+        $form->add('author', array(), array('edit' => 'list'));
+        $form->add('title');
 
-            $options = $this->formFields['comments_default_status']->getOption('form_field_options', array());
-            $options['choices'] = Comment::getStatusList();
+        $form->add('comments_default_status', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
 
-            $this->formFields['comments_default_status']->setOption('form_field_options', $options);
-        }
+        $form->add(new \Symfony\Component\Form\ChoiceField('comments_default_status', array('choices' => Comment::getStatusList())));
     }
 
-    public function configureFilterFields()
+    public function configureDatagridFilters(DatagridMapper $datagrid)
     {
-        $this->filterFields['with_open_comments'] = new FieldDescription;
-        $this->filterFields['with_open_comments']->setName('with_open_comments');
-        $this->filterFields['with_open_comments']->setTemplate('SonataBaseApplicationBundle:CRUD:filter_callback.twig.html');
-        $this->filterFields['with_open_comments']->setType('callback');
-        $this->filterFields['with_open_comments']->setOption('filter_options', array(
-            'filter' => array($this, 'getWithOpenCommentFilter'),
-            'field'  => array($this, 'getWithOpenCommentField')
+
+        $datagrid->add('with_open_comments', array(
+            'template' => 'SonataBaseApplicationBundle:CRUD:filter_callback.twig.html',
+            'type' => 'callback',
+            'filter_options' => array(
+                'filter' => array($this, 'getWithOpenCommentFilter'),
+                'field'  => array($this, 'getWithOpenCommentField')
+            )
         ));
     }
 
@@ -113,7 +121,7 @@ class PostAdmin extends Admin
     {
         parent::preInsert($post);
 
-        if(isset($this->formFields['author'])) {
+        if(isset($this->formFieldDescriptions['author'])) {
             $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
         }
     }
@@ -122,7 +130,7 @@ class PostAdmin extends Admin
     {
         parent::preUpdate($post);
 
-        if(isset($this->formFields['author'])) {
+        if(isset($this->formFieldDescriptions['author'])) {
             $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
         }
     }
