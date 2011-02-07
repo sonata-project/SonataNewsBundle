@@ -32,7 +32,7 @@ class PostAdmin extends Admin
         'title' => array('identifier' => true),
         'author',
         'enabled',
-        'comments_enabled',
+        'commentsEnabled',
     );
 
     protected $form = array(
@@ -42,8 +42,8 @@ class PostAdmin extends Admin
         'abstract',
         'content',
         'tags'     => array('form_field_options' => array('expanded' => true)),
-        'comments_close_at',
-        'comments_enabled',
+        'commentsCloseAt',
+        'commentsEnabled',
     );
 
     protected $formGroups = array(
@@ -54,7 +54,7 @@ class PostAdmin extends Admin
             'fields' => array('tags'),
         ),
         'Options' => array(
-            'fields' => array('enabled', 'comments_close_at', 'comments_enabled', 'comments_default_status'),
+            'fields' => array('enabled', 'commentsCloseAt', 'commentsEnabled', 'commentsDefaultStatus'),
             'collapsed' => true
         )
     );
@@ -67,7 +67,7 @@ class PostAdmin extends Admin
 
     public function configureFormFields(FormMapper $form)
     {
-        $form->add('comments_default_status', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
+        $form->add('commentsDefaultStatus', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
     }
 
     public function configureDatagridFilters(DatagridMapper $datagrid)
@@ -86,7 +86,7 @@ class PostAdmin extends Admin
     public function getWithOpenCommentFilter($queryBuilder, $alias, $field, $value)
     {
 
-        if(!$value) {
+        if (!$value) {
             return;
         }
 
@@ -95,7 +95,7 @@ class PostAdmin extends Admin
         $queryBuilder->setParameter('status', \Application\Sonata\NewsBundle\Entity\Comment::STATUS_MODERATE);
     }
 
-    public function getWithOpenCommentField(Filter $filter)
+    public function getWithOpenCommentField($filter)
     {
 
         return new \Symfony\Component\Form\CheckboxField(
@@ -108,7 +108,7 @@ class PostAdmin extends Admin
     {
         parent::preInsert($post);
 
-        if(isset($this->formFieldDescriptions['author'])) {
+        if (isset($this->formFieldDescriptions['author'])) {
             $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
         }
     }
@@ -117,7 +117,7 @@ class PostAdmin extends Admin
     {
         parent::preUpdate($post);
 
-        if(isset($this->formFieldDescriptions['author'])) {
+        if (isset($this->formFieldDescriptions['author'])) {
             $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
         }
     }

@@ -7,8 +7,8 @@
         <field name="enabled"           type="boolean"      column="enabled"        default="false" />
         <field name="slug"              type="string"      column="slug"    />
         
-        <field name="created_at"    type="datetime"   column="created_at" />
-        <field name="updated_at"    type="datetime"   column="updated_at" />
+        <field name="createdAt"    type="datetime"   column="created_at" />
+        <field name="updatedAt"    type="datetime"   column="updated_at" />
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="prePersist"/>

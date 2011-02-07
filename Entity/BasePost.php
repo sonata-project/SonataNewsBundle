@@ -28,17 +28,17 @@ abstract class BasePost
 
     protected $enabled;
 
-    protected $publication_date_start;
+    protected $publicationDateStart;
 
-    protected $created_at;
+    protected $createdAt;
 
-    protected $updated_at;
+    protected $updatedAt;
 
-    protected $comments_enabled = true;
+    protected $commentsEnabled = true;
 
-    protected $comments_close_at;
+    protected $commentsCloseAt;
 
-    protected $comments_default_status;
+    protected $commentsDefaultStatus;
 
     protected $author;
     
@@ -157,7 +157,7 @@ abstract class BasePost
      */
     public function setPublicationDateStart($publicationDateStart)
     {
-        $this->publication_date_start = $publicationDateStart;
+        $this->publicationDateStart = $publicationDateStart;
     }
 
     /**
@@ -167,7 +167,7 @@ abstract class BasePost
      */
     public function getPublicationDateStart()
     {
-        return $this->publication_date_start;
+        return $this->publicationDateStart;
     }
 
     /**
@@ -177,7 +177,7 @@ abstract class BasePost
      */
     public function setCreatedAt($createdAt)
     {
-        $this->created_at = $createdAt;
+        $this->createdAt = $createdAt;
     }
 
     /**
@@ -187,7 +187,7 @@ abstract class BasePost
      */
     public function getCreatedAt()
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
     /**
@@ -197,7 +197,7 @@ abstract class BasePost
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updated_at = $updatedAt;
+        $this->updatedAt = $updatedAt;
     }
 
     /**
@@ -207,7 +207,7 @@ abstract class BasePost
      */
     public function getUpdatedAt()
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
     /**
@@ -224,7 +224,7 @@ abstract class BasePost
     {
         $this->comments = $comments;
 
-        foreach($this->comments as $comment) {
+        foreach ($this->comments as $comment) {
             $comment->setPost($this);
         }
     }
@@ -296,7 +296,7 @@ abstract class BasePost
      */
     public function setCommentsEnabled($commentsEnabled)
     {
-        $this->comments_enabled = $commentsEnabled;
+        $this->commentsEnabled = $commentsEnabled;
     }
 
     /**
@@ -306,7 +306,7 @@ abstract class BasePost
      */
     public function getCommentsEnabled()
     {
-        return $this->comments_enabled;
+        return $this->commentsEnabled;
     }
 
     /**
@@ -316,7 +316,7 @@ abstract class BasePost
      */
     public function setCommentsCloseAt($commentsCloseAt)
     {
-        $this->comments_close_at = $commentsCloseAt;
+        $this->commentsCloseAt = $commentsCloseAt;
     }
 
     /**
@@ -326,7 +326,7 @@ abstract class BasePost
      */
     public function getCommentsCloseAt()
     {
-        return $this->comments_close_at;
+        return $this->commentsCloseAt;
     }
 
     /**
@@ -336,7 +336,7 @@ abstract class BasePost
      */
     public function setCommentsDefaultStatus($commentsDefaultStatus)
     {
-        $this->comments_default_status = $commentsDefaultStatus;
+        $this->commentsDefaultStatus = $commentsDefaultStatus;
     }
 
     /**
@@ -346,7 +346,7 @@ abstract class BasePost
      */
     public function getCommentsDefaultStatus()
     {
-        return $this->comments_default_status;
+        return $this->commentsDefaultStatus;
     }
 
     public function __toString()
@@ -357,12 +357,12 @@ abstract class BasePost
     public function isCommentable()
     {
 
-        if(!$this->getCommentsEnabled())
+        if (!$this->getCommentsEnabled())
         {
             return false;
         }
 
-        if($this->getCommentsCloseAt() instanceof \DateTime)
+        if ($this->getCommentsCloseAt() instanceof \DateTime)
         {
             return $this->getCommentsCloseAt()->diff(new \DateTime)->invert == 0 ? true : false;
         }

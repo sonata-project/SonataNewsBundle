@@ -7,22 +7,35 @@
 
     <class name="Application\Sonata\NewsBundle\Entity\Post">
         <property name="title">
-           <constraint name="NotBlank" />
-           <constraint name="NotNull" />
+            <constraint name="NotBlank">
+                <option name="groups">admin</option>
+            </constraint>
+
+            <constraint name="NotNull">
+                <option name="groups">admin</option>
+            </constraint>
         </property>
 
         <property name="abstract">
-            <constraint name="NotNull" />
-            <constraint name="NotBlank" />
+            <constraint name="NotNull">
+                <option name="groups">admin</option>
+            </constraint>
+            <constraint name="NotBlank">
+                <option name="groups">admin</option>
+            </constraint>
         </property>
 
-        <!--<property name="author">-->
-            <!--<constraint name="Valid" />-->
-        <!--</property>-->
+        <property name="author">
+            <constraint name="Valid" />
+        </property>
 
         <property name="content">
-            <constraint name="NotNull" />
-            <constraint name="NotBlank" />
+            <constraint name="NotNull">
+                <option name="groups">admin</option>
+            </constraint>
+            <constraint name="NotBlank">
+                <option name="groups">admin</option>
+            </constraint>
         </property>
 
         <!--<property name="comments">-->

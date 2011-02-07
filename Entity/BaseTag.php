@@ -18,9 +18,9 @@ abstract class BaseTag
 
     protected $slug;
 
-    protected $created_at;
+    protected $createdAt;
 
-    protected $updated_at;
+    protected $updatedAt;
 
     protected $enabled;
 
@@ -95,7 +95,7 @@ abstract class BaseTag
      */
     public function setCreatedAt($createdAt)
     {
-        $this->created_at = $createdAt;
+        $this->createdAt = $createdAt;
     }
 
     /**
@@ -105,7 +105,7 @@ abstract class BaseTag
      */
     public function getCreatedAt()
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
     /**
@@ -115,7 +115,7 @@ abstract class BaseTag
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updated_at = $updatedAt;
+        $this->updatedAt = $updatedAt;
     }
 
     /**
@@ -125,7 +125,7 @@ abstract class BaseTag
      */
     public function getUpdatedAt()
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
     public function prePersist()

@@ -38,7 +38,7 @@ class PostController extends Controller
                 'slug' => $slug
             ));
 
-        if(!$post) {
+        if (!$post) {
             throw new NotFoundHttpException;
         }
 
@@ -71,7 +71,7 @@ class PostController extends Controller
 
     public function addCommentFormAction($post_id, $form = false)
     {
-        if(!$form) {
+        if (!$form) {
             $em = $this->get('doctrine.orm.default_entity_manager');
 
             $post = $em->getRepository('Application\Sonata\NewsBundle\Entity\Post')
@@ -119,11 +119,11 @@ class PostController extends Controller
                 'id' => $id
             ));
 
-        if(!$post) {
+        if (!$post) {
             throw new NotFoundHttpException(sprintf('Post (%d) not found', $id));
         }
 
-        if(!$post->isCommentable())
+        if (!$post->isCommentable())
         {
 
             // todo add notice
@@ -139,7 +139,7 @@ class PostController extends Controller
         $form = $this->getCommentForm($post);
         $form->bind($this->get('request')->get('comment'));
 
-        if($form->isValid()) {
+        if ($form->isValid()) {
 
             $em->persist($form->getData());
             $em->flush();
