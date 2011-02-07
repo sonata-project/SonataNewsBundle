@@ -12,6 +12,9 @@
 namespace Sonata\NewsBundle\Admin;
 
 use Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
+use Sonata\BaseApplicationBundle\Form\FormMapper;
+use Sonata\BaseApplicationBundle\Datagrid\DatagridMapper;
+use Sonata\BaseApplicationBundle\Datagrid\ListMapper;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -19,10 +22,11 @@ class CommentAdmin extends Admin
 {
 
     protected $class = 'Application\Sonata\NewsBundle\Entity\Comment';
+    protected $baseControllerName = 'SonataNewsBundle:CommentAdmin';
 
     protected $list = array(
         'name' => array('identifier' => true),
-        'getStatusCode' => array('label' => 'status_code'),
+        'getStatusCode' => array('label' => 'status_code', 'type' => 'string'),
         'post',
         'email',
         'url',
@@ -38,19 +42,17 @@ class CommentAdmin extends Admin
         'status' => array('type' => 'choice'),
     );
 
-    // don't know yet how to get this value
-    protected $baseControllerName = 'SonataNewsBundle:CommentAdmin';
+    protected $filter = array(
+        'name',
+        'email',
+        'message'
+    );
 
-    public function configureFormFieldDescriptions()
+    public function configureFormFields(FormMapper $form)
     {
-
-        $this->formFieldDescriptions['status']->setType('choice');
-        $options = $this->formFieldDescriptions['status']->getOption('form_field_options', array());
-        $options['choices'] = Comment::getStatusList();
-//        $options['expanded'] = true;
-
-        $this->formFieldDescriptions['status']->setOption('form_field_options', $options);
+        $form->add('status', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
     }
+
 
     public function getBatchActions()
     {

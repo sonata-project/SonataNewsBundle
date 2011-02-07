@@ -15,9 +15,6 @@ use Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
 use Sonata\BaseApplicationBundle\Form\FormMapper;
 use Sonata\BaseApplicationBundle\Datagrid\DatagridMapper;
 use Sonata\BaseApplicationBundle\Datagrid\ListMapper;
-    
-use Sonata\BaseApplicationBundle\Admin\FieldDescription;
-use Sonata\BaseApplicationBundle\Filter\Filter;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -25,6 +22,7 @@ class PostAdmin extends Admin
 {
 
     protected $class = 'Application\Sonata\NewsBundle\Entity\Post';
+    protected $baseControllerName = 'SonataNewsBundle:PostAdmin';
 
     protected $formOptions = array(
         'validation_groups' => 'admin'
@@ -38,16 +36,14 @@ class PostAdmin extends Admin
     );
 
     protected $form = array(
-//        'author' => array('edit' => 'inline'),
+        'author' => array('edit' => 'list'),
         'enabled',
-//        'title',
+        'title',
         'abstract',
         'content',
         'tags'     => array('form_field_options' => array('expanded' => true)),
         'comments_close_at',
         'comments_enabled',
-        'comments_default_status',
-        'comments' => array('edit' => 'inline', 'inline' => 'table')
     );
 
     protected $formGroups = array(
@@ -69,18 +65,9 @@ class PostAdmin extends Admin
         'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
     );
 
-    // don't know yet how to get this value
-    protected $baseControllerName = 'SonataNewsBundle:PostAdmin';
-
-
     public function configureFormFields(FormMapper $form)
     {
-        $form->add('author', array(), array('edit' => 'list'));
-        $form->add('title');
-
         $form->add('comments_default_status', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
-
-        $form->add(new \Symfony\Component\Form\ChoiceField('comments_default_status', array('choices' => Comment::getStatusList())));
     }
 
     public function configureDatagridFilters(DatagridMapper $datagrid)
