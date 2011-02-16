@@ -37,13 +37,13 @@ class PostAdmin extends Admin
 
     protected $form = array(
         'author' => array('edit' => 'list'),
-        'enabled',
+        'enabled' => array('form_field_options' => array('required' => false)),
         'title',
         'abstract',
         'content',
         'tags'     => array('form_field_options' => array('expanded' => true)),
         'commentsCloseAt',
-        'commentsEnabled',
+        'commentsEnabled' => array('form_field_options' => array('required' => false)),
     );
 
     protected $formGroups = array(
