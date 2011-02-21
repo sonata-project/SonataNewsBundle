@@ -20,10 +20,6 @@ use Application\Sonata\NewsBundle\Entity\Comment;
 
 class PostAdmin extends Admin
 {
-
-    protected $class = 'Application\Sonata\NewsBundle\Entity\Post';
-    protected $baseControllerName = 'SonataNewsBundle:PostAdmin';
-
     protected $formOptions = array(
         'validation_groups' => 'admin'
     );

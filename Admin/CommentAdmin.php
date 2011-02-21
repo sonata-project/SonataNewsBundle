@@ -20,10 +20,6 @@ use Application\Sonata\NewsBundle\Entity\Comment;
 
 class CommentAdmin extends Admin
 {
-
-    protected $class = 'Application\Sonata\NewsBundle\Entity\Comment';
-    protected $baseControllerName = 'SonataNewsBundle:CommentAdmin';
-
     protected $list = array(
         'name' => array('identifier' => true),
         'getStatusCode' => array('label' => 'status_code', 'type' => 'string'),

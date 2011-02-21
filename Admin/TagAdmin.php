@@ -15,9 +15,6 @@ use Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
 
 class TagAdmin extends Admin
 {
-    protected $class = 'Application\Sonata\NewsBundle\Entity\Tag';
-    protected $baseControllerName = 'SonataNewsBundle:TagAdmin';
-
     protected $list = array(
         'name' => array('identifier' => true),
         'slug',
