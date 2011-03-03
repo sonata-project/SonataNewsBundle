@@ -11,10 +11,13 @@
 
 namespace Sonata\NewsBundle\Admin;
 
-use Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
-use Sonata\BaseApplicationBundle\Form\FormMapper;
-use Sonata\BaseApplicationBundle\Datagrid\DatagridMapper;
-use Sonata\BaseApplicationBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Admin\EntityAdmin as Admin;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+
+use Knplabs\MenuBundle\Menu;
+use Knplabs\MenuBundle\MenuItem;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -70,11 +73,14 @@ class PostAdmin extends Admin
     {
 
         $datagrid->add('with_open_comments', array(
-            'template' => 'SonataBaseApplicationBundle:CRUD:filter_callback.html.twig',
+            'template' => 'SonataAdminBundle:CRUD:filter_callback.html.twig',
             'type' => 'callback',
             'filter_options' => array(
                 'filter' => array($this, 'getWithOpenCommentFilter'),
                 'field'  => array($this, 'getWithOpenCommentField')
+            ),
+            'filter_field_options' => array(
+                'required' => false
             )
         ));
     }
@@ -116,5 +122,37 @@ class PostAdmin extends Admin
         if (isset($this->formFieldDescriptions['author'])) {
             $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
         }
+    }
+
+    public function getSideMenu($action, $childAdmin = false)
+    {
+
+        if ($childAdmin || in_array($action, array('edit'))) {
+            return $this->getEditSideMenu();
+        }
+
+        return false;
+    }
+
+    public function getEditSideMenu()
+    {
+
+        $menu = new Menu;
+
+        $admin = $this->isChild() ? $this->getParent() : $this;
+
+        $id = $this->container->get('request')->get('id');
+
+        $menu->addChild(
+            $this->trans('view_post'),
+            $admin->generateUrl('edit', array('id' => $id))
+        );
+
+        $menu->addChild(
+            $this->trans('link_view_comment'),
+            $admin->generateUrl('post_comment.list', array('id' => $id))
+        );
+
+        return $menu;
     }
 }

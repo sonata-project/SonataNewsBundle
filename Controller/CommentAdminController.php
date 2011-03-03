@@ -11,7 +11,7 @@
 
 namespace Sonata\NewsBundle\Controller;
 
-use Sonata\BaseApplicationBundle\Controller\CRUDController as Controller;
+use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CommentAdminController extends Controller

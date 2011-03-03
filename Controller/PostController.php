@@ -4,10 +4,11 @@ namespace Sonata\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Sonata\BaseApplicationBundle\Tool\DoctrinePager as Pager;
+use Sonata\AdminBundle\Tool\DoctrinePager as Pager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\Form;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
+    
 use Application\Sonata\NewsBundle\Entity\Comment;
 
 class PostController extends Controller
@@ -35,7 +36,7 @@ class PostController extends Controller
         $post = $this->get('doctrine.orm.default_entity_manager')
             ->getRepository('Application\Sonata\NewsBundle\Entity\Post')
             ->findOneBy(array(
-                'slug' => $slug
+                'slug' => $slug,
             ));
 
         if (!$post) {
@@ -128,7 +129,7 @@ class PostController extends Controller
 
             // todo add notice
 
-            return $this->redirect($this->generateUrl('sonata_news_view', array(
+            return new RedirectResponse($this->generateUrl('sonata_news_view', array(
                 'year'  => $post->getYear(),
                 'month' => $post->getMonth(),
                 'day'   => $post->getDay(),
@@ -146,7 +147,7 @@ class PostController extends Controller
 
             // todo : add notice
 
-            return $this->redirect($this->generateUrl('sonata_news_view', array(
+            return new RedirectResponse($this->generateUrl('sonata_news_view', array(
                 'year'  => $post->getYear(),
                 'month' => $post->getMonth(),
                 'day'   => $post->getDay(),

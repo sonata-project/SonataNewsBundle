@@ -11,15 +11,18 @@
 
 namespace Sonata\NewsBundle\Admin;
 
-use Sonata\BaseApplicationBundle\Admin\EntityAdmin as Admin;
-use Sonata\BaseApplicationBundle\Form\FormMapper;
-use Sonata\BaseApplicationBundle\Datagrid\DatagridMapper;
-use Sonata\BaseApplicationBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Admin\EntityAdmin as Admin;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
 class CommentAdmin extends Admin
 {
+
+    protected $parentAssociationMapping = 'post';
+    
     protected $list = array(
         'name' => array('identifier' => true),
         'getStatusCode' => array('label' => 'status_code', 'type' => 'string'),
@@ -34,8 +37,14 @@ class CommentAdmin extends Admin
         'email',
         'url',
         'message',
-        'post' => array('edit' => 'list'),
+//        'post' => array('edit' => 'list'),
         'status' => array('type' => 'choice'),
+    );
+
+    protected $formGroups = array(
+        'General' => array(
+            'fields' => array('post', 'name', 'email', 'url', 'message', 'status')
+        )
     );
 
     protected $filter = array(
@@ -47,6 +56,10 @@ class CommentAdmin extends Admin
     public function configureFormFields(FormMapper $form)
     {
         $form->add('status', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
+
+        if(!$this->isChild()) {
+            $form->add('post', array(), array('edit' => 'list'));
+        }
     }
 
 
