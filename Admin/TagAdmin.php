@@ -11,7 +11,7 @@
 
 namespace Sonata\NewsBundle\Admin;
 
-use Sonata\AdminBundle\Admin\EntityAdmin as Admin;
+use Sonata\AdminBundle\Admin\Admin;
 
 class TagAdmin extends Admin
 {

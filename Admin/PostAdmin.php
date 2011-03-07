@@ -11,7 +11,7 @@
 
 namespace Sonata\NewsBundle\Admin;
 
-use Sonata\AdminBundle\Admin\EntityAdmin as Admin;
+use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -23,6 +23,8 @@ use Application\Sonata\NewsBundle\Entity\Comment;
 
 class PostAdmin extends Admin
 {
+    protected $userManager;
+
     protected $formOptions = array(
         'validation_groups' => 'admin'
     );
@@ -66,6 +68,7 @@ class PostAdmin extends Admin
 
     public function configureFormFields(FormMapper $form)
     {
+        $form->add('author');
         $form->add('commentsDefaultStatus', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
     }
 
@@ -111,7 +114,7 @@ class PostAdmin extends Admin
         parent::preInsert($post);
 
         if (isset($this->formFieldDescriptions['author'])) {
-            $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
+            $this->getUserManager()->updatePassword($post->getAuthor());
         }
     }
 
@@ -120,7 +123,7 @@ class PostAdmin extends Admin
         parent::preUpdate($post);
 
         if (isset($this->formFieldDescriptions['author'])) {
-            $this->container->get('fos_user.user_manager')->updatePassword($post->getAuthor());
+            $this->getUserManager()->updatePassword($post->getAuthor());
         }
     }
 
@@ -141,7 +144,7 @@ class PostAdmin extends Admin
 
         $admin = $this->isChild() ? $this->getParent() : $this;
 
-        $id = $this->container->get('request')->get('id');
+        $id = $this->getRequest()->get('id');
 
         $menu->addChild(
             $this->trans('view_post'),
@@ -150,9 +153,19 @@ class PostAdmin extends Admin
 
         $menu->addChild(
             $this->trans('link_view_comment'),
-            $admin->generateUrl('post_comment.list', array('id' => $id))
+            $admin->generateUrl('sonata.news.admin.comment.list', array('id' => $id))
         );
 
         return $menu;
+    }
+
+    public function setUserManager($userManager)
+    {
+        $this->userManager = $userManager;
+    }
+
+    public function getUserManager()
+    {
+        return $this->userManager;
     }
 }

@@ -3,7 +3,7 @@
     <mapped-superclass name="Sonata\NewsBundle\Entity\BaseTag">
 
 
-        <field name="name"             type="string"       column="title"           />
+        <field name="name"             type="string"       column="name"           />
         <field name="enabled"           type="boolean"      column="enabled"        default="false" />
         <field name="slug"              type="string"      column="slug"    />
         
