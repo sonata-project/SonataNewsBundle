@@ -15,6 +15,6 @@
 
 {% for post in pager.getResults() %}
     <div>
-        <h2><a href="{{ url('news_view', { 'year': post.year, 'month': post.month, 'day': post.day, 'slug': post.slug}) }}">{{ post.title }}</a></h2>
+        <h2><a href="{{ url('sonata_news_view', { 'year': post.year, 'month': post.month, 'day': post.day, 'slug': post.slug}) }}">{{ post.title }}</a></h2>
     </div>
 {% endfor %}
