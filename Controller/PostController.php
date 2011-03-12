@@ -56,7 +56,7 @@ class PostController extends Controller
         $comments = $em->getRepository('Application\Sonata\NewsBundle\Entity\Comment')
             ->createQueryBuilder('c')
             ->where('c.post = :post_id AND c.status = :status')
-            ->orderBy('c.created_at', 'ASC')
+            ->orderBy('c.createdAt', 'ASC')
             ->getQuery()
             ->setParameters(array(
                 'post_id'   => $post_id,
