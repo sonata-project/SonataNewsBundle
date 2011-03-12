@@ -19,3 +19,10 @@ A blog plateform based on Doctrine2 and Symfony2.
                 // ...
             );
         }
+
+* Add SonataNewsBundle routes to your application routing.xml
+
+    # app/config/routing.yml
+    news:
+        resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
+        prefix: /news
