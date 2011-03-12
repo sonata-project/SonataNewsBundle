@@ -1,6 +1,6 @@
 # Newsbundle
 
-A blog plateform based on Doctrine2 and Symfony2.
+A blog platform based on Doctrine2 and Symfony2.
 
 ## Installation
 
