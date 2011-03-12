@@ -20,7 +20,7 @@ A blog plateform based on Doctrine2 and Symfony2.
             );
         }
 
-* Add SonataNewsBundle routes to your application routing.xml
+* Add SonataNewsBundle routes to your application routing.yml
 
         # app/config/routing.yml
         news:
