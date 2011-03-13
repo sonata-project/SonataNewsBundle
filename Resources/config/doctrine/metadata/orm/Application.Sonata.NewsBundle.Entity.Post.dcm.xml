@@ -17,7 +17,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <one-to-one
+        <many-to-one
             field="author"
             target-entity="Application\FOS\UserBundle\Entity\User"
            >
@@ -27,7 +27,7 @@
                 <!--<cascade-remove />-->
                 <!--<cascade-refresh />-->
             </cascade>
-        </one-to-one>
+        </many-to-one>
 
         <many-to-many
             field="tags"
