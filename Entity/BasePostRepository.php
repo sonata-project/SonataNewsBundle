@@ -20,7 +20,7 @@ class BasePostRepository extends EntityRepository
 
         return $this->createQueryBuilder('p')
             ->where('p.enabled = true')
-            ->orderby('p.created_at', 'DESC');
+            ->orderby('p.createdAt', 'DESC');
         
     }
 }
