@@ -15,7 +15,7 @@ class PostController extends Controller
 {
     public function archiveAction()
     {
-        $qb = $this->get('doctrine.orm.default_entity_manager')
+        $qb = $this->get('sonata.news.entity_manager')
             ->getRepository('Application\Sonata\NewsBundle\Entity\Post')
             ->findLastPostQueryBuilder(10); // todo : make this configurable
 
@@ -33,7 +33,7 @@ class PostController extends Controller
     public function viewAction($year, $month, $day, $slug)
     {
 
-        $post = $this->get('doctrine.orm.default_entity_manager')
+        $post = $this->get('sonata.news.entity_manager')
             ->getRepository('Application\Sonata\NewsBundle\Entity\Post')
             ->findOneBy(array(
                 'slug' => $slug,
@@ -45,13 +45,14 @@ class PostController extends Controller
 
         return $this->render('SonataNewsBundle:Post:view.html.twig', array(
             'post' => $post,
+            'form' => false
         ));
     }
 
     public function commentsAction($post_id)
     {
 
-        $em = $this->get('doctrine.orm.default_entity_manager');
+        $em = $this->get('sonata.news.entity_manager');
 
         $comments = $em->getRepository('Application\Sonata\NewsBundle\Entity\Comment')
             ->createQueryBuilder('c')
@@ -73,7 +74,7 @@ class PostController extends Controller
     public function addCommentFormAction($post_id, $form = false)
     {
         if (!$form) {
-            $em = $this->get('doctrine.orm.default_entity_manager');
+            $em = $this->get('sonata.news.entity_manager');
 
             $post = $em->getRepository('Application\Sonata\NewsBundle\Entity\Post')
                 ->findOneBy(array(
@@ -87,7 +88,6 @@ class PostController extends Controller
             'form'      => $form,
             'post_id'   => $post_id
         ));
-
     }
     
     public function getCommentForm($post)
@@ -99,8 +99,10 @@ class PostController extends Controller
         $comment->setPost($post);
         $comment->setStatus($post->getCommentsDefaultStatus());
         
-
-        $form = new Form('comment', $comment, $this->get('validator'));
+        $form = new Form('comment', array(
+            'data' => $comment,
+            'validator' => $this->get('validator')
+        ));
 
         $form->add(new \Symfony\Component\Form\TextField('name'));
         $form->add(new \Symfony\Component\Form\TextField('email'));
@@ -113,7 +115,7 @@ class PostController extends Controller
     public function addCommentAction($id)
     {
 
-        $em = $this->get('doctrine.orm.default_entity_manager');
+        $em = $this->get('sonata.news.entity_manager');
         
         $post = $em->getRepository('Application\Sonata\NewsBundle\Entity\Post')
             ->findOneBy(array(
@@ -128,7 +130,6 @@ class PostController extends Controller
         {
 
             // todo add notice
-
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
                 'year'  => $post->getYear(),
                 'month' => $post->getMonth(),
@@ -138,7 +139,7 @@ class PostController extends Controller
         }
 
         $form = $this->getCommentForm($post);
-        $form->bind($this->get('request')->get('comment'));
+        $form->bind($this->get('request'));
 
         if ($form->isValid()) {
 
@@ -146,7 +147,6 @@ class PostController extends Controller
             $em->flush();
 
             // todo : add notice
-
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
                 'year'  => $post->getYear(),
                 'month' => $post->getMonth(),
@@ -159,6 +159,5 @@ class PostController extends Controller
             'post' => $post,
             'form' => $form
         ));
-
     }
 }

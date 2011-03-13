@@ -25,6 +25,11 @@
             <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="comment"/>
             <argument>%sonata.news.admin.comment.entity%</argument>
             <argument>%sonata.news.admin.comment.controller%</argument>
+
+            <call method="setModelManager">
+                <argument type="service" id="sonata.news.entity_manager" />
+            </call>
+
         </service>
 
         <service id="sonata.news.admin.post" class="%sonata.news.admin.post.class%">
@@ -40,12 +45,20 @@
                 <argument>sonata.news.admin.comment</argument>
                 <argument type="service" id="sonata.news.admin.comment" />
             </call>
+
+            <call method="setModelManager">
+                <argument type="service" id="sonata.news.entity_manager" />
+            </call>
         </service>
 
         <service id="sonata.news.admin.tag" class="%sonata.news.admin.tag.class%">
             <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="tag"/>
             <argument>%sonata.news.admin.tag.entity%</argument>
             <argument>%sonata.news.admin.tag.controller%</argument>
+
+            <call method="setModelManager">
+                <argument type="service" id="sonata.news.entity_manager" />
+            </call>
         </service>
     </services>
     
