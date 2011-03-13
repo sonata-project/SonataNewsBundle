@@ -7,22 +7,14 @@
 
     <class name="Application\Sonata\NewsBundle\Entity\Post">
         <property name="title">
-            <constraint name="NotBlank">
-                <option name="groups">admin</option>
-            </constraint>
+            <constraint name="NotBlank" />
 
-            <constraint name="NotNull">
-                <option name="groups">admin</option>
-            </constraint>
+            <constraint name="NotNull" />
         </property>
 
         <property name="abstract">
-            <constraint name="NotNull">
-                <option name="groups">admin</option>
-            </constraint>
-            <constraint name="NotBlank">
-                <option name="groups">admin</option>
-            </constraint>
+            <constraint name="NotNull" />
+            <constraint name="NotBlank" />
         </property>
 
         <property name="author">
@@ -30,28 +22,13 @@
         </property>
 
         <property name="content">
-            <constraint name="NotNull">
-                <option name="groups">admin</option>
-            </constraint>
-            <constraint name="NotBlank">
-                <option name="groups">admin</option>
-            </constraint>
+            <constraint name="NotNull" />
+            <constraint name="NotBlank"/>
         </property>
 
-        <!--<property name="comments">-->
-            <!--&lt;!&ndash; Iterate through the Array of comments&ndash;&gt;-->
-            <!--<constraint name="Collection">-->
-                <!--<option name="fields">-->
-                    <!--<value key="0">-->
-                         <!--&lt;!&ndash;<constraint name="Valid" />&ndash;&gt;-->
-                    <!--</value>-->
-                <!--</option>-->
-                <!--<option name="allowExtraFields">true</option>-->
-            <!--</constraint>-->
-
-            <!--<constraint name="Valid" />-->
-        <!--</property>-->
-
+        <property name="tags">
+            <constraint name="Valid" />
+        </property>
     </class>
 
     <class name="Application\Sonata\NewsBundle\Entity\Comment">
