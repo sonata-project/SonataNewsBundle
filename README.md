@@ -26,3 +26,16 @@ A blog platform based on Doctrine2 and Symfony2.
         news:
             resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
             prefix: /news
+
+* Add a new context into your ``sonata_media`` configuration
+
+
+        news:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+
+            formats:
+                small: { width: 150 , quality: 95}
+                big:   { width: 500 , quality: 90}

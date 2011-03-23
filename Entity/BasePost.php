@@ -41,6 +41,8 @@ abstract class BasePost
     protected $commentsDefaultStatus;
 
     protected $author;
+
+    protected $image;
     
     public function __construct()
     {
@@ -378,6 +380,26 @@ abstract class BasePost
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set image
+     *
+     * @param Application\Sonata\MediaBundle\Entity\Media $image
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Application\Sonata\MediaBundle\Entity\Media $image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
 }

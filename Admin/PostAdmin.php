@@ -42,18 +42,18 @@ class PostAdmin extends Admin
         'title',
         'abstract',
         'content',
-        'tags'     => array('form_field_options' => array('expanded' => true)),
+//        'tags'     => array('form_field_options' => array('expanded' => true)),
         'commentsCloseAt',
         'commentsEnabled' => array('form_field_options' => array('required' => false)),
     );
 
     protected $formGroups = array(
         'General' => array(
-            'fields' => array('author', 'title', 'abstract', 'content'),
+            'fields' => array('author', 'image', 'title', 'abstract', 'content'),
         ),
-        'Tags' => array(
-            'fields' => array('tags'),
-        ),
+//        'Tags' => array(
+//            'fields' => array('tags'),
+//        ),
         'Options' => array(
             'fields' => array('enabled', 'commentsCloseAt', 'commentsEnabled', 'commentsDefaultStatus'),
             'collapsed' => true
@@ -61,20 +61,22 @@ class PostAdmin extends Admin
     );
 
     protected $filter = array(
-        'title',
+//        'title',
         'enabled',
-        'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
+//        'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
     );
 
     public function configureFormFields(FormMapper $form)
     {
         $form->add('author');
+        $form->add('image', array(), array('edit' => 'list', 'link_parameters' => array('context' => 'news')));
         $form->add('commentsDefaultStatus', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
     }
 
     public function configureDatagridFilters(DatagridMapper $datagrid)
     {
 
+        return;
         $datagrid->add('with_open_comments', array(
             'template' => 'SonataAdminBundle:CRUD:filter_callback.html.twig',
             'type' => 'callback',

@@ -18,6 +18,16 @@
         </id>
 
         <many-to-one
+            field="image"
+            target-entity="Application\Sonata\MediaBundle\Entity\Media"
+            >
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+
+        
+        <many-to-one
             field="author"
             target-entity="Application\FOS\UserBundle\Entity\User"
            >

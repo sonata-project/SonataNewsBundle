@@ -16,5 +16,9 @@
 {% for post in pager.getResults() %}
     <div>
         <h2><a href="{{ url('sonata_news_view', { 'year': post.year, 'month': post.month, 'day': post.day, 'slug': post.slug}) }}">{{ post.title }}</a></h2>
+        <div>
+            {% thumbnail post.image, 'small' %}
+            {{ post.abstract }}
+        </div>
     </div>
 {% endfor %}

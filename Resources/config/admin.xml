@@ -29,7 +29,6 @@
             <call method="setModelManager">
                 <argument type="service" id="sonata.news.entity_manager" />
             </call>
-
         </service>
 
         <service id="sonata.news.admin.post" class="%sonata.news.admin.post.class%">

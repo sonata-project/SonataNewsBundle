@@ -12,7 +12,6 @@
         <default key="_controller">SonataNewsBundle:Post:addComment</default>
     </route>
 
-    
     <route id="sonata_news_archive_daily" pattern="/{year}/{month}/{day}">
         <default key="_controller">SonataNewsBundle:Post:archiveDaily</default>
     </route>
