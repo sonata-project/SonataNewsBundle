@@ -22,12 +22,12 @@
 </div>
 
 
-{% render 'SonataNewsBundle:Post:comments' with {
+{% render 'SonataNews:Post:comments' with {
     'post_id': post.id
 } %}
 
 {% if post.iscommentable %}
-    {% render 'SonataNewsBundle:Post:addCommentForm' with {
+    {% render 'SonataNews:Post:addCommentForm' with {
         'post_id': post.id,
         'form': form
     } %}

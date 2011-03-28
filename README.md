@@ -24,7 +24,7 @@ A blog platform based on Doctrine2 and Symfony2.
 
         # app/config/routing.yml
         news:
-            resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
+            resource: '@SonataNews/Resources/config/routing/news.xml'
             prefix: /news
 
 * Add a new context into your ``sonata_media`` configuration
