@@ -5,27 +5,27 @@
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="sonata_news_view" pattern="/{year}/{month}/{day}/{slug}">
-        <default key="_controller">SonataNews:Post:view</default>
+        <default key="_controller">SonataNewsBundle:Post:view</default>
     </route>
 
     <route id="sonata_news_add_comment" pattern="/add-comment/{id}">
-        <default key="_controller">SonataNews:Post:addComment</default>
+        <default key="_controller">SonataNewsBundle:Post:addComment</default>
     </route>
 
     <route id="sonata_news_archive_daily" pattern="/{year}/{month}/{day}">
-        <default key="_controller">SonataNews:Post:archiveDaily</default>
+        <default key="_controller">SonataNewsBundle:Post:archiveDaily</default>
     </route>
 
     <route id="sonata_news_archive_monthly" pattern="/{year}/{month}">
-        <default key="_controller">SonataNews:Post:archiveMonthly</default>
+        <default key="_controller">SonataNewsBundle:Post:archiveMonthly</default>
     </route>
 
     <route id="sonata_news_archive_yearly" pattern="/{year}">
-        <default key="_controller">SonataNews:Post:archiveYearly</default>
+        <default key="_controller">SonataNewsBundle:Post:archiveYearly</default>
     </route>
 
     <route id="sonata_news_archive" pattern="/">
-        <default key="_controller">SonataNews:Post:archive</default>
+        <default key="_controller">SonataNewsBundle:Post:archive</default>
     </route>
     
 </routes>
