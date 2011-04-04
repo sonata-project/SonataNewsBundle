@@ -16,8 +16,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 
-use Knplabs\MenuBundle\Menu;
-use Knplabs\MenuBundle\MenuItem;
+use Knplabs\Bundle\MenuBundle\Menu;
+use Knplabs\Bundle\MenuBundle\MenuItem;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -146,7 +146,7 @@ class PostAdmin extends Admin
 
         $admin = $this->isChild() ? $this->getParent() : $this;
 
-        $id = $this->getRequest()->get('id');
+        $id = $admin->getRequest()->get('id');
 
         $menu->addChild(
             $this->trans('view_post'),
