@@ -17,7 +17,6 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 
 use Knplabs\Bundle\MenuBundle\Menu;
-use Knplabs\Bundle\MenuBundle\MenuItem;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -129,20 +128,11 @@ class PostAdmin extends Admin
         }
     }
 
-    public function getSideMenu($action, $childAdmin = false)
+    public function configureSideMenu(Menu $menu, $action, Admin $childAdmin = null)
     {
-
-        if ($childAdmin || in_array($action, array('edit'))) {
-            return $this->getEditSideMenu();
+        if (!$childAdmin && !in_array($action, array('edit'))) {
+            return;
         }
-
-        return false;
-    }
-
-    public function getEditSideMenu()
-    {
-
-        $menu = new Menu;
 
         $admin = $this->isChild() ? $this->getParent() : $this;
 
@@ -157,8 +147,6 @@ class PostAdmin extends Admin
             $this->trans('link_view_comment'),
             $admin->generateUrl('sonata.news.admin.comment.list', array('id' => $id))
         );
-
-        return $menu;
     }
 
     public function setUserManager($userManager)

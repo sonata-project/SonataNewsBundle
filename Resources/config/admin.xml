@@ -8,7 +8,7 @@
         <parameter key="sonata.news.admin.post.class">Sonata\NewsBundle\Admin\PostAdmin</parameter>
         <parameter key="sonata.news.admin.post.controller">SonataNewsBundle:PostAdmin</parameter>
         <parameter key="sonata.news.admin.post.entity">Application\Sonata\NewsBundle\Entity\Post</parameter>
-        
+
         <!-- COMMENT -->
         <parameter key="sonata.news.admin.comment.class">Sonata\NewsBundle\Admin\CommentAdmin</parameter>
         <parameter key="sonata.news.admin.comment.controller">SonataNewsBundle:CommentAdmin</parameter>
@@ -23,42 +23,32 @@
     <services>
         <service id="sonata.news.admin.comment" class="%sonata.news.admin.comment.class%">
             <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="comment"/>
+            <argument />
             <argument>%sonata.news.admin.comment.entity%</argument>
             <argument>%sonata.news.admin.comment.controller%</argument>
-
-            <call method="setModelManager">
-                <argument type="service" id="sonata.news.entity_manager" />
-            </call>
         </service>
 
         <service id="sonata.news.admin.post" class="%sonata.news.admin.post.class%">
             <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="post"/>
+            <argument />
             <argument>%sonata.news.admin.post.entity%</argument>
             <argument>%sonata.news.admin.post.controller%</argument>
 
             <call method="setUserManager">
                 <argument type="service" id="fos_user.user_manager" />
             </call>
-            
-            <call method="addChild">
-                <argument>sonata.news.admin.comment</argument>
-                <argument type="service" id="sonata.news.admin.comment" />
-            </call>
 
-            <call method="setModelManager">
-                <argument type="service" id="sonata.news.entity_manager" />
+            <call method="addChild">
+                <argument type="service" id="sonata.news.admin.comment" />
             </call>
         </service>
 
         <service id="sonata.news.admin.tag" class="%sonata.news.admin.tag.class%">
             <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="tag"/>
+            <argument />
             <argument>%sonata.news.admin.tag.entity%</argument>
             <argument>%sonata.news.admin.tag.controller%</argument>
-
-            <call method="setModelManager">
-                <argument type="service" id="sonata.news.entity_manager" />
-            </call>
         </service>
     </services>
-    
+
 </container>
