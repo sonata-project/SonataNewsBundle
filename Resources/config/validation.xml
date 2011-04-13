@@ -8,7 +8,6 @@
     <class name="Application\Sonata\NewsBundle\Entity\Post">
         <property name="title">
             <constraint name="NotBlank" />
-
             <constraint name="NotNull" />
         </property>
 

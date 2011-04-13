@@ -6,17 +6,17 @@
     <parameters>
         <!-- POST -->
         <parameter key="sonata.news.admin.post.class">Sonata\NewsBundle\Admin\PostAdmin</parameter>
-        <parameter key="sonata.news.admin.post.controller">SonataNewsBundle:PostAdmin</parameter>
+        <parameter key="sonata.news.admin.post.controller">SonataAdminBundle:CRUD</parameter>
         <parameter key="sonata.news.admin.post.entity">Application\Sonata\NewsBundle\Entity\Post</parameter>
 
         <!-- COMMENT -->
         <parameter key="sonata.news.admin.comment.class">Sonata\NewsBundle\Admin\CommentAdmin</parameter>
-        <parameter key="sonata.news.admin.comment.controller">SonataNewsBundle:CommentAdmin</parameter>
+        <parameter key="sonata.news.admin.comment.controller">SonataAdminBundle:CRUD</parameter>
         <parameter key="sonata.news.admin.comment.entity">Application\Sonata\NewsBundle\Entity\Comment</parameter>
 
         <!-- TAG -->
         <parameter key="sonata.news.admin.tag.class">Sonata\NewsBundle\Admin\TagAdmin</parameter>
-        <parameter key="sonata.news.admin.tag.controller">SonataNewsBundle:TagAdmin</parameter>
+        <parameter key="sonata.news.admin.tag.controller">SonataAdminBundle:CRUD</parameter>
         <parameter key="sonata.news.admin.tag.entity">Application\Sonata\NewsBundle\Entity\Tag</parameter>
     </parameters>
 

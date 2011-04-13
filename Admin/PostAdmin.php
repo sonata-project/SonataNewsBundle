@@ -16,7 +16,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 
-use Knplabs\Bundle\MenuBundle\Menu;
+use Knplabs\Bundle\MenuBundle\MenuItem;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -128,7 +128,7 @@ class PostAdmin extends Admin
         }
     }
 
-    public function configureSideMenu(Menu $menu, $action, Admin $childAdmin = null)
+    public function configureSideMenu(MenuItem $menu, $action, Admin $childAdmin = null)
     {
         if (!$childAdmin && !in_array($action, array('edit'))) {
             return;
