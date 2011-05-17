@@ -26,10 +26,10 @@
             </cascade>
         </many-to-one>
 
-        
+
         <many-to-one
             field="author"
-            target-entity="Application\FOS\UserBundle\Entity\User"
+            target-entity="Application\Sonata\UserBundle\Entity\User"
            >
             <cascade>
                 <cascade-persist />

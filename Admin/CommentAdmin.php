@@ -20,12 +20,11 @@ use Application\Sonata\NewsBundle\Entity\Comment;
 
 class CommentAdmin extends Admin
 {
-
     protected $parentAssociationMapping = 'post';
-    
+
     protected $list = array(
         'name' => array('identifier' => true),
-        'getStatusCode' => array('label' => 'status_code', 'type' => 'string'),
+        'getStatusCode' => array('label' => 'status_code', 'type' => 'string', 'sortable' => 'status'),
         'post',
         'email',
         'url',
@@ -37,7 +36,6 @@ class CommentAdmin extends Admin
         'email',
         'url',
         'message',
-//        'post' => array('edit' => 'list'),
         'status' => array('type' => 'choice'),
     );
 
@@ -62,10 +60,8 @@ class CommentAdmin extends Admin
         }
     }
 
-
     public function getBatchActions()
     {
-
         return array(
             'delete'    => 'action_delete',
             'enabled'   => 'enable_comments',

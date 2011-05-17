@@ -36,12 +36,12 @@ class PostAdmin extends Admin
     );
 
     protected $form = array(
-        'author' => array('edit' => 'list'),
+        'author'  => array('edit' => 'list'),
         'enabled' => array('form_field_options' => array('required' => false)),
         'title',
         'abstract',
         'content',
-//        'tags'     => array('form_field_options' => array('expanded' => true)),
+        'tags'     => array('form_field_options' => array('expanded' => true)),
         'commentsCloseAt',
         'commentsEnabled' => array('form_field_options' => array('required' => false)),
     );
@@ -50,9 +50,9 @@ class PostAdmin extends Admin
         'General' => array(
             'fields' => array('author', 'image', 'title', 'abstract', 'content'),
         ),
-//        'Tags' => array(
-//            'fields' => array('tags'),
-//        ),
+        'Tags' => array(
+            'fields' => array('tags'),
+        ),
         'Options' => array(
             'fields' => array('enabled', 'commentsCloseAt', 'commentsEnabled', 'commentsDefaultStatus'),
             'collapsed' => true
@@ -60,28 +60,27 @@ class PostAdmin extends Admin
     );
 
     protected $filter = array(
-//        'title',
+        'title',
         'enabled',
-//        'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
+        'tags' => array('filter_field_options' => array('expanded' => true, 'multiple' => true))
     );
 
-    public function configureFormFields(FormMapper $form)
+    public function configureFormFields(FormMapper $formMapper)
     {
-        $form->add('author');
-        $form->add('image', array(), array('edit' => 'list', 'link_parameters' => array('context' => 'news')));
-        $form->add('commentsDefaultStatus', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
+        $formMapper
+          ->add('author')
+          ->add('image', array(), array('edit' => 'list', 'link_parameters' => array('context' => 'news')))
+          ->add('commentsDefaultStatus', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
     }
 
     public function configureDatagridFilters(DatagridMapper $datagrid)
     {
-
-        return;
         $datagrid->add('with_open_comments', array(
             'template' => 'SonataAdminBundle:CRUD:filter_callback.html.twig',
             'type' => 'callback',
             'filter_options' => array(
                 'filter' => array($this, 'getWithOpenCommentFilter'),
-                'field'  => array($this, 'getWithOpenCommentField')
+                'type'   => 'checkbox'
             ),
             'filter_field_options' => array(
                 'required' => false
@@ -91,23 +90,13 @@ class PostAdmin extends Admin
 
     public function getWithOpenCommentFilter($queryBuilder, $alias, $field, $value)
     {
-
         if (!$value) {
             return;
         }
 
         $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
         $queryBuilder->andWhere('c.status = :status');
-        $queryBuilder->setParameter('status', \Application\Sonata\NewsBundle\Entity\Comment::STATUS_MODERATE);
-    }
-
-    public function getWithOpenCommentField($filter)
-    {
-
-        return new \Symfony\Component\Form\CheckboxField(
-            $filter->getName(),
-            array()
-        );
+        $queryBuilder->setParameter('status', Comment::STATUS_MODERATE);
     }
 
     public function preInsert($post)
