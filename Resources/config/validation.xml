@@ -6,58 +6,62 @@
 
 
     <class name="Application\Sonata\NewsBundle\Entity\Post">
-        <property name="title">
+        <getter property="title">
             <constraint name="NotBlank" />
             <constraint name="NotNull" />
-        </property>
+        </getter>
 
-        <property name="abstract">
+        <getter property="abstract">
             <constraint name="NotNull" />
             <constraint name="NotBlank" />
-        </property>
+        </getter>
 
-        <property name="author">
+        <getter property="author">
             <constraint name="Valid" />
-        </property>
+        </getter>
 
-        <property name="content">
+        <getter property="content">
             <constraint name="NotNull" />
             <constraint name="NotBlank"/>
-        </property>
+        </getter>
 
-        <property name="tags">
+        <getter property="tags">
             <constraint name="Valid" />
-        </property>
+        </getter>
     </class>
 
     <class name="Application\Sonata\NewsBundle\Entity\Comment">
-        <property name="name">
+        <getter property="name">
            <constraint name="NotBlank" />
            <constraint name="NotNull" />
-        </property>
+        </getter>
 
-        <property name="email">
+        <getter property="email">
             <constraint name="NotNull" />
             <constraint name="NotBlank" />
             <constraint name="Email" />
-        </property>
+        </getter>
 
-        <property name="url">
+        <getter property="url">
            <constraint name="Url" />
-        </property>
+        </getter>
 
-        <property name="message">
+        <getter property="message">
             <constraint name="NotNull" />
             <constraint name="NotBlank" />
-        </property>
+        </getter>
+
+        <getter property="post">
+            <constraint name="Valid" />
+        </getter>
 
     </class>
 
     <class name="Application\Sonata\NewsBundle\Entity\Tag">
-        <property name="name">
+        <getter property="name">
            <constraint name="NotBlank" />
            <constraint name="NotNull" />
-        </property>
+        </getter>
     </class>
 
 </constraint-mapping>
