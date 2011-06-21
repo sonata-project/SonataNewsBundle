@@ -12,33 +12,32 @@
 #}
 
 <form action="{{ url('sonata_news_add_comment', {'id': post_id}) }}" method="POST" >
-
-    {{ form_hidden(form) }}
-
     <p>
         {{ form_label(form.name) }} <br />
-        {{ form_field(form.name) }}
+        {{ form_widget(form.name) }}
         {{ form_errors(form.name) }}
     </p>
-
     <p>
         {{ form_label(form.email) }} <br />
-        {{ form_field(form.email) }}
+        {{ form_widget(form.email) }}
         {{ form_errors(form.email) }}
     </p>
 
     <p>
         {{ form_label(form.url) }} <br />
-        {{ form_field(form.url) }}
+        {{ form_widget(form.url) }}
         {{ form_errors(form.url) }}
     </p>
 
     <p>
         {{ form_label(form.message) }} <br />
-        {{ form_field(form.message) }}
+        {{ form_widget(form.message) }}
         {{ form_errors(form.message) }}
     </p>
 
-    <input type="submit" value="{% trans 'btn_add_comment' from 'NewsBundle' %}" />
+     {{ form_rest(form) }}
+
+
+    <input type="submit" value="{{'btn_add_comment'|trans({}, 'NewsBundle') }}" />
 </form>
 

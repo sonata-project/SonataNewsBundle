@@ -53,7 +53,7 @@ class TagManager implements TagManagerInterface
         $this->em->flush();
     }
 
-    function create()
+    public function create()
     {
         return new $this->class;
     }

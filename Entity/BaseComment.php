@@ -15,10 +15,6 @@ use Sonata\NewsBundle\Model\CommentInterface;
 
 abstract class BaseComment implements CommentInterface
 {
-    const STATUS_MODERATE   = 2;
-    const STATUS_VALID   = 1;
-    const STATUS_INVALID = 0;
-
     protected $name;
 
     protected $email;
@@ -118,9 +114,9 @@ abstract class BaseComment implements CommentInterface
     /**
      * Set created_at
      *
-     * @param datetime $createdAt
+     * @param \DateTime $createdAt
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt = null)
     {
         $this->createdAt = $createdAt;
     }
@@ -128,7 +124,7 @@ abstract class BaseComment implements CommentInterface
     /**
      * Get created_at
      *
-     * @return datetime $createdAt
+     * @return \DateTime $createdAt
      */
     public function getCreatedAt()
     {
@@ -138,9 +134,9 @@ abstract class BaseComment implements CommentInterface
     /**
      * Set updated_at
      *
-     * @param datetime $updatedAt
+     * @param \DateTime $updatedAt
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\DateTime $updatedAt = null)
     {
         $this->updatedAt = $updatedAt;
     }
@@ -148,7 +144,7 @@ abstract class BaseComment implements CommentInterface
     /**
      * Get updated_at
      *
-     * @return datetime $updatedAt
+     * @return \DateTime $updatedAt
      */
     public function getUpdatedAt()
     {

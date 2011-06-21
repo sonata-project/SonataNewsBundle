@@ -14,17 +14,11 @@
 <h1>{{ post.title }}</h1>
 
 <div>
-    {% thumbnail post.image, 'big' %}
-</div>
-
-<div>
     {{ post.content }}
 </div>
 
 
-{% render 'SonataNewsBundle:Post:comments' with {
-    'post_id': post.id
-} %}
+{% render 'SonataNewsBundle:Post:comments' with {'post_id': post.id} %}
 
 {% if post.iscommentable %}
     {% render 'SonataNewsBundle:Post:addCommentForm' with {
@@ -33,6 +27,6 @@
     } %}
 {% else %}
     <div>
-        {% trans 'message_comments_are_closed' from 'NewsBundle' %}
+        {{ 'message_comments_are_closed'|trans({}, 'NewsBundle') }}
     </div>
 {% endif %}

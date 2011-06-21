@@ -32,6 +32,7 @@ class PostAdmin extends Admin
         'title' => array('identifier' => true),
         'author',
         'enabled',
+        'tags',
         'commentsEnabled',
     );
 
@@ -44,6 +45,15 @@ class PostAdmin extends Admin
         'tags'     => array('form_field_options' => array('expanded' => true)),
         'commentsCloseAt',
         'commentsEnabled' => array('form_field_options' => array('required' => false)),
+    );
+
+    protected $view = array(
+        'author',
+        'enabled',
+        'title',
+        'abstract',
+        'content',
+        'tags',
     );
 
     protected $formGroups = array(
@@ -69,7 +79,6 @@ class PostAdmin extends Admin
     {
         $formMapper
           ->add('author')
-          ->add('image', array(), array('edit' => 'list', 'link_parameters' => array('context' => 'news')))
           ->add('commentsDefaultStatus', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
     }
 

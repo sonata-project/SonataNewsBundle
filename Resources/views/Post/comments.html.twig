@@ -11,9 +11,9 @@
 
 #}
 
-<h2>{% trans 'title_comments' from 'NewsBundle' %}</h2>
+<h2>{{ 'title_comments'|trans({}, 'NewsBundle') }}</h2>
 
-{% for comment in comments %}
+{% for comment in  pager.results %}
     <div>
         <a href="{{ comment.url }}" target="new" rel="nofollow">{{ comment.name }}</a>
         <div>

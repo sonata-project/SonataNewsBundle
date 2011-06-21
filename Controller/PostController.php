@@ -4,26 +4,16 @@ namespace Sonata\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Sonata\AdminBundle\Tool\DoctrinePager as Pager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-    
-use Application\Sonata\NewsBundle\Entity\Comment;
+use Sonata\NewsBundle\Model\CommentInterface;
 
 class PostController extends Controller
 {
     public function archiveAction()
     {
-        $qb = $this->get('sonata.news.entity_manager')
-            ->getRepository('Application\Sonata\NewsBundle\Entity\Post')
-            ->findLastPostQueryBuilder(10); // todo : make this configurable
-
-        $pager = new Pager('Application\Sonata\NewsBundle\Entity\Post');
-
-        $pager->setQueryBuilder($qb);
-        $pager->setPage($this->get('request')->get('page', 1));
-        $pager->init();
+        $pager = $this->get('sonata.news.manager.post')->getPager(array(), 1);
 
         return $this->render('SonataNewsBundle:Post:archive.html.twig', array(
             'pager' => $pager,
@@ -32,15 +22,10 @@ class PostController extends Controller
 
     public function viewAction($year, $month, $day, $slug)
     {
-
-        $post = $this->get('sonata.news.entity_manager')
-            ->getRepository('Application\Sonata\NewsBundle\Entity\Post')
-            ->findOneBy(array(
-                'slug' => $slug,
-            ));
+        $post = $this->get('sonata.news.manager.post')->findOneBySlug($year, $month, $day, $slug);
 
         if (!$post) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException('Unable to find the post');
         }
 
         return $this->render('SonataNewsBundle:Post:view.html.twig', array(
@@ -51,84 +36,61 @@ class PostController extends Controller
 
     public function commentsAction($post_id)
     {
-
-        $em = $this->get('sonata.news.entity_manager');
-
-        $comments = $em->getRepository('Application\Sonata\NewsBundle\Entity\Comment')
-            ->createQueryBuilder('c')
-            ->where('c.post = :post_id AND c.status = :status')
-            ->orderBy('c.createdAt', 'ASC')
-            ->getQuery()
-            ->setParameters(array(
-                'post_id'   => $post_id,
-                'status'    => Comment::STATUS_VALID,
-            ))
-            ->execute();
-
+        $pager = $this->get('sonata.news.manager.comment')
+            ->getPager(array(
+                'postId' => $post_id,
+                'status'  => CommentInterface::STATUS_VALID
+            ), 1);
 
         return $this->render('SonataNewsBundle:Post:comments.html.twig', array(
-            'comments'  => $comments,
+            'pager'  => $pager,
         ));
     }
 
     public function addCommentFormAction($post_id, $form = false)
     {
         if (!$form) {
-            $em = $this->get('sonata.news.entity_manager');
-
-            $post = $em->getRepository('Application\Sonata\NewsBundle\Entity\Post')
-                ->findOneBy(array(
-                    'id' => $post_id
-                ));
+            $post = $this->get('sonata.news.manager.post')->findOneBy(array(
+                'id' => $post_id
+            ));
 
             $form = $this->getCommentForm($post);
         }
 
         return $this->render('SonataNewsBundle:Post:comment_form.html.twig', array(
-            'form'      => $form,
+            'form'      => $form->createView(),
             'post_id'   => $post_id
         ));
     }
-    
+
     public function getCommentForm($post)
     {
-
-        $this->get('session')->start();
-        
-        $comment = new Comment;
+        $comment = $this->get('sonata.news.manager.comment')->create();
         $comment->setPost($post);
         $comment->setStatus($post->getCommentsDefaultStatus());
-        
-        $form = new Form('comment', array(
-            'data' => $comment,
-            'validator' => $this->get('validator')
-        ));
 
-        $form->add(new \Symfony\Component\Form\TextField('name'));
-        $form->add(new \Symfony\Component\Form\TextField('email'));
-        $form->add(new \Symfony\Component\Form\UrlField('url'));
-        $form->add(new \Symfony\Component\Form\TextareaField('message'));
+        $formBuilder = $this->get('form.factory')
+            ->createNamedBuilder('form', 'comment', $comment)
+            ->add('name')
+            ->add('email')
+            ->add('url')
+            ->add('message')
+        ;
 
-        return $form;
+        return $formBuilder->getForm();
     }
 
     public function addCommentAction($id)
     {
-
-        $em = $this->get('sonata.news.entity_manager');
-        
-        $post = $em->getRepository('Application\Sonata\NewsBundle\Entity\Post')
-            ->findOneBy(array(
-                'id' => $id
-            ));
+        $post = $this->get('sonata.news.manager.post')->findOneBy(array(
+            'id' => $id
+        ));
 
         if (!$post) {
             throw new NotFoundHttpException(sprintf('Post (%d) not found', $id));
         }
 
-        if (!$post->isCommentable())
-        {
-
+        if (!$post->isCommentable()) {
             // todo add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
                 'year'  => $post->getYear(),
@@ -139,12 +101,10 @@ class PostController extends Controller
         }
 
         $form = $this->getCommentForm($post);
-        $form->bind($this->get('request'));
+        $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {
-
-            $em->persist($form->getData());
-            $em->flush();
+            $this->get('sonata.news.manager.comment')->save($form->getData());
 
             // todo : add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
