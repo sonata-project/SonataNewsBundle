@@ -11,9 +11,12 @@
 
 namespace Sonata\NewsBundle\Entity;
 
-abstract class BasePost
-{
+use Sonata\NewsBundle\Model\PostInterface;
+use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Model\TagInterface;
 
+abstract class BasePost implements PostInterface
+{
     protected $title;
 
     protected $slug;
@@ -43,7 +46,7 @@ abstract class BasePost
     protected $author;
 
     protected $image;
-    
+
     public function __construct()
     {
         $this->tags     = new \Doctrine\Common\Collections\ArrayCollection;
@@ -155,9 +158,9 @@ abstract class BasePost
     /**
      * Set publication_date_start
      *
-     * @param datetime $publicationDateStart
+     * @param \DateTime $publicationDateStart
      */
-    public function setPublicationDateStart($publicationDateStart)
+    public function setPublicationDateStart(\DateTime $publicationDateStart = null)
     {
         $this->publicationDateStart = $publicationDateStart;
     }
@@ -165,7 +168,7 @@ abstract class BasePost
     /**
      * Get publication_date_start
      *
-     * @return datetime $publicationDateStart
+     * @return \DateTime $publicationDateStart
      */
     public function getPublicationDateStart()
     {
@@ -177,7 +180,7 @@ abstract class BasePost
      *
      * @param datetime $createdAt
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt = null)
     {
         $this->createdAt = $createdAt;
     }
@@ -197,7 +200,7 @@ abstract class BasePost
      *
      * @param datetime $updatedAt
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\DateTime $updatedAt = null)
     {
         $this->updatedAt = $updatedAt;
     }
@@ -215,9 +218,9 @@ abstract class BasePost
     /**
      * Add comments
      *
-     * @param Application\Sonata\NewsBundle\Entity\Comment $comments
+     * @param \Sonata\NewsBundle\Model\CommentInterface $comments
      */
-    public function addComments(\Application\Sonata\NewsBundle\Entity\Comment $comments)
+    public function addComments(CommentInterface $comments)
     {
         $this->comments[] = $comments;
     }
@@ -244,9 +247,9 @@ abstract class BasePost
     /**
      * Add tags
      *
-     * @param Application\Sonata\NewsBundle\Entity\Tag $tags
+     * @param \Sonata\NewsBundle\Model\TagInterface $tags
      */
-    public function addTags(\Application\Sonata\NewsBundle\Entity\Tag $tags)
+    public function addTags(TagInterface $tags)
     {
         $this->tags[] = $tags;
     }
@@ -316,7 +319,7 @@ abstract class BasePost
      *
      * @param datetime $commentsCloseAt
      */
-    public function setCommentsCloseAt($commentsCloseAt)
+    public function setCommentsCloseAt(\DateTime $commentsCloseAt = null)
     {
         $this->commentsCloseAt = $commentsCloseAt;
     }
@@ -358,14 +361,11 @@ abstract class BasePost
 
     public function isCommentable()
     {
-
-        if (!$this->getCommentsEnabled())
-        {
+        if (!$this->getCommentsEnabled()) {
             return false;
         }
 
-        if ($this->getCommentsCloseAt() instanceof \DateTime)
-        {
+        if ($this->getCommentsCloseAt() instanceof \DateTime) {
             return $this->getCommentsCloseAt()->diff(new \DateTime)->invert == 0 ? true : false;
         }
 
@@ -381,25 +381,4 @@ abstract class BasePost
     {
         return $this->author;
     }
-
-    /**
-     * Set image
-     *
-     * @param Application\Sonata\MediaBundle\Entity\Media $image
-     */
-    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * Get image
-     *
-     * @return Application\Sonata\MediaBundle\Entity\Media $image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
 }

@@ -11,9 +11,11 @@
 
 namespace Sonata\NewsBundle\Entity;
 
-abstract class BaseTag
-{
+use Sonata\NewsBundle\Model\TagInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 
+abstract class BaseTag implements TagInterface
+{
     protected $name;
 
     protected $slug;
@@ -25,7 +27,7 @@ abstract class BaseTag
     protected $enabled;
 
     protected $posts;
-    
+
     /**
      * Set name
      *
@@ -91,9 +93,9 @@ abstract class BaseTag
     /**
      * Set created_at
      *
-     * @param datetime $createdAt
+     * @param \DateTime $createdAt
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt = null)
     {
         $this->createdAt = $createdAt;
     }
@@ -101,7 +103,7 @@ abstract class BaseTag
     /**
      * Get created_at
      *
-     * @return datetime $createdAt
+     * @return \DateTime $createdAt
      */
     public function getCreatedAt()
     {
@@ -111,9 +113,9 @@ abstract class BaseTag
     /**
      * Set updated_at
      *
-     * @param datetime $updatedAt
+     * @param \DateTime $updatedAt
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\DateTime $updatedAt = null)
     {
         $this->updatedAt = $updatedAt;
     }
@@ -148,7 +150,6 @@ abstract class BaseTag
      */
     static public function slugify($text)
     {
-
         // replace non letter or digits by -
         $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
 
@@ -174,12 +175,13 @@ abstract class BaseTag
 
         return $text;
     }
+
     /**
      * Add posts
      *
-     * @param Application\Sonata\NewsBundle\Entity\Post $posts
+     * @param \Sonata\NewsBundle\Model\PostInterface $posts
      */
-    public function addPosts(\Application\Sonata\NewsBundle\Entity\Post $posts)
+    public function addPosts(PostInterface $posts)
     {
         $this->posts[] = $posts;
     }

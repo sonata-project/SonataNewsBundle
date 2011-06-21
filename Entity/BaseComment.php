@@ -11,7 +11,9 @@
 
 namespace Sonata\NewsBundle\Entity;
 
-abstract class BaseComment
+use Sonata\NewsBundle\Model\CommentInterface;
+
+abstract class BaseComment implements CommentInterface
 {
     const STATUS_MODERATE   = 2;
     const STATUS_VALID   = 1;
@@ -180,7 +182,7 @@ abstract class BaseComment
     {
         $this->setUpdatedAt(new \DateTime);
     }
-    
+
     /**
      * Set status
      *

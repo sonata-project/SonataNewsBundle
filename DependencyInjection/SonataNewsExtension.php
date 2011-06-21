@@ -27,8 +27,9 @@ class SonataNewsExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('admin.xml');
-        $loader->load('news.xml');
+        $loader->load('orm.xml');
     }
+
     /**
      * Returns the base path for the XSD files.
      *
