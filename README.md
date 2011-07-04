@@ -6,10 +6,10 @@ A blog platform based on Doctrine2 and Symfony2.
 
 * Add SonataNewsBundle to your src/Bundle dir
 
-        git submodule add git://github.com/sonata-project/NewsBundle.git src/Sonata/NewsBundle
-        git submodule add git://github.com/sonata-project/MediaBundle.git src/Sonata/MediaBundle
-        git submodule add git://github.com/sonata-project/UserBundle.git src/Sonata/UserBundle
-        git submodule add git://github.com/FriendsOfSymfony/UserBundle.git src/FOS/UserBundle
+        git submodule add git://github.com/sonata-project/SonataNewsBundle.git src/Sonata/NewsBundle
+        git submodule add git://github.com/sonata-project/SonataMediaBundle.git src/Sonata/MediaBundle
+        git submodule add git://github.com/sonata-project/SonataUserBundle.git src/Sonata/UserBundle
+        git submodule add git://github.com/FriendsOfSymfony/FOSUserBundle.git src/FOS/UserBundle
 
 * Add SonataNewsBundle to your application kernel
 
