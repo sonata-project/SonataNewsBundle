@@ -271,6 +271,7 @@ abstract class BasePost implements PostInterface
 
     public function prePersist()
     {
+        $this->setPublicationDateStart(new \DateTime);
         $this->setCreatedAt(new \DateTime);
         $this->setUpdatedAt(new \DateTime);
     }
