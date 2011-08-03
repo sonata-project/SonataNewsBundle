@@ -19,7 +19,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class TagAdmin extends Admin
 {
-    public function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('name')
@@ -27,14 +27,14 @@ class TagAdmin extends Admin
         ;
     }
 
-    public function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('name')
         ;
     }
 
-    public function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->addIdentifier('name')

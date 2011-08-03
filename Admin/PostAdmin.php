@@ -25,7 +25,7 @@ class PostAdmin extends Admin
 {
     protected $userManager;
 
-    public function configureShowField(ShowMapper $showMapper)
+    protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
             ->add('author')
@@ -37,7 +37,7 @@ class PostAdmin extends Admin
         ;
     }
 
-    public function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->with('General')
@@ -58,7 +58,7 @@ class PostAdmin extends Admin
         ;
     }
 
-    public function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->addIdentifier('title')
@@ -69,7 +69,7 @@ class PostAdmin extends Admin
         ;
     }
 
-    public function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('title')
@@ -117,7 +117,7 @@ class PostAdmin extends Admin
         }
     }
 
-    public function configureSideMenu(MenuItem $menu, $action, Admin $childAdmin = null)
+    protected function configureSideMenu(MenuItem $menu, $action, Admin $childAdmin = null)
     {
         if (!$childAdmin && !in_array($action, array('edit'))) {
             return;

@@ -22,7 +22,7 @@ class CommentAdmin extends Admin
 {
     protected $parentAssociationMapping = 'post';
 
-    public function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper)
     {
         if(!$this->isChild()) {
             $formMapper->add('post', 'sonata_type_model', array(), array('edit' => 'list'));
@@ -39,7 +39,7 @@ class CommentAdmin extends Admin
 
     }
 
-    public function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('name')
@@ -48,7 +48,7 @@ class CommentAdmin extends Admin
         ;
     }
 
-    public function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->addIdentifier('name')
