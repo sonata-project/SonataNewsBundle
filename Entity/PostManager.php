@@ -84,6 +84,7 @@ class PostManager implements PostManagerInterface
         $parameters = array();
         $query = $this->em->getRepository($this->class)
             ->createQueryBuilder('p')
+            ->leftJoin('p.tags', 't')
             ->orderby('p.createdAt', 'DESC');
 
         $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;

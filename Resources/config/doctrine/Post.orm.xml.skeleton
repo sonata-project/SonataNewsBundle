@@ -43,7 +43,6 @@
             field="tags"
             target-entity="Application\Sonata\NewsBundle\Entity\Tag"
             inversed-by="posts"
-            fetch="EAGER"
             >
 
             <cascade>
