@@ -22,42 +22,41 @@ class CommentAdmin extends Admin
 {
     protected $parentAssociationMapping = 'post';
 
-    protected $list = array(
-        'name' => array('identifier' => true),
-        'getStatusCode' => array('label' => 'status_code', 'type' => 'string', 'sortable' => 'status'),
-        'post',
-        'email',
-        'url',
-        'message',
-    );
-
-    protected $form = array(
-        'name',
-        'email',
-        'url',
-        'message',
-        'status' => array('type' => 'choice'),
-    );
-
-    protected $formGroups = array(
-        'General' => array(
-            'fields' => array('post', 'name', 'email', 'url', 'message', 'status')
-        )
-    );
-
-    protected $filter = array(
-        'name',
-        'email',
-        'message'
-    );
-
-    public function configureFormFields(FormMapper $form)
+    public function configureFormFields(FormMapper $formMapper)
     {
-        $form->add('status', array('choices' => Comment::getStatusList()), array('type' => 'choice'));
-
         if(!$this->isChild()) {
-            $form->add('post', array(), array('edit' => 'list'));
+            $formMapper->add('post', 'sonata_type_model', array(), array('edit' => 'list'));
+//            $formMapper->add('post', 'sonata_type_admin', array(), array('edit' => 'inline'));
         }
+
+        $formMapper
+            ->add('name')
+            ->add('email')
+            ->add('url')
+            ->add('message')
+            ->add('status', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true, 'multiple' => false))
+        ;
+
+    }
+
+    public function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('name')
+            ->add('email')
+            ->add('message')
+        ;
+    }
+
+    public function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->addIdentifier('name')
+            ->add('getStatusCode', 'text', array('label' => 'status_code', 'sortable' => 'status'))
+            ->add('post')
+            ->add('email')
+            ->add('url')
+            ->add('message');
     }
 
     public function getBatchActions()
