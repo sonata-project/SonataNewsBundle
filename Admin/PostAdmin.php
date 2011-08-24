@@ -71,19 +71,24 @@ class PostAdmin extends Admin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+//        return;
         $datagridMapper
             ->add('title')
             ->add('enabled')
-            ->add('tags', 'orm_many_to_many', array('filter_field_options' => array('expanded' => true, 'multiple' => true)))
-            ->add('with_open_comments', 'callback', array(
-                'template' => 'SonataAdminBundle:CRUD:filter_callback.html.twig',
-                'filter_options' => array(
-                    'filter' => array($this, 'getWithOpenCommentFilter'),
-                    'type'   => 'checkbox'
-                ),
-                'filter_field_options' => array(
-                    'required' => false
-                )
+            ->add('tags', null, array('field_options' => array('expanded' => true, 'multiple' => true)))
+            ->add('author')
+            ->add('with_open_comments', 'doctrine_orm_callback', array(
+//                'callback'   => array($this, 'getWithOpenCommentFilter'),
+                'callback' => function($queryBuilder, $alias, $field, $value) {
+                    if (!$value) {
+                        return;
+                    }
+
+                    $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
+                    $queryBuilder->andWhere('c.status = :status');
+                    $queryBuilder->setParameter('status', Comment::STATUS_MODERATE);
+                },
+                'field_type' => 'checkbox'
             ))
         ;
     }

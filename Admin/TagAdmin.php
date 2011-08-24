@@ -31,6 +31,7 @@ class TagAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('posts')
         ;
     }
 

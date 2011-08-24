@@ -36,7 +36,6 @@ class CommentAdmin extends Admin
             ->add('message')
             ->add('status', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true, 'multiple' => false))
         ;
-
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
