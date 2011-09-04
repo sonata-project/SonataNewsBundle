@@ -22,6 +22,10 @@ class CommentAdmin extends Admin
 {
     protected $parentAssociationMapping = 'post';
 
+    /**
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     * @return void
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         if(!$this->isChild()) {
@@ -32,12 +36,16 @@ class CommentAdmin extends Admin
         $formMapper
             ->add('name')
             ->add('email')
-            ->add('url')
+            ->add('url', null, array('required' => false))
             ->add('message')
             ->add('status', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true, 'multiple' => false))
         ;
     }
 
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     * @return void
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -47,6 +55,10 @@ class CommentAdmin extends Admin
         ;
     }
 
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     * @return void
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -58,12 +70,23 @@ class CommentAdmin extends Admin
             ->add('message');
     }
 
+    /**
+     * @return array
+     */
     public function getBatchActions()
     {
-        return array(
-            'delete'    => 'action_delete',
-            'enabled'   => 'enable_comments',
-            'disabled'  => 'disabled_comments',
+        $actions = parent::getBatchActions();
+
+        $actions['enabled'] = array(
+            'label' => $this->trans('batch_enable_comments'),
+            'ask_confirmation' => false,
         );
+
+        $actions['disabled'] = array(
+            'label' => $this->trans('batch_disable_comments'),
+            'ask_confirmation' => false
+        );
+
+        return $actions;
     }
 }

@@ -17,7 +17,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-use Knp\Bundle\MenuBundle\MenuItem;
+use Knp\Menu\ItemInterface as MenuItemInterface;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
 
@@ -25,6 +25,10 @@ class PostAdmin extends Admin
 {
     protected $userManager;
 
+    /**
+     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
+     * @return void
+     */
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
@@ -37,6 +41,10 @@ class PostAdmin extends Admin
         ;
     }
 
+    /**
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     * @return void
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -58,6 +66,10 @@ class PostAdmin extends Admin
         ;
     }
 
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     * @return void
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -69,6 +81,10 @@ class PostAdmin extends Admin
         ;
     }
 
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     * @return void
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
 //        return;
@@ -93,6 +109,13 @@ class PostAdmin extends Admin
         ;
     }
 
+    /**
+     * @param $queryBuilder
+     * @param $alias
+     * @param $field
+     * @param $value
+     * @return
+     */
     public function getWithOpenCommentFilter($queryBuilder, $alias, $field, $value)
     {
         if (!$value) {
@@ -104,25 +127,13 @@ class PostAdmin extends Admin
         $queryBuilder->setParameter('status', Comment::STATUS_MODERATE);
     }
 
-    public function preInsert($post)
-    {
-        parent::preInsert($post);
-
-        if (isset($this->formFieldDescriptions['author'])) {
-            $this->getUserManager()->updatePassword($post->getAuthor());
-        }
-    }
-
-    public function preUpdate($post)
-    {
-        parent::preUpdate($post);
-
-        if (isset($this->formFieldDescriptions['author'])) {
-            $this->getUserManager()->updatePassword($post->getAuthor());
-        }
-    }
-
-    protected function configureSideMenu(MenuItem $menu, $action, Admin $childAdmin = null)
+    /**
+     * @param \Knp\Menu\ItemInterface $menu
+     * @param $action
+     * @param null|\Sonata\AdminBundle\Admin\Admin $childAdmin
+     * @return
+     */
+    protected function configureSideMenu(MenuItemInterface $menu, $action, Admin $childAdmin = null)
     {
         if (!$childAdmin && !in_array($action, array('edit'))) {
             return;
@@ -134,12 +145,12 @@ class PostAdmin extends Admin
 
         $menu->addChild(
             $this->trans('view_post'),
-            $admin->generateUrl('edit', array('id' => $id))
+            array('uri' => $admin->generateUrl('edit', array('id' => $id)))
         );
 
         $menu->addChild(
             $this->trans('link_view_comment'),
-            $admin->generateUrl('sonata.news.admin.comment.list', array('id' => $id))
+            array('uri' => $admin->generateUrl('sonata.news.admin.comment.list', array('id' => $id)))
         );
     }
 
