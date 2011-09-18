@@ -3,10 +3,33 @@ Installation
 
 * Add SonataNewsBundle to your src/Bundle dir
 
-        git submodule add git://github.com/sonata-project/SonataNewsBundle.git vendor/bundles/Sonata/NewsBundle
-        git submodule add git://github.com/sonata-project/SonataMediaBundle.git vendor/bundles/Sonata/MediaBundle
-        git submodule add git://github.com/sonata-project/SonataUserBundle.git vendor/bundles/Sonata/UserBundle
-        git submodule add git://github.com/FriendsOfSymfony/FOSUserBundle.git vendor/bundles/FOS/UserBundle
+    [FOSUserBundle]
+        git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
+        target=/bundles/FOS/UserBundle
+
+    [SonataNewsBundle]
+        git=git@github.com:sonata-project/SonataNewsBundle.git
+        target=/bundles/Sonata/NewsBundle
+
+    [SonataMediaBundle]
+        git=git@github.com:sonata-project/SonataMediaBundle.git
+        target=/bundles/Sonata/MediaBundle
+
+    [SonataUserBundle]
+        git=https://github.com/sonata-project/SonataUserBundle.git
+        target=/bundles/Sonata/UserBundle
+
+    [SonataAdminBundle]
+        git=git@github.com:sonata-project/SonataAdminBundle.git
+        target=/bundles/Sonata/AdminBundle
+
+    [SonataFormatterBundle]
+        git=http://github.com/sonata-project/SonataFormatterBundle.git
+        target=/bundles/Sonata/FormatterBundle
+
+    [KnpMarkdownBundle]
+        git=http://github.com/knplabs/KnpMarkdownBundle.git
+        target=/bundles/Knp/Bundle/MarkdownBundle
 
 * Add SonataNewsBundle to your application kernel
 
@@ -17,7 +40,9 @@ Installation
                 // ...
                 new Sonata\NewsBundle\SonataNewsBundle(),
                 new Sonata\UserBundle\SonataUserBundle(),
-                new Sonata\UserBundle\SonataMediaBundle(),
+                new Sonata\MediaBundle\SonataMediaBundle(),
+                new Sonata\AdminBundle\SonataAdminBundle(),
+                new Sonata\FormatterBundle\SonataFormatterBundle(),
                 new FOS\UserBundle\FOSUserBundle(),
                 // ...
             );
@@ -63,3 +88,19 @@ Installation
             formats:
                 small: { width: 150 , quality: 95}
                 big:   { width: 500 , quality: 90}
+
+* Define the text formatters available for your blog post
+
+    sonata_formatter:
+        formatters:
+            markdown:
+                service: sonata.formatter.text.markdown
+                extensions: []
+
+            text:
+                service: sonata.formatter.text.text
+                extensions: []
+
+            raw:
+                service: sonata.formatter.text.raw
+                extensions: []

@@ -25,6 +25,10 @@ abstract class BasePost implements PostInterface
 
     protected $content;
 
+    protected $rawContent;
+
+    protected $contentFormatter;
+
     protected $tags;
 
     protected $comments;
@@ -381,5 +385,25 @@ abstract class BasePost implements PostInterface
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    public function setContentformatter($contentFormatter)
+    {
+        $this->contentFormatter = $contentFormatter;
+    }
+
+    public function getContentformatter()
+    {
+        return $this->contentFormatter;
+    }
+
+    public function setRawContent($rawContent)
+    {
+        $this->rawContent = $rawContent;
+    }
+
+    public function getRawContent()
+    {
+        return $this->rawContent;
     }
 }

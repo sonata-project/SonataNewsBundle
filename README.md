@@ -7,57 +7,83 @@ A blog platform based on Doctrine2 and Symfony2.
 
 * Add SonataNewsBundle to your src/Bundle dir
 
-        git submodule add git://github.com/sonata-project/SonataNewsBundle.git vendor/bundles/Sonata/NewsBundle
-        git submodule add git://github.com/sonata-project/SonataMediaBundle.git vendor/bundles/Sonata/MediaBundle
-        git submodule add git://github.com/sonata-project/SonataUserBundle.git vendor/bundles/Sonata/UserBundle
-        git submodule add git://github.com/FriendsOfSymfony/FOSUserBundle.git vendor/bundles/FOS/UserBundle
+    [FOSUserBundle]
+        git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
+        target=/bundles/FOS/UserBundle
+
+    [SonataNewsBundle]
+        git=git@github.com:sonata-project/SonataNewsBundle.git
+        target=/bundles/Sonata/NewsBundle
+
+    [SonataMediaBundle]
+        git=git@github.com:sonata-project/SonataMediaBundle.git
+        target=/bundles/Sonata/MediaBundle
+
+    [SonataUserBundle]
+        git=https://github.com/sonata-project/SonataUserBundle.git
+        target=/bundles/Sonata/UserBundle
+
+    [SonataAdminBundle]
+        git=git@github.com:sonata-project/SonataAdminBundle.git
+        target=/bundles/Sonata/AdminBundle
+
+    [SonataFormatterBundle]
+        git=http://github.com/sonata-project/SonataFormatterBundle.git
+        target=/bundles/Sonata/FormatterBundle
+
+    [KnpMarkdownBundle]
+        git=http://github.com/knplabs/KnpMarkdownBundle.git
+        target=/bundles/Knp/Bundle/MarkdownBundle
 
 * Add SonataNewsBundle to your application kernel
 
-        // app/AppKernel.php
-        public function registerBundles()
-        {
-            return array(
-                // ...
-                new Sonata\NewsBundle\SonataNewsBundle(),
-                new Sonata\UserBundle\SonataUserBundle(),
-                new Sonata\UserBundle\SonataMediaBundle(),
-                new FOS\UserBundle\FOSUserBundle(),
-                // ...
-            );
-        }
+    // app/AppKernel.php
+    public function registerBundles()
+    {
+        return array(
+            // ...
+            new Sonata\NewsBundle\SonataNewsBundle(),
+            new Sonata\UserBundle\SonataUserBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            // ...
+        );
+    }
 
 * Run the easy-extends command
 
-        php app/console sonata:easy-extends:generate SonataNewsBundle
-        php app/console sonata:easy-extends:generate SonataUserBundle
-        php app/console sonata:easy-extends:generate SonataMediaBundle
+    php app/console sonata:easy-extends:generate SonataNewsBundle
+    php app/console sonata:easy-extends:generate SonataUserBundle
+    php app/console sonata:easy-extends:generate SonataMediaBundle
 
 * Enable the new bundles
 
-        // app/AppKernel.php
-        public function registerBundles()
-        {
-            return array(
-                // ...
-                new Application\Sonata\NewsBundle\SonataNewsBundle(),
-                new Application\Sonata\UserBundle\SonataUserBundle(),
-                new Application\Sonata\UserBundle\SonataMediaBundle(),
-                // ...
-            );
-        }
+    // app/AppKernel.php
+    public function registerBundles()
+    {
+        return array(
+            // ...
+            new Application\Sonata\NewsBundle\SonataNewsBundle(),
+            new Application\Sonata\UserBundle\SonataUserBundle(),
+            new Application\Sonata\UserBundle\SonataMediaBundle(),
+            // ...
+        );
+    }
 
 * Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
 
 * Add SonataNewsBundle routes to your application routing.yml
 
-        # app/config/routing.yml
-        news:
-            resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
-            prefix: /news
+    # app/config/routing.yml
+    news:
+        resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
+        prefix: /news
 
 * Add a new context into your ``sonata_media`` configuration
 
+    sonata_media:
+        # [...]
         news:
             providers:
                 - sonata.media.provider.dailymotion
@@ -67,3 +93,19 @@ A blog platform based on Doctrine2 and Symfony2.
             formats:
                 small: { width: 150 , quality: 95}
                 big:   { width: 500 , quality: 90}
+
+* Define the text formatters available for your blog post
+
+    sonata_formatter:
+        formatters:
+            markdown:
+                service: sonata.formatter.text.markdown
+                extensions: []
+
+            text:
+                service: sonata.formatter.text.text
+                extensions: []
+
+            raw:
+                service: sonata.formatter.text.raw
+                extensions: []

@@ -53,7 +53,11 @@ class PostAdmin extends Admin
                 ->add('author', 'sonata_type_model', array(), array('edit' => 'list'))
                 ->add('title')
                 ->add('abstract')
-                ->add('content')
+                ->add('rawContent')
+                ->add('contentFormatter', 'sonata_formatter_type_selector', array(
+                    'source' => 'rawContent',
+                    'target' => 'content'
+                ))
             ->end()
             ->with('Tags')
                 ->add('tags', 'sonata_type_model', array('expanded' => true))

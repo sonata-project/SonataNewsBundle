@@ -11,6 +11,9 @@ use Sonata\NewsBundle\Model\CommentInterface;
 
 class PostController extends Controller
 {
+    /**
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
     public function archiveAction()
     {
         $pager = $this->get('sonata.news.manager.post')->getPager(array(), 1);
@@ -20,6 +23,14 @@ class PostController extends Controller
         ));
     }
 
+    /**
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @param $year
+     * @param $month
+     * @param $day
+     * @param $slug
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
     public function viewAction($year, $month, $day, $slug)
     {
         $post = $this->get('sonata.news.manager.post')->findOneBySlug($year, $month, $day, $slug);
@@ -34,6 +45,10 @@ class PostController extends Controller
         ));
     }
 
+    /**
+     * @param $post_id
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
     public function commentsAction($post_id)
     {
         $pager = $this->get('sonata.news.manager.comment')
@@ -47,6 +62,11 @@ class PostController extends Controller
         ));
     }
 
+    /**
+     * @param $post_id
+     * @param bool $form
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
     public function addCommentFormAction($post_id, $form = false)
     {
         if (!$form) {
@@ -63,6 +83,10 @@ class PostController extends Controller
         ));
     }
 
+    /**
+     * @param $post
+     * @return
+     */
     public function getCommentForm($post)
     {
         $comment = $this->get('sonata.news.manager.comment')->create();
@@ -80,6 +104,11 @@ class PostController extends Controller
         return $formBuilder->getForm();
     }
 
+    /**
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @param $id
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function addCommentAction($id)
     {
         $post = $this->get('sonata.news.manager.post')->findOneBy(array(
