@@ -3,9 +3,10 @@ SonataNewsBundle
 
 A blog platform based on Doctrine2 and Symfony2.
 
-## Installation
+Installation
+------------
 
-* Add SonataNewsBundle to your src/Bundle dir
+* Add SonataNewsBundle to your src/Bundle dir::
 
     [FOSUserBundle]
         git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
@@ -35,7 +36,9 @@ A blog platform based on Doctrine2 and Symfony2.
         git=http://github.com/knplabs/KnpMarkdownBundle.git
         target=/bundles/Knp/Bundle/MarkdownBundle
 
-* Add SonataNewsBundle to your application kernel
+* Add SonataNewsBundle to your application kernel::
+
+    <?php
 
     // app/AppKernel.php
     public function registerBundles()
@@ -51,13 +54,13 @@ A blog platform based on Doctrine2 and Symfony2.
         );
     }
 
-* Run the easy-extends command
+* Run the easy-extends command::
 
     php app/console sonata:easy-extends:generate SonataNewsBundle
     php app/console sonata:easy-extends:generate SonataUserBundle
     php app/console sonata:easy-extends:generate SonataMediaBundle
 
-* Enable the new bundles
+* Enable the new bundles::
 
     // app/AppKernel.php
     public function registerBundles()
@@ -73,14 +76,17 @@ A blog platform based on Doctrine2 and Symfony2.
 
 * Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
 
-* Add SonataNewsBundle routes to your application routing.yml
+Configuration
+-------------
+
+* Add SonataNewsBundle routes to your application routing.yml::
 
     # app/config/routing.yml
     news:
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
         prefix: /news
 
-* Add a new context into your ``sonata_media`` configuration
+* Add a new context into your ``sonata_media`` configuration::
 
     sonata_media:
         # [...]
@@ -94,7 +100,7 @@ A blog platform based on Doctrine2 and Symfony2.
                 small: { width: 150 , quality: 95}
                 big:   { width: 500 , quality: 90}
 
-* Define the text formatters available for your blog post
+* Define the text formatters available for your blog post::
 
     sonata_formatter:
         formatters:
