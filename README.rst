@@ -6,7 +6,7 @@ A blog platform based on Doctrine2 and Symfony2.
 Installation
 ------------
 
-* Add SonataNewsBundle to your src/Bundle dir::
+* Add the following entry to ``deps`` the run ``php bin/vendors install``::
 
     [FOSUserBundle]
         git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
@@ -36,7 +36,7 @@ Installation
         git=http://github.com/knplabs/KnpMarkdownBundle.git
         target=/bundles/Knp/Bundle/MarkdownBundle
 
-* Add SonataNewsBundle to your application kernel::
+* Register bundles in ``app/AppKernel.php``::
 
     <?php
 
@@ -50,9 +50,18 @@ Installation
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\KnpMarkdownBundle()
             // ...
         );
     }
+
+* Register namespace in ``app/autoload.php``::
+
+    $loader->registerNamespaces(array(
+        // ...
+        'Knp'              => __DIR__.'/../vendor/bundles',
+        'Sonata'           => __DIR__.'/../vendor/bundles',
+    ));
 
 * Run the easy-extends command::
 
