@@ -20,4 +20,6 @@
             {{ post.abstract }}
         </div>
     </div>
+{% else %}
+    {{ 'no_post_found'|trans({}, 'SonataNewsBundle') }}
 {% endfor %}

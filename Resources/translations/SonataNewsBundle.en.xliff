@@ -10,15 +10,17 @@
                 <source>title_comments</source>
                 <target>Comments</target>
             </trans-unit>
-
             <trans-unit id="btn_add_comment">
                 <source>btn_add_comment</source>
                 <target>Add comment</target>
             </trans-unit>
-
             <trans-unit id="message_comments_are_closed">
                 <source>message_comments_are_closed</source>
                 <target>The comment form is closed for this current news.</target>
+            </trans-unit>
+            <trans-unit id="no_post_found">
+                <source>no_post_found</source>
+                <target>No post found.</target>
             </trans-unit>
         </body>
     </file>

@@ -12,14 +12,73 @@ use Sonata\NewsBundle\Model\CommentInterface;
 class PostController extends Controller
 {
     /**
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\RedirectResponse
+     */
+    public function homeAction()
+    {
+        return $this->redirect($this->generateUrl('sonata_news_archive'));
+    }
+
+    /**
+     * @param array $criteria
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
+    public function renderArchive(array $criteria = array())
+    {
+        $pager = $this->get('sonata.news.manager.post')->getPager(
+            $criteria,
+            $this->getRequest()->get('page', 1)
+        );
+
+        $response = $this->render(sprintf('SonataNewsBundle:Post:archive.%s.twig', $this->getRequest()->getRequestFormat()), array(
+            'pager' => $pager,
+            'blog'  => $this->get('sonata.news.blog')
+        ));
+
+        if ($this->getRequest()->getRequestFormat() == 'rss') {
+            $response->headers->set('Content-Type', 'application/rss+xml');
+        }
+
+        return $response;
+    }
+
+    /**
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function archiveAction()
     {
-        $pager = $this->get('sonata.news.manager.post')->getPager(array(), 1);
+        return $this->renderArchive();
+    }
 
-        return $this->render('SonataNewsBundle:Post:archive.html.twig', array(
-            'pager' => $pager,
+    /**
+     * @param $tag
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
+    public function tagAction($tag)
+    {
+        return $this->renderArchive(array('tag' => $tag));
+    }
+
+    /**
+     * @param $year
+     * @param $month
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
+    public function archiveMonthlyAction($year, $month)
+    {
+        return $this->renderArchive(array(
+            'date' => sprintf('%d-%d%%', $year, $month)
+        ));
+    }
+
+    /**
+     * @param $year
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
+    public function archiveYearlyAction($year)
+    {
+        return $this->renderArchive(array(
+            'date' => sprintf('%d%%', $year)
         ));
     }
 
@@ -41,7 +100,8 @@ class PostController extends Controller
 
         return $this->render('SonataNewsBundle:Post:view.html.twig', array(
             'post' => $post,
-            'form' => false
+            'form' => false,
+            'blog'  => $this->get('sonata.news.blog')
         ));
     }
 

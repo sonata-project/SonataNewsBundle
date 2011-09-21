@@ -4,28 +4,47 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="sonata_news_view" pattern="/{year}/{month}/{day}/{slug}">
+    <route id="sonata_news_view" pattern="/{year}/{month}/{day}/{slug}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:view</default>
+        <default key="_format">html</default>
+        <requirement key="_format">html|rss</requirement>
+        <requirement key="year">\d+</requirement>
+        <requirement key="month">\d+</requirement>
+        <requirement key="day">\d+</requirement>
     </route>
 
     <route id="sonata_news_add_comment" pattern="/add-comment/{id}">
         <default key="_controller">SonataNewsBundle:Post:addComment</default>
     </route>
 
-    <route id="sonata_news_archive_daily" pattern="/{year}/{month}/{day}">
-        <default key="_controller">SonataNewsBundle:Post:archiveDaily</default>
-    </route>
-
-    <route id="sonata_news_archive_monthly" pattern="/{year}/{month}">
+    <route id="sonata_news_archive_monthly" pattern="/archive/{year}/{month}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:archiveMonthly</default>
+        <default key="_format">html</default>
+        <requirement key="_format">html|rss</requirement>
+        <requirement key="year">\d+</requirement>
+        <requirement key="month">\d+</requirement>
     </route>
 
-    <route id="sonata_news_archive_yearly" pattern="/{year}">
+    <route id="sonata_news_tag" pattern="/tag/{tag}.{_format}">
+        <default key="_controller">SonataNewsBundle:Post:tag</default>
+        <default key="_format">html</default>
+        <requirement key="_format">html|rss</requirement>
+    </route>
+
+    <route id="sonata_news_archive_yearly" pattern="/archive/{year}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:archiveYearly</default>
+        <default key="_format">html</default>
+        <requirement key="_format">html|rss</requirement>
+        <requirement key="year">\d+</requirement>
     </route>
 
-    <route id="sonata_news_archive" pattern="/">
+    <route id="sonata_news_archive" pattern="/archive.{_format}">
         <default key="_controller">SonataNewsBundle:Post:archive</default>
+        <default key="_format">html</default>
+        <requirement key="_format">html|rss</requirement>
     </route>
-    
+
+    <route id="sonata_news_home" pattern="/">
+        <default key="_controller">SonataNewsBundle:Post:home</default>
+    </route>
 </routes>
