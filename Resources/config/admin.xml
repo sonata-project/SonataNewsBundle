@@ -38,6 +38,10 @@
                 <argument type="service" id="fos_user.user_manager" />
             </call>
 
+            <call method="setPoolFormatter">
+                <argument type="service" id="sonata.formatter.pool" />
+            </call>
+
             <call method="addChild">
                 <argument type="service" id="sonata.news.admin.comment" />
             </call>

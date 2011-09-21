@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
 
@@ -24,6 +25,8 @@ use Application\Sonata\NewsBundle\Entity\Comment;
 class PostAdmin extends Admin
 {
     protected $userManager;
+
+    protected $formatterPool;
 
     /**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
@@ -53,11 +56,12 @@ class PostAdmin extends Admin
                 ->add('author', 'sonata_type_model', array(), array('edit' => 'list'))
                 ->add('title')
                 ->add('abstract')
-                ->add('rawContent')
                 ->add('contentFormatter', 'sonata_formatter_type_selector', array(
                     'source' => 'rawContent',
                     'target' => 'content'
                 ))
+                ->add('rawContent')
+
             ->end()
             ->with('Tags')
                 ->add('tags', 'sonata_type_model', array('expanded' => true))
@@ -166,5 +170,32 @@ class PostAdmin extends Admin
     public function getUserManager()
     {
         return $this->userManager;
+    }
+
+    /**
+     * @param \Sonata\FormatterBundle\Formatter\Pool $formatterPool
+     * @return void
+     */
+    public function setPoolFormatter(FormatterPool $formatterPool)
+    {
+        $this->formatterPool = $formatterPool;
+    }
+
+    /**
+     * @return \Sonata\FormatterBundle\Formatter\Pool
+     */
+    public function getPoolFormatter()
+    {
+        return $this->formatterPool;
+    }
+
+    public function prePersist($object)
+    {
+        $object->setContent($this->getPoolFormatter()->transform($object->getContentFormatter(), $object->getRawContent()));
+    }
+
+    public function preUpdate($object)
+    {
+        $object->setContent($this->getPoolFormatter()->transform($object->getContentFormatter(), $object->getRawContent()));
     }
 }
