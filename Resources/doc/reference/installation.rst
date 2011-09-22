@@ -77,7 +77,7 @@ Installation
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
         prefix: /news
 
-* Add a configuration file : ``sonata_news.yml``
+* Add a configuration file : ``sonata_news.yml``::
 
     sonata_news:
         title:        Sonata Project
@@ -95,7 +95,7 @@ Installation
                         ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
-* import the ``sonata_news.yml`` file
+* import the ``sonata_news.yml`` file::
 
     imports:
         - { resource: sonata_news.yml }
