@@ -23,17 +23,20 @@ class PostController extends Controller
      * @param array $criteria
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
-    public function renderArchive(array $criteria = array())
+    public function renderArchive(array $criteria = array(), array $parameters = array())
     {
         $pager = $this->get('sonata.news.manager.post')->getPager(
             $criteria,
             $this->getRequest()->get('page', 1)
         );
 
-        $response = $this->render(sprintf('SonataNewsBundle:Post:archive.%s.twig', $this->getRequest()->getRequestFormat()), array(
+        $parameters = array_merge(array(
             'pager' => $pager,
-            'blog'  => $this->get('sonata.news.blog')
-        ));
+            'blog'  => $this->get('sonata.news.blog'),
+            'tag'   => false
+        ), $parameters);
+
+        $response = $this->render(sprintf('SonataNewsBundle:Post:archive.%s.twig', $this->getRequest()->getRequestFormat()), $parameters);
 
         if ($this->getRequest()->getRequestFormat() == 'rss') {
             $response->headers->set('Content-Type', 'application/rss+xml');
@@ -56,7 +59,15 @@ class PostController extends Controller
      */
     public function tagAction($tag)
     {
-        return $this->renderArchive(array('tag' => $tag));
+        $tag = $this->get('sonata.news.manager.tag')->findOneBy(array(
+            'slug' => $tag
+        ));
+
+        if (!$tag) {
+            throw new NotFoundHttpException('Unable to find the tag');
+        }
+
+        return $this->renderArchive(array('tag' => $tag), array('tag' => $tag));
     }
 
     /**
