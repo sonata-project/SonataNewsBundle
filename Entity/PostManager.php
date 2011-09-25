@@ -137,8 +137,9 @@ class PostManager implements PostManagerInterface
         }
 
         if (isset($criteria['tag'])) {
-            $query->andWhere('t.slug LIKE :tag');
+            $query->andWhere('t.slug LIKE :tag and t.enabled = :tag_enabled');
             $parameters['tag'] = $criteria['tag'];
+            $parameters['tag_enabled'] = true;
         }
 
         $query->setParameters($parameters);
