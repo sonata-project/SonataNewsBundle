@@ -22,6 +22,64 @@
                 <source>no_post_found</source>
                 <target>No post found.</target>
             </trans-unit>
+            <trans-unit id="sidemenu.link_view_post">
+                <source>sidemenu.link_view_post</source>
+                <target>View</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_view_comments">
+                <source>sidemenu.link_view_comments</source>
+                <target>Comments</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_comment_create">
+                <source>breadcrumb.link_comment_create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_list">
+                <source>breadcrumb.link_comment_list</source>
+                <target>Comments</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_edit">
+                <source>breadcrumb.link_comment_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_create">
+                <source>breadcrumb.link_post_create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_list">
+                <source>breadcrumb.link_post_list</source>
+                <target>Posts</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_edit">
+                <source>breadcrumb.link_post_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_create">
+                <source>breadcrumb.link_tag_create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_list">
+                <source>breadcrumb.link_tag_list</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_edit">
+                <source>breadcrumb.link_tag_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+
+            <trans-unit id="comments">
+                <source>comments</source>
+                <target>Comments</target>
+            </trans-unit>
+            <trans-unit id="posts">
+                <source>posts</source>
+                <target>Posts</target>
+            </trans-unit>
+            <trans-unit id="tags">
+                <source>tags</source>
+                <target>Tags</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
