@@ -20,7 +20,7 @@
             <constraint name="Valid" />
         </getter>
 
-        <getter property="content">
+        <getter property="rawContent">
             <constraint name="NotNull" />
             <constraint name="NotBlank"/>
         </getter>
