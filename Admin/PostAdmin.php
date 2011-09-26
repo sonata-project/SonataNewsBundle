@@ -61,7 +61,6 @@ class PostAdmin extends Admin
                     'target' => 'content'
                 ))
                 ->add('rawContent')
-
             ->end()
             ->with('Tags')
                 ->add('tags', 'sonata_type_model', array('expanded' => false))
@@ -152,12 +151,12 @@ class PostAdmin extends Admin
         $id = $admin->getRequest()->get('id');
 
         $menu->addChild(
-            $this->trans('view_post'),
+            $this->trans('sidemenu.link_view_post'),
             array('uri' => $admin->generateUrl('edit', array('id' => $id)))
         );
 
         $menu->addChild(
-            $this->trans('link_view_comment'),
+            $this->trans('sidemenu.link_view_comments'),
             array('uri' => $admin->generateUrl('sonata.news.admin.comment.list', array('id' => $id)))
         );
     }
