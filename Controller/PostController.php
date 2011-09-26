@@ -165,7 +165,8 @@ class PostController extends Controller
 
     /**
      * @param $post
-     * @return
+     *
+     * @return \Symfony\Component\Form\FormInterface
      */
     public function getCommentForm($post)
     {
@@ -222,6 +223,9 @@ class PostController extends Controller
         ));
     }
 
+    /**
+     * @return \Sonata\NewsBundle\Model\PostManagerInterface
+     */
     protected function getPostManager()
     {
         return $this->get('sonata.news.manager.post');
