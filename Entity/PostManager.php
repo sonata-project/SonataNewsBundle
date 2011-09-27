@@ -71,13 +71,12 @@ class PostManager implements PostManagerInterface
     public function findOneBySlug($year, $month, $day, $slug)
     {
         try {
+            $pdqp = $this->getPublicationDateQueryParts(sprintf('%s-%s-%s', $year, $month, $day), 'day');
             return $this->em->getRepository($this->class)
                 ->createQueryBuilder('p')
-                ->where('p.publicationDateStart LIKE :publicationDateStart AND p.slug = :slug')
-                ->setParameters(array(
-                    'publicationDateStart' => sprintf('%s-%s-%s%%', $year, $month, $day),
-                    'slug' => $slug
-                ))
+                ->where('p.slug = :slug')
+                ->andWhere($pdqp['query'])
+                ->setParameters(array_merge($pdqp['params'], array('slug' => $slug)))
                 ->getQuery()
                 ->getSingleResult();
         } catch (NoResultException $e) {
@@ -132,8 +131,8 @@ class PostManager implements PostManagerInterface
         $parameters['enabled'] = $criteria['enabled'];
 
         if (isset($criteria['date'])) {
-            $query->andWhere('p.publicationDateStart LIKE :date');
-            $parameters['date'] = $criteria['date'];
+            $query->andWhere($criteria['date']['query']);
+            $parameters = array_merge($parameters, $criteria['date']['params']);
         }
 
         if (isset($criteria['tag'])) {
@@ -144,11 +143,29 @@ class PostManager implements PostManagerInterface
 
         $query->setParameters($parameters);
 
-        $pager = new Pager;
+        $pager = new Pager();
         $pager->setQuery(new ProxyQuery($query));
         $pager->setPage($page);
         $pager->init();
 
         return $pager;
+    }
+
+    /**
+     * @param string $date  Date in format YYYY-MM-DD
+     * @param string $step  Interval step: year|month|day
+     * @param string $alias Table alias for the publicationDateStart column
+     *
+     * @return array
+     */
+    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
+    {
+        return array(
+            'query'  => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
+            'params' => array(
+                'startDate' => new \DateTime($date),
+                'endDate'   => new \DateTime($date . '+1 ' . $step)
+            )
+        );
     }
 }
