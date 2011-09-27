@@ -10,7 +10,7 @@
  */
 namespace Sonata\NewsBundle\Entity;
 
-use Sonata\NewsBundle\Model\PostManagerInterface;
+use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 
 use Sonata\AdminBundle\Datagrid\ORM\Pager;
@@ -19,7 +19,7 @@ use Sonata\AdminBundle\Datagrid\ORM\ProxyQuery;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
 
-class PostManager implements PostManagerInterface
+class PostManager extends ModelPostManager
 {
     protected $em;
     protected $class;
@@ -42,14 +42,6 @@ class PostManager implements PostManagerInterface
     {
         $this->em->persist($post);
         $this->em->flush();
-    }
-
-    /**
-     * @return string
-     */
-    public function getClass()
-    {
-        return $this->class;
     }
 
     /**
@@ -101,14 +93,6 @@ class PostManager implements PostManagerInterface
     {
         $this->em->remove($post);
         $this->em->flush();
-    }
-
-    /**
-     * @return \Sonata\NewsBundle\Model\PostInterface
-     */
-    public function create()
-    {
-        return new $this->class;
     }
 
     /**
