@@ -10,17 +10,16 @@
  */
 namespace Sonata\NewsBundle\Entity;
 
-use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Sonata\NewsBundle\Model\CommentManager as ModelCommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ORM\EntityManager;
 
 use Sonata\AdminBundle\Datagrid\ORM\Pager;
 use Sonata\AdminBundle\Datagrid\ORM\ProxyQuery;
 
-class CommentManager implements CommentManagerInterface
+class CommentManager extends ModelCommentManager
 {
     protected $em;
-    protected $class;
 
     public function __construct(EntityManager $em, $class)
     {
@@ -32,11 +31,6 @@ class CommentManager implements CommentManagerInterface
     {
         $this->em->persist($comment);
         $this->em->flush();
-    }
-
-    public function getClass()
-    {
-        return $this->class;
     }
 
     public function findOneBy(array $criteria)
@@ -53,11 +47,6 @@ class CommentManager implements CommentManagerInterface
     {
         $this->em->remove($comment);
         $this->em->flush();
-    }
-
-    public function create()
-    {
-        return new $this->class;
     }
 
     function getPager(array $criteria, $page)

@@ -10,15 +10,14 @@
  */
 namespace Sonata\NewsBundle\Entity;
 
-use Sonata\NewsBundle\Model\TagManagerInterface;
+use Sonata\NewsBundle\Model\TagManager as ModelTagManager;
 use Sonata\NewsBundle\Model\TagInterface;
 
 use Doctrine\ORM\EntityManager;
 
-class TagManager implements TagManagerInterface
+class TagManager extends ModelTagManager
 {
     protected $em;
-    protected $class;
 
     /**
      * @param \Doctrine\ORM\EntityManager $em
@@ -38,14 +37,6 @@ class TagManager implements TagManagerInterface
     {
         $this->em->persist($tag);
         $this->em->flush();
-    }
-
-    /**
-     * @return
-     */
-    public function getClass()
-    {
-        return $this->class;
     }
 
     /**
@@ -74,13 +65,5 @@ class TagManager implements TagManagerInterface
     {
         $this->em->remove($tag);
         $this->em->flush();
-    }
-
-    /**
-     * @return
-     */
-    public function create()
-    {
-        return new $this->class;
     }
 }
