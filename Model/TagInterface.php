@@ -81,7 +81,7 @@ interface TagInterface
     /**
      * Add posts
      *
-     * @param Application\Sonata\NewsBundle\Entity\Post $posts
+     * @param Application\Sonata\NewsBundle\Model\Post $posts
      */
     function addPosts(PostInterface $posts);
 
