@@ -33,7 +33,7 @@ class PostController extends Controller
      */
     public function renderArchive(array $criteria = array(), array $parameters = array())
     {
-        $pager = $this->get('sonata.news.manager.post')->getPager(
+        $pager = $this->getPostManager()->getPager(
             $criteria,
             $this->getRequest()->get('page', 1)
         );
@@ -46,7 +46,7 @@ class PostController extends Controller
 
         $response = $this->render(sprintf('SonataNewsBundle:Post:archive.%s.twig', $this->getRequest()->getRequestFormat()), $parameters);
 
-        if ($this->getRequest()->getRequestFormat() == 'rss') {
+        if ('rss' === $this->getRequest()->getRequestFormat()) {
             $response->headers->set('Content-Type', 'application/rss+xml');
         }
 
@@ -87,7 +87,7 @@ class PostController extends Controller
     public function archiveMonthlyAction($year, $month)
     {
         return $this->renderArchive(array(
-            'date' => sprintf('%d-%d%%', $year, $month)
+            'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, $month, 1), 'month')
         ));
     }
 
@@ -98,7 +98,7 @@ class PostController extends Controller
     public function archiveYearlyAction($year)
     {
         return $this->renderArchive(array(
-            'date' => sprintf('%d%%', $year)
+            'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, 1, 1), 'year')
         ));
     }
 
@@ -112,7 +112,7 @@ class PostController extends Controller
      */
     public function viewAction($year, $month, $day, $slug)
     {
-        $post = $this->get('sonata.news.manager.post')->findOneBySlug($year, $month, $day, $slug);
+        $post = $this->getPostManager()->findOneBySlug($year, $month, $day, $slug);
 
         if (!$post) {
             throw new NotFoundHttpException('Unable to find the post');
@@ -121,7 +121,7 @@ class PostController extends Controller
         return $this->render('SonataNewsBundle:Post:view.html.twig', array(
             'post' => $post,
             'form' => false,
-            'blog'  => $this->get('sonata.news.blog')
+            'blog' => $this->get('sonata.news.blog')
         ));
     }
 
@@ -150,7 +150,7 @@ class PostController extends Controller
     public function addCommentFormAction($post_id, $form = false)
     {
         if (!$form) {
-            $post = $this->get('sonata.news.manager.post')->findOneBy(array(
+            $post = $this->getPostManager()->findOneBy(array(
                 'id' => $post_id
             ));
 
@@ -165,7 +165,8 @@ class PostController extends Controller
 
     /**
      * @param $post
-     * @return
+     *
+     * @return \Symfony\Component\Form\FormInterface
      */
     public function getCommentForm($post)
     {
@@ -183,7 +184,7 @@ class PostController extends Controller
      */
     public function addCommentAction($id)
     {
-        $post = $this->get('sonata.news.manager.post')->findOneBy(array(
+        $post = $this->getPostManager()->findOneBy(array(
             'id' => $id
         ));
 
@@ -220,5 +221,13 @@ class PostController extends Controller
             'post' => $post,
             'form' => $form
         ));
+    }
+
+    /**
+     * @return \Sonata\NewsBundle\Model\PostManagerInterface
+     */
+    protected function getPostManager()
+    {
+        return $this->get('sonata.news.manager.post');
     }
 }
