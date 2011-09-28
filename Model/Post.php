@@ -61,7 +61,7 @@ abstract class Post implements PostInterface
     {
         $this->title = $title;
 
-        $this->setSlug(BaseTag::slugify($title));
+        $this->setSlug(Tag::slugify($title));
     }
 
     /**
