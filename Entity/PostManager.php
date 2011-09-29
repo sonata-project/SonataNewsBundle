@@ -21,12 +21,14 @@ use Doctrine\ORM\NoResultException;
 
 class PostManager extends ModelPostManager
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
     protected $em;
-    protected $class;
 
     /**
      * @param \Doctrine\ORM\EntityManager $em
-     * @param $class
+     * @param string $class
      */
     public function __construct(EntityManager $em, $class)
     {
@@ -35,8 +37,7 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
-     * @return void
+     * {@inheritDoc}
      */
     public function save(PostInterface $post)
     {
@@ -45,8 +46,7 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * @param array $criteria
-     * @return \Sonata\NewsBundle\Model\PostInterface|null
+     * {@inheritDoc}
      */
     public function findOneBy(array $criteria)
     {
@@ -58,6 +58,7 @@ class PostManager extends ModelPostManager
      * @param $month
      * @param $day
      * @param $slug
+     *
      * @return \Sonata\NewsBundle\Model\PostInterface|null
      */
     public function findOneBySlug($year, $month, $day, $slug)
@@ -77,8 +78,7 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * @param array $criteria
-     * @return array
+     * {@inheritDoc}
      */
     public function findBy(array $criteria)
     {
@@ -86,8 +86,7 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
-     * @return void
+     * {@inheritDoc}
      */
     public function delete(PostInterface $post)
     {
@@ -97,7 +96,8 @@ class PostManager extends ModelPostManager
 
     /**
      * @param array $criteria
-     * @param $page
+     * @param integer $page
+     *
      * @return \Sonata\AdminBundle\Datagrid\ORM\Pager
      */
     public function getPager(array $criteria, $page)

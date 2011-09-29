@@ -10,19 +10,21 @@
  */
 namespace Sonata\NewsBundle\Document;
 
-use Sonata\NewsBundle\Model\TagManagerInterface;
+use Sonata\NewsBundle\Model\TagManager as ModelTagManager;
 use Sonata\NewsBundle\Model\TagInterface;
 
 use Doctrine\ORM\DocumentManager;
 
-class TagManager implements TagManagerInterface
+class TagManager extends ModelTagManager
 {
+    /**
+     * @var \Doctrine\ORM\DocumentManager;
+     */
     protected $em;
-    protected $class;
 
     /**
      * @param \Doctrine\ORM\DocumentManager $em
-     * @param $class
+     * @param string $class
      */
     public function __construct(DocumentManager $em, $class)
     {
@@ -31,8 +33,7 @@ class TagManager implements TagManagerInterface
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\TagInterface $tag
-     * @return void
+     * {@inheritDoc}
      */
     public function save(TagInterface $tag)
     {
@@ -41,16 +42,7 @@ class TagManager implements TagManagerInterface
     }
 
     /**
-     * @return
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
-
-    /**
-     * @param array $criteria
-     * @return object
+     * {@inheritDoc}
      */
     public function findOneBy(array $criteria)
     {
@@ -58,8 +50,7 @@ class TagManager implements TagManagerInterface
     }
 
     /**
-     * @param array $criteria
-     * @return array
+     * {@inheritDoc}
      */
     public function findBy(array $criteria)
     {
@@ -67,20 +58,11 @@ class TagManager implements TagManagerInterface
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\TagInterface $tag
-     * @return void
+     * {@inheritDoc}
      */
     public function delete(TagInterface $tag)
     {
         $this->em->remove($tag);
         $this->em->flush();
-    }
-
-    /**
-     * @return
-     */
-    public function create()
-    {
-        return new $this->class;
     }
 }

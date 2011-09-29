@@ -17,11 +17,14 @@ use Doctrine\ORM\EntityManager;
 
 class TagManager extends ModelTagManager
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
     protected $em;
 
     /**
      * @param \Doctrine\ORM\EntityManager $em
-     * @param $class
+     * @param string $class
      */
     public function __construct(EntityManager $em, $class)
     {
@@ -30,8 +33,7 @@ class TagManager extends ModelTagManager
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\TagInterface $tag
-     * @return void
+     * {@inheritDoc}
      */
     public function save(TagInterface $tag)
     {
@@ -40,8 +42,7 @@ class TagManager extends ModelTagManager
     }
 
     /**
-     * @param array $criteria
-     * @return object
+     * {@inheritDoc}
      */
     public function findOneBy(array $criteria)
     {
@@ -49,8 +50,7 @@ class TagManager extends ModelTagManager
     }
 
     /**
-     * @param array $criteria
-     * @return array
+     * {@inheritDoc}
      */
     public function findBy(array $criteria)
     {
@@ -58,8 +58,7 @@ class TagManager extends ModelTagManager
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\TagInterface $tag
-     * @return void
+     * {@inheritDoc}
      */
     public function delete(TagInterface $tag)
     {

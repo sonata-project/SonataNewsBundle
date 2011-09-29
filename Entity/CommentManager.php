@@ -19,37 +19,62 @@ use Sonata\AdminBundle\Datagrid\ORM\ProxyQuery;
 
 class CommentManager extends ModelCommentManager
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
     protected $em;
 
+    /**
+     * @param \Doctrine\ORM\EntityManager $em
+     * @param string $class
+     */
     public function __construct(EntityManager $em, $class)
     {
         $this->em    = $em;
         $this->class = $class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function save(CommentInterface $comment)
     {
         $this->em->persist($comment);
         $this->em->flush();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function findOneBy(array $criteria)
     {
         return $this->em->getRepository($this->class)->findOneBy($criteria);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function findBy(array $criteria)
     {
         return $this->em->getRepository($this->class)->findBy($criteria);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function delete(CommentInterface $comment)
     {
         $this->em->remove($comment);
         $this->em->flush();
     }
 
-    function getPager(array $criteria, $page)
+    /**
+     * @param array $criteria
+     * @param integer $page
+     *
+     * @return \Sonata\AdminBundle\Datagrid\ORM\Pager
+     */
+    public function getPager(array $criteria, $page)
     {
         $parameters = array();
 

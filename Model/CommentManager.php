@@ -14,13 +14,22 @@ use Sonata\NewsBundle\Model\CommentManagerInterface;
 
 abstract class CommentManager implements CommentManagerInterface
 {
+    /**
+     * @var string
+     */
     protected $class;
 
+    /**
+     * {@inheritDoc}
+     */
     public function getClass()
     {
         return $this->class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function create()
     {
         return new $this->class;
