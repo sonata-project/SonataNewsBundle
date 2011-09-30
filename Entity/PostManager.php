@@ -96,6 +96,13 @@ class PostManager extends ModelPostManager
     }
 
     /**
+     * Retrieve posts, based on the criteria, a page at a time.
+     * Valid criteria are:
+     *    enabled - boolean
+     *    date - query
+     *    tag - string
+     *    author - 'NULL', 'NOT NULL', id, array of ids
+     *
      * @param array $criteria
      * @param $page
      * @return \Sonata\AdminBundle\Datagrid\ORM\Pager
@@ -125,6 +132,13 @@ class PostManager extends ModelPostManager
             $parameters['tag_enabled'] = true;
         }
 
+        if (isset($criteria['author'])) {
+            if (!is_array($criteria['author']) && stristr($criteria['author'], 'NULL')) {
+                $query->andWhere('p.author IS '.$criteria['author']);
+            } else {
+                $query->andWhere(sprintf('p.author IN (%s)', implode((array)$criteria['author'], ',')));
+            }
+        }
         $query->setParameters($parameters);
 
         $pager = new Pager();
