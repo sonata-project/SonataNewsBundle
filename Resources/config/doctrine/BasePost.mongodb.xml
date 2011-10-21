@@ -20,7 +20,7 @@
 
         <field name="commentsEnabled"       type="boolean"      fieldName="commentsEnabled" />
         <field name="commentsCloseAt"       type="timestamp"    fieldName="commentsCloseAt" />
-        <field name="commentsDefaultStatus" type="integer"      fieldName="commentsDefaultStatus" />
+        <field name="commentsDefaultStatus" type="int"          fieldName="commentsDefaultStatus" />
 
         <field name="createdAt"             type="timestamp"    fieldName="createdAt" />
         <field name="updatedAt"             type="timestamp"    fieldName="updatedAt" />
