@@ -14,10 +14,13 @@ use Sonata\NewsBundle\Model\PostManagerInterface;
 
 abstract class PostManager implements PostManagerInterface
 {
+    /**
+     * @var string
+     */
     protected $class;
 
-     /**
-     * @return string
+    /**
+     * {@inheritDoc}
      */
     public function getClass()
     {
@@ -25,7 +28,7 @@ abstract class PostManager implements PostManagerInterface
     }
 
     /**
-     * @return \Sonata\NewsBundle\Model\PostInterface
+     * {@inheritDoc}
      */
     public function create()
     {
