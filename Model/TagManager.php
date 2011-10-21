@@ -14,10 +14,13 @@ use Sonata\NewsBundle\Model\TagManagerInterface;
 
 abstract class TagManager implements TagManagerInterface
 {
+    /**
+     * @var string;
+     */
     protected $class;
 
     /**
-     * @return
+     * {@inheritDoc}
      */
     public function getClass()
     {
@@ -25,7 +28,7 @@ abstract class TagManager implements TagManagerInterface
     }
 
     /**
-     * @return
+     * {@inheritDoc}
      */
     public function create()
     {

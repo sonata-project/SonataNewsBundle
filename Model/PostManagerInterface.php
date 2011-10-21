@@ -14,7 +14,7 @@ namespace Sonata\NewsBundle\Model;
 interface PostManagerInterface
 {
     /**
-     * Creates an empty media instance
+     * Creates an empty post instance
      *
      * @return Post
      */
@@ -24,6 +24,7 @@ interface PostManagerInterface
      * Deletes a post
      *
      * @param PostInterface $post
+     *
      * @return void
      */
     function delete(PostInterface $post);
@@ -32,6 +33,7 @@ interface PostManagerInterface
      * Finds one post by the given criteria
      *
      * @param array $criteria
+     *
      * @return PostInterface
      */
     function findOneBy(array $criteria);
@@ -40,6 +42,7 @@ interface PostManagerInterface
      * Finds one post by the given criteria
      *
      * @param array $criteria
+     *
      * @return PostInterface
      */
     function findBy(array $criteria);
@@ -55,6 +58,7 @@ interface PostManagerInterface
      * Save a post
      *
      * @param PostInterface $post
+     *
      * @return void
      */
     function save(PostInterface $post);

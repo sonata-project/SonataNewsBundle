@@ -10,7 +10,7 @@
  */
 namespace Sonata\NewsBundle\Document;
 
-use Sonata\NewsBundle\Model\PostManagerInterface;
+use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 
 use Sonata\AdminBundle\Datagrid\ORM\Pager;
@@ -18,14 +18,16 @@ use Sonata\AdminBundle\Datagrid\ORM\ProxyQuery;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 
-class PostManager implements PostManagerInterface
+class PostManager extends ModelPostManager
 {
+    /**
+     * @var \Doctrine\ODM\MongoDB\DocumentManager
+     */
     protected $dm;
-    protected $class;
 
     /**
      * @param \Doctrine\ODM\MongoDB\DocumentManager $dm
-     * @param $class
+     * @param string $class
      */
     public function __construct(DocumentManager $dm, $class)
     {
@@ -34,8 +36,7 @@ class PostManager implements PostManagerInterface
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
-     * @return void
+     * {@inheritDoc}
      */
     public function save(PostInterface $post)
     {
@@ -44,16 +45,7 @@ class PostManager implements PostManagerInterface
     }
 
     /**
-     * @return string
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
-
-    /**
-     * @param array $criteria
-     * @return \Sonata\NewsBundle\Model\PostInterface|null
+     * {@inheritDoc}
      */
     public function findOneBy(array $criteria)
     {
@@ -65,6 +57,7 @@ class PostManager implements PostManagerInterface
      * @param $month
      * @param $day
      * @param $slug
+     *
      * @return \Sonata\NewsBundle\Model\PostInterface|null
      */
     public function findOneBySlug($year, $month, $day, $slug)
@@ -80,8 +73,7 @@ class PostManager implements PostManagerInterface
     }
 
     /**
-     * @param array $criteria
-     * @return array
+     * {@inheritDoc}
      */
     public function findBy(array $criteria)
     {
@@ -89,8 +81,7 @@ class PostManager implements PostManagerInterface
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
-     * @return void
+     * {@inheritDoc}
      */
     public function delete(PostInterface $post)
     {
@@ -99,17 +90,10 @@ class PostManager implements PostManagerInterface
     }
 
     /**
-     * @return \Sonata\NewsBundle\Model\PostInterface
-     */
-    public function create()
-    {
-        return new $this->class;
-    }
-
-    /**
      * @param array $criteria
-     * @param $page
-     * @return \Sonata\AdminBundle\Datagrid\ORM\Pager
+     * @param integer $page
+     *
+     * @return \Sonata\AdminBundle\Datagrid\ODM\Pager
      */
     public function getPager(array $criteria, $page)
     {

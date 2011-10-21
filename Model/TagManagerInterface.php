@@ -14,48 +14,52 @@ namespace Sonata\NewsBundle\Model;
 interface TagManagerInterface
 {
     /**
-     * Creates an empty media instance
+     * Creates an empty tag instance
      *
-     * @return Post
+     * @return Tag
      */
     function create();
 
     /**
      * Deletes a post
      *
-     * @param TagInterface $comment
+     * @param TagInterface $tag
+     *
      * @return void
      */
-    function delete(TagInterface $comment);
+    function delete(TagInterface $tag);
 
     /**
-     * Finds one post by the given criteria
+     * Finds one tag by the given criteria
      *
      * @param array $criteria
+     *
      * @return TagInterface
      */
     function findOneBy(array $criteria);
 
     /**
-     * Finds one post by the given criteria
+     * Finds one tag by the given criteria
      *
      * @param array $criteria
+     *
      * @return TagInterface
      */
     function findBy(array $criteria);
 
     /**
-     * Returns the post's fully qualified class name
+     * Returns the tag's fully qualified class name
      *
      * @return string
      */
     function getClass();
 
     /**
-     * Save a post
+     * Save a tag
      *
-     * @param TagInterface $comment
+     * @param TagInterface $tag
+     *
      * @return void
      */
-    function save(TagInterface $comment);
+    function save(TagInterface $tag);
 }

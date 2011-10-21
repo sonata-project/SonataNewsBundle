@@ -51,7 +51,6 @@ abstract class Post implements PostInterface
 
     protected $image;
 
-
     /**
      * Set title
      *
@@ -382,12 +381,12 @@ abstract class Post implements PostInterface
         return $this->author;
     }
 
-    public function setContentformatter($contentFormatter)
+    public function setContentFormatter($contentFormatter)
     {
         $this->contentFormatter = $contentFormatter;
     }
 
-    public function getContentformatter()
+    public function getContentFormatter()
     {
         return $this->contentFormatter;
     }
