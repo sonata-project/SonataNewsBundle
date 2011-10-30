@@ -1,3 +1,4 @@
+test modif
 SonataNewsBundle
 ================
 
