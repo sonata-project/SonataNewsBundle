@@ -24,12 +24,19 @@ use Application\Sonata\NewsBundle\Entity\Comment;
 
 class PostAdmin extends Admin
 {
+    /**
+     * @var UserManagerInterface
+     */
     protected $userManager;
 
+    /**
+     * @var Pool
+     */
     protected $formatterPool;
 
     /**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
+     *
      * @return void
      */
     protected function configureShowField(ShowMapper $showMapper)
@@ -46,6 +53,7 @@ class PostAdmin extends Admin
 
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     *
      * @return void
      */
     protected function configureFormFields(FormMapper $formMapper)
@@ -75,6 +83,7 @@ class PostAdmin extends Admin
 
     /**
      * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     *
      * @return void
      */
     protected function configureListFields(ListMapper $listMapper)
@@ -90,11 +99,11 @@ class PostAdmin extends Admin
 
     /**
      * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     *
      * @return void
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-//        return;
         $datagridMapper
             ->add('title')
             ->add('enabled')
@@ -102,7 +111,7 @@ class PostAdmin extends Admin
             ->add('author')
             ->add('with_open_comments', 'doctrine_orm_callback', array(
 //                'callback'   => array($this, 'getWithOpenCommentFilter'),
-                'callback' => function($queryBuilder, $alias, $field, $value) {
+                'callback' => function ($queryBuilder, $alias, $field, $value) {
                     if (!$value) {
                         return;
                     }
@@ -121,8 +130,9 @@ class PostAdmin extends Admin
      * @param $alias
      * @param $field
      * @param $value
-     * @return
-     */
+     *
+     * @return void
+     *
     public function getWithOpenCommentFilter($queryBuilder, $alias, $field, $value)
     {
         if (!$value) {
@@ -132,13 +142,14 @@ class PostAdmin extends Admin
         $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
         $queryBuilder->andWhere('c.status = :status');
         $queryBuilder->setParameter('status', Comment::STATUS_MODERATE);
-    }
+    }*/
 
     /**
      * @param \Knp\Menu\ItemInterface $menu
      * @param $action
      * @param null|\Sonata\AdminBundle\Admin\Admin $childAdmin
-     * @return
+     *
+     * @return void
      */
     protected function configureSideMenu(MenuItemInterface $menu, $action, Admin $childAdmin = null)
     {
@@ -173,6 +184,7 @@ class PostAdmin extends Admin
 
     /**
      * @param \Sonata\FormatterBundle\Formatter\Pool $formatterPool
+     *
      * @return void
      */
     public function setPoolFormatter(FormatterPool $formatterPool)
@@ -188,13 +200,19 @@ class PostAdmin extends Admin
         return $this->formatterPool;
     }
 
-    public function prePersist($object)
+    /**
+     * @param PostInterface $post
+     */
+    public function prePersist($post)
     {
-        $object->setContent($this->getPoolFormatter()->transform($object->getContentFormatter(), $object->getRawContent()));
+        $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
     }
 
-    public function preUpdate($object)
+    /**
+     * @param PostInterface $post
+     */
+    public function preUpdate($post)
     {
-        $object->setContent($this->getPoolFormatter()->transform($object->getContentFormatter(), $object->getRawContent()));
+        $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
     }
 }
