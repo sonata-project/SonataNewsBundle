@@ -269,7 +269,10 @@ abstract class Post implements PostInterface
 
     public function prePersist()
     {
-        $this->setPublicationDateStart(new \DateTime);
+        if (!$this->getPublicationDateStart()) {
+            $this->setPublicationDateStart(new \DateTime);
+        }
+
         $this->setCreatedAt(new \DateTime);
         $this->setUpdatedAt(new \DateTime);
     }
@@ -316,7 +319,7 @@ abstract class Post implements PostInterface
     /**
      * Set comments_close_at
      *
-     * @param datetime $commentsCloseAt
+     * @param \DateTime|null $commentsCloseAt
      */
     public function setCommentsCloseAt(\DateTime $commentsCloseAt = null)
     {
@@ -353,22 +356,28 @@ abstract class Post implements PostInterface
         return $this->commentsDefaultStatus;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getTitle();
     }
 
+    /**
+     * @return bool
+     */
     public function isCommentable()
     {
-        if (!$this->getCommentsEnabled()) {
+        if (!$this->getCommentsEnabled() || !$this->getEnabled()) {
             return false;
         }
 
         if ($this->getCommentsCloseAt() instanceof \DateTime) {
-            return $this->getCommentsCloseAt()->diff(new \DateTime)->invert == 0 ? true : false;
+            return $this->getCommentsCloseAt()->diff(new \DateTime)->invert == 1 ? true : false;
         }
 
-        return $this->getEnabled();
+        return true;
     }
 
     public function setAuthor($author)
