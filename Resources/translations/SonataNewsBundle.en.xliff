@@ -80,6 +80,16 @@
                 <source>tags</source>
                 <target>Tags</target>
             </trans-unit>
+
+            <trans-unit id="no_tag_selected">
+                <source>no_tag_selected</source>
+                <target>No tag selected</target>
+            </trans-unit>
+            <trans-unit id="published_under">
+                <source>published_under</source>
+                <target>{0}No tag selected|[1,Inf] Published under :</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

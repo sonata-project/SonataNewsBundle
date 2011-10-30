@@ -22,6 +22,74 @@
                 <source>no_post_found</source>
                 <target>Pas de news disponible.</target>
             </trans-unit>
+
+            <trans-unit id="sidemenu.link_view_post">
+                <source>sidemenu.link_view_post</source>
+                <target>Voir</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_view_comments">
+                <source>sidemenu.link_view_comments</source>
+                <target>Commentaires</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_comment_create">
+                <source>breadcrumb.link_comment_create</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_list">
+                <source>breadcrumb.link_comment_list</source>
+                <target>Commentaires</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_edit">
+                <source>breadcrumb.link_comment_edit</source>
+                <target>Editer</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_create">
+                <source>breadcrumb.link_post_create</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_list">
+                <source>breadcrumb.link_post_list</source>
+                <target>Posts</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_edit">
+                <source>breadcrumb.link_post_edit</source>
+                <target>Editer</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_create">
+                <source>breadcrumb.link_tag_create</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_list">
+                <source>breadcrumb.link_tag_list</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_edit">
+                <source>breadcrumb.link_tag_edit</source>
+                <target>Editer</target>
+            </trans-unit>
+
+            <trans-unit id="comments">
+                <source>comments</source>
+                <target>Commentaires</target>
+            </trans-unit>
+            <trans-unit id="posts">
+                <source>posts</source>
+                <target>Posts</target>
+            </trans-unit>
+            <trans-unit id="tags">
+                <source>tags</source>
+                <target>Tags</target>
+            </trans-unit>
+
+            <trans-unit id="no_tag_selected">
+                <source>no_tag_selected</source>
+                <target>Pas de tag sélectionné</target>
+            </trans-unit>
+            <trans-unit id="published_under">
+                <source>published_under</source>
+                <target>{0}Pas de catégorie associée|{1}Publié sous la catégorie : |]1,Inf]Publié sous les catégories :</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -71,7 +71,7 @@ class PostAdmin extends Admin
                 ->add('rawContent')
             ->end()
             ->with('Tags')
-                ->add('tags', 'sonata_type_model', array('expanded' => false))
+                ->add('tags', 'sonata_type_model', array('expanded' => true))
             ->end()
             ->with('Options', array('collapsed' => true))
                 ->add('commentsCloseAt')
