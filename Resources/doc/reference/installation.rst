@@ -1,7 +1,9 @@
 Installation
 ============
 
-* Add SonataNewsBundle to your src/Bundle dir::
+* Add SonataNewsBundle to your vendor/bundles dir with the deps file::
+
+.. code-block::
 
     [FOSUserBundle]
         git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
@@ -27,11 +29,17 @@ Installation
         git=http://github.com/sonata-project/SonataFormatterBundle.git
         target=/bundles/Sonata/FormatterBundle
 
+    [SonataIntlBundle]
+        git=http://github.com/sonata-project/SonataIntlBundle.git
+        target=/bundles/Sonata/IntlBundle
+
     [KnpMarkdownBundle]
         git=http://github.com/knplabs/KnpMarkdownBundle.git
         target=/bundles/Knp/Bundle/MarkdownBundle
 
 * Add SonataNewsBundle to your application kernel::
+
+.. code-block:: php
 
     // app/AppKernel.php
     public function registerBundles()
@@ -42,11 +50,31 @@ Installation
             new Sonata\UserBundle\SonataUserBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             // ...
         );
     }
+
+* Update the ``autoload.php`` to add a new namespace:
+
+.. code-block:: php
+
+    <?php
+    $loader->registerNamespaces(array(
+        'Sonata'        => __DIR__,
+        'Application'   => __DIR__,
+        'FOS'           => __DIR__.'/../vendor/bundles',
+        'Knp'           => array(
+            __DIR__.'/../vendor/bundles',
+            __DIR__.'/../vendor/knp/menu/src'
+        ),
+        // ... other declarations
+    ));
+
 
 * Run the easy-extends command::
 
@@ -55,6 +83,8 @@ Installation
     php app/console sonata:easy-extends:generate SonataMediaBundle
 
 * Enable the new bundles::
+
+.. code-block:: php
 
     // app/AppKernel.php
     public function registerBundles()
@@ -72,12 +102,16 @@ Installation
 
 * Add SonataNewsBundle routes to your application routing.yml::
 
+.. code-block:: yaml
+
     # app/config/routing.yml
     news:
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
         prefix: /news
 
 * Add a configuration file : ``sonata_news.yml``::
+
+.. code-block:: yaml
 
     sonata_news:
         title:        Sonata Project
@@ -97,10 +131,14 @@ Installation
 
 * import the ``sonata_news.yml`` file::
 
+.. code-block:: yaml
+
     imports:
         - { resource: sonata_news.yml }
 
 * Add a new context into your ``sonata_media.yml`` configuration::
+
+.. code-block:: yaml
 
     news:
         providers:
@@ -113,6 +151,8 @@ Installation
             big:   { width: 500 , quality: 90}
 
 * Define the text formatters available for your blog post::
+
+.. code-block:: yaml
 
     sonata_formatter:
         formatters:
