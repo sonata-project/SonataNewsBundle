@@ -13,8 +13,8 @@ namespace Sonata\NewsBundle\Document;
 use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 
-use Sonata\AdminBundle\Datagrid\ORM\Pager;
-use Sonata\AdminBundle\Datagrid\ORM\ProxyQuery;
+use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
+use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 

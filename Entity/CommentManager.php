@@ -14,8 +14,8 @@ use Sonata\NewsBundle\Model\CommentManager as ModelCommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ORM\EntityManager;
 
-use Sonata\AdminBundle\Datagrid\ORM\Pager;
-use Sonata\AdminBundle\Datagrid\ORM\ProxyQuery;
+use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
 class CommentManager extends ModelCommentManager
 {

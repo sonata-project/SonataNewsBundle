@@ -14,8 +14,8 @@ use Sonata\NewsBundle\Model\CommentManager as ModelCommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
-use Sonata\AdminBundle\Datagrid\ODM\Pager;
-use Sonata\AdminBundle\Datagrid\ODM\ProxyQuery;
+use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
+use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 
 class CommentManager extends ModelCommentManager
 {

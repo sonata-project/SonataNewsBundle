@@ -13,8 +13,8 @@ namespace Sonata\NewsBundle\Entity;
 use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 
-use Sonata\AdminBundle\Datagrid\ORM\Pager;
-use Sonata\AdminBundle\Datagrid\ORM\ProxyQuery;
+use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
