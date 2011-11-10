@@ -76,7 +76,7 @@ class PostAdmin extends Admin
             ->with('Options', array('collapsed' => true))
                 ->add('commentsCloseAt')
                 ->add('commentsEnabled', null, array('required' => false))
-                ->add('commentsDefaultStatus', 'choice', array('choices' => Comment::getStatusList()))
+                ->add('commentsDefaultStatus', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true))
             ->end()
         ;
     }

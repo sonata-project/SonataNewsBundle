@@ -212,4 +212,9 @@ abstract class Comment implements CommentInterface
     {
         return $this->post;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
