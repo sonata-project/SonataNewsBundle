@@ -1,10 +1,20 @@
-test modif
 SonataNewsBundle
 ================
 
 A blog platform based on Doctrine2 (ORM and MongoDB) and Symfony2.
 
-The installation process can be found here : http://sonata-project.org/bundles/news/master/doc/reference/installation.html
+The online documentation of the bundle is in http://sonata-project.org/bundles/news
+
+For contribution to the documentation you cand find it on ``Resources/doc``
+
+**Warning**: documentation files are not rendering correctly in Github (reStructuredText format)
+and some content might be broken or hidden, make sure to read raw files.
+
+**Google Groups**: For questions and proposals you can post on this google groups
+
+* `Sonata Users <https://groups.google.com/group/sonata-users>`_: Only for user questions
+* `Sonata Devs <https://groups.google.com/group/sonata-devs>`_: Only for devs
+
 
 With Symfony v2.0.4
 
