@@ -1,5 +1,5 @@
-Welcome to SonataNewsBundle Documentation
-=========================================
+News Bundle
+===========
 
 Reference Guide
 ---------------
