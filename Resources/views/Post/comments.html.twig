@@ -11,13 +11,22 @@
 
 #}
 
-<h2>{{ 'title_comments'|trans({}, 'SonataNewsBundle') }}</h2>
+<div class="sonata-blog-comment-container">
+    <h3>{{ 'title_comments'|trans({}, 'SonataNewsBundle') }}</h3>
 
-{% for comment in pager.results %}
-    <div>
-        <a href="{{ comment.url }}" target="new" rel="nofollow">{{ comment.name }}</a>
-        <div>
-            {{ comment.message }}
-        </div>
+    <div class="sonata-blog-comment-list">
+        {% for comment in pager.results %}
+            <div class="sonata-blog-comment">
+                <div class="sonata-blog-comment-name">
+                    <a href="{{ comment.url }}" target="new" rel="nofollow">{{ comment.name }}</a>
+                </div>
+                <div class="sonata-blog-comment-date">
+                    {{ comment.createdAt | format_date }}
+                </div>
+                <div class="sonata-blog-comment-message">
+                    {{ comment.message }}
+                </div>
+            </div>
+        {% endfor %}
     </div>
-{% endfor %}
+</div>

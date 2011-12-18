@@ -87,9 +87,17 @@
             </trans-unit>
             <trans-unit id="published_under">
                 <source>published_under</source>
-                <target>{0}No tag selected|[1,Inf] Published under :</target>
+                <target>{0}No tag selected|{1}Tag : |]1,Inf]Tags :</target>
             </trans-unit>
 
+            <trans-unit id="archive_author">
+                <source>archive_author</source>
+                <target>by %author%</target>
+            </trans-unit>
+            <trans-unit id="title_leave_comment">
+                <source>title_leave_comment</source>
+                <target>Add a comment</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
