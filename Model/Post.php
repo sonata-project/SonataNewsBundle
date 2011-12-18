@@ -50,6 +50,8 @@ abstract class Post implements PostInterface
     protected $author;
 
     protected $image;
+    
+    protected $category;
 
     /**
      * Set title
@@ -388,6 +390,16 @@ abstract class Post implements PostInterface
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     public function setContentFormatter($contentFormatter)
