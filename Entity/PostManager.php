@@ -18,6 +18,7 @@ use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\Query\Expr;
 
 class PostManager extends ModelPostManager
 {
@@ -65,6 +66,7 @@ class PostManager extends ModelPostManager
     {
         try {
             $pdqp = $this->getPublicationDateQueryParts(sprintf('%s-%s-%s', $year, $month, $day), 'day');
+
             return $this->em->getRepository($this->class)
                 ->createQueryBuilder('p')
                 ->where('p.slug = :slug')
@@ -113,7 +115,8 @@ class PostManager extends ModelPostManager
         $query = $this->em->getRepository($this->class)
             ->createQueryBuilder('p')
             ->select('p, t')
-            ->leftJoin('p.tags', 't')
+            ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
+            ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
             ->orderby('p.publicationDateStart', 'DESC');
 
         // enabled
@@ -127,9 +130,8 @@ class PostManager extends ModelPostManager
         }
 
         if (isset($criteria['tag'])) {
-            $query->andWhere('t.slug LIKE :tag and t.enabled = :tag_enabled');
-            $parameters['tag'] = $criteria['tag'];
-            $parameters['tag_enabled'] = true;
+            $query->andWhere('t.slug LIKE :tag');
+            $parameters['tag'] = (string)$criteria['tag'];
         }
 
         if (isset($criteria['author'])) {
@@ -139,6 +141,7 @@ class PostManager extends ModelPostManager
                 $query->andWhere(sprintf('p.author IN (%s)', implode((array)$criteria['author'], ',')));
             }
         }
+
         $query->setParameters($parameters);
 
         $pager = new Pager();

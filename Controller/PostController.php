@@ -76,6 +76,10 @@ class PostController extends Controller
             throw new NotFoundHttpException('Unable to find the tag');
         }
 
+        if (!$tag->getEnabled()) {
+            throw new NotFoundHttpException('Unable to find the tag');
+        }
+
         return $this->renderArchive(array('tag' => $tag), array('tag' => $tag));
     }
 

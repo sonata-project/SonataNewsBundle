@@ -88,7 +88,16 @@
             </trans-unit>
             <trans-unit id="published_under">
                 <source>published_under</source>
-                <target>{0}Pas de catégorie associée|{1}Publié sous la catégorie : |]1,Inf]Publié sous les catégories :</target>
+                <target>{0}Pas de catégorie associée|{1}Tag : |]1,Inf]Tags :</target>
+            </trans-unit>
+
+            <trans-unit id="archive_author">
+                <source>archive_author</source>
+                <target>by %author%</target>
+            </trans-unit>
+            <trans-unit id="title_leave_comment">
+                <source>title_leave_comment</source>
+                <target>Rajouter un commentaire</target>
             </trans-unit>
         </body>
     </file>
