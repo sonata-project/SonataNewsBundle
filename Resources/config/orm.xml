@@ -8,6 +8,8 @@
         <parameter key="sonata.news.manager.comment.entity">Application\Sonata\NewsBundle\Entity\Comment</parameter>
         <parameter key="sonata.news.manager.post.class">Sonata\NewsBundle\Entity\PostManager</parameter>
         <parameter key="sonata.news.manager.post.entity">Application\Sonata\NewsBundle\Entity\Tag</parameter>
+        <parameter key="sonata.news.manager.category.class">Sonata\NewsBundle\Entity\CategoryManager</parameter>
+        <parameter key="sonata.news.manager.category.entity">Application\Sonata\NewsBundle\Entity\Category</parameter>
         <parameter key="sonata.news.manager.tag.class">Sonata\NewsBundle\Entity\TagManager</parameter>
         <parameter key="sonata.news.manager.tag.entity">Application\Sonata\NewsBundle\Entity\Post</parameter>
     </parameters>
@@ -18,6 +20,11 @@
         <service id="sonata.news.manager.comment" class="%sonata.news.manager.comment.class%">
             <argument type="service" id="sonata.news.entity_manager" />
             <argument>%sonata.news.manager.comment.entity%</argument>
+        </service>
+
+        <service id="sonata.news.manager.category" class="%sonata.news.manager.category.class%">
+            <argument type="service" id="sonata.news.entity_manager" />
+            <argument>%sonata.news.manager.category.entity%</argument>
         </service>
 
         <service id="sonata.news.manager.tag" class="%sonata.news.manager.tag.class%">

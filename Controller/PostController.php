@@ -84,6 +84,28 @@ class PostController extends Controller
     }
 
     /**
+     * @param $category
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
+    public function categoryAction($category)
+    {
+        $category = $this->get('sonata.news.manager.category')->findOneBy(array(
+            'slug' => $category,
+            'enabled' => true
+        ));
+
+        if (!$category) {
+            throw new NotFoundHttpException('Unable to find the category');
+        }
+
+        if (!$category->getEnabled()) {
+            throw new NotFoundHttpException('Unable to find the category');
+        }
+
+        return $this->renderArchive(array('category' => $category), array('category' => $category));
+    }
+
+    /**
      * @param $year
      * @param $month
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response

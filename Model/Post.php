@@ -298,6 +298,14 @@ abstract class Post implements PostInterface
     {
         return $this->getCreatedAt()->format('d');
     }
+    
+    public function getPermalink()
+    {
+        return null == $this->getCategory()
+            ? $this->getSlug()
+            : sprintf('%s/%s', $this->getCategory()->getSlug(), $this->getSlug());
+    }
+    
     /**
      * Set comments_enabled
      *
