@@ -108,15 +108,12 @@ class PostController extends Controller
 
     /**
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @param $year
-     * @param $month
-     * @param $day
-     * @param $slug
+     * @param $permalink
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
-    public function viewAction($year, $month, $day, $slug)
+    public function viewAction($permalink)
     {
-        $post = $this->getPostManager()->findOneBySlug($year, $month, $day, $slug);
+        $post = $this->getPostManager()->findOneByPermalink($permalink);
 
         if (!$post) {
             throw new NotFoundHttpException('Unable to find the post');
@@ -199,10 +196,7 @@ class PostController extends Controller
         if (!$post->isCommentable()) {
             // todo add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-                'year'  => $post->getYear(),
-                'month' => $post->getMonth(),
-                'day'   => $post->getDay(),
-                'slug'  => $post->getSlug()
+                'permalink'  => $post->getPermalink()
             )));
         }
 
@@ -214,10 +208,7 @@ class PostController extends Controller
 
             // todo : add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-                'year'  => $post->getYear(),
-                'month' => $post->getMonth(),
-                'day'   => $post->getDay(),
-                'slug'  => $post->getSlug()
+                'permalink'  => $post->getPermalink()
             )));
         }
 

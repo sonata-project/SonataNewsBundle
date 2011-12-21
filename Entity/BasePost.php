@@ -22,4 +22,11 @@ abstract class BasePost extends ModelPost
         $this->tags     = new \Doctrine\Common\Collections\ArrayCollection;
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection;
     }
+    
+    public function getPermalink()
+    {
+        return null == $this->getCategory()
+            ? $this->getSlug()
+            : sprintf('%s/%s', $this->getCategory()->getSlug(), $this->getSlug());
+    }
 }

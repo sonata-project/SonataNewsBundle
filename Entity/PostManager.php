@@ -78,6 +78,40 @@ class PostManager extends ModelPostManager
             return null;
         }
     }
+    
+    /**
+     * @param $permalink
+     * 
+     * @return \Sonata\NewsBundle\Model\PostInterface|null
+     */
+    public function findOneByPermalink($permalink)
+    {
+        try {
+            $category = array(
+                'query' => '',
+                'params' => array()
+            );
+            
+            if (false === strpos($permalink, '/')) {
+                $category['query'] = 'p.category IS NULL';
+                $slug = $permalink;
+            } else {
+                $category['query'] = 'c.slug = :category';
+                list($category['params']['category'], $slug) = explode('/', $permalink);
+            }
+
+            return $this->em->getRepository($this->class)
+                ->createQueryBuilder('p')
+                ->leftJoin('p.category', 'c')
+                ->where('p.slug = :slug')
+                ->andWhere($category['query'])
+                ->setParameters(array_merge($category['params'], array('slug' => $slug)))
+                ->getQuery()
+                ->getSingleResult();
+        } catch (NoResultException $e) {
+            return null;
+        }
+    }
 
     /**
      * {@inheritDoc}
