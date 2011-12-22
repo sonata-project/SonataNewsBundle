@@ -52,6 +52,8 @@ abstract class Post implements PostInterface
     protected $image;
     
     protected $category;
+    
+    public static $routingMethod = null;
 
     /**
      * Set title
@@ -301,9 +303,21 @@ abstract class Post implements PostInterface
     
     public function getPermalink()
     {
-        return null == $this->getCategory()
-            ? $this->getSlug()
-            : sprintf('%s/%s', $this->getCategory()->getSlug(), $this->getSlug());
+        if ('date' === $this::$routingMethod) {
+            $permalink = sprintf('%d/%d/%d/%s', 
+                $this->getYear(), 
+                $this->getMonth(), 
+                $this->getDay(), 
+                $this->getSlug());
+        } elseif ('category' === $this::$routingMethod) {
+            $permalink = null == $this->getCategory()
+                ? $this->getSlug()
+                : sprintf('%s/%s', $this->getCategory()->getSlug(), $this->getSlug());
+        } else {
+             throw new \Exception('The routing method has an invalid value');
+        }
+        
+        return $permalink;
     }
     
     /**
