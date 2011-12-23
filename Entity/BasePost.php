@@ -21,5 +21,7 @@ abstract class BasePost extends ModelPost
     {
         $this->tags     = new \Doctrine\Common\Collections\ArrayCollection;
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection;
+
+        $this->setPublicationDateStart(new \DateTime);
     }
 }
