@@ -99,6 +99,23 @@
                 <source>title_leave_comment</source>
                 <target>Rajouter un commentaire</target>
             </trans-unit>
+            <trans-unit id="mail_title_comment_notification">
+                <source>mail_title_comment_notification</source>
+                <target>Nouveau commentaire pour le post '%post_title%' sur le blog '%blog_title%'
+Nouveau commentaire pour le post "%post_title%" sur le blog "%blog_title%"
+
+Post: %post_title% - %post_url%
+De: %comment_name%
+Email: %comment_email%
+Url: %comment_url%
+Message:
+%comment_message%
+
+Liens de modération rapide :
+  - validate: %comment_valid_link%
+  - invalidate: %comment_invalid_link%
+
+            </target>
         </body>
     </file>
 </xliff>

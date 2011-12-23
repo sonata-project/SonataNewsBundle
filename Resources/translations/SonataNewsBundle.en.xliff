@@ -30,7 +30,6 @@
                 <source>sidemenu.link_view_comments</source>
                 <target>Comments</target>
             </trans-unit>
-
             <trans-unit id="breadcrumb.link_comment_create">
                 <source>breadcrumb.link_comment_create</source>
                 <target>Create</target>
@@ -67,7 +66,6 @@
                 <source>breadcrumb.link_tag_edit</source>
                 <target>Edit</target>
             </trans-unit>
-
             <trans-unit id="comments">
                 <source>comments</source>
                 <target>Comments</target>
@@ -80,7 +78,6 @@
                 <source>tags</source>
                 <target>Tags</target>
             </trans-unit>
-
             <trans-unit id="no_tag_selected">
                 <source>no_tag_selected</source>
                 <target>No tag selected</target>
@@ -89,7 +86,6 @@
                 <source>published_under</source>
                 <target>{0}No tag selected|{1}Tag : |]1,Inf]Tags :</target>
             </trans-unit>
-
             <trans-unit id="archive_author">
                 <source>archive_author</source>
                 <target>by %author%</target>
@@ -97,6 +93,23 @@
             <trans-unit id="title_leave_comment">
                 <source>title_leave_comment</source>
                 <target>Add a comment</target>
+            </trans-unit>
+            <trans-unit id="mail_title_comment_notification">
+                <source>mail_title_comment_notification</source>
+                <target>New comment for post '%post_title%' on blog '%blog_title%'
+New comment for post "%post_title%" on blog "%blog_title%"
+
+Post: %post_title% - %post_url%
+From: %comment_name%
+Email: %comment_email%
+Url: %comment_url%
+Message:
+%comment_message%
+
+Quick moderation links :
+  - validate: %comment_valid_link%
+  - invalidate: %comment_invalid_link%
+</target>
             </trans-unit>
         </body>
     </file>

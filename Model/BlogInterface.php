@@ -13,41 +13,34 @@ namespace Sonata\NewsBundle\Model;
 
 interface BlogInterface
 {
-
     /**
-     * @abstract
      * @return void
      */
     function getTitle();
 
     /**
-     * @abstract
      * @return void
      */
     function getLink();
 
     /**
-     * @abstract
      * @return void
      */
     function getDescription();
 
     /**
-     * @abstract
      * @param $title
      * @return void
      */
     function setTitle($title);
 
     /**
-     * @abstract
      * @param $link
      * @return void
      */
     function setLink($link);
 
     /**
-     * @abstract
      * @param $description
      * @return void
      */

@@ -36,28 +36,17 @@ class SonataNewsExtension extends Extension
         $loader->load('orm.xml');
         $loader->load('twig.xml');
         $loader->load('form.xml');
+        $loader->load('core.xml');
 
         $blog = new Definition('Sonata\NewsBundle\Model\Blog', array($config['title'], $config['link'], $config['description'], $config['routing_class']));
         $container->setDefinition('sonata.news.blog', $blog);
-    }
 
-    /**
-     * Returns the base path for the XSD files.
-     *
-     * @return string The XSD base path
-     */
-    public function getXsdValidationBasePath()
-    {
-        return __DIR__.'/../Resources/config/schema';
-    }
+        $container->getDefinition('sonata.news.hash.generator')
+            ->replaceArgument(0, $config['salt']);
 
-    public function getNamespace()
-    {
-        return 'http://www.sonata-project.org/schema/dic/news';
-    }
-
-    public function getAlias()
-    {
-        return "sonata_news";
+        $container->getDefinition('sonata.news.mailer')
+            ->replaceArgument(5, array(
+                'notification' => $config['comment']['notification']
+            ));
     }
 }

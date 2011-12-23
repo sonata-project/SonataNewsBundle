@@ -34,6 +34,21 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('link')->isRequired()->end()
                 ->scalarNode('description')->isRequired()->end()
                 ->scalarNode('routing_class')->defaultValue('Sonata\NewsBundle\Permalink\DatePermalink')->end()
+                ->scalarNode('salt')->isRequired()->end()
+
+                ->arrayNode('comment')
+                    ->children()
+                        ->arrayNode('notification')
+                            ->children()
+                                ->arrayNode('emails')
+                                    ->prototype('scalar')->cannotBeEmpty()->end()
+                                ->end()
+                                ->scalarNode('from')->cannotBeEmpty()->end()
+                                ->scalarNode('template')->cannotBeEmpty()->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

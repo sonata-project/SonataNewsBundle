@@ -13,6 +13,8 @@ namespace Sonata\NewsBundle\Model;
 
 interface PostInterface
 {
+    function getId();
+
     /**
      * Set title
      *
