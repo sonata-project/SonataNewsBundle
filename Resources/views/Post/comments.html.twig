@@ -27,6 +27,8 @@
                     {{ comment.message }}
                 </div>
             </div>
+        {% else %}
+            {{ 'no_comments_available'|trans({}, 'SonataNewsBundle') }}
         {% endfor %}
     </div>
 </div>
