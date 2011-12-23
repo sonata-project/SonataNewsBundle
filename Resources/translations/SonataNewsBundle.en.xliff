@@ -111,6 +111,10 @@ Quick moderation links :
   - invalidate: %comment_invalid_link%
 </target>
             </trans-unit>
+            <trans-unit id="no_comments_available">
+                <source>no_comments_available</source>
+                <target>No comments available</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

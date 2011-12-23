@@ -116,6 +116,10 @@ Liens de modération rapide :
   - invalidate: %comment_invalid_link%
 
             </target>
+            <trans-unit id="no_comments_available">
+                <source>no_comments_available</source>
+                <target>Pas de commentaires</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
