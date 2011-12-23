@@ -50,6 +50,10 @@ abstract class Post implements PostInterface
     protected $author;
 
     protected $image;
+    
+    protected $category;
+    
+    public static $routingMethod = null;
 
     /**
      * Set title
@@ -296,6 +300,26 @@ abstract class Post implements PostInterface
     {
         return $this->getCreatedAt()->format('d');
     }
+    
+    public function getPermalink()
+    {
+        if ('date' === $this::$routingMethod) {
+            $permalink = sprintf('%d/%d/%d/%s', 
+                $this->getYear(), 
+                $this->getMonth(), 
+                $this->getDay(), 
+                $this->getSlug());
+        } elseif ('category' === $this::$routingMethod) {
+            $permalink = null == $this->getCategory()
+                ? $this->getSlug()
+                : sprintf('%s/%s', $this->getCategory()->getSlug(), $this->getSlug());
+        } else {
+             throw new \Exception('The routing method has an invalid value');
+        }
+        
+        return $permalink;
+    }
+    
     /**
      * Set comments_enabled
      *
@@ -388,6 +412,16 @@ abstract class Post implements PostInterface
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     public function setContentFormatter($contentFormatter)

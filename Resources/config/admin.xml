@@ -10,6 +10,12 @@
         <parameter key="sonata.news.admin.post.entity">Application\Sonata\NewsBundle\Entity\Post</parameter>
         <parameter key="sonata.news.admin.post.translation_domain">SonataNewsBundle</parameter>
 
+        <!-- CATEGORY -->
+        <parameter key="sonata.news.admin.category.class">Sonata\NewsBundle\Admin\CategoryAdmin</parameter>
+        <parameter key="sonata.news.admin.category.controller">SonataAdminBundle:CRUD</parameter>
+        <parameter key="sonata.news.admin.category.entity">Application\Sonata\NewsBundle\Entity\Category</parameter>
+        <parameter key="sonata.news.admin.category.translation_domain">%sonata.news.admin.post.translation_domain%</parameter>
+
         <!-- COMMENT -->
         <parameter key="sonata.news.admin.comment.class">Sonata\NewsBundle\Admin\CommentAdmin</parameter>
         <parameter key="sonata.news.admin.comment.controller">SonataAdminBundle:CRUD</parameter>
@@ -55,6 +61,17 @@
 
             <call method="setTranslationDomain">
                 <argument>%sonata.news.admin.post.translation_domain%</argument>
+            </call>
+        </service>
+
+        <service id="sonata.news.admin.category" class="%sonata.news.admin.category.class%">
+            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="categories" />
+            <argument />
+            <argument>%sonata.news.admin.category.entity%</argument>
+            <argument>%sonata.news.admin.category.controller%</argument>
+
+            <call method="setTranslationDomain">
+                <argument>%sonata.news.admin.category.translation_domain%</argument>
             </call>
         </service>
 

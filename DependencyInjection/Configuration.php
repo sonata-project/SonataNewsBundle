@@ -33,6 +33,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('title')->isRequired()->end()
                 ->scalarNode('link')->isRequired()->end()
                 ->scalarNode('description')->isRequired()->end()
+                ->scalarNode('routing_method')->defaultValue('date')->end()
             ->end()
         ;
 

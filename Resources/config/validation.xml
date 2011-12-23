@@ -56,6 +56,13 @@
         </getter>
 
     </class>
+    
+    <class name="Application\Sonata\NewsBundle\Entity\Category">
+        <getter property="name">
+           <constraint name="NotBlank" />
+           <constraint name="NotNull" />
+        </getter>
+    </class>
 
     <class name="Application\Sonata\NewsBundle\Entity\Tag">
         <getter property="name">

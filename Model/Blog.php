@@ -18,17 +18,30 @@ class Blog implements BlogInterface
     protected $link;
 
     protected $description;
+    
+    protected $routingMethod;
 
     /**
      * @param $title
      * @param $link
      * @param $description
      */
-    public function __construct($title, $link, $description)
+    public function __construct($title, $link, $description, $routingMethod)
     {
         $this->title = $title;
         $this->link = $link;
         $this->description = $description;
+        $this->routingMethod = $routingMethod;
+    }
+    
+    public function setRoutingMethod($routingMethod)
+    {
+        $this->routingMethod = $routingMethod;
+    }
+    
+    public function getRoutingMethod()
+    {
+        return $this->routingMethod;
     }
 
     public function setDescription($description)

@@ -39,6 +39,18 @@
             </cascade>
         </many-to-one>
 
+        <many-to-one
+            field="category"
+            target-entity="Application\Sonata\NewsBundle\Entity\Category"
+           >
+            <cascade>
+                <cascade-persist />
+                <!--<cascade-merge />-->
+                <!--<cascade-remove />-->
+                <!--<cascade-refresh />-->
+            </cascade>
+        </many-to-one>
+
         <many-to-many
             field="tags"
             target-entity="Application\Sonata\NewsBundle\Entity\Tag"
