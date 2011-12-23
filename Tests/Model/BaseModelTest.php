@@ -14,7 +14,10 @@ namespace Sonata\NewsBundle\Tests\Model;
 
 class BasePostTest_Post extends \Sonata\NewsBundle\Model\Post
 {
-
+    function getId()
+    {
+        // TODO: Implement getId() method.
+    }
 }
 
 class BasePostTest extends \PHPUnit_Framework_TestCase

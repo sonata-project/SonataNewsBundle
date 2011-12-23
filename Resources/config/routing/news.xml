@@ -47,4 +47,8 @@
     <route id="sonata_news_home" pattern="/">
         <default key="_controller">SonataNewsBundle:Post:home</default>
     </route>
+
+    <route id="sonata_news_comment_moderation" pattern="/comment/moderation/{commentId}/{hash}/{status}">
+        <default key="_controller">SonataNewsBundle:Post:commentModeration</default>
+    </route>
 </routes>

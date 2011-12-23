@@ -17,6 +17,8 @@ interface CommentInterface
     const STATUS_VALID   = 1;
     const STATUS_MODERATE   = 2;
 
+    function getId();
+
     /**
      * Set name
      *

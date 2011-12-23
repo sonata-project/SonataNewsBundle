@@ -117,6 +117,13 @@ Installation
         title:        Sonata Project
         link:         http://sonata-project.org
         description:  Cool bundles on top of Symfony2
+        salt:         'secureToken'
+
+        comment:
+            notification:
+                emails:   [email@example.org, email2@example.org]
+                from:     no-reply@sonata-project.org
+                template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
 
     doctrine:
         orm:

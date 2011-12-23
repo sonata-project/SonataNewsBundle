@@ -13,9 +13,12 @@ namespace Sonata\NewsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 
 class PostController extends Controller
 {
@@ -135,7 +138,7 @@ class PostController extends Controller
      */
     public function commentsAction($post_id)
     {
-        $pager = $this->get('sonata.news.manager.comment')
+        $pager = $this->getCommentManager()
             ->getPager(array(
                 'postId' => $post_id,
                 'status'  => CommentInterface::STATUS_VALID
@@ -172,9 +175,9 @@ class PostController extends Controller
      *
      * @return \Symfony\Component\Form\FormInterface
      */
-    public function getCommentForm($post)
+    public function getCommentForm(PostInterface $post)
     {
-        $comment = $this->get('sonata.news.manager.comment')->create();
+        $comment = $this->getCommentManager()->create();
         $comment->setPost($post);
         $comment->setStatus($post->getCommentsDefaultStatus());
 
@@ -210,7 +213,10 @@ class PostController extends Controller
         $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {
-            $this->get('sonata.news.manager.comment')->save($form->getData());
+            $comment = $form->getData();
+
+            $this->getCommentManager()->save($comment);
+            $this->get('sonata.news.mailer')->sendCommentNotification($comment);
 
             // todo : add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
@@ -233,5 +239,46 @@ class PostController extends Controller
     protected function getPostManager()
     {
         return $this->get('sonata.news.manager.post');
+    }
+
+    /**
+     * @return \Sonata\NewsBundle\Model\CommentManagerInterface
+     */
+    protected function getCommentManager()
+    {
+        return $this->get('sonata.news.manager.comment');
+    }
+
+    /**
+     * @param $commentId
+     * @param $hash
+     * @param $status
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
+    public function commentModerationAction($commentId, $hash, $status)
+    {
+        $comment = $this->getCommentManager()->findOneBy(array('id' => $commentId));
+
+        if (!$comment) {
+            throw new AccessDeniedException();
+        }
+
+        $computedHash = $this->get('sonata.news.hash.generator')->generate($comment);
+
+        if ($computedHash != $hash) {
+            throw new AccessDeniedException();
+        }
+
+        $comment->setStatus($status);
+
+        $this->getCommentManager()->save($comment);
+
+        return new RedirectResponse($this->generateUrl('sonata_news_view', array(
+            'year'  => $comment->getPost()->getYear(),
+            'month' => $comment->getPost()->getMonth(),
+            'day'   => $comment->getPost()->getDay(),
+            'slug'  => $comment->getPost()->getSlug()
+        )));
     }
 }
