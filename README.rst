@@ -56,7 +56,7 @@ Add to app/deps
     target=/bundles/Sonata/IntlBundle	
 
 [KnpMarkdownBundle]
-    git=http://github.com/knplabs/KnpMarkdownBundle.git
+    git=http://github.com/KnpLabs/KnpMarkdownBundle.git
     target=/bundles/Knp/Bundle/MarkdownBundle
 
 [KnpMenu]
