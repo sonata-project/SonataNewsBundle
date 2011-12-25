@@ -51,8 +51,12 @@ Add to app/deps
     git=http://github.com/sonata-project/SonataFormatterBundle.git
     target=/bundles/Sonata/FormatterBundle
 
+[SonataIntlBundle]
+    git=https://github.com/sonata-project/SonataIntlBundle
+    target=/bundles/Sonata/IntlBundle	
+
 [KnpMarkdownBundle]
-    git=http://github.com/knplabs/KnpMarkdownBundle.git
+    git=http://github.com/KnpLabs/KnpMarkdownBundle.git
     target=/bundles/Knp/Bundle/MarkdownBundle
 
 [KnpMenu]
