@@ -114,8 +114,8 @@ Message:
 Liens de modération rapide :
   - validate: %comment_valid_link%
   - invalidate: %comment_invalid_link%
-
-            </target>
+</target>
+</trans-unit>
             <trans-unit id="no_comments_available">
                 <source>no_comments_available</source>
                 <target>Pas de commentaires</target>
