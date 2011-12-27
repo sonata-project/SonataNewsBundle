@@ -34,8 +34,6 @@ class PostController extends Controller
      */
     public function renderArchive(array $criteria = array(), array $parameters = array())
     {
-        $this->setRoutingMethod();
-        
         $pager = $this->getPostManager()->getPager(
             $criteria,
             $this->getRequest()->get('page', 1)
@@ -138,9 +136,7 @@ class PostController extends Controller
      */
     public function viewAction($permalink)
     {
-        $this->setRoutingMethod();
-        
-        $post = $this->getPostManager()->findOneByPermalink($permalink);
+        $post = $this->getPostManager()->findOneByPermalink($permalink, $this->container->get('sonata.news.blog')->getRoutingMethod());
 
         if (!$post) {
             throw new NotFoundHttpException('Unable to find the post');
@@ -159,8 +155,6 @@ class PostController extends Controller
      */
     public function commentsAction($post_id)
     {
-        $this->setRoutingMethod();
-        
         $pager = $this->get('sonata.news.manager.comment')
             ->getPager(array(
                 'postId' => $post_id,
@@ -179,8 +173,6 @@ class PostController extends Controller
      */
     public function addCommentFormAction($post_id, $form = false)
     {
-        $this->setRoutingMethod();
-        
         if (!$form) {
             $post = $this->getPostManager()->findOneBy(array(
                 'id' => $post_id
@@ -216,8 +208,6 @@ class PostController extends Controller
      */
     public function addCommentAction($id)
     {
-        $this->setRoutingMethod();
-        
         $post = $this->getPostManager()->findOneBy(array(
             'id' => $id
         ));
@@ -257,10 +247,5 @@ class PostController extends Controller
     protected function getPostManager()
     {
         return $this->get('sonata.news.manager.post');
-    }
-    
-    protected function setRoutingMethod()
-    {
-        Post::$routingMethod = $this->container->get('sonata.news.blog')->getRoutingMethod();
     }
 }

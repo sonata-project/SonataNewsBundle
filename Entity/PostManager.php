@@ -116,16 +116,17 @@ class PostManager extends ModelPostManager
     
     /**
      * @param $permalink
+     * @param $routingMethod
      * 
      * @return \Sonata\NewsBundle\Model\PostInterface|null
      */
-    public function findOneByPermalink($permalink)
+    public function findOneByPermalink($permalink, $routingMethod)
     {
-        if ('date' === Post::$routingMethod) {
+        if ('date' === $routingMethod) {
             list($year, $month, $day, $slug) = explode('/', $permalink);
             
             return $this->findOneByDate($year, $month, $day, $slug);
-        } elseif ('category' === Post::$routingMethod) {
+        } elseif ('category' === $routingMethod) {
             if (false === strpos($permalink, '/')) {
                 $category = null;
                 $slug = $permalink;
