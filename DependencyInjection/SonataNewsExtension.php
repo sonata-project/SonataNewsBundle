@@ -41,9 +41,17 @@ class SonataNewsExtension extends Extension
         $blog = new Definition('Sonata\NewsBundle\Model\Blog', array($config['title'], $config['link'], $config['description']));
         $container->setDefinition('sonata.news.blog', $blog);
 
+        if (!isset($config['salt'])) {
+            throw new \InvalidArgumentException("The configration node 'salt' is not set for the SonataNewsbundle (sonata_news)");
+        }
+        
         $container->getDefinition('sonata.news.hash.generator')
             ->replaceArgument(0, $config['salt']);
 
+        if (!isset($config['comment'])) {
+            throw new \InvalidArgumentException("The configration node 'comment' is not set for the SonataNewsbundle (sonata_news)");
+        }
+        
         $container->getDefinition('sonata.news.mailer')
             ->replaceArgument(5, array(
                 'notification' => $config['comment']['notification']
