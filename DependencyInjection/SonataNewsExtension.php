@@ -36,6 +36,8 @@ class SonataNewsExtension extends Extension
         $loader->load('orm.xml');
         $loader->load('twig.xml');
         $loader->load('form.xml');
+        $loader->load('permalink.xml');
+        
 
         $blog = new Definition('Sonata\NewsBundle\Model\Blog', array($config['title'], $config['link'], $config['description'], $config['routing_method']));
         $container->setDefinition('sonata.news.blog', $blog);

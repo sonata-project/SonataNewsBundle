@@ -12,21 +12,21 @@
 namespace Sonata\NewsBundle\Twig\Extension;
 
 use Sonata\NewsBundle\Model\PostInterface;
-use Sonata\NewsBundle\Model\BlogInterface;
+use Sonata\NewsBundle\Permalink\PermalinkInterface;
 
 class RoutingExtension extends \Twig_Extension
 {
     /**
-     * @var BlogInterface
+     * @var PermalinkInterface
      */
-    private $blog;
+    private $permalinkGenerator;
 
     /**
-     * @param Sonata\NewsBundle\Model\BlogInterface $blog
+     * @param Sonata\NewsBundle\Permalink\PermalinkInterface $permalinkGenerator
      */
-    public function __construct(BlogInterface $blog)
+    public function __construct(PermalinkInterface $permalinkGenerator)
     {
-        $this->blog         = $blog;
+        $this->permalinkGenerator = $permalinkGenerator;
     }
     
 
@@ -59,20 +59,6 @@ class RoutingExtension extends \Twig_Extension
      */
     public function generatePermalink(PostInterface $post)
     {
-        if ('date' === $this->blog->getRoutingMethod()) {
-            $permalink = sprintf('%d/%d/%d/%s', 
-                $post->getYear(), 
-                $post->getMonth(), 
-                $post->getDay(), 
-                $post->getSlug());
-        } elseif ('category' === $this->blog->getRoutingMethod()) {
-            $permalink = null == $post->getCategory()
-                ? $post->getSlug()
-                : sprintf('%s/%s', $post->getCategory()->getSlug(), $post->getSlug());
-        } else {
-             throw new \Exception('The routing method has an invalid value');
-        }
-        
-        return $permalink;
+        return $this->permalinkGenerator->generate($post);
     }
 }
