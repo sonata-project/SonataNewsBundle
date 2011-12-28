@@ -12,6 +12,7 @@
 namespace Sonata\NewsBundle\Permalink;
 
 use Sonata\NewsBundle\Model\PostInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
 
 interface PermalinkInterface
 {
@@ -20,4 +21,11 @@ interface PermalinkInterface
      * @param Sonata\NewsBundle\Model\PostInterface $post
      */
     function generate(PostInterface $post);
+    
+    /**
+     * @abstract
+     * @param string $permalink
+     * @param Doctrine\Common\Persistence\ObjectRepository $repository
+     */
+    function processRepository($permalink, ObjectRepository $repository);
 }

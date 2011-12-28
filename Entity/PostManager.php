@@ -13,6 +13,7 @@ namespace Sonata\NewsBundle\Entity;
 use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\Post;
+use Sonata\NewsBundle\Permalink\PermalinkInterface;
 
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
@@ -54,89 +55,23 @@ class PostManager extends ModelPostManager
     {
         return $this->em->getRepository($this->class)->findOneBy($criteria);
     }
-
+    
     /**
-     * @param $year
-     * @param $month
-     * @param $day
-     * @param $slug
-     *
+     * @param string $permalink
+     * @param Sonata\NewsBundle\Permalink\PermalinkInterface $generator
+     * 
      * @return \Sonata\NewsBundle\Model\PostInterface|null
      */
-    public function findOneByDate($year, $month, $day, $slug)
+    public function findOneByPermalink($permalink, PermalinkInterface $generator)
     {
         try {
-            $pdqp = $this->getPublicationDateQueryParts(sprintf('%s-%s-%s', $year, $month, $day), 'day');
-
-            return $this->em->getRepository($this->class)
-                ->createQueryBuilder('p')
-                ->where('p.slug = :slug')
-                ->andWhere($pdqp['query'])
-                ->setParameters(array_merge($pdqp['params'], array('slug' => $slug)))
+            $repository = $this->em->getRepository($this->class);
+            
+            return $generator->processRepository($permalink, $repository)
                 ->getQuery()
                 ->getSingleResult();
         } catch (NoResultException $e) {
             return null;
-        }
-    }
-    
-     /**
-     * @param $category
-     * @param $slug
-     * 
-     * @return \Sonata\NewsBundle\Model\PostInterface|null
-     */
-    public function findOneByCategory($category, $slug)
-    {
-        try {
-            $pcqp = array(
-                'query' => '',
-                'params' => array()
-            );
-            
-            if (null === $category) {
-                $pcqp['query'] = 'p.category IS NULL';
-            } else {
-                $pcqp['query'] = 'c.slug = :category';
-                $pcqp['params'] = array('category' => $category);
-            }
-
-            return $this->em->getRepository($this->class)
-                ->createQueryBuilder('p')
-                ->leftJoin('p.category', 'c')
-                ->where('p.slug = :slug')
-                ->andWhere($pcqp['query'])
-                ->setParameters(array_merge($pcqp['params'], array('slug' => $slug)))
-                ->getQuery()
-                ->getSingleResult();
-        } catch (NoResultException $e) {
-            return null;
-        }
-    }
-    
-    /**
-     * @param $permalink
-     * @param $routingMethod
-     * 
-     * @return \Sonata\NewsBundle\Model\PostInterface|null
-     */
-    public function findOneByPermalink($permalink, $routingMethod)
-    {
-        if ('date' === $routingMethod) {
-            list($year, $month, $day, $slug) = explode('/', $permalink);
-            
-            return $this->findOneByDate($year, $month, $day, $slug);
-        } elseif ('category' === $routingMethod) {
-            if (false === strpos($permalink, '/')) {
-                $category = null;
-                $slug = $permalink;
-            } else {
-                list($category, $slug) = explode('/', $permalink);
-            }
-            
-            return $this->findOneByCategory($category, $slug);
-        } else {
-             throw new \Exception('The routing method has an invalid value');
         }
     }
 

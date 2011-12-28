@@ -12,21 +12,21 @@
 namespace Sonata\NewsBundle\Twig\Extension;
 
 use Sonata\NewsBundle\Model\PostInterface;
-use Sonata\NewsBundle\Permalink\PermalinkInterface;
+use Sonata\NewsBundle\Model\BlogInterface;
 
 class RoutingExtension extends \Twig_Extension
 {
     /**
-     * @var PermalinkInterface
+     * @var BlogInterface
      */
-    private $permalinkGenerator;
+    private $blog;
 
     /**
-     * @param Sonata\NewsBundle\Permalink\PermalinkInterface $permalinkGenerator
+     * @param Sonata\NewsBundle\Permalink\BlogInterface $blog
      */
-    public function __construct(PermalinkInterface $permalinkGenerator)
+    public function __construct(BlogInterface $blog)
     {
-        $this->permalinkGenerator = $permalinkGenerator;
+        $this->blog = $blog;
     }
     
 
@@ -59,6 +59,6 @@ class RoutingExtension extends \Twig_Extension
      */
     public function generatePermalink(PostInterface $post)
     {
-        return $this->permalinkGenerator->generate($post);
+        return $this->blog->getPermalinkGenerator()->generate($post);
     }
 }

@@ -136,7 +136,7 @@ class PostController extends Controller
      */
     public function viewAction($permalink)
     {
-        $post = $this->getPostManager()->findOneByPermalink($permalink, $this->container->get('sonata.news.blog')->getRoutingMethod());
+        $post = $this->getPostManager()->findOneByPermalink($permalink, $this->container->get('sonata.news.blog')->getPermalinkGenerator());
 
         if (!$post) {
             throw new NotFoundHttpException('Unable to find the post');
