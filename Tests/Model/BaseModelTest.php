@@ -41,6 +41,22 @@ class BasePostTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($post->isCommentable());
     }
 
+    public function testIsPublic()
+    {
+        $post = new BasePostTest_Post;
+
+        $post->setEnabled(true);
+        $this->assertTrue($post->isPublic());
+
+        $post->setEnabled(false);
+        $this->assertFalse($post->isPublic());
+
+        $post->setEnabled(true);
+        $post->setPublicationDateStart(new \DateTime('+1 year'));
+
+        $this->assertFalse($post->isPublic());
+    }
+
     public function testSlug()
     {
         $post = new BasePostTest_Post;

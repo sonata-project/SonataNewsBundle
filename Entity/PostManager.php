@@ -14,6 +14,7 @@ use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\Post;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
+use Sonata\NewsBundle\Model\BlogInterface;
 
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
@@ -55,21 +56,55 @@ class PostManager extends ModelPostManager
     {
         return $this->em->getRepository($this->class)->findOneBy($criteria);
     }
-    
+
     /**
-     * @param string $permalink
-     * @param Sonata\NewsBundle\Permalink\PermalinkInterface $generator
-     * 
-     * @return \Sonata\NewsBundle\Model\PostInterface|null
+     * @param $permalink
+     * @param \Sonata\NewsBundle\Model\BlogInterface $blog
+     * @return null
      */
-    public function findOneByPermalink($permalink, PermalinkInterface $generator)
+    public function findOneByPermalink($permalink, BlogInterface $blog)
     {
         try {
             $repository = $this->em->getRepository($this->class);
-            
-            return $generator->processRepository($permalink, $repository)
-                ->getQuery()
-                ->getSingleResult();
+
+            $query = $repository->createQueryBuilder('p');
+
+            $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
+
+            $parameters = array();
+
+            if (isset($urlParameters['year']) && isset($urlParameters['month']) && isset($urlParameters['day'])) {
+                $pdqp = $this->getPublicationDateQueryParts(sprintf('%d-%d-%d', $urlParameters['year'], $urlParameters['month'], $urlParameters['day']), 'day');
+
+                $parameters = array_merge($parameters, $pdqp['params']);
+
+                $query->andWhere($pdqp['query']);
+            }
+
+            if (isset($urlParameters['slug'])) {
+                $query->andWhere('p.slug = :slug');
+                $parameters['slug'] = $urlParameters['slug'];
+            }
+
+            if (isset($urlParameters['category'])) {
+                $pcqp = $this->getPublicationCategoryQueryParts($urlParameters['category']);
+
+                $parameters = array_merge($parameters, $pcqp['params']);
+
+                $query
+                    ->leftJoin('p.category', 'c')
+                    ->andWhere($pcqp['query'])
+                ;
+            }
+
+            if (count($parameters) == 0) {
+                return null;
+            }
+
+            $query->setParameters($parameters);
+
+            return $query->getQuery()->getSingleResult();
+
         } catch (NoResultException $e) {
             return null;
         }
@@ -164,5 +199,24 @@ class PostManager extends ModelPostManager
                 'endDate'   => new \DateTime($date . '+1 ' . $step)
             )
         );
+    }
+
+    /**
+     * @param string $category
+     *
+     * @return array
+     */
+    public function getPublicationCategoryQueryParts($category)
+    {
+        $pcqp = array('query' => '', 'params' => array());
+
+        if (null === $category) {
+            $pcqp['query'] = 'p.category IS NULL';
+        } else {
+            $pcqp['query'] = 'c.slug = :category';
+            $pcqp['params'] = array('category' => $category);
+        }
+
+        return $pcqp;
     }
 }

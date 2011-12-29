@@ -17,8 +17,8 @@ use Doctrine\Common\Persistence\ObjectRepository;
 class CategoryPermalink implements PermalinkInterface
 {
     /**
-     * @param Sonata\NewsBundle\Model\PostInterface $post
-     * 
+     * @param \Sonata\NewsBundle\Model\PostInterface $post
+     *
      * @return string
      */
     public function generate(PostInterface $post)
@@ -27,48 +27,29 @@ class CategoryPermalink implements PermalinkInterface
             ? $post->getSlug()
             : sprintf('%s/%s', $post->getCategory()->getSlug(), $post->getSlug());
     }
-    
+
     /**
-     * @param string $permalink
-     * @param Doctrine\Common\Persistence\ObjectRepository $repository
-     * 
-     * @return Doctrine\Common\Persistence\ObjectRepository
+     * @param $permalink
+     * @return array
      */
-    public function processRepository($permalink, ObjectRepository $repository)
+    public function getParameters($permalink)
     {
+        $parameters = explode('/', $permalink);
+
+        if (count($parameters) > 2 || count($parameters) == 0) {
+            throw new \InvalidArgumentException('wrong permalink format');
+        }
+
         if (false === strpos($permalink, '/')) {
             $category = null;
             $slug = $permalink;
         } else {
-            list($category, $slug) = explode('/', $permalink);
+            list($category, $slug) = $parameters;
         }
-        
-        $pcqp = $this->getPublicationCategoryQueryParts($category);
-        
-        return $repository
-            ->createQueryBuilder('p')
-            ->leftJoin('p.category', 'c')
-            ->where('p.slug = :slug')
-            ->andWhere($pcqp['query'])
-            ->setParameters(array_merge($pcqp['params'], array('slug' => $slug)));
-    }
-    
-    /**
-     * @param string $category
-     * 
-     * @return array
-     */
-    protected function getPublicationCategoryQueryParts($category)
-    {
-        $pcqp = array('query' => '', 'params' => array());
-        
-        if (null === $category) {
-            $pcqp['query'] = 'p.category IS NULL';
-        } else {
-            $pcqp['query'] = 'c.slug = :category';
-            $pcqp['params'] = array('category' => $category);
-        }
-        
-        return $pcqp;
+
+        return array(
+            'category' => $category,
+            'slug'     => $slug,
+        );
     }
 }

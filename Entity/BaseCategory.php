@@ -16,9 +16,5 @@ use Sonata\NewsBundle\Model\Category as ModelCategory;
 
 abstract class BaseCategory extends ModelCategory
 {
-    public function prePersist()
-    {}
-    
-    public function preUpdate()
-    {}
+
 }

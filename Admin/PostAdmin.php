@@ -93,6 +93,7 @@ class PostAdmin extends Admin
         $listMapper
             ->addIdentifier('title')
             ->add('author')
+            ->add('category')
             ->add('enabled')
             ->add('tags')
             ->add('commentsEnabled')

@@ -40,7 +40,7 @@ class CategoryAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('posts')
+            ->add('enabled')
         ;
     }
 

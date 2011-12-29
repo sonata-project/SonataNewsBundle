@@ -6,7 +6,5 @@
 
     <document name="Application\Sonata\NewsBundle\Document\Category" collection="newsCategory">
         <id fieldName="id" id="true" />
-
-        <reference-many target-document="Application\Sonata\NewsBundle\Document\Post" field="posts" mapped-by="category" />
     </document>
 </doctrine-mongo-mapping>

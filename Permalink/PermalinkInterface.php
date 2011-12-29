@@ -17,15 +17,13 @@ use Doctrine\Common\Persistence\ObjectRepository;
 interface PermalinkInterface
 {
     /**
-     * @abstract
-     * @param Sonata\NewsBundle\Model\PostInterface $post
+     * @param \Sonata\NewsBundle\Model\PostInterface $post
      */
     function generate(PostInterface $post);
-    
+
     /**
-     * @abstract
-     * @param string $permalink
-     * @param Doctrine\Common\Persistence\ObjectRepository $repository
+     * @param $permalink
+     * @return array
      */
-    function processRepository($permalink, ObjectRepository $repository);
+    function getParameters($permalink);
 }

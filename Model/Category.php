@@ -22,12 +22,16 @@ abstract class Category implements CategoryInterface
     protected $slug;
 
     protected $enabled;
-    
+
     protected $description;
-    
+
     protected $count = 0;
 
     protected $posts;
+
+    protected $createdAt;
+
+    protected $updatedAt;
 
     /**
      * Set name
@@ -153,6 +157,37 @@ abstract class Category implements CategoryInterface
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName() ?: 'n/a';
+    }
+
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime);
+        $this->setUpdatedAt(new \DateTime);
+    }
+
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime);
+    }
+
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

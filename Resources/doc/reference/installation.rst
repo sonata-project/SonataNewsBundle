@@ -118,6 +118,7 @@ Installation
         link:         http://sonata-project.org
         description:  Cool bundles on top of Symfony2
         salt:         'secureToken'
+        permalink_generator: sonata.news.permalink.date # sonata.news.permalink.category
 
         comment:
             notification:

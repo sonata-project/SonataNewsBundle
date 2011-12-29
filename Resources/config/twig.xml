@@ -12,10 +12,5 @@
             <argument type="service" id="sonata.news.manager.tag" />
             <argument type="service" id="sonata.news.blog" />
         </service>
-        <service id="sonata.news.twig.extension.routing" class="Sonata\NewsBundle\Twig\Extension\RoutingExtension" public="false">
-            <tag name="twig.extension" />
-
-            <argument type="service" id="sonata.news.blog" />
-        </service>
     </services>
 </container>

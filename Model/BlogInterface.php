@@ -11,6 +11,8 @@
 
 namespace Sonata\NewsBundle\Model;
 
+use Sonata\NewsBundle\Permalink\PermalinkInterface;
+
 interface BlogInterface
 {
     /**
@@ -45,4 +47,11 @@ interface BlogInterface
      * @return void
      */
     function setDescription($description);
+
+    /**
+     * @return void
+     *
+     * @return \Sonata\NewsBundle\Permalink\PermalinkInterface
+     */
+    function getPermalinkGenerator();
 }
