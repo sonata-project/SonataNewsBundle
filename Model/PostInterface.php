@@ -15,8 +15,6 @@ use Sonata\NewsBundle\Model\CategoryInterface;
 
 interface PostInterface
 {
-    function getId();
-
     /**
      * @return mixed
      */
