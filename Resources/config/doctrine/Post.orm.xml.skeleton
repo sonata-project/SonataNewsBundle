@@ -97,17 +97,5 @@
             </order-by>
         </one-to-many>
 
-        <many-to-one
-            field="category"
-            target-entity="Application\Sonata\NewsBundle\Entity\Category"
-           >
-            <cascade>
-                <cascade-persist />
-                <!--<cascade-merge />-->
-                <!--<cascade-remove />-->
-                <!--<cascade-refresh />-->
-            </cascade>
-        </many-to-one>
-
     </entity>
 </doctrine-mapping>
