@@ -17,6 +17,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\Definition;
+use \Symfony\Component\DependencyInjection\Reference;
 
 /**
  * SonataNewsBundleExtension
@@ -38,20 +39,30 @@ class SonataNewsExtension extends Extension
         $loader->load('form.xml');
         $loader->load('core.xml');
 
-        $blog = new Definition('Sonata\NewsBundle\Model\Blog', array($config['title'], $config['link'], $config['description']));
-        $container->setDefinition('sonata.news.blog', $blog);
-
         if (!isset($config['salt'])) {
             throw new \InvalidArgumentException("The configration node 'salt' is not set for the SonataNewsbundle (sonata_news)");
         }
-        
-        $container->getDefinition('sonata.news.hash.generator')
-            ->replaceArgument(0, $config['salt']);
 
         if (!isset($config['comment'])) {
             throw new \InvalidArgumentException("The configration node 'comment' is not set for the SonataNewsbundle (sonata_news)");
         }
-        
+
+        $container->getDefinition('sonata.news.hash.generator')
+            ->replaceArgument(0, $config['salt']);
+
+
+        $container->setAlias('sonata.news.permalink.generator', $config['permalink_generator']);
+
+        $container->setDefinition('sonata.news.blog', new Definition('Sonata\NewsBundle\Model\Blog', array(
+            $config['title'],
+            $config['link'],
+            $config['description'],
+            new Reference('sonata.news.permalink.generator')
+        )));
+
+        $container->getDefinition('sonata.news.hash.generator')
+            ->replaceArgument(0, $config['salt']);
+
         $container->getDefinition('sonata.news.mailer')
             ->replaceArgument(5, array(
                 'notification' => $config['comment']['notification']

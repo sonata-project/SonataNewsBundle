@@ -11,8 +11,15 @@
 
 namespace Sonata\NewsBundle\Model;
 
+use Sonata\NewsBundle\Model\CategoryInterface;
+
 interface PostInterface
 {
+    function getId();
+
+    /**
+     * @return mixed
+     */
     function getId();
 
     /**
@@ -193,7 +200,7 @@ interface PostInterface
     /**
      * Get comments_close_at
      *
-     * @return datetime $commentsCloseAt
+     * @return \DateTime $commentsCloseAt
      */
     function getCommentsCloseAt();
 
@@ -211,9 +218,28 @@ interface PostInterface
      */
     function getCommentsDefaultStatus();
 
+    /**
+     * @return boolean
+     */
     function isCommentable();
+
+    /**
+     * @return boolean
+     */
+    function isPublic();
 
     function setAuthor($author);
 
     function getAuthor();
+
+    /**
+     * @return \Sonata\NewsBundle\Model\CategoryInterface
+     */
+    function getCategory();
+
+    /**
+     * @param CategoryInterface $category
+     * @return void
+     */
+    function setCategory(CategoryInterface $category);
 }

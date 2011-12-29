@@ -18,7 +18,7 @@ Installation
         target=/bundles/Sonata/MediaBundle
 
     [SonataUserBundle]
-        git=https://github.com/sonata-project/SonataUserBundle.git
+        git=git@github.com:sonata-project/SonataUserBundle.git
         target=/bundles/Sonata/UserBundle
 
     [SonataAdminBundle]
@@ -26,15 +26,15 @@ Installation
         target=/bundles/Sonata/AdminBundle
 
     [SonataFormatterBundle]
-        git=http://github.com/sonata-project/SonataFormatterBundle.git
+        git=git@github.com:sonata-project/SonataFormatterBundle.git
         target=/bundles/Sonata/FormatterBundle
 
     [SonataIntlBundle]
-        git=http://github.com/sonata-project/SonataIntlBundle.git
+        git=git@github.com:sonata-project/SonataIntlBundle.git
         target=/bundles/Sonata/IntlBundle
 
     [KnpMarkdownBundle]
-        git=http://github.com/knplabs/KnpMarkdownBundle.git
+        git=git@github.com:knplabs/KnpMarkdownBundle.git
         target=/bundles/Knp/Bundle/MarkdownBundle
 
 * Add SonataNewsBundle to your application kernel::
@@ -118,6 +118,7 @@ Installation
         link:         http://sonata-project.org
         description:  Cool bundles on top of Symfony2
         salt:         'secureToken'
+        permalink_generator: sonata.news.permalink.date # sonata.news.permalink.category
 
         comment:
             notification:

@@ -74,6 +74,10 @@
                 <source>posts</source>
                 <target>Posts</target>
             </trans-unit>
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>Categories</target>
+            </trans-unit>
             <trans-unit id="tags">
                 <source>tags</source>
                 <target>Tags</target>

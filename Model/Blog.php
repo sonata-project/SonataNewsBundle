@@ -11,6 +11,8 @@
 
 namespace Sonata\NewsBundle\Model;
 
+use Sonata\NewsBundle\Permalink\PermalinkInterface;
+
 class Blog implements BlogInterface
 {
     protected $title;
@@ -18,17 +20,34 @@ class Blog implements BlogInterface
     protected $link;
 
     protected $description;
+    
+    /**
+     * @var PermalinkInterface
+     */
+    protected $permalinkGenerator;
 
     /**
      * @param $title
      * @param $link
      * @param $description
+     * @param $permalinkClass
      */
-    public function __construct($title, $link, $description)
+    public function __construct($title, $link, $description, $permalinkClass)
     {
         $this->title = $title;
         $this->link = $link;
         $this->description = $description;
+        $this->setPermalinkGenerator(new $permalinkClass);
+    }
+    
+    public function setPermalinkGenerator(PermalinkInterface $permalinkGenerator)
+    {
+        $this->permalinkGenerator = $permalinkGenerator;
+    }
+    
+    public function getPermalinkGenerator()
+    {
+        return $this->permalinkGenerator;
     }
 
     public function setDescription($description)

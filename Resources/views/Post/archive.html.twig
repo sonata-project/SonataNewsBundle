@@ -20,7 +20,7 @@
                 {{ post.publicationDateStart | format_date }}
             </div>
             <h2 class="sonata-blog-post-title">
-                <a href="{{ url('sonata_news_view', { 'year': post.year, 'month': post.month, 'day': post.day, 'slug': post.slug}) }}">{{ post.title }}</a>
+                <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a>
                 <span class="sonata-blog-post-author">{{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }}</span>
             </h2>
             <div class="sonata-blog-post-information">

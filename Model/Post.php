@@ -14,6 +14,7 @@ namespace Sonata\NewsBundle\Model;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\TagInterface;
+use Sonata\NewsBundle\Model\CategoryInterface;
 
 abstract class Post implements PostInterface
 {
@@ -50,6 +51,13 @@ abstract class Post implements PostInterface
     protected $author;
 
     protected $image;
+
+    protected $category;
+
+    public function __construct()
+    {
+        $this->setPublicationDateStart(new \DateTime);
+    }
 
     /**
      * Set title
@@ -284,18 +292,19 @@ abstract class Post implements PostInterface
 
     public function getYear()
     {
-        return $this->getCreatedAt()->format('Y');
+        return $this->getPublicationDateStart()->format('Y');
     }
 
     public function getMonth()
     {
-        return $this->getCreatedAt()->format('m');
+        return $this->getPublicationDateStart()->format('m');
     }
 
     public function getDay()
     {
-        return $this->getCreatedAt()->format('d');
+        return $this->getPublicationDateStart()->format('d');
     }
+
     /**
      * Set comments_enabled
      *
@@ -380,6 +389,15 @@ abstract class Post implements PostInterface
         return true;
     }
 
+    public function isPublic()
+    {
+        if (!$this->getEnabled()) {
+            return false;
+        }
+
+        return $this->getPublicationDateStart()->diff(new \DateTime)->invert == 0 ? true : false;
+    }
+
     public function setAuthor($author)
     {
         $this->author = $author;
@@ -388,6 +406,20 @@ abstract class Post implements PostInterface
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * @param CategoryInterface $category
+     * @return void
+     */
+    public function setCategory(CategoryInterface $category)
+    {
+        $this->category = $category;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     public function setContentFormatter($contentFormatter)

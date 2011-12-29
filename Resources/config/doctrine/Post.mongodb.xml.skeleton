@@ -18,6 +18,8 @@
 
         <reference-one target-document="Application\Sonata\UserBundle\Model\User" field="author" />
 
+        <reference-one target-document="Application\Sonata\UserBundle\Model\Category" field="category" />
+
         <reference-many target-document="Application\Sonata\NewsBundle\Document\Tag" field="tags" inversed-by="posts" />
 
         <reference-many target-document="Application\Sonata\NewsBundle\Document\Comment" field="comments" mapped-by="post">

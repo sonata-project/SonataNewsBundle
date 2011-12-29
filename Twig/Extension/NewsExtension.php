@@ -14,6 +14,7 @@ namespace Sonata\NewsBundle\Twig\Extension;
 use Symfony\Component\Routing\Router;
 use Sonata\NewsBundle\Model\TagManagerInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 
 class NewsExtension extends \Twig_Extension
 {
@@ -29,7 +30,8 @@ class NewsExtension extends \Twig_Extension
 
     /**
      * @param \Symfony\Component\Routing\Router $router
-     * @param \Sonata\NewsBundle\Entity\TagManagerInterface $tagManager
+     * @param \Sonata\NewsBundle\Model\TagManagerInterface $tagManager
+     * @param \Sonata\NewsBundle\Model\BlogInterface $blog
      */
     public function __construct(Router $router, TagManagerInterface $tagManager, BlogInterface $blog)
     {
@@ -47,6 +49,7 @@ class NewsExtension extends \Twig_Extension
     {
         return array(
             'sonata_news_link_tag_rss' => new \Twig_Function_Method($this, 'renderTagRss', array('is_safe' => array('html'))),
+            'sonata_news_permalink'    => new \Twig_Function_Method($this, 'generatePermalink')
         );
     }
 
@@ -69,9 +72,7 @@ class NewsExtension extends \Twig_Extension
     }
 
     /**
-     * @param null|\Sonata\PageBundle\Model\PageInterface $page
-     * @param array $options
-     * @return
+     * @return string
      */
     public function renderTagRss()
     {
@@ -85,6 +86,15 @@ class NewsExtension extends \Twig_Extension
         }
 
         return implode("\n", $rss);
+    }
+
+    /**
+     * @param \Sonata\NewsBundle\Model\PostInterface $post
+     * @return string|Exception
+     */
+    public function generatePermalink(PostInterface $post)
+    {
+        return $this->blog->getPermalinkGenerator()->generate($post);
     }
 }
 
