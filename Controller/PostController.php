@@ -35,7 +35,7 @@ class PostController extends Controller
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function renderArchive(array $criteria = array(), array $parameters = array())
-    {
+    {   
         $pager = $this->getPostManager()->getPager(
             $criteria,
             $this->getRequest()->get('page', 1)
@@ -83,7 +83,7 @@ class PostController extends Controller
             throw new NotFoundHttpException('Unable to find the tag');
         }
 
-        return $this->renderArchive(array('tag' => $tag), array('tag' => $tag));
+        return $this->renderArchive(array('tag' => $tag->getSlug()), array('tag' => $tag));
     }
 
     /**

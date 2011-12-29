@@ -86,7 +86,7 @@ class PostManager extends ModelPostManager
                 $parameters['slug'] = $urlParameters['slug'];
             }
 
-            if (isset($urlParameters['category'])) {
+            if (array_key_exists('category', $urlParameters)) {
                 $pcqp = $this->getPublicationCategoryQueryParts($urlParameters['category']);
 
                 $parameters = array_merge($parameters, $pcqp['params']);
@@ -148,12 +148,18 @@ class PostManager extends ModelPostManager
             ->select('p, t')
             ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
             ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
+            ->leftJoin('p.category', 'c', Expr\Join::WITH, 'c.enabled = true')
             ->orderby('p.publicationDateStart', 'DESC');
 
         // enabled
         $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;
         $query->andWhere('p.enabled = :enabled');
         $parameters['enabled'] = $criteria['enabled'];
+        
+        $query->andWhere('p.publicationDateStart <= :now');
+        $parameters['now'] = new \DateTime;
+        
+        $query->andWhere('c.enabled = true OR p.category IS NULL');
 
         if (isset($criteria['date'])) {
             $query->andWhere($criteria['date']['query']);
@@ -163,6 +169,11 @@ class PostManager extends ModelPostManager
         if (isset($criteria['tag'])) {
             $query->andWhere('t.slug LIKE :tag');
             $parameters['tag'] = (string)$criteria['tag'];
+        }
+        
+        if (isset($criteria['category'])) {
+            $query->andWhere('c.slug = :category');
+            $parameters['category'] = (string)$criteria['category'];
         }
 
         if (isset($criteria['author'])) {
