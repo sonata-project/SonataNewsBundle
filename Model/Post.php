@@ -226,17 +226,18 @@ abstract class Post implements PostInterface
      *
      * @param \Sonata\NewsBundle\Model\CommentInterface $comments
      */
-    public function addComments(CommentInterface $comments)
+    public function addComments(CommentInterface $comment)
     {
-        $this->comments[] = $comments;
+        $this->comments[] = $comment;
+        $comment->setPost($this);
     }
 
     public function setComments($comments)
     {
-        $this->comments = $comments;
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection;
 
         foreach ($this->comments as $comment) {
-            $comment->setPost($this);
+            $this->addComments($comment);
         }
     }
 
