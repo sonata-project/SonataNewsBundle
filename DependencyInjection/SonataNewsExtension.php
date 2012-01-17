@@ -76,28 +76,40 @@ class SonataNewsExtension extends Extension
                 'notification' => $config['comment']['notification']
             ));
 
-
-        $this->registerDoctrineMapping($configs);
+        $this->registerDoctrineMapping($config, $container);
     }
 
     /**
      * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      * @return void
      */
-    public function registerDoctrineMapping(array $config)
+    public function registerDoctrineMapping(array $config, ContainerBuilder $container)
     {
+        // admin configuration
+        $container->setParameter('sonata.news.admin.post.entity',       $config['class']['post']);
+        $container->setParameter('sonata.news.admin.tag.entity',        $config['class']['tag']);
+        $container->setParameter('sonata.news.admin.comment.entity',    $config['class']['comment']);
+        $container->setParameter('sonata.news.admin.category.entity',   $config['class']['category']);
+
+        // manager configuration
+        $container->setParameter('sonata.news.manager.post.entity',     $config['class']['post']);
+        $container->setParameter('sonata.news.manager.tag.entity',      $config['class']['tag']);
+        $container->setParameter('sonata.news.manager.comment.entity',  $config['class']['comment']);
+        $container->setParameter('sonata.news.manager.category.entity', $config['class']['category']);
+
         $collector = DoctrineCollector::getInstance();
 
-        $collector->addAssociation('Application\\Sonata\\NewsBundle\\Entity\\Tag', 'mapManyToMany', array(
+        $collector->addAssociation($config['class']['tag'], 'mapManyToMany', array(
             'fieldName'     => 'posts',
-            'targetEntity'  => 'Application\\Sonata\\NewsBundle\\Entity\\Post',
+            'targetEntity'  => $config['class']['post'],
             'cascade'       => array( ),
             'mappedBy'      => 'tags',
         ));
 
-        $collector->addAssociation('Application\\Sonata\\NewsBundle\\Entity\\Post', 'mapOneToMany', array(
+        $collector->addAssociation($config['class']['post'], 'mapOneToMany', array(
              'fieldName' => 'comments',
-             'targetEntity' => 'Application\\Sonata\\NewsBundle\\Entity\\Comment',
+             'targetEntity' => $config['class']['comment'],
              'cascade' =>
              array(
                  0 => 'remove',
@@ -111,9 +123,9 @@ class SonataNewsExtension extends Extension
              ),
         ));
 
-        $collector->addAssociation('Application\\Sonata\\NewsBundle\\Entity\\Post', 'mapOneToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapOneToOne', array(
             'fieldName' => 'image',
-            'targetEntity' => 'Application\\Sonata\\MediaBundle\\Entity\\Media',
+            'targetEntity' => $config['class']['media'],
             'cascade' =>
             array(
                 0 => 'remove',
@@ -134,9 +146,9 @@ class SonataNewsExtension extends Extension
             'orphanRemoval' => false,
         ));
 
-        $collector->addAssociation('Application\\Sonata\\NewsBundle\\Entity\\Post', 'mapOneToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapOneToOne', array(
              'fieldName' => 'author',
-             'targetEntity' => 'Application\\Sonata\\UserBundle\\Entity\\User',
+             'targetEntity' => $config['class']['user'],
              'cascade' =>
              array(
                  1 => 'persist',
@@ -153,9 +165,9 @@ class SonataNewsExtension extends Extension
              'orphanRemoval' => false,
         ));
 
-        $collector->addAssociation('Application\\Sonata\\NewsBundle\\Entity\\Post', 'mapOneToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapOneToOne', array(
              'fieldName' => 'category',
-             'targetEntity' => 'Application\\Sonata\\NewsBundle\\Entity\\Category',
+             'targetEntity' => $config['class']['category'],
              'cascade' =>
              array(
                  1 => 'persist',
@@ -172,9 +184,9 @@ class SonataNewsExtension extends Extension
              'orphanRemoval' => false,
         ));
 
-        $collector->addAssociation('Application\\Sonata\\NewsBundle\\Entity\\Post', 'mapManyToMany', array(
+        $collector->addAssociation($config['class']['post'], 'mapManyToMany', array(
             'fieldName' => 'tags',
-            'targetEntity' => 'Application\\Sonata\\NewsBundle\\Entity\\Tag',
+            'targetEntity' => $config['class']['tag'],
             'cascade' =>
             array(
                 1 => 'persist',
@@ -199,9 +211,9 @@ class SonataNewsExtension extends Extension
             ),
         ));
 
-        $collector->addAssociation('Application\\Sonata\\NewsBundle\\Entity\\Comment', 'mapOneToOne', array(
+        $collector->addAssociation($config['class']['comment'], 'mapOneToOne', array(
              'fieldName' => 'post',
-             'targetEntity' => 'Application\\Sonata\\NewsBundle\\Entity\\Post',
+             'targetEntity' => $config['class']['post'],
              'cascade' => array(
              ),
              'mappedBy' => NULL,

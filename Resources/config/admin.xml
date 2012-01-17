@@ -7,25 +7,21 @@
         <!-- POST -->
         <parameter key="sonata.news.admin.post.class">Sonata\NewsBundle\Admin\PostAdmin</parameter>
         <parameter key="sonata.news.admin.post.controller">SonataAdminBundle:CRUD</parameter>
-        <parameter key="sonata.news.admin.post.entity">Application\Sonata\NewsBundle\Entity\Post</parameter>
         <parameter key="sonata.news.admin.post.translation_domain">SonataNewsBundle</parameter>
 
         <!-- CATEGORY -->
         <parameter key="sonata.news.admin.category.class">Sonata\NewsBundle\Admin\CategoryAdmin</parameter>
         <parameter key="sonata.news.admin.category.controller">SonataAdminBundle:CRUD</parameter>
-        <parameter key="sonata.news.admin.category.entity">Application\Sonata\NewsBundle\Entity\Category</parameter>
         <parameter key="sonata.news.admin.category.translation_domain">%sonata.news.admin.post.translation_domain%</parameter>
 
         <!-- COMMENT -->
         <parameter key="sonata.news.admin.comment.class">Sonata\NewsBundle\Admin\CommentAdmin</parameter>
         <parameter key="sonata.news.admin.comment.controller">SonataAdminBundle:CRUD</parameter>
-        <parameter key="sonata.news.admin.comment.entity">Application\Sonata\NewsBundle\Entity\Comment</parameter>
         <parameter key="sonata.news.admin.comment.translation_domain">%sonata.news.admin.post.translation_domain%</parameter>
 
         <!-- TAG -->
         <parameter key="sonata.news.admin.tag.class">Sonata\NewsBundle\Admin\TagAdmin</parameter>
         <parameter key="sonata.news.admin.tag.controller">SonataAdminBundle:CRUD</parameter>
-        <parameter key="sonata.news.admin.tag.entity">Application\Sonata\NewsBundle\Entity\Tag</parameter>
         <parameter key="sonata.news.admin.tag.translation_domain">%sonata.news.admin.post.translation_domain%</parameter>
     </parameters>
 
