@@ -17,11 +17,5 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <many-to-many
-            field="posts"
-            target-entity="Application\Sonata\NewsBundle\Entity\Post"
-            mapped-by="tags"
-            >
-        </many-to-many>
     </entity>
 </doctrine-mapping>
