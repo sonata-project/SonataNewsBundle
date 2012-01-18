@@ -98,7 +98,6 @@ class SonataNewsExtension extends Extension
         $container->setParameter('sonata.news.manager.tag.entity',      $config['class']['tag']);
         $container->setParameter('sonata.news.manager.comment.entity',  $config['class']['comment']);
         $container->setParameter('sonata.news.manager.category.entity', $config['class']['category']);
-
     }
 
     /**
