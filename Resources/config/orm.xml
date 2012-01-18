@@ -25,12 +25,12 @@
 
         <service id="sonata.news.manager.tag" class="%sonata.news.manager.tag.class%">
             <argument type="service" id="sonata.news.entity_manager" />
-            <argument>%sonata.news.manager.post.entity%</argument>
+            <argument>%sonata.news.manager.tag.entity%</argument>
         </service>
 
         <service id="sonata.news.manager.post" class="%sonata.news.manager.post.class%">
            <argument type="service" id="sonata.news.entity_manager" />
-           <argument>%sonata.news.manager.tag.entity%</argument>
+           <argument>%sonata.news.manager.post.entity%</argument>
         </service>
 
     </services>
