@@ -77,14 +77,15 @@ class SonataNewsExtension extends Extension
             ));
 
         $this->registerDoctrineMapping($config, $container);
+        $this->configureClass($config, $container);
     }
 
     /**
-     * @param array $config
+     * @param $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      * @return void
      */
-    public function registerDoctrineMapping(array $config, ContainerBuilder $container)
+    public function configureClass($config, ContainerBuilder $container)
     {
         // admin configuration
         $container->setParameter('sonata.news.admin.post.entity',       $config['class']['post']);
@@ -98,7 +99,21 @@ class SonataNewsExtension extends Extension
         $container->setParameter('sonata.news.manager.comment.entity',  $config['class']['comment']);
         $container->setParameter('sonata.news.manager.category.entity', $config['class']['category']);
 
+    }
+
+    /**
+     * @param array $config
+     * @return void
+     */
+    public function registerDoctrineMapping(array $config)
+    {
         $collector = DoctrineCollector::getInstance();
+
+        foreach ($config['class'] as $type => $class) {
+            if (!class_exists($class)) {
+                return;
+            }
+        }
 
         $collector->addAssociation($config['class']['tag'], 'mapManyToMany', array(
             'fieldName'     => 'posts',

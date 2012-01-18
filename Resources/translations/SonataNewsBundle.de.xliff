@@ -89,7 +89,10 @@
                 <source>published_under</source>
                 <target>{0}Kein Tag ausgewählt|[1,Inf] Veröffentlicht unter :</target>
             </trans-unit>
-
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>Kategorien</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
