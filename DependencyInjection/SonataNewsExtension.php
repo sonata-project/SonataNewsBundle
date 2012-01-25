@@ -225,7 +225,7 @@ class SonataNewsExtension extends Extension
             ),
         ));
 
-        $collector->addAssociation($config['class']['comment'], 'mapOneToOne', array(
+        $collector->addAssociation($config['class']['comment'], 'mapManyToOne', array(
              'fieldName' => 'post',
              'targetEntity' => $config['class']['post'],
              'cascade' => array(
