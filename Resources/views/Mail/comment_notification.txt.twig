@@ -6,7 +6,7 @@
     '%comment_email%'  : comment.email,
     '%comment_url%'    : comment.url,
     '%comment_name%'   : comment.name,
-    '%post_url%'       : url('sonata_news_view', { 'year': post.year, 'month': post.month, 'day': post.day, 'slug': post.slug}, true),
+    '%post_url%'       : url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true),
     '%comment_invalid_link%' : url('sonata_news_comment_moderation', {'commentId': comment.id, 'hash': hash, 'status': 0}, true),
     '%comment_valid_link%' : url('sonata_news_comment_moderation', {'commentId': comment.id, 'hash': hash, 'status': 1}, true)
     }, 'SonataNewsBundle')}}
