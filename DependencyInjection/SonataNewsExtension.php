@@ -137,7 +137,7 @@ class SonataNewsExtension extends Extension
              ),
         ));
 
-        $collector->addAssociation($config['class']['post'], 'mapOneToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
             'fieldName' => 'image',
             'targetEntity' => $config['class']['media'],
             'cascade' =>
@@ -160,7 +160,7 @@ class SonataNewsExtension extends Extension
             'orphanRemoval' => false,
         ));
 
-        $collector->addAssociation($config['class']['post'], 'mapOneToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
              'fieldName' => 'author',
              'targetEntity' => $config['class']['user'],
              'cascade' =>
@@ -179,7 +179,7 @@ class SonataNewsExtension extends Extension
              'orphanRemoval' => false,
         ));
 
-        $collector->addAssociation($config['class']['post'], 'mapOneToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
              'fieldName' => 'category',
              'targetEntity' => $config['class']['category'],
              'cascade' =>
