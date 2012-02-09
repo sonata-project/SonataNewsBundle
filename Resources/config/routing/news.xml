@@ -40,7 +40,11 @@
         <default key="_format">html</default>
         <requirement key="_format">html|rss</requirement>
     </route>
-    
+
+    <route id="sonata_news_comment_moderation" pattern="/comment/moderation/{commentId}/{hash}/{status}">
+        <default key="_controller">SonataNewsBundle:Post:commentModeration</default>
+    </route>
+
     <route id="sonata_news_view" pattern="/{permalink}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:view</default>
         <default key="_format">html</default>
@@ -50,9 +54,5 @@
 
     <route id="sonata_news_home" pattern="/">
         <default key="_controller">SonataNewsBundle:Post:home</default>
-    </route>
-
-    <route id="sonata_news_comment_moderation" pattern="/comment/moderation/{commentId}/{hash}/{status}">
-        <default key="_controller">SonataNewsBundle:Post:commentModeration</default>
     </route>
 </routes>
