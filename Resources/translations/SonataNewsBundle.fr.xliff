@@ -99,6 +99,12 @@
                 <source>archive_author</source>
                 <target>by %author%</target>
             </trans-unit>
+
+            <trans-unit id="comments_count">
+                <source>comments_count</source>
+                <target>%comments_count% commentaires</target>
+            </trans-unit>
+
             <trans-unit id="title_leave_comment">
                 <source>title_leave_comment</source>
                 <target>Rajouter un commentaire</target>

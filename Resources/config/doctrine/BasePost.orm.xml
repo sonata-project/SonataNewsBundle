@@ -18,6 +18,7 @@
         <field name="commentsEnabled"    type="boolean"   column="comments_enabled" default="true"/>
         <field name="commentsCloseAt"   type="datetime"  column="comments_close_at" nullable="true"/>
         <field name="commentsDefaultStatus"   type="integer"  column="comments_default_status" nullable="false"/>
+        <field name="commentsCount"    type="integer"   column="comments_count" default="0"/>
 
         <field name="createdAt"    type="datetime"   column="created_at" />
         <field name="updatedAt"    type="datetime"   column="updated_at" />

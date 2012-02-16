@@ -173,6 +173,31 @@ abstract class Comment implements CommentInterface
         $this->setUpdatedAt(new \DateTime);
     }
 
+    public function postCreate()
+    {
+        if ($this->getStatus() == self::STATUS_VALID) {
+            $this->getPost()->setCommentsCount($this->getPost()->getCommentsCount()+1);
+        }
+    }
+
+    public function postDelete()
+    {
+        if ($this->getPost()->getCommentsCount() > 0 && $this->getPost()) {
+            $this->getPost()->setCommentsCount($this->getPost()->getCommentsCount()-1);
+        }
+
+    }
+
+    public function postUpdate()
+    {
+       if ($this->getOldStatus() != self::STATUS_VALID && $this->getStatus() == self::STATUS_VALID) {
+           $this->getPost()->setCommentsCount($this->getPost()->getCommentsCount()+1);
+       }
+       elseif ($this->getOldStatus() == self::STATUS_VALID && $this->getStatus() != self::STATUS_VALID) {
+           $this->getPost()->setCommentsCount($this->getPost()->getCommentsCount()-1);
+       }
+    }
+
     /**
      * Set status
      *

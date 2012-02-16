@@ -48,6 +48,8 @@ abstract class Post implements PostInterface
 
     protected $commentsDefaultStatus;
 
+    protected $commentsCount;
+
     protected $author;
 
     protected $image;
@@ -364,6 +366,26 @@ abstract class Post implements PostInterface
     public function getCommentsDefaultStatus()
     {
         return $this->commentsDefaultStatus;
+    }
+
+    /**
+     * Set comments_count
+     *
+     * @param integer $commentsCount
+     */
+    public function setCommentsCount($commentsCount)
+    {
+        $this->commentsCount = $commentsCount;
+    }
+
+    /**
+     * Get comments_default_status
+     *
+     * @return integer $commentsDefaultStatus
+     */
+    public function getCommentsCount()
+    {
+        return $this->commentsCount;
     }
 
     /**
