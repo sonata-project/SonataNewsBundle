@@ -48,7 +48,7 @@ abstract class Post implements PostInterface
 
     protected $commentsDefaultStatus;
 
-    protected $commentsCount;
+    protected $commentsCount = 0;
 
     protected $author;
 
