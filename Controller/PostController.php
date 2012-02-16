@@ -221,7 +221,7 @@ class PostController extends Controller
         if (!$post->isCommentable()) {
             // todo add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-                'permalink'  => $post->getPermalink()
+                'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post)
             )));
         }
 
@@ -236,7 +236,7 @@ class PostController extends Controller
 
             // todo : add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-                'permalink'  => $post->getPermalink()
+                'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post)
             )));
         }
 
@@ -260,6 +260,14 @@ class PostController extends Controller
     protected function getCommentManager()
     {
         return $this->get('sonata.news.manager.comment');
+    }
+
+    /**
+     * @return Sonata\NewsBundle\Model\BlogInterface
+     */
+    protected function getBlog()
+    {
+        return $this->container->get('sonata.news.blog');
     }
 
     /**
