@@ -217,6 +217,20 @@ interface PostInterface
     function getCommentsDefaultStatus();
 
     /**
+     * Set comments_count
+     *
+     * @param integer $commentsDefaultStatus
+     */
+    function setCommentsCount($commentscount);
+
+    /**
+     * Get comments_count
+     *
+     * @return integer $commentsCount
+     */
+    function getCommentsCount();
+
+    /**
      * @return boolean
      */
     function isCommentable();

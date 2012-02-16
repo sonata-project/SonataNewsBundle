@@ -23,6 +23,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr;
 
+use Doctrine\ORM\Query;
+
 class PostManager extends ModelPostManager
 {
     /**
@@ -218,5 +220,14 @@ class PostManager extends ModelPostManager
         }
 
         return $pcqp;
+    }
+
+    public function countComments($post)
+    {
+        $result = $this->em->getRepository($this->class)
+            ->countCommentsQuery($post)
+            ->getSingleResult(Query::HYDRATE_SINGLE_SCALAR);
+
+        return $result;
     }
 }

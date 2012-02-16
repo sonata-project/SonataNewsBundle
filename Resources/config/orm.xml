@@ -16,6 +16,7 @@
         <service id="sonata.news.manager.comment" class="%sonata.news.manager.comment.class%">
             <argument type="service" id="sonata.news.entity_manager" />
             <argument>%sonata.news.manager.comment.entity%</argument>
+            <argument type="service" id="sonata.news.manager.post" />
         </service>
 
         <service id="sonata.news.manager.category" class="%sonata.news.manager.category.class%">

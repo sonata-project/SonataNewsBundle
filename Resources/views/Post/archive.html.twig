@@ -41,6 +41,7 @@
             <div class="sonata-blog-post-abtract">
                 {{ post.abstract }}
             </div>
+            <span class="sonata-blog-post-comments-count">{{ 'comments_count'|trans({'%comments_count%': post.commentsCount }, 'SonataNewsBundle') }}</span>
         </div>
     {% else %}
         {{ 'no_post_found'|trans({}, 'SonataNewsBundle') }}

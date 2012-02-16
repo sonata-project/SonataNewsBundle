@@ -13,14 +13,39 @@ namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Sonata\NewsBundle\Entity\BaseComment;
+use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Model\PostInterface;
+
 class BasePostRepository extends EntityRepository
 {
 
+    /**
+     * return last post queryBUikder
+     *
+     * @param $limit
+     * @return \Doctrine\ORM\QueryBuilder
+     */
     public function findLastPostQueryBuilder($limit) {
 
         return $this->createQueryBuilder('p')
             ->where('p.enabled = true')
             ->orderby('p.createdAt', 'DESC');
         
+    }
+
+    /**
+     * return count comments QueryBuilder
+     *
+     * @param  Sonata\NewsBundle\Model\PostInterface
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function countCommentsQuery($post)
+    {
+        return $this->getEntityManager()->createQuery('SELECT COUNT(c.id)
+                                          FROM Application\Sonata\NewsBundle\Entity\Comment c
+                                          WHERE c.status = 1
+                                          AND c.post = :post')
+                    ->setParameters(array('post' => $post));
     }
 }
