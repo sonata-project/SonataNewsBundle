@@ -15,6 +15,7 @@ use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ORM\EntityManager;
 
 use Sonata\NewsBundle\Model\PostManagerInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
@@ -36,7 +37,7 @@ class CommentManager extends ModelCommentManager
      * @param string $class
      * @param \Sonata\NewsBundle\Model\PostManagerInterface $postManager
      */
-    public function __construct(EntityManager $em, $class, $postManager)
+    public function __construct(EntityManager $em, $class, PostManagerInterface $postManager)
     {
         $this->em           = $em;
         $this->postManager  = $postManager;
@@ -51,9 +52,26 @@ class CommentManager extends ModelCommentManager
         $this->em->persist($comment);
         $this->em->flush();
 
-        $post = $comment->getPost();
-        $post->setCommentsCount($this->postManager->countComments($post));
-        $this->postManager->save($post);
+        $this->updateCommentsCount($comment->getPost());
+    }
+
+
+    /**
+     * Update the number of comment for a comment
+     *
+     * @param null|\Sonata\NewsBundle\Model\PostInterface $post
+     * @return void
+     */
+    public function updateCommentsCount(PostInterface $post = null)
+    {
+        $commentTableName = $this->em->getClassMetadata($this->getClass())->table['name'];
+        $postTableName    = $this->em->getClassMetadata($this->postManager->getClass())->table['name'];
+
+        $this->em->getConnection()->query(sprintf(
+            'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
+            SET p.comments_count = count_comment.total
+            WHERE p.id = count_comment.post_id'
+        , $postTableName, $commentTableName));
     }
 
     /**

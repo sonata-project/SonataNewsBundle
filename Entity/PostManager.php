@@ -221,13 +221,4 @@ class PostManager extends ModelPostManager
 
         return $pcqp;
     }
-
-    public function countComments($post)
-    {
-        $result = $this->em->getRepository($this->class)
-            ->countCommentsQuery($post)
-            ->getSingleResult(Query::HYDRATE_SINGLE_SCALAR);
-
-        return $result;
-    }
 }

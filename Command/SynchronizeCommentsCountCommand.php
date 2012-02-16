@@ -32,23 +32,9 @@ class SynchronizeCommentsCountCommand extends ContainerAwareCommand
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $postManager = $this->getContainer()->get('sonata.news.manager.post');
-        $em = $this->getContainer()->get('sonata.news.entity_manager');
+        $commentManager = $this->getContainer()->get('sonata.news.manager.comment');
 
-        $posts = $postManager->findBy(array(
-            'enabled' =>  1,
-        ));
-
-        foreach ($posts as $post) {
-            $query = $em->createQuery('SELECT COUNT(c.id)
-                                       FROM Application\Sonata\NewsBundle\Entity\Comment c
-                                       WHERE c.status = 1
-                                       AND c.post = :post')
-                        ->setParameters(array('post' => $post));
-            $count = $query->getSingleScalarResult();
-            $post->setCommentsCount($count);
-            $postManager->save($post);
-        }
+        $commentManager->updateCommentsCount();
 
         $output->writeln(" done!");
     }

@@ -97,6 +97,7 @@ class PostAdmin extends Admin
             ->add('enabled')
             ->add('tags')
             ->add('commentsEnabled')
+            ->add('commentsCount')
         ;
     }
 

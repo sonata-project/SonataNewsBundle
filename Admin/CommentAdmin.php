@@ -17,10 +17,22 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 
 use Application\Sonata\NewsBundle\Entity\Comment;
+use Sonata\NewsBundle\Model\CommentManagerInterface;
 
 class CommentAdmin extends Admin
 {
     protected $parentAssociationMapping = 'post';
+
+    protected $commentManager;
+
+    /**
+     * @param \Sonata\NewsBundle\Model\CommentManagerInterface $commentManager
+     * @return void
+     */
+    public function setCommentManager(CommentManagerInterface $commentManager)
+    {
+        $this->commentManager = $commentManager;
+    }
 
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
@@ -88,5 +100,25 @@ class CommentAdmin extends Admin
         );
 
         return $actions;
+    }
+
+    private function updateCountsComment()
+    {
+        $this->commentManager->updateCommentsCount();
+    }
+
+    public function postPersist($object)
+    {
+        $this->updateCountsComment();
+    }
+
+    public function postRemove($object)
+    {
+        $this->updateCountsComment();
+    }
+
+    public function postUpdate($object)
+    {
+        $this->updateCountsComment();
     }
 }
