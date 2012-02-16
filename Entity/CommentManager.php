@@ -14,6 +14,8 @@ use Sonata\NewsBundle\Model\CommentManager as ModelCommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ORM\EntityManager;
 
+use Sonata\NewsBundle\Model\PostManagerInterface;
+
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
@@ -25,13 +27,20 @@ class CommentManager extends ModelCommentManager
     protected $em;
 
     /**
+     * @var \Sonata\NewsBundle\Model\PostManagerInterface
+     */
+    protected $postManager;
+
+    /**
      * @param \Doctrine\ORM\EntityManager $em
      * @param string $class
+     * @param \Sonata\NewsBundle\Model\PostManagerInterface $postManager
      */
-    public function __construct(EntityManager $em, $class)
+    public function __construct(EntityManager $em, $class, $postManager)
     {
-        $this->em    = $em;
-        $this->class = $class;
+        $this->em           = $em;
+        $this->postManager  = $postManager;
+        $this->class        = $class;
     }
 
     /**
@@ -41,6 +50,10 @@ class CommentManager extends ModelCommentManager
     {
         $this->em->persist($comment);
         $this->em->flush();
+
+        $post = $comment->getPost();
+        $post->setCommentsCount($this->postManager->countComments($post));
+        $this->postManager->save($post);
     }
 
     /**
