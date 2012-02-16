@@ -96,4 +96,6 @@ class CommentManager extends ModelCommentManager
 
         return $pager;
     }
+
+
 }

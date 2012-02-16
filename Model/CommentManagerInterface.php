@@ -62,4 +62,11 @@ interface CommentManagerInterface
      * @return void
      */
     function save(CommentInterface $comment);
+
+    /**
+     * Update the number of comment for a comment
+     *
+     * @return void
+     */
+    function updateCommentsCount(PostInterface $post = null);
 }

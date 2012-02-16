@@ -3,25 +3,25 @@
     <mapped-superclass name="Sonata\NewsBundle\Entity\BasePost">
 
 
-        <field name="title"             type="string"       column="title"      />
-        <field name="abstract"          type="text"         column="abstract"   />
-        <field name="content"           type="text"         column="content"    />
-        <field name="rawContent"        type="text"         column="raw_content"  />
-        <field name="contentFormatter"  type="string"       column="content_formatter" />
+        <field name="title"                   type="string"    column="title"      />
+        <field name="abstract"                type="text"      column="abstract"   />
+        <field name="content"                 type="text"      column="content"    />
+        <field name="rawContent"              type="text"      column="raw_content"  />
+        <field name="contentFormatter"        type="string"    column="content_formatter" />
 
-        <field name="enabled"           type="boolean"      column="enabled"        default="false" />
+        <field name="enabled"                 type="boolean"   column="enabled"        default="false" />
 
-        <field name="slug"              type="string"      column="slug" />
+        <field name="slug"                    type="string"    column="slug" />
 
-        <field name="publicationDateStart"   type="datetime"   column="publication_date_start"    nullable="true"/>
+        <field name="publicationDateStart"    type="datetime"  column="publication_date_start"    nullable="true"/>
 
-        <field name="commentsEnabled"    type="boolean"   column="comments_enabled" default="true"/>
-        <field name="commentsCloseAt"   type="datetime"  column="comments_close_at" nullable="true"/>
-        <field name="commentsDefaultStatus"   type="integer"  column="comments_default_status" nullable="false"/>
-        <field name="commentsCount"    type="integer"   column="comments_count" default="0"/>
+        <field name="commentsEnabled"         type="boolean"   column="comments_enabled"        default="true"/>
+        <field name="commentsCloseAt"         type="datetime"  column="comments_close_at"       nullable="true"/>
+        <field name="commentsDefaultStatus"   type="integer"   column="comments_default_status" nullable="false"/>
+        <field name="commentsCount"           type="integer"   column="comments_count"          default="0"/>
 
-        <field name="createdAt"    type="datetime"   column="created_at" />
-        <field name="updatedAt"    type="datetime"   column="updated_at" />
+        <field name="createdAt"               type="datetime"  column="created_at" />
+        <field name="updatedAt"               type="datetime"  column="updated_at" />
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="prePersist"/>
