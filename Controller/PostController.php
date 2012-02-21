@@ -147,6 +147,7 @@ class PostController extends Controller
         if ($seoPage = $this->getSeoPage()) {
             $seoPage
                 ->setTitle($post->getTitle())
+                ->addMeta('name', 'description', $post->getAbstract())
                 ->addMeta('property', 'og:title', $post->getTitle())
                 ->addMeta('property', 'og:type', 'blog')
                 ->addMeta('property', 'og:url',  $this->generateUrl('sonata_news_view', array(
