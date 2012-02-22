@@ -186,7 +186,7 @@ class PostController extends Controller
             ->getPager(array(
                 'postId' => $post_id,
                 'status'  => CommentInterface::STATUS_VALID
-            ), 1);
+            ), 1, 500); //no limit
 
         return $this->render('SonataNewsBundle:Post:comments.html.twig', array(
             'pager'  => $pager,
