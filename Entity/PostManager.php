@@ -139,10 +139,11 @@ class PostManager extends ModelPostManager
      *
      * @param array $criteria
      * @param integer $page
+     * @param integer $maxPerPage
      *
      * @return \Sonata\AdminBundle\Datagrid\ORM\Pager
      */
-    public function getPager(array $criteria, $page)
+    public function getPager(array $criteria, $page, $maxPerPage = 10)
     {
         $parameters = array();
         $query = $this->em->getRepository($this->class)
@@ -178,6 +179,7 @@ class PostManager extends ModelPostManager
         $query->setParameters($parameters);
 
         $pager = new Pager();
+        $pager->setMaxPerPage($maxPerPage);
         $pager->setQuery(new ProxyQuery($query));
         $pager->setPage($page);
         $pager->init();
