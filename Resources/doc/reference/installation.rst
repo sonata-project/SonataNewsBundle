@@ -34,7 +34,7 @@ Installation
         target=/bundles/Sonata/IntlBundle
 
     [KnpMarkdownBundle]
-        git=git@github.com:knplabs/KnpMarkdownBundle.git
+        git=http://github.com/KnpLabs/KnpMarkdownBundle.git
         target=/bundles/Knp/Bundle/MarkdownBundle
 
 * Add SonataNewsBundle to your application kernel::
@@ -91,9 +91,9 @@ Installation
     {
         return array(
             // ...
-            new Application\Sonata\NewsBundle\SonataNewsBundle(),
-            new Application\Sonata\UserBundle\SonataUserBundle(),
-            new Application\Sonata\UserBundle\SonataMediaBundle(),
+            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataMediaBundle(),
             // ...
         );
     }
