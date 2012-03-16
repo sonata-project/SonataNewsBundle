@@ -34,6 +34,7 @@ class CategoryPermalink implements PermalinkInterface
      */
     public function getParameters($permalink)
     {
+        $permalink = trim($permalink, '/');
         $parameters = explode('/', $permalink);
 
         if (count($parameters) > 2 || count($parameters) == 0) {
