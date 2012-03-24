@@ -21,7 +21,8 @@
         "symfony/framework-bundle": "2.0.*",
         "sonata-project/admin-bundle": "2.0.*",
         "sonata-project/user-bundle": "2.0.*",
-        "sonata-project/media-bundle": "2.0.*"
+        "sonata-project/media-bundle": "2.0.*",
+        "sonata-project/formatter-bundle": "*"
     },
     "suggest": {
         "sonata-project/doctrine-orm-admin-bundle": "2.0.*"
