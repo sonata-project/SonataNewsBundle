@@ -4,6 +4,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="sonata.news.admin.groupname">sonata_blog</parameter>
+        
         <!-- POST -->
         <parameter key="sonata.news.admin.post.class">Sonata\NewsBundle\Admin\PostAdmin</parameter>
         <parameter key="sonata.news.admin.post.controller">SonataAdminBundle:CRUD</parameter>
@@ -27,7 +29,7 @@
 
     <services>
         <service id="sonata.news.admin.comment" class="%sonata.news.admin.comment.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="comments" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="orm" group="%sonata.news.admin.groupname%" label="comments" />
             <argument />
             <argument>%sonata.news.admin.comment.entity%</argument>
             <argument>%sonata.news.admin.comment.controller%</argument>
@@ -43,7 +45,7 @@
         </service>
 
         <service id="sonata.news.admin.post" class="%sonata.news.admin.post.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="posts" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="orm" group="%sonata.news.admin.groupname%" label="posts" />
             <argument />
             <argument>%sonata.news.admin.post.entity%</argument>
             <argument>%sonata.news.admin.post.controller%</argument>
@@ -66,7 +68,7 @@
         </service>
 
         <service id="sonata.news.admin.category" class="%sonata.news.admin.category.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="categories" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="orm" group="%sonata.news.admin.groupname%" label="categories" />
             <argument />
             <argument>%sonata.news.admin.category.entity%</argument>
             <argument>%sonata.news.admin.category.controller%</argument>
@@ -77,7 +79,7 @@
         </service>
 
         <service id="sonata.news.admin.tag" class="%sonata.news.admin.tag.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="tags" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="orm" group="%sonata.news.admin.groupname%" label="tags" />
             <argument />
             <argument>%sonata.news.admin.tag.entity%</argument>
             <argument>%sonata.news.admin.tag.controller%</argument>
