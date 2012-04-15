@@ -115,8 +115,8 @@ class PostAdmin extends Admin
             ->add('author')
             ->add('with_open_comments', 'doctrine_orm_callback', array(
 //                'callback'   => array($this, 'getWithOpenCommentFilter'),
-                'callback' => function ($queryBuilder, $alias, $field, $value) {
-                    if (!$value) {
+                'callback' => function ($queryBuilder, $alias, $field, $data) {
+                    if (!is_array($data) || !$data['value']) {
                         return;
                     }
 
@@ -139,7 +139,7 @@ class PostAdmin extends Admin
      *
     public function getWithOpenCommentFilter($queryBuilder, $alias, $field, $value)
     {
-        if (!$value) {
+        if (!is_array($data) || !$data['value']) {
             return;
         }
 
