@@ -123,6 +123,10 @@ Quick moderation links :
                 <source>no_comments_available</source>
                 <target>No comments available</target>
             </trans-unit>
+            <trans-unit id="sonata_blog">
+                <source>sonata_blog</source>
+                <target>Blog</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

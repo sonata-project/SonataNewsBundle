@@ -130,6 +130,11 @@ Liens de modération rapide :
                 <source>no_comments_available</source>
                 <target>Pas de commentaires</target>
             </trans-unit>
+            <trans-unit id="sonata_blog">
+                <source>sonata_blog</source>
+                <target>Blog</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
