@@ -17,4 +17,19 @@
         </testsuite>
     </testsuites>
 
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./Tests/</directory>
+                <directory>./Resources/</directory>
+                <directory>./DependencyInjection/</directory>
+                <directory>./vendor/</directory>
+
+                <!-- Ignore ODM driver -->
+                <directory>./Document/</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
 </phpunit>
