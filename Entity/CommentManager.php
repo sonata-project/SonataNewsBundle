@@ -67,11 +67,16 @@ class CommentManager extends ModelCommentManager
         $commentTableName = $this->em->getClassMetadata($this->getClass())->table['name'];
         $postTableName    = $this->em->getClassMetadata($this->postManager->getClass())->table['name'];
 
+        $this->em->getConnection()->beginTransaction();
+        $this->em->getConnection()->query(sprintf('UPDATE %s p SET p.comments_count = 0' , $postTableName));
+
         $this->em->getConnection()->query(sprintf(
             'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
             SET p.comments_count = count_comment.total
             WHERE p.id = count_comment.post_id'
         , $postTableName, $commentTableName));
+
+        $this->em->getConnection()->commit();
     }
 
     /**
