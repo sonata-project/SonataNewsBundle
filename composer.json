@@ -21,7 +21,12 @@
         "symfony/framework-bundle": "2.*",
         "sonata-project/admin-bundle": "master-dev",
         "sonata-project/user-bundle": "master-dev",
-        "sonata-project/media-bundle": "master-dev"
+        "sonata-project/media-bundle": "master-dev",
+        "sonata-project/easy-extends-bundle": "dev-master",
+        "sonata-project/intl-bundle": "dev-master",
+        "knplabs/knp-markdown-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master",
+        "sonata-project/formatter-bundle": "dev-master"
     },
     "suggest": {
         "sonata-project/doctrine-orm-admin-bundle": "*"
