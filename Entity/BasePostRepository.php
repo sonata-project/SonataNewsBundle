@@ -23,7 +23,8 @@ class BasePostRepository extends EntityRepository
     /**
      * return last post queryBUikder
      *
-     * @param $limit
+     * @param int $limit
+     *
      * @return \Doctrine\ORM\QueryBuilder
      */
     public function findLastPostQueryBuilder($limit) {
@@ -31,7 +32,7 @@ class BasePostRepository extends EntityRepository
         return $this->createQueryBuilder('p')
             ->where('p.enabled = true')
             ->orderby('p.createdAt', 'DESC');
-        
+
     }
 
     /**

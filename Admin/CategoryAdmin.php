@@ -20,8 +20,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 class CategoryAdmin extends Admin
 {
     /**
-     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -33,8 +32,7 @@ class CategoryAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -45,8 +43,7 @@ class CategoryAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -59,9 +56,7 @@ class CategoryAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Validator\ErrorElement $errorElement
-     * @param $object
-     * @return void
+     * {@inheritdoc}
      */
     public function validate(ErrorElement $errorElement, $object)
     {

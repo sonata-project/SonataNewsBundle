@@ -33,9 +33,9 @@ class Mailer implements MailerInterface
 
     /**
      * @param \Sonata\NewsBundle\Util\HashGeneratorInterface $generator
-     * @param \Symfony\Component\Routing\RouterInterface $router
-     * @param \Symfony\Component\Templating\EngineInterface $templating
-     * @param array $emails
+     * @param \Symfony\Component\Routing\RouterInterface     $router
+     * @param \Symfony\Component\Templating\EngineInterface  $templating
+     * @param array                                          $emails
      */
     public function __construct($mailer, BlogInterface $blog, HashGeneratorInterface $generator, RouterInterface $router, EngineInterface $templating, array $emails)
     {
@@ -63,9 +63,9 @@ class Mailer implements MailerInterface
     }
 
     /**
-     * @param $renderedTemplate
-     * @param $fromEmail
-     * @param $toEmail
+     * @param string $renderedTemplate
+     * @param string $fromEmail
+     * @param string $toEmail
      */
     protected function sendEmailMessage($renderedTemplate, $fromEmail, $toEmail)
     {

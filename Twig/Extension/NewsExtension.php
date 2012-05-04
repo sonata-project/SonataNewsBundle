@@ -29,15 +29,15 @@ class NewsExtension extends \Twig_Extension
     private $tagManager;
 
     /**
-     * @param \Symfony\Component\Routing\Router $router
+     * @param \Symfony\Component\Routing\Router            $router
      * @param \Sonata\NewsBundle\Model\TagManagerInterface $tagManager
-     * @param \Sonata\NewsBundle\Model\BlogInterface $blog
+     * @param \Sonata\NewsBundle\Model\BlogInterface       $blog
      */
     public function __construct(Router $router, TagManagerInterface $tagManager, BlogInterface $blog)
     {
-        $this->router       = $router;
-        $this->tagManager   = $tagManager;
-        $this->blog         = $blog;
+        $this->router     = $router;
+        $this->tagManager = $tagManager;
+        $this->blog       = $blog;
     }
 
     /**
@@ -90,6 +90,7 @@ class NewsExtension extends \Twig_Extension
 
     /**
      * @param \Sonata\NewsBundle\Model\PostInterface $post
+     *
      * @return string|Exception
      */
     public function generatePermalink(PostInterface $post)

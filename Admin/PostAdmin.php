@@ -35,9 +35,7 @@ class PostAdmin extends Admin
     protected $formatterPool;
 
     /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
@@ -52,9 +50,7 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -84,9 +80,7 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -102,9 +96,7 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -130,12 +122,7 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param $queryBuilder
-     * @param $alias
-     * @param $field
-     * @param $value
-     *
-     * @return void
+     * {@inheritdoc}
      *
     public function getWithOpenCommentFilter($queryBuilder, $alias, $field, $value)
     {
@@ -149,11 +136,7 @@ class PostAdmin extends Admin
     }*/
 
     /**
-     * @param \Knp\Menu\ItemInterface $menu
-     * @param $action
-     * @param null|\Sonata\AdminBundle\Admin\Admin $childAdmin
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureSideMenu(MenuItemInterface $menu, $action, Admin $childAdmin = null)
     {
@@ -176,11 +159,17 @@ class PostAdmin extends Admin
         );
     }
 
+    /**
+     * @param UserManagerInterface $userManager
+     */
     public function setUserManager($userManager)
     {
         $this->userManager = $userManager;
     }
 
+    /**
+     * @return UserManagerInterface
+     */
     public function getUserManager()
     {
         return $this->userManager;
@@ -205,7 +194,7 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param PostInterface $post
+     * {@inheritdoc}
      */
     public function prePersist($post)
     {
@@ -213,7 +202,7 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param PostInterface $post
+     * {@inheritdoc}
      */
     public function preUpdate($post)
     {

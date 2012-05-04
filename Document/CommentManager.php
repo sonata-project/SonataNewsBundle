@@ -26,7 +26,7 @@ class CommentManager extends ModelCommentManager
 
     /**
      * @param DocumentManager $dm
-     * @param string $class
+     * @param string          $class
      */
     public function __construct(DocumentManager $dm, $class)
     {
@@ -69,7 +69,7 @@ class CommentManager extends ModelCommentManager
     }
 
     /**
-     * @param array $criteria
+     * @param array   $criteria
      * @param integer $page
      *
      * @return \Sonata\AdminBundle\Datagrid\ODM\Pager

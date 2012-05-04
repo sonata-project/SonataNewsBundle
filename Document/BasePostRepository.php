@@ -15,8 +15,13 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
 
 class BasePostRepository extends DocumentRepository
 {
-    public function findLastPostQueryBuilder($limit) {
-
+    /**
+     * @param int $limit
+     *
+     * @return mixed
+     */
+    public function findLastPostQueryBuilder($limit)
+    {
         return $this->createQueryBuilder()
             ->field('enabled')->equals(true)
             ->sort('createdAt', 'desc')

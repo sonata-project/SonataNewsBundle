@@ -27,7 +27,7 @@ class PostManager extends ModelPostManager
 
     /**
      * @param \Doctrine\ODM\MongoDB\DocumentManager $dm
-     * @param string $class
+     * @param string                                $class
      */
     public function __construct(DocumentManager $dm, $class)
     {
@@ -53,10 +53,10 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * @param $year
-     * @param $month
-     * @param $day
-     * @param $slug
+     * @param string $year
+     * @param string $month
+     * @param string $day
+     * @param string $slug
      *
      * @return \Sonata\NewsBundle\Model\PostInterface|null
      */
@@ -90,7 +90,7 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * @param array $criteria
+     * @param array   $criteria
      * @param integer $page
      *
      * @return \Sonata\AdminBundle\Datagrid\ODM\Pager

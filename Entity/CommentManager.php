@@ -33,15 +33,15 @@ class CommentManager extends ModelCommentManager
     protected $postManager;
 
     /**
-     * @param \Doctrine\ORM\EntityManager $em
-     * @param string $class
+     * @param \Doctrine\ORM\EntityManager                   $em
+     * @param string                                        $class
      * @param \Sonata\NewsBundle\Model\PostManagerInterface $postManager
      */
     public function __construct(EntityManager $em, $class, PostManagerInterface $postManager)
     {
-        $this->em           = $em;
-        $this->postManager  = $postManager;
-        $this->class        = $class;
+        $this->em          = $em;
+        $this->postManager = $postManager;
+        $this->class       = $class;
     }
 
     /**
@@ -60,6 +60,7 @@ class CommentManager extends ModelCommentManager
      * Update the number of comment for a comment
      *
      * @param null|\Sonata\NewsBundle\Model\PostInterface $post
+     *
      * @return void
      */
     public function updateCommentsCount(PostInterface $post = null)
@@ -105,7 +106,7 @@ class CommentManager extends ModelCommentManager
     }
 
     /**
-     * @param array $criteria
+     * @param array   $criteria
      * @param integer $page
      * @param integer $maxPerPage
      *

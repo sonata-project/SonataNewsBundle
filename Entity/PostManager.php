@@ -34,7 +34,7 @@ class PostManager extends ModelPostManager
 
     /**
      * @param \Doctrine\ORM\EntityManager $em
-     * @param string $class
+     * @param string                      $class
      */
     public function __construct(EntityManager $em, $class)
     {
@@ -60,9 +60,10 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * @param $permalink
+     * @param string                                 $permalink
      * @param \Sonata\NewsBundle\Model\BlogInterface $blog
-     * @return null
+     *
+     * @return PostInterface
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
@@ -141,7 +142,7 @@ class PostManager extends ModelPostManager
      * @param integer $page
      * @param integer $maxPerPage
      *
-     * @return \Sonata\AdminBundle\Datagrid\ORM\Pager
+     * @return \Sonata\AdminBundle\Datagrid\Pager
      */
     public function getPager(array $criteria, $page, $maxPerPage = 10)
     {

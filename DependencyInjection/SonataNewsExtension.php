@@ -30,8 +30,10 @@ class SonataNewsExtension extends Extension
 {
     /**
      * @throws \InvalidArgumentException
-     * @param array $configs
+     *
+     * @param array                                                   $configs
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     *
      * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -81,9 +83,8 @@ class SonataNewsExtension extends Extension
     }
 
     /**
-     * @param $config
+     * @param array                                                   $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @return void
      */
     public function configureClass($config, ContainerBuilder $container)
     {
@@ -102,7 +103,6 @@ class SonataNewsExtension extends Extension
 
     /**
      * @param array $config
-     * @return void
      */
     public function registerDoctrineMapping(array $config)
     {

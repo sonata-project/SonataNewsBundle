@@ -18,7 +18,7 @@ class HashGenerator implements HashGeneratorInterface
     protected $salt;
 
     /**
-     * @param $salt
+     * @param string $salt
      */
     public function __construct($salt)
     {
@@ -26,8 +26,7 @@ class HashGenerator implements HashGeneratorInterface
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\CommentInterface $comment
-     * @return string
+     * {@inheritdoc}
      */
     public function generate(CommentInterface $comment)
     {
