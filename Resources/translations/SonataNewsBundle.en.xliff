@@ -168,7 +168,7 @@ Quick moderation links :
                 <target>Category</target>
             </trans-unit>
             <trans-unit id="form_label_title">
-                <source>form.label_title </source>
+                <source>form.label_title</source>
                 <target>Title</target>
             </trans-unit>
             <trans-unit id="form_label_abstract">
@@ -176,7 +176,7 @@ Quick moderation links :
                 <target>Abstract</target>
             </trans-unit>
             <trans-unit id="form_label_content_format">
-                <source>form.label_content_format</source>
+                <source>form.label_content_formatter</source>
                 <target>Content format</target>
             </trans-unit>
             <trans-unit id="form_label_raw_content">
@@ -184,7 +184,7 @@ Quick moderation links :
                 <target>Raw content</target>
             </trans-unit>
             <trans-unit id="form_label_tags">
-                <source>form.label_tags </source>
+                <source>form.label_tags</source>
                 <target>Tags</target>
             </trans-unit>
             <trans-unit id="form_label_publication_date_start">
