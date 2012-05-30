@@ -40,7 +40,7 @@
         {{ post.content|raw }}
     </div>
 
-    {% render 'SonataNewsBundle:Post:comments' with {'post_id': post.id} %}
+    {% render 'SonataNewsBundle:Post:comments' with {'postId': post.id} %}
 
     {% if post.iscommentable %}
         {% render 'SonataNewsBundle:Post:addCommentForm' with {
