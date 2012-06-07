@@ -176,6 +176,11 @@ class PostManager extends ModelPostManager
                 $query->andWhere(sprintf('p.author IN (%s)', implode((array)$criteria['author'], ',')));
             }
         }
+		
+		if (isset($criteria['category'])) {
+          $query->andWhere('p.category = :categoryid');
+          $parameters['categoryid'] = $criteria['category']->getId();
+        }
 
         $query->setParameters($parameters);
 
