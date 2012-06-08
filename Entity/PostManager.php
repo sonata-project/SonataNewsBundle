@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Entity;
 
 use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
@@ -15,18 +16,15 @@ use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\Post;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
-
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
-
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr;
-
 use Doctrine\ORM\Query;
 
-class PostManager extends ModelPostManager
-{
+class PostManager extends ModelPostManager {
+
     /**
      * @var \Doctrine\ORM\EntityManager
      */
@@ -36,17 +34,15 @@ class PostManager extends ModelPostManager
      * @param \Doctrine\ORM\EntityManager $em
      * @param string                      $class
      */
-    public function __construct(EntityManager $em, $class)
-    {
-        $this->em    = $em;
+    public function __construct(EntityManager $em, $class) {
+        $this->em = $em;
         $this->class = $class;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function save(PostInterface $post)
-    {
+    public function save(PostInterface $post) {
         $this->em->persist($post);
         $this->em->flush();
     }
@@ -54,8 +50,7 @@ class PostManager extends ModelPostManager
     /**
      * {@inheritDoc}
      */
-    public function findOneBy(array $criteria)
-    {
+    public function findOneBy(array $criteria) {
         return $this->em->getRepository($this->class)->findOneBy($criteria);
     }
 
@@ -65,8 +60,7 @@ class PostManager extends ModelPostManager
      *
      * @return PostInterface
      */
-    public function findOneByPermalink($permalink, BlogInterface $blog)
-    {
+    public function findOneByPermalink($permalink, BlogInterface $blog) {
         try {
             $repository = $this->em->getRepository($this->class);
 
@@ -95,8 +89,8 @@ class PostManager extends ModelPostManager
                 $parameters = array_merge($parameters, $pcqp['params']);
 
                 $query
-                    ->leftJoin('p.category', 'c')
-                    ->andWhere($pcqp['query'])
+                        ->leftJoin('p.category', 'c')
+                        ->andWhere($pcqp['query'])
                 ;
             }
 
@@ -107,7 +101,6 @@ class PostManager extends ModelPostManager
             $query->setParameters($parameters);
 
             return $query->getQuery()->getSingleResult();
-
         } catch (NoResultException $e) {
             return null;
         }
@@ -116,16 +109,14 @@ class PostManager extends ModelPostManager
     /**
      * {@inheritDoc}
      */
-    public function findBy(array $criteria)
-    {
+    public function findBy(array $criteria) {
         return $this->em->getRepository($this->class)->findBy($criteria);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function delete(PostInterface $post)
-    {
+    public function delete(PostInterface $post) {
         $this->em->remove($post);
         $this->em->flush();
     }
@@ -144,15 +135,14 @@ class PostManager extends ModelPostManager
      *
      * @return \Sonata\AdminBundle\Datagrid\Pager
      */
-    public function getPager(array $criteria, $page, $maxPerPage = 10)
-    {
+    public function getPager(array $criteria, $page, $maxPerPage = 10) {
         $parameters = array();
         $query = $this->em->getRepository($this->class)
-            ->createQueryBuilder('p')
-            ->select('p, t')
-            ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
-            ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
-            ->orderby('p.publicationDateStart', 'DESC');
+                ->createQueryBuilder('p')
+                ->select('p, t')
+                ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
+                ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
+                ->orderby('p.publicationDateStart', 'DESC');
 
         // enabled
         $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;
@@ -166,20 +156,20 @@ class PostManager extends ModelPostManager
 
         if (isset($criteria['tag'])) {
             $query->andWhere('t.slug LIKE :tag');
-            $parameters['tag'] = (string)$criteria['tag'];
+            $parameters['tag'] = (string) $criteria['tag'];
         }
 
         if (isset($criteria['author'])) {
             if (!is_array($criteria['author']) && stristr($criteria['author'], 'NULL')) {
-                $query->andWhere('p.author IS '.$criteria['author']);
+                $query->andWhere('p.author IS ' . $criteria['author']);
             } else {
-                $query->andWhere(sprintf('p.author IN (%s)', implode((array)$criteria['author'], ',')));
+                $query->andWhere(sprintf('p.author IN (%s)', implode((array) $criteria['author'], ',')));
             }
         }
-		
-		if (isset($criteria['category'])) {
-          $query->andWhere('p.category = :categoryid');
-          $parameters['categoryid'] = $criteria['category']->getId();
+
+        if (isset($criteria['category']) && $criteria['category'] instanceof CategoryInterface) {
+            $query->andWhere('p.category = :categoryid');
+            $parameters['categoryid'] = $criteria['category']->getId();
         }
 
         $query->setParameters($parameters);
@@ -200,13 +190,12 @@ class PostManager extends ModelPostManager
      *
      * @return array
      */
-    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
-    {
+    public function getPublicationDateQueryParts($date, $step, $alias = 'p') {
         return array(
-            'query'  => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
+            'query' => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
             'params' => array(
                 'startDate' => new \DateTime($date),
-                'endDate'   => new \DateTime($date . '+1 ' . $step)
+                'endDate' => new \DateTime($date . '+1 ' . $step)
             )
         );
     }
@@ -216,8 +205,7 @@ class PostManager extends ModelPostManager
      *
      * @return array
      */
-    public function getPublicationCategoryQueryParts($category)
-    {
+    public function getPublicationCategoryQueryParts($category) {
         $pcqp = array('query' => '', 'params' => array());
 
         if (null === $category) {
@@ -229,4 +217,5 @@ class PostManager extends ModelPostManager
 
         return $pcqp;
     }
+
 }
