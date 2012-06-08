@@ -23,7 +23,8 @@ use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query;
 
-class PostManager extends ModelPostManager {
+class PostManager extends ModelPostManager
+{
 
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -34,7 +35,8 @@ class PostManager extends ModelPostManager {
      * @param \Doctrine\ORM\EntityManager $em
      * @param string                      $class
      */
-    public function __construct(EntityManager $em, $class) {
+    public function __construct(EntityManager $em, $class)
+    {
         $this->em = $em;
         $this->class = $class;
     }
@@ -42,7 +44,8 @@ class PostManager extends ModelPostManager {
     /**
      * {@inheritDoc}
      */
-    public function save(PostInterface $post) {
+    public function save(PostInterface $post)
+    {
         $this->em->persist($post);
         $this->em->flush();
     }
@@ -50,7 +53,8 @@ class PostManager extends ModelPostManager {
     /**
      * {@inheritDoc}
      */
-    public function findOneBy(array $criteria) {
+    public function findOneBy(array $criteria)
+    {
         return $this->em->getRepository($this->class)->findOneBy($criteria);
     }
 
@@ -60,7 +64,8 @@ class PostManager extends ModelPostManager {
      *
      * @return PostInterface
      */
-    public function findOneByPermalink($permalink, BlogInterface $blog) {
+    public function findOneByPermalink($permalink, BlogInterface $blog)
+    {
         try {
             $repository = $this->em->getRepository($this->class);
 
@@ -109,14 +114,16 @@ class PostManager extends ModelPostManager {
     /**
      * {@inheritDoc}
      */
-    public function findBy(array $criteria) {
+    public function findBy(array $criteria)
+    {
         return $this->em->getRepository($this->class)->findBy($criteria);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function delete(PostInterface $post) {
+    public function delete(PostInterface $post)
+    {
         $this->em->remove($post);
         $this->em->flush();
     }
@@ -135,7 +142,8 @@ class PostManager extends ModelPostManager {
      *
      * @return \Sonata\AdminBundle\Datagrid\Pager
      */
-    public function getPager(array $criteria, $page, $maxPerPage = 10) {
+    public function getPager(array $criteria, $page, $maxPerPage = 10)
+    {
         $parameters = array();
         $query = $this->em->getRepository($this->class)
                 ->createQueryBuilder('p')
@@ -190,7 +198,8 @@ class PostManager extends ModelPostManager {
      *
      * @return array
      */
-    public function getPublicationDateQueryParts($date, $step, $alias = 'p') {
+    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
+    {
         return array(
             'query' => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
             'params' => array(
@@ -205,7 +214,8 @@ class PostManager extends ModelPostManager {
      *
      * @return array
      */
-    public function getPublicationCategoryQueryParts($category) {
+    public function getPublicationCategoryQueryParts($category)
+    {
         $pcqp = array('query' => '', 'params' => array());
 
         if (null === $category) {
