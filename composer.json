@@ -2,7 +2,7 @@
     "name": "sonata-project/news-bundle",
     "type": "symfony-bundle",
     "description": "Symfony SonataNewsBundle",
-    "keywords": ["blog", "sonata", "news"],
+    "keywords": ["blog", "sonata", "news", "post"],
     "homepage": "http://sonata-project.org/bundles/news",
     "license": "MIT",
     "authors": [
@@ -18,13 +18,17 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "symfony/framework-bundle": "2.*",
-        "sonata-project/admin-bundle": "master-dev",
-        "sonata-project/user-bundle": "master-dev",
-        "sonata-project/media-bundle": "master-dev"
+        "symfony/symfony": "2.0.*",
+        "sonata-project/admin-bundle": "2.0.*",
+        "sonata-project/user-bundle": "2.0.*",
+        "sonata-project/media-bundle": "2.0.*",
+        "sonata-project/formatter-bundle": "*"
+    },
+    "require-dev": {
+        "doctrine/orm": "2.1.*"
     },
     "suggest": {
-        "sonata-project/doctrine-orm-admin-bundle": "*"
+        "sonata-project/doctrine-orm-admin-bundle": "2.0.*"
     },
     "autoload": {
         "psr-0": { "Sonata\\NewsBundle": "" }

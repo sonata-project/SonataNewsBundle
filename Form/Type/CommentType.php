@@ -16,6 +16,9 @@ use Symfony\Component\Form\AbstractType;
 
 class CommentType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -27,9 +30,7 @@ class CommentType extends AbstractType
     }
 
     /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
+     * {@inheritdoc}
      */
     function getName()
     {

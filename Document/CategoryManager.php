@@ -24,7 +24,7 @@ class CategoryManager extends ModelCategoryManager
 
     /**
      * @param \Doctrine\ORM\DocumentManager $em
-     * @param string $class
+     * @param string                        $class
      */
     public function __construct(DocumentManager $em, $class)
     {

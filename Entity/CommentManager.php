@@ -33,15 +33,15 @@ class CommentManager extends ModelCommentManager
     protected $postManager;
 
     /**
-     * @param \Doctrine\ORM\EntityManager $em
-     * @param string $class
+     * @param \Doctrine\ORM\EntityManager                   $em
+     * @param string                                        $class
      * @param \Sonata\NewsBundle\Model\PostManagerInterface $postManager
      */
     public function __construct(EntityManager $em, $class, PostManagerInterface $postManager)
     {
-        $this->em           = $em;
-        $this->postManager  = $postManager;
-        $this->class        = $class;
+        $this->em          = $em;
+        $this->postManager = $postManager;
+        $this->class       = $class;
     }
 
     /**
@@ -60,6 +60,7 @@ class CommentManager extends ModelCommentManager
      * Update the number of comment for a comment
      *
      * @param null|\Sonata\NewsBundle\Model\PostInterface $post
+     *
      * @return void
      */
     public function updateCommentsCount(PostInterface $post = null)
@@ -67,11 +68,16 @@ class CommentManager extends ModelCommentManager
         $commentTableName = $this->em->getClassMetadata($this->getClass())->table['name'];
         $postTableName    = $this->em->getClassMetadata($this->postManager->getClass())->table['name'];
 
+        $this->em->getConnection()->beginTransaction();
+        $this->em->getConnection()->query(sprintf('UPDATE %s p SET p.comments_count = 0' , $postTableName));
+
         $this->em->getConnection()->query(sprintf(
             'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
             SET p.comments_count = count_comment.total
             WHERE p.id = count_comment.post_id'
         , $postTableName, $commentTableName));
+
+        $this->em->getConnection()->commit();
     }
 
     /**
@@ -100,7 +106,7 @@ class CommentManager extends ModelCommentManager
     }
 
     /**
-     * @param array $criteria
+     * @param array   $criteria
      * @param integer $page
      * @param integer $maxPerPage
      *

@@ -13,6 +13,11 @@ namespace Sonata\NewsBundle\Model;
 
 interface TagInterface
 {
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
     function setName($name);
 
     /**
@@ -81,14 +86,14 @@ interface TagInterface
     /**
      * Add posts
      *
-     * @param Application\Sonata\NewsBundle\Model\Post $posts
+     * @param \Sonata\NewsBundle\Model\PostInterface $posts
      */
     function addPosts(PostInterface $posts);
 
     /**
      * Get posts
      *
-     * @return Doctrine\Common\Collections\Collection $posts
+     * @return array $posts
      */
     function getPosts();
 }

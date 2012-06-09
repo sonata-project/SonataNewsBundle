@@ -29,9 +29,7 @@ abstract class Tag implements TagInterface
     protected $posts;
 
     /**
-     * Set name
-     *
-     * @param string $name
+     * {@inheritdoc}
      */
     public function setName($name)
     {
@@ -41,9 +39,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Get name
-     *
-     * @return string $name
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -51,9 +47,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Set enabled
-     *
-     * @param boolean $enabled
+     * {@inheritdoc}
      */
     public function setEnabled($enabled)
     {
@@ -61,9 +55,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Get enabled
-     *
-     * @return boolean $enabled
+     * {@inheritdoc}
      */
     public function getEnabled()
     {
@@ -71,9 +63,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Set slug
-     *
-     * @param integer $slug
+     * {@inheritdoc}
      */
     public function setSlug($slug)
     {
@@ -81,9 +71,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Get slug
-     *
-     * @return integer $slug
+     * {@inheritdoc}
      */
     public function getSlug()
     {
@@ -91,9 +79,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Set created_at
-     *
-     * @param \DateTime $createdAt
+     * {@inheritdoc}
      */
     public function setCreatedAt(\DateTime $createdAt = null)
     {
@@ -101,9 +87,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Get created_at
-     *
-     * @return \DateTime $createdAt
+     * {@inheritdoc}
      */
     public function getCreatedAt()
     {
@@ -111,9 +95,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Set updated_at
-     *
-     * @param \DateTime $updatedAt
+     * {@inheritdoc}
      */
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
@@ -121,9 +103,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Get updated_at
-     *
-     * @return datetime $updatedAt
+     * {@inheritdoc}
      */
     public function getUpdatedAt()
     {
@@ -139,7 +119,9 @@ abstract class Tag implements TagInterface
      * source : http://snipplr.com/view/22741/slugify-a-string-in-php/
      *
      * @static
-     * @param  $text
+     *
+     * @param string $text
+     *
      * @return mixed|string
      */
     static public function slugify($text)
@@ -151,8 +133,7 @@ abstract class Tag implements TagInterface
         $text = trim($text, '-');
 
         // transliterate
-        if (function_exists('iconv'))
-        {
+        if (function_exists('iconv')) {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
 
@@ -162,8 +143,7 @@ abstract class Tag implements TagInterface
         // remove unwanted characters
         $text = preg_replace('~[^-\w]+~', '', $text);
 
-        if (empty($text))
-        {
+        if (empty($text)) {
             return 'n-a';
         }
 
@@ -171,9 +151,7 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Add posts
-     *
-     * @param \Sonata\NewsBundle\Model\PostInterface $posts
+     * {@inheritdoc}
      */
     public function addPosts(PostInterface $posts)
     {
@@ -181,15 +159,16 @@ abstract class Tag implements TagInterface
     }
 
     /**
-     * Get posts
-     *
-     * @return Doctrine\Common\Collections\Collection $posts
+     * {@inheritdoc}
      */
     public function getPosts()
     {
         return $this->posts;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function __toString()
     {
         return $this->getName();

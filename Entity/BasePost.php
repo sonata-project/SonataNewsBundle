@@ -17,6 +17,9 @@ use Sonata\NewsBundle\Model\TagInterface;
 
 abstract class BasePost extends ModelPost
 {
+    /**
+     * {@inheritdoc}
+     */
     public function __construct()
     {
         parent::__construct();

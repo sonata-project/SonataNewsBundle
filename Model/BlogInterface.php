@@ -16,41 +16,36 @@ use Sonata\NewsBundle\Permalink\PermalinkInterface;
 interface BlogInterface
 {
     /**
-     * @return void
+     * @return string
      */
     function getTitle();
 
     /**
-     * @return void
+     * @return string
      */
     function getLink();
 
     /**
-     * @return void
+     * @return string
      */
     function getDescription();
 
     /**
-     * @param $title
-     * @return void
+     * @param string $title
      */
     function setTitle($title);
 
     /**
-     * @param $link
-     * @return void
+     * @param string $link
      */
     function setLink($link);
 
     /**
-     * @param $description
-     * @return void
+     * @param string $description
      */
     function setDescription($description);
 
     /**
-     * @return void
-     *
      * @return \Sonata\NewsBundle\Permalink\PermalinkInterface
      */
     function getPermalinkGenerator();

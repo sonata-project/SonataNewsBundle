@@ -37,28 +37,28 @@ interface PostInterface
     /**
      * Set abstract
      *
-     * @param text $abstract
+     * @param string $abstract
      */
     function setAbstract($abstract);
 
     /**
      * Get abstract
      *
-     * @return text $abstract
+     * @return string $abstract
      */
     function getAbstract();
 
     /**
      * Set content
      *
-     * @param text $content
+     * @param string $content
      */
     function setContent($content);
 
     /**
      * Get content
      *
-     * @return text $content
+     * @return string $content
      */
     function getContent();
 
@@ -128,7 +128,7 @@ interface PostInterface
     /**
      * Get updated_at
      *
-     * @return datetime $updatedAt
+     * @return \Datetime $updatedAt
      */
     function getUpdatedAt();
 
@@ -166,12 +166,26 @@ interface PostInterface
      */
     function getTags();
 
+    /**
+     * @param $tags
+     *
+     * @return mixed
+     */
     function setTags($tags);
 
+    /**
+     * @return string
+     */
     function getYear();
 
+    /**
+     * @return string
+     */
     function getMonth();
 
+    /**
+     * @return string
+     */
     function getDay();
 
     /**
@@ -240,8 +254,16 @@ interface PostInterface
      */
     function isPublic();
 
+    /**
+     * @param mixed $author
+     *
+     * @return mixed
+     */
     function setAuthor($author);
 
+    /**
+     * @return mixed
+     */
     function getAuthor();
 
     /**
@@ -251,6 +273,7 @@ interface PostInterface
 
     /**
      * @param CategoryInterface $category
+     *
      * @return void
      */
     function setCategory(CategoryInterface $category);

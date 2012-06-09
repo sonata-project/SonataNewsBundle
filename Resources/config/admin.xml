@@ -26,24 +26,8 @@
     </parameters>
 
     <services>
-        <service id="sonata.news.admin.comment" class="%sonata.news.admin.comment.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="comments" />
-            <argument />
-            <argument>%sonata.news.admin.comment.entity%</argument>
-            <argument>%sonata.news.admin.comment.controller%</argument>
-
-            <call method="setTranslationDomain">
-                <argument>%sonata.news.admin.comment.translation_domain%</argument>
-            </call>
-
-            <call method="setCommentManager">
-                <argument id="sonata.news.manager.comment" type="service"/>
-            </call>
-
-        </service>
-
         <service id="sonata.news.admin.post" class="%sonata.news.admin.post.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="posts" />
+            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="posts"  label_catalogue="%sonata.news.admin.post.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument />
             <argument>%sonata.news.admin.post.entity%</argument>
             <argument>%sonata.news.admin.post.controller%</argument>
@@ -65,8 +49,24 @@
             </call>
         </service>
 
+        <service id="sonata.news.admin.comment" class="%sonata.news.admin.comment.class%">
+            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="comments" label_catalogue="%sonata.news.admin.comment.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument />
+            <argument>%sonata.news.admin.comment.entity%</argument>
+            <argument>%sonata.news.admin.comment.controller%</argument>
+
+            <call method="setTranslationDomain">
+                <argument>%sonata.news.admin.comment.translation_domain%</argument>
+            </call>
+
+            <call method="setCommentManager">
+                <argument id="sonata.news.manager.comment" type="service"/>
+            </call>
+
+        </service>
+
         <service id="sonata.news.admin.category" class="%sonata.news.admin.category.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="categories" />
+            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="categories"  label_catalogue="%sonata.news.admin.category.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument />
             <argument>%sonata.news.admin.category.entity%</argument>
             <argument>%sonata.news.admin.category.controller%</argument>
@@ -77,7 +77,7 @@
         </service>
 
         <service id="sonata.news.admin.tag" class="%sonata.news.admin.tag.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="tags" />
+            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="tags"  label_catalogue="%sonata.news.admin.news.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument />
             <argument>%sonata.news.admin.tag.entity%</argument>
             <argument>%sonata.news.admin.tag.controller%</argument>

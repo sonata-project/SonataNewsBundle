@@ -13,6 +13,11 @@ namespace Sonata\NewsBundle\Model;
 
 interface CategoryInterface
 {
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
     function setName($name);
 
     /**
@@ -49,46 +54,46 @@ interface CategoryInterface
      * @return integer $slug
      */
     function getSlug();
-    
+
     /**
      * Set description
-     * 
+     *
      * @param string $description
      */
     function setDescription($description);
-    
+
     /**
      * Get description
-     * 
+     *
      * @return string $description
      */
     function getDescription();
-    
+
     /**
      * Set count
-     * 
+     *
      * @param integer $count
      */
     function setCount($count);
-    
+
     /**
      * Get count
-     * 
+     *
      * @return integer $count
      */
     function getCount();
-    
+
     /**
      * Add posts
      *
-     * @param Application\Sonata\NewsBundle\Model\Post $posts
+     * @param \Sonata\NewsBundle\Model\PostInterface $posts
      */
     function addPosts(PostInterface $posts);
 
     /**
      * Get posts
      *
-     * @return Doctrine\Common\Collections\Collection $posts
+     * @return \Doctrine\Common\Collections\Collection $posts
      */
     function getPosts();
 }

@@ -56,15 +56,16 @@ abstract class Post implements PostInterface
 
     protected $category;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct()
     {
         $this->setPublicationDateStart(new \DateTime);
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
+     * {@inheritdoc}
      */
     public function setTitle($title)
     {
@@ -74,9 +75,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get title
-     *
-     * @return string $title
+     * {@inheritdoc}
      */
     public function getTitle()
     {
@@ -84,9 +83,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set abstract
-     *
-     * @param text $abstract
+     * {@inheritdoc}
      */
     public function setAbstract($abstract)
     {
@@ -94,9 +91,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get abstract
-     *
-     * @return text $abstract
+     * {@inheritdoc}
      */
     public function getAbstract()
     {
@@ -104,9 +99,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set content
-     *
-     * @param text $content
+     * {@inheritdoc}
      */
     public function setContent($content)
     {
@@ -114,9 +107,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get content
-     *
-     * @return text $content
+     * {@inheritdoc}
      */
     public function getContent()
     {
@@ -124,9 +115,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set enabled
-     *
-     * @param boolean $enabled
+     * {@inheritdoc}
      */
     public function setEnabled($enabled)
     {
@@ -134,9 +123,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get enabled
-     *
-     * @return boolean $enabled
+     * {@inheritdoc}
      */
     public function getEnabled()
     {
@@ -144,9 +131,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set slug
-     *
-     * @param integer $slug
+     * {@inheritdoc}
      */
     public function setSlug($slug)
     {
@@ -154,9 +139,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get slug
-     *
-     * @return integer $slug
+     * {@inheritdoc}
      */
     public function getSlug()
     {
@@ -164,9 +147,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set publication_date_start
-     *
-     * @param \DateTime $publicationDateStart
+     * {@inheritdoc}
      */
     public function setPublicationDateStart(\DateTime $publicationDateStart = null)
     {
@@ -174,9 +155,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get publication_date_start
-     *
-     * @return \DateTime $publicationDateStart
+     * {@inheritdoc}
      */
     public function getPublicationDateStart()
     {
@@ -184,9 +163,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set created_at
-     *
-     * @param datetime $createdAt
+     * {@inheritdoc}
      */
     public function setCreatedAt(\DateTime $createdAt = null)
     {
@@ -194,9 +171,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get created_at
-     *
-     * @return datetime $createdAt
+     * {@inheritdoc}
      */
     public function getCreatedAt()
     {
@@ -204,9 +179,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set updated_at
-     *
-     * @param datetime $updatedAt
+     * {@inheritdoc}
      */
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
@@ -214,9 +187,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get updated_at
-     *
-     * @return datetime $updatedAt
+     * {@inheritdoc}
      */
     public function getUpdatedAt()
     {
@@ -224,9 +195,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Add comments
-     *
-     * @param \Sonata\NewsBundle\Model\CommentInterface $comments
+     * {@inheritdoc}
      */
     public function addComments(CommentInterface $comment)
     {
@@ -234,6 +203,9 @@ abstract class Post implements PostInterface
         $comment->setPost($this);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setComments($comments)
     {
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection;
@@ -244,9 +216,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get comments
-     *
-     * @return Doctrine\Common\Collections\Collection $comments
+     * {@inheritdoc}
      */
     public function getComments()
     {
@@ -254,9 +224,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Add tags
-     *
-     * @param \Sonata\NewsBundle\Model\TagInterface $tags
+     * {@inheritdoc}
      */
     public function addTags(TagInterface $tags)
     {
@@ -264,15 +232,16 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get tags
-     *
-     * @return Doctrine\Common\Collections\Collection $tags
+     * {@inheritdoc}
      */
     public function getTags()
     {
         return $this->tags;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setTags($tags)
     {
         $this->tags = $tags;
@@ -293,25 +262,32 @@ abstract class Post implements PostInterface
         $this->setUpdatedAt(new \DateTime);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getYear()
     {
         return $this->getPublicationDateStart()->format('Y');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMonth()
     {
         return $this->getPublicationDateStart()->format('m');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDay()
     {
         return $this->getPublicationDateStart()->format('d');
     }
 
     /**
-     * Set comments_enabled
-     *
-     * @param boolean $commentsEnabled
+     * {@inheritdoc}
      */
     public function setCommentsEnabled($commentsEnabled)
     {
@@ -319,9 +295,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get comments_enabled
-     *
-     * @return boolean $commentsEnabled
+     * {@inheritdoc}
      */
     public function getCommentsEnabled()
     {
@@ -329,9 +303,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set comments_close_at
-     *
-     * @param \DateTime|null $commentsCloseAt
+     * {@inheritdoc}
      */
     public function setCommentsCloseAt(\DateTime $commentsCloseAt = null)
     {
@@ -339,9 +311,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get comments_close_at
-     *
-     * @return datetime $commentsCloseAt
+     * {@inheritdoc}
      */
     public function getCommentsCloseAt()
     {
@@ -349,9 +319,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set comments_default_status
-     *
-     * @param integer $commentsDefaultStatus
+     * {@inheritdoc}
      */
     public function setCommentsDefaultStatus($commentsDefaultStatus)
     {
@@ -359,9 +327,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get comments_default_status
-     *
-     * @return integer $commentsDefaultStatus
+     * {@inheritdoc}
      */
     public function getCommentsDefaultStatus()
     {
@@ -369,9 +335,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Set comments_count
-     *
-     * @param integer $commentsCount
+     * {@inheritdoc}
      */
     public function setCommentsCount($commentsCount)
     {
@@ -379,9 +343,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * Get comments_default_status
-     *
-     * @return integer $commentsDefaultStatus
+     * {@inheritdoc}
      */
     public function getCommentsCount()
     {
@@ -389,7 +351,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function __toString()
     {
@@ -397,7 +359,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function isCommentable()
     {
@@ -412,6 +374,9 @@ abstract class Post implements PostInterface
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isPublic()
     {
         if (!$this->getEnabled()) {
@@ -421,45 +386,65 @@ abstract class Post implements PostInterface
         return $this->getPublicationDateStart()->diff(new \DateTime)->invert == 0 ? true : false;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setAuthor($author)
     {
         $this->author = $author;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAuthor()
     {
         return $this->author;
     }
 
     /**
-     * @param CategoryInterface $category
-     * @return void
+     * {@inheritdoc}
      */
     public function setCategory(CategoryInterface $category)
     {
         $this->category = $category;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCategory()
     {
         return $this->category;
     }
 
+    /**
+     * @param $contentFormatter
+     */
     public function setContentFormatter($contentFormatter)
     {
         $this->contentFormatter = $contentFormatter;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getContentFormatter()
     {
         return $this->contentFormatter;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setRawContent($rawContent)
     {
         $this->rawContent = $rawContent;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getRawContent()
     {
         return $this->rawContent;

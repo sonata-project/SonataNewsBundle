@@ -13,9 +13,9 @@ namespace Sonata\NewsBundle\Model;
 
 interface CommentInterface
 {
-    const STATUS_INVALID = 0;
-    const STATUS_VALID   = 1;
-    const STATUS_MODERATE   = 2;
+    const STATUS_INVALID  = 0;
+    const STATUS_VALID    = 1;
+    const STATUS_MODERATE = 2;
 
     function getId();
 
@@ -53,6 +53,7 @@ interface CommentInterface
      * @param text $url
      */
     function setUrl($url);
+
     /**
      * Get url
      *
@@ -110,6 +111,7 @@ interface CommentInterface
      * @param integer $status
      */
     function setStatus($status);
+
     /**
      * Get status
      *

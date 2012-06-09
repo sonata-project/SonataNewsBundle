@@ -24,7 +24,7 @@ class TagManager extends ModelTagManager
 
     /**
      * @param \Doctrine\ORM\EntityManager $em
-     * @param string $class
+     * @param string                      $class
      */
     public function __construct(EntityManager $em, $class)
     {

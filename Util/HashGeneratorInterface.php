@@ -17,6 +17,7 @@ interface HashGeneratorInterface
 {
     /**
      * @param \Sonata\NewsBundle\Model\CommentInterface $comment
+     *
      * @return string
      */
     function generate(CommentInterface $comment);

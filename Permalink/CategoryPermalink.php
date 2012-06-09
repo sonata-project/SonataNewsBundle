@@ -17,9 +17,7 @@ use Doctrine\Common\Persistence\ObjectRepository;
 class CategoryPermalink implements PermalinkInterface
 {
     /**
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function generate(PostInterface $post)
     {
@@ -29,7 +27,8 @@ class CategoryPermalink implements PermalinkInterface
     }
 
     /**
-     * @param $permalink
+     * @param string $permalink
+     *
      * @return array
      */
     public function getParameters($permalink)

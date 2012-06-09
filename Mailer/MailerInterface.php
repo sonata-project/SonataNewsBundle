@@ -15,5 +15,10 @@ use Sonata\NewsBundle\Model\CommentInterface;
 
 interface MailerInterface
 {
+    /**
+     * @param \Sonata\NewsBundle\Model\CommentInterface $comment
+     *
+     * @return mixed
+     */
     function sendCommentNotification(CommentInterface $comment);
 }

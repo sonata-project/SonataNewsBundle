@@ -32,9 +32,7 @@ abstract class Comment implements CommentInterface
     protected $post;
 
     /**
-     * Set name
-     *
-     * @param string $name
+     * {@inheritdoc}
      */
     public function setName($name)
     {
@@ -42,9 +40,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Get name
-     *
-     * @return string $name
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -52,9 +48,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
+     * {@inheritdoc}
      */
     public function setEmail($email)
     {
@@ -62,9 +56,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Get email
-     *
-     * @return string $email
+     * {@inheritdoc}
      */
     public function getEmail()
     {
@@ -72,9 +64,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Set url
-     *
-     * @param text $url
+     * {@inheritdoc}
      */
     public function setUrl($url)
     {
@@ -82,9 +72,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Get url
-     *
-     * @return text $url
+     * {@inheritdoc}
      */
     public function getUrl()
     {
@@ -92,9 +80,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Set message
-     *
-     * @param text $message
+     * {@inheritdoc}
      */
     public function setMessage($message)
     {
@@ -102,9 +88,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Get message
-     *
-     * @return text $message
+     * {@inheritdoc}
      */
     public function getMessage()
     {
@@ -112,9 +96,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Set created_at
-     *
-     * @param \DateTime $createdAt
+     * {@inheritdoc}
      */
     public function setCreatedAt(\DateTime $createdAt = null)
     {
@@ -122,9 +104,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Get created_at
-     *
-     * @return \DateTime $createdAt
+     * {@inheritdoc}
      */
     public function getCreatedAt()
     {
@@ -132,9 +112,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Set updated_at
-     *
-     * @param \DateTime $updatedAt
+     * {@inheritdoc}
      */
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
@@ -142,15 +120,16 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Get updated_at
-     *
-     * @return \DateTime $updatedAt
+     * {@inheritdoc}
      */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getStatusList()
     {
         return array(
@@ -161,6 +140,9 @@ abstract class Comment implements CommentInterface
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getStatusCode()
     {
         $status = self::getStatusList();
@@ -174,9 +156,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Set status
-     *
-     * @param integer $status
+     * {@inheritdoc}
      */
     public function setStatus($status)
     {
@@ -184,9 +164,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Get status
-     *
-     * @return integer $status
+     * {@inheritdoc}
      */
     public function getStatus()
     {
@@ -194,9 +172,7 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Set post
-     *
-     * @param Application\Sonata\NewsBundle\Model\PostInterface $post
+     * {@inheritdoc}
      */
     public function setPost($post)
     {
@@ -204,15 +180,16 @@ abstract class Comment implements CommentInterface
     }
 
     /**
-     * Get post
-     *
-     * @return Application\Sonata\NewsBundle\Model\PostInterface $post
+     * {@inheritdoc}
      */
     public function getPost()
     {
         return $this->post;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function __toString()
     {
         return $this->getName() ?: 'n-a';

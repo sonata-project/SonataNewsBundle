@@ -27,6 +27,7 @@ class CommentAdmin extends Admin
 
     /**
      * @param \Sonata\NewsBundle\Model\CommentManagerInterface $commentManager
+     *
      * @return void
      */
     public function setCommentManager(CommentManagerInterface $commentManager)
@@ -35,8 +36,7 @@ class CommentAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -55,8 +55,7 @@ class CommentAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -68,8 +67,7 @@ class CommentAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
-     * @return void
+     * {@inheritdoc}
      */
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -83,40 +81,52 @@ class CommentAdmin extends Admin
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getBatchActions()
     {
         $actions = parent::getBatchActions();
 
         $actions['enabled'] = array(
-            'label' => $this->trans('batch_enable_comments'),
+            'label'            => $this->trans('batch_enable_comments'),
             'ask_confirmation' => false,
         );
 
         $actions['disabled'] = array(
-            'label' => $this->trans('batch_disable_comments'),
+            'label'            => $this->trans('batch_disable_comments'),
             'ask_confirmation' => false
         );
 
         return $actions;
     }
 
+    /**
+     * Update the count comment
+     */
     private function updateCountsComment()
     {
         $this->commentManager->updateCommentsCount();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function postPersist($object)
     {
         $this->updateCountsComment();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function postRemove($object)
     {
         $this->updateCountsComment();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function postUpdate($object)
     {
         $this->updateCountsComment();

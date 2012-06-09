@@ -32,6 +32,7 @@ class PostController extends Controller
 
     /**
      * @param array $criteria
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function renderArchive(array $criteria = array(), array $parameters = array())
@@ -65,7 +66,8 @@ class PostController extends Controller
     }
 
     /**
-     * @param $tag
+     * @param string $tag
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function tagAction($tag)
@@ -87,7 +89,8 @@ class PostController extends Controller
     }
 
     /**
-     * @param $category
+     * @param string $category
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function categoryAction($category)
@@ -109,8 +112,9 @@ class PostController extends Controller
     }
 
     /**
-     * @param $year
-     * @param $month
+     * @param string $year
+     * @param string $month
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function archiveMonthlyAction($year, $month)
@@ -121,7 +125,8 @@ class PostController extends Controller
     }
 
     /**
-     * @param $year
+     * @param string $year
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function archiveYearlyAction($year)
@@ -133,7 +138,9 @@ class PostController extends Controller
 
     /**
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
      * @param $permalink
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function viewAction($permalink)
@@ -177,14 +184,15 @@ class PostController extends Controller
     }
 
     /**
-     * @param $post_id
+     * @param $postId
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
-    public function commentsAction($post_id)
+    public function commentsAction($postId)
     {
         $pager = $this->getCommentManager()
             ->getPager(array(
-                'postId' => $post_id,
+                'postId' => $postId,
                 'status'  => CommentInterface::STATUS_VALID
             ), 1, 500); //no limit
 
@@ -196,6 +204,7 @@ class PostController extends Controller
     /**
      * @param $post_id
      * @param bool $form
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function addCommentFormAction($post_id, $form = false)
@@ -230,7 +239,9 @@ class PostController extends Controller
 
     /**
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @param $id
+     *
+     * @param string $id
+     *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function addCommentAction($id)
@@ -296,10 +307,12 @@ class PostController extends Controller
     }
 
     /**
-     * @param $commentId
-     * @param $hash
-     * @param $status
+     * @param string $commentId
+     * @param string $hash
+     * @param string $status
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      */
     public function commentModerationAction($commentId, $hash, $status)

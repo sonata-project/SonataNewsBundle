@@ -148,13 +148,16 @@ abstract class Category implements CategoryInterface
     /**
      * Get posts
      *
-     * @return Doctrine\Common\Collections\Collection $posts
+     * @return \Doctrine\Common\Collections\Collection $posts
      */
     public function getPosts()
     {
         return $this->posts;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function __toString()
     {
         return $this->getName() ?: 'n/a';
@@ -171,21 +174,33 @@ abstract class Category implements CategoryInterface
         $this->setUpdatedAt(new \DateTime);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;

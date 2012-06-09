@@ -22,7 +22,8 @@ interface PermalinkInterface
     function generate(PostInterface $post);
 
     /**
-     * @param $permalink
+     * @param string $permalink
+     *
      * @return array
      */
     function getParameters($permalink);
