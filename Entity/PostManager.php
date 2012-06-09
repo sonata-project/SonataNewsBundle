@@ -94,8 +94,8 @@ class PostManager extends ModelPostManager
                 $parameters = array_merge($parameters, $pcqp['params']);
 
                 $query
-                        ->leftJoin('p.category', 'c')
-                        ->andWhere($pcqp['query'])
+                    ->leftJoin('p.category', 'c')
+                    ->andWhere($pcqp['query'])
                 ;
             }
 
@@ -146,11 +146,11 @@ class PostManager extends ModelPostManager
     {
         $parameters = array();
         $query = $this->em->getRepository($this->class)
-                ->createQueryBuilder('p')
-                ->select('p, t')
-                ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
-                ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
-                ->orderby('p.publicationDateStart', 'DESC');
+            ->createQueryBuilder('p')
+            ->select('p, t')
+            ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
+            ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
+            ->orderby('p.publicationDateStart', 'DESC');
 
         // enabled
         $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;
