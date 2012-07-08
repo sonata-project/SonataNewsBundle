@@ -44,7 +44,7 @@
 
     {% if post.iscommentable %}
         {% render 'SonataNewsBundle:Post:addCommentForm' with {
-            'post_id': post.id,
+            'postId': post.id,
             'form': form
         } %}
     {% else %}

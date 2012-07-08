@@ -23,7 +23,7 @@ use Sonata\NewsBundle\Model\PostInterface;
 class PostController extends Controller
 {
     /**
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\RedirectResponse
+     * @return RedirectResponse
      */
     public function homeAction()
     {
@@ -33,7 +33,7 @@ class PostController extends Controller
     /**
      * @param array $criteria
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
     public function renderArchive(array $criteria = array(), array $parameters = array())
     {
@@ -58,7 +58,7 @@ class PostController extends Controller
     }
 
     /**
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
     public function archiveAction()
     {
@@ -68,7 +68,7 @@ class PostController extends Controller
     /**
      * @param string $tag
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
     public function tagAction($tag)
     {
@@ -91,7 +91,7 @@ class PostController extends Controller
     /**
      * @param string $category
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
     public function categoryAction($category)
     {
@@ -115,7 +115,7 @@ class PostController extends Controller
      * @param string $year
      * @param string $month
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
     public function archiveMonthlyAction($year, $month)
     {
@@ -127,7 +127,7 @@ class PostController extends Controller
     /**
      * @param string $year
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
     public function archiveYearlyAction($year)
     {
@@ -137,11 +137,11 @@ class PostController extends Controller
     }
 
     /**
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      *
      * @param $permalink
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
     public function viewAction($permalink)
     {
@@ -184,9 +184,9 @@ class PostController extends Controller
     }
 
     /**
-     * @param $postId
+     * @param integer $postId
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
     public function commentsAction($postId)
     {
@@ -202,16 +202,16 @@ class PostController extends Controller
     }
 
     /**
-     * @param $post_id
+     * @param $postId
      * @param bool $form
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return Response
      */
-    public function addCommentFormAction($post_id, $form = false)
+    public function addCommentFormAction($postId, $form = false)
     {
         if (!$form) {
             $post = $this->getPostManager()->findOneBy(array(
-                'id' => $post_id
+                'id' => $postId
             ));
 
             $form = $this->getCommentForm($post);
@@ -219,7 +219,7 @@ class PostController extends Controller
 
         return $this->render('SonataNewsBundle:Post:comment_form.html.twig', array(
             'form'      => $form->createView(),
-            'post_id'   => $post_id
+            'post_id'   => $postId
         ));
     }
 
@@ -234,15 +234,15 @@ class PostController extends Controller
         $comment->setPost($post);
         $comment->setStatus($post->getCommentsDefaultStatus());
 
-        return $this->get('form.factory')->createNamed('sonata_post_comment', 'comment', $comment);
+        return $this->get('form.factory')->createNamed('comment', 'sonata_post_comment', $comment);
     }
 
     /**
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      *
      * @param string $id
      *
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
      */
     public function addCommentAction($id)
     {
