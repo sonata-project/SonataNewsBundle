@@ -57,8 +57,8 @@ class PostAdmin extends Admin
         $formMapper
             ->with('General')
                 ->add('enabled', null, array('required' => false))
-                ->add('author', 'sonata_type_model', array(), array('edit' => 'list'))
-                ->add('category', 'sonata_type_model', array(), array('edit' => 'list'))
+                ->add('author', 'sonata_type_model')
+                ->add('category', 'sonata_type_model_list')
                 ->add('title')
                 ->add('abstract')
                 ->add('contentFormatter', 'sonata_formatter_type_selector', array(
@@ -68,7 +68,7 @@ class PostAdmin extends Admin
                 ->add('rawContent')
             ->end()
             ->with('Tags')
-                ->add('tags', 'sonata_type_model', array('expanded' => true))
+                ->add('tags', 'sonata_type_model', array('expanded' => true, 'multiple' => true))
             ->end()
             ->with('Options')
                 ->add('publicationDateStart')

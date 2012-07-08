@@ -26,7 +26,7 @@ class CommentAdmin extends Admin
     protected $commentManager;
 
     /**
-     * @param \Sonata\NewsBundle\Model\CommentManagerInterface $commentManager
+     * @param CommentManagerInterface $commentManager
      *
      * @return void
      */
@@ -41,7 +41,7 @@ class CommentAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         if(!$this->isChild()) {
-            $formMapper->add('post', 'sonata_type_model', array(), array('edit' => 'list'));
+            $formMapper->add('post', 'sonata_type_model_list');
 //            $formMapper->add('post', 'sonata_type_admin', array(), array('edit' => 'inline'));
         }
 
