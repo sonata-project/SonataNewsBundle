@@ -37,8 +37,6 @@
         </getter>
 
         <getter property="email">
-            <constraint name="NotNull" />
-            <constraint name="NotBlank" />
             <constraint name="Email" />
         </getter>
 
@@ -56,7 +54,7 @@
         </getter>
 
     </class>
-    
+
     <class name="Application\Sonata\NewsBundle\Entity\Category">
         <getter property="name">
            <constraint name="NotBlank" />

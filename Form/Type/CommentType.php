@@ -23,8 +23,8 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('email')
-            ->add('url')
+            ->add('email', null, array('required' => false))
+            ->add('url', null, array('required' => false))
             ->add('message')
         ;
     }
