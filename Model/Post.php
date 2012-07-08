@@ -405,7 +405,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setCategory(CategoryInterface $category)
+    public function setCategory(CategoryInterface $category = null)
     {
         $this->category = $category;
     }

@@ -276,5 +276,5 @@ interface PostInterface
      *
      * @return void
      */
-    function setCategory(CategoryInterface $category);
+    function setCategory(CategoryInterface $category = null);
 }
