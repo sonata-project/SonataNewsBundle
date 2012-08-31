@@ -5,37 +5,9 @@ Installation
 
 .. code-block::
 
-    [FOSUserBundle]
-        git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
-        target=/bundles/FOS/UserBundle
-
-    [SonataNewsBundle]
-        git=git@github.com:sonata-project/SonataNewsBundle.git
-        target=/bundles/Sonata/NewsBundle
-
-    [SonataMediaBundle]
-        git=git@github.com:sonata-project/SonataMediaBundle.git
-        target=/bundles/Sonata/MediaBundle
-
-    [SonataUserBundle]
-        git=git@github.com:sonata-project/SonataUserBundle.git
-        target=/bundles/Sonata/UserBundle
-
-    [SonataAdminBundle]
-        git=git@github.com:sonata-project/SonataAdminBundle.git
-        target=/bundles/Sonata/AdminBundle
-
-    [SonataFormatterBundle]
-        git=git@github.com:sonata-project/SonataFormatterBundle.git
-        target=/bundles/Sonata/FormatterBundle
-
-    [SonataIntlBundle]
-        git=git@github.com:sonata-project/SonataIntlBundle.git
-        target=/bundles/Sonata/IntlBundle
-
-    [KnpMarkdownBundle]
-        git=http://github.com/KnpLabs/KnpMarkdownBundle.git
-        target=/bundles/Knp/Bundle/MarkdownBundle
+    php composer require sonata-project/doctrine-orm-admin-bundle --no-update
+    php composer require sonata-project/user-bundle --no-update
+    php composer update
 
 * Add SonataNewsBundle to your application kernel::
 
@@ -58,23 +30,6 @@ Installation
             // ...
         );
     }
-
-* Update the ``autoload.php`` to add a new namespace:
-
-.. code-block:: php
-
-    <?php
-    $loader->registerNamespaces(array(
-        'Sonata'        => __DIR__,
-        'Application'   => __DIR__,
-        'FOS'           => __DIR__.'/../vendor/bundles',
-        'Knp'           => array(
-            __DIR__.'/../vendor/bundles',
-            __DIR__.'/../vendor/knp/menu/src'
-        ),
-        // ... other declarations
-    ));
-
 
 * Run the easy-extends command::
 
