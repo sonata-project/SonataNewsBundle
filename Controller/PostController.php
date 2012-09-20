@@ -334,10 +334,7 @@ class PostController extends Controller
         $this->getCommentManager()->save($comment);
 
         return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-            'year'  => $comment->getPost()->getYear(),
-            'month' => $comment->getPost()->getMonth(),
-            'day'   => $comment->getPost()->getDay(),
-            'slug'  => $comment->getPost()->getSlug()
+            'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($comment->getPost())
         )));
     }
 }
