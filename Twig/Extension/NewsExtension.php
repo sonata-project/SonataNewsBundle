@@ -11,7 +11,7 @@
 
 namespace Sonata\NewsBundle\Twig\Extension;
 
-use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Sonata\NewsBundle\Model\TagManagerInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
@@ -19,7 +19,7 @@ use Sonata\NewsBundle\Model\PostInterface;
 class NewsExtension extends \Twig_Extension
 {
     /**
-     * @var Router
+     * @var RouterInterface
      */
     private $router;
 
@@ -29,11 +29,11 @@ class NewsExtension extends \Twig_Extension
     private $tagManager;
 
     /**
-     * @param \Symfony\Component\Routing\Router            $router
+     * @param \Symfony\Component\Routing\RouterInterface   $router
      * @param \Sonata\NewsBundle\Model\TagManagerInterface $tagManager
      * @param \Sonata\NewsBundle\Model\BlogInterface       $blog
      */
-    public function __construct(Router $router, TagManagerInterface $tagManager, BlogInterface $blog)
+    public function __construct(RouterInterface $router, TagManagerInterface $tagManager, BlogInterface $blog)
     {
         $this->router     = $router;
         $this->tagManager = $tagManager;
