@@ -25,6 +25,24 @@ Advanced Configuration
             media:      Application\Sonata\MediaBundle\Entity\Media
             user:       Application\Sonata\UserBundle\Entity\User
 
+        admin:
+            post:
+                class:       Sonata\NewsBundle\Admin\PostAdmin
+                controller:  SonataAdminBundle:CRUD
+                translation: SonataNewsBundle
+            comment:
+                class:       Sonata\NewsBundle\Admin\CommentAdmin
+                controller:  SonataAdminBundle:CRUD
+                translation: SonataNewsBundle
+            category:
+                class:       Sonata\NewsBundle\Admin\CategoryAdmin
+                controller:  SonataAdminBundle:CRUD
+                translation: SonataNewsBundle
+            tag:
+                class:       Sonata\NewsBundle\Admin\TagAdmin
+                controller:  SonataAdminBundle:CRUD
+                translation: SonataNewsBundle
+
     doctrine:
         orm:
             entity_managers:
