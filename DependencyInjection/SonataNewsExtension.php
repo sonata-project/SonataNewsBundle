@@ -80,6 +80,7 @@ class SonataNewsExtension extends Extension
 
         $this->registerDoctrineMapping($config, $container);
         $this->configureClass($config, $container);
+        $this->configureAdmin($config, $container);
     }
 
     /**
@@ -99,6 +100,29 @@ class SonataNewsExtension extends Extension
         $container->setParameter('sonata.news.manager.tag.entity',      $config['class']['tag']);
         $container->setParameter('sonata.news.manager.comment.entity',  $config['class']['comment']);
         $container->setParameter('sonata.news.manager.category.entity', $config['class']['category']);
+    }
+
+    /**
+     * @param array                                                   $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     */
+    public function configureAdmin($config, ContainerBuilder $container)
+    {
+        $container->setParameter('sonata.news.admin.post.class',              $config['admin']['post']['class']);
+        $container->setParameter('sonata.news.admin.post.controller',         $config['admin']['post']['controller']);
+        $container->setParameter('sonata.news.admin.post.translation_domain', $config['admin']['post']['translation']);
+
+        $container->setParameter('sonata.news.admin.category.class',              $config['admin']['category']['class']);
+        $container->setParameter('sonata.news.admin.category.controller',         $config['admin']['category']['controller']);
+        $container->setParameter('sonata.news.admin.category.translation_domain', $config['admin']['category']['translation']);
+
+        $container->setParameter('sonata.news.admin.comment.class',              $config['admin']['comment']['class']);
+        $container->setParameter('sonata.news.admin.comment.controller',         $config['admin']['comment']['controller']);
+        $container->setParameter('sonata.news.admin.comment.translation_domain', $config['admin']['comment']['translation']);
+
+        $container->setParameter('sonata.news.admin.tag.class',              $config['admin']['tag']['class']);
+        $container->setParameter('sonata.news.admin.tag.controller',         $config['admin']['tag']['controller']);
+        $container->setParameter('sonata.news.admin.tag.translation_domain', $config['admin']['tag']['translation']);
     }
 
     /**
