@@ -58,7 +58,7 @@ class PostAdmin extends Admin
             ->with('General')
                 ->add('enabled', null, array('required' => false))
                 ->add('author', 'sonata_type_model')
-                ->add('category', 'sonata_type_model_list')
+                ->add('category', 'sonata_type_model_list', array('required' => false))
                 ->add('title')
                 ->add('abstract')
                 ->add('contentFormatter', 'sonata_formatter_type_selector', array(
