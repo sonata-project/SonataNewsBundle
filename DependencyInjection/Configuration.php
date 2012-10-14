@@ -71,7 +71,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('class')->cannotBeEmpty()->defaultValue('Sonata\\NewsBundle\\Admin\\CommentAdmin')->end()
-                                ->scalarNode('controller')->cannotBeEmpty()->defaultValue('SonataAdminBundle:CRUD')->end()
+                                ->scalarNode('controller')->cannotBeEmpty()->defaultValue('SonataNewsBundle:CommentAdmin')->end()
                                 ->scalarNode('translation')->cannotBeEmpty()->defaultValue('SonataNewsBundle')->end()
                             ->end()
                         ->end()

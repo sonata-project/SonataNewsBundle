@@ -88,12 +88,12 @@ class CommentAdmin extends Admin
         $actions = parent::getBatchActions();
 
         $actions['enabled'] = array(
-            'label'            => $this->trans('batch_enable_comments'),
+            'label'            => $this->trans($this->getLabelTranslatorStrategy()->getLabel('enable', 'batch', 'comment')),
             'ask_confirmation' => false,
         );
 
         $actions['disabled'] = array(
-            'label'            => $this->trans('batch_disable_comments'),
+            'label'            =>  $this->trans($this->getLabelTranslatorStrategy()->getLabel('disable', 'batch', 'comment')),
             'ask_confirmation' => false
         );
 
