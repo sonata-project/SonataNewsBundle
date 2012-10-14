@@ -44,7 +44,7 @@ class PostAdmin extends Admin
             ->add('enabled')
             ->add('title')
             ->add('abstract')
-            ->add('content')
+            ->add('content', null, array('safe' => true))
             ->add('tags')
         ;
     }
