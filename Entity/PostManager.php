@@ -12,10 +12,9 @@ namespace Sonata\NewsBundle\Entity;
 
 use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
-use Sonata\NewsBundle\Model\Post;
-use Sonata\NewsBundle\Permalink\PermalinkInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 
+use Sonata\NewsBundle\Model\CategoryInterface;
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
@@ -175,6 +174,11 @@ class PostManager extends ModelPostManager
             } else {
                 $query->andWhere(sprintf('p.author IN (%s)', implode((array)$criteria['author'], ',')));
             }
+        }
+
+        if (isset($criteria['category']) && $criteria['category'] instanceof CategoryInterface) {
+            $query->andWhere('p.category = :categoryid');
+            $parameters['categoryid'] = $criteria['category']->getId();
         }
 
         $query->setParameters($parameters);
