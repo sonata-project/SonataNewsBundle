@@ -13,15 +13,15 @@ namespace Sonata\NewsBundle\Entity;
 
 use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
-use Sonata\NewsBundle\Model\Post;
-use Sonata\NewsBundle\Permalink\PermalinkInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
+
+use Sonata\NewsBundle\Model\CategoryInterface;
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
+
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr;
-use Doctrine\ORM\Query;
 
 class PostManager extends ModelPostManager
 {
