@@ -13,6 +13,7 @@ namespace Sonata\NewsBundle\Document;
 use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 
+use Sonata\NewsBundle\Model\CategoryInterface;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 
@@ -118,6 +119,11 @@ class PostManager extends ModelPostManager
             $query->andWhere('t.slug LIKE :tag and t.enabled = :tag_enabled');
             $parameters['tag'] = $criteria['tag'];
             $parameters['tag_enabled'] = true;
+        }
+        
+        if (isset($criteria['category']) && $criteria['category'] instanceof CategoryInterface) {
+            $query->andWhere('p.category = :categoryid');
+            $parameters['categoryid'] = $criteria['category']->getId();
         }
 
         $query->setParameters($parameters);
