@@ -93,7 +93,7 @@ Installation
             // ...
             new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-            new Application\Sonata\UserBundle\ApplicationSonataMediaBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             // ...
         );
     }
