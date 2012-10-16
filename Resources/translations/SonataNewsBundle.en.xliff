@@ -223,6 +223,10 @@ Quick moderation links :
                 <source>filter.label_with_open_comments</source>
                 <target>Open comments</target>
             </trans-unit>
+            <trans-unit id="filter_label_status">
+                <source>filter.label_status</source>
+                <target>Status</target>
+            </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>
                 <target>Name</target>
@@ -302,6 +306,10 @@ Quick moderation links :
             <trans-unit id="filter_label_posts">
                 <source>filter.label_posts</source>
                 <target>Posts</target>
+            </trans-unit>
+            <trans-unit id="filter_label_post">
+                <source>filter.label_post</source>
+                <target>Post</target>
             </trans-unit>
         </body>
     </file>

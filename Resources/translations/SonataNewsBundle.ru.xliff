@@ -76,9 +76,25 @@
                 <source>posts</source>
                 <target>Посты</target>
             </trans-unit>
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>Категории</target>
+            </trans-unit>
             <trans-unit id="tags">
                 <source>tags</source>
                 <target>Тэги</target>
+            </trans-unit>
+            <trans-unit id="tags2">
+                <source>Tags</source>
+                <target>Тэги</target>
+            </trans-unit>
+            <trans-unit id="options">
+                <source>Options</source>
+                <target>Опции</target>
+            </trans-unit>
+            <trans-unit id="general">
+                <source>General</source>
+                <target>Основное</target>
             </trans-unit>
             <trans-unit id="no_tag_selected">
                 <source>no_tag_selected</source>
@@ -94,15 +110,15 @@
             </trans-unit>
             <trans-unit id="list_label_title">
                 <source>list.label_title</source>
-                <target>Title</target>
+                <target>Название</target>
             </trans-unit>
             <trans-unit id="list_label_author">
                 <source>list.label_author</source>
-                <target>Author</target>
+                <target>Автор</target>
             </trans-unit>
             <trans-unit id="list_label_category">
                 <source>list.label_category</source>
-                <target>Category</target>
+                <target>Категория</target>
             </trans-unit>
             <trans-unit id="list_label_enabled">
                 <source>list.label_enabled</source>
@@ -110,15 +126,15 @@
             </trans-unit>
             <trans-unit id="list_label_label_tags">
                 <source>list.label_tags</source>
-                <target>Tags</target>
+                <target>Тэги</target>
             </trans-unit>
             <trans-unit id="list_label_comments_enabled">
                 <source>list.label_comments_enabled</source>
-                <target>Comments enabled</target>
+                <target>Комментарии разрешены</target>
             </trans-unit>
             <trans-unit id="list_label_comments_count">
                 <source>list.label_comments_count</source>
-                <target>Comment count</target>
+                <target>Кол-во комментариев</target>
             </trans-unit>
             <trans-unit id="form_label_enabled">
                 <source>form.label_enabled</source>
@@ -126,51 +142,51 @@
             </trans-unit>
             <trans-unit id="form_label_author">
                 <source>form.label_author</source>
-                <target>Author</target>
+                <target>Автор</target>
             </trans-unit>
             <trans-unit id="form_label_category">
                 <source>form.label_category</source>
-                <target>Category</target>
+                <target>Категория</target>
             </trans-unit>
             <trans-unit id="form_label_title">
                 <source>form.label_title</source>
-                <target>Title</target>
+                <target>Название</target>
             </trans-unit>
             <trans-unit id="form_label_abstract">
                 <source>form.label_abstract</source>
-                <target>Abstract</target>
+                <target>Краткое содержание</target>
             </trans-unit>
             <trans-unit id="form_label_content_format">
                 <source>form.label_content_formatter</source>
-                <target>Content format</target>
+                <target>Формат содержания</target>
             </trans-unit>
             <trans-unit id="form_label_raw_content">
                 <source>form.label_raw_content</source>
-                <target>Raw content</target>
+                <target>Расширеное содержание</target>
             </trans-unit>
             <trans-unit id="form_label_tags">
                 <source>form.label_tags</source>
-                <target>Tags</target>
+                <target>Тэги</target>
             </trans-unit>
             <trans-unit id="form_label_publication_date_start">
                 <source>form.label_publication_date_start</source>
-                <target>Publication date</target>
+                <target>Дата публикации</target>
             </trans-unit>
             <trans-unit id="form_label_comments_close_at">
                 <source>form.label_comments_close_at</source>
-                <target>Comments closed at</target>
+                <target>Отключить комментарии в</target>
             </trans-unit>
             <trans-unit id="form_label_comments_enabled">
                 <source>form.label_comments_enabled</source>
-                <target>Comments enabled</target>
+                <target>Комментарии разрешены</target>
             </trans-unit>
             <trans-unit id="form_label_comments_default_status">
                 <source>form.label_comments_default_status</source>
-                <target>Comment default status</target>
+                <target>Статус комментариев по умолчанию</target>
             </trans-unit>
             <trans-unit id="filter_label_title">
                 <source>filter.label_title</source>
-                <target>Title</target>
+                <target>Название</target>
             </trans-unit>
             <trans-unit id="filter_label_enabled">
                 <source>filter.label_enabled</source>
@@ -178,27 +194,31 @@
             </trans-unit>
             <trans-unit id="filter_label_tags">
                 <source>filter.label_tags</source>
-                <target>Tags</target>
+                <target>Тэги</target>
             </trans-unit>
             <trans-unit id="filter_label_author">
                 <source>filter.label_author</source>
-                <target>Author</target>
+                <target>Автор</target>
             </trans-unit>
             <trans-unit id="filter_label_with_open_comments">
                 <source>filter.label_with_open_comments</source>
-                <target>Open comments</target>
+                <target>Открыть комментарии</target>
+            </trans-unit>
+            <trans-unit id="filter_label_status">
+                <source>filter.label_status</source>
+                <target>Статус</target>
             </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>
-                <target>Name</target>
+                <target>Имя</target>
             </trans-unit>
             <trans-unit id="list_status_code">
                 <source>status_code</source>
-                <target>Status code</target>
+                <target>Статус</target>
             </trans-unit>
             <trans-unit id="list_label_post">
                 <source>list.label_post</source>
-                <target>Post</target>
+                <target>Пост</target>
             </trans-unit>
             <trans-unit id="list_label_email">
                 <source>list.label_email</source>
@@ -210,11 +230,11 @@
             </trans-unit>
             <trans-unit id="list_label_message">
                 <source>list.label_message</source>
-                <target>Message</target>
+                <target>Сообщение</target>
             </trans-unit>
             <trans-unit id="filter_label_name">
                 <source>filter.label_name</source>
-                <target>Name</target>
+                <target>Имя</target>
             </trans-unit>
             <trans-unit id="filter_label_email">
                 <source>filter.label_email</source>
@@ -222,15 +242,15 @@
             </trans-unit>
             <trans-unit id="filter_label_message">
                 <source>filter.label_message</source>
-                <target>Message</target>
+                <target>Сообщение</target>
             </trans-unit>
             <trans-unit id="form_label_post">
                 <source>form.label_post</source>
-                <target>Post</target>
+                <target>Пост</target>
             </trans-unit>
             <trans-unit id="form_label_name">
                 <source>form.label_name</source>
-                <target>Name</target>
+                <target>Имя</target>
             </trans-unit>
             <trans-unit id="form_label_email">
                 <source>form.label_email</source>
@@ -242,11 +262,11 @@
             </trans-unit>
             <trans-unit id="form_label_message">
                 <source>form.label_message</source>
-                <target>Message</target>
+                <target>Сообщение</target>
             </trans-unit>
             <trans-unit id="form_label_status">
                 <source>form.label_status</source>
-                <target>Status</target>
+                <target>Статус</target>
             </trans-unit>
             <trans-unit id="list_label_slug">
                 <source>list.label_slug</source>
@@ -254,19 +274,23 @@
             </trans-unit>
             <trans-unit id="list_label_description">
                 <source>list.label_deescription</source>
-                <target>Description</target>
+                <target>Описание</target>
             </trans-unit>
             <trans-unit id="breadcrumb_link_category_list">
                 <source>breadcrumb.link_category_list</source>
-                <target>Categories</target>
+                <target>Категории</target>
             </trans-unit>
             <trans-unit id="form_label_description">
                 <source>form.label_description</source>
-                <target>Description</target>
+                <target>Описание</target>
             </trans-unit>
             <trans-unit id="filter_label_posts">
                 <source>filter.label_posts</source>
-                <target>Posts</target>
+                <target>Посты</target>
+            </trans-unit>
+            <trans-unit id="filter_label_post">
+                <source>filter.label_post</source>
+                <target>Пост</target>
             </trans-unit>
         </body>
     </file>
