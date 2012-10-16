@@ -15,6 +15,7 @@ use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 
+use Sonata\NewsBundle\Model\TagInterface;
 use Sonata\NewsBundle\Model\CategoryInterface;
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
@@ -161,10 +162,10 @@ class PostManager extends ModelPostManager
             $query->andWhere($criteria['date']['query']);
             $parameters = array_merge($parameters, $criteria['date']['params']);
         }
-
-        if (isset($criteria['tag'])) {
+        
+        if (isset($criteria['tag']) && $criteria['tag'] instanceof TagInterface) {
             $query->andWhere('t.slug LIKE :tag');
-            $parameters['tag'] = (string) $criteria['tag'];
+            $parameters['tag'] = $criteria['tag']->getSlug();
         }
 
         if (isset($criteria['author'])) {
