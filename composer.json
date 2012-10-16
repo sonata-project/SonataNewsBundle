@@ -27,7 +27,7 @@
         "sonata-project/admin-bundle": "dev-master",
         "sonata-project/user-bundle": "dev-master",
         "rmzamora/media-bundle": "dev-master",
-        "sonata-project/formatter-bundle": "dev-master",
+        "rmzamora/formatter-bundle": "dev-master",
         "sonata-project/easy-extends-bundle": "dev-master",
         "sonata-project/intl-bundle": "dev-master",
         "knplabs/knp-markdown-bundle": "dev-master"
