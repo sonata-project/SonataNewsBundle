@@ -49,7 +49,7 @@ class TagAdmin extends Admin
         $listMapper
             ->addIdentifier('name')
             ->add('slug')
-            ->add('enabled')
+            ->add('enabled', null, array('editable' => true))
         ;
     }
 
