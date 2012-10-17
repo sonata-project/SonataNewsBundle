@@ -62,6 +62,7 @@ class CommentAdmin extends Admin
         $datagridMapper
             ->add('name')
             ->add('email')
+            ->add('status')
             ->add('message')
         ;
     }
@@ -73,7 +74,7 @@ class CommentAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('getStatusCode', 'text', array('label' => 'status_code', 'sortable' => 'status'))
+            ->add('getStatusCode', 'string', array('label' => 'status_code', 'sortable' => false))
             ->add('post')
             ->add('email')
             ->add('url')
