@@ -88,9 +88,9 @@ class PostAdmin extends Admin
             ->addIdentifier('title')
             ->add('author')
             ->add('category')
-            ->add('enabled')
+            ->add('enabled', null, array('editable' => true))
             ->add('tags')
-            ->add('commentsEnabled')
+            ->add('commentsEnabled', null, array('editable' => true))
             ->add('commentsCount')
         ;
     }

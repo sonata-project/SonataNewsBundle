@@ -29,8 +29,7 @@
         "rmzamora/media-bundle": "dev-master",
         "rmzamora/formatter-bundle": "dev-master",
         "sonata-project/easy-extends-bundle": "dev-master",
-        "sonata-project/intl-bundle": "dev-master",
-        "knplabs/knp-markdown-bundle": "dev-master"
+        "sonata-project/intl-bundle": "dev-master"
     },
     "require-dev": {
         "doctrine/orm": "*"
