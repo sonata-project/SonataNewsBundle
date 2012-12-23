@@ -15,7 +15,7 @@
             "name": "mell zamora",
             "email": "me@rmzamora.com",
             "homepage": "http://rmzamora.com"
-        },         
+        },
         {
             "name": "Sonata Community",
             "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
@@ -25,9 +25,9 @@
     "require": {
         "symfony/symfony": "2.1.*",
         "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/user-bundle": "dev-master",
-        "rmzamora/media-bundle": "dev-master",
-        "rmzamora/formatter-bundle": "dev-master",
+        "rmzamora/user-bundle": "dev-master",
+        "sonata-project/media-bundle": "dev-master",
+        "sonata-project/formatter-bundle": "dev-master",
         "sonata-project/easy-extends-bundle": "dev-master",
         "sonata-project/intl-bundle": "dev-master"
     },
