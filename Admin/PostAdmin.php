@@ -18,10 +18,9 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
+use Sonata\NewsBundle\Model\CommentManagerInterface;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
-
-use Application\Sonata\NewsBundle\Entity\Comment;
 
 class PostAdmin extends Admin
 {
@@ -34,6 +33,8 @@ class PostAdmin extends Admin
      * @var Pool
      */
     protected $formatterPool;
+
+    protected $commentManager;
 
     /**
      * {@inheritdoc}
@@ -55,6 +56,8 @@ class PostAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $commentClass = $this->commentManager->getClass();
+
         $formMapper
             ->with('General')
                 ->add('enabled', null, array('required' => false))
@@ -75,7 +78,7 @@ class PostAdmin extends Admin
                 ->add('publicationDateStart')
                 ->add('commentsCloseAt')
                 ->add('commentsEnabled', null, array('required' => false))
-                ->add('commentsDefaultStatus', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true))
+                ->add('commentsDefaultStatus', 'choice', array('choices' => $commentClass::getStatusList(), 'expanded' => true))
             ->end()
         ;
     }
@@ -113,9 +116,11 @@ class PostAdmin extends Admin
                         return;
                     }
 
+                    $commentClass = $this->commentManager->getClass();
+
                     $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
                     $queryBuilder->andWhere('c.status = :status');
-                    $queryBuilder->setParameter('status', Comment::STATUS_MODERATE);
+                    $queryBuilder->setParameter('status', $commentClass::STATUS_MODERATE);
                 },
                 'field_type' => 'checkbox'
             ))
@@ -208,5 +213,15 @@ class PostAdmin extends Admin
     public function preUpdate($post)
     {
         $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
+    }
+
+    /**
+     * @param CommentManagerInterface $commentManager
+     *
+     * @return void
+     */
+    public function setCommentManager(CommentManagerInterface $commentManager)
+    {
+        $this->commentManager = $commentManager;
     }
 }
