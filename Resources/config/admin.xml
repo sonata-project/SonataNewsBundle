@@ -25,6 +25,11 @@
             <call method="setTranslationDomain">
                 <argument>%sonata.news.admin.post.translation_domain%</argument>
             </call>
+
+            <call method="setCommentManager">
+                <argument id="sonata.news.manager.comment" type="service"/>
+            </call>
+
         </service>
 
         <service id="sonata.news.admin.comment" class="%sonata.news.admin.comment.class%">

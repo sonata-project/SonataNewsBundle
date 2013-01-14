@@ -16,7 +16,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 
-use Application\Sonata\NewsBundle\Entity\Comment;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 
 class CommentAdmin extends Admin
@@ -24,16 +23,6 @@ class CommentAdmin extends Admin
     protected $parentAssociationMapping = 'post';
 
     protected $commentManager;
-
-    /**
-     * @param CommentManagerInterface $commentManager
-     *
-     * @return void
-     */
-    public function setCommentManager(CommentManagerInterface $commentManager)
-    {
-        $this->commentManager = $commentManager;
-    }
 
     /**
      * {@inheritdoc}
@@ -45,12 +34,14 @@ class CommentAdmin extends Admin
 //            $formMapper->add('post', 'sonata_type_admin', array(), array('edit' => 'inline'));
         }
 
+        $commentClass = $this->commentManager->getClass();
+
         $formMapper
             ->add('name')
             ->add('email')
             ->add('url', null, array('required' => false))
             ->add('message')
-            ->add('status', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true, 'multiple' => false))
+            ->add('status', 'choice', array('choices' => $commentClass::getStatusList(), 'expanded' => true, 'multiple' => false))
         ;
     }
 
@@ -130,5 +121,15 @@ class CommentAdmin extends Admin
     public function postUpdate($object)
     {
         $this->updateCountsComment();
+    }
+
+    /**
+     * @param CommentManagerInterface $commentManager
+     *
+     * @return void
+     */
+    public function setCommentManager(CommentManagerInterface $commentManager)
+    {
+        $this->commentManager = $commentManager;
     }
 }
