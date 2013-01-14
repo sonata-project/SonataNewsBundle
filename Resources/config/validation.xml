@@ -8,11 +8,9 @@
     <class name="Application\Sonata\NewsBundle\Entity\Post">
         <getter property="title">
             <constraint name="NotBlank" />
-            <constraint name="NotNull" />
         </getter>
 
         <getter property="abstract">
-            <constraint name="NotNull" />
             <constraint name="NotBlank" />
         </getter>
 
@@ -21,12 +19,15 @@
         </getter>
 
         <getter property="rawContent">
-            <constraint name="NotNull" />
             <constraint name="NotBlank"/>
         </getter>
 
         <getter property="tags">
             <constraint name="Valid" />
+        </getter>
+
+        <getter property="commentsDefaultStatus">
+            <constraint name="NotBlank" />
         </getter>
     </class>
 
