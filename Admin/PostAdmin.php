@@ -72,7 +72,11 @@ class PostAdmin extends Admin
                 ->add('rawContent')
             ->end()
             ->with('Tags')
-                ->add('tags', 'sonata_type_model', array('expanded' => true, 'multiple' => true))
+                ->add('tags', 'sonata_type_model', array(
+                    'required' => false,
+                    'expanded' => true,
+                    'multiple' => true,
+                ))
             ->end()
             ->with('Options')
                 ->add('publicationDateStart')
