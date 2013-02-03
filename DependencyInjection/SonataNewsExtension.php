@@ -60,6 +60,8 @@ class SonataNewsExtension extends Extension
         $container->getDefinition('sonata.news.hash.generator')
             ->replaceArgument(0, $config['salt']);
 
+        $container->getDefinition('sonata.news.permalink.date')
+            ->replaceArgument(0, $config['permalink']['date']);
 
         $container->setAlias('sonata.news.permalink.generator', $config['permalink_generator']);
 

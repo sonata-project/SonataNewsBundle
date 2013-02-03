@@ -7,7 +7,10 @@
     <services>
 
         <!-- permalink generator -->
-        <service id="sonata.news.permalink.date" class="Sonata\NewsBundle\Permalink\DatePermalink" />
+        <service id="sonata.news.permalink.date" class="Sonata\NewsBundle\Permalink\DatePermalink">
+            <argument />
+        </service>
+
         <service id="sonata.news.permalink.category" class="Sonata\NewsBundle\Permalink\CategoryPermalink" />
 
         <!-- email security token -->

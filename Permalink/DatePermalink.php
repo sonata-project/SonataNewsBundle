@@ -15,12 +15,22 @@ use Sonata\NewsBundle\Model\PostInterface;
 
 class DatePermalink implements PermalinkInterface
 {
+    protected $pattern;
+
+    /**
+     * @param $pattern
+     */
+    public function __construct($pattern = '%1$04d/%2$d/%3$d/%4$s')
+    {
+        $this->pattern = $pattern;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function generate(PostInterface $post)
     {
-        return sprintf('%d/%d/%d/%s',
+        return sprintf($this->pattern,
             $post->getYear(),
             $post->getMonth(),
             $post->getDay(),
@@ -46,9 +56,9 @@ class DatePermalink implements PermalinkInterface
         list($year, $month, $day, $slug) = $parameters;
 
         return array(
-            'year'  => $year,
-            'month' => $month,
-            'day'   => $day,
+            'year'  => (int) $year,
+            'month' => (int) $month,
+            'day'   => (int) $day,
             'slug'  => $slug
         );
     }

@@ -28,6 +28,18 @@ class DatePermalinkTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2011/12/30/the-slug', $permalink->generate($post));
     }
 
+    public function testCustomFormating()
+    {
+        $post = $this->getMock('Sonata\NewsBundle\Model\PostInterface');
+        $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
+        $post->expects($this->any())->method('getYear')->will($this->returnValue('2011'));
+        $post->expects($this->any())->method('getMonth')->will($this->returnValue('2'));
+        $post->expects($this->any())->method('getDay')->will($this->returnValue('01'));
+
+        $permalink = new DatePermalink('%1$02d/%2$02d/%3$02d/%4$s');
+        $this->assertEquals('2011/02/01/the-slug', $permalink->generate($post));
+    }
+
     public function testGetParameters()
     {
         $permalink = new DatePermalink();

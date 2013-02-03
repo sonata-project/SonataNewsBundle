@@ -27,24 +27,16 @@ class Blog implements BlogInterface
     protected $permalinkGenerator;
 
     /**
-     * @param string $title
-     * @param string $link
-     * @param string $description
-     * @param string $permalinkClass
+     * @param string             $title
+     * @param string             $link
+     * @param string             $description
+     * @param PermalinkInterface $permalinkGenerator
      */
-    public function __construct($title, $link, $description, $permalinkClass)
+    public function __construct($title, $link, $description, PermalinkInterface $permalinkGenerator)
     {
         $this->title       = $title;
         $this->link        = $link;
         $this->description = $description;
-        $this->setPermalinkGenerator(new $permalinkClass);
-    }
-
-    /**
-     * @param \Sonata\NewsBundle\Permalink\PermalinkInterface $permalinkGenerator
-     */
-    public function setPermalinkGenerator(PermalinkInterface $permalinkGenerator)
-    {
         $this->permalinkGenerator = $permalinkGenerator;
     }
 
