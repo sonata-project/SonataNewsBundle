@@ -64,12 +64,12 @@ class PostAdmin extends Admin
                 ->add('author', 'sonata_type_model')
                 ->add('category', 'sonata_type_model_list', array('required' => false))
                 ->add('title')
-                ->add('abstract')
+                ->add('abstract', null, array('attr' => array('class' => 'span6', 'rows' => 5)))
                 ->add('contentFormatter', 'sonata_formatter_type_selector', array(
                     'source' => 'rawContent',
                     'target' => 'content'
                 ))
-                ->add('rawContent')
+                ->add('rawContent', null, array('attr' => array('class' => 'span10', 'rows' => 20)))
             ->end()
             ->with('Tags')
                 ->add('tags', 'sonata_type_model', array(
@@ -100,6 +100,7 @@ class PostAdmin extends Admin
             ->add('tags')
             ->add('commentsEnabled', null, array('editable' => true))
             ->add('commentsCount')
+            ->add('publicationDateStart')
         ;
     }
 
