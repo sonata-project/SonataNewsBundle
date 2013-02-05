@@ -18,6 +18,8 @@ Installation
     {
         return array(
             // ...
+            new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
@@ -125,3 +127,25 @@ Installation
                     - sonata.formatter.twig.control_flow
                     - sonata.formatter.twig.gist
                     - sonata.media.formatter.twig
+
+            text:
+                service: sonata.formatter.text.text
+                extensions:
+                    - sonata.formatter.twig.control_flow
+                    - sonata.formatter.twig.gist
+                    - sonata.media.formatter.twig
+
+            rawhtml:
+                service: sonata.formatter.text.raw
+                extensions:
+                    - sonata.formatter.twig.control_flow
+                    - sonata.formatter.twig.gist
+                    - sonata.media.formatter.twig
+
+            richhtml:
+                service: sonata.formatter.text.raw
+                extensions:
+                    - sonata.formatter.twig.control_flow
+                    - sonata.formatter.twig.gist
+                    - sonata.media.formatter.twig
+
