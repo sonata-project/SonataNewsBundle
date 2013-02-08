@@ -21,7 +21,7 @@ class BasePostRepository extends EntityRepository
 {
 
     /**
-     * return last post queryBUikder
+     * return last post query builder
      *
      * @param int $limit
      *
