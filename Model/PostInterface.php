@@ -18,263 +18,263 @@ interface PostInterface
     /**
      * @return mixed
      */
-    function getId();
+    public function getId();
 
     /**
      * Set title
      *
      * @param string $title
      */
-    function setTitle($title);
+    public function setTitle($title);
 
     /**
      * Get title
      *
      * @return string $title
      */
-    function getTitle();
+    public function getTitle();
 
     /**
      * Set abstract
      *
      * @param string $abstract
      */
-    function setAbstract($abstract);
+    public function setAbstract($abstract);
 
     /**
      * Get abstract
      *
      * @return string $abstract
      */
-    function getAbstract();
+    public function getAbstract();
 
     /**
      * Set content
      *
      * @param string $content
      */
-    function setContent($content);
+    public function setContent($content);
 
     /**
      * Get content
      *
      * @return string $content
      */
-    function getContent();
+    public function getContent();
 
     /**
      * Set enabled
      *
      * @param boolean $enabled
      */
-    function setEnabled($enabled);
+    public function setEnabled($enabled);
 
     /**
      * Get enabled
      *
      * @return boolean $enabled
      */
-    function getEnabled();
+    public function getEnabled();
 
     /**
      * Set slug
      *
      * @param integer $slug
      */
-    function setSlug($slug);
+    public function setSlug($slug);
 
     /**
      * Get slug
      *
      * @return integer $slug
      */
-    function getSlug();
+    public function getSlug();
 
     /**
      * Set publication_date_start
      *
      * @param \DateTime $publicationDateStart
      */
-    function setPublicationDateStart(\DateTime $publicationDateStart = null);
+    public function setPublicationDateStart(\DateTime $publicationDateStart = null);
 
     /**
      * Get publication_date_start
      *
      * @return \DateTime $publicationDateStart
      */
-    function getPublicationDateStart();
+    public function getPublicationDateStart();
 
     /**
      * Set created_at
      *
      * @param \DateTime $createdAt
      */
-    function setCreatedAt(\DateTime $createdAt = null);
+    public function setCreatedAt(\DateTime $createdAt = null);
 
     /**
      * Get created_at
      *
      * @return \DateTime $createdAt
      */
-    function getCreatedAt();
+    public function getCreatedAt();
 
     /**
      * Set updated_at
      *
      * @param \DateTime $updatedAt
      */
-    function setUpdatedAt(\DateTime $updatedAt = null);
+    public function setUpdatedAt(\DateTime $updatedAt = null);
 
     /**
      * Get updated_at
      *
      * @return \Datetime $updatedAt
      */
-    function getUpdatedAt();
+    public function getUpdatedAt();
 
     /**
      * Add comments
      *
      * @param \Sonata\NewsBundle\Model\CommentInterface $comments
      */
-    function addComments(CommentInterface $comments);
+    public function addComments(CommentInterface $comments);
 
     /**
      *
      * @param array $comments
      */
-    function setComments($comments);
+    public function setComments($comments);
 
     /**
      * Get comments
      *
      * @return array $comments
      */
-    function getComments();
+    public function getComments();
 
     /**
      * Add tags
      *
      * @param \Sonata\NewsBundle\Model\TagInterface $tags
      */
-    function addTags(TagInterface $tags);
+    public function addTags(TagInterface $tags);
 
     /**
      * Get tags
      *
      * @return array $tags
      */
-    function getTags();
+    public function getTags();
 
     /**
      * @param $tags
      *
      * @return mixed
      */
-    function setTags($tags);
+    public function setTags($tags);
 
     /**
      * @return string
      */
-    function getYear();
+    public function getYear();
 
     /**
      * @return string
      */
-    function getMonth();
+    public function getMonth();
 
     /**
      * @return string
      */
-    function getDay();
+    public function getDay();
 
     /**
      * Set comments_enabled
      *
      * @param boolean $commentsEnabled
      */
-    function setCommentsEnabled($commentsEnabled);
+    public function setCommentsEnabled($commentsEnabled);
 
     /**
      * Get comments_enabled
      *
      * @return boolean $commentsEnabled
      */
-    function getCommentsEnabled();
+    public function getCommentsEnabled();
 
     /**
      * Set comments_close_at
      *
      * @param \DateTime $commentsCloseAt
      */
-    function setCommentsCloseAt(\DateTime $commentsCloseAt = null);
+    public function setCommentsCloseAt(\DateTime $commentsCloseAt = null);
 
     /**
      * Get comments_close_at
      *
      * @return \DateTime $commentsCloseAt
      */
-    function getCommentsCloseAt();
+    public function getCommentsCloseAt();
 
     /**
      * Set comments_default_status
      *
      * @param integer $commentsDefaultStatus
      */
-    function setCommentsDefaultStatus($commentsDefaultStatus);
+    public function setCommentsDefaultStatus($commentsDefaultStatus);
 
     /**
      * Get comments_default_status
      *
      * @return integer $commentsDefaultStatus
      */
-    function getCommentsDefaultStatus();
+    public function getCommentsDefaultStatus();
 
     /**
      * Set comments_count
      *
      * @param integer $commentsDefaultStatus
      */
-    function setCommentsCount($commentscount);
+    public function setCommentsCount($commentscount);
 
     /**
      * Get comments_count
      *
      * @return integer $commentsCount
      */
-    function getCommentsCount();
+    public function getCommentsCount();
 
     /**
      * @return boolean
      */
-    function isCommentable();
+    public function isCommentable();
 
     /**
      * @return boolean
      */
-    function isPublic();
+    public function isPublic();
 
     /**
      * @param mixed $author
      *
      * @return mixed
      */
-    function setAuthor($author);
+    public function setAuthor($author);
 
     /**
      * @return mixed
      */
-    function getAuthor();
+    public function getAuthor();
 
     /**
      * @return \Sonata\NewsBundle\Model\CategoryInterface
      */
-    function getCategory();
+    public function getCategory();
 
     /**
      * @param CategoryInterface $category
      *
      * @return void
      */
-    function setCategory(CategoryInterface $category = null);
+    public function setCategory(CategoryInterface $category = null);
 }

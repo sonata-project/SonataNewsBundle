@@ -137,7 +137,7 @@ class PostManager extends ModelPostManager
      *    tag - string
      *    author - 'NULL', 'NOT NULL', id, array of ids
      *
-     * @param array $criteria
+     * @param array   $criteria
      * @param integer $page
      * @param integer $maxPerPage
      *
@@ -165,14 +165,14 @@ class PostManager extends ModelPostManager
 
         if (isset($criteria['tag'])) {
             $query->andWhere('t.slug LIKE :tag');
-            $parameters['tag'] = (string)$criteria['tag'];
+            $parameters['tag'] = (string) $criteria['tag'];
         }
 
         if (isset($criteria['author'])) {
             if (!is_array($criteria['author']) && stristr($criteria['author'], 'NULL')) {
                 $query->andWhere('p.author IS '.$criteria['author']);
             } else {
-                $query->andWhere(sprintf('p.author IN (%s)', implode((array)$criteria['author'], ',')));
+                $query->andWhere(sprintf('p.author IN (%s)', implode((array) $criteria['author'], ',')));
             }
         }
 

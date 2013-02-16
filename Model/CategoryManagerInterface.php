@@ -18,7 +18,7 @@ interface CategoryManagerInterface
      *
      * @return Category
      */
-    function create();
+    public function create();
 
     /**
      * Deletes a post
@@ -27,7 +27,7 @@ interface CategoryManagerInterface
      *
      * @return void
      */
-    function delete(CategoryInterface $category);
+    public function delete(CategoryInterface $category);
 
     /**
      * Finds one category by the given criteria
@@ -36,7 +36,7 @@ interface CategoryManagerInterface
      *
      * @return CategoryInterface
      */
-    function findOneBy(array $criteria);
+    public function findOneBy(array $criteria);
 
     /**
      * Finds one category by the given criteria
@@ -45,14 +45,14 @@ interface CategoryManagerInterface
      *
      * @return CategoryInterface
      */
-    function findBy(array $criteria);
+    public function findBy(array $criteria);
 
     /**
      * Returns the category's fully qualified class name
      *
      * @return string
      */
-    function getClass();
+    public function getClass();
 
     /**
      * Save a Category
@@ -61,5 +61,5 @@ interface CategoryManagerInterface
      *
      * @return void
      */
-    function save(CategoryInterface $category);
+    public function save(CategoryInterface $category);
 }

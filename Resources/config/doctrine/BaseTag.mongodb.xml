@@ -9,7 +9,7 @@
         <field name="name"          type="string"       fieldName="name"           />
         <field name="enabled"       type="boolean"      fieldName="enabled" />
         <field name="slug"          type="string"       fieldName="slug"    />
-        
+
         <field name="createdAt"     type="timestamp"    fieldName="createdAt" />
         <field name="updatedAt"     type="timestamp"    fieldName="updatedAt" />
 
@@ -17,6 +17,6 @@
             <lifecycle-callback type="prePersist" method="prePersist"/>
             <lifecycle-callback type="preUpdate" method="preUpdate"/>
         </lifecycle-callbacks>
-        
+
     </mapped-superclass>
 </doctrine-mongo-mapping>

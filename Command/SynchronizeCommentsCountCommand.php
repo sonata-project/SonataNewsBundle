@@ -12,12 +12,9 @@
 namespace Sonata\NewsBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\Output;
-use Symfony\Component\ClassLoader\ClassCollectionLoader;
 
 use Sonata\NewsBundle\Model\Comment;
 

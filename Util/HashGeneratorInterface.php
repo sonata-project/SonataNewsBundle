@@ -20,5 +20,5 @@ interface HashGeneratorInterface
      *
      * @return string
      */
-    function generate(CommentInterface $comment);
+    public function generate(CommentInterface $comment);
 }

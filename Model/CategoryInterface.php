@@ -18,82 +18,82 @@ interface CategoryInterface
      *
      * @return mixed
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * Get name
      *
      * @return string $name
      */
-    function getName();
+    public function getName();
 
     /**
      * Set enabled
      *
      * @param boolean $enabled
      */
-    function setEnabled($enabled);
+    public function setEnabled($enabled);
 
     /**
      * Get enabled
      *
      * @return boolean $enabled
      */
-    function getEnabled();
+    public function getEnabled();
 
     /**
      * Set slug
      *
      * @param integer $slug
      */
-    function setSlug($slug);
+    public function setSlug($slug);
 
     /**
      * Get slug
      *
      * @return integer $slug
      */
-    function getSlug();
+    public function getSlug();
 
     /**
      * Set description
      *
      * @param string $description
      */
-    function setDescription($description);
+    public function setDescription($description);
 
     /**
      * Get description
      *
      * @return string $description
      */
-    function getDescription();
+    public function getDescription();
 
     /**
      * Set count
      *
      * @param integer $count
      */
-    function setCount($count);
+    public function setCount($count);
 
     /**
      * Get count
      *
      * @return integer $count
      */
-    function getCount();
+    public function getCount();
 
     /**
      * Add posts
      *
      * @param \Sonata\NewsBundle\Model\PostInterface $posts
      */
-    function addPosts(PostInterface $posts);
+    public function addPosts(PostInterface $posts);
 
     /**
      * Get posts
      *
      * @return \Doctrine\Common\Collections\Collection $posts
      */
-    function getPosts();
+    public function getPosts();
 }

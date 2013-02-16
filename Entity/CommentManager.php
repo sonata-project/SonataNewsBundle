@@ -55,7 +55,6 @@ class CommentManager extends ModelCommentManager
         $this->updateCommentsCount($comment->getPost());
     }
 
-
     /**
      * Update the number of comment for a comment
      *

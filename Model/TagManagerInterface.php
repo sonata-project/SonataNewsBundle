@@ -18,7 +18,7 @@ interface TagManagerInterface
      *
      * @return Tag
      */
-    function create();
+    public function create();
 
     /**
      * Deletes a post
@@ -27,7 +27,7 @@ interface TagManagerInterface
      *
      * @return void
      */
-    function delete(TagInterface $tag);
+    public function delete(TagInterface $tag);
 
     /**
      * Finds one tag by the given criteria
@@ -36,7 +36,7 @@ interface TagManagerInterface
      *
      * @return TagInterface
      */
-    function findOneBy(array $criteria);
+    public function findOneBy(array $criteria);
 
     /**
      * Finds one tag by the given criteria
@@ -45,14 +45,14 @@ interface TagManagerInterface
      *
      * @return TagInterface
      */
-    function findBy(array $criteria);
+    public function findBy(array $criteria);
 
     /**
      * Returns the tag's fully qualified class name
      *
      * @return string
      */
-    function getClass();
+    public function getClass();
 
     /**
      * Save a tag
@@ -61,5 +61,5 @@ interface TagManagerInterface
      *
      * @return void
      */
-    function save(TagInterface $tag);
+    public function save(TagInterface $tag);
 }

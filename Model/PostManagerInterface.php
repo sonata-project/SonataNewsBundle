@@ -18,7 +18,7 @@ interface PostManagerInterface
      *
      * @return Post
      */
-    function create();
+    public function create();
 
     /**
      * Deletes a post
@@ -27,7 +27,7 @@ interface PostManagerInterface
      *
      * @return void
      */
-    function delete(PostInterface $post);
+    public function delete(PostInterface $post);
 
     /**
      * Finds one post by the given criteria
@@ -36,7 +36,7 @@ interface PostManagerInterface
      *
      * @return PostInterface
      */
-    function findOneBy(array $criteria);
+    public function findOneBy(array $criteria);
 
     /**
      * Finds one post by the given criteria
@@ -45,14 +45,14 @@ interface PostManagerInterface
      *
      * @return PostInterface
      */
-    function findBy(array $criteria);
+    public function findBy(array $criteria);
 
     /**
      * Returns the post's fully qualified class name
      *
      * @return string
      */
-    function getClass();
+    public function getClass();
 
     /**
      * Save a post
@@ -61,5 +61,5 @@ interface PostManagerInterface
      *
      * @return void
      */
-    function save(PostInterface $post);
+    public function save(PostInterface $post);
 }

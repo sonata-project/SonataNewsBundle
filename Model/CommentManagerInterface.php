@@ -18,7 +18,7 @@ interface CommentManagerInterface
      *
      * @return Comment
      */
-    function create();
+    public function create();
 
     /**
      * Deletes a comment
@@ -27,7 +27,7 @@ interface CommentManagerInterface
      *
      * @return void
      */
-    function delete(CommentInterface $comment);
+    public function delete(CommentInterface $comment);
 
     /**
      * Finds one comment by the given criteria
@@ -36,7 +36,7 @@ interface CommentManagerInterface
      *
      * @return CommentInterface
      */
-    function findOneBy(array $criteria);
+    public function findOneBy(array $criteria);
 
     /**
      * Finds one comment by the given criteria
@@ -45,14 +45,14 @@ interface CommentManagerInterface
      *
      * @return CommentInterface
      */
-    function findBy(array $criteria);
+    public function findBy(array $criteria);
 
     /**
      * Returns the comment's fully qualified class name
      *
      * @return string
      */
-    function getClass();
+    public function getClass();
 
     /**
      * Save a post
@@ -61,12 +61,12 @@ interface CommentManagerInterface
      *
      * @return void
      */
-    function save(CommentInterface $comment);
+    public function save(CommentInterface $comment);
 
     /**
      * Update the number of comment for a comment
      *
      * @return void
      */
-    function updateCommentsCount(PostInterface $post = null);
+    public function updateCommentsCount(PostInterface $post = null);
 }

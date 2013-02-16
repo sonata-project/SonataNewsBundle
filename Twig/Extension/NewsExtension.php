@@ -77,7 +77,7 @@ class NewsExtension extends \Twig_Extension
     public function renderTagRss()
     {
         $rss = array();
-        foreach($this->tagManager->findBy(array('enabled' => true)) as $tag) {
+        foreach ($this->tagManager->findBy(array('enabled' => true)) as $tag) {
             $rss[] = sprintf('<link href="%s" title="%s : %s" type="application/rss+xml" rel="alternate" />',
                 $this->router->generate('sonata_news_tag', array('tag' => $tag->getSlug(), '_format' => 'rss'), true),
                 $this->blog->getTitle(),
@@ -98,4 +98,3 @@ class NewsExtension extends \Twig_Extension
         return $this->blog->getPermalinkGenerator()->generate($post);
     }
 }
-

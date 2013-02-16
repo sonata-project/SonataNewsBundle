@@ -20,5 +20,5 @@ interface MailerInterface
      *
      * @return mixed
      */
-    function sendCommentNotification(CommentInterface $comment);
+    public function sendCommentNotification(CommentInterface $comment);
 }

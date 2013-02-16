@@ -11,7 +11,6 @@
 
 namespace Sonata\NewsBundle\Entity;
 
-use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\Tag as ModelTag;
 
 abstract class BaseTag extends ModelTag

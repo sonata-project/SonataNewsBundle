@@ -11,9 +11,7 @@
 
 namespace Sonata\NewsBundle\Entity;
 
-use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\Post as ModelPost;
-use Sonata\NewsBundle\Model\TagInterface;
 
 abstract class BasePost extends ModelPost
 {

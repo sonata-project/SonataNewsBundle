@@ -83,4 +83,3 @@ class Mailer implements MailerInterface
         $this->mailer->send($message);
     }
 }
-

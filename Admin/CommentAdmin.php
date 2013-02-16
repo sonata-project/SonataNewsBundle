@@ -29,7 +29,7 @@ class CommentAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        if(!$this->isChild()) {
+        if (!$this->isChild()) {
             $formMapper->add('post', 'sonata_type_model_list');
 //            $formMapper->add('post', 'sonata_type_admin', array(), array('edit' => 'inline'));
         }

@@ -63,6 +63,7 @@ class PostManager extends ModelPostManager
     public function findOneBySlug($year, $month, $day, $slug)
     {
         $pdqp = $this->getPublicationDateQueryParts(sprintf('%s-%s-%s', $year, $month, $day), 'day');
+
         return $this->dm->getRepository($this->class)
             ->createQueryBuilder()
             ->field('slug')->equals($slug)

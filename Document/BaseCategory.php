@@ -11,7 +11,6 @@
 
 namespace Sonata\NewsBundle\Document;
 
-use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\Category as ModelCategory;
 
 abstract class BaseCategory extends ModelCategory

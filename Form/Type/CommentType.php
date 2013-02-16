@@ -32,7 +32,7 @@ class CommentType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    function getName()
+    public function getName()
     {
         return 'sonata_post_comment';
     }

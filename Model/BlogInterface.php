@@ -18,35 +18,35 @@ interface BlogInterface
     /**
      * @return string
      */
-    function getTitle();
+    public function getTitle();
 
     /**
      * @return string
      */
-    function getLink();
+    public function getLink();
 
     /**
      * @return string
      */
-    function getDescription();
+    public function getDescription();
 
     /**
      * @param string $title
      */
-    function setTitle($title);
+    public function setTitle($title);
 
     /**
      * @param string $link
      */
-    function setLink($link);
+    public function setLink($link);
 
     /**
      * @param string $description
      */
-    function setDescription($description);
+    public function setDescription($description);
 
     /**
      * @return \Sonata\NewsBundle\Permalink\PermalinkInterface
      */
-    function getPermalinkGenerator();
+    public function getPermalinkGenerator();
 }

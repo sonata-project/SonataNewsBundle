@@ -17,119 +17,119 @@ interface CommentInterface
     const STATUS_VALID    = 1;
     const STATUS_MODERATE = 2;
 
-    function getId();
+    public function getId();
 
     /**
      * Set name
      *
      * @param string $name
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * Get name
      *
      * @return string $name
      */
-    function getName();
+    public function getName();
 
     /**
      * Set email
      *
      * @param string $email
      */
-    function setEmail($email);
+    public function setEmail($email);
 
     /**
      * Get email
      *
      * @return string $email
      */
-    function getEmail();
+    public function getEmail();
 
     /**
      * Set url
      *
      * @param text $url
      */
-    function setUrl($url);
+    public function setUrl($url);
 
     /**
      * Get url
      *
      * @return text $url
      */
-    function getUrl();
+    public function getUrl();
 
     /**
      * Set message
      *
      * @param text $message
      */
-    function setMessage($message);
+    public function setMessage($message);
 
     /**
      * Get message
      *
      * @return text $message
      */
-    function getMessage();
+    public function getMessage();
 
     /**
      * Set created_at
      *
      * @param \DateTime $createdAt
      */
-    function setCreatedAt(\DateTime $createdAt = null);
+    public function setCreatedAt(\DateTime $createdAt = null);
 
     /**
      * Get created_at
      *
      * @return \DateTime $createdAt
      */
-    function getCreatedAt();
+    public function getCreatedAt();
 
     /**
      * Set updated_at
      *
      * @param \DateTime $updatedAt
      */
-    function setUpdatedAt(\DateTime $updatedAt = null);
+    public function setUpdatedAt(\DateTime $updatedAt = null);
 
     /**
      * Get updated_at
      *
      * @return datetime $updatedAt
      */
-    function getUpdatedAt();
+    public function getUpdatedAt();
 
-    function getStatusCode();
+    public function getStatusCode();
 
     /**
      * Set status
      *
      * @param integer $status
      */
-    function setStatus($status);
+    public function setStatus($status);
 
     /**
      * Get status
      *
      * @return integer $status
      */
-    function getStatus();
+    public function getStatus();
 
     /**
      * Set post
      *
      * @param \Sonata\NewsBundle\Model\PostInterface $post
      */
-    function setPost($post);
+    public function setPost($post);
 
     /**
      * Get post
      *
      * @return \Sonata\NewsBundle\Model\PostInterface $post
      */
-    function getPost();
+    public function getPost();
 }

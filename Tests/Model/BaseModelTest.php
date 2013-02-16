@@ -11,10 +11,9 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
-
 class BasePostTest_Post extends \Sonata\NewsBundle\Model\Post
 {
-    function getId()
+    public function getId()
     {
         // TODO: Implement getId() method.
     }

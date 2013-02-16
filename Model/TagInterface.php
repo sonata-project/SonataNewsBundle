@@ -18,82 +18,82 @@ interface TagInterface
      *
      * @return mixed
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * Get name
      *
      * @return string $name
      */
-    function getName();
+    public function getName();
 
     /**
      * Set enabled
      *
      * @param boolean $enabled
      */
-    function setEnabled($enabled);
+    public function setEnabled($enabled);
 
     /**
      * Get enabled
      *
      * @return boolean $enabled
      */
-    function getEnabled();
+    public function getEnabled();
 
     /**
      * Set slug
      *
      * @param integer $slug
      */
-    function setSlug($slug);
+    public function setSlug($slug);
 
     /**
      * Get slug
      *
      * @return integer $slug
      */
-    function getSlug();
+    public function getSlug();
 
     /**
      * Set created_at
      *
      * @param \DateTime $createdAt
      */
-    function setCreatedAt(\DateTime $createdAt = null);
+    public function setCreatedAt(\DateTime $createdAt = null);
 
     /**
      * Get created_at
      *
      * @return \DateTime $createdAt
      */
-    function getCreatedAt();
+    public function getCreatedAt();
 
     /**
      * Set updated_at
      *
      * @param \DateTime $updatedAt
      */
-    function setUpdatedAt(\DateTime $updatedAt = null);
+    public function setUpdatedAt(\DateTime $updatedAt = null);
 
     /**
      * Get updated_at
      *
      * @return \DateTime $updatedAt
      */
-    function getUpdatedAt();
+    public function getUpdatedAt();
 
     /**
      * Add posts
      *
      * @param \Sonata\NewsBundle\Model\PostInterface $posts
      */
-    function addPosts(PostInterface $posts);
+    public function addPosts(PostInterface $posts);
 
     /**
      * Get posts
      *
      * @return array $posts
      */
-    function getPosts();
+    public function getPosts();
 }

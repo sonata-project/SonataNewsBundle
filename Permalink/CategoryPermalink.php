@@ -12,7 +12,6 @@
 namespace Sonata\NewsBundle\Permalink;
 
 use Sonata\NewsBundle\Model\PostInterface;
-use Doctrine\Common\Persistence\ObjectRepository;
 
 class CategoryPermalink implements PermalinkInterface
 {
