@@ -3,11 +3,17 @@ Installation
 
 * Add SonataNewsBundle to your vendor/bundles dir with the deps file::
 
-.. code-block::
+.. code-block:: php
 
-    php composer require sonata-project/doctrine-orm-admin-bundle --no-update
-    php composer require sonata-project/user-bundle --no-update
-    php composer update
+    //composer.json
+    "require": { 
+    //...
+        "sonata-project/news-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/easy-extends-bundle": "dev-master",
+    //...
+    }
+    
 
 * Add SonataNewsBundle to your application kernel::
 
@@ -29,44 +35,13 @@ Installation
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             // ...
         );
     }
 
-* Run the easy-extends command::
-
-    php app/console sonata:easy-extends:generate SonataNewsBundle
-    php app/console sonata:easy-extends:generate SonataUserBundle
-    php app/console sonata:easy-extends:generate SonataMediaBundle
-
-* Enable the new bundles::
-
-.. code-block:: php
-
-    // app/AppKernel.php
-    public function registerBundles()
-    {
-        return array(
-            // ...
-            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
-            // ...
-        );
-    }
-
-* Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
-
-* Add SonataNewsBundle routes to your application routing.yml::
-
-.. code-block:: yaml
-
-    # app/config/routing.yml
-    news:
-        resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
-        prefix: /news
-
-* Add a configuration file : ``sonata_news.yml``::
+* Create a configuration file : ``sonata_news.yml``::
 
 .. code-block:: yaml
 
@@ -94,14 +69,21 @@ Installation
                         ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
-* import the ``sonata_news.yml`` file::
+* import the ``sonata_news.yml`` file and enable json type for doctrine ::
 
 .. code-block:: yaml
 
     imports:
+        #...
         - { resource: sonata_news.yml }
+    #...
+    doctrine:
+        dbal:
+        # ...
+            types:
+                json: Sonata\Doctrine\Types\JsonType
 
-* Add a new context into your ``sonata_media.yml`` configuration::
+* Add a new context into your ``sonata_media.yml`` configuration if you don't have go there http://sonata-project.org/bundles/media/master/doc/reference/installation.html::
 
 .. code-block:: yaml
 
@@ -115,7 +97,7 @@ Installation
             small: { width: 150 , quality: 95}
             big:   { width: 500 , quality: 90}
 
-* Define the text formatters available for your blog post::
+* create configuration file sonata_formater.yml the text formatters available for your blog post::
 
 .. code-block:: yaml
 
@@ -148,4 +130,39 @@ Installation
                     - sonata.formatter.twig.control_flow
                     - sonata.formatter.twig.gist
                     - sonata.media.formatter.twig
+
+
+* Run the easy-extends command::
+
+    php app/console sonata:easy-extends:generate SonataNewsBundle
+    php app/console sonata:easy-extends:generate SonataUserBundle
+    php app/console sonata:easy-extends:generate SonataMediaBundle
+
+* If the bundle is generated in /app cut application folder and paste it in src/
+* Enable the new bundles::
+
+.. code-block:: php
+
+    // app/AppKernel.php
+    public function registerBundles()
+    {
+        return array(
+            // ...
+            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            // ...
+        );
+    }
+
+* Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
+
+* Add SonataNewsBundle routes to your application routing.yml::
+
+.. code-block:: yaml
+
+    # app/config/routing.yml
+    news:
+        resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
+        prefix: /news
 
