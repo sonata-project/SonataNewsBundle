@@ -32,8 +32,8 @@
         "sonata-project/notification-bundle": "2.1.*@dev"
     },
     "suggest": {
-        "sonata-project/doctrine-orm-admin-bundle": "2.1.*@dev",
-        "sonata-project/notification-bundle": "2.1.*"
+        "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
+        "sonata-project/notification-bundle": "2.*"
     },
     "autoload": {
         "psr-0": { "Sonata\\NewsBundle": "" }
