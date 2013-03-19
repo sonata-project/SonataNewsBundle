@@ -160,7 +160,7 @@ abstract class Category implements CategoryInterface
      */
     public function __toString()
     {
-        return $this->getName() ?: 'n/a';
+        return (string) $this->getName();
     }
 
     public function prePersist()
