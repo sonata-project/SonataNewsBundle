@@ -192,6 +192,6 @@ abstract class Comment implements CommentInterface
      */
     public function __toString()
     {
-        return $this->getName() ?: 'n-a';
+        return (string) $this->getName();
     }
 }
