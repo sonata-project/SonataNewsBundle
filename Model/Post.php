@@ -355,7 +355,7 @@ abstract class Post implements PostInterface
      */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle() ?: 'n/a';
     }
 
     /**
