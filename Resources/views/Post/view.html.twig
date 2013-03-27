@@ -40,13 +40,13 @@
         {{ post.content|raw }}
     </div>
 
-    {% render 'SonataNewsBundle:Post:comments' with {'postId': post.id} %}
+    {% render(controller('SonataNewsBundle:Post:comments', {'postId': post.id})) %}
 
     {% if post.iscommentable %}
-        {% render 'SonataNewsBundle:Post:addCommentForm' with {
+        {% render(controller('SonataNewsBundle:Post:addCommentForm', {
             'postId': post.id,
             'form': form
-        } %}
+        })) %}
     {% else %}
         <div>
             {{ 'message_comments_are_closed'|trans({}, 'SonataNewsBundle') }}
