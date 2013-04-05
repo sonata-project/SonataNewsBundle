@@ -65,7 +65,13 @@ class CommentAdmin extends Admin
         $listMapper
             ->addIdentifier('name')
             ->add('getStatusCode', 'text', array('label' => 'status_code', 'sortable' => 'status'))
-            ->add('post')
+        ;
+
+        if (!$this->isChild()) {
+            $listMapper->add('post');
+        }
+
+        $listMapper
             ->add('email')
             ->add('url')
             ->add('message');
