@@ -307,6 +307,14 @@ Hitre moderatorske povezave:
                 <source>batch.comment_disable</source>
                 <target>batch.comment_disable</target>
             </trans-unit>
+            <trans-unit id="link_previous_page">
+                <source>link_previous_page</source>
+                <target>Previous page</target>
+            </trans-unit>
+            <trans-unit id="link_next_page">
+                <source>link_next_page</source>
+                <target>Next page</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
