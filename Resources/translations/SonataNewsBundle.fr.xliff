@@ -318,6 +318,14 @@ Liens de modération rapide :
                 <source>batch.comment_disable</source>
                 <target>Invalider</target>
             </trans-unit>
+            <trans-unit id="link_previous_page">
+                <source>link_previous_page</source>
+                <target>Page précédente</target>
+            </trans-unit>
+            <trans-unit id="link_next_page">
+                <source>link_next_page</source>
+                <target>Page suivante</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

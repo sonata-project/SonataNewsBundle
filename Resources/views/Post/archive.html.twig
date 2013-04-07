@@ -43,7 +43,20 @@
             </div>
             <span class="sonata-blog-post-comments-count">{{ 'comments_count'|trans({'%comments_count%': post.commentsCount }, 'SonataNewsBundle') }}</span>
         </div>
+
     {% else %}
         {{ 'no_post_found'|trans({}, 'SonataNewsBundle') }}
     {% endfor %}
+
+    <div class="sonata-blog-post-pagination">
+        {% if pager.haveToPaginate() %}
+            {% if pager.page != pager.previouspage %}
+                <a href="{{ url(route, route_parameters|merge({'page': pager.previouspage})) }}" title="{{ 'link_previous_page'|trans({}, 'SonataNewsBundle') }}">{{ 'link_previous_page'|trans({}, 'SonataNewsBundle') }}</a>
+            {% endif %}
+
+            {% if pager.page != pager.nextpage %}
+                <a href="{{ url(route, route_parameters|merge({'page': pager.nextpage})) }}" title="{{ 'link_next_page'|trans({}, 'SonataNewsBundle') }}">{{ 'link_next_page'|trans({}, 'SonataNewsBundle') }}</a>
+            {% endif %}
+        {% endif %}
+    </div>
 </div>
