@@ -46,6 +46,12 @@
                 <argument id="sonata.news.manager.comment" type="service"/>
             </call>
 
+            <call method="setTemplates">
+                <argument type="collection">
+                    <argument key="inner_list_row">SonataNewsBundle:Admin:inner_row_comment.html.twig</argument>
+                    <argument key="base_list_field">SonataAdminBundle:CRUD:base_list_flat_field.html.twig</argument>
+                </argument>
+            </call>
         </service>
 
         <service id="sonata.news.admin.category" class="%sonata.news.admin.category.class%">

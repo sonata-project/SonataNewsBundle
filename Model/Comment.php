@@ -136,7 +136,6 @@ abstract class Comment implements CommentInterface
             self::STATUS_MODERATE => 'moderate',
             self::STATUS_INVALID => 'invalid',
             self::STATUS_VALID   => 'valid',
-
         );
     }
 
