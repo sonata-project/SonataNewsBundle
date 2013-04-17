@@ -16,6 +16,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
+use Sonata\NewsBundle\Model\PostInterface;
 
 class CommentManager extends ModelCommentManager
 {
