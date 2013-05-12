@@ -16,6 +16,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
+use Sonata\NewsBundle\Model\PostInterface;
 
 class CommentManager extends ModelCommentManager
 {
@@ -95,6 +96,18 @@ class CommentManager extends ModelCommentManager
         $pager->init();
 
         return $pager;
+    }
+
+    /**
+     * Update the comments count
+     * 
+     * @param \Sonata\NewsBundle\Document\PostInterface $post
+     */
+    public function updateCommentsCount(PostInterface $post = null) 
+    {
+        $post->setCommentsCount($post->getCommentsCount() + 1);
+        $this->dm->persist($post);
+        $this->dm->flush();
     }
 
 }
