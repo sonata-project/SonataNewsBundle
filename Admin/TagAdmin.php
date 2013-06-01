@@ -52,16 +52,4 @@ class TagAdmin extends Admin
             ->add('enabled', null, array('editable' => true))
         ;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validate(ErrorElement $errorElement, $object)
-    {
-        $errorElement
-            ->with('name')
-                ->assertMaxLength(array('limit' => 32))
-            ->end()
-        ;
-    }
 }

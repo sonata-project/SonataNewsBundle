@@ -58,15 +58,23 @@
 
     <class name="Application\Sonata\NewsBundle\Entity\Category">
         <getter property="name">
-           <constraint name="NotBlank" />
-           <constraint name="NotNull" />
+            <constraint name="NotBlank" />
+            <constraint name="NotNull" />
+            <constraint name="Length">
+               <option name="min">2</option>
+               <option name="max">32</option>
+           </constraint>
         </getter>
     </class>
 
     <class name="Application\Sonata\NewsBundle\Entity\Tag">
         <getter property="name">
-           <constraint name="NotBlank" />
-           <constraint name="NotNull" />
+            <constraint name="NotBlank" />
+            <constraint name="NotNull" />
+            <constraint name="Length">
+               <option name="min">2</option>
+               <option name="max">32</option>
+           </constraint>
         </getter>
     </class>
 
