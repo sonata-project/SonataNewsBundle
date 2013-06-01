@@ -16,15 +16,15 @@
             "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
-        "symfony/symfony": ">=2.2,<2.4-dev",
+        "symfony/symfony": ">=2.3,<2.4-dev",
         "sonata-project/admin-bundle": "2.2.*@dev",
         "sonata-project/user-bundle": "2.2.*@dev",
         "sonata-project/media-bundle": "2.2.*@dev",
-        "sonata-project/formatter-bundle": "2.2.*@dev",
+        "sonata-project/formatter-bundle": "2.3.*@dev",
         "sonata-project/easy-extends-bundle": "2.1.*",
-        "sonata-project/intl-bundle": "2.1.*",
-        "knplabs/knp-menu-bundle": "1.1.*@dev"
+        "sonata-project/intl-bundle": "2.2.*@dev"
     },
     "require-dev": {
         "doctrine/orm": "*",
@@ -42,7 +42,7 @@
     "target-dir": "Sonata/NewsBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "2.2.x-dev"
+            "dev-master": "2.3.x-dev"
         }
     }
 }
