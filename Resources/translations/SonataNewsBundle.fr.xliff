@@ -79,7 +79,7 @@
             </trans-unit>
             <trans-unit id="categories">
                 <source>categories</source>
-                <target>Categories</target>
+                <target>Catégories</target>
             </trans-unit>
             <trans-unit id="tags">
                 <source>tags</source>
