@@ -50,7 +50,7 @@ class CategoryAdmin extends Admin
         $listMapper
             ->addIdentifier('name')
             ->add('slug')
-            ->add('deescription')
+            ->add('description')
             ->add('enabled', null, array('editable' => true))
         ;
     }
