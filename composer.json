@@ -16,13 +16,12 @@
             "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "symfony/symfony": ">=2.3,<2.4-dev",
         "sonata-project/admin-bundle": "2.2.*@dev",
         "sonata-project/user-bundle": "2.2.*@dev",
         "sonata-project/media-bundle": "2.2.*@dev",
-        "sonata-project/formatter-bundle": "2.3.*@dev",
+        "sonata-project/formatter-bundle": "2.3.*",
         "sonata-project/easy-extends-bundle": "2.1.*",
         "sonata-project/intl-bundle": "2.2.*@dev"
     },
