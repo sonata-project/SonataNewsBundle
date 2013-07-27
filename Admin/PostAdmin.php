@@ -61,15 +61,20 @@ class PostAdmin extends Admin
         $formMapper
             ->with('General')
                 ->add('enabled', null, array('required' => false))
-                ->add('author', 'sonata_type_model')
+                ->add('author', 'sonata_type_model_list')
                 ->add('category', 'sonata_type_model_list', array('required' => false))
                 ->add('title')
                 ->add('abstract', null, array('attr' => array('class' => 'span6', 'rows' => 5)))
-                ->add('contentFormatter', 'sonata_formatter_type_selector', array(
-                    'source' => 'rawContent',
-                    'target' => 'content'
+                ->add('content', 'sonata_formatter_type', array(
+                    'event_dispatcher' => $formMapper->getFormBuilder()->getEventDispatcher(),
+                    'format_field'   => 'contentFormatter',
+                    'source_field'   => 'rawContent',
+                    'source_field_options'      => array(
+                        'attr' => array('class' => 'span10', 'rows' => 20)
+                    ),
+                    'target_field'   => 'content',
+                    'listener'       => true,
                 ))
-                ->add('rawContent', null, array('attr' => array('class' => 'span10', 'rows' => 20)))
             ->end()
             ->with('Tags')
                 ->add('tags', 'sonata_type_model', array(
@@ -109,6 +114,8 @@ class PostAdmin extends Admin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        $that = $this;
+
         $datagridMapper
             ->add('title')
             ->add('enabled')
@@ -116,12 +123,12 @@ class PostAdmin extends Admin
             ->add('author')
             ->add('with_open_comments', 'doctrine_orm_callback', array(
 //                'callback'   => array($this, 'getWithOpenCommentFilter'),
-                'callback' => function ($queryBuilder, $alias, $field, $data) {
+                'callback' => function ($queryBuilder, $alias, $field, $data) use ($that) {
                     if (!is_array($data) || !$data['value']) {
                         return;
                     }
 
-                    $commentClass = $this->commentManager->getClass();
+                    $commentClass = $that->commentManager->getClass();
 
                     $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
                     $queryBuilder->andWhere('c.status = :status');

@@ -182,13 +182,9 @@ Liens de modération rapide :
                 <source>form.label_abstract</source>
                 <target>Extrait</target>
             </trans-unit>
-            <trans-unit id="form_label_content_format">
-                <source>form.label_content_formatter</source>
-                <target>Content format</target>
-            </trans-unit>
-            <trans-unit id="form_label_raw_content">
-                <source>form.label_raw_content</source>
-                <target>Contenu brut</target>
+            <trans-unit id="form_label_content">
+                <source>form.label_content</source>
+                <target>Contenu</target>
             </trans-unit>
             <trans-unit id="form_label_tags">
                 <source>form.label_tags</source>
