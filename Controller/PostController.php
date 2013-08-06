@@ -269,7 +269,7 @@ class PostController extends Controller
         }
 
         $form = $this->getCommentForm($post);
-        $form->bindRequest($this->get('request'));
+        $form->bind($this->get('request'));
 
         if ($form->isValid()) {
             $comment = $form->getData();
