@@ -13,6 +13,7 @@ namespace Sonata\NewsBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CommentType extends AbstractType
 {
@@ -22,10 +23,10 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('email', null, array('required' => false))
-            ->add('url', null, array('required' => false))
-            ->add('message')
+            ->add('name', null, array('label' => 'form.comment.name'))
+            ->add('email', 'email', array('required' => false, 'label' => 'form.comment.email'))
+            ->add('url', 'url', array('required' => false, 'label' => 'form.comment.url'))
+            ->add('message', null, array('label' => 'form.comment.message'))
         ;
     }
 
@@ -35,5 +36,15 @@ class CommentType extends AbstractType
     public function getName()
     {
         return 'sonata_post_comment';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {;
+        $resolver->setDefaults(array(
+            'translation_domain' => 'SonataNewsBundle'
+        ));
     }
 }

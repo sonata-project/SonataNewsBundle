@@ -280,6 +280,22 @@
                 <source>link_next_page</source>
                 <target>Next page</target>
             </trans-unit>
+            <trans-unit id="form.comment.name">
+                <source>form.comment.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="form.comment.email">
+                <source>form.comment.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form.comment.url">
+                <source>form.comment.url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="form.comment.message">
+                <source>form.comment.message</source>
+                <target>Message</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

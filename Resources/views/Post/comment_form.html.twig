@@ -14,28 +14,21 @@
 <h3>{{'title_leave_comment'|trans({}, 'SonataNewsBundle') }}</h3>
 
 <form action="{{ url('sonata_news_add_comment', {'id': post_id}) }}" method="POST" >
+
     <div class="clearfix">
-        {{ form_label(form.name) }}
-        {{ form_widget(form.name) }}
-        {{ form_errors(form.name) }}
+        {{ form_row(form.name) }}
     </div>
 
     <div class="clearfix">
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email) }}
-        {{ form_errors(form.email) }}
+        {{ form_row(form.name) }}
     </div>
 
     <div class="clearfix">
-        {{ form_label(form.url) }}
-        {{ form_widget(form.url) }}
-        {{ form_errors(form.url) }}
+        {{ form_row(form.name) }}
     </div>
 
     <div class="clearfix">
-        {{ form_label(form.message) }}
-        {{ form_widget(form.message) }}
-        {{ form_errors(form.message) }}
+        {{ form_row(form.name) }}
     </div>
 
     {{ form_rest(form) }}
