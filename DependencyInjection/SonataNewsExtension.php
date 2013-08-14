@@ -227,6 +227,7 @@ class SonataNewsExtension extends Extension
         $collector->addAssociation($config['class']['post'], 'mapManyToMany', array(
             'fieldName' => 'tags',
             'targetEntity' => $config['class']['tag'],
+            'inversedBy' => 'posts',
             'cascade' =>
             array(
                 1 => 'persist',
@@ -257,7 +258,7 @@ class SonataNewsExtension extends Extension
              'cascade' => array(
              ),
              'mappedBy' => NULL,
-             'inversedBy' => NULL,
+             'inversedBy' => 'comments',
              'joinColumns' =>
              array(
                  array(
