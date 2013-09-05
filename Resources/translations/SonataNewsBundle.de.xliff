@@ -99,7 +99,7 @@
             </trans-unit>
             <trans-unit id="list_label_title">
                 <source>list.label_title</source>
-                <target>Title</target>
+                <target>Titel</target>
             </trans-unit>
             <trans-unit id="list_label_author">
                 <source>list.label_author</source>
@@ -107,11 +107,11 @@
             </trans-unit>
             <trans-unit id="list_label_category">
                 <source>list.label_category</source>
-                <target>Category</target>
+                <target>Kategorie</target>
             </trans-unit>
             <trans-unit id="list_label_enabled">
                 <source>list.label_enabled</source>
-                <target>Enabled</target>
+                <target>Aktiviert</target>
             </trans-unit>
             <trans-unit id="list_label_label_tags">
                 <source>list.label_tags</source>
@@ -119,15 +119,15 @@
             </trans-unit>
             <trans-unit id="list_label_comments_enabled">
                 <source>list.label_comments_enabled</source>
-                <target>Comments enabled</target>
+                <target>Kommentare aktiviert</target>
             </trans-unit>
             <trans-unit id="list_label_comments_count">
                 <source>list.label_comments_count</source>
-                <target>Comment count</target>
+                <target>Kommentaranzahl</target>
             </trans-unit>
             <trans-unit id="form_label_enabled">
                 <source>form.label_enabled</source>
-                <target>Enabled</target>
+                <target>Aktiviert</target>
             </trans-unit>
             <trans-unit id="form_label_author">
                 <source>form.label_author</source>
@@ -135,19 +135,19 @@
             </trans-unit>
             <trans-unit id="form_label_category">
                 <source>form.label_category</source>
-                <target>Category</target>
+                <target>Kategorie</target>
             </trans-unit>
             <trans-unit id="form_label_title">
                 <source>form.label_title</source>
-                <target>Title</target>
+                <target>Titel</target>
             </trans-unit>
             <trans-unit id="form_label_abstract">
                 <source>form.label_abstract</source>
-                <target>Abstract</target>
+                <target>Auszug</target>
             </trans-unit>
             <trans-unit id="form_label_content">
                 <source>form.label_content</source>
-                <target>Content</target>
+                <target>Inhalt</target>
             </trans-unit>
             <trans-unit id="form_label_tags">
                 <source>form.label_tags</source>
@@ -155,27 +155,27 @@
             </trans-unit>
             <trans-unit id="form_label_publication_date_start">
                 <source>form.label_publication_date_start</source>
-                <target>Publication date</target>
+                <target>Publikationsdatum</target>
             </trans-unit>
             <trans-unit id="form_label_comments_close_at">
                 <source>form.label_comments_close_at</source>
-                <target>Comments closed at</target>
+                <target>Kommentare geschlossen am </target>
             </trans-unit>
             <trans-unit id="form_label_comments_enabled">
                 <source>form.label_comments_enabled</source>
-                <target>Comments enabled</target>
+                <target>Kommentare aktiviert</target>
             </trans-unit>
             <trans-unit id="form_label_comments_default_status">
                 <source>form.label_comments_default_status</source>
-                <target>Comment default status</target>
+                <target>Kommentare Standard Status</target>
             </trans-unit>
             <trans-unit id="filter_label_title">
                 <source>filter.label_title</source>
-                <target>Title</target>
+                <target>Titel</target>
             </trans-unit>
             <trans-unit id="filter_label_enabled">
                 <source>filter.label_enabled</source>
-                <target>Enabled</target>
+                <target>Aktiviert</target>
             </trans-unit>
             <trans-unit id="filter_label_tags">
                 <source>filter.label_tags</source>
@@ -187,7 +187,7 @@
             </trans-unit>
             <trans-unit id="filter_label_with_open_comments">
                 <source>filter.label_with_open_comments</source>
-                <target>Open comments</target>
+                <target>Kommentare offen</target>
             </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>
@@ -195,11 +195,11 @@
             </trans-unit>
             <trans-unit id="list_status_code">
                 <source>status_code</source>
-                <target>Status code</target>
+                <target>Status Code</target>
             </trans-unit>
             <trans-unit id="list_label_post">
                 <source>list.label_post</source>
-                <target>Post</target>
+                <target>Artikel</target>
             </trans-unit>
             <trans-unit id="list_label_email">
                 <source>list.label_email</source>
@@ -211,7 +211,7 @@
             </trans-unit>
             <trans-unit id="list_label_message">
                 <source>list.label_message</source>
-                <target>Message</target>
+                <target>Nachricht</target>
             </trans-unit>
             <trans-unit id="filter_label_name">
                 <source>filter.label_name</source>
@@ -223,11 +223,11 @@
             </trans-unit>
             <trans-unit id="filter_label_message">
                 <source>filter.label_message</source>
-                <target>Message</target>
+                <target>Nachricht</target>
             </trans-unit>
             <trans-unit id="form_label_post">
                 <source>form.label_post</source>
-                <target>Post</target>
+                <target>Artikel</target>
             </trans-unit>
             <trans-unit id="form_label_name">
                 <source>form.label_name</source>
@@ -243,7 +243,7 @@
             </trans-unit>
             <trans-unit id="form_label_message">
                 <source>form.label_message</source>
-                <target>Message</target>
+                <target>Nachricht</target>
             </trans-unit>
             <trans-unit id="form_label_status">
                 <source>form.label_status</source>
@@ -255,35 +255,35 @@
             </trans-unit>
             <trans-unit id="list_label_description">
                 <source>list.label_deescription</source>
-                <target>Description</target>
+                <target>Beschreibung</target>
             </trans-unit>
             <trans-unit id="breadcrumb_link_category_list">
                 <source>breadcrumb.link_category_list</source>
-                <target>Categories</target>
+                <target>Kategorien</target>
             </trans-unit>
             <trans-unit id="form_label_description">
                 <source>form.label_description</source>
-                <target>Description</target>
+                <target>Beschreibung</target>
             </trans-unit>
             <trans-unit id="filter_label_posts">
                 <source>filter.label_posts</source>
-                <target>Posts</target>
+                <target>Artikel</target>
             </trans-unit>
             <trans-unit id="batch.comment_enable">
                 <source>batch.comment_enable</source>
-                <target>batch.comment_enable</target>
+                <target>Kommentare aktivieren</target>
             </trans-unit>
             <trans-unit id="batch.comment_disable">
                 <source>batch.comment_disable</source>
-                <target>batch.comment_disable</target>
+                <target>Kommentare deaktivieren</target>
             </trans-unit>
             <trans-unit id="link_previous_page">
                 <source>link_previous_page</source>
-                <target>Previous page</target>
+                <target>Vorherige Seite</target>
             </trans-unit>
             <trans-unit id="link_next_page">
                 <source>link_next_page</source>
-                <target>Next page</target>
+                <target>Nächste Seite</target>
             </trans-unit>
             <trans-unit id="form.comment.name">
                 <source>form.comment.name</source>
@@ -291,7 +291,7 @@
             </trans-unit>
             <trans-unit id="form.comment.email">
                 <source>form.comment.email</source>
-                <target>Email</target>
+                <target>E-Mail</target>
             </trans-unit>
             <trans-unit id="form.comment.url">
                 <source>form.comment.url</source>
@@ -299,7 +299,7 @@
             </trans-unit>
             <trans-unit id="form.comment.message">
                 <source>form.comment.message</source>
-                <target>Message</target>
+                <target>Nachricht</target>
             </trans-unit>
         </body>
     </file>
