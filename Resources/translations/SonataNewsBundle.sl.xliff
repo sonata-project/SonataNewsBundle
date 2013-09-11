@@ -339,6 +339,26 @@ Hitre moderatorske povezave:
                 <source>post_is_not_public</source>
                 <target>post_is_not_public</target>
             </trans-unit>
+            <trans-unit id="label_comment_valid">
+                <source>label_comment_valid</source>
+                <target>label_comment_valid</target>
+            </trans-unit>
+            <trans-unit id="label_comment_invalid">
+                <source>label_comment_invalid</source>
+                <target>label_comment_invalid</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_status">
+                <source>label_unknown_status</source>
+                <target>label_unknown_status</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_moderate">
+                <source>label_unknown_moderate</source>
+                <target>label_unknown_moderate</target>
+            </trans-unit>
+            <trans-unit id="view_all_comments">
+                <source>view_all_comments</source>
+                <target>view_all_comments</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

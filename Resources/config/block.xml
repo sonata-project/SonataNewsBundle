@@ -12,6 +12,14 @@
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.news.manager.post" />
         </service>
+
+        <service id="sonata.news.block.recent_comments" class="Sonata\NewsBundle\Block\RecentCommentsBlockService">
+            <tag name="sonata.block"/>
+
+            <argument>sonata.news.block.recent_comments</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.news.manager.comment" />
+        </service>
     </services>
 
 </container>

@@ -113,15 +113,21 @@ class CommentManager extends ModelCommentManager
      */
     public function getPager(array $criteria, $page, $maxPerPage = 10)
     {
+        if (!isset($criteria['mode'])) {
+            $criteria['mode'] = 'public';
+        }
+
         $parameters = array();
 
         $query = $this->em->getRepository($this->class)
             ->createQueryBuilder('c')
             ->orderby('c.createdAt', 'DESC');
 
-        $criteria['status'] = isset($criteria['status']) ? $criteria['status'] : CommentInterface::STATUS_VALID;
-        $query->andWhere('c.status = :status');
-        $parameters['status'] = $criteria['status'];
+        if ($criteria['mode'] == 'public') {
+            $criteria['status'] = isset($criteria['status']) ? $criteria['status'] : CommentInterface::STATUS_VALID;
+            $query->andWhere('c.status = :status');
+            $parameters['status'] = $criteria['status'];
+        }
 
         if (isset($criteria['postId'])) {
             $query->andWhere('c.post = :postId');

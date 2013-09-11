@@ -343,6 +343,26 @@ Quick moderation links :
                 <source>post_is_not_public</source>
                 <target>not public</target>
             </trans-unit>
+            <trans-unit id="label_comment_valid">
+                <source>label_comment_valid</source>
+                <target>valid</target>
+            </trans-unit>
+            <trans-unit id="label_comment_invalid">
+                <source>label_comment_invalid</source>
+                <target>invalid</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_status">
+                <source>label_unknown_status</source>
+                <target>unknown</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_moderate">
+                <source>label_unknown_moderate</source>
+                <target>moderate</target>
+            </trans-unit>
+            <trans-unit id="view_all_comments">
+                <source>view_all_comments</source>
+                <target>View comments</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
