@@ -48,6 +48,7 @@ class SonataNewsExtension extends Extension
         $loader->load('twig.xml');
         $loader->load('form.xml');
         $loader->load('core.xml');
+        $loader->load('block.xml');
 
         if (!isset($config['salt'])) {
             throw new \InvalidArgumentException("The configration node 'salt' is not set for the SonataNewsbundle (sonata_news)");

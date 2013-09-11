@@ -145,18 +145,34 @@ class PostManager extends ModelPostManager
      */
     public function getPager(array $criteria, $page, $maxPerPage = 10)
     {
+        if (!isset($criteria['mode'])) {
+            $criteria['mode'] = 'public';
+        }
+
         $parameters = array();
         $query = $this->em->getRepository($this->class)
             ->createQueryBuilder('p')
             ->select('p, t')
-            ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
-            ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
             ->orderby('p.publicationDateStart', 'DESC');
 
-        // enabled
-        $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;
-        $query->andWhere('p.enabled = :enabled');
-        $parameters['enabled'] = $criteria['enabled'];
+        if ($criteria['mode'] == 'admin') {
+            $query
+                ->leftJoin('p.tags', 't')
+                ->leftJoin('p.author', 'a')
+            ;
+        } else {
+            $query
+                ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
+                ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
+             ;
+        }
+
+        if ($criteria['mode'] == 'public') {
+            // enabled
+            $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;
+            $query->andWhere('p.enabled = :enabled');
+            $parameters['enabled'] = $criteria['enabled'];
+        }
 
         if (isset($criteria['date'])) {
             $query->andWhere($criteria['date']['query']);

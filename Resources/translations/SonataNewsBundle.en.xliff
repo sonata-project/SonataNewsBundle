@@ -331,6 +331,18 @@ Quick moderation links :
                 <source>form.comment.message</source>
                 <target>Message</target>
             </trans-unit>
+            <trans-unit id="view_all_posts">
+                <source>view_all_posts</source>
+                <target>View posts</target>
+            </trans-unit>
+            <trans-unit id="post_is_public">
+                <source>post_is_public</source>
+                <target>public</target>
+            </trans-unit>
+            <trans-unit id="post_is_not_public">
+                <source>post_is_not_public</source>
+                <target>not public</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
