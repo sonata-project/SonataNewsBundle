@@ -75,7 +75,7 @@ class RecentCommentsBlockService extends BaseBlockService
     {
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
-                array('number', 'int', array('required' => true)),
+                array('number', 'integer', array('required' => true)),
                 array('title', 'text', array('required' => false)),
                 array('mode', 'choice', array(
                     'choices' => array(
@@ -92,7 +92,7 @@ class RecentCommentsBlockService extends BaseBlockService
      */
     public function getName()
     {
-        return 'Recent Posts';
+        return 'Recent Comments';
     }
 
     /**
