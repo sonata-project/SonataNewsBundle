@@ -19,8 +19,8 @@
     "require": {
         "symfony/symfony": "~2.3",
         "sonata-project/admin-bundle": "~2.2",
-        "sonata-project/user-bundle": "~2.2.*",
-        "sonata-project/media-bundle": "~2.2.*",
+        "sonata-project/user-bundle": "~2.2",
+        "sonata-project/media-bundle": "~2.2",
         "sonata-project/classification-bundle": "2.2.*@dev",
         "sonata-project/formatter-bundle": "~2.3",
         "sonata-project/easy-extends-bundle": "~2.1",
@@ -42,7 +42,7 @@
     "target-dir": "Sonata/NewsBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "2.2.x-dev"
+            "dev-master": "2.3.x-dev"
         }
     }
 }
