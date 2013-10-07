@@ -1,60 +1,39 @@
-
-10/07/2013 ~ Migrate to the classification bundle
-=================================================
+## 10/07/2013 ~ Migrate to the SonataClassificationBundle
 
 The SonataNewsBundle now used the SonataClassificationBundle, so here the main changes:
 
-* Tag namespace changes from Sonata\NewsBundle\Model\TagInteface => Sonata\ClassificationBundle\Model\TagInteface
-
-* Category is now a Collection object:  Sonata\NewsBundle\Model\CategoryInteface => Sonata\ClassificationBundle\Model\CollectionInteface
-
-* Update Tag and Category classes from Application\NewsBundle => Application\ClassificationBundle
-  Fix namespace reference (Category => Collection)
-
-* Update Tag and Collection doctrine xml from Application\NewsBundle => Application\ClassificationBundle
-  Fix namespace reference (Category => Collection)
-
-* Fix doctrine relations
-
+* Tag namespace changes from ``Sonata\NewsBundle\Model\TagInteface`` => ``Sonata\ClassificationBundle\Model\TagInteface``
+* Category is now a Collection object:  ``Sonata\NewsBundle\Model\CategoryInteface`` => ``Sonata\ClassificationBundle\Model\CollectionInteface``
+* Update Tag and Category classes from ``Application\NewsBundle`` => ``Application\ClassificationBundle` - Fix namespace reference (Category => Collection)
+* Update Tag and Collection doctrine xml from ``Application\NewsBundle`` => ``Application\ClassificationBundle`` - Fix namespace reference (Category => Collection)
 * You cannot rely on Tag.posts or Category.posts associations, these associations are gone.
-
 * Create migration data
 
-ClassificationBundle install step:
+### ClassificationBundle install step
 
-    * add "sonata-project/classification-bundle": "~2.2@dev" into your composer.json
-    * run ``composer update`` to add the code to your project
-    * add ``new Sonata\ClassificationBundle\SonataClassificationBundle(),`` into ``AppKernel.php``
-    * generates easy extends model : ``app/console sonata:easy-extends:generate SonataClassificationBundle -d src``
-    * enable the new Bundle into ``AppKernel.php``: ``new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),``
-    * run ``app/console doctrine:schema:update --dump-sql``, you should see queries related to the classification bundle. If not please check the ``auto_mapping`` feature from doctrine.
-    * create a migration file ``app/console doctrine:migrations:diff``, this should generate a new file : something like ``/vagrant/sonata-site/app/DoctrineMigrations/Version20131007062821.php``
-    * run the migration ``app/console doctrine:migration:migrate``
+* add "sonata-project/classification-bundle": "~2.2@dev" into your composer.json
+* run ``composer update`` to add the code to your project
+* add ``new Sonata\ClassificationBundle\SonataClassificationBundle(),`` into ``AppKernel.php``
+* generates easy extends model : ``app/console sonata:easy-extends:generate SonataClassificationBundle -d src``
+* enable the new Bundle into ``AppKernel.php``: ``new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),``
+* run ``app/console doctrine:schema:update --dump-sql``, you should see queries related to the classification bundle. If not please check the ``auto_mapping`` feature from doctrine.
+* create a migration file ``app/console doctrine:migrations:diff``, this should generate a new file : something like ``/vagrant/sonata-site/app/DoctrineMigrations/Version20131007062821.php``
+* run the migration ``app/console doctrine:migration:migrate``
 
-Migrate NewsBundle code:
+### Migrate NewsBundle code
 
-    * remove Category and Tag models : ``rm src/Application/Sonata/NewsBundle/Entity/(Category|Tag).php``
-    * remove Category and Tag configurations : ``rm src/Application/Sonata/NewsBundle/Resources/config/doctrine/(Category|Tag)*.xml``
-    * If you have tweaked model classes through the configuration, please adjust the change ...
+* remove Category and Tag models : ``rm src/Application/Sonata/NewsBundle/Entity/(Category|Tag).php``
+* remove Category and Tag configurations : ``rm src/Application/Sonata/NewsBundle/Resources/config/doctrine/(Category|Tag)*.xml``
+* If you have tweaked model classes through the configuration, please adjust the change ...
 
-Migrate database data
+### Migrate database data
 
-    * Create a migration file ``app/console doctrine:migrations:diff``, this should generate a new file : something like ``/vagrant/sonata-site/app/DoctrineMigrations/Version20131007064324.php``
-    * DOES NOT RUN THE MIGRATION!
-    * Edit the migration file
-
-        * This line ``ALTER TABLE news__post_tag DROP FOREIGN KEY FK_682B2051BAD`` is set twice, remove the last one
-        * You need to prepend lines with:
-
-            $this->addSql("SET foreign_key_checks = 0;");
-            $this->addSql("INSERT INTO classification__tag (id, name, enabled, slug, created_at, updated_at) SELECT * from news__tag");
-            $this->addSql("INSERT INTO classification__tag_audit (id, rev, name, enabled, slug, created_at, updated_at, revtype) SELECT * from news__tag_audit");
-            $this->addSql("INSERT INTO classification__collection (id, name, enabled, slug, description, created_at, updated_at) SELECT id, name, enabled, slug, description, created_at, updated_at FROM news__category;");
-            $this->addSql("INSERT INTO classification__collection_audit (id, rev, name, enabled, slug, description, created_at, updated_at, revtype) SELECT id, rev, name, enabled, slug, description, created_at, updated_at, revtype FROM news__category_audit;");
-
-        * You need to append lines with:
-            $this->addSql("SET foreign_key_checks = 1;");
-
+* Create a migration file ``app/console doctrine:migrations:diff``, this should generate a new file : something like ``/vagrant/sonata-site/app/DoctrineMigrations/Version20131007064324.php``
+* DOES NOT RUN THE MIGRATION!
+* Edit the migration file to match the provided one:
+    * This line ``ALTER TABLE news__post_tag DROP FOREIGN KEY FK_682B2051BAD`` is set twice, remove the last one
+    * Add new SQL lines to migrate data
+  
 The complete migration file should look like:
 
 ```php
