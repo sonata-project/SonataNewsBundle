@@ -135,9 +135,9 @@ Quick moderation links :
                 <source>list.label_author</source>
                 <target>Author</target>
             </trans-unit>
-            <trans-unit id="list_label_category">
-                <source>list.label_category</source>
-                <target>Category</target>
+            <trans-unit id="list_label_collection">
+                <source>list.label_collection</source>
+                <target>Collection</target>
             </trans-unit>
             <trans-unit id="list_label_enabled">
                 <source>list.label_enabled</source>
@@ -163,9 +163,9 @@ Quick moderation links :
                 <source>form.label_author</source>
                 <target>Author</target>
             </trans-unit>
-            <trans-unit id="form_label_category">
-                <source>form.label_category</source>
-                <target>Category</target>
+            <trans-unit id="form_label_collection">
+                <source>form.label_collection</source>
+                <target>Collection</target>
             </trans-unit>
             <trans-unit id="form_label_title">
                 <source>form.label_title</source>
@@ -287,8 +287,8 @@ Quick moderation links :
                 <source>list.label_deescription</source>
                 <target>Description</target>
             </trans-unit>
-            <trans-unit id="breadcrumb_link_category_list">
-                <source>breadcrumb.link_category_list</source>
+            <trans-unit id="breadcrumb_link_collection_list">
+                <source>breadcrumb.link_collection_list</source>
                 <target>Categories</target>
             </trans-unit>
             <trans-unit id="form_label_description">

@@ -22,8 +22,8 @@
         <requirement key="_format">html|rss</requirement>
     </route>
 
-    <route id="sonata_news_category" pattern="/category/{category}.{_format}">
-        <default key="_controller">SonataNewsBundle:Post:category</default>
+    <route id="sonata_news_collection" pattern="/collection/{collection}.{_format}">
+        <default key="_controller">SonataNewsBundle:Post:collection</default>
         <default key="_format">html</default>
         <requirement key="_format">html|rss</requirement>
     </route>

@@ -94,28 +94,28 @@ class PostController extends Controller
     }
 
     /**
-     * @param $category
+     * @param $collection
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function categoryAction($category)
+    public function collectionAction($collection)
     {
-        $category = $this->get('sonata.news.manager.category')->findOneBy(array(
-            'slug' => $category,
+        $collection = $this->get('sonata.classification.manager.collection')->findOneBy(array(
+            'slug' => $collection,
             'enabled' => true
         ));
 
-        if (!$category) {
-            throw new NotFoundHttpException('Unable to find the category');
+        if (!$collection) {
+            throw new NotFoundHttpException('Unable to find the collection');
         }
 
-        if (!$category->getEnabled()) {
-            throw new NotFoundHttpException('Unable to find the category');
+        if (!$collection->getEnabled()) {
+            throw new NotFoundHttpException('Unable to find the collection');
         }
 
-        return $this->renderArchive(array('category' => $category), array('category' => $category));
+        return $this->renderArchive(array('collection' => $collection), array('collection' => $collection));
     }
 
     /**

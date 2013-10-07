@@ -135,8 +135,8 @@ Modera el comentario de forma rápida :
                 <source>list.label_author</source>
                 <target>Autor</target>
             </trans-unit>
-            <trans-unit id="list_label_category">
-                <source>list.label_category</source>
+            <trans-unit id="list_label_collection">
+                <source>list.label_collection</source>
                 <target>Categoría</target>
             </trans-unit>
             <trans-unit id="list_label_enabled">
@@ -163,8 +163,8 @@ Modera el comentario de forma rápida :
                 <source>form.label_author</source>
                 <target>Autor</target>
             </trans-unit>
-            <trans-unit id="form_label_category">
-                <source>form.label_category</source>
+            <trans-unit id="form_label_collection">
+                <source>form.label_collection</source>
                 <target>Categoría</target>
             </trans-unit>
             <trans-unit id="form_label_title">
@@ -287,8 +287,8 @@ Modera el comentario de forma rápida :
                 <source>list.label_deescription</source>
                 <target>Descripción</target>
             </trans-unit>
-            <trans-unit id="breadcrumb_link_category_list">
-                <source>breadcrumb.link_category_list</source>
+            <trans-unit id="breadcrumb_link_collection_list">
+                <source>breadcrumb.link_collection_list</source>
                 <target>Categorías</target>
             </trans-unit>
             <trans-unit id="form_label_description">

@@ -14,7 +14,6 @@ use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 
-use Sonata\NewsBundle\Model\CategoryInterface;
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
@@ -22,6 +21,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr;
 
+use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Doctrine\ORM\Query;
 
 class PostManager extends ModelPostManager
@@ -88,13 +88,13 @@ class PostManager extends ModelPostManager
                 $parameters['slug'] = $urlParameters['slug'];
             }
 
-            if (isset($urlParameters['category'])) {
-                $pcqp = $this->getPublicationCategoryQueryParts($urlParameters['category']);
+            if (isset($urlParameters['collection'])) {
+                $pcqp = $this->getPublicationCollectionQueryParts($urlParameters['collection']);
 
                 $parameters = array_merge($parameters, $pcqp['params']);
 
                 $query
-                    ->leftJoin('p.category', 'c')
+                    ->leftJoin('p.collection', 'c')
                     ->andWhere($pcqp['query'])
                 ;
             }
@@ -192,9 +192,9 @@ class PostManager extends ModelPostManager
             }
         }
 
-        if (isset($criteria['category']) && $criteria['category'] instanceof CategoryInterface) {
-            $query->andWhere('p.category = :categoryid');
-            $parameters['categoryid'] = $criteria['category']->getId();
+        if (isset($criteria['collection']) && $criteria['collection'] instanceof CollectionInterface) {
+            $query->andWhere('p.collection = :collectionid');
+            $parameters['collectionid'] = $criteria['collection']->getId();
         }
 
         $query->setParameters($parameters);
@@ -227,19 +227,19 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * @param string $category
+     * @param string $collection
      *
      * @return array
      */
-    public function getPublicationCategoryQueryParts($category)
+    public function getPublicationCollectionQueryParts($collection)
     {
         $pcqp = array('query' => '', 'params' => array());
 
-        if (null === $category) {
-            $pcqp['query'] = 'p.category IS NULL';
+        if (null === $collection) {
+            $pcqp['query'] = 'p.collection IS NULL';
         } else {
-            $pcqp['query'] = 'c.slug = :category';
-            $pcqp['params'] = array('category' => $category);
+            $pcqp['query'] = 'c.slug = :collection';
+            $pcqp['params'] = array('collection' => $collection);
         }
 
         return $pcqp;

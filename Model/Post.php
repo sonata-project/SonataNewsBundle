@@ -13,8 +13,9 @@ namespace Sonata\NewsBundle\Model;
 
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
-use Sonata\NewsBundle\Model\TagInterface;
-use Sonata\NewsBundle\Model\CategoryInterface;
+use Sonata\ClassificationBundle\Model\TagInterface;
+use Sonata\ClassificationBundle\Model\CollectionInterface;
+use Sonata\ClassificationBundle\Model\Tag;
 
 abstract class Post implements PostInterface
 {
@@ -54,7 +55,7 @@ abstract class Post implements PostInterface
 
     protected $image;
 
-    protected $category;
+    protected $collection;
 
     /**
      * {@inheritdoc}
@@ -405,17 +406,17 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setCategory(CategoryInterface $category = null)
+    public function setCollection(CollectionInterface $collection = null)
     {
-        $this->category = $category;
+        $this->collection = $collection;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCategory()
+    public function getCollection()
     {
-        return $this->category;
+        return $this->collection;
     }
 
     /**

@@ -6,14 +6,14 @@ Installation
 .. code-block:: php
 
     //composer.json
-    "require": { 
+    "require": {
     //...
         "sonata-project/news-bundle": "dev-master",
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "sonata-project/easy-extends-bundle": "dev-master",
     //...
     }
-    
+
 
 * Add SonataNewsBundle to your application kernel::
 
@@ -50,7 +50,7 @@ Installation
         link:         http://sonata-project.org
         description:  Cool bundles on top of Symfony2
         salt:         'secureToken'
-        permalink_generator: sonata.news.permalink.date # sonata.news.permalink.category
+        permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
 
         comment:
             notification:

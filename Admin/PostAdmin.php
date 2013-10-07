@@ -62,7 +62,7 @@ class PostAdmin extends Admin
             ->with('General')
                 ->add('enabled', null, array('required' => false))
                 ->add('author', 'sonata_type_model_list')
-                ->add('category', 'sonata_type_model_list', array('required' => false))
+                ->add('collection', 'sonata_type_model_list', array('required' => false))
                 ->add('title')
                 ->add('abstract', null, array('attr' => array('class' => 'span6', 'rows' => 5)))
                 ->add('content', 'sonata_formatter_type', array(
@@ -100,7 +100,7 @@ class PostAdmin extends Admin
         $listMapper
             ->addIdentifier('title')
             ->add('author')
-            ->add('category')
+            ->add('collection')
             ->add('enabled', null, array('editable' => true))
             ->add('tags')
             ->add('commentsEnabled', null, array('editable' => true))

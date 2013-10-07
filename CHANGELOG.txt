@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+### 2013-10-03
+
+* Integrate classification bundle
+  Major BC Break, please refer to the UPGRADE.txt file
+
 ### 2012-09-24
 
 * changed service parameters into options that come through the configuration with the old values as the new defaults.

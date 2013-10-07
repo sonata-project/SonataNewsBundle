@@ -13,16 +13,16 @@ namespace Sonata\NewsBundle\Permalink;
 
 use Sonata\NewsBundle\Model\PostInterface;
 
-class CategoryPermalink implements PermalinkInterface
+class CollectionPermalink implements PermalinkInterface
 {
     /**
      * {@inheritdoc}
      */
     public function generate(PostInterface $post)
     {
-        return null == $post->getCategory()
+        return null == $post->getCollection()
             ? $post->getSlug()
-            : sprintf('%s/%s', $post->getCategory()->getSlug(), $post->getSlug());
+            : sprintf('%s/%s', $post->getCollection()->getSlug(), $post->getSlug());
     }
 
     /**
@@ -39,14 +39,14 @@ class CategoryPermalink implements PermalinkInterface
         }
 
         if (false === strpos($permalink, '/')) {
-            $category = null;
+            $collection = null;
             $slug = $permalink;
         } else {
-            list($category, $slug) = $parameters;
+            list($collection, $slug) = $parameters;
         }
 
         return array(
-            'category' => $category,
+            'collection' => $collection,
             'slug'     => $slug,
         );
     }

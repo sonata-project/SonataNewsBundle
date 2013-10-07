@@ -9,7 +9,7 @@
             <tag name="twig.extension" />
 
             <argument type="service" id="router" />
-            <argument type="service" id="sonata.news.manager.tag" />
+            <argument type="service" id="sonata.classification.manager.tag" />
             <argument type="service" id="sonata.news.blog" />
         </service>
     </services>

@@ -9,7 +9,7 @@ Advanced Configuration
         link:         http://sonata-project.org
         description:  Cool bundles on top of Symfony2
         salt:         'secureToken'
-        permalink_generator: sonata.news.permalink.date # sonata.news.permalink.category
+        permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
         permalink:
             date:     %%1$04d/%%2$02d/%%3$02d/%%4$s => 2012/02/01/slug
         comment:
@@ -22,7 +22,7 @@ Advanced Configuration
             post:       Application\Sonata\NewsBundle\Entity\Post
             tag:        Application\Sonata\NewsBundle\Entity\Tag
             comment:    Application\Sonata\NewsBundle\Entity\Comment
-            category:   Application\Sonata\NewsBundle\Entity\Category
+            collection:   Application\Sonata\NewsBundle\Entity\Collection
             media:      Application\Sonata\MediaBundle\Entity\Media
             user:       Application\Sonata\UserBundle\Entity\User
 
@@ -35,8 +35,8 @@ Advanced Configuration
                 class:       Sonata\NewsBundle\Admin\CommentAdmin
                 controller:  SonataAdminBundle:CRUD
                 translation: SonataNewsBundle
-            category:
-                class:       Sonata\NewsBundle\Admin\CategoryAdmin
+            collection:
+                class:       Sonata\NewsBundle\Admin\CollectionAdmin
                 controller:  SonataAdminBundle:CRUD
                 translation: SonataNewsBundle
             tag:

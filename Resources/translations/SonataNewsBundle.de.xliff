@@ -105,8 +105,8 @@
                 <source>list.label_author</source>
                 <target>Author</target>
             </trans-unit>
-            <trans-unit id="list_label_category">
-                <source>list.label_category</source>
+            <trans-unit id="list_label_collection">
+                <source>list.label_collection</source>
                 <target>Kategorie</target>
             </trans-unit>
             <trans-unit id="list_label_enabled">
@@ -133,8 +133,8 @@
                 <source>form.label_author</source>
                 <target>Author</target>
             </trans-unit>
-            <trans-unit id="form_label_category">
-                <source>form.label_category</source>
+            <trans-unit id="form_label_collection">
+                <source>form.label_collection</source>
                 <target>Kategorie</target>
             </trans-unit>
             <trans-unit id="form_label_title">
@@ -257,8 +257,8 @@
                 <source>list.label_deescription</source>
                 <target>Beschreibung</target>
             </trans-unit>
-            <trans-unit id="breadcrumb_link_category_list">
-                <source>breadcrumb.link_category_list</source>
+            <trans-unit id="breadcrumb_link_collection_list">
+                <source>breadcrumb.link_collection_list</source>
                 <target>Kategorien</target>
             </trans-unit>
             <trans-unit id="form_label_description">

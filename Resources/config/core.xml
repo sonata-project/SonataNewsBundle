@@ -11,7 +11,7 @@
             <argument />
         </service>
 
-        <service id="sonata.news.permalink.category" class="Sonata\NewsBundle\Permalink\CategoryPermalink" />
+        <service id="sonata.news.permalink.collection" class="Sonata\NewsBundle\Permalink\CollectionPermalink" />
 
         <!-- email security token -->
         <service id="sonata.news.hash.generator" class="Sonata\NewsBundle\Util\HashGenerator">

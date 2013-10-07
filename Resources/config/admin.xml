@@ -53,28 +53,6 @@
                 </argument>
             </call>
         </service>
-
-        <service id="sonata.news.admin.category" class="%sonata.news.admin.category.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="categories"  label_catalogue="%sonata.news.admin.category.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore" />
-            <argument />
-            <argument>%sonata.news.admin.category.entity%</argument>
-            <argument>%sonata.news.admin.category.controller%</argument>
-
-            <call method="setTranslationDomain">
-                <argument>%sonata.news.admin.category.translation_domain%</argument>
-            </call>
-        </service>
-
-        <service id="sonata.news.admin.tag" class="%sonata.news.admin.tag.class%">
-            <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="tags"  label_catalogue="%sonata.news.admin.news.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore" />
-            <argument />
-            <argument>%sonata.news.admin.tag.entity%</argument>
-            <argument>%sonata.news.admin.tag.controller%</argument>
-
-            <call method="setTranslationDomain">
-                <argument>%sonata.news.admin.tag.translation_domain%</argument>
-            </call>
-        </service>
     </services>
 
 </container>
