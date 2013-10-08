@@ -77,7 +77,7 @@ class PostController extends Controller
      */
     public function tagAction($tag)
     {
-        $tag = $this->get('sonata.news.manager.tag')->findOneBy(array(
+        $tag = $this->get('sonata.classification.manager.tag')->findOneBy(array(
             'slug' => $tag,
             'enabled' => true
         ));
