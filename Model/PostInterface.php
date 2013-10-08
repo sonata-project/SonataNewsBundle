@@ -276,4 +276,25 @@ interface PostInterface
      * @param CollectionInterface $collection
      */
     public function setCollection(CollectionInterface $collection = null);
+
+
+    /**
+     * @param string $contentFormatter
+     */
+    public function setContentFormatter($contentFormatter);
+
+    /**
+     * @return string
+     */
+    public function getContentFormatter();
+
+    /**
+     * @param string $rawContent
+     */
+    public function setRawContent($rawContent);
+
+    /**
+     * @return string
+     */
+    public function getRawContent();
 }

@@ -5,7 +5,7 @@
         http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
 
 
-    <class name="Application\Sonata\NewsBundle\Entity\Post">
+    <class name="Sonata\NewsBundle\Model\PostInterface">
         <getter property="title">
             <constraint name="NotBlank" />
         </getter>
@@ -31,7 +31,7 @@
         </getter>
     </class>
 
-    <class name="Application\Sonata\NewsBundle\Entity\Comment">
+    <class name="Sonata\NewsBundle\Model\CommentInterface">
         <getter property="name">
            <constraint name="NotBlank" />
            <constraint name="NotNull" />
