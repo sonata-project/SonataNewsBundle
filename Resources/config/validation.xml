@@ -5,54 +5,54 @@
         http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
 
 
-    <class name="Sonata\NewsBundle\Model\PostInterface">
-        <getter property="title">
+    <class name="Sonata\NewsBundle\Model\Post">
+        <property name="title">
             <constraint name="NotBlank" />
-        </getter>
+        </property>
 
-        <getter property="abstract">
+        <property name="abstract">
             <constraint name="NotBlank" />
-        </getter>
+        </property>
 
-        <getter property="author">
+        <property name="author">
             <constraint name="Valid" />
-        </getter>
+        </property>
 
-        <getter property="rawContent">
+        <property name="rawContent">
             <constraint name="NotBlank"/>
-        </getter>
+        </property>
 
-        <getter property="tags">
+        <property name="tags">
             <constraint name="Valid" />
-        </getter>
+        </property>
 
-        <getter property="commentsDefaultStatus">
+        <property name="commentsDefaultStatus">
             <constraint name="NotBlank" />
-        </getter>
+        </property>
     </class>
 
-    <class name="Sonata\NewsBundle\Model\CommentInterface">
-        <getter property="name">
+    <class name="Sonata\NewsBundle\Model\Comment">
+        <property name="name">
            <constraint name="NotBlank" />
            <constraint name="NotNull" />
-        </getter>
+        </property>
 
-        <getter property="email">
+        <property name="email">
             <constraint name="Email" />
-        </getter>
+        </property>
 
-        <getter property="url">
+        <property name="url">
            <constraint name="Url" />
-        </getter>
+        </property>
 
-        <getter property="message">
+        <property name="message">
             <constraint name="NotNull" />
             <constraint name="NotBlank" />
-        </getter>
+        </property>
 
-        <getter property="post">
+        <property name="post">
             <constraint name="Valid" />
-        </getter>
+        </property>
     </class>
 
 </constraint-mapping>
