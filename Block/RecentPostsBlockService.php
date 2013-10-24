@@ -52,12 +52,18 @@ class RecentPostsBlockService extends BaseBlockService
             'mode' => $blockContext->getSetting('mode')
         );
 
-        return $this->renderResponse($blockContext->getTemplate(), array(
+        $parameters = array(
             'context'   => $blockContext,
             'settings'  => $blockContext->getSettings(),
             'block'     => $blockContext->getBlock(),
             'pager'     => $this->manager->getPager($criteria, 1, $blockContext->getSetting('number'))
-        ), $response);
+        );
+
+        if ($blockContext->getSetting('mode') === 'admin') {
+            return $this->renderPrivateResponse($blockContext->getTemplate(), $parameters, $response);
+        }
+
+        return $this->renderResponse($blockContext->getTemplate(), $parameters, $response);
     }
 
     /**
