@@ -36,9 +36,9 @@ file that was distributed with this source code.
         </ul>
 
         {% if context.getSetting('mode') == 'admin' %}
-            <a href="{{ url('admin_sonata_news_post_list') }}">{{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}</a>
+            <a href="{{ url('admin_sonata_news_post_list') }}" class="btn btn-primary btn-small"><i class="icon-list icon-white"></i> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}</a>
         {% else %}
-            <a href="{{ url('sonata_news_archive') }}">{{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}</a>
+            <a href="{{ url('sonata_news_archive') }}"> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}</a>
         {% endif %}
     </div>
 {% endblock %}
