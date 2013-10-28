@@ -43,7 +43,7 @@ file that was distributed with this source code.
         </ul>
 
         {% if context.getSetting('mode') == 'admin' %}
-            <a href="{{ url('admin_sonata_news_comment_list') }}">{{ 'view_all_comments'|trans({}, 'SonataNewsBundle') }}</a>
+            <a href="{{ url('admin_sonata_news_comment_list') }}" class="btn btn-primary btn-small"><i class="icon-list icon-white"></i> {{ 'view_all_comments'|trans({}, 'SonataNewsBundle') }}</a>
         {% endif %}
     </div>
 {% endblock %}
