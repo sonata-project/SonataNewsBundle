@@ -32,6 +32,7 @@ Installation
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new Sonata\ClassificationBundle\SonataClassificationBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
