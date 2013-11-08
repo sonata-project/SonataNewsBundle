@@ -97,7 +97,7 @@ Installation
             small: { width: 150 , quality: 95}
             big:   { width: 500 , quality: 90}
 
-* create configuration file sonata_formater.yml the text formatters available for your blog post::
+* create configuration file sonata_formatter.yml the text formatters available for your blog post::
 
 .. code-block:: yaml
 
