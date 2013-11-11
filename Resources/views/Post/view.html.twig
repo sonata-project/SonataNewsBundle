@@ -14,7 +14,10 @@
 <article class="sonata-blog-post-container">
     <header>
         <div class="sonata-blog-post-date-container">
-            {{ post.publicationDateStart | format_date }}
+            <h5>
+                <i class="icon-calendar"></i>
+                {{ post.publicationDateStart | format_date }}
+            </h5>
         </div>
 
         <h1 class="sonata-blog-post-title">
@@ -23,11 +26,18 @@
         </h1>
 
         <div class="sonata-blog-post-information">
-
             <div class="sonata-blog-post-tag-container">
+                <div class="sonata-blog-post-tag-title">
+                    {% if post.tags|length > 1 %}
+                        <i class="icon-tags"></i>
+                    {% else %}
+                        <i class="icon-tag"></i>
+                    {% endif %}
+                    {{ 'published_under'|transchoice(post.tags|length, {}, 'SonataNewsBundle') }}
+                </div>
                 <div class="sonata-blog-post-tag-list">
-                    {% for tag in post.tags%}
-                        <a href="{{ url('sonata_news_tag', {'tag': tag.slug} ) }}"><i class="icon-tag"></i> {{ tag.name }}</a>
+                    {% for tag in post.tags %}
+                        <a href="{{ url('sonata_news_tag', { 'tag': tag.slug } ) }}">{{ tag.name }}</a>
                     {% endfor %}
                 </div>
             </div>
