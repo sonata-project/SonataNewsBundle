@@ -24,6 +24,7 @@ Installation
     {
         return array(
             // ...
+            new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),

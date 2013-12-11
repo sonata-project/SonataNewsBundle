@@ -16,6 +16,8 @@ file that was distributed with this source code.
             <h3 class="sonata-news-block-recent-comment">{{ settings.title }}</h3>
         {% endif %}
 
+        {% sonata_template_box 'This is the recent posts comments block.' %}
+
         <ul class="sonata-blog-post-container">
             {% for comment in pager.getResults() %}
                 {% if context.getSetting('mode') == 'admin' %}
