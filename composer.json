@@ -18,6 +18,7 @@
     ],
     "require": {
         "symfony/symfony": "~2.3",
+        "sonata-project/core-bundle": "~2.2",
         "sonata-project/admin-bundle": "~2.2.7",
         "sonata-project/user-bundle": "~2.2",
         "sonata-project/media-bundle": "~2.2",
