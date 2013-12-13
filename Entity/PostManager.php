@@ -10,54 +10,21 @@
  */
 namespace Sonata\NewsBundle\Entity;
 
-use Sonata\NewsBundle\Model\PostManager as ModelPostManager;
+use Sonata\CoreBundle\Entity\DoctrineBaseManager;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr;
 
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Doctrine\ORM\Query;
 
-class PostManager extends ModelPostManager
+class PostManager extends DoctrineBaseManager
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    protected $em;
-
-    /**
-     * @param \Doctrine\ORM\EntityManager $em
-     * @param string                      $class
-     */
-    public function __construct(EntityManager $em, $class)
-    {
-        $this->em    = $em;
-        $this->class = $class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function save(PostInterface $post)
-    {
-        $this->em->persist($post);
-        $this->em->flush();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function findOneBy(array $criteria)
-    {
-        return $this->em->getRepository($this->class)->findOneBy($criteria);
-    }
-
     /**
      * @param string                                 $permalink
      * @param \Sonata\NewsBundle\Model\BlogInterface $blog
@@ -67,7 +34,7 @@ class PostManager extends ModelPostManager
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
         try {
-            $repository = $this->em->getRepository($this->class);
+            $repository = $this->getRepository();
 
             $query = $repository->createQueryBuilder('p');
 
@@ -113,23 +80,6 @@ class PostManager extends ModelPostManager
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public function findBy(array $criteria)
-    {
-        return $this->em->getRepository($this->class)->findBy($criteria);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function delete(PostInterface $post)
-    {
-        $this->em->remove($post);
-        $this->em->flush();
-    }
-
-    /**
      * Retrieve posts, based on the criteria, a page at a time.
      * Valid criteria are:
      *    enabled - boolean
@@ -150,7 +100,7 @@ class PostManager extends ModelPostManager
         }
 
         $parameters = array();
-        $query = $this->em->getRepository($this->class)
+        $query = $this->getRepository()
             ->createQueryBuilder('p')
             ->select('p, t')
             ->orderby('p.publicationDateStart', 'DESC');

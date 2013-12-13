@@ -18,7 +18,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
-use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Sonata\CoreBundle\Entity\ManagerInterface;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
 
@@ -34,6 +34,9 @@ class PostAdmin extends Admin
      */
     protected $formatterPool;
 
+    /**
+     * @var ManagerInterface
+     */
     protected $commentManager;
 
     /**
@@ -228,11 +231,11 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param CommentManagerInterface $commentManager
+     * @param ManagerInterface $commentManager
      *
      * @return void
      */
-    public function setCommentManager(CommentManagerInterface $commentManager)
+    public function setCommentManager(ManagerInterface $commentManager)
     {
         $this->commentManager = $commentManager;
     }

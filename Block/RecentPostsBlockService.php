@@ -12,7 +12,7 @@
 namespace Sonata\NewsBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\NewsBundle\Model\PostManagerInterface;
+use Sonata\CoreBundle\Entity\ManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,11 +32,11 @@ class RecentPostsBlockService extends BaseBlockService
     protected $manager;
 
     /**
-     * @param string               $name
-     * @param EngineInterface      $templating
-     * @param PostManagerInterface $manager
+     * @param string           $name
+     * @param EngineInterface  $templating
+     * @param ManagerInterface $manager
      */
-    public function __construct($name, EngineInterface $templating, PostManagerInterface $manager)
+    public function __construct($name, EngineInterface $templating, ManagerInterface $manager)
     {
         $this->manager = $manager;
 
