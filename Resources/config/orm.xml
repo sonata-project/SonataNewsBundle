@@ -12,14 +12,14 @@
         <service id="sonata.news.entity_manager" alias="doctrine.orm.default_entity_manager" />
 
         <service id="sonata.news.manager.comment" class="%sonata.news.manager.comment.class%">
-            <argument type="service" id="sonata.news.entity_manager" />
             <argument>%sonata.news.manager.comment.entity%</argument>
+            <argument type="service" id="sonata.news.entity_manager" />
             <argument type="service" id="sonata.news.manager.post" />
         </service>
 
         <service id="sonata.news.manager.post" class="%sonata.news.manager.post.class%">
-           <argument type="service" id="sonata.news.entity_manager" />
-           <argument>%sonata.news.manager.post.entity%</argument>
+            <argument>%sonata.news.manager.post.entity%</argument>
+            <argument type="service" id="sonata.news.entity_manager" />
         </service>
 
     </services>

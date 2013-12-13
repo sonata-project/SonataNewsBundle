@@ -15,13 +15,15 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-
-use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Sonata\CoreBundle\Entity\ManagerInterface;
 
 class CommentAdmin extends Admin
 {
     protected $parentAssociationMapping = 'post';
 
+    /**
+     * @var ManagerInterface
+     */
     protected $commentManager;
 
     /**
@@ -130,11 +132,11 @@ class CommentAdmin extends Admin
     }
 
     /**
-     * @param CommentManagerInterface $commentManager
+     * @param ManagerInterface $commentManager
      *
      * @return void
      */
-    public function setCommentManager(CommentManagerInterface $commentManager)
+    public function setCommentManager(ManagerInterface $commentManager)
     {
         $this->commentManager = $commentManager;
     }

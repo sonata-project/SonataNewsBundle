@@ -12,7 +12,7 @@
 namespace Sonata\NewsBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Sonata\CoreBundle\Entity\ManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -34,9 +34,9 @@ class RecentCommentsBlockService extends BaseBlockService
     /**
      * @param string               $name
      * @param EngineInterface      $templating
-     * @param PostManagerInterface $manager
+     * @param ManagerInterface     $manager
      */
-    public function __construct($name, EngineInterface $templating, CommentManagerInterface $manager)
+    public function __construct($name, EngineInterface $templating, ManagerInterface $manager)
     {
         $this->manager = $manager;
 

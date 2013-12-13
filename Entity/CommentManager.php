@@ -10,47 +10,43 @@
  */
 namespace Sonata\NewsBundle\Entity;
 
-use Sonata\NewsBundle\Model\CommentManager as ModelCommentManager;
+use Sonata\CoreBundle\Entity\DoctrineBaseManager;
+use Sonata\CoreBundle\Entity\ManagerInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ORM\EntityManager;
 
-use Sonata\NewsBundle\Model\PostManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
-class CommentManager extends ModelCommentManager
+class CommentManager extends DoctrineBaseManager
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    protected $em;
-
-    /**
-     * @var \Sonata\NewsBundle\Model\PostManagerInterface
+     * @var ManagerInterface
      */
     protected $postManager;
 
     /**
-     * @param \Doctrine\ORM\EntityManager                   $em
-     * @param string                                        $class
-     * @param \Sonata\NewsBundle\Model\PostManagerInterface $postManager
+     * Constructor.
+     *
+     * @param string           $class
+     * @param EntityManager    $em
+     * @param ManagerInterface $postManager
      */
-    public function __construct(EntityManager $em, $class, PostManagerInterface $postManager)
+    public function __construct($class, EntityManager $em, ManagerInterface $postManager)
     {
-        $this->em          = $em;
+        parent::__construct($class, $em);
+
         $this->postManager = $postManager;
-        $this->class       = $class;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function save(CommentInterface $comment)
+    public function save($comment, $andFlush = true)
     {
-        $this->em->persist($comment);
-        $this->em->flush();
+        parent::save($comment, $andFlush);
 
         $this->updateCommentsCount($comment->getPost());
     }
@@ -82,26 +78,13 @@ class CommentManager extends ModelCommentManager
     /**
      * {@inheritDoc}
      */
-    public function findOneBy(array $criteria)
+    public function delete($comment, $andFlush = true)
     {
-        return $this->em->getRepository($this->class)->findOneBy($criteria);
-    }
+        $post = $comment->getPost();
 
-    /**
-     * {@inheritDoc}
-     */
-    public function findBy(array $criteria)
-    {
-        return $this->em->getRepository($this->class)->findBy($criteria);
-    }
+        parent::delete($comment, $andFlush);
 
-    /**
-     * {@inheritDoc}
-     */
-    public function delete(CommentInterface $comment)
-    {
-        $this->em->remove($comment);
-        $this->em->flush();
+        $this->updateCommentsCount($post);
     }
 
     /**
