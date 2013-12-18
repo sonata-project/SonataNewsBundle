@@ -17,10 +17,10 @@
         {% for post in pager.getResults() %}
              <item>
                   <title>{{ post.title }}</title>
-                  <link>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}</link>
+                  <link>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true) }}</link>
                   <description><![CDATA[ {{ post.abstract }} ]]></description>
-                  <pubDate>{{ post.publicationDateStart | format_datetime('eee, MM LLL yyyy HH:mm:ss zzz')}}</pubDate>
-                  <gui>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}</gui>
+                  <pubDate>{{ post.publicationDateStart | format_datetime('eee, MM LLL yyyy HH:mm:ss ZZZ', 'en')}}</pubDate>
+                  <guid>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true) }}</guid>
              </item>
         {% endfor %}
     </channel>
