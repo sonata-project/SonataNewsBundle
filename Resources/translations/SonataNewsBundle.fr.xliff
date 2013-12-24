@@ -97,7 +97,7 @@
 
             <trans-unit id="archive_author">
                 <source>archive_author</source>
-                <target>by %author%</target>
+                <target>de %author%</target>
             </trans-unit>
 
             <trans-unit id="comments_count">
