@@ -104,9 +104,15 @@ class PostAdmin extends Admin
             ->addIdentifier('title')
             ->add('author')
             ->add('collection')
-            ->add('enabled', null, array('editable' => true))
+            ->add('enabled', null, array(
+                'editable'     => true,
+                'confirmation' => true,
+            ))
             ->add('tags')
-            ->add('commentsEnabled', null, array('editable' => true))
+            ->add('commentsEnabled', null, array(
+                'editable'     => true,
+                'confirmation' => true,
+            ))
             ->add('commentsCount')
             ->add('publicationDateStart')
         ;
