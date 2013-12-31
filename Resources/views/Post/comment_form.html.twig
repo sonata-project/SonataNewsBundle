@@ -11,38 +11,16 @@
 
 #}
 
-<h3>{{'title_leave_comment'|trans({}, 'SonataNewsBundle') }}</h3>
-
-<form action="{{ url('sonata_news_add_comment', {'id': post_id}) }}" method="POST" class="form-horizontal">
-    <div class="control-group">
-        {{ form_label(form.name, label|default(null), { 'attr': { 'class': 'control-label'}}) }}
-        <div class="controls">
-            {{ form_widget(form.name) }}
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>{{'title_leave_comment'|trans({}, 'SonataNewsBundle') }}</h3>
     </div>
-    <div class="control-group">
-        {{ form_label(form.email, label|default(null), { 'attr': { 'class': 'control-label'}}) }}
-        <div class="controls">
-            {{ form_widget(form.email) }}
-        </div>
+    <div class="panel-body">
+        <form action="{{ url('sonata_news_add_comment', {'id': post_id}) }}" method="POST" class="form-horizontal" role="form">
+            {{ form_widget(form) }}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i>&nbsp;{{'btn_add_comment'|trans({}, 'SonataNewsBundle') }}</button>
+            </div>
+        </form>
     </div>
-    <div class="control-group">
-        {{ form_label(form.url, label|default(null), { 'attr': { 'class': 'control-label'}}) }}
-        <div class="controls">
-            {{ form_widget(form.url) }}
-        </div>
-    </div>
-    <div class="control-group">
-        {{ form_label(form.message, label|default(null), { 'attr': { 'class': 'control-label'}}) }}
-        <div class="controls">
-            {{ form_widget(form.message) }}
-        </div>
-    </div>
-
-    <div class="control-group">
-        <div class="controls">
-            {{ form_rest(form) }}
-            <input type="submit" value="{{'btn_add_comment'|trans({}, 'SonataNewsBundle') }}" class="btn"/>
-        </div>
-    </div>
-</form>
+</div>
