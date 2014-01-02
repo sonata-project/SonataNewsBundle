@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+### 2014-01-02
+
+* Changed twig template ``Resources/views/Post/comment_form.html.twig``. The template now uses Bootstrap3 panels & MopaBootstrapBundle's form template to render the form.
+
 ### 2013-10-03
 
 * Integrate classification bundle
