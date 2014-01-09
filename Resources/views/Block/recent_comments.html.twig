@@ -36,7 +36,7 @@ file that was distributed with this source code.
                     </li>
                 {% else %}
                     <li>
-                        <a href="{{ url('admin_sonata_news_comment_edit', { 'id': comment.id }) }}">{{ comment.name }} - {{ comment.message|truncate(30) }}</a>
+                        <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(comment.post) }) }}">{{ comment.name }} - {{ comment.message|truncate(30) }}</a>
                     </li>
                 {% endif %}
             {% else %}
