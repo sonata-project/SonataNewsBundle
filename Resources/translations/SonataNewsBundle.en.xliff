@@ -363,6 +363,10 @@ Quick moderation links :
                 <source>view_all_comments</source>
                 <target>View comments</target>
             </trans-unit>
+            <trans-unit id="sonata_news_archive_breadcrumb">
+                <source>sonata_news_archive_breadcrumb</source>
+                <target>News</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
