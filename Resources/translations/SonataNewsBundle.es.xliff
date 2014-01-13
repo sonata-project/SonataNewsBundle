@@ -363,6 +363,10 @@ Modera el comentario de forma rápida :
                 <source>view_all_comments</source>
                 <target>view_all_comments</target>
             </trans-unit>
+            <trans-unit id="sonata_news_archive_breadcrumb">
+                <source>sonata_news_archive_breadcrumb</source>
+                <target>sonata_news_archive_breadcrumb</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

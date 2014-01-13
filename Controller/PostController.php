@@ -44,10 +44,11 @@ class PostController extends Controller
         );
 
         $parameters = array_merge(array(
-            'pager' => $pager,
-            'blog'  => $this->get('sonata.news.blog'),
-            'tag'   => false,
-            'route' => $this->getRequest()->get('_route'),
+            'pager'            => $pager,
+            'blog'             => $this->get('sonata.news.blog'),
+            'tag'              => false,
+            'collection'       => false,
+            'route'            => $this->getRequest()->get('_route'),
             'route_parameters' => $this->getRequest()->get('_route_params')
         ), $parameters);
 

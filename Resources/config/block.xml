@@ -20,6 +20,29 @@
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.news.manager.comment" />
         </service>
+
+        <service id="sonata.news.block.breadcrumb_archive" class="Sonata\NewsBundle\Block\Breadcrumb\NewsArchiveBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>news_archive</argument>
+            <argument>sonata.news.block.breadcrumb_archive</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="knp_menu.menu_provider" />
+            <argument type="service" id="knp_menu.factory" />
+        </service>
+
+        <service id="sonata.news.block.breadcrumb_post" class="Sonata\NewsBundle\Block\Breadcrumb\NewsPostBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>news_post</argument>
+            <argument>sonata.news.block.breadcrumb_post</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="knp_menu.menu_provider" />
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="sonata.news.blog" />
+        </service>
     </services>
 
 </container>
