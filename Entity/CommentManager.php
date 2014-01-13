@@ -11,7 +11,7 @@
 namespace Sonata\NewsBundle\Entity;
 
 use Sonata\CoreBundle\Entity\DoctrineBaseManager;
-use Sonata\CoreBundle\Entity\ManagerInterface;
+use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ORM\EntityManager;
 

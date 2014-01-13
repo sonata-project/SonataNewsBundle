@@ -18,7 +18,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
-use Sonata\CoreBundle\Entity\ManagerInterface;
+use Sonata\CoreBundle\Model\ManagerInterface;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
 

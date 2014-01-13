@@ -12,7 +12,7 @@
 namespace Sonata\NewsBundle\Twig\Extension;
 
 use Symfony\Component\Routing\RouterInterface;
-use Sonata\CoreBundle\Entity\ManagerInterface;
+use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 

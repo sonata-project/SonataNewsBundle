@@ -12,7 +12,7 @@
 namespace Sonata\NewsBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\CoreBundle\Entity\ManagerInterface;
+use Sonata\CoreBundle\Model\ManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
