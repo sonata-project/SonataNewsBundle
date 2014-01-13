@@ -16,7 +16,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 /**
  * BlockService for archive breadcrumb
  *
- * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
 {

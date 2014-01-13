@@ -20,7 +20,7 @@ use Sonata\NewsBundle\Model\BlogInterface;
 /**
  * BlockService for post breadcrumb
  *
- * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
 {
