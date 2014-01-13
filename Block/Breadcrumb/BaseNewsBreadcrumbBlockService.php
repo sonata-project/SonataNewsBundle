@@ -17,7 +17,7 @@ use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
 /**
  * Abstract class for news breadcrumbs
  *
- * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 abstract class BaseNewsBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService
 {
