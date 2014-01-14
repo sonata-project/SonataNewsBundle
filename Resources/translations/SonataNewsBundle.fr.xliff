@@ -374,6 +374,10 @@ Liens de modération rapide :
                 <source>sonata_news_archive_breadcrumb</source>
                 <target>Blog</target>
             </trans-unit>
+            <trans-unit id="sonata_content">
+                <source>sonata_content</source>
+                <target>Contenu</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

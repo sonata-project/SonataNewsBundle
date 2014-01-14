@@ -367,6 +367,10 @@ Quick moderation links :
                 <source>sonata_news_archive_breadcrumb</source>
                 <target>News</target>
             </trans-unit>
+            <trans-unit id="sonata_content">
+                <source>sonata_content</source>
+                <target>Content</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
