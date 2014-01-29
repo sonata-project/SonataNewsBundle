@@ -12,6 +12,7 @@
 namespace Sonata\NewsBundle\Entity;
 
 use Sonata\NewsBundle\Model\Post as ModelPost;
+use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class BasePost extends ModelPost
 {
@@ -22,8 +23,8 @@ abstract class BasePost extends ModelPost
     {
         parent::__construct();
 
-        $this->tags     = new \Doctrine\Common\Collections\ArrayCollection;
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection;
+        $this->tags     = new ArrayCollection();
+        $this->comments = new ArrayCollection();
 
         $this->setPublicationDateStart(new \DateTime);
     }

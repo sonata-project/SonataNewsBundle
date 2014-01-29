@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serializer>
+    <class name="Sonata\NewsBundle\Model\Post" exclusion-policy="all" xml-root-name="post">
+
+        <property name="title"                type="string"    expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="abstract"             type="string"    expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="content"              type="string"    expose="true"  since-version="1.0" groups="sonata_api_read,sonata_search" />
+        <property name="rawContent"           type="string"    expose="true"  since-version="1.0" groups="sonata_api_write" />
+        <property name="contentFormatter"     type="string"    expose="true"  since-version="1.0" groups="sonata_api_write" />
+        <property name="enabled"              type="boolean"   expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write" />
+        <property name="slug"                 type="string"    expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write" />
+        <property name="publicationDateStart" type="DateTime"  expose="true"  since-version="1.0" groups="sonata_api_write" />
+
+        <property name="commentsEnabled"       type="boolean"  expose="true"  since-version="1.0" groups="sonata_api_write" />
+        <property name="commentsCloseAt"       type="DateTime" expose="true"  since-version="1.0" groups="sonata_api_write" />
+        <property name="commentsDefaultStatus" type="integer"  expose="true"  since-version="1.0" groups="sonata_api_write" />
+        <property name="commentsCount"         type="integer"  expose="false" since-version="1.0" groups="sonata_api_read" />
+
+        <property name="createdAt" type="DateTime" expose="false" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="updatedAt" type="DateTime" expose="false" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+
+        <property name="author" type="Sonata\UserBundle\Model\User" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+
+        <property name="image" type="Sonata\MediaBundle\Model\Media" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+
+        <property name="collection" type="Sonata\ClassificationBundle\Model\Collection" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+
+        <property type="ArrayCollection&lt;Sonata\ClassificationBundle\Model\TagInterface&gt;" name="tags" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search">
+            <xml-list inline="false" entry-name="tag" />
+        </property>
+
+    </class>
+</serializer>
