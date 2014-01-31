@@ -41,7 +41,7 @@ In order to activate the API's, you'll also need to add this to your routing:
         resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
         prefix:   /api/doc
 
-    news:
+    sonata_api_news:
         type:         rest
         prefix:       /api
         resource:     "@SonataNewsBundle/Resources/config/routing/api.xml"
