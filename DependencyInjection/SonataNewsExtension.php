@@ -41,14 +41,18 @@ class SonataNewsExtension extends Extension
         $processor = new Processor();
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
+        $bundles = $container->getParameter('kernel.bundles');
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('admin.xml');
         $loader->load('orm.xml');
         $loader->load('twig.xml');
         $loader->load('form.xml');
         $loader->load('core.xml');
         $loader->load('block.xml');
+
+        if (isset($bundles['SonataAdminBundle'])) {
+            $loader->load('admin.xml');
+        }
 
         if (!isset($config['salt'])) {
             throw new \InvalidArgumentException("The configration node 'salt' is not set for the SonataNewsbundle (sonata_news)");
