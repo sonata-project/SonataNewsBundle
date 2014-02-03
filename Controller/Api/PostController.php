@@ -38,7 +38,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PostController extends FOSRestController
 {
     /**
-     * Retrieves the list of posts (paginated)
+     * Retrieves the list of posts (paginated) based on criteria
      *
      * @ApiDoc(
      *  resource=true,
@@ -47,6 +47,11 @@ class PostController extends FOSRestController
      *
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page for posts list pagination")
      * @QueryParam(name="count", requirements="\d+", default="10", description="Number of posts by page")
+     * @QueryParam(name="enabled", nullable=true, strict=true, description="Enabled/Disabled posts filter")
+     * @QueryParam(name="dateQuery", requirements=">|<|=", default=">", description="Date filter orientation (>, < or =)")
+     * @QueryParam(name="dateValue", requirements="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]([+-][0-9]{2}(:)?[0-9]{2})?", nullable=true, strict=true, description="Date filter value")
+     * @QueryParam(name="tag", requirements="\s", nullable=true, strict=true, description="Tag name filter")
+     * @QueryParam(name="author", requirements="\s", nullable=true, strict=true, description="Author filter")
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
@@ -60,7 +65,7 @@ class PostController extends FOSRestController
         $count = $paramFetcher->get('count');
 
         /** @var Pager $postsPager */
-        $postsPager = $this->get('sonata.news.manager.post')->getPager(array(), $page, $count);
+        $postsPager = $this->get('sonata.news.manager.post')->getPager($this->filterCriteria($paramFetcher), $page, $count);
 
         return $postsPager->getResults();
     }
@@ -170,6 +175,39 @@ class PostController extends FOSRestController
         }
 
         return $form;
+    }
+
+    /**
+     * Filters criteria from $paramFetcher to be compatible with the Pager criteria
+     *
+     * @param ParamFetcherInterface $paramFetcher
+     *
+     * @return array The filtered criteria
+     */
+    protected function filterCriteria(ParamFetcherInterface $paramFetcher)
+    {
+        $criteria = $paramFetcher->all();
+
+        unset($criteria['page'], $criteria['count']);
+
+        foreach ($criteria as $key => $value) {
+            if (null === $value) {
+                unset($criteria[$key]);
+            }
+        }
+
+        if (array_key_exists('dateValue', $criteria)) {
+            $date = new \DateTime($criteria['dateValue']);
+            $criteria['date'] = array(
+                'query'  => sprintf('p.publicationDateStart %s :dateValue', $criteria['dateQuery']),
+                'params' => array('dateValue' => $date)
+            );
+            unset($criteria['dateValue'], $criteria['dateQuery']);
+        } else {
+            unset($criteria['dateQuery']);
+        }
+
+        return $criteria;
     }
 
     /**
