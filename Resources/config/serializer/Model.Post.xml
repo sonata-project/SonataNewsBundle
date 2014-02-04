@@ -8,16 +8,16 @@
         <property name="rawContent"           type="string"    expose="true"  since-version="1.0" groups="sonata_api_write" />
         <property name="contentFormatter"     type="string"    expose="true"  since-version="1.0" groups="sonata_api_write" />
         <property name="enabled"              type="boolean"   expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write" />
-        <property name="slug"                 type="string"    expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write" />
-        <property name="publicationDateStart" type="DateTime"  expose="true"  since-version="1.0" groups="sonata_api_write" />
+        <property name="slug"                 type="string"    expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="publicationDateStart" type="DateTime"  expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
 
-        <property name="commentsEnabled"       type="boolean"  expose="true"  since-version="1.0" groups="sonata_api_write" />
-        <property name="commentsCloseAt"       type="DateTime" expose="true"  since-version="1.0" groups="sonata_api_write" />
-        <property name="commentsDefaultStatus" type="integer"  expose="true"  since-version="1.0" groups="sonata_api_write" />
+        <property name="commentsEnabled"       type="boolean"  expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="commentsCloseAt"       type="DateTime" expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="commentsDefaultStatus" type="integer"  expose="true"  since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
         <property name="commentsCount"         type="integer"  expose="false" since-version="1.0" groups="sonata_api_read" />
 
-        <property name="createdAt" type="DateTime" expose="false" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
-        <property name="updatedAt" type="DateTime" expose="false" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="createdAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
+        <property name="updatedAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
         <property name="author" type="Sonata\UserBundle\Model\User" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
 
