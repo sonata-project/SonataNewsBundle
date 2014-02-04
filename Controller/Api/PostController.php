@@ -47,7 +47,7 @@ class PostController extends FOSRestController
      *
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page for posts list pagination")
      * @QueryParam(name="count", requirements="\d+", default="10", description="Number of posts by page")
-     * @QueryParam(name="enabled", nullable=true, strict=true, description="Enabled/Disabled posts filter")
+     * @QueryParam(name="enabled", requirements="0|1", nullable=true, strict=true, description="Enabled/Disabled posts filter")
      * @QueryParam(name="dateQuery", requirements=">|<|=", default=">", description="Date filter orientation (>, < or =)")
      * @QueryParam(name="dateValue", requirements="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]([+-][0-9]{2}(:)?[0-9]{2})?", nullable=true, strict=true, description="Date filter value")
      * @QueryParam(name="tag", requirements="\s", nullable=true, strict=true, description="Tag name filter")
