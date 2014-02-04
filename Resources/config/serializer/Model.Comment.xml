@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serializer>
+    <class name="Sonata\NewsBundle\Model\Comment" exclusion-policy="all" xml-root-name="comment">
+
+        <property name="name"    type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="url"     type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write" />
+        <property name="email"   type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write" />
+        <property name="message" type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+
+        <property name="status" type="integer" expose="true" since-version="1.0" groups="sonata_api_write" />
+
+        <property name="createdAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
+        <property name="updatedAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
+
+    </class>
+</serializer>
