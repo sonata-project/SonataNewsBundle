@@ -11,7 +11,6 @@
 
 namespace Sonata\NewsBundle\Controller\Api;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
@@ -20,10 +19,15 @@ use JMS\Serializer\SerializationContext;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Sonata\AdminBundle\Datagrid\Pager;
+use Sonata\NewsBundle\Mailer\MailerInterface;
 use Sonata\NewsBundle\Model\Comment;
+use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\Post;
 
+use Sonata\NewsBundle\Model\PostManagerInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -35,8 +39,44 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Hugo Briand <briand@ekino.com>
  */
-class PostController extends FOSRestController
+class PostController
 {
+    /**
+     * @var PostManagerInterface
+     */
+    protected $postManager;
+
+    /**
+     * @var CommentManagerInterface::
+     */
+    protected $commentManager;
+
+    /**
+     * @var MailerInterface
+     */
+    protected $mailer;
+
+    /**
+     * @var FormFactoryInterface
+     */
+    protected $formFactory;
+
+    /**
+     * Constructor
+     *
+     * @param PostManagerInterface    $postManager
+     * @param CommentManagerInterface $commentManager
+     * @param MailerInterface         $mailer
+     * @param FormFactoryInterface    $formFactory
+     */
+    public function __construct(PostManagerInterface $postManager, CommentManagerInterface $commentManager, MailerInterface $mailer, FormFactoryInterface $formFactory)
+    {
+        $this->postManager    = $postManager;
+        $this->commentManager = $commentManager;
+        $this->mailer         = $mailer;
+        $this->formFactory    = $formFactory;
+    }
+
     /**
      * Retrieves the list of posts (paginated) based on criteria
      *
@@ -65,7 +105,7 @@ class PostController extends FOSRestController
         $count = $paramFetcher->get('count');
 
         /** @var Pager $postsPager */
-        $postsPager = $this->get('sonata.news.manager.post')->getPager($this->filterCriteria($paramFetcher), $page, $count);
+        $postsPager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
 
         return $postsPager->getResults();
     }
@@ -139,12 +179,13 @@ class PostController extends FOSRestController
      *  }
      * )
      *
-     * @param int $id Post id
+     * @param int     $id Post id
+     * @param Request $request
      *
      * @return Comment|FormInterface
      * @throws HttpException
      */
-    public function postPostCommentsAction($id)
+    public function postPostCommentsAction($id, Request $request)
     {
         $post = $this->getPost($id);
 
@@ -152,18 +193,18 @@ class PostController extends FOSRestController
             throw new HttpException(403, sprintf('Post (%d) not commentable', $id));
         }
 
-        $comment = $this->get('sonata.news.manager.comment')->create();
+        $comment = $this->commentManager->create();
         $comment->setPost($post);
         $comment->setStatus($post->getCommentsDefaultStatus());
 
-        $form = $this->get('form.factory')->createNamed('comment', 'sonata_post_comment', $comment, array('csrf_protection' => false));
-        $form->bind($this->getRequest());
+        $form = $this->formFactory->createNamed('comment', 'sonata_post_comment', $comment, array('csrf_protection' => false));
+        $form->bind($request);
 
         if ($form->isValid()) {
             $comment = $form->getData();
 
-            $this->get('sonata.news.manager.comment')->save($comment);
-            $this->get('sonata.news.mailer')->sendCommentNotification($comment);
+            $this->commentManager->save($comment);
+            $this->mailer->sendCommentNotification($comment);
 
             $view = \FOS\RestBundle\View\View::create($comment);
             $serializationContext = SerializationContext::create();
@@ -220,7 +261,7 @@ class PostController extends FOSRestController
      */
     protected function getPost($id)
     {
-        $post = $this->get('sonata.news.manager.post')->findOneBy(array('id' => $id));
+        $post = $this->postManager->findOneBy(array('id' => $id));
 
         if (null === $post) {
             throw new NotFoundHttpException(sprintf('Post (%d) not found', $id));

@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://friendsofsymfony.github.com/schema/rest https://raw.github.com/FriendsOfSymfony/FOSRestBundle/master/Resources/config/schema/routing/rest_routing-1.0.xsd">
 
-    <import type="rest" resource="Sonata\NewsBundle\Controller\Api\PostController" name-prefix="sonata_api_news_post_" />
-    <import type="rest" resource="Sonata\NewsBundle\Controller\Api\CommentController" name-prefix="sonata_api_news_comment_" />
+    <import type="rest" resource="sonata.news.controller.api.post" name-prefix="sonata_api_news_post_" />
+    <import type="rest" resource="sonata.news.controller.api.comment" name-prefix="sonata_api_news_comment_" />
 
 </routes>

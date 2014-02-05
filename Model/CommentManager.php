@@ -10,28 +10,8 @@
  */
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Sonata\CoreBundle\Model\BaseManager;
 
-abstract class CommentManager implements CommentManagerInterface
+abstract class CommentManager extends BaseManager implements CommentManagerInterface
 {
-    /**
-     * @var string
-     */
-    protected $class;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function create()
-    {
-        return new $this->class;
-    }
 }

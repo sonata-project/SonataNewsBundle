@@ -11,13 +11,13 @@
 
 namespace Sonata\NewsBundle\Controller\Api;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\View;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Sonata\NewsBundle\Model\Comment;
 
+use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -28,8 +28,23 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Hugo Briand <briand@ekino.com>
  */
-class CommentController extends FOSRestController
+class CommentController
 {
+    /**
+     * @var CommentManagerInterface
+     */
+    protected $commentManager;
+
+    /**
+     * Constructor
+     *
+     * @param CommentManagerInterface $commentManager
+     */
+    public function __construct(CommentManagerInterface $commentManager)
+    {
+        $this->commentManager = $commentManager;
+    }
+
     /**
      * Retrieves a specific comment
      *
@@ -54,10 +69,10 @@ class CommentController extends FOSRestController
      */
     public function getCommentAction($id)
     {
-        $comment = $this->get('sonata.news.manager.comment')->findOneBy(array('id' => $id));
+        $comment = $this->commentManager->findOneBy(array('id' => $id));
 
         if (null === $comment) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException(sprintf("Comment (%d) not found", $id));
         }
 
         return $comment;
