@@ -10,7 +10,12 @@
  */
 namespace Sonata\NewsBundle\Model;
 
+use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\Query\Expr\Join;
+use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\CoreBundle\Model\BaseManager;
+use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
 abstract class PostManager extends BaseManager implements PostManagerInterface
 {
@@ -87,8 +92,8 @@ abstract class PostManager extends BaseManager implements PostManagerInterface
             ;
         } else {
             $query
-                ->leftJoin('p.tags', 't', Expr\Join::WITH, 't.enabled = true')
-                ->leftJoin('p.author', 'a', Expr\Join::WITH, 'a.enabled = true')
+                ->leftJoin('p.tags', 't', Join::WITH, 't.enabled = true')
+                ->leftJoin('p.author', 'a', Join::WITH, 'a.enabled = true')
             ;
         }
 
