@@ -50,6 +50,10 @@ class SonataNewsExtension extends Extension
         $loader->load('core.xml');
         $loader->load('block.xml');
 
+        if (isset($bundles['FOSRestBundle'])) {
+            $loader->load('api_controllers.xml');
+        }
+
         if (isset($bundles['SonataAdminBundle'])) {
             $loader->load('admin.xml');
         }
