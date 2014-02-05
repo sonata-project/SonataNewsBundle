@@ -10,7 +10,6 @@
  */
 namespace Sonata\NewsBundle\Entity;
 
-use Sonata\CoreBundle\Entity\DoctrineBaseManager;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ORM\EntityManager;
@@ -20,7 +19,9 @@ use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
-class CommentManager extends DoctrineBaseManager
+use Sonata\NewsBundle\Model\CommentManager as BaseCommentManager;
+
+class CommentManager extends BaseCommentManager
 {
     /**
      * @var ManagerInterface
@@ -60,19 +61,19 @@ class CommentManager extends DoctrineBaseManager
      */
     public function updateCommentsCount(PostInterface $post = null)
     {
-        $commentTableName = $this->em->getClassMetadata($this->getClass())->table['name'];
-        $postTableName    = $this->em->getClassMetadata($this->postManager->getClass())->table['name'];
+        $commentTableName = $this->om->getClassMetadata($this->getClass())->table['name'];
+        $postTableName    = $this->om->getClassMetadata($this->postManager->getClass())->table['name'];
 
-        $this->em->getConnection()->beginTransaction();
-        $this->em->getConnection()->query(sprintf('UPDATE %s p SET p.comments_count = 0' , $postTableName));
+        $this->om->getConnection()->beginTransaction();
+        $this->om->getConnection()->query(sprintf('UPDATE %s p SET p.comments_count = 0' , $postTableName));
 
-        $this->em->getConnection()->query(sprintf(
+        $this->om->getConnection()->query(sprintf(
             'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
             SET p.comments_count = count_comment.total
             WHERE p.id = count_comment.post_id'
         , $postTableName, $commentTableName));
 
-        $this->em->getConnection()->commit();
+        $this->om->getConnection()->commit();
     }
 
     /**
@@ -102,7 +103,7 @@ class CommentManager extends DoctrineBaseManager
 
         $parameters = array();
 
-        $query = $this->em->getRepository($this->class)
+        $query = $this->om->getRepository($this->class)
             ->createQueryBuilder('c')
             ->orderby('c.createdAt', 'DESC');
 
@@ -127,4 +128,14 @@ class CommentManager extends DoctrineBaseManager
 
         return $pager;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConnection()
+    {
+        return $this->om->getConnection();
+    }
+
+
 }
