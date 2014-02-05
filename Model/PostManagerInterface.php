@@ -11,55 +11,47 @@
 
 namespace Sonata\NewsBundle\Model;
 
-interface PostManagerInterface
+use Sonata\CoreBundle\Model\ManagerInterface;
+
+interface PostManagerInterface extends ManagerInterface
 {
     /**
-     * Creates an empty post instance
-     *
-     * @return Post
-     */
-    public function create();
-
-    /**
-     * Deletes a post
-     *
-     * @param PostInterface $post
-     *
-     * @return void
-     */
-    public function delete(PostInterface $post);
-
-    /**
-     * Finds one post by the given criteria
-     *
-     * @param array $criteria
+     * @param string                                 $permalink
+     * @param \Sonata\NewsBundle\Model\BlogInterface $blog
      *
      * @return PostInterface
      */
-    public function findOneBy(array $criteria);
+    public function findOneByPermalink($permalink, BlogInterface $blog);
 
     /**
-     * Finds one post by the given criteria
+     * Retrieve posts, based on the criteria, a page at a time.
+     * Valid criteria are:
+     *    enabled - boolean
+     *    date - query
+     *    tag - string
+     *    author - 'NULL', 'NOT NULL', id, array of ids
      *
-     * @param array $criteria
+     * @param array   $criteria
+     * @param integer $page
+     * @param integer $maxPerPage
      *
-     * @return PostInterface
+     * @return \Sonata\AdminBundle\Datagrid\Pager
      */
-    public function findBy(array $criteria);
+    public function getPager(array $criteria, $page, $maxPerPage = 10);
 
     /**
-     * Returns the post's fully qualified class name
+     * @param string $date  Date in format YYYY-MM-DD
+     * @param string $step  Interval step: year|month|day
+     * @param string $alias Table alias for the publicationDateStart column
      *
-     * @return string
+     * @return array
      */
-    public function getClass();
+    public function getPublicationDateQueryParts($date, $step, $alias = 'p');
 
     /**
-     * Save a post
+     * @param string $collection
      *
-     * @param PostInterface $post
-     *
-     * @return void
+     * @return array
      */
-    public function save(PostInterface $post);
+    public function getPublicationCollectionQueryParts($collection);
 }
