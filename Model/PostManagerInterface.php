@@ -16,14 +16,6 @@ use Sonata\CoreBundle\Model\ManagerInterface;
 interface PostManagerInterface extends ManagerInterface
 {
     /**
-     * @param string                                 $permalink
-     * @param \Sonata\NewsBundle\Model\BlogInterface $blog
-     *
-     * @return PostInterface
-     */
-    public function findOneByPermalink($permalink, BlogInterface $blog);
-
-    /**
      * Retrieve posts, based on the criteria, a page at a time.
      * Valid criteria are:
      *    enabled - boolean
@@ -38,20 +30,4 @@ interface PostManagerInterface extends ManagerInterface
      * @return \Sonata\AdminBundle\Datagrid\Pager
      */
     public function getPager(array $criteria, $page, $maxPerPage = 10);
-
-    /**
-     * @param string $date  Date in format YYYY-MM-DD
-     * @param string $step  Interval step: year|month|day
-     * @param string $alias Table alias for the publicationDateStart column
-     *
-     * @return array
-     */
-    public function getPublicationDateQueryParts($date, $step, $alias = 'p');
-
-    /**
-     * @param string $collection
-     *
-     * @return array
-     */
-    public function getPublicationCollectionQueryParts($collection);
 }
