@@ -28,6 +28,7 @@
         "sonata-project/intl-bundle": "~2.1"
     },
     "require-dev": {
+        "friendsofsymfony/rest-bundle": " 1.1.*",
         "doctrine/orm": "*",
         "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
         "sonata-project/notification-bundle": "2.2.*@dev"
