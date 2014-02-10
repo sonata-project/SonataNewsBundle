@@ -10,18 +10,18 @@
  */
 namespace Sonata\NewsBundle\Entity;
 
+use Sonata\CoreBundle\Model\BaseEntityManager;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
+use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
-use Sonata\NewsBundle\Model\CommentManager as BaseCommentManager;
-
-class CommentManager extends BaseCommentManager
+class CommentManager extends BaseEntityManager implements CommentManagerInterface
 {
     /**
      * @var ManagerInterface
@@ -31,13 +31,13 @@ class CommentManager extends BaseCommentManager
     /**
      * Constructor.
      *
-     * @param string           $class
-     * @param EntityManager    $em
-     * @param ManagerInterface $postManager
+     * @param string                  $class
+     * @param ManagerRegistry         $registry
+     * @param ManagerInterface        $postManager
      */
-    public function __construct($class, EntityManager $em, ManagerInterface $postManager)
+    public function __construct($class, ManagerRegistry $registry, ManagerInterface $postManager)
     {
-        parent::__construct($class, $em);
+        parent::__construct($class, $registry);
 
         $this->postManager = $postManager;
     }
@@ -61,19 +61,19 @@ class CommentManager extends BaseCommentManager
      */
     public function updateCommentsCount(PostInterface $post = null)
     {
-        $commentTableName = $this->om->getClassMetadata($this->getClass())->table['name'];
-        $postTableName    = $this->om->getClassMetadata($this->postManager->getClass())->table['name'];
+        $commentTableName = $this->getObjectManager()->getClassMetadata($this->getClass())->table['name'];
+        $postTableName    = $this->getObjectManager()->getClassMetadata($this->postManager->getClass())->table['name'];
 
-        $this->om->getConnection()->beginTransaction();
-        $this->om->getConnection()->query(sprintf('UPDATE %s p SET p.comments_count = 0' , $postTableName));
+        $this->getConnection()->beginTransaction();
+        $this->getConnection()->query(sprintf('UPDATE %s p SET p.comments_count = 0' , $postTableName));
 
-        $this->om->getConnection()->query(sprintf(
+        $this->getConnection()->query(sprintf(
             'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
             SET p.comments_count = count_comment.total
             WHERE p.id = count_comment.post_id'
         , $postTableName, $commentTableName));
 
-        $this->om->getConnection()->commit();
+        $this->getConnection()->commit();
     }
 
     /**
@@ -93,7 +93,7 @@ class CommentManager extends BaseCommentManager
      * @param integer $page
      * @param integer $maxPerPage
      *
-     * @return \Sonata\AdminBundle\Datagrid\ORM\Pager
+     * @return \Sonata\AdminBundle\Datagrid\PagerInterface
      */
     public function getPager(array $criteria, $page, $maxPerPage = 10)
     {
@@ -103,7 +103,7 @@ class CommentManager extends BaseCommentManager
 
         $parameters = array();
 
-        $query = $this->om->getRepository($this->class)
+        $query = $this->getRepository()
             ->createQueryBuilder('c')
             ->orderby('c.createdAt', 'DESC');
 
@@ -128,14 +128,4 @@ class CommentManager extends BaseCommentManager
 
         return $pager;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getConnection()
-    {
-        return $this->om->getConnection();
-    }
-
-
 }

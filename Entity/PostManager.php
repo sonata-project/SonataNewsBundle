@@ -10,25 +10,21 @@
  */
 namespace Sonata\NewsBundle\Entity;
 
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr\Join;
+use Sonata\CoreBundle\Model\BaseEntityManager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\NewsBundle\Model\BlogInterface;
-use Sonata\NewsBundle\Model\PostManager as BasePostManager;
+use Sonata\NewsBundle\Model\PostInterface;
+use Sonata\NewsBundle\Model\PostManagerInterface;
 
-class PostManager extends BasePostManager
+class PostManager extends BaseEntityManager implements PostManagerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getConnection()
-    {
-        return $this->om->getConnection();
-    }
 
     /**
-     * @param string                                 $permalink
-     * @param \Sonata\NewsBundle\Model\BlogInterface $blog
+     * @param string        $permalink
+     * @param BlogInterface $blog
      *
      * @return PostInterface
      */
@@ -155,7 +151,7 @@ class PostManager extends BasePostManager
      *
      * @return array
      */
-    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
+    protected function getPublicationDateQueryParts($date, $step, $alias = 'p')
     {
         return array(
             'query'  => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
@@ -171,7 +167,7 @@ class PostManager extends BasePostManager
      *
      * @return array
      */
-    public function getPublicationCollectionQueryParts($collection)
+    protected function getPublicationCollectionQueryParts($collection)
     {
         $pcqp = array('query' => '', 'params' => array());
 

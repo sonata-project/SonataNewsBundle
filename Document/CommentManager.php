@@ -10,65 +10,18 @@
  */
 namespace Sonata\NewsBundle\Document;
 
+use Sonata\CoreBundle\Model\BaseDocumentManager;
 use Sonata\NewsBundle\Model\CommentManager as ModelCommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
+use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 
-class CommentManager extends ModelCommentManager
+class CommentManager extends BaseDocumentManager implements CommentManagerInterface
 {
-    /**
-     * @var DocumentManager
-     */
-    protected $dm;
-
-    /**
-     * @param DocumentManager $dm
-     * @param string          $class
-     */
-    public function __construct(DocumentManager $dm, $class)
-    {
-        $this->dm    = $dm;
-        $this->class = $class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function save(CommentInterface $comment)
-    {
-        $this->dm->persist($comment);
-        $this->dm->flush();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function findOneBy(array $criteria)
-    {
-        return $this->dm->getRepository($this->class)->findOneBy($criteria);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function findBy(array $criteria)
-    {
-        return $this->dm->getRepository($this->class)->findBy($criteria);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function delete(CommentInterface $comment)
-    {
-        $this->dm->remove($comment);
-        $this->dm->flush();
-    }
-
     /**
      * @param array   $criteria
      * @param integer $page
@@ -79,7 +32,7 @@ class CommentManager extends ModelCommentManager
     {
         $parameters = array();
 
-        $qb = $this->dm->getRepository($this->class)
+        $qb = $this->getDocumentManager()->getRepository($this->class)
             ->createQueryBuilder()
             ->sort('createdAt', 'desc');
 
@@ -100,14 +53,13 @@ class CommentManager extends ModelCommentManager
 
     /**
      * Update the comments count
-     * 
+     *
      * @param \Sonata\NewsBundle\Document\PostInterface $post
      */
-    public function updateCommentsCount(PostInterface $post = null) 
+    public function updateCommentsCount(PostInterface $post = null)
     {
         $post->setCommentsCount($post->getCommentsCount() + 1);
-        $this->dm->persist($post);
-        $this->dm->flush();
+        $this->getDocumentManager()->persist($post);
+        $this->getDocumentManager()->flush();
     }
-
 }

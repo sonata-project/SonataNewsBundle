@@ -11,23 +11,15 @@
 namespace Sonata\NewsBundle\Document;
 
 use Doctrine\DBAL\Connection;
+use Sonata\CoreBundle\Model\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 
-use Sonata\NewsBundle\Model\PostManager as BasePostManager;
-
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Sonata\NewsBundle\Model\PostManagerInterface;
 
-class PostManager extends BasePostManager
+class PostManager extends BaseDocumentManager implements PostManagerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getConnection()
-    {
-        return $this->om->getConnection();
-    }
-
     /**
      * @param $year
      * @param $month
@@ -40,10 +32,9 @@ class PostManager extends BasePostManager
     {
         $pdqp = $this->getPublicationDateQueryParts(sprintf('%s-%s-%s', $year, $month, $day), 'day');
 
-        return $this->dm->getRepository($this->class)
+        return $this->getRepository()
             ->createQueryBuilder()
             ->field('slug')->equals($slug)
-
             ->andWhere($pdqp['query'])
             ->getQuery()
             ->getSingleResult();
@@ -56,7 +47,7 @@ class PostManager extends BasePostManager
     public function getPager(array $criteria, $page, $maxPerPage = 10)
     {
         $parameters = array();
-        $query = $this->dm->getRepository($this->class)
+        $query = $this->getRepository()
             ->createQueryBuilder('p')
             ->select('p, t')
             ->leftJoin('p.tags', 't')
