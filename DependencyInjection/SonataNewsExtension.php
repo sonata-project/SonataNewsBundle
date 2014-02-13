@@ -50,7 +50,7 @@ class SonataNewsExtension extends Extension
         $loader->load('core.xml');
         $loader->load('block.xml');
 
-        if (isset($bundles['FOSRestBundle'])) {
+        if (isset($bundles['FOSRestBundle']) && isset($bundles['NelmioApiDocBundle'])) {
             $loader->load('api_controllers.xml');
         }
 
