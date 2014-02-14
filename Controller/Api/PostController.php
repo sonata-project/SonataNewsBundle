@@ -47,7 +47,7 @@ class PostController
     protected $postManager;
 
     /**
-     * @var CommentManagerInterface::
+     * @var CommentManagerInterface
      */
     protected $commentManager;
 
