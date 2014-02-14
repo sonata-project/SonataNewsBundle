@@ -41,9 +41,8 @@
         "sonata-project/notification-bundle": "~2.*"
     },
     "autoload": {
-        "psr-0": { "Sonata\\NewsBundle": "" }
+        "psr-4": { "Sonata\\NewsBundle\\": "" }
     },
-    "target-dir": "Sonata/NewsBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.3.x-dev"
