@@ -11,6 +11,7 @@ Installation
         "sonata-project/news-bundle": "dev-master",
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "sonata-project/easy-extends-bundle": "dev-master",
+        "sonata-project/classification-bundle": "~2.2@dev",
     //...
     }
 
@@ -39,9 +40,12 @@ Installation
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            
+            
             // ...
         );
     }
+           
 
 * Create a configuration file : ``sonata_news.yml``::
 
@@ -136,9 +140,10 @@ Installation
 
 * Run the easy-extends command::
 
-    php app/console sonata:easy-extends:generate SonataNewsBundle
-    php app/console sonata:easy-extends:generate SonataUserBundle
-    php app/console sonata:easy-extends:generate SonataMediaBundle
+    php app/console sonata:easy-extends:generate SonataNewsBundle -d src
+    php app/console sonata:easy-extends:generate SonataUserBundle -d src
+    php app/console sonata:easy-extends:generate SonataMediaBundle -d src
+    php app/console sonata:easy-extends:generate SonataClassificationBundle -d src
 
 * If the bundle is generated in /app cut application folder and paste it in src/
 * Enable the new bundles::
@@ -153,9 +158,12 @@ Installation
             new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
             // ...
         );
     }
+    
+    Update database schema by running command "php app/console doctrine:schema:update --force"
 
 * Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
 
