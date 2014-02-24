@@ -19,15 +19,13 @@
         <property name="createdAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
         <property name="updatedAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
-        <property name="author" type="Sonata\UserBundle\Model\User" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
-
-        <property name="image" type="Sonata\MediaBundle\Model\Media" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
-
-        <property name="collection" type="Sonata\ClassificationBundle\Model\Collection" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
-
         <property type="ArrayCollection&lt;Sonata\ClassificationBundle\Model\TagInterface&gt;" name="tags" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search">
             <xml-list inline="false" entry-name="tag" />
         </property>
+
+        <property name="author"     serialized-name="user_id"       type="sonata_user_user_id"                 expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="image"      serialized-name="media_id"      type="sonata_media_media_id"               expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="collection" serialized-name="collection_id" type="sonata_classification_collection_id" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
 
     </class>
 </serializer>
