@@ -1,9 +1,9 @@
 Installation
 ============
 
-* Add SonataNewsBundle to your vendor/bundles dir with the deps file::
+* Add SonataNewsBundle to your vendor/bundles dir with the deps file:
 
-.. code-block:: php
+.. code-block:: json
 
     //composer.json
     "require": {
@@ -16,9 +16,11 @@ Installation
     }
 
 
-* Add SonataNewsBundle to your application kernel::
+* Add SonataNewsBundle to your application kernel:
 
 .. code-block:: php
+
+    <?php
 
     // app/AppKernel.php
     public function registerBundles()
@@ -40,14 +42,14 @@ Installation
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            
-            
+
+
             // ...
         );
     }
-           
 
-* Create a configuration file : ``sonata_news.yml``::
+
+* Create a configuration file : ``sonata_news.yml``:
 
 .. code-block:: yaml
 
@@ -75,7 +77,7 @@ Installation
                         ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
-* import the ``sonata_news.yml`` file and enable json type for doctrine ::
+* import the ``sonata_news.yml`` file and enable json type for doctrine:
 
 .. code-block:: yaml
 
@@ -89,7 +91,7 @@ Installation
             types:
                 json: Sonata\Doctrine\Types\JsonType
 
-* Add a new context into your ``sonata_media.yml`` configuration if you don't have go there http://sonata-project.org/bundles/media/master/doc/reference/installation.html::
+* Add a new context into your ``sonata_media.yml`` configuration if you don't have go there http://sonata-project.org/bundles/media/master/doc/reference/installation.html:
 
 .. code-block:: yaml
 
@@ -103,7 +105,7 @@ Installation
             small: { width: 150 , quality: 95}
             big:   { width: 500 , quality: 90}
 
-* create configuration file sonata_formatter.yml the text formatters available for your blog post::
+* create configuration file ``sonata_formatter.yml`` the text formatters available for your blog post:
 
 .. code-block:: yaml
 
@@ -138,17 +140,20 @@ Installation
                     - sonata.media.formatter.twig
 
 
-* Run the easy-extends command::
+* Run the easy-extends command:
+
+.. code-block:: bash
 
     php app/console sonata:easy-extends:generate SonataNewsBundle -d src
     php app/console sonata:easy-extends:generate SonataUserBundle -d src
     php app/console sonata:easy-extends:generate SonataMediaBundle -d src
     php app/console sonata:easy-extends:generate SonataClassificationBundle -d src
 
-* If the bundle is generated in /app cut application folder and paste it in src/
-* Enable the new bundles::
+* Enable the new bundles:
 
 .. code-block:: php
+
+    <?php
 
     // app/AppKernel.php
     public function registerBundles()
@@ -162,12 +167,12 @@ Installation
             // ...
         );
     }
-    
-    Update database schema by running command "php app/console doctrine:schema:update --force"
+
+Update database schema by running command ``php app/console doctrine:schema:update --force``
 
 * Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
 
-* Add SonataNewsBundle routes to your application routing.yml::
+* Add SonataNewsBundle routes to your application routing.yml:
 
 .. code-block:: yaml
 

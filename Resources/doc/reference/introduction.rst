@@ -8,8 +8,8 @@ Permalink
 
 The bundle comes with 2 services to generate a permalink :
 
-* sonata.news.permalink.date : generates an url depending on the publication start date (/2011/12/31/new-year)
-* sonata.news.permalink.collection : generates and url depending on the related collection (/party/new-year)
+* ``sonata.news.permalink.date``: generates an url depending on the publication start date (/2011/12/31/new-year)
+* ``sonata.news.permalink.collection``: generates and url depending on the related collection (/party/new-year)
 
 Text Formatting
 ---------------
