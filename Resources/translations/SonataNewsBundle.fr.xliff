@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="" >
+    <file source-language="en" target-language="fr" datatype="plaintext" original="SonataNewsBundle.en.xliff">
         <body>
             <trans-unit id="title_archive">
                 <source>title_archive</source>
@@ -20,9 +20,8 @@
             </trans-unit>
             <trans-unit id="no_post_found">
                 <source>no_post_found</source>
-                <target>Pas de news disponible.</target>
+                <target>Pas d'article disponible.</target>
             </trans-unit>
-
             <trans-unit id="sidemenu.link_view_post">
                 <source>sidemenu.link_view_post</source>
                 <target>Voir</target>
@@ -31,7 +30,6 @@
                 <source>sidemenu.link_view_comments</source>
                 <target>Commentaires</target>
             </trans-unit>
-
             <trans-unit id="breadcrumb.link_comment_create">
                 <source>breadcrumb.link_comment_create</source>
                 <target>Ajouter</target>
@@ -50,7 +48,7 @@
             </trans-unit>
             <trans-unit id="breadcrumb.link_post_list">
                 <source>breadcrumb.link_post_list</source>
-                <target>Posts</target>
+                <target>Articles</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_post_edit">
                 <source>breadcrumb.link_post_edit</source>
@@ -68,14 +66,13 @@
                 <source>breadcrumb.link_tag_edit</source>
                 <target>Editer</target>
             </trans-unit>
-
             <trans-unit id="comments">
                 <source>comments</source>
                 <target>Commentaires</target>
             </trans-unit>
             <trans-unit id="posts">
                 <source>posts</source>
-                <target>Posts</target>
+                <target>Articles</target>
             </trans-unit>
             <trans-unit id="categories">
                 <source>categories</source>
@@ -85,36 +82,32 @@
                 <source>tags</source>
                 <target>Tags</target>
             </trans-unit>
-
             <trans-unit id="no_tag_selected">
                 <source>no_tag_selected</source>
                 <target>Pas de tag sélectionné</target>
             </trans-unit>
             <trans-unit id="published_under">
                 <source>published_under</source>
-                <target>{0}Pas de catégorie associée|{1}Tag : |]1,Inf]Tags :</target>
+                <target>{0}Pas de tag associé|{1}Tag : |]1,Inf]Tags :</target>
             </trans-unit>
-
             <trans-unit id="archive_author">
                 <source>archive_author</source>
                 <target>de %author%</target>
             </trans-unit>
-
             <trans-unit id="comments_count">
                 <source>comments_count</source>
                 <target>%comments_count% commentaires</target>
             </trans-unit>
-
             <trans-unit id="title_leave_comment">
                 <source>title_leave_comment</source>
                 <target>Rajouter un commentaire</target>
             </trans-unit>
             <trans-unit id="mail_title_comment_notification">
                 <source>mail_title_comment_notification</source>
-                <target>Nouveau commentaire pour le post '%post_title%' sur le blog '%blog_title%'
-Nouveau commentaire pour le post "%post_title%" sur le blog "%blog_title%"
+                <target>Nouveau commentaire pour l'article '%post_title%' sur le blog '%blog_title%'
+Nouveau commentaire pour l'article "%post_title%" sur le blog "%blog_title%"
 
-Post: %post_title% - %post_url%
+Article: %post_title% - %post_url%
 De: %comment_name%
 Email: %comment_email%
 Url: %comment_url%
@@ -122,10 +115,10 @@ Message:
 %comment_message%
 
 Liens de modération rapide :
-  - validate: %comment_valid_link%
-  - invalidate: %comment_invalid_link%
-</target>
-</trans-unit>
+  - valider : %comment_valid_link%
+  - invalider : %comment_invalid_link%
+                </target>
+            </trans-unit>
             <trans-unit id="no_comments_available">
                 <source>no_comments_available</source>
                 <target>Pas de commentaires</target>
@@ -162,6 +155,10 @@ Liens de modération rapide :
                 <source>list.label_comments_count</source>
                 <target>Nombre de commentaires</target>
             </trans-unit>
+            <trans-unit id="list.label_publication_date_start">
+                <source>list.label_publication_date_start</source>
+                <target>Date de début de publication</target>
+            </trans-unit>
             <trans-unit id="form_label_enabled">
                 <source>form.label_enabled</source>
                 <target>Activé</target>
@@ -192,7 +189,7 @@ Liens de modération rapide :
             </trans-unit>
             <trans-unit id="form_label_publication_date_start">
                 <source>form.label_publication_date_start</source>
-                <target>Date de publication</target>
+                <target>Date de début de publication</target>
             </trans-unit>
             <trans-unit id="form_label_comments_close_at">
                 <source>form.label_comments_close_at</source>
@@ -225,6 +222,10 @@ Liens de modération rapide :
             <trans-unit id="filter_label_with_open_comments">
                 <source>filter.label_with_open_comments</source>
                 <target>Commentaires ouverts</target>
+            </trans-unit>
+            <trans-unit id="filter.label_post">
+                <source>filter.label_post</source>
+                <target>ID de l'article</target>
             </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>
@@ -324,7 +325,7 @@ Liens de modération rapide :
             </trans-unit>
             <trans-unit id="form.comment.name">
                 <source>form.comment.name</source>
-                <target>Name</target>
+                <target>Nom</target>
             </trans-unit>
             <trans-unit id="form.comment.email">
                 <source>form.comment.email</source>
@@ -340,35 +341,35 @@ Liens de modération rapide :
             </trans-unit>
             <trans-unit id="view_all_posts">
                 <source>view_all_posts</source>
-                <target>view_all_posts</target>
+                <target>Voir tous les articles</target>
             </trans-unit>
             <trans-unit id="post_is_public">
                 <source>post_is_public</source>
-                <target>post_is_public</target>
+                <target>Public</target>
             </trans-unit>
             <trans-unit id="post_is_not_public">
                 <source>post_is_not_public</source>
-                <target>post_is_not_public</target>
+                <target>Privé</target>
             </trans-unit>
             <trans-unit id="label_comment_valid">
                 <source>label_comment_valid</source>
-                <target>label_comment_valid</target>
+                <target>Valide</target>
             </trans-unit>
             <trans-unit id="label_comment_invalid">
                 <source>label_comment_invalid</source>
-                <target>label_comment_invalid</target>
+                <target>Invalide</target>
             </trans-unit>
             <trans-unit id="label_unknown_status">
                 <source>label_unknown_status</source>
-                <target>label_unknown_status</target>
+                <target>Inconnu</target>
             </trans-unit>
             <trans-unit id="label_unknown_moderate">
                 <source>label_unknown_moderate</source>
-                <target>label_unknown_moderate</target>
+                <target>Modéré</target>
             </trans-unit>
             <trans-unit id="view_all_comments">
                 <source>view_all_comments</source>
-                <target>view_all_comments</target>
+                <target>Voir tous les commentaires</target>
             </trans-unit>
             <trans-unit id="sonata_news_archive_breadcrumb">
                 <source>sonata_news_archive_breadcrumb</source>
