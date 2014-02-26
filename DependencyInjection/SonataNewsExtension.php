@@ -52,6 +52,7 @@ class SonataNewsExtension extends Extension
 
         if (isset($bundles['FOSRestBundle']) && isset($bundles['NelmioApiDocBundle'])) {
             $loader->load('api_controllers.xml');
+            $loader->load('api_form.xml');
             $loader->load('serializer.xml');
         }
 
@@ -139,124 +140,125 @@ class SonataNewsExtension extends Extension
         }
 
         $collector->addAssociation($config['class']['post'], 'mapOneToMany', array(
-             'fieldName' => 'comments',
-             'targetEntity' => $config['class']['comment'],
-             'cascade' =>
-             array(
-                 0 => 'remove',
-                 1 => 'persist',
-             ),
-             'mappedBy' => 'post',
-             'orphanRemoval' => true,
-             'orderBy' =>
-             array(
-                 'createdAt' => 'DESC',
-             ),
+            'fieldName' => 'comments',
+            'targetEntity' => $config['class']['comment'],
+            'cascade' =>
+                array(
+                    0 => 'remove',
+                    1 => 'persist',
+                ),
+            'mappedBy' => 'post',
+            'orphanRemoval' => true,
+            'orderBy' =>
+                array(
+                    'createdAt' => 'DESC',
+                ),
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
             'fieldName' => 'image',
             'targetEntity' => $config['class']['media'],
             'cascade' =>
-            array(
-                0 => 'remove',
-                1 => 'persist',
-                2 => 'refresh',
-                3 => 'merge',
-                4 => 'detach',
-            ),
+                array(
+                    0 => 'remove',
+                    1 => 'persist',
+                    2 => 'refresh',
+                    3 => 'merge',
+                    4 => 'detach',
+                ),
             'mappedBy' => NULL,
             'inversedBy' => NULL,
             'joinColumns' =>
-            array(
                 array(
-                    'name' => 'image_id',
-                    'referencedColumnName' => 'id',
+                    array(
+                        'name' => 'image_id',
+                        'referencedColumnName' => 'id',
+                    ),
                 ),
-            ),
             'orphanRemoval' => false,
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
-             'fieldName' => 'author',
-             'targetEntity' => $config['class']['user'],
-             'cascade' =>
-             array(
-                 1 => 'persist',
-             ),
-             'mappedBy' => NULL,
-             'inversedBy' => NULL,
-             'joinColumns' =>
-             array(
-                 array(
-                     'name' => 'author_id',
-                     'referencedColumnName' => 'id',
-                 ),
-             ),
-             'orphanRemoval' => false,
+            'fieldName' => 'author',
+            'targetEntity' => $config['class']['user'],
+            'cascade' =>
+                array(
+                    1 => 'persist',
+                ),
+            'mappedBy' => NULL,
+            'inversedBy' => NULL,
+            'joinColumns' =>
+                array(
+                    array(
+                        'name' => 'author_id',
+                        'referencedColumnName' => 'id',
+                    ),
+                ),
+            'orphanRemoval' => false,
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
-             'fieldName' => 'collection',
-             'targetEntity' => $config['class']['collection'],
-             'cascade' =>
-             array(
-                 1 => 'persist',
-             ),
-             'mappedBy' => NULL,
-             'inversedBy' => NULL,
-             'joinColumns' =>
-             array(
-                 array(
-                     'name' => 'collection_id',
-                     'referencedColumnName' => 'id',
-                 ),
-             ),
-             'orphanRemoval' => false,
+            'fieldName' => 'collection',
+            'targetEntity' => $config['class']['collection'],
+            'cascade' =>
+                array(
+                    1 => 'persist',
+                ),
+            'mappedBy' => NULL,
+            'inversedBy' => NULL,
+            'joinColumns' =>
+                array(
+                    array(
+                        'name' => 'collection_id',
+                        'referencedColumnName' => 'id',
+                    ),
+                ),
+            'orphanRemoval' => false,
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToMany', array(
             'fieldName' => 'tags',
             'targetEntity' => $config['class']['tag'],
             'cascade' =>
-            array(
-                1 => 'persist',
-            ),
+                array(
+                    1 => 'persist',
+                ),
             'joinTable' =>
-            array(
-                'name' => 'news__post_tag',
-                'joinColumns' =>
+                array(
+                    'name' => 'news__post_tag',
+                    'joinColumns' =>
+                        array(
+                            array(
+                                'name' => 'post_id',
+                                'referencedColumnName' => 'id',
+                            ),
+                        ),
+                    'inverseJoinColumns' =>
+                        array(
+                            array(
+                                'name' => 'tag_id',
+                                'referencedColumnName' => 'id',
+                            ),
+                        ),
+                ),
+        ));
+
+        $collector->addAssociation($config['class']['comment'], 'mapManyToOne', array(
+            'fieldName' => 'post',
+            'targetEntity' => $config['class']['post'],
+            'cascade' => array(
+            ),
+            'mappedBy' => NULL,
+            'inversedBy' => 'comments',
+            'joinColumns' =>
                 array(
                     array(
                         'name' => 'post_id',
                         'referencedColumnName' => 'id',
+                        'nullable' => false
                     ),
                 ),
-                'inverseJoinColumns' =>
-                array(
-                    array(
-                        'name' => 'tag_id',
-                        'referencedColumnName' => 'id',
-                    ),
-                ),
-            ),
-        ));
-
-        $collector->addAssociation($config['class']['comment'], 'mapManyToOne', array(
-             'fieldName' => 'post',
-             'targetEntity' => $config['class']['post'],
-             'cascade' => array(
-             ),
-             'mappedBy' => NULL,
-             'inversedBy' => 'comments',
-             'joinColumns' =>
-             array(
-                 array(
-                     'name' => 'post_id',
-                     'referencedColumnName' => 'id',
-                 ),
-             ),
-             'orphanRemoval' => false,
+            'orphanRemoval' => false,
         ));
     }
 }
