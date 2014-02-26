@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="" >
+    <file source-language="en" target-language="cs" datatype="plaintext" original="SonataNewsBundle.en.xliff">
         <body>
             <trans-unit id="title_archive">
                 <source>title_archive</source>
@@ -155,6 +155,10 @@ Rychlé odkazy na moderování
                 <source>list.label_comments_count</source>
                 <target>Comment count</target>
             </trans-unit>
+            <trans-unit id="list.label_publication_date_start">
+                <source>list.label_publication_date_start</source>
+                <target>list.label_publication_date_start</target>
+            </trans-unit>
             <trans-unit id="form_label_enabled">
                 <source>form.label_enabled</source>
                 <target>Povolený</target>
@@ -218,6 +222,10 @@ Rychlé odkazy na moderování
             <trans-unit id="filter_label_with_open_comments">
                 <source>filter.label_with_open_comments</source>
                 <target>Open comments</target>
+            </trans-unit>
+            <trans-unit id="filter.label_post">
+                <source>filter.label_post</source>
+                <target>filter.label_post</target>
             </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>

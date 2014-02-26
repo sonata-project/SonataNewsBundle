@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="" >
+    <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="title_archive">
                 <source>title_archive</source>
@@ -88,7 +88,7 @@
             </trans-unit>
             <trans-unit id="published_under">
                 <source>published_under</source>
-                <target>{0}No tag selected|{1}Tag : |]1,Inf]Tags :</target>
+                <target>{0}No tag selected|{1}Tag: |]1,Inf]Tags:</target>
             </trans-unit>
             <trans-unit id="archive_author">
                 <source>archive_author</source>
@@ -117,7 +117,7 @@ Message:
 Quick moderation links :
   - validate: %comment_valid_link%
   - invalidate: %comment_invalid_link%
-</target>
+                </target>
             </trans-unit>
             <trans-unit id="no_comments_available">
                 <source>no_comments_available</source>
@@ -155,6 +155,10 @@ Quick moderation links :
                 <source>list.label_comments_count</source>
                 <target>Comment count</target>
             </trans-unit>
+            <trans-unit id="list.label_publication_date_start">
+                <source>list.label_publication_date_start</source>
+                <target>Publication start date</target>
+            </trans-unit>
             <trans-unit id="form_label_enabled">
                 <source>form.label_enabled</source>
                 <target>Enabled</target>
@@ -185,7 +189,7 @@ Quick moderation links :
             </trans-unit>
             <trans-unit id="form_label_publication_date_start">
                 <source>form.label_publication_date_start</source>
-                <target>Publication date</target>
+                <target>Publication start date</target>
             </trans-unit>
             <trans-unit id="form_label_comments_close_at">
                 <source>form.label_comments_close_at</source>
@@ -218,6 +222,10 @@ Quick moderation links :
             <trans-unit id="filter_label_with_open_comments">
                 <source>filter.label_with_open_comments</source>
                 <target>Open comments</target>
+            </trans-unit>
+            <trans-unit id="filter.label_post">
+                <source>filter.label_post</source>
+                <target>Post ID</target>
             </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>
@@ -333,35 +341,35 @@ Quick moderation links :
             </trans-unit>
             <trans-unit id="view_all_posts">
                 <source>view_all_posts</source>
-                <target>View posts</target>
+                <target>View all posts</target>
             </trans-unit>
             <trans-unit id="post_is_public">
                 <source>post_is_public</source>
-                <target>public</target>
+                <target>Public</target>
             </trans-unit>
             <trans-unit id="post_is_not_public">
                 <source>post_is_not_public</source>
-                <target>not public</target>
+                <target>Private</target>
             </trans-unit>
             <trans-unit id="label_comment_valid">
                 <source>label_comment_valid</source>
-                <target>valid</target>
+                <target>Valid</target>
             </trans-unit>
             <trans-unit id="label_comment_invalid">
                 <source>label_comment_invalid</source>
-                <target>invalid</target>
+                <target>Invalid</target>
             </trans-unit>
             <trans-unit id="label_unknown_status">
                 <source>label_unknown_status</source>
-                <target>unknown</target>
+                <target>Unknown</target>
             </trans-unit>
             <trans-unit id="label_unknown_moderate">
                 <source>label_unknown_moderate</source>
-                <target>moderate</target>
+                <target>Moderate</target>
             </trans-unit>
             <trans-unit id="view_all_comments">
                 <source>view_all_comments</source>
-                <target>View comments</target>
+                <target>View all comments</target>
             </trans-unit>
             <trans-unit id="sonata_news_archive_breadcrumb">
                 <source>sonata_news_archive_breadcrumb</source>
