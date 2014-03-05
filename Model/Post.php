@@ -406,6 +406,22 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setCollection(CollectionInterface $collection = null)
     {
         $this->collection = $collection;

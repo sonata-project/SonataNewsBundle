@@ -234,7 +234,7 @@ interface PostInterface
     /**
      * Set comments_count
      *
-     * @param integer $commentsDefaultStatus
+     * @param integer $commentscount
      */
     public function setCommentsCount($commentscount);
 
@@ -266,6 +266,18 @@ interface PostInterface
      * @return mixed
      */
     public function getAuthor();
+
+    /**
+     * @param mixed $image
+     *
+     * @return mixed
+     */
+    public function setImage($image);
+
+    /**
+     * @return mixed
+     */
+    public function getImage();
 
     /**
      * @return \Sonata\ClassificationBundle\Model\CollectionInterface

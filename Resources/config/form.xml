@@ -7,7 +7,6 @@
     <services>
         <service id="sonata.news.form.type.comment" class="Sonata\NewsBundle\Form\Type\CommentType">
             <tag name="form.type" alias="sonata_post_comment" />
-
         </service>
     </services>
 </container>
