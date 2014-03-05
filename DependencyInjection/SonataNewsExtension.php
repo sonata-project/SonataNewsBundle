@@ -61,11 +61,11 @@ class SonataNewsExtension extends Extension
         }
 
         if (!isset($config['salt'])) {
-            throw new \InvalidArgumentException("The configration node 'salt' is not set for the SonataNewsbundle (sonata_news)");
+            throw new \InvalidArgumentException("The configuration node 'salt' is not set for the SonataNewsBundle (sonata_news)");
         }
 
         if (!isset($config['comment'])) {
-            throw new \InvalidArgumentException("The configration node 'comment' is not set for the SonataNewsbundle (sonata_news)");
+            throw new \InvalidArgumentException("The configuration node 'comment' is not set for the SonataNewsBundle (sonata_news)");
         }
 
         $container->getDefinition('sonata.news.hash.generator')
