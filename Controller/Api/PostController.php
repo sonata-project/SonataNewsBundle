@@ -286,14 +286,17 @@ class PostController
         }
 
         $comment = $this->commentManager->create();
-        $comment->setPost($post);
-        $comment->setStatus($post->getCommentsDefaultStatus());
 
         $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, array('csrf_protection' => false));
         $form->bind($request);
 
         if ($form->isValid()) {
             $comment = $form->getData();
+            $comment->setPost($post);
+
+            if (!$comment->getStatus()) {
+                $comment->setStatus($post->getCommentsDefaultStatus());
+            }
 
             $this->commentManager->save($comment);
             $this->mailer->sendCommentNotification($comment);
