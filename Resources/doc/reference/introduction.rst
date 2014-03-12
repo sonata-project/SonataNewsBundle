@@ -26,7 +26,7 @@ Comments
 --------
 
 Comments can be enabled or disabled depending on the policy selected while creating a Post.
-An email is sent everytime a comment is added to a Post. The email contains the comment informations such as:
+An email is sent every time a comment is added to a Post. The email contains the comment informations such as:
 
 * mail,
 * message,

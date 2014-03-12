@@ -54,7 +54,7 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
     /**
      * Update the comments count
      *
-     * @param \Sonata\NewsBundle\Document\PostInterface $post
+     * @param \Sonata\NewsBundle\Model\PostInterface $post
      */
     public function updateCommentsCount(PostInterface $post = null)
     {

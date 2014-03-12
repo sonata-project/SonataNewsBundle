@@ -2,8 +2,8 @@
 
 The SonataNewsBundle now used the SonataClassificationBundle, so here the main changes:
 
-* Tag namespace changes from ``Sonata\NewsBundle\Model\TagInteface`` => ``Sonata\ClassificationBundle\Model\TagInteface``
-* Category is now a Collection object:  ``Sonata\NewsBundle\Model\CategoryInteface`` => ``Sonata\ClassificationBundle\Model\CollectionInteface``
+* Tag namespace changes from ``Sonata\NewsBundle\Model\TagInterface`` => ``Sonata\ClassificationBundle\Model\TagInterface``
+* Category is now a Collection object:  ``Sonata\NewsBundle\Model\CategoryInterface`` => ``Sonata\ClassificationBundle\Model\CollectionInterface``
 * Update Tag and Category classes from ``Application\NewsBundle`` => ``Application\ClassificationBundle` - Fix namespace reference (Category => Collection)
 * Update Tag and Collection doctrine xml from ``Application\NewsBundle`` => ``Application\ClassificationBundle`` - Fix namespace reference (Category => Collection)
 * You cannot rely on Tag.posts or Category.posts associations, these associations are gone.

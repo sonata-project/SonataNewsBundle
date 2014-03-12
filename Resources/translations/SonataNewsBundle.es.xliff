@@ -292,7 +292,7 @@ Modera el comentario de forma rápida :
                 <target>Slug</target>
             </trans-unit>
             <trans-unit id="list_label_description">
-                <source>list.label_deescription</source>
+                <source>list.label_description</source>
                 <target>Descripción</target>
             </trans-unit>
             <trans-unit id="breadcrumb_link_collection_list">

@@ -292,7 +292,7 @@ Rychlé odkazy na moderování
                 <target>Slug</target>
             </trans-unit>
             <trans-unit id="list_label_description">
-                <source>list.label_deescription</source>
+                <source>list.label_description</source>
                 <target>Popis</target>
             </trans-unit>
             <trans-unit id="breadcrumb_link_collection_list">
