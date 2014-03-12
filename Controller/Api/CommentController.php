@@ -93,7 +93,7 @@ class CommentController
      *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
-     *      400="Returned when an error has occured while comment update",
+     *      400="Returned when an error has occurred while comment update",
      *      404="Returned when unable to find comment"
      *  }
      * )
@@ -140,7 +140,7 @@ class CommentController
      *  },
      *  statusCodes={
      *      200="Returned when comment is successfully deleted",
-     *      400="Returned when an error has occured while comment deletion",
+     *      400="Returned when an error has occurred while comment deletion",
      *      404="Returned when unable to find comment"
      *  }
      * )

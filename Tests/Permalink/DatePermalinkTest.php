@@ -28,7 +28,7 @@ class DatePermalinkTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2011/12/30/the-slug', $permalink->generate($post));
     }
 
-    public function testCustomFormating()
+    public function testCustomFormatting()
     {
         $post = $this->getMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
