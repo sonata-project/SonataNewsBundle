@@ -12,5 +12,9 @@
             <argument type="service" id="sonata.classification.manager.tag" />
             <argument type="service" id="sonata.news.blog" />
         </service>
+
+        <service id="sonata.news.status.comment" class="Sonata\NewsBundle\Status\CommentStatusRenderer">
+            <tag name="sonata.status.renderer" />
+        </service>
     </services>
 </container>
