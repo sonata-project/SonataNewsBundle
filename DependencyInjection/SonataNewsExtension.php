@@ -49,11 +49,11 @@ class SonataNewsExtension extends Extension
         $loader->load('form.xml');
         $loader->load('core.xml');
         $loader->load('block.xml');
+        $loader->load('serializer.xml');
 
         if (isset($bundles['FOSRestBundle']) && isset($bundles['NelmioApiDocBundle'])) {
             $loader->load('api_controllers.xml');
             $loader->load('api_form.xml');
-            $loader->load('serializer.xml');
         }
 
         if (isset($bundles['SonataAdminBundle'])) {
