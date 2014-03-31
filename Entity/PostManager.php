@@ -13,6 +13,7 @@ namespace Sonata\NewsBundle\Entity;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr\Join;
 use Sonata\CoreBundle\Model\BaseEntityManager;
+use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\NewsBundle\Model\BlogInterface;
