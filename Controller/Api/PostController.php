@@ -371,7 +371,7 @@ class PostController
      * @param Request      $request Symfony request
      * @param integer|null $id      A post identifier
      *
-     * @return \FOS\RestBundle\View\View|FormInterface
+     * @return FormInterface
      */
     protected function handleWritePost($request, $id = null)
     {
