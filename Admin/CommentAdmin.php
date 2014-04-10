@@ -31,19 +31,34 @@ class CommentAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        // define group zoning
+        $formMapper
+            ->with($this->trans('group_comment'), array('class' => 'col-md-6'))
+            ->with($this->trans('group_general'), array('class' => 'col-md-6'))
+        ;
+
+
         if (!$this->isChild()) {
-            $formMapper->add('post', 'sonata_type_model_list');
+            $formMapper
+                ->with($this->trans('group_general'))
+                    ->add('post', 'sonata_type_model_list')
+                ->end()
+            ;
 //            $formMapper->add('post', 'sonata_type_admin', array(), array('edit' => 'inline'));
         }
 
         $commentClass = $this->commentManager->getClass();
 
         $formMapper
-            ->add('name')
-            ->add('email')
-            ->add('url', null, array('required' => false))
-            ->add('message')
-            ->add('status', 'choice', array('choices' => $commentClass::getStatusList(), 'expanded' => true, 'multiple' => false))
+            ->with($this->trans('group_general'))
+                ->add('name')
+                ->add('email')
+                ->add('url', null, array('required' => false))
+            ->end()
+            ->with($this->trans('group_comment'))
+                ->add('status', 'choice', array('choices' => $commentClass::getStatusList(), 'expanded' => true, 'multiple' => false))
+                ->add('message', null, array('attr' => array('rows' => 6)))
+            ->end()
         ;
     }
 

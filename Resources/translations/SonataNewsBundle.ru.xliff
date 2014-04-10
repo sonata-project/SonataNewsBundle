@@ -376,6 +376,14 @@
                 <source>sonata_news_archive_breadcrumb</source>
                 <target>sonata_news_archive_breadcrumb</target>
             </trans-unit>
+            <trans-unit id="group_general">
+                <source>group_general</source>
+                <target>group_general</target>
+            </trans-unit>
+            <trans-unit id="group_comment">
+                <source>group_comment</source>
+                <target>group_comment</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
