@@ -383,6 +383,14 @@ Quick moderation links :
                 <source>group_comment</source>
                 <target>Commment</target>
             </trans-unit>
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>Image</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_edit_post">
+                <source>sidemenu.link_edit_post</source>
+                <target>Edit</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

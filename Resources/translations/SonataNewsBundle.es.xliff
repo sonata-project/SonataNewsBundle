@@ -383,6 +383,14 @@ Modera el comentario de forma rápida :
                 <source>group_comment</source>
                 <target>group_comment</target>
             </trans-unit>
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>form.label_image</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_edit_post">
+                <source>sidemenu.link_edit_post</source>
+                <target>sidemenu.link_edit_post</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -53,6 +53,7 @@
     </header>
 
     <div class="sonata-blog-post-content">
+        {% media post.image, 'wide' %}
         {{ post.content|raw }}
     </div>
 

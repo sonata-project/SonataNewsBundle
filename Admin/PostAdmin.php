@@ -21,6 +21,10 @@ use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\CoreBundle\Model\ManagerInterface;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
+use Sonata\FormatterBundle\Formatter\Pool;
+use Sonata\NewsBundle\Permalink\PermalinkInterface;
+use Sonata\UserBundle\Model\UserManagerInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 class PostAdmin extends Admin
 {
@@ -38,6 +42,11 @@ class PostAdmin extends Admin
      * @var ManagerInterface
      */
     protected $commentManager;
+
+    /**
+     * @var PermalinkInterface
+     */
+    protected $permalinkGenerator;
 
     /**
      * {@inheritdoc}
@@ -62,10 +71,17 @@ class PostAdmin extends Admin
         $commentClass = $this->commentManager->getClass();
 
         $formMapper
-            ->with('General')
+            ->with('General', array(
+                    'class' => 'col-md-8'
+                ))
                 ->add('enabled', null, array('required' => false))
                 ->add('author', 'sonata_type_model_list')
                 ->add('collection', 'sonata_type_model_list', array('required' => false))
+                ->add('image', 'sonata_type_model_list', array('required' => false), array(
+                    'link_parameters' => array(
+                        'context' => 'blog'
+                    )
+                ))
                 ->add('title')
                 ->add('abstract', null, array('attr' => array('class' => 'span6', 'rows' => 5)))
                 ->add('content', 'sonata_formatter_type', array(
@@ -73,20 +89,26 @@ class PostAdmin extends Admin
                     'format_field'   => 'contentFormatter',
                     'source_field'   => 'rawContent',
                     'source_field_options'      => array(
-                        'attr' => array('class' => 'span10', 'rows' => 20)
+                        'horizontal_input_wrapper_class' => 'col-lg-12',
+                        'attr' => array('class' => 'span10 col-sm-10 col-md-10', 'rows' => 20)
                     ),
+                    'ckeditor_context'     => 'blog',
                     'target_field'   => 'content',
                     'listener'       => true,
                 ))
             ->end()
-            ->with('Tags')
+            ->with('Tags', array(
+                'class' => 'col-md-4'
+                ))
                 ->add('tags', 'sonata_type_model', array(
                     'required' => false,
                     'expanded' => true,
                     'multiple' => true,
                 ))
             ->end()
-            ->with('Options')
+            ->with('Options', array(
+                    'class' => 'col-md-4'
+                ))
                 ->add('publicationDateStart')
                 ->add('commentsCloseAt')
                 ->add('commentsEnabled', null, array('required' => false))
@@ -100,14 +122,11 @@ class PostAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+
+
         $listMapper
-            ->addIdentifier('title')
-            ->add('author')
-            ->add('collection')
-            ->add('enabled', null, array('editable' => true))
-            ->add('tags')
+            ->add('custom', 'string', array('template' => 'SonataNewsBundle:Admin:list_post_custom.html.twig', 'label' => 'Post'))
             ->add('commentsEnabled', null, array('editable' => true))
-            ->add('commentsCount')
             ->add('publicationDateStart')
         ;
     }
@@ -170,7 +189,7 @@ class PostAdmin extends Admin
         $id = $admin->getRequest()->get('id');
 
         $menu->addChild(
-            $this->trans('sidemenu.link_view_post'),
+            $this->trans('sidemenu.link_edit_post'),
             array('uri' => $admin->generateUrl('edit', array('id' => $id)))
         );
 
@@ -178,6 +197,13 @@ class PostAdmin extends Admin
             $this->trans('sidemenu.link_view_comments'),
             array('uri' => $admin->generateUrl('sonata.news.admin.comment.list', array('id' => $id)))
         );
+
+        if ($this->hasSubject() && $this->getSubject()->getId() !== null) {
+            $menu->addChild(
+                $this->trans('sidemenu.link_view_post'),
+                array('uri' => $admin->getRouteGenerator()->generate('sonata_news_view', array('permalink' => $this->permalinkGenerator->generate($this->getSubject()))))
+            );
+        }
     }
 
     /**
@@ -186,14 +212,6 @@ class PostAdmin extends Admin
     public function setUserManager($userManager)
     {
         $this->userManager = $userManager;
-    }
-
-    /**
-     * @return UserManagerInterface
-     */
-    public function getUserManager()
-    {
-        return $this->userManager;
     }
 
     /**
@@ -207,19 +225,11 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @return \Sonata\FormatterBundle\Formatter\Pool
-     */
-    public function getPoolFormatter()
-    {
-        return $this->formatterPool;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function prePersist($post)
     {
-        $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
+        $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
     }
 
     /**
@@ -227,7 +237,7 @@ class PostAdmin extends Admin
      */
     public function preUpdate($post)
     {
-        $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
+        $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
     }
 
     /**
@@ -238,5 +248,13 @@ class PostAdmin extends Admin
     public function setCommentManager(ManagerInterface $commentManager)
     {
         $this->commentManager = $commentManager;
+    }
+
+    /**
+     * @param PermalinkInterface $permalinkGenerator
+     */
+    public function setPermalinkGenerator(PermalinkInterface $permalinkGenerator)
+    {
+        $this->permalinkGenerator = $permalinkGenerator;
     }
 }

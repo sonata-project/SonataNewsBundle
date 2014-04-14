@@ -383,6 +383,14 @@ Liens de modération rapide :
                 <source>group_comment</source>
                 <target>Commentaire</target>
             </trans-unit>
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>Image</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_edit_post">
+                <source>sidemenu.link_edit_post</source>
+                <target>Edition</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
