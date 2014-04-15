@@ -381,7 +381,7 @@ Quick moderation links :
             </trans-unit>
             <trans-unit id="group_comment">
                 <source>group_comment</source>
-                <target>Commment</target>
+                <target>Comment</target>
             </trans-unit>
             <trans-unit id="form.label_image">
                 <source>form.label_image</source>
