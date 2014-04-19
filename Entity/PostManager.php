@@ -104,9 +104,10 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
             ;
         }
 
-        if ($criteria['mode'] == 'public') {
-            // enabled
-            $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;
+        if (!isset($criteria['enabled']) && $criteria['mode'] == 'public') {
+            $criteria['enabled'] = true;
+        }
+        if (isset($criteria['enabled'])) {
             $query->andWhere('p.enabled = :enabled');
             $parameters['enabled'] = $criteria['enabled'];
         }

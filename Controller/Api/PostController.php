@@ -100,6 +100,7 @@ class PostController
      * @QueryParam(name="dateValue", requirements="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]([+-][0-9]{2}(:)?[0-9]{2})?", nullable=true, strict=true, description="Date filter value")
      * @QueryParam(name="tag", requirements="\s", nullable=true, strict=true, description="Tag name filter")
      * @QueryParam(name="author", requirements="\s", nullable=true, strict=true, description="Author filter")
+     * @QueryParam(name="mode", requirements="public|admin", default="public", description="'public' mode filters posts having enabled tags and author")
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
