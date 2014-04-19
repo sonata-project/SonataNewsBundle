@@ -36,7 +36,18 @@ class PostControllerTest extends \PHPUnit_Framework_TestCase
         $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('getPager')->will($this->returnValue($pager));
 
-        $this->assertEquals(array('returned'), $this->createPostController($postManager)->getPostsAction($paramFetcher));
+        $expected = array(
+            'pager' => array(
+                'per_page'   => 0,
+                'page'       => 0,
+                'page_count' => 0,
+                'total'      => 0,
+            ),
+            'posts' => array(
+                'returned',
+            ),
+        );
+        $this->assertEquals($expected, $this->createPostController($postManager)->getPostsAction($paramFetcher));
     }
 
     public function testGetPostAction()

@@ -116,7 +116,15 @@ class PostController
         /** @var Pager $postsPager */
         $postsPager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
 
-        return $postsPager->getResults();
+        return array(
+            'pager' => array(
+                'per_page'   => (int) $postsPager->getMaxPerPage(),
+                'page'       => (int) $postsPager->getPage(),
+                'page_count' => (int) $postsPager->getLastPage(),
+                'total'      => (int) $postsPager->count(),
+            ),
+            'posts' => $postsPager->getResults(),
+        );
     }
 
     /**
