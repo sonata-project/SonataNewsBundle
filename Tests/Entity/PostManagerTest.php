@@ -21,7 +21,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 {
     protected function getPostManager($qbCallback)
     {
-        $query = $this->getMockForAbstractClass('Doctrine\ORM\AbstractQuery', array(), '', false, true, true, ['execute']);
+        $query = $this->getMockForAbstractClass('Doctrine\ORM\AbstractQuery', array(), '', false, true, true, array('execute'));
         $query->expects($this->any())->method('execute')->will($this->returnValue(true));
 
         $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')->disableOriginalConstructor()->getMock();
