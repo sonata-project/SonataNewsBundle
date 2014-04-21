@@ -43,7 +43,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         return new PostManager('Sonata\NewsBundle\Entity\BasePost', $registry);
     }
 
-    protected function assertRelationsEnabled($qb)
+    public function assertRelationsEnabled($qb)
     {
         $qb
             ->expects($this->exactly(2))
@@ -64,7 +64,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         ;
     }
 
-    protected function assertRelationsJoined($qb)
+    public function assertRelationsJoined($qb)
     {
         $qb
             ->expects($this->exactly(2))
@@ -85,7 +85,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         ;
     }
 
-    protected function assertPostEnabled($qb, $flag)
+    public function assertPostEnabled($qb, $flag)
     {
         $qb->expects($this->once())->method('andWhere')->with($this->equalTo('p.enabled = :enabled'));
         $qb->expects($this->once())->method('setParameters')->with($this->equalTo(array( 'enabled' => $flag )));
