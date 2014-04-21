@@ -96,8 +96,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsEnabled($qb);
-                $this->assertPostEnabled($qb, 1);
+                $self->assertRelationsEnabled($qb);
+                $self->assertPostEnabled($qb, 1);
             })
             ->getPager(array(), 1);
     }
@@ -107,8 +107,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsEnabled($qb);
-                $this->assertPostEnabled($qb, 1);
+                $self->assertRelationsEnabled($qb);
+                $self->assertPostEnabled($qb, 1);
             })
             ->getPager(array(), 1);
     }
@@ -118,8 +118,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsEnabled($qb);
-                $this->assertPostEnabled($qb, 0);
+                $self->assertRelationsEnabled($qb);
+                $self->assertPostEnabled($qb, 0);
             })
             ->getPager(array(
                 'enabled' => 0,
@@ -131,8 +131,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsEnabled($qb);
-                $this->assertPostEnabled($qb, 1);
+                $self->assertRelationsEnabled($qb);
+                $self->assertPostEnabled($qb, 1);
             })
             ->getPager(array(
                 'mode' => 'public',
@@ -144,8 +144,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsEnabled($qb);
-                $this->assertPostEnabled($qb, 1);
+                $self->assertRelationsEnabled($qb);
+                $self->assertPostEnabled($qb, 1);
             })
             ->getPager(array(
                 'mode'    => 'public',
@@ -158,8 +158,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsEnabled($qb);
-                $this->assertPostEnabled($qb, 0);
+                $self->assertRelationsEnabled($qb);
+                $self->assertPostEnabled($qb, 0);
             })
             ->getPager(array(
                 'mode'    => 'public',
@@ -172,9 +172,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsJoined($qb);
-                $qb->expects($this->never())->method('andWhere');
-                $qb->expects($this->once())->method('setParameters')->with($this->equalTo(array()));
+                $self->assertRelationsJoined($qb);
+                $qb->expects($self->never())->method('andWhere');
+                $qb->expects($self->once())->method('setParameters')->with($self->equalTo(array()));
             })
             ->getPager(array(
                 'mode' => 'admin',
@@ -186,8 +186,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsJoined($qb);
-                $this->assertPostEnabled($qb, 1);
+                $self->assertRelationsJoined($qb);
+                $self->assertPostEnabled($qb, 1);
             })
             ->getPager(array(
                 'mode'    => 'admin',
@@ -200,8 +200,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $this->assertRelationsJoined($qb);
-                $this->assertPostEnabled($qb, 0);
+                $self->assertRelationsJoined($qb);
+                $self->assertPostEnabled($qb, 0);
             })
             ->getPager(array(
                 'mode'    => 'admin',
