@@ -93,8 +93,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithoutMode()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsEnabled($qb);
                 $this->assertPostEnabled($qb, 1);
             })
@@ -103,8 +104,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithoutModeEnabled()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsEnabled($qb);
                 $this->assertPostEnabled($qb, 1);
             })
@@ -113,8 +115,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithoutModeDisabled()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsEnabled($qb);
                 $this->assertPostEnabled($qb, 0);
             })
@@ -125,8 +128,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithPublicMode()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsEnabled($qb);
                 $this->assertPostEnabled($qb, 1);
             })
@@ -137,8 +141,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithPublicModeEnabled()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsEnabled($qb);
                 $this->assertPostEnabled($qb, 1);
             })
@@ -150,8 +155,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithPublicModeDisabled()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsEnabled($qb);
                 $this->assertPostEnabled($qb, 0);
             })
@@ -163,8 +169,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithAdminMode()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsJoined($qb);
                 $qb->expects($this->never())->method('andWhere');
                 $qb->expects($this->once())->method('setParameters')->with($this->equalTo(array()));
@@ -176,8 +183,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithAdminModeEnabled()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsJoined($qb);
                 $this->assertPostEnabled($qb, 1);
             })
@@ -189,8 +197,9 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPagerWithAdminModeDisabled()
     {
+        $self = $this;
         $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb) use ($self) {
                 $this->assertRelationsJoined($qb);
                 $this->assertPostEnabled($qb, 0);
             })
