@@ -98,8 +98,9 @@ class PostController
      * @QueryParam(name="enabled", requirements="0|1", nullable=true, strict=true, description="Enabled/Disabled posts filter")
      * @QueryParam(name="dateQuery", requirements=">|<|=", default=">", description="Date filter orientation (>, < or =)")
      * @QueryParam(name="dateValue", requirements="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]([+-][0-9]{2}(:)?[0-9]{2})?", nullable=true, strict=true, description="Date filter value")
-     * @QueryParam(name="tag", requirements="\s", nullable=true, strict=true, description="Tag name filter")
-     * @QueryParam(name="author", requirements="\s", nullable=true, strict=true, description="Author filter")
+     * @QueryParam(name="tag", requirements="\S+", nullable=true, strict=true, description="Tag name filter")
+     * @QueryParam(name="author", requirements="\S+", nullable=true, strict=true, description="Author filter")
+     * @QueryParam(name="mode", requirements="public|admin", default="public", description="'public' mode filters posts having enabled tags and author")
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
@@ -115,7 +116,15 @@ class PostController
         /** @var Pager $postsPager */
         $postsPager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
 
-        return $postsPager->getResults();
+        return array(
+            'pager' => array(
+                'per_page'   => (int) $postsPager->getMaxPerPage(),
+                'page'       => (int) $postsPager->getPage(),
+                'page_count' => (int) $postsPager->getLastPage(),
+                'total'      => (int) $postsPager->count(),
+            ),
+            'posts' => $postsPager->getResults(),
+        );
     }
 
     /**

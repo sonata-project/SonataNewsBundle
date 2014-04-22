@@ -90,7 +90,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         $query = $this->getRepository()
             ->createQueryBuilder('p')
             ->select('p, t')
-            ->orderby('p.publicationDateStart', 'DESC');
+            ->orderBy('p.publicationDateStart', 'DESC');
 
         if ($criteria['mode'] == 'admin') {
             $query
@@ -104,14 +104,15 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
             ;
         }
 
-        if ($criteria['mode'] == 'public') {
-            // enabled
-            $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;
+        if (!isset($criteria['enabled']) && $criteria['mode'] == 'public') {
+            $criteria['enabled'] = true;
+        }
+        if (isset($criteria['enabled'])) {
             $query->andWhere('p.enabled = :enabled');
             $parameters['enabled'] = $criteria['enabled'];
         }
 
-        if (isset($criteria['date'])) {
+        if (isset($criteria['date']) && isset($criteria['date']['query']) && isset($criteria['date']['params'])) {
             $query->andWhere($criteria['date']['query']);
             $parameters = array_merge($parameters, $criteria['date']['params']);
         }
@@ -123,7 +124,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
 
         if (isset($criteria['author'])) {
             if (!is_array($criteria['author']) && stristr($criteria['author'], 'NULL')) {
-                $query->andWhere('p.author IS '.$criteria['author']);
+                $query->andWhere('p.author IS ' . $criteria['author']);
             } else {
                 $query->andWhere(sprintf('p.author IN (%s)', implode((array) $criteria['author'], ',')));
             }
