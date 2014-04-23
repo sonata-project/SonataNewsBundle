@@ -44,10 +44,7 @@ class CommentAdmin extends Admin
                     ->add('post', 'sonata_type_model_list')
                 ->end()
             ;
-//            $formMapper->add('post', 'sonata_type_admin', array(), array('edit' => 'inline'));
         }
-
-        $commentClass = $this->commentManager->getClass();
 
         $formMapper
             ->with($this->trans('group_general'))
@@ -56,7 +53,7 @@ class CommentAdmin extends Admin
                 ->add('url', null, array('required' => false))
             ->end()
             ->with($this->trans('group_comment'))
-                ->add('status', 'choice', array('choices' => $commentClass::getStatusList(), 'expanded' => true, 'multiple' => false))
+                ->add('status', 'sonata_news_comment_status', array('expanded' => true, 'multiple' => false))
                 ->add('message', null, array('attr' => array('rows' => 6)))
             ->end()
         ;

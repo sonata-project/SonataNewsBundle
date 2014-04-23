@@ -26,14 +26,9 @@
                 <argument>%sonata.news.admin.post.translation_domain%</argument>
             </call>
 
-            <call method="setCommentManager">
-                <argument id="sonata.news.manager.comment" type="service"/>
-            </call>
-
             <call method="setPermalinkGenerator">
                 <argument id="sonata.news.permalink.generator" type="service"/>
             </call>
-
         </service>
 
         <service id="sonata.news.admin.comment" class="%sonata.news.admin.comment.class%">

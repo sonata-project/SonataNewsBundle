@@ -22,6 +22,7 @@ use Sonata\CoreBundle\Model\ManagerInterface;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
 use Sonata\FormatterBundle\Formatter\Pool;
+use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
 use Sonata\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
@@ -37,11 +38,6 @@ class PostAdmin extends Admin
      * @var Pool
      */
     protected $formatterPool;
-
-    /**
-     * @var ManagerInterface
-     */
-    protected $commentManager;
 
     /**
      * @var PermalinkInterface
@@ -68,20 +64,11 @@ class PostAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $commentClass = $this->commentManager->getClass();
-
         $formMapper
             ->with('General', array(
                     'class' => 'col-md-8'
                 ))
-                ->add('enabled', null, array('required' => false))
                 ->add('author', 'sonata_type_model_list')
-                ->add('collection', 'sonata_type_model_list', array('required' => false))
-                ->add('image', 'sonata_type_model_list', array('required' => false), array(
-                    'link_parameters' => array(
-                        'context' => 'blog'
-                    )
-                ))
                 ->add('title')
                 ->add('abstract', null, array('attr' => array('class' => 'span6', 'rows' => 5)))
                 ->add('content', 'sonata_formatter_type', array(
@@ -92,7 +79,7 @@ class PostAdmin extends Admin
                         'horizontal_input_wrapper_class' => 'col-lg-12',
                         'attr' => array('class' => 'span10 col-sm-10 col-md-10', 'rows' => 20)
                     ),
-                    'ckeditor_context'     => 'blog',
+                    'ckeditor_context'     => 'news',
                     'target_field'   => 'content',
                     'listener'       => true,
                 ))
@@ -102,17 +89,25 @@ class PostAdmin extends Admin
                 ))
                 ->add('tags', 'sonata_type_model', array(
                     'required' => false,
-                    'expanded' => true,
+                    'expanded' => false,
                     'multiple' => true,
                 ))
+                ->add('collection', 'sonata_type_model_list', array('required' => false))
             ->end()
             ->with('Options', array(
                     'class' => 'col-md-4'
                 ))
+                ->add('enabled', null, array('required' => false))
+                ->add('image', 'sonata_type_model_list', array('required' => false), array(
+                    'link_parameters' => array(
+                        'context' => 'news'
+                    )
+                ))
+
                 ->add('publicationDateStart')
                 ->add('commentsCloseAt')
                 ->add('commentsEnabled', null, array('required' => false))
-                ->add('commentsDefaultStatus', 'choice', array('choices' => $commentClass::getStatusList(), 'expanded' => true))
+                ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
             ->end()
         ;
     }
@@ -122,8 +117,6 @@ class PostAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
-
-
         $listMapper
             ->add('custom', 'string', array('template' => 'SonataNewsBundle:Admin:list_post_custom.html.twig', 'label' => 'Post'))
             ->add('commentsEnabled', null, array('editable' => true))
@@ -150,11 +143,9 @@ class PostAdmin extends Admin
                         return;
                     }
 
-                    $commentClass = $that->commentManager->getClass();
-
                     $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
                     $queryBuilder->andWhere('c.status = :status');
-                    $queryBuilder->setParameter('status', $commentClass::STATUS_MODERATE);
+                    $queryBuilder->setParameter('status', CommentInterface::STATUS_MODERATE);
                 },
                 'field_type' => 'checkbox'
             ))
@@ -172,7 +163,7 @@ class PostAdmin extends Admin
 
         $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
         $queryBuilder->andWhere('c.status = :status');
-        $queryBuilder->setParameter('status', Comment::STATUS_MODERATE);
+        $queryBuilder->setParameter('status', CommentInterface::STATUS_MODERATE);
     }*/
 
     /**
@@ -238,16 +229,6 @@ class PostAdmin extends Admin
     public function preUpdate($post)
     {
         $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
-    }
-
-    /**
-     * @param ManagerInterface $commentManager
-     *
-     * @return void
-     */
-    public function setCommentManager(ManagerInterface $commentManager)
-    {
-        $this->commentManager = $commentManager;
     }
 
     /**
