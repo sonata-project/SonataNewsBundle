@@ -76,14 +76,30 @@ class PostAdmin extends Admin
                     'format_field'   => 'contentFormatter',
                     'source_field'   => 'rawContent',
                     'source_field_options'      => array(
-                        'horizontal_input_wrapper_class' => 'col-lg-12',
-                        'attr' => array('class' => 'span10 col-sm-10 col-md-10', 'rows' => 20)
+                        'horizontal_input_wrapper_class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'col-lg-12': '',
+                        'attr' => array('class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'span10 col-sm-10 col-md-10': '', 'rows' => 20)
                     ),
                     'ckeditor_context'     => 'news',
                     'target_field'   => 'content',
                     'listener'       => true,
                 ))
             ->end()
+                ->with('Options', array(
+                        'class' => 'col-md-4'
+                    ))
+                    ->add('enabled', null, array('required' => false))
+                    ->add('image', 'sonata_type_model_list', array('required' => false), array(
+                        'link_parameters' => array(
+                            'context' => 'news'
+                        )
+                    ))
+
+                    ->add('publicationDateStart')
+                    ->add('commentsCloseAt')
+                    ->add('commentsEnabled', null, array('required' => false))
+                    ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
+                ->end()
+
             ->with('Tags', array(
                 'class' => 'col-md-4'
                 ))
@@ -93,21 +109,6 @@ class PostAdmin extends Admin
                     'multiple' => true,
                 ))
                 ->add('collection', 'sonata_type_model_list', array('required' => false))
-            ->end()
-            ->with('Options', array(
-                    'class' => 'col-md-4'
-                ))
-                ->add('enabled', null, array('required' => false))
-                ->add('image', 'sonata_type_model_list', array('required' => false), array(
-                    'link_parameters' => array(
-                        'context' => 'news'
-                    )
-                ))
-
-                ->add('publicationDateStart')
-                ->add('commentsCloseAt')
-                ->add('commentsEnabled', null, array('required' => false))
-                ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
             ->end()
         ;
     }
