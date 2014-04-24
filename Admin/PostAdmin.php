@@ -89,7 +89,7 @@ class PostAdmin extends Admin
                 ))
                 ->add('tags', 'sonata_type_model', array(
                     'required' => false,
-                    'expanded' => false,
+                    'expanded' => true,
                     'multiple' => true,
                 ))
                 ->add('collection', 'sonata_type_model_list', array('required' => false))
