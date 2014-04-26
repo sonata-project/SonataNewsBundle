@@ -90,7 +90,7 @@ class PostController
      *
      * @ApiDoc(
      *  resource=true,
-     *  output={"class"="Sonata\NewsBundle\Model\Post", "groups"={"sonata_api_read"}}
+     *  output={"class"="Sonata\AdminBundle\Datagrid\Pager", "groups"={"sonata_api_read"}}
      * )
      *
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page for posts list pagination")
@@ -106,7 +106,7 @@ class PostController
      *
      * @param ParamFetcherInterface $paramFetcher
      *
-     * @return Post[]
+     * @return Pager
      */
     public function getPostsAction(ParamFetcherInterface $paramFetcher)
     {
@@ -114,17 +114,9 @@ class PostController
         $count = $paramFetcher->get('count');
 
         /** @var Pager $postsPager */
-        $postsPager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
+        $pager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
 
-        return array(
-            'pager' => array(
-                'per_page'   => (int) $postsPager->getMaxPerPage(),
-                'page'       => (int) $postsPager->getPage(),
-                'page_count' => (int) $postsPager->getLastPage(),
-                'total'      => (int) $postsPager->count(),
-            ),
-            'posts' => $postsPager->getResults(),
-        );
+        return $pager;
     }
 
     /**

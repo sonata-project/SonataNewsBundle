@@ -31,23 +31,11 @@ class PostControllerTest extends \PHPUnit_Framework_TestCase
         $paramFetcher->expects($this->once())->method('all')->will($this->returnValue(array()));
 
         $pager = $this->getMockBuilder('Sonata\AdminBundle\Datagrid\Pager')->disableOriginalConstructor()->getMock();
-        $pager->expects($this->once())->method('getResults')->will($this->returnValue(array('returned')));
 
         $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('getPager')->will($this->returnValue($pager));
 
-        $expected = array(
-            'pager' => array(
-                'per_page'   => 0,
-                'page'       => 0,
-                'page_count' => 0,
-                'total'      => 0,
-            ),
-            'posts' => array(
-                'returned',
-            ),
-        );
-        $this->assertEquals($expected, $this->createPostController($postManager)->getPostsAction($paramFetcher));
+        $this->assertSame($pager, $this->createPostController($postManager)->getPostsAction($paramFetcher));
     }
 
     public function testGetPostAction()
