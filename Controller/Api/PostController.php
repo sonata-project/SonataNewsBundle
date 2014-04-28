@@ -20,7 +20,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Application\Sonata\NewsBundle\Entity\Post;
 
-use Sonata\AdminBundle\Datagrid\Pager;
+use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\NewsBundle\Mailer\MailerInterface;
 use Sonata\NewsBundle\Model\Comment;
@@ -90,7 +90,7 @@ class PostController
      *
      * @ApiDoc(
      *  resource=true,
-     *  output={"class"="Sonata\NewsBundle\Model\Post", "groups"={"sonata_api_read"}}
+     *  output={"class"="Sonata\DatagridBundle\Pager\PagerInterface", "groups"={"sonata_api_read"}}
      * )
      *
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page for posts list pagination")
@@ -106,25 +106,17 @@ class PostController
      *
      * @param ParamFetcherInterface $paramFetcher
      *
-     * @return Post[]
+     * @return PagerInterface
      */
     public function getPostsAction(ParamFetcherInterface $paramFetcher)
     {
         $page  = $paramFetcher->get('page');
         $count = $paramFetcher->get('count');
 
-        /** @var Pager $postsPager */
-        $postsPager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
+        /** @var PagerInterface $postsPager */
+        $pager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
 
-        return array(
-            'pager' => array(
-                'per_page'   => (int) $postsPager->getMaxPerPage(),
-                'page'       => (int) $postsPager->getPage(),
-                'page_count' => (int) $postsPager->getLastPage(),
-                'total'      => (int) $postsPager->count(),
-            ),
-            'posts' => $postsPager->getResults(),
-        );
+        return $pager;
     }
 
     /**
