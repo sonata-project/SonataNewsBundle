@@ -70,7 +70,7 @@ class PostAdmin extends Admin
                 ))
                 ->add('author', 'sonata_type_model_list')
                 ->add('title')
-                ->add('abstract', null, array('attr' => array('class' => 'span6', 'rows' => 5)))
+                ->add('abstract', null, array('attr' => array('rows' => 5)))
                 ->add('content', 'sonata_formatter_type', array(
                     'event_dispatcher' => $formMapper->getFormBuilder()->getEventDispatcher(),
                     'format_field'   => 'contentFormatter',
