@@ -94,8 +94,8 @@ class PostAdmin extends Admin
                         )
                     ))
 
-                    ->add('publicationDateStart')
-                    ->add('commentsCloseAt')
+                    ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+                    ->add('commentsCloseAt', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
                     ->add('commentsEnabled', null, array('required' => false))
                     ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
                 ->end()
