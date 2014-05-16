@@ -23,12 +23,14 @@ use Sonata\NewsBundle\Model\PostInterface;
 class CommentManager extends BaseDocumentManager implements CommentManagerInterface
 {
     /**
-     * @param array   $criteria
-     * @param integer $page
+     * @param array $criteria
+     * @param int   $page
+     * @param int   $limit
+     * @param array $sort
      *
      * @return \Sonata\AdminBundle\Datagrid\ODM\Pager
      */
-    public function getPager(array $criteria, $page)
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
         $parameters = array();
 

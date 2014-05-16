@@ -113,7 +113,6 @@ class PostController
         $page  = $paramFetcher->get('page');
         $count = $paramFetcher->get('count');
 
-        /** @var PagerInterface $postsPager */
         $pager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
 
         return $pager;
@@ -236,22 +235,37 @@ class PostController
      *  requirements={
      *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post id"}
      *  },
-     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
+     *  output={"class"="Sonata\DatagridBundle\Pager\PagerInterface", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
      *      404="Returned when post is not found"
      *  }
      * )
      *
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Page for comments list pagination")
+     * @QueryParam(name="count", requirements="\d+", default="10", description="Number of comments by page")
+     *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @param $id
+     * @param                       $id
+     * @param ParamFetcherInterface $paramFetcher
      *
-     * @return Comment[]
+     * @return PagerInterface
      */
-    public function getPostCommentsAction($id)
+    public function getPostCommentsAction($id, ParamFetcherInterface $paramFetcher)
     {
-        return $this->getPost($id)->getComments();
+        $post = $this->getPost($id);
+
+        $page  = $paramFetcher->get('page');
+        $count = $paramFetcher->get('count');
+
+        $criteria           = $this->filterCriteria($paramFetcher);
+        $criteria['postId'] = $post->getId();
+
+        /** @var PagerInterface $pager */
+        $pager = $this->commentManager->getPager($criteria, $page, $count);
+
+        return $pager;
     }
 
     /**

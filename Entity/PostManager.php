@@ -81,8 +81,16 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
 
     /**
      * {@inheritdoc}
+     *
+     * Valid criteria are:
+     *    enabled - boolean
+     *    date - query
+     *    tag - string
+     *    author - 'NULL', 'NOT NULL', id, array of ids
+     *    collections - CollectionInterface
+     *    mode - string public|admin
      */
-    public function getPager(array $criteria, $page, $maxPerPage = 10)
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
         if (!isset($criteria['mode'])) {
             $criteria['mode'] = 'public';
@@ -140,7 +148,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         $query->setParameters($parameters);
 
         $pager = new Pager();
-        $pager->setMaxPerPage($maxPerPage);
+        $pager->setMaxPerPage($limit);
         $pager->setQuery(new ProxyQuery($query));
         $pager->setPage($page);
         $pager->init();

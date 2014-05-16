@@ -18,8 +18,8 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 
-use Sonata\DoctrineORMAdminBundle\Datagrid\Pager;
-use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
+use Sonata\DatagridBundle\Pager\Doctrine\Pager;
+use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
 
 class CommentManager extends BaseEntityManager implements CommentManagerInterface
 {
@@ -89,13 +89,9 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     }
 
     /**
-     * @param array   $criteria
-     * @param integer $page
-     * @param integer $maxPerPage
-     *
-     * @return \Sonata\AdminBundle\Datagrid\PagerInterface
+     * {@inheritDoc}
      */
-    public function getPager(array $criteria, $page, $maxPerPage = 10)
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
         if (!isset($criteria['mode'])) {
             $criteria['mode'] = 'public';
@@ -121,7 +117,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
         $query->setParameters($parameters);
 
         $pager = new Pager();
-        $pager->setMaxPerPage($maxPerPage);
+        $pager->setMaxPerPage($limit);
         $pager->setQuery(new ProxyQuery($query));
         $pager->setPage($page);
         $pager->init();
