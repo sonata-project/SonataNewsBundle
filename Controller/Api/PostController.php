@@ -134,7 +134,7 @@ class PostController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @param $id
+     * @param integer $id A post identifier
      *
      * @return Post
      */
@@ -233,7 +233,7 @@ class PostController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post id"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Post id"}
      *  },
      *  output={"class"="Sonata\DatagridBundle\Pager\PagerInterface", "groups"={"sonata_api_read"}},
      *  statusCodes={
@@ -247,7 +247,7 @@ class PostController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @param                       $id
+     * @param integer               $id A post identifier
      * @param ParamFetcherInterface $paramFetcher
      *
      * @return PagerInterface
@@ -284,7 +284,7 @@ class PostController
      *  }
      * )
      *
-     * @param int     $id Post id
+     * @param int     $id A post identifier
      * @param Request $request
      *
      * @return Comment|FormInterface
