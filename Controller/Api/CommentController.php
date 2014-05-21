@@ -72,7 +72,7 @@ class CommentController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @param $id
+     * @param integer $id A comment identifier
      *
      * @return Comment
      * @throws NotFoundHttpException
@@ -98,7 +98,7 @@ class CommentController
      *  }
      * )
      *
-     * @param integer $id      A Comment identifier
+     * @param integer $id      A comment identifier
      * @param Request $request A Symfony request
      *
      * @return Comment
@@ -145,7 +145,7 @@ class CommentController
      *  }
      * )
      *
-     * @param integer $id A Comment identifier
+     * @param integer $id A comment identifier
      *
      * @return \FOS\RestBundle\View\View
      *
@@ -167,7 +167,7 @@ class CommentController
     /**
      * Returns a comment entity instance
      *
-     * @param integer $id A Comment identifier
+     * @param integer $id A comment identifier
      *
      * @return Comment
      *
