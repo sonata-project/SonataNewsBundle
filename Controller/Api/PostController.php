@@ -278,7 +278,8 @@ class PostController
      *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
-     *      403="Returned when invalid parameters",
+     *      400="Returned when an error has occurred while comment creation",
+     *      403="Returned when commenting is not enabled on the related post",
      *      404="Returned when post is not found"
      *  }
      * )
