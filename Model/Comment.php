@@ -15,20 +15,60 @@ use Sonata\NewsBundle\Model\CommentInterface;
 
 abstract class Comment implements CommentInterface
 {
+    /**
+     * Name of the author
+     *
+     * @var string
+     */
     protected $name;
 
+    /**
+     * Email of the author
+     *
+     * @var string
+     */
     protected $email;
 
+    /**
+     * Website url of the author
+     *
+     * @var string
+     */
     protected $url;
 
+    /**
+     * Comment content
+     *
+     * @var string
+     */
     protected $message;
 
+    /**
+     * Comment created date
+     *
+     * @var \DateTime
+     */
     protected $createdAt;
 
+    /**
+     * Last update date
+     *
+     * @var \DateTime
+     */
     protected $updatedAt;
 
+    /**
+     * Moderation status
+     *
+     * @var int
+     */
     protected $status = self::STATUS_VALID;
 
+    /**
+     * Post for which the comment is related to
+     *
+     * @var \Sonata\NewsBundle\Model\PostInterface
+     */
     protected $post;
 
     /**
