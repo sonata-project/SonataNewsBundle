@@ -152,7 +152,6 @@ class PostController
      *  statusCodes={
      *      200="Returned when successful",
      *      400="Returned when an error has occurred while post creation",
-     *      404="Returned when unable to find post"
      *  }
      * )
      *
