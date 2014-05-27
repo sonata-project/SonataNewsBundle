@@ -12,6 +12,7 @@
 namespace Sonata\NewsBundle\Controller\Api;
 
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Route;
 
 use JMS\Serializer\SerializationContext;
 
@@ -72,6 +73,8 @@ class CommentController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param $id
      *
      * @return Comment
@@ -97,6 +100,8 @@ class CommentController
      *      404="Returned when unable to find comment"
      *  }
      * )
+     *
+     * @Route(requirements={"_format"="json|xml"})
      *
      * @param integer $id      A Comment identifier
      * @param Request $request A Symfony request
@@ -144,6 +149,8 @@ class CommentController
      *      404="Returned when unable to find comment"
      *  }
      * )
+     *
+     * @Route(requirements={"_format"="json|xml"})
      *
      * @param integer $id A Comment identifier
      *
