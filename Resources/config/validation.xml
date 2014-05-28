@@ -50,6 +50,12 @@
             <constraint name="NotBlank" />
         </property>
 
+        <property name="status">
+            <constraint name="Choice">
+                <option name="callback">getStatusNumberList</option>
+            </constraint>
+        </property>
+
         <property name="post">
             <constraint name="Valid" />
         </property>

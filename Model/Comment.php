@@ -142,6 +142,14 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
+    public static function getStatusNumberList()
+    {
+        return array_keys(self::getStatusList());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getStatusCode()
     {
         $status = self::getStatusList();
