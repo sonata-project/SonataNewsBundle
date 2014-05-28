@@ -7,7 +7,7 @@
         <property name="email"   type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write" />
         <property name="message" type="string" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
 
-        <property name="status" type="integer" expose="true" since-version="1.0" groups="sonata_api_write" />
+        <property name="status" type="integer" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write" />
 
         <property name="author" serialized-name="user_id" type="sonata_user_user_id" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
         <property name="post"   serialized-name="post_id" type="sonata_news_post_id" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />

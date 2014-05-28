@@ -13,6 +13,7 @@ namespace Sonata\NewsBundle\Controller\Api;
 
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 
 use JMS\Serializer\SerializationContext;
@@ -104,6 +105,8 @@ class PostController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param ParamFetcherInterface $paramFetcher
      *
      * @return PagerInterface
@@ -134,6 +137,8 @@ class PostController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param integer $id A post identifier
      *
      * @return Post
@@ -154,6 +159,8 @@ class PostController
      *      400="Returned when an error has occurred while post creation",
      *  }
      * )
+     *
+     * @Route(requirements={"_format"="json|xml"})
      *
      * @param Request $request A Symfony request
      *
@@ -182,6 +189,8 @@ class PostController
      *  }
      * )
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param integer $id      A Post identifier
      * @param Request $request A Symfony request
      *
@@ -207,6 +216,8 @@ class PostController
      *      404="Returned when unable to find post"
      *  }
      * )
+     *
+     * @Route(requirements={"_format"="json|xml"})
      *
      * @param integer $id A Post identifier
      *
@@ -243,6 +254,8 @@ class PostController
      *
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page for comments list pagination")
      * @QueryParam(name="count", requirements="\d+", default="10", description="Number of comments by page")
+     *
+     * @Route(requirements={"_format"="json|xml"})
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
@@ -283,6 +296,8 @@ class PostController
      *      404="Returned when post is not found"
      *  }
      * )
+     *
+     * @Route(requirements={"_format"="json|xml"})
      *
      * @param int     $id A post identifier
      * @param Request $request

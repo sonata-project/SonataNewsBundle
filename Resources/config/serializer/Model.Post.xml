@@ -19,7 +19,8 @@
         <property name="createdAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
         <property name="updatedAt" type="DateTime" expose="true" since-version="1.0" groups="sonata_api_read,sonata_search" />
 
-        <property type="ArrayCollection&lt;Sonata\ClassificationBundle\Model\TagInterface&gt;" name="tags" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search">
+        <property name="tags" expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search">
+            <type><![CDATA[ArrayCollection<Sonata\ClassificationBundle\Model\Tag>]]></type>
             <xml-list inline="false" entry-name="tag" />
         </property>
 
