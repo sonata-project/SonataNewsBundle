@@ -79,7 +79,7 @@ class PostAdmin extends Admin
                         'horizontal_input_wrapper_class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'col-lg-12': '',
                         'attr' => array('class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'span10 col-sm-10 col-md-10': '', 'rows' => 20)
                     ),
-                    'ckeditor_context'     => 'news',
+                    'ckeditor_context'     => null,
                     'target_field'   => 'content',
                     'listener'       => true,
                 ))
