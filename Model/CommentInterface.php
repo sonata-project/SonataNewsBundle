@@ -50,28 +50,28 @@ interface CommentInterface
     /**
      * Set url
      *
-     * @param text $url
+     * @param string $url
      */
     public function setUrl($url);
 
     /**
      * Get url
      *
-     * @return text $url
+     * @return string $url
      */
     public function getUrl();
 
     /**
      * Set message
      *
-     * @param text $message
+     * @param string $message
      */
     public function setMessage($message);
 
     /**
      * Get message
      *
-     * @return text $message
+     * @return string $message
      */
     public function getMessage();
 
@@ -99,10 +99,15 @@ interface CommentInterface
     /**
      * Get updated_at
      *
-     * @return datetime $updatedAt
+     * @return \DateTime $updatedAt
      */
     public function getUpdatedAt();
 
+    /**
+     * Get text version of comment status
+     *
+     * @return string|null
+     */
     public function getStatusCode();
 
     /**

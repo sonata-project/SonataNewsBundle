@@ -116,7 +116,6 @@ class PostController
         $page  = $paramFetcher->get('page');
         $count = $paramFetcher->get('count');
 
-        /** @var PagerInterface $postsPager */
         $pager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
 
         return $pager;
@@ -158,7 +157,6 @@ class PostController
      *  statusCodes={
      *      200="Returned when successful",
      *      400="Returned when an error has occurred while post creation",
-     *      404="Returned when unable to find post"
      *  }
      * )
      *
@@ -245,9 +243,9 @@ class PostController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post id"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Post id"}
      *  },
-     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
+     *  output={"class"="Sonata\DatagridBundle\Pager\PagerInterface", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
      *      404="Returned when post is not found"
@@ -261,13 +259,25 @@ class PostController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @param $id
+     * @param integer               $id A post identifier
+     * @param ParamFetcherInterface $paramFetcher
      *
-     * @return Comment[]
+     * @return PagerInterface
      */
-    public function getPostCommentsAction($id)
+    public function getPostCommentsAction($id, ParamFetcherInterface $paramFetcher)
     {
-        return $this->getPost($id)->getComments();
+        $post = $this->getPost($id);
+
+        $page  = $paramFetcher->get('page');
+        $count = $paramFetcher->get('count');
+
+        $criteria           = $this->filterCriteria($paramFetcher);
+        $criteria['postId'] = $post->getId();
+
+        /** @var PagerInterface $pager */
+        $pager = $this->commentManager->getPager($criteria, $page, $count);
+
+        return $pager;
     }
 
     /**
@@ -281,7 +291,8 @@ class PostController
      *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
-     *      403="Returned when invalid parameters",
+     *      400="Returned when an error has occurred while comment creation",
+     *      403="Returned when commenting is not enabled on the related post",
      *      404="Returned when post is not found"
      *  }
      * )

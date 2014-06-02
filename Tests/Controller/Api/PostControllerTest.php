@@ -30,7 +30,7 @@ class PostControllerTest extends \PHPUnit_Framework_TestCase
         $paramFetcher = $this->getMock('FOS\RestBundle\Request\ParamFetcherInterface');
         $paramFetcher->expects($this->once())->method('all')->will($this->returnValue(array()));
 
-        $pager = $this->getMockBuilder('Sonata\AdminBundle\Datagrid\Pager')->disableOriginalConstructor()->getMock();
+        $pager = $this->getMock('Sonata\DatagridBundle\Pager\PagerInterface');
 
         $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('getPager')->will($this->returnValue($pager));
@@ -49,7 +49,7 @@ class PostControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @expectedException        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @expectedExceptionMessage Post (42) not found
      */
     public function testGetPostNotFoundExceptionAction()
@@ -59,14 +59,45 @@ class PostControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPostCommentsAction()
     {
-        $comment = $this->getMock('Sonata\NewsBundle\Model\CommentInterface');
+        $parameters = array(
+            'page'  => 2,
+            'count' => 5,
+        );
+
+        $paramFetcher = $this->getMock('FOS\RestBundle\Request\ParamFetcherInterface');
+        $paramFetcher->expects($this->once())->method('all')->will($this->returnValue(array()));
+        $paramFetcher->expects($this->exactly(2))->method('get')
+            ->with($this->logicalOr($this->equalTo('page'), $this->equalTo('count')))
+            ->will($this->returnCallback(function($parameter) use ($parameters) {
+                return $parameters[$parameter];
+            }));
+
         $post = $this->getMock('Sonata\NewsBundle\Model\PostInterface');
-        $post->expects($this->once())->method('getComments')->will($this->returnValue(array($comment)));
 
         $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('find')->will($this->returnValue($post));
 
-        $this->assertEquals(array($comment), $this->createPostController($postManager)->getPostCommentsAction(1));
+        $pager = $this->getMock('Sonata\DatagridBundle\Pager\PagerInterface');
+
+        // Will assert that param fetcher parameters are used for the pager
+        $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
+        $commentManager->expects($this->once())
+            ->method('getPager')
+            ->with($this->anything(), $this->equalTo($parameters['page']), $this->equalTo($parameters['count']))
+            ->will($this->returnValue($pager));
+
+        $this->assertEquals($pager, $this->createPostController($postManager, $commentManager)->getPostCommentsAction(1, $paramFetcher));
+    }
+
+    /**
+     * @expectedException        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @expectedExceptionMessage Post (42) not found
+     */
+    public function testGetPostCommentsActionNotFoundExceptionAction()
+    {
+        $paramFetcher = $this->getMock('FOS\RestBundle\Request\ParamFetcherInterface');
+
+        $this->createPostController()->getPostCommentsAction(42, $paramFetcher);
     }
 
     public function testPostPostAction()
@@ -239,7 +270,7 @@ class PostControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException        Symfony\Component\HttpKernel\Exception\HttpException
+     * @expectedException        \Symfony\Component\HttpKernel\Exception\HttpException
      * @expectedExceptionMessage Post (42) not commentable
      */
     public function testPostPostCommentsNotCommentableAction()

@@ -44,7 +44,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function getPager(array $criteria, $page, $maxPerPage = 10)
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
         $parameters = array();
         $query = $this->getRepository()

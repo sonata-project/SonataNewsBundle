@@ -75,7 +75,7 @@ class CommentController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param $id
+     * @param integer $id A comment identifier
      *
      * @return Comment
      * @throws NotFoundHttpException
@@ -103,7 +103,7 @@ class CommentController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param integer $id      A Comment identifier
+     * @param integer $id      A comment identifier
      * @param Request $request A Symfony request
      *
      * @return Comment
@@ -152,7 +152,7 @@ class CommentController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param integer $id A Comment identifier
+     * @param integer $id A comment identifier
      *
      * @return \FOS\RestBundle\View\View
      *
@@ -174,7 +174,7 @@ class CommentController
     /**
      * Returns a comment entity instance
      *
-     * @param integer $id A Comment identifier
+     * @param integer $id A comment identifier
      *
      * @return Comment
      *
