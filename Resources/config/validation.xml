@@ -29,6 +29,10 @@
         <property name="commentsDefaultStatus">
             <constraint name="NotBlank" />
         </property>
+
+        <property name="contentFormatter">
+            <constraint name="Sonata\FormatterBundle\Validator\Constraints\Formatter" />
+        </property>
     </class>
 
     <class name="Sonata\NewsBundle\Model\Comment">
