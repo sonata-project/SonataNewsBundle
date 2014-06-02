@@ -10,6 +10,10 @@
             <constraint name="NotBlank" />
         </property>
 
+        <property name="slug">
+            <constraint name="NotBlank" />
+        </property>
+
         <property name="abstract">
             <constraint name="NotBlank" />
         </property>
