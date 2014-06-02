@@ -59,8 +59,9 @@
         </property>
 
         <property name="status">
-            <constraint name="Choice">
-                <option name="callback">getStatusNumberList</option>
+            <constraint name="Range">
+                <option name="min">0</option>
+                <option name="max">2</option>
             </constraint>
         </property>
 
