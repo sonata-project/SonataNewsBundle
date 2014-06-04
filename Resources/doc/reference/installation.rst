@@ -42,8 +42,7 @@ Installation
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-
-
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             // ...
         );
     }
