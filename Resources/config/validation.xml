@@ -10,6 +10,10 @@
             <constraint name="NotBlank" />
         </property>
 
+        <property name="slug">
+            <constraint name="NotBlank" />
+        </property>
+
         <property name="abstract">
             <constraint name="NotBlank" />
         </property>
@@ -28,6 +32,10 @@
 
         <property name="commentsDefaultStatus">
             <constraint name="NotBlank" />
+        </property>
+
+        <property name="contentFormatter">
+            <constraint name="Sonata\FormatterBundle\Validator\Constraints\Formatter" />
         </property>
     </class>
 
@@ -48,6 +56,13 @@
         <property name="message">
             <constraint name="NotNull" />
             <constraint name="NotBlank" />
+        </property>
+
+        <property name="status">
+            <constraint name="Range">
+                <option name="min">0</option>
+                <option name="max">2</option>
+            </constraint>
         </property>
 
         <property name="post">
