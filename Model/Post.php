@@ -260,6 +260,10 @@ abstract class Post implements PostInterface
 
     public function preUpdate()
     {
+        if (!$this->getPublicationDateStart()) {
+            $this->setPublicationDateStart(new \DateTime);
+        }
+
         $this->setUpdatedAt(new \DateTime);
     }
 
