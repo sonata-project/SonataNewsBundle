@@ -53,7 +53,10 @@ class CommentAdmin extends Admin
                 ->add('url', null, array('required' => false))
             ->end()
             ->with($this->trans('group_comment'))
-                ->add('status', 'sonata_news_comment_status', array('expanded' => true, 'multiple' => false))
+                ->add('status', 'sonata_news_comment_status', array(
+                    'expanded' => true,
+                    'multiple' => false,
+                ))
                 ->add('message', null, array('attr' => array('rows' => 6)))
             ->end()
         ;
