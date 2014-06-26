@@ -33,50 +33,51 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
-        try {
-            $repository = $this->getRepository();
+        $repository = $this->getRepository();
 
-            $query = $repository->createQueryBuilder('p');
+        $query = $repository->createQueryBuilder('p');
 
-            $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
+        $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
 
-            $parameters = array();
+        $parameters = array();
 
-            if (isset($urlParameters['year']) && isset($urlParameters['month']) && isset($urlParameters['day'])) {
-                $pdqp = $this->getPublicationDateQueryParts(sprintf('%d-%d-%d', $urlParameters['year'], $urlParameters['month'], $urlParameters['day']), 'day');
+        if (isset($urlParameters['year']) && isset($urlParameters['month']) && isset($urlParameters['day'])) {
+            $pdqp = $this->getPublicationDateQueryParts(sprintf('%d-%d-%d', $urlParameters['year'], $urlParameters['month'], $urlParameters['day']), 'day');
 
-                $parameters = array_merge($parameters, $pdqp['params']);
+            $parameters = array_merge($parameters, $pdqp['params']);
 
-                $query->andWhere($pdqp['query']);
-            }
+            $query->andWhere($pdqp['query']);
+        }
 
-            if (isset($urlParameters['slug'])) {
-                $query->andWhere('p.slug = :slug');
-                $parameters['slug'] = $urlParameters['slug'];
-            }
+        if (isset($urlParameters['slug'])) {
+            $query->andWhere('p.slug = :slug');
+            $parameters['slug'] = $urlParameters['slug'];
+        }
 
-            if (isset($urlParameters['collection'])) {
-                $pcqp = $this->getPublicationCollectionQueryParts($urlParameters['collection']);
+        if (isset($urlParameters['collection'])) {
+            $pcqp = $this->getPublicationCollectionQueryParts($urlParameters['collection']);
 
-                $parameters = array_merge($parameters, $pcqp['params']);
+            $parameters = array_merge($parameters, $pcqp['params']);
 
-                $query
-                    ->leftJoin('p.collection', 'c')
-                    ->andWhere($pcqp['query'])
-                ;
-            }
+            $query
+                ->leftJoin('p.collection', 'c')
+                ->andWhere($pcqp['query'])
+            ;
+        }
 
-            if (count($parameters) == 0) {
-                return null;
-            }
-
-            $query->setParameters($parameters);
-
-            return $query->getQuery()->getSingleResult();
-
-        } catch (NoResultException $e) {
+        if (count($parameters) == 0) {
             return null;
         }
+
+        $query->setParameters($parameters);
+
+        $results = $query->getQuery()->getResult();
+
+        if (count($results) > 0) {
+            return $results[0];
+        }
+
+        return null;
     }
 
     /**
