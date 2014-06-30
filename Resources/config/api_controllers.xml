@@ -7,7 +7,6 @@
     <services>
         <service id="sonata.news.controller.api.comment" class="Sonata\NewsBundle\Controller\Api\CommentController">
             <argument type="service" id="sonata.news.manager.comment" />
-            <argument type="service" id="form.factory" />
         </service>
 
         <service id="sonata.news.controller.api.post" class="Sonata\NewsBundle\Controller\Api\PostController">

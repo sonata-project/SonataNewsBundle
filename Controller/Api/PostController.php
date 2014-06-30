@@ -315,6 +315,7 @@ class PostController
         }
 
         $comment = $this->commentManager->create();
+        $comment->setPost($post);
 
         $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, array('csrf_protection' => false));
         $form->bind($request);
@@ -341,6 +342,74 @@ class PostController
 
         return $form;
     }
+
+    /**
+     * Updates a comment
+     *
+     * @ApiDoc(
+     *  requirements={
+     *      {"name"="postId", "dataType"="integer", "requirement"="\d+", "description"="post identifier"},
+     *      {"name"="commentId", "dataType"="integer", "requirement"="\d+", "description"="comment identifier"}
+     *  },
+     *  input={"class"="sonata_news_api_form_comment", "name"="", "groups"={"sonata_api_write"}},
+     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      400="Returned when an error has occurred while comment update",
+     *      404="Returned when unable to find comment"
+     *  }
+     * )
+     *
+     * @Route(requirements={"_format"="json|xml"})
+     *
+     * @param integer $postId    A post identifier
+     * @param integer $commentId A comment identifier
+     * @param Request $request   A Symfony request
+     *
+     * @return Comment
+     *
+     * @throws NotFoundHttpException
+     * @throws HttpException
+     */
+    public function putPostCommentsAction($postId, $commentId, Request $request)
+    {
+        $post = $this->getPost($postId);
+
+        if (!$post->isCommentable()) {
+            throw new HttpException(403, sprintf('Post (%d) not commentable', $postId));
+        }
+
+        $comment = $this->commentManager->find($commentId);
+
+        if (null === $comment) {
+            throw new NotFoundHttpException(sprintf("Comment (%d) not found", $commentId));
+        }
+
+        $comment->setPost($post);
+
+        $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, array(
+            'csrf_protection' => false
+        ));
+
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $comment = $form->getData();
+            $this->commentManager->save($comment);
+
+            $view = \FOS\RestBundle\View\View::create($comment);
+            $serializationContext = SerializationContext::create();
+            $serializationContext->setGroups(array('sonata_api_read'));
+            $serializationContext->enableMaxDepthChecks();
+            $view->setSerializationContext($serializationContext);
+
+            return $view;
+        }
+
+        return $form;
+    }
+
+
 
     /**
      * Filters criteria from $paramFetcher to be compatible with the Pager criteria

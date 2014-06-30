@@ -46,62 +46,16 @@ class CommentControllerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param null $commentManager
-     * @param null $formFactory
      *
      * @return CommentController
      */
-    protected function createCommentController($commentManager = null, $formFactory = null)
+    protected function createCommentController($commentManager = null)
     {
         if (null === $commentManager) {
             $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         }
 
-        if (null === $formFactory) {
-            $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-            $formFactory = $this->getMock('Symfony\Component\Form\FormFactoryInterface');
-        }
-
-        return new CommentController($commentManager, $formFactory);
-    }
-
-    public function testPutCommentAction()
-    {
-        $comment = $this->getMock('Sonata\NewsBundle\Model\CommentInterface');
-
-        $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
-        $commentManager->expects($this->once())->method('save')->will($this->returnValue($comment));
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
-        $form->expects($this->once())->method('isValid')->will($this->returnValue(true));
-
-        $formFactory = $this->getMock('Symfony\Component\Form\FormFactoryInterface');
-        $formFactory->expects($this->once())->method('createNamed')->will($this->returnValue($form));
-
-        $view = $this->createCommentController($commentManager, $formFactory)->putCommentAction(1, new Request());
-
-        $this->assertInstanceOf('FOS\RestBundle\View\View', $view);
-    }
-
-    public function testPutCommentInvalidAction()
-    {
-        $comment = $this->getMock('Sonata\NewsBundle\Model\CommentInterface');
-
-        $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
-        $commentManager->expects($this->never())->method('save')->will($this->returnValue($comment));
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
-        $form->expects($this->once())->method('isValid')->will($this->returnValue(false));
-
-        $formFactory = $this->getMock('Symfony\Component\Form\FormFactoryInterface');
-        $formFactory->expects($this->once())->method('createNamed')->will($this->returnValue($form));
-
-        $view = $this->createCommentController($commentManager, $formFactory)->putCommentAction(1, new Request());
-
-        $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $view);
+        return new CommentController($commentManager);
     }
 
     public function testDeleteCommentAction()

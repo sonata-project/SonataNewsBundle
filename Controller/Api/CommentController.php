@@ -40,20 +40,13 @@ class CommentController
     protected $commentManager;
 
     /**
-     * @var FormFactoryInterface
-     */
-    protected $formFactory;
-
-    /**
      * Constructor
      *
      * @param CommentManagerInterface $commentManager A comment manager
-     * @param FormFactoryInterface    $formFactory    Symfony form factory
      */
-    public function __construct(CommentManagerInterface $commentManager, FormFactoryInterface $formFactory)
+    public function __construct(CommentManagerInterface $commentManager)
     {
         $this->commentManager = $commentManager;
-        $this->formFactory    = $formFactory;
     }
 
     /**
@@ -83,57 +76,6 @@ class CommentController
     public function getCommentAction($id)
     {
         return $this->getComment($id);
-    }
-
-    /**
-     * Updates a comment
-     *
-     * @ApiDoc(
-     *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="comment identifier"}
-     *  },
-     *  input={"class"="sonata_news_api_form_comment", "name"="", "groups"={"sonata_api_write"}},
-     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
-     *  statusCodes={
-     *      200="Returned when successful",
-     *      400="Returned when an error has occurred while comment update",
-     *      404="Returned when unable to find comment"
-     *  }
-     * )
-     *
-     * @Route(requirements={"_format"="json|xml"})
-     *
-     * @param integer $id      A comment identifier
-     * @param Request $request A Symfony request
-     *
-     * @return Comment
-     *
-     * @throws NotFoundHttpException
-     */
-    public function putCommentAction($id, Request $request)
-    {
-        $comment = $this->getComment($id);
-
-        $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, array(
-            'csrf_protection' => false
-        ));
-
-        $form->bind($request);
-
-        if ($form->isValid()) {
-            $comment = $form->getData();
-            $this->commentManager->save($comment);
-
-            $view = \FOS\RestBundle\View\View::create($comment);
-            $serializationContext = SerializationContext::create();
-            $serializationContext->setGroups(array('sonata_api_read'));
-            $serializationContext->enableMaxDepthChecks();
-            $view->setSerializationContext($serializationContext);
-
-            return $view;
-        }
-
-        return $form;
     }
 
     /**
