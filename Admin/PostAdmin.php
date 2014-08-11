@@ -100,13 +100,12 @@ class PostAdmin extends Admin
                     ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
                 ->end()
 
-            ->with('Tags', array(
+            ->with('Classification', array(
                 'class' => 'col-md-4'
                 ))
-                ->add('tags', 'sonata_type_model', array(
-                    'required' => false,
-                    'expanded' => true,
-                    'multiple' => true,
+                ->add('tags', 'sonata_type_model_autocomplete', array(
+                    'property' => 'name',
+                    'multiple' => 'true'
                 ))
                 ->add('collection', 'sonata_type_model_list', array('required' => false))
             ->end()
