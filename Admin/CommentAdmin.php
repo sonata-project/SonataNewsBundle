@@ -33,8 +33,8 @@ class CommentAdmin extends Admin
     {
         // define group zoning
         $formMapper
-            ->with($this->trans('group_comment'), array('class' => 'col-md-6'))
-            ->with($this->trans('group_general'), array('class' => 'col-md-6'))
+            ->with($this->trans('group_comment'), array('class' => 'col-md-6'))->end()
+            ->with($this->trans('group_general'), array('class' => 'col-md-6'))->end()
         ;
 
 

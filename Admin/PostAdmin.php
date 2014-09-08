@@ -65,7 +65,7 @@ class PostAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General', array(
+            ->with('Post', array(
                     'class' => 'col-md-8'
                 ))
                 ->add('author', 'sonata_type_model_list')
@@ -84,21 +84,21 @@ class PostAdmin extends Admin
                     'listener'       => true,
                 ))
             ->end()
-                ->with('Options', array(
-                        'class' => 'col-md-4'
-                    ))
-                    ->add('enabled', null, array('required' => false))
-                    ->add('image', 'sonata_type_model_list', array('required' => false), array(
-                        'link_parameters' => array(
-                            'context' => 'news'
-                        )
-                    ))
+            ->with('Status', array(
+                    'class' => 'col-md-4'
+                ))
+                ->add('enabled', null, array('required' => false))
+                ->add('image', 'sonata_type_model_list', array('required' => false), array(
+                    'link_parameters' => array(
+                        'context' => 'news'
+                    )
+                ))
 
-                    ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
-                    ->add('commentsCloseAt', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
-                    ->add('commentsEnabled', null, array('required' => false))
-                    ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
-                ->end()
+                ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+                ->add('commentsCloseAt', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+                ->add('commentsEnabled', null, array('required' => false))
+                ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
+            ->end()
 
             ->with('Classification', array(
                 'class' => 'col-md-4'
