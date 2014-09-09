@@ -88,7 +88,7 @@
             </trans-unit>
             <trans-unit id="published_under">
                 <source>published_under</source>
-                <target>{0}No tag selected|{1}Tag: |]1,Inf]Tags:</target>
+                <target>{0}No tag selected|{1}Tag: |[1,Inf]Tags:</target>
             </trans-unit>
             <trans-unit id="archive_author">
                 <source>archive_author</source>
