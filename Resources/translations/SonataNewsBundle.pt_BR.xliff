@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title_archive">
+                <source>title_archive</source>
+                <target>Arquivo</target>
+            </trans-unit>
+            <trans-unit id="title_comments">
+                <source>title_comments</source>
+                <target>Comentários</target>
+            </trans-unit>
+            <trans-unit id="btn_add_comment">
+                <source>btn_add_comment</source>
+                <target>Adicionar comentário</target>
+            </trans-unit>
+            <trans-unit id="message_comments_are_closed">
+                <source>message_comments_are_closed</source>
+                <target>O formulário de comentários está fechado para esse artigo.</target>
+            </trans-unit>
+            <trans-unit id="no_post_found">
+                <source>no_post_found</source>
+                <target>Nenhum artigo encontrado.</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_view_post">
+                <source>sidemenu.link_view_post</source>
+                <target>Exibir</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_view_comments">
+                <source>sidemenu.link_view_comments</source>
+                <target>Comentários</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_create">
+                <source>breadcrumb.link_comment_create</source>
+                <target>Criar</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_list">
+                <source>breadcrumb.link_comment_list</source>
+                <target>Comentários</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_edit">
+                <source>breadcrumb.link_comment_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_create">
+                <source>breadcrumb.link_post_create</source>
+                <target>Criar</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_list">
+                <source>breadcrumb.link_post_list</source>
+                <target>Artigos</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_edit">
+                <source>breadcrumb.link_post_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_create">
+                <source>breadcrumb.link_tag_create</source>
+                <target>Criar</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_list">
+                <source>breadcrumb.link_tag_list</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_edit">
+                <source>breadcrumb.link_tag_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="comments">
+                <source>comments</source>
+                <target>Comentários</target>
+            </trans-unit>
+            <trans-unit id="posts">
+                <source>posts</source>
+                <target>Artigos</target>
+            </trans-unit>
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>Categorias</target>
+            </trans-unit>
+            <trans-unit id="tags">
+                <source>tags</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="no_tag_selected">
+                <source>no_tag_selected</source>
+                <target>Nenhuma tag selecionada</target>
+            </trans-unit>
+            <trans-unit id="published_under">
+                <source>published_under</source>
+                <target>{0}Nenhuma tag selecionada|{1}Tag: |[1,Inf]Tags:</target>
+            </trans-unit>
+            <trans-unit id="archive_author">
+                <source>archive_author</source>
+                <target>por %author%</target>
+            </trans-unit>
+            <trans-unit id="comments_count">
+                <source>comments_count</source>
+                <target>%comments_count% comentários</target>
+            </trans-unit>
+            <trans-unit id="title_leave_comment">
+                <source>title_leave_comment</source>
+                <target>Adicionar comentário</target>
+            </trans-unit>
+            <trans-unit id="mail_title_comment_notification">
+                <source>mail_title_comment_notification</source>
+                <target>Novo comentário no artigo '%post_title%' no blog '%blog_title%'
+Novo comentário no artigo "%post_title%" no blog "%blog_title%"
+
+Artigo: %post_title% - %post_url%
+De: %comment_name%
+Email: %comment_email%
+Url: %comment_url%
+Mensagem:
+%comment_message%
+
+Links rápidos de moderação :
+  - validar: %comment_valid_link%
+  - invalidar: %comment_invalid_link%
+                </target>
+            </trans-unit>
+            <trans-unit id="no_comments_available">
+                <source>no_comments_available</source>
+                <target>Não há comentários disponíveis</target>
+            </trans-unit>
+            <trans-unit id="sonata_blog">
+                <source>sonata_blog</source>
+                <target>Blog</target>
+            </trans-unit>
+            <trans-unit id="list_label_title">
+                <source>list.label_title</source>
+                <target>Título</target>
+            </trans-unit>
+            <trans-unit id="list_label_author">
+                <source>list.label_author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="list_label_collection">
+                <source>list.label_collection</source>
+                <target>Acervo</target>
+            </trans-unit>
+            <trans-unit id="list_label_enabled">
+                <source>list.label_enabled</source>
+                <target>Ativo</target>
+            </trans-unit>
+            <trans-unit id="list_label_label_tags">
+                <source>list.label_tags</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="list_label_comments_enabled">
+                <source>list.label_comments_enabled</source>
+                <target>Comentários ativos</target>
+            </trans-unit>
+            <trans-unit id="list_label_comments_count">
+                <source>list.label_comments_count</source>
+                <target>Contagem de comentario</target>
+            </trans-unit>
+            <trans-unit id="list.label_publication_date_start">
+                <source>list.label_publication_date_start</source>
+                <target>Data incial da publicação</target>
+            </trans-unit>
+            <trans-unit id="form_label_enabled">
+                <source>form.label_enabled</source>
+                <target>Ativo</target>
+            </trans-unit>
+            <trans-unit id="form_label_author">
+                <source>form.label_author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="form_label_collection">
+                <source>form.label_collection</source>
+                <target>Acervo</target>
+            </trans-unit>
+            <trans-unit id="form_label_title">
+                <source>form.label_title</source>
+                <target>Titulo</target>
+            </trans-unit>
+            <trans-unit id="form_label_abstract">
+                <source>form.label_abstract</source>
+                <target>Resumo</target>
+            </trans-unit>
+            <trans-unit id="form_label_content">
+                <source>form.label_content</source>
+                <target>Conteúdo</target>
+            </trans-unit>
+            <trans-unit id="form_label_tags">
+                <source>form.label_tags</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="form_label_publication_date_start">
+                <source>form.label_publication_date_start</source>
+                <target>Data incial da publicação</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_close_at">
+                <source>form.label_comments_close_at</source>
+                <target>Comentários fechados em</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_enabled">
+                <source>form.label_comments_enabled</source>
+                <target>Comentários ativos</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_default_status">
+                <source>form.label_comments_default_status</source>
+                <target>Estado padrao de comentário</target>
+            </trans-unit>
+            <trans-unit id="filter_label_title">
+                <source>filter.label_title</source>
+                <target>Titulo</target>
+            </trans-unit>
+            <trans-unit id="filter_label_enabled">
+                <source>filter.label_enabled</source>
+                <target>Ativo</target>
+            </trans-unit>
+            <trans-unit id="filter_label_tags">
+                <source>filter.label_tags</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="filter_label_author">
+                <source>filter.label_author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="filter_label_with_open_comments">
+                <source>filter.label_with_open_comments</source>
+                <target>Comentários abertos</target>
+            </trans-unit>
+            <trans-unit id="filter.label_post">
+                <source>filter.label_post</source>
+                <target>ID do Artigo</target>
+            </trans-unit>
+            <trans-unit id="list_label_name">
+                <source>list.label_name</source>
+                <target>Nome</target>
+            </trans-unit>
+            <trans-unit id="list_status_code">
+                <source>status_code</source>
+                <target>Código do estado</target>
+            </trans-unit>
+            <trans-unit id="list_label_post">
+                <source>list.label_post</source>
+                <target>Artigo</target>
+            </trans-unit>
+            <trans-unit id="list_label_email">
+                <source>list.label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="list_label_url">
+                <source>list.label_url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="list_label_message">
+                <source>list.label_message</source>
+                <target>Mensagem</target>
+            </trans-unit>
+            <trans-unit id="filter_label_name">
+                <source>filter.label_name</source>
+                <target>Nome</target>
+            </trans-unit>
+            <trans-unit id="filter_label_email">
+                <source>filter.label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="filter_label_message">
+                <source>filter.label_message</source>
+                <target>Mensagem</target>
+            </trans-unit>
+            <trans-unit id="form_label_post">
+                <source>form.label_post</source>
+                <target>Artigo</target>
+            </trans-unit>
+            <trans-unit id="form_label_name">
+                <source>form.label_name</source>
+                <target>Nome</target>
+            </trans-unit>
+            <trans-unit id="form_label_email">
+                <source>form.label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="form_label_url">
+                <source>form.label_url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="form_label_message">
+                <source>form.label_message</source>
+                <target>Mensagem</target>
+            </trans-unit>
+            <trans-unit id="form_label_status">
+                <source>form.label_status</source>
+                <target>Estado</target>
+            </trans-unit>
+            <trans-unit id="list_label_slug">
+                <source>list.label_slug</source>
+                <target>Slug</target>
+            </trans-unit>
+            <trans-unit id="list_label_description">
+                <source>list.label_description</source>
+                <target>Descrição</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb_link_collection_list">
+                <source>breadcrumb.link_collection_list</source>
+                <target>Categorias</target>
+            </trans-unit>
+            <trans-unit id="form_label_description">
+                <source>form.label_description</source>
+                <target>Descrição</target>
+            </trans-unit>
+            <trans-unit id="filter_label_posts">
+                <source>filter.label_posts</source>
+                <target>Artigos</target>
+            </trans-unit>
+            <trans-unit id="batch.comment_enable">
+                <source>batch.comment_enable</source>
+                <target>Ativar</target>
+            </trans-unit>
+            <trans-unit id="batch.comment_disable">
+                <source>batch.comment_disable</source>
+                <target>Desativar</target>
+            </trans-unit>
+            <trans-unit id="link_previous_page">
+                <source>link_previous_page</source>
+                <target>Página anterior</target>
+            </trans-unit>
+            <trans-unit id="link_next_page">
+                <source>link_next_page</source>
+                <target>Próxima página</target>
+            </trans-unit>
+            <trans-unit id="form.comment.name">
+                <source>form.comment.name</source>
+                <target>Nome</target>
+            </trans-unit>
+            <trans-unit id="form.comment.email">
+                <source>form.comment.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form.comment.url">
+                <source>form.comment.url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="form.comment.message">
+                <source>form.comment.message</source>
+                <target>Mensagem</target>
+            </trans-unit>
+            <trans-unit id="view_all_posts">
+                <source>view_all_posts</source>
+                <target>Exibir todos os artigos</target>
+            </trans-unit>
+            <trans-unit id="post_is_public">
+                <source>post_is_public</source>
+                <target>Público</target>
+            </trans-unit>
+            <trans-unit id="post_is_not_public">
+                <source>post_is_not_public</source>
+                <target>Privado</target>
+            </trans-unit>
+            <trans-unit id="label_comment_valid">
+                <source>label_comment_valid</source>
+                <target>Válido</target>
+            </trans-unit>
+            <trans-unit id="label_comment_invalid">
+                <source>label_comment_invalid</source>
+                <target>Inválido</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_status">
+                <source>label_unknown_status</source>
+                <target>Desconhecido</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_moderate">
+                <source>label_unknown_moderate</source>
+                <target>Moderar</target>
+            </trans-unit>
+            <trans-unit id="view_all_comments">
+                <source>view_all_comments</source>
+                <target>Exibir todos os comentários</target>
+            </trans-unit>
+            <trans-unit id="sonata_news_archive_breadcrumb">
+                <source>sonata_news_archive_breadcrumb</source>
+                <target>Artigos</target>
+            </trans-unit>
+            <trans-unit id="group_general">
+                <source>group_general</source>
+                <target>Geral</target>
+            </trans-unit>
+            <trans-unit id="group_comment">
+                <source>group_comment</source>
+                <target>Comentário</target>
+            </trans-unit>
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>Imagem</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_edit_post">
+                <source>sidemenu.link_edit_post</source>
+                <target>Editar</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
