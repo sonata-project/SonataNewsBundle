@@ -90,7 +90,8 @@ class PostAdmin extends Admin
                 ->add('enabled', null, array('required' => false))
                 ->add('image', 'sonata_type_model_list', array('required' => false), array(
                     'link_parameters' => array(
-                        'context' => 'news'
+                        'context' => 'news',
+                        'hide_context' => true
                     )
                 ))
 
