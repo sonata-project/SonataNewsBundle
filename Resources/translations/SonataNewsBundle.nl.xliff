@@ -154,7 +154,7 @@ Quick moderation links :
                 <source>list.label_comments_count</source>
                 <target>Aantal reacties</target>
             </trans-unit>
-            <trans-unit id="list_label_publication_date_start">
+            <trans-unit id="list.label_publication_date_start">
                 <source>list.label_publication_date_start</source>
                 <target>Publicatiedatum</target>
             </trans-unit>
@@ -376,19 +376,19 @@ Quick moderation links :
             </trans-unit>
             <trans-unit id="group_general">
                 <source>group_general</source>
-                <target>group_general</target>
+                <target>Algemeen</target>
             </trans-unit>
             <trans-unit id="group_comment">
                 <source>group_comment</source>
-                <target>group_comment</target>
+                <target>Reactie</target>
             </trans-unit>
             <trans-unit id="form.label_image">
                 <source>form.label_image</source>
-                <target>form.label_image</target>
+                <target>Afbeelding</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_edit_post">
                 <source>sidemenu.link_edit_post</source>
-                <target>sidemenu.link_edit_post</target>
+                <target>Bericht bewerken</target>
             </trans-unit>
         </body>
     </file>
