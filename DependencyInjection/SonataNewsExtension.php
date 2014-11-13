@@ -160,7 +160,6 @@ class SonataNewsExtension extends Extension
             'targetEntity' => $config['class']['media'],
             'cascade' =>
                 array(
-                    0 => 'remove',
                     1 => 'persist',
                     2 => 'refresh',
                     3 => 'merge',
