@@ -17,7 +17,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\CoreBundle\Model\ManagerInterface;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
@@ -207,11 +206,11 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\FormatterBundle\Formatter\Pool $formatterPool
+     * @param Pool $formatterPool
      *
      * @return void
      */
-    public function setPoolFormatter(FormatterPool $formatterPool)
+    public function setPoolFormatter(Pool $formatterPool)
     {
         $this->formatterPool = $formatterPool;
     }
