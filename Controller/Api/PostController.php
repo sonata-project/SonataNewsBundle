@@ -128,7 +128,7 @@ class PostController
      *  requirements={
      *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post id"}
      *  },
-     *  output={"class"="Sonata\NewsBundle\Model\Post", "groups"={"sonata_api_read"}},
+     *  output={"class"="sonata_news_api_form_post", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
      *      404="Returned when post is not found"
@@ -153,7 +153,7 @@ class PostController
      *
      * @ApiDoc(
      *  input={"class"="sonata_news_api_form_post", "name"="", "groups"={"sonata_api_write"}},
-     *  output={"class"="Sonata\NewsBundle\Model\Post", "groups"={"sonata_api_read"}},
+     *  output={"class"="sonata_news_api_form_post", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
      *      400="Returned when an error has occurred while post creation",
@@ -181,7 +181,7 @@ class PostController
      *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post identifier"}
      *  },
      *  input={"class"="sonata_news_api_form_post", "name"="", "groups"={"sonata_api_write"}},
-     *  output={"class"="Sonata\NewsBundle\Model\Post", "groups"={"sonata_api_read"}},
+     *  output={"class"="sonata_news_api_form_post", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
      *      400="Returned when an error has occurred while post update",
