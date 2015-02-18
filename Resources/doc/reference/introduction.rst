@@ -16,9 +16,9 @@ Text Formatting
 
 The content of a blog post can be formatted in different format :
 
-* markdown,
-* raw html,
-* or using nl2br.
+* markdown
+* raw html
+* nl2br
 
 This feature is handled by the ``SonataFormatterBundle``.
 
@@ -28,9 +28,9 @@ Comments
 Comments can be enabled or disabled depending on the policy selected while creating a Post.
 An email is sent every time a comment is added to a Post. The email contains the comment informations such as:
 
-* mail,
-* message,
-* url,
-* etc ...)
+* mail
+* message
+* url
+* etc
 
-and a 2 quick moderation link : ``activate`` or ``disable`` the comment.
+and two moderation links to ``activate`` or ``disable`` the comment.
