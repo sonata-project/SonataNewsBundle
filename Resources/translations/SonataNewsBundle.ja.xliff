@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="ja" datatype="plaintext" original="SonataNewsBundle.en.xliff">
+        <body>
+            <trans-unit id="title_archive">
+                <source>title_archive</source>
+                <target>アーカイブ</target>
+            </trans-unit>
+            <trans-unit id="title_comments">
+                <source>title_comments</source>
+                <target>コメント</target>
+            </trans-unit>
+            <trans-unit id="btn_add_comment">
+                <source>btn_add_comment</source>
+                <target>コメント追加</target>
+            </trans-unit>
+            <trans-unit id="message_comments_are_closed">
+                <source>message_comments_are_closed</source>
+                <target>このニュース対するコメント欄はクローズされています。</target>
+            </trans-unit>
+            <trans-unit id="no_post_found">
+                <source>no_post_found</source>
+                <target>投稿が見つかりません。</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_view_post">
+                <source>sidemenu.link_view_post</source>
+                <target>表示</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_view_comments">
+                <source>sidemenu.link_view_comments</source>
+                <target>コメント</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_create">
+                <source>breadcrumb.link_comment_create</source>
+                <target>作成</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_list">
+                <source>breadcrumb.link_comment_list</source>
+                <target>コメント</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_edit">
+                <source>breadcrumb.link_comment_edit</source>
+                <target>編集</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_create">
+                <source>breadcrumb.link_post_create</source>
+                <target>作成</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_list">
+                <source>breadcrumb.link_post_list</source>
+                <target>投稿</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_edit">
+                <source>breadcrumb.link_post_edit</source>
+                <target>編集</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_create">
+                <source>breadcrumb.link_tag_create</source>
+                <target>作成</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_list">
+                <source>breadcrumb.link_tag_list</source>
+                <target>タグ</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_edit">
+                <source>breadcrumb.link_tag_edit</source>
+                <target>編集</target>
+            </trans-unit>
+            <trans-unit id="comments">
+                <source>comments</source>
+                <target>コメント</target>
+            </trans-unit>
+            <trans-unit id="posts">
+                <source>posts</source>
+                <target>投稿</target>
+            </trans-unit>
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>カテゴリ</target>
+            </trans-unit>
+            <trans-unit id="tags">
+                <source>tags</source>
+                <target>タグ</target>
+            </trans-unit>
+            <trans-unit id="no_tag_selected">
+                <source>no_tag_selected</source>
+                <target>タグが選択されていません</target>
+            </trans-unit>
+            <trans-unit id="published_under">
+                <source>published_under</source>
+                <target>{0}タグが選択されていません|{1}Tag: |[1,Inf]Tags:</target>
+            </trans-unit>
+            <trans-unit id="archive_author">
+                <source>archive_author</source>
+                <target>by %author%</target>
+            </trans-unit>
+            <trans-unit id="comments_count">
+                <source>comments_count</source>
+                <target>%comments_count% コメント</target>
+            </trans-unit>
+            <trans-unit id="title_leave_comment">
+                <source>title_leave_comment</source>
+                <target>コメントを追加</target>
+            </trans-unit>
+            <trans-unit id="mail_title_comment_notification">
+                <source>mail_title_comment_notification</source>
+                <target>New comment for post '%post_title%' on blog '%blog_title%'
+New comment for post "%post_title%" on blog "%blog_title%"
+
+Post: %post_title% - %post_url%
+From: %comment_name%
+Email: %comment_email%
+Url: %comment_url%
+Message:
+%comment_message%
+
+Quick moderation links :
+  - validate: %comment_valid_link%
+  - invalidate: %comment_invalid_link%
+                </target>
+            </trans-unit>
+            <trans-unit id="no_comments_available">
+                <source>no_comments_available</source>
+                <target>有効なコメントがありません</target>
+            </trans-unit>
+            <trans-unit id="sonata_blog">
+                <source>sonata_blog</source>
+                <target>ニュース</target>
+            </trans-unit>
+            <trans-unit id="list_label_title">
+                <source>list.label_title</source>
+                <target>タイトル</target>
+            </trans-unit>
+            <trans-unit id="list_label_author">
+                <source>list.label_author</source>
+                <target>著者</target>
+            </trans-unit>
+            <trans-unit id="list_label_collection">
+                <source>list.label_collection</source>
+                <target>コレクション</target>
+            </trans-unit>
+            <trans-unit id="list_label_enabled">
+                <source>list.label_enabled</source>
+                <target>Enabled</target>
+            </trans-unit>
+            <trans-unit id="list_label_label_tags">
+                <source>list.label_tags</source>
+                <target>タグ</target>
+            </trans-unit>
+            <trans-unit id="list_label_comments_enabled">
+                <source>list.label_comments_enabled</source>
+                <target>コメント有効</target>
+            </trans-unit>
+            <trans-unit id="list_label_comments_count">
+                <source>list.label_comments_count</source>
+                <target>コメント数</target>
+            </trans-unit>
+            <trans-unit id="list.label_publication_date_start">
+                <source>list.label_publication_date_start</source>
+                <target>Publication開始日</target>
+            </trans-unit>
+            <trans-unit id="form_label_enabled">
+                <source>form.label_enabled</source>
+                <target>Enabled</target>
+            </trans-unit>
+            <trans-unit id="form_label_author">
+                <source>form.label_author</source>
+                <target>著者</target>
+            </trans-unit>
+            <trans-unit id="form_label_collection">
+                <source>form.label_collection</source>
+                <target>コレクション</target>
+            </trans-unit>
+            <trans-unit id="form_label_title">
+                <source>form.label_title</source>
+                <target>タイトル</target>
+            </trans-unit>
+            <trans-unit id="form_label_abstract">
+                <source>form.label_abstract</source>
+                <target>要約</target>
+            </trans-unit>
+            <trans-unit id="form_label_content">
+                <source>form.label_content</source>
+                <target>コンテンツ</target>
+            </trans-unit>
+            <trans-unit id="form_label_tags">
+                <source>form.label_tags</source>
+                <target>タグ</target>
+            </trans-unit>
+            <trans-unit id="form_label_publication_date_start">
+                <source>form.label_publication_date_start</source>
+                <target>公開日</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_close_at">
+                <source>form.label_comments_close_at</source>
+                <target>コメント終了日</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_enabled">
+                <source>form.label_comments_enabled</source>
+                <target>コメント有効</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_default_status">
+                <source>form.label_comments_default_status</source>
+                <target>コメント デフォルト状態</target>
+            </trans-unit>
+            <trans-unit id="filter_label_title">
+                <source>filter.label_title</source>
+                <target>タイトル</target>
+            </trans-unit>
+            <trans-unit id="filter_label_enabled">
+                <source>filter.label_enabled</source>
+                <target>Enabled</target>
+            </trans-unit>
+            <trans-unit id="filter_label_tags">
+                <source>filter.label_tags</source>
+                <target>タグ</target>
+            </trans-unit>
+            <trans-unit id="filter_label_author">
+                <source>filter.label_author</source>
+                <target>著者</target>
+            </trans-unit>
+            <trans-unit id="filter_label_with_open_comments">
+                <source>filter.label_with_open_comments</source>
+                <target>コメントを開</target>
+            </trans-unit>
+            <trans-unit id="filter.label_post">
+                <source>filter.label_post</source>
+                <target>投稿 ID</target>
+            </trans-unit>
+            <trans-unit id="list_label_name">
+                <source>list.label_name</source>
+                <target>名前</target>
+            </trans-unit>
+            <trans-unit id="list_status_code">
+                <source>status_code</source>
+                <target>状態コード</target>
+            </trans-unit>
+            <trans-unit id="list_label_post">
+                <source>list.label_post</source>
+                <target>投稿</target>
+            </trans-unit>
+            <trans-unit id="list_label_email">
+                <source>list.label_email</source>
+                <target>Eメール</target>
+            </trans-unit>
+            <trans-unit id="list_label_url">
+                <source>list.label_url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="list_label_message">
+                <source>list.label_message</source>
+                <target>メッセージ</target>
+            </trans-unit>
+            <trans-unit id="filter_label_name">
+                <source>filter.label_name</source>
+                <target>名前</target>
+            </trans-unit>
+            <trans-unit id="filter_label_email">
+                <source>filter.label_email</source>
+                <target>Eメール</target>
+            </trans-unit>
+            <trans-unit id="filter_label_message">
+                <source>filter.label_message</source>
+                <target>メッセージ</target>
+            </trans-unit>
+            <trans-unit id="form_label_post">
+                <source>form.label_post</source>
+                <target>投稿</target>
+            </trans-unit>
+            <trans-unit id="form_label_name">
+                <source>form.label_name</source>
+                <target>名前</target>
+            </trans-unit>
+            <trans-unit id="form_label_email">
+                <source>form.label_email</source>
+                <target>Eメール</target>
+            </trans-unit>
+            <trans-unit id="form_label_url">
+                <source>form.label_url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="form_label_message">
+                <source>form.label_message</source>
+                <target>メッセージ</target>
+            </trans-unit>
+            <trans-unit id="form_label_status">
+                <source>form.label_status</source>
+                <target>ステータス</target>
+            </trans-unit>
+            <trans-unit id="list_label_slug">
+                <source>list.label_slug</source>
+                <target>Slug</target>
+            </trans-unit>
+            <trans-unit id="list_label_description">
+                <source>list.label_description</source>
+                <target>説明</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb_link_collection_list">
+                <source>breadcrumb.link_collection_list</source>
+                <target>カテゴリ</target>
+            </trans-unit>
+            <trans-unit id="form_label_description">
+                <source>form.label_description</source>
+                <target>説明</target>
+            </trans-unit>
+            <trans-unit id="filter_label_posts">
+                <source>filter.label_posts</source>
+                <target>投稿</target>
+            </trans-unit>
+            <trans-unit id="batch.comment_enable">
+                <source>batch.comment_enable</source>
+                <target>Enable</target>
+            </trans-unit>
+            <trans-unit id="batch.comment_disable">
+                <source>batch.comment_disable</source>
+                <target>Disable</target>
+            </trans-unit>
+            <trans-unit id="link_previous_page">
+                <source>link_previous_page</source>
+                <target>前のページ</target>
+            </trans-unit>
+            <trans-unit id="link_next_page">
+                <source>link_next_page</source>
+                <target>次のページ</target>
+            </trans-unit>
+            <trans-unit id="form.comment.name">
+                <source>form.comment.name</source>
+                <target>名前</target>
+            </trans-unit>
+            <trans-unit id="form.comment.email">
+                <source>form.comment.email</source>
+                <target>Eメール</target>
+            </trans-unit>
+            <trans-unit id="form.comment.url">
+                <source>form.comment.url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="form.comment.message">
+                <source>form.comment.message</source>
+                <target>メッセージ</target>
+            </trans-unit>
+            <trans-unit id="view_all_posts">
+                <source>view_all_posts</source>
+                <target>すべての投稿を表示</target>
+            </trans-unit>
+            <trans-unit id="post_is_public">
+                <source>post_is_public</source>
+                <target>パブリック</target>
+            </trans-unit>
+            <trans-unit id="post_is_not_public">
+                <source>post_is_not_public</source>
+                <target>プライベート</target>
+            </trans-unit>
+            <trans-unit id="label_comment_valid">
+                <source>label_comment_valid</source>
+                <target>有効</target>
+            </trans-unit>
+            <trans-unit id="label_comment_invalid">
+                <source>label_comment_invalid</source>
+                <target>無効</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_status">
+                <source>label_unknown_status</source>
+                <target>不明</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_moderate">
+                <source>label_unknown_moderate</source>
+                <target>Moderate</target>
+            </trans-unit>
+            <trans-unit id="view_all_comments">
+                <source>view_all_comments</source>
+                <target>すべてのコメントを表示</target>
+            </trans-unit>
+            <trans-unit id="sonata_news_archive_breadcrumb">
+                <source>sonata_news_archive_breadcrumb</source>
+                <target>ニュース</target>
+            </trans-unit>
+            <trans-unit id="group_general">
+                <source>group_general</source>
+                <target>一般</target>
+            </trans-unit>
+            <trans-unit id="group_comment">
+                <source>group_comment</source>
+                <target>コメント</target>
+            </trans-unit>
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>画像</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_edit_post">
+                <source>sidemenu.link_edit_post</source>
+                <target>編集</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
