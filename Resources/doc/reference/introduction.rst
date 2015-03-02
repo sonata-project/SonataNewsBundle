@@ -1,7 +1,7 @@
 Introduction
 ============
 
-News Bundle is A blog platform based on Doctrine2 and Symfony2.
+News Bundle is a blog platform based on Doctrine2 and Symfony2.
 
 Permalink
 ---------
