@@ -37,7 +37,7 @@ Advanced Configuration
                 translation: SonataNewsBundle
             comment:
                 class:       Sonata\NewsBundle\Admin\CommentAdmin
-                controller:  SonataAdminBundle:CRUD
+                controller:  SonataNewsBundle:CommentAdmin
                 translation: SonataNewsBundle
             collection:
                 class:       Sonata\NewsBundle\Admin\CollectionAdmin
