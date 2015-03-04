@@ -11,14 +11,15 @@ file that was distributed with this source code.
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
-    <div class="sonata-news-block-recent-post panel panel-default">
-        {% if settings.title %}
-            <div class="panel-heading">
-                <h3 class="sonata-news-block-recent-post panel-title"><i class="fa fa-pencil"></i> {{ settings.title }}</h3>
-            </div>
-        {% endif %}
 
-        <div class="panel-body">
+    <div class="sonata-news-block-recent-post box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="fa fa-pencil"></i> {{ settings.title }}
+            </h3>
+        </div>
+
+        <div class="box-body">
             {% sonata_template_box 'This is the recent posts block.' %}
 
             <div class="sonata-blog-post-container list-group">
@@ -26,9 +27,9 @@ file that was distributed with this source code.
                     {% if context.getSetting('mode') == 'admin' %}
                         <a class="list-group-item" href="{{ url('admin_sonata_news_post_edit', { 'id': post.id }) }}">
                             {% if post.ispublic %}
-                                <span class="label label-success">{{ 'post_is_public'|trans({}, 'SonataNewsBundle') }}</span>
-                            {% else %}
-                                <span class="label">{{ 'post_is_not_public'|trans({}, 'SonataNewsBundle') }}</span>
+                            <span class="label label-success">{{ 'post_is_public'|trans({}, 'SonataNewsBundle') }}</span>
+                        {% else %}
+                            <span class="label">{{ 'post_is_not_public'|trans({}, 'SonataNewsBundle') }}</span>
                             {% endif %}&nbsp;
 
                             {{ post.title }} - {{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }} - {{ post.publicationDateStart | format_date }}</a>
@@ -39,7 +40,9 @@ file that was distributed with this source code.
                     <a class="list-group-item" href="#">{{ 'no_post_found'|trans({}, 'SonataNewsBundle') }}</a>
                 {% endfor %}
             </div>
+        </div>
 
+        <div class="box-footer">
             {% if context.getSetting('mode') == 'admin' %}
                 <a href="{{ url('admin_sonata_news_post_list') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}</a>
             {% else %}
@@ -47,4 +50,5 @@ file that was distributed with this source code.
             {% endif %}
         </div>
     </div>
+
 {% endblock %}
