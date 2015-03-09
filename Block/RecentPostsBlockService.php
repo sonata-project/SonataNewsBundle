@@ -11,6 +11,7 @@
 
 namespace Sonata\NewsBundle\Block;
 
+use Sonata\AdminBundle\Admin\Pool;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -35,10 +36,12 @@ class RecentPostsBlockService extends BaseBlockService
      * @param string           $name
      * @param EngineInterface  $templating
      * @param ManagerInterface $manager
+     * @param Pool             $adminPool
      */
-    public function __construct($name, EngineInterface $templating, ManagerInterface $manager)
+    public function __construct($name, EngineInterface $templating, ManagerInterface $manager, Pool $adminPool = null)
     {
         $this->manager = $manager;
+        $this->adminPool = $adminPool;
 
         parent::__construct($name, $templating);
     }
@@ -53,10 +56,11 @@ class RecentPostsBlockService extends BaseBlockService
         );
 
         $parameters = array(
-            'context'   => $blockContext,
-            'settings'  => $blockContext->getSettings(),
-            'block'     => $blockContext->getBlock(),
-            'pager'     => $this->manager->getPager($criteria, 1, $blockContext->getSetting('number'))
+            'context'    => $blockContext,
+            'settings'   => $blockContext->getSettings(),
+            'block'      => $blockContext->getBlock(),
+            'pager'      => $this->manager->getPager($criteria, 1, $blockContext->getSetting('number')),
+            'admin_pool' => $this->adminPool
         );
 
         if ($blockContext->getSetting('mode') === 'admin') {

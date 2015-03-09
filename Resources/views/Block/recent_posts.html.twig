@@ -24,8 +24,8 @@ file that was distributed with this source code.
 
             <div class="sonata-blog-post-container list-group">
                 {% for post in pager.getResults() %}
-                    {% if context.getSetting('mode') == 'admin' %}
-                        <a class="list-group-item" href="{{ url('admin_sonata_news_post_edit', { 'id': post.id }) }}">
+                    {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
+                        <a class="list-group-item" href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.post').generateUrl('edit', { 'id': post.id }) }}">
                             {% if post.ispublic %}
                             <span class="label label-success">{{ 'post_is_public'|trans({}, 'SonataNewsBundle') }}</span>
                         {% else %}
@@ -43,8 +43,8 @@ file that was distributed with this source code.
         </div>
 
         <div class="box-footer">
-            {% if context.getSetting('mode') == 'admin' %}
-                <a href="{{ url('admin_sonata_news_post_list') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}</a>
+            {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
+                <a href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.post').generateUrl('list') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}</a>
             {% else %}
                 <a href="{{ url('sonata_news_archive') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}</a>
             {% endif %}

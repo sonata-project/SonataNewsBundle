@@ -11,6 +11,7 @@
             <argument>sonata.news.block.recent_posts</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.news.manager.post" />
+            <argument type="service" id="sonata.admin.pool" on-invalid="ignore" />
         </service>
 
         <service id="sonata.news.block.recent_comments" class="Sonata\NewsBundle\Block\RecentCommentsBlockService">
@@ -19,6 +20,7 @@
             <argument>sonata.news.block.recent_comments</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.news.manager.comment" />
+            <argument type="service" id="sonata.admin.pool" on-invalid="ignore" />
         </service>
 
         <service id="sonata.news.block.breadcrumb_archive" class="Sonata\NewsBundle\Block\Breadcrumb\NewsArchiveBreadcrumbBlockService">
