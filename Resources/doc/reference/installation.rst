@@ -54,7 +54,7 @@ Installation
 
     sonata_news:
         title:        Sonata Project
-        link:         http://sonata-project.org
+        link:         https://sonata-project.org
         description:  Cool bundles on top of Symfony2
         salt:         'secureToken'
         permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
@@ -90,7 +90,7 @@ Installation
             types:
                 json: Sonata\Doctrine\Types\JsonType
 
-* Add a new context into your ``sonata_media.yml`` configuration if you don't have go there http://sonata-project.org/bundles/media/master/doc/reference/installation.html:
+* Add a new context into your ``sonata_media.yml`` configuration if you don't have go there https://sonata-project.org/bundles/media/master/doc/reference/installation.html:
 
 .. code-block:: yaml
 

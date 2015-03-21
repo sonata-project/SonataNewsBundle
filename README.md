@@ -5,7 +5,7 @@ Sonata News Bundle
 
 A blog platform based on Doctrine2 (ORM and MongoDB) and Symfony2.
 
-Check out the documentation on [http://sonata-project.org/bundles/news/master/doc/index.html](http://sonata-project.org/bundles/news/master/doc/index.html)
+Check out the documentation on [https://sonata-project.org/bundles/news/master/doc/index.html](https://sonata-project.org/bundles/news/master/doc/index.html)
 
 **Google Groups**: For questions and proposals you can post on this google groups
 

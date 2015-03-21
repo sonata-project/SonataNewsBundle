@@ -9,10 +9,10 @@ Advanced Configuration
             collection:     Application\Sonata\ClassificationBundle\Entity\Collection
             tag:            Application\Sonata\ClassificationBundle\Entity\Tag
             category:       Application\Sonata\ClassificationBundle\Entity\Category
-            
+
     sonata_news:
         title:        Sonata Project
-        link:         http://sonata-project.org
+        link:         https://sonata-project.org
         description:  Cool bundles on top of Symfony2
         salt:         'secureToken'
         permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
@@ -58,6 +58,6 @@ Advanced Configuration
                     mappings:
                         ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
-                        
-                        
-    
+
+
+
