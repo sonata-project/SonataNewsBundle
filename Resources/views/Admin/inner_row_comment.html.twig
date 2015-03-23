@@ -16,7 +16,7 @@ file that was distributed with this source code.
     {% if object.getStatusCode() == 'valid' %}
         <span class="label label-success">{{ object.getStatusCode() }}</span>
     {% elseif object.getStatusCode() == 'invalid' %}
-        <span class="label label-important">{{ object.getStatusCode() }}</span>
+        <span class="label label-danger">{{ object.getStatusCode() }}</span>
     {% elseif object.getStatusCode() == 'moderate' %}
         <span class="label label-warning">{{ object.getStatusCode() }}</span>
     {% else %}
