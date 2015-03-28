@@ -105,12 +105,12 @@
             <trans-unit id="mail_title_comment_notification">
                 <source>mail_title_comment_notification</source>
                 <target>Alguien ha comentado el artículo '%post_title%' en el blog '%blog_title%'
-Alguien ha comntado el artículo "%post_title%" en el blog "%blog_title%"
+Alguien ha comentado el artículo "%post_title%" en el blog "%blog_title%"
 
 Artículo: %post_title% - %post_url%
 De: %comment_name%
-Email: %comment_email%
-Url: %comment_url%
+Correo electrónico: %comment_email%
+URL: %comment_url%
 Mensaje:
 %comment_message%
 
@@ -177,11 +177,11 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="form_label_abstract">
                 <source>form.label_abstract</source>
-                <target>Abstract</target>
+                <target>Reseña</target>
             </trans-unit>
             <trans-unit id="form_label_content">
                 <source>form.label_content</source>
-                <target>Content</target>
+                <target>Contenido</target>
             </trans-unit>
             <trans-unit id="form_label_tags">
                 <source>form.label_tags</source>
@@ -197,7 +197,7 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="form_label_comments_enabled">
                 <source>form.label_comments_enabled</source>
-                <target>Comments enabled</target>
+                <target>Comentarios habilitados</target>
             </trans-unit>
             <trans-unit id="form_label_comments_default_status">
                 <source>form.label_comments_default_status</source>
@@ -225,7 +225,7 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="filter.label_post">
                 <source>filter.label_post</source>
-                <target>filter.label_post</target>
+                <target>Artículo</target>
             </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>
@@ -241,11 +241,11 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="list_label_email">
                 <source>list.label_email</source>
-                <target>E-mail</target>
+                <target>Correo electrónico</target>
             </trans-unit>
             <trans-unit id="list_label_url">
                 <source>list.label_url</source>
-                <target>Url</target>
+                <target>URL</target>
             </trans-unit>
             <trans-unit id="list_label_message">
                 <source>list.label_message</source>
@@ -257,7 +257,7 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="filter_label_email">
                 <source>filter.label_email</source>
-                <target>E-mail</target>
+                <target>Correo electrónico</target>
             </trans-unit>
             <trans-unit id="filter_label_message">
                 <source>filter.label_message</source>
@@ -273,11 +273,11 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="form_label_email">
                 <source>form.label_email</source>
-                <target>E-mail</target>
+                <target>Correo electrónico</target>
             </trans-unit>
             <trans-unit id="form_label_url">
                 <source>form.label_url</source>
-                <target>Url</target>
+                <target>URL</target>
             </trans-unit>
             <trans-unit id="form_label_message">
                 <source>form.label_message</source>
@@ -317,51 +317,51 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="link_previous_page">
                 <source>link_previous_page</source>
-                <target>Previous page</target>
+                <target>Página anterior</target>
             </trans-unit>
             <trans-unit id="link_next_page">
                 <source>link_next_page</source>
-                <target>Next page</target>
+                <target>Página siguiente</target>
             </trans-unit>
             <trans-unit id="form.comment.name">
                 <source>form.comment.name</source>
-                <target>Name</target>
+                <target>Nombre</target>
             </trans-unit>
             <trans-unit id="form.comment.email">
                 <source>form.comment.email</source>
-                <target>Email</target>
+                <target>Correo electrónico</target>
             </trans-unit>
             <trans-unit id="form.comment.url">
                 <source>form.comment.url</source>
-                <target>Url</target>
+                <target>URL</target>
             </trans-unit>
             <trans-unit id="form.comment.message">
                 <source>form.comment.message</source>
-                <target>Message</target>
+                <target>Mensaje</target>
             </trans-unit>
             <trans-unit id="view_all_posts">
                 <source>view_all_posts</source>
-                <target>view_all_posts</target>
+                <target>Ver todos los artículos</target>
             </trans-unit>
             <trans-unit id="post_is_public">
                 <source>post_is_public</source>
-                <target>post_is_public</target>
+                <target>Público</target>
             </trans-unit>
             <trans-unit id="post_is_not_public">
                 <source>post_is_not_public</source>
-                <target>post_is_not_public</target>
+                <target>Privado</target>
             </trans-unit>
             <trans-unit id="label_comment_valid">
                 <source>label_comment_valid</source>
-                <target>label_comment_valid</target>
+                <target>Válido</target>
             </trans-unit>
             <trans-unit id="label_comment_invalid">
                 <source>label_comment_invalid</source>
-                <target>label_comment_invalid</target>
+                <target>Inválido</target>
             </trans-unit>
             <trans-unit id="label_unknown_status">
                 <source>label_unknown_status</source>
-                <target>label_unknown_status</target>
+                <target>Desconocido</target>
             </trans-unit>
             <trans-unit id="label_unknown_moderate">
                 <source>label_unknown_moderate</source>
@@ -369,7 +369,7 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="view_all_comments">
                 <source>view_all_comments</source>
-                <target>view_all_comments</target>
+                <target>Ver todos los comentarios</target>
             </trans-unit>
             <trans-unit id="sonata_news_archive_breadcrumb">
                 <source>sonata_news_archive_breadcrumb</source>
@@ -377,19 +377,19 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="group_general">
                 <source>group_general</source>
-                <target>group_general</target>
+                <target>General</target>
             </trans-unit>
             <trans-unit id="group_comment">
                 <source>group_comment</source>
-                <target>group_comment</target>
+                <target>Comentario</target>
             </trans-unit>
             <trans-unit id="form.label_image">
                 <source>form.label_image</source>
-                <target>form.label_image</target>
+                <target>Imagen</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_edit_post">
                 <source>sidemenu.link_edit_post</source>
-                <target>sidemenu.link_edit_post</target>
+                <target>Editar</target>
             </trans-unit>
         </body>
     </file>
