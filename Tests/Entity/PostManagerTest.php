@@ -196,4 +196,15 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
                 'enabled' => 0,
             ), 1);
     }
+
+    public function testGetPublicationDateQueryParts()
+    {
+        $result = $this
+            ->getPostManager(function () {})
+            ->getPublicationDateQueryParts('2010-02-10', 'month', 'n');
+
+        $this->assertNotNull($result);
+        $this->assertEquals(new \DateTime('2010-02-10'), $result['params']['startDate']);
+        $this->assertEquals(new \DateTime('2010-03-10'), $result['params']['endDate']);
+    }
 }
