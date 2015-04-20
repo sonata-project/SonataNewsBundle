@@ -88,19 +88,19 @@
             </trans-unit>
             <trans-unit id="published_under">
                 <source>published_under</source>
-                <target>{0}Kein Tag ausgewählt|[1,Inf] Veröffentlicht unter :</target>
+                <target>{0}Kein Tag ausgewählt||{1}Tag: |[1,Inf] Veröffentlicht unter :</target>
             </trans-unit>
             <trans-unit id="archive_author">
                 <source>archive_author</source>
-                <target>archive_author</target>
+                <target>von %author%</target>
             </trans-unit>
             <trans-unit id="comments_count">
                 <source>comments_count</source>
-                <target>comments_count</target>
+                <target>%comments_count% Kommentare</target>
             </trans-unit>
             <trans-unit id="title_leave_comment">
                 <source>title_leave_comment</source>
-                <target>title_leave_comment</target>
+                <target>Kommentar hinzufügen</target>
             </trans-unit>
             <trans-unit id="mail_title_comment_notification">
                 <source>mail_title_comment_notification</source>
@@ -121,7 +121,7 @@
             </trans-unit>
             <trans-unit id="no_comments_available">
                 <source>no_comments_available</source>
-                <target>no_comments_available</target>
+                <target>Keine Kommentare verfügbar</target>
             </trans-unit>
             <trans-unit id="sonata_blog">
                 <source>sonata_blog</source>
@@ -133,7 +133,7 @@
             </trans-unit>
             <trans-unit id="list_label_author">
                 <source>list.label_author</source>
-                <target>Author</target>
+                <target>Autor</target>
             </trans-unit>
             <trans-unit id="list_label_collection">
                 <source>list.label_collection</source>
@@ -157,7 +157,7 @@
             </trans-unit>
             <trans-unit id="list.label_publication_date_start">
                 <source>list.label_publication_date_start</source>
-                <target>list.label_publication_date_start</target>
+                <target>Publikationsdatum</target>
             </trans-unit>
             <trans-unit id="form_label_enabled">
                 <source>form.label_enabled</source>
@@ -165,7 +165,7 @@
             </trans-unit>
             <trans-unit id="form_label_author">
                 <source>form.label_author</source>
-                <target>Author</target>
+                <target>Autor</target>
             </trans-unit>
             <trans-unit id="form_label_collection">
                 <source>form.label_collection</source>
@@ -217,7 +217,7 @@
             </trans-unit>
             <trans-unit id="filter_label_author">
                 <source>filter.label_author</source>
-                <target>Author</target>
+                <target>Autor</target>
             </trans-unit>
             <trans-unit id="filter_label_with_open_comments">
                 <source>filter.label_with_open_comments</source>
@@ -225,7 +225,7 @@
             </trans-unit>
             <trans-unit id="filter.label_post">
                 <source>filter.label_post</source>
-                <target>filter.label_post</target>
+                <target>Artikel ID</target>
             </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>
@@ -341,23 +341,23 @@
             </trans-unit>
             <trans-unit id="view_all_posts">
                 <source>view_all_posts</source>
-                <target>view_all_posts</target>
+                <target>Alle Artikel anzeigen</target>
             </trans-unit>
             <trans-unit id="post_is_public">
                 <source>post_is_public</source>
-                <target>post_is_public</target>
+                <target>Öffentlich</target>
             </trans-unit>
             <trans-unit id="post_is_not_public">
                 <source>post_is_not_public</source>
-                <target>post_is_not_public</target>
+                <target>Privat</target>
             </trans-unit>
             <trans-unit id="label_comment_valid">
                 <source>label_comment_valid</source>
-                <target>label_comment_valid</target>
+                <target>Gültig</target>
             </trans-unit>
             <trans-unit id="label_comment_invalid">
                 <source>label_comment_invalid</source>
-                <target>label_comment_invalid</target>
+                <target>Ungültig</target>
             </trans-unit>
             <trans-unit id="label_unknown_status">
                 <source>label_unknown_status</source>
@@ -365,31 +365,31 @@
             </trans-unit>
             <trans-unit id="label_unknown_moderate">
                 <source>label_unknown_moderate</source>
-                <target>label_unknown_moderate</target>
+                <target>Unbekannt</target>
             </trans-unit>
             <trans-unit id="view_all_comments">
                 <source>view_all_comments</source>
-                <target>view_all_comments</target>
+                <target>Alle Kommentare anzeigen</target>
             </trans-unit>
             <trans-unit id="sonata_news_archive_breadcrumb">
                 <source>sonata_news_archive_breadcrumb</source>
-                <target>sonata_news_archive_breadcrumb</target>
+                <target>News</target>
             </trans-unit>
             <trans-unit id="group_general">
                 <source>group_general</source>
-                <target>group_general</target>
+                <target>Allgemein</target>
             </trans-unit>
             <trans-unit id="group_comment">
                 <source>group_comment</source>
-                <target>group_comment</target>
+                <target>Kommentar</target>
             </trans-unit>
             <trans-unit id="form.label_image">
                 <source>form.label_image</source>
-                <target>form.label_image</target>
+                <target>Bild</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_edit_post">
                 <source>sidemenu.link_edit_post</source>
-                <target>sidemenu.link_edit_post</target>
+                <target>Bearbeiten</target>
             </trans-unit>
         </body>
     </file>
