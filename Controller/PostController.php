@@ -83,11 +83,7 @@ class PostController extends Controller
             'enabled' => true
         ));
 
-        if (!$tag) {
-            throw new NotFoundHttpException('Unable to find the tag');
-        }
-
-        if (!$tag->getEnabled()) {
+        if (!$tag || !$tag->getEnabled()) {
             throw new NotFoundHttpException('Unable to find the tag');
         }
 
@@ -108,11 +104,7 @@ class PostController extends Controller
             'enabled' => true
         ));
 
-        if (!$collection) {
-            throw new NotFoundHttpException('Unable to find the collection');
-        }
-
-        if (!$collection->getEnabled()) {
+        if (!$collection || !$collection->getEnabled()) {
             throw new NotFoundHttpException('Unable to find the collection');
         }
 
