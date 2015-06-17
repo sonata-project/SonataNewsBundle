@@ -11,18 +11,17 @@
 
 namespace Sonata\NewsBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Config\Definition\Processor;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Reference;
-
 use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * SonataNewsBundleExtension
+ * SonataNewsBundleExtension.
  *
  * @author      Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
@@ -33,8 +32,6 @@ class SonataNewsExtension extends Extension
      *
      * @param array                                                   $configs
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     *
-     * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -80,7 +77,7 @@ class SonataNewsExtension extends Extension
             $config['title'],
             $config['link'],
             $config['description'],
-            new Reference('sonata.news.permalink.generator')
+            new Reference('sonata.news.permalink.generator'),
         )));
 
         $container->getDefinition('sonata.news.hash.generator')
@@ -88,7 +85,7 @@ class SonataNewsExtension extends Extension
 
         $container->getDefinition('sonata.news.mailer')
             ->replaceArgument(5, array(
-                'notification' => $config['comment']['notification']
+                'notification' => $config['comment']['notification'],
             ));
 
         $this->registerDoctrineMapping($config, $container);
@@ -140,38 +137,34 @@ class SonataNewsExtension extends Extension
         }
 
         $collector->addAssociation($config['class']['post'], 'mapOneToMany', array(
-            'fieldName' => 'comments',
+            'fieldName'    => 'comments',
             'targetEntity' => $config['class']['comment'],
-            'cascade' =>
-                array(
+            'cascade'      => array(
                     0 => 'remove',
                     1 => 'persist',
                 ),
-            'mappedBy' => 'post',
+            'mappedBy'      => 'post',
             'orphanRemoval' => true,
-            'orderBy' =>
-                array(
+            'orderBy'       => array(
                     'createdAt' => 'DESC',
                 ),
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
-            'fieldName' => 'image',
+            'fieldName'    => 'image',
             'targetEntity' => $config['class']['media'],
-            'cascade' =>
-                array(
+            'cascade'      => array(
                     0 => 'remove',
                     1 => 'persist',
                     2 => 'refresh',
                     3 => 'merge',
                     4 => 'detach',
                 ),
-            'mappedBy' => NULL,
-            'inversedBy' => NULL,
-            'joinColumns' =>
-                array(
+            'mappedBy'    => null,
+            'inversedBy'  => null,
+            'joinColumns' => array(
                     array(
-                        'name' => 'image_id',
+                        'name'                 => 'image_id',
                         'referencedColumnName' => 'id',
                     ),
                 ),
@@ -179,18 +172,16 @@ class SonataNewsExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
-            'fieldName' => 'author',
+            'fieldName'    => 'author',
             'targetEntity' => $config['class']['user'],
-            'cascade' =>
-                array(
+            'cascade'      => array(
                     1 => 'persist',
                 ),
-            'mappedBy' => NULL,
-            'inversedBy' => NULL,
-            'joinColumns' =>
-                array(
+            'mappedBy'    => null,
+            'inversedBy'  => null,
+            'joinColumns' => array(
                     array(
-                        'name' => 'author_id',
+                        'name'                 => 'author_id',
                         'referencedColumnName' => 'id',
                     ),
                 ),
@@ -198,18 +189,16 @@ class SonataNewsExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
-            'fieldName' => 'collection',
+            'fieldName'    => 'collection',
             'targetEntity' => $config['class']['collection'],
-            'cascade' =>
-                array(
+            'cascade'      => array(
                     1 => 'persist',
                 ),
-            'mappedBy' => NULL,
-            'inversedBy' => NULL,
-            'joinColumns' =>
-                array(
+            'mappedBy'    => null,
+            'inversedBy'  => null,
+            'joinColumns' => array(
                     array(
-                        'name' => 'collection_id',
+                        'name'                 => 'collection_id',
                         'referencedColumnName' => 'id',
                     ),
                 ),
@@ -217,26 +206,22 @@ class SonataNewsExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToMany', array(
-            'fieldName' => 'tags',
+            'fieldName'    => 'tags',
             'targetEntity' => $config['class']['tag'],
-            'cascade' =>
-                array(
+            'cascade'      => array(
                     1 => 'persist',
                 ),
-            'joinTable' =>
-                array(
-                    'name' => 'news__post_tag',
-                    'joinColumns' =>
-                        array(
+            'joinTable' => array(
+                    'name'        => 'news__post_tag',
+                    'joinColumns' => array(
                             array(
-                                'name' => 'post_id',
+                                'name'                 => 'post_id',
                                 'referencedColumnName' => 'id',
                             ),
                         ),
-                    'inverseJoinColumns' =>
-                        array(
+                    'inverseJoinColumns' => array(
                             array(
-                                'name' => 'tag_id',
+                                'name'                 => 'tag_id',
                                 'referencedColumnName' => 'id',
                             ),
                         ),
@@ -244,18 +229,17 @@ class SonataNewsExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['comment'], 'mapManyToOne', array(
-            'fieldName' => 'post',
+            'fieldName'    => 'post',
             'targetEntity' => $config['class']['post'],
-            'cascade' => array(
+            'cascade'      => array(
             ),
-            'mappedBy' => NULL,
-            'inversedBy' => 'comments',
-            'joinColumns' =>
-                array(
+            'mappedBy'    => null,
+            'inversedBy'  => 'comments',
+            'joinColumns' => array(
                     array(
-                        'name' => 'post_id',
+                        'name'                 => 'post_id',
                         'referencedColumnName' => 'id',
-                        'nullable' => false
+                        'nullable'             => false,
                     ),
                 ),
             'orphanRemoval' => false,

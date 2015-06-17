@@ -8,13 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Tests\Entity;
 
 use Sonata\CoreBundle\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\PostManager;
 
 /**
- * Class PostManagerTest
+ * Class PostManagerTest.
  *
  * Tests the post manager entity.
  */
@@ -75,7 +76,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
     public function assertPostEnabled($qb, $flag)
     {
         $qb->expects($this->once())->method('andWhere')->with($this->equalTo('p.enabled = :enabled'));
-        $qb->expects($this->once())->method('setParameters')->with($this->equalTo(array( 'enabled' => $flag )));
+        $qb->expects($this->once())->method('setParameters')->with($this->equalTo(array('enabled' => $flag)));
     }
 
     public function testGetPagerWithoutMode()

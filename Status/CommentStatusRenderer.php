@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -8,17 +9,14 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\NewsBundle\Status;
 
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 
-
 /**
- * Class CommentStatusRenderer
+ * Class CommentStatusRenderer.
  *
- * @package Sonata\NewsBundle\Status
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -35,17 +33,17 @@ class CommentStatusRenderer implements StatusClassRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function getStatusClass($object, $statusName = null, $default = "")
+    public function getStatusClass($object, $statusName = null, $default = '')
     {
         switch ($object->getStatus()) {
             case CommentInterface::STATUS_INVALID:
-                return "danger";
+                return 'danger';
                 break;
             case CommentInterface::STATUS_MODERATE:
-                return "warning";
+                return 'warning';
                 break;
             case CommentInterface::STATUS_VALID:
-                return "success";
+                return 'success';
                 break;
             default:
                 break;

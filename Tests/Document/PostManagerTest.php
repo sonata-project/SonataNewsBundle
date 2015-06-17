@@ -8,12 +8,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Tests\Document;
 
 use Sonata\NewsBundle\Document\PostManager;
 
 /**
- * Class PostManagerTest
+ * Class PostManagerTest.
  *
  * Tests the post manager document.
  */

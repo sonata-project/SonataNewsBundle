@@ -8,18 +8,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Entity;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Sonata\CoreBundle\Model\BaseEntityManager;
 use Sonata\CoreBundle\Model\ManagerInterface;
-use Sonata\NewsBundle\Model\CommentInterface;
-use Doctrine\Common\Persistence\ManagerRegistry;
-
-use Sonata\NewsBundle\Model\CommentManagerInterface;
-use Sonata\NewsBundle\Model\PostInterface;
-
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
+use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 
 class CommentManager extends BaseEntityManager implements CommentManagerInterface
 {
@@ -31,9 +30,9 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     /**
      * Constructor.
      *
-     * @param string                  $class
-     * @param ManagerRegistry         $registry
-     * @param ManagerInterface        $postManager
+     * @param string           $class
+     * @param ManagerRegistry  $registry
+     * @param ManagerInterface $postManager
      */
     public function __construct($class, ManagerRegistry $registry, ManagerInterface $postManager)
     {
@@ -53,60 +52,54 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     }
 
     /**
-     * 
      * @param string $postTableName
+     *
      * @return string
      */
     private function getCommentsCountResetQuery($postTableName)
     {
-        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName())
-        {
+        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
             case 'postgresql':
-                return sprintf('UPDATE %s SET comments_count = 0' , $postTableName);
-                
+                return sprintf('UPDATE %s SET comments_count = 0', $postTableName);
+
             default :
-                return sprintf('UPDATE %s p SET p.comments_count = 0' , $postTableName);
+                return sprintf('UPDATE %s p SET p.comments_count = 0', $postTableName);
         }
     }
 
     /**
-     * 
      * @param string $postTableName
      * @param string $commentTableName
+     *
      * @return string
      */
     private function getCommentsCountQuery($postTableName, $commentTableName)
     {
-        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName())
-        {
+        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
             case 'postgresql':
                 return sprintf(
             'UPDATE %s SET comments_count = count_comment.total
             FROM (SELECT c.post_id, count(*) AS total FROM %s AS c WHERE c.status = 1 GROUP BY c.post_id) count_comment
-            WHERE %s.id = count_comment.post_id'
-        , $postTableName, $commentTableName, $postTableName);
-                
+            WHERE %s.id = count_comment.post_id', $postTableName, $commentTableName, $postTableName);
+
             default :
                 return sprintf(
             'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
             SET p.comments_count = count_comment.total
-            WHERE p.id = count_comment.post_id'
-        , $postTableName, $commentTableName);
+            WHERE p.id = count_comment.post_id', $postTableName, $commentTableName);
         }
     }
 
     /**
-     * Update the number of comment for a comment
+     * Update the number of comment for a comment.
      *
      * @param null|\Sonata\NewsBundle\Model\PostInterface $post
-     *
-     * @return void
      */
     public function updateCommentsCount(PostInterface $post = null)
     {
         $commentTableName = $this->getObjectManager()->getClassMetadata($this->getClass())->table['name'];
         $postTableName    = $this->getObjectManager()->getClassMetadata($this->postManager->getClass())->table['name'];
-        
+
         $this->getConnection()->beginTransaction();
         $this->getConnection()->query($this->getCommentsCountResetQuery($postTableName));
 

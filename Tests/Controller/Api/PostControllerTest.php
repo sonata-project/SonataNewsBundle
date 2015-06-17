@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -8,18 +9,14 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\NewsBundle\Tests\Controller\Api;
 
 use Sonata\NewsBundle\Controller\Api\PostController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\ConstraintViolationList;
-
 
 /**
- * Class PostControllerTest
+ * Class PostControllerTest.
  *
- * @package Sonata\NewsBundle\Tests\Controller\Api
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -68,7 +65,7 @@ class PostControllerTest extends \PHPUnit_Framework_TestCase
         $paramFetcher->expects($this->once())->method('all')->will($this->returnValue(array()));
         $paramFetcher->expects($this->exactly(2))->method('get')
             ->with($this->logicalOr($this->equalTo('page'), $this->equalTo('count')))
-            ->will($this->returnCallback(function($parameter) use ($parameters) {
+            ->will($this->returnCallback(function ($parameter) use ($parameters) {
                 return $parameters[$parameter];
             }));
 
@@ -335,8 +332,6 @@ class PostControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $view);
     }
-
-
 
     /**
      * @param null $postManager

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -8,27 +9,18 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\NewsBundle\Controller\Api;
 
-use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Route;
-
-use JMS\Serializer\SerializationContext;
-
+use FOS\RestBundle\Controller\Annotations\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-
 use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
-
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class CommentController
+ * Class CommentController.
  *
- * @package Sonata\NewsBundle\Controller\Api
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -40,7 +32,7 @@ class CommentController
     protected $commentManager;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param CommentManagerInterface $commentManager A comment manager
      */
@@ -50,7 +42,7 @@ class CommentController
     }
 
     /**
-     * Retrieves a specific comment
+     * Retrieves a specific comment.
      *
      * @ApiDoc(
      *  resource=true,
@@ -68,9 +60,10 @@ class CommentController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param integer $id A comment identifier
+     * @param int $id A comment identifier
      *
      * @return Comment
+     *
      * @throws NotFoundHttpException
      */
     public function getCommentAction($id)
@@ -79,7 +72,7 @@ class CommentController
     }
 
     /**
-     * Deletes a comment
+     * Deletes a comment.
      *
      * @ApiDoc(
      *  requirements={
@@ -94,7 +87,7 @@ class CommentController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param integer $id A comment identifier
+     * @param int $id A comment identifier
      *
      * @return \FOS\RestBundle\View\View
      *
@@ -114,9 +107,9 @@ class CommentController
     }
 
     /**
-     * Returns a comment entity instance
+     * Returns a comment entity instance.
      *
-     * @param integer $id A comment identifier
+     * @param int $id A comment identifier
      *
      * @return Comment
      *
@@ -127,7 +120,7 @@ class CommentController
         $comment = $this->commentManager->find($id);
 
         if (null === $comment) {
-            throw new NotFoundHttpException(sprintf("Comment (%d) not found", $id));
+            throw new NotFoundHttpException(sprintf('Comment (%d) not found', $id));
         }
 
         return $comment;

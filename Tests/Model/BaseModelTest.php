@@ -23,7 +23,7 @@ class BasePostTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsCommentable()
     {
-        $post = new BasePostTest_Post;
+        $post = new BasePostTest_Post();
 
         $post->setEnabled(true);
         $post->setCommentsEnabled(false);
@@ -42,7 +42,7 @@ class BasePostTest extends \PHPUnit_Framework_TestCase
 
     public function testIsPublic()
     {
-        $post = new BasePostTest_Post;
+        $post = new BasePostTest_Post();
 
         $post->setEnabled(true);
         $this->assertTrue($post->isPublic());
@@ -58,7 +58,7 @@ class BasePostTest extends \PHPUnit_Framework_TestCase
 
     public function testSlug()
     {
-        $post = new BasePostTest_Post;
+        $post = new BasePostTest_Post();
 
         $post->setTitle('Salut Symfony2');
 

@@ -15,12 +15,11 @@ class ModelTest_Comment extends \Sonata\NewsBundle\Model\Comment
 {
     public function getId()
     {
-
     }
 }
 
 /**
- * Class CommentTest
+ * Class CommentTest.
  *
  * Tests the comment model
  */

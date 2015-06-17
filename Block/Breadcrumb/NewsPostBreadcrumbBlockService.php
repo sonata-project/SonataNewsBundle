@@ -14,11 +14,11 @@ namespace Sonata\NewsBundle\Block\Breadcrumb;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\Provider\MenuProviderInterface;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 /**
- * BlockService for post breadcrumb
+ * BlockService for post breadcrumb.
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */

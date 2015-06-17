@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -10,15 +11,13 @@
 
 namespace Sonata\NewsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
-use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\PostInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PostController extends Controller
 {
@@ -49,7 +48,7 @@ class PostController extends Controller
             'tag'              => false,
             'collection'       => false,
             'route'            => $this->getRequest()->get('_route'),
-            'route_parameters' => $this->getRequest()->get('_route_params')
+            'route_parameters' => $this->getRequest()->get('_route_params'),
         ), $parameters);
 
         $response = $this->render(sprintf('SonataNewsBundle:Post:archive.%s.twig', $this->getRequest()->getRequestFormat()), $parameters);
@@ -79,8 +78,8 @@ class PostController extends Controller
     public function tagAction($tag)
     {
         $tag = $this->get('sonata.classification.manager.tag')->findOneBy(array(
-            'slug' => $tag,
-            'enabled' => true
+            'slug'    => $tag,
+            'enabled' => true,
         ));
 
         if (!$tag || !$tag->getEnabled()) {
@@ -100,8 +99,8 @@ class PostController extends Controller
     public function collectionAction($collection)
     {
         $collection = $this->get('sonata.classification.manager.collection')->findOneBy(array(
-            'slug' => $collection,
-            'enabled' => true
+            'slug'    => $collection,
+            'enabled' => true,
         ));
 
         if (!$collection || !$collection->getEnabled()) {
@@ -120,7 +119,7 @@ class PostController extends Controller
     public function archiveMonthlyAction($year, $month)
     {
         return $this->renderArchive(array(
-            'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, $month, 1), 'month')
+            'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, $month, 1), 'month'),
         ));
     }
 
@@ -132,7 +131,7 @@ class PostController extends Controller
     public function archiveYearlyAction($year)
     {
         return $this->renderArchive(array(
-            'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, 1, 1), 'year')
+            'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, 1, 1), 'year'),
         ));
     }
 
@@ -158,7 +157,7 @@ class PostController extends Controller
                 ->addMeta('property', 'og:title', $post->getTitle())
                 ->addMeta('property', 'og:type', 'blog')
                 ->addMeta('property', 'og:url', $this->generateUrl('sonata_news_view', array(
-                    'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post, true)
+                    'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post, true),
                 ), true))
                 ->addMeta('property', 'og:description', $post->getAbstract())
             ;
@@ -167,7 +166,7 @@ class PostController extends Controller
         return $this->render('SonataNewsBundle:Post:view.html.twig', array(
             'post' => $post,
             'form' => false,
-            'blog' => $this->get('sonata.news.blog')
+            'blog' => $this->get('sonata.news.blog'),
         ));
     }
 
@@ -180,11 +179,11 @@ class PostController extends Controller
             return $this->get('sonata.seo.page');
         }
 
-        return null;
+        return;
     }
 
     /**
-     * @param integer $postId
+     * @param int $postId
      *
      * @return Response
      */
@@ -192,8 +191,8 @@ class PostController extends Controller
     {
         $pager = $this->getCommentManager()
             ->getPager(array(
-                'postId' => $postId,
-                'status'  => CommentInterface::STATUS_VALID
+                'postId'  => $postId,
+                'status'  => CommentInterface::STATUS_VALID,
             ), 1, 500); //no limit
 
         return $this->render('SonataNewsBundle:Post:comments.html.twig', array(
@@ -211,7 +210,7 @@ class PostController extends Controller
     {
         if (!$form) {
             $post = $this->getPostManager()->findOneBy(array(
-                'id' => $postId
+                'id' => $postId,
             ));
 
             $form = $this->getCommentForm($post);
@@ -219,7 +218,7 @@ class PostController extends Controller
 
         return $this->render('SonataNewsBundle:Post:comment_form.html.twig', array(
             'form'      => $form->createView(),
-            'post_id'   => $postId
+            'post_id'   => $postId,
         ));
     }
 
@@ -247,7 +246,7 @@ class PostController extends Controller
     public function addCommentAction($id)
     {
         $post = $this->getPostManager()->findOneBy(array(
-            'id' => $id
+            'id' => $id,
         ));
 
         if (!$post) {
@@ -257,7 +256,7 @@ class PostController extends Controller
         if (!$post->isCommentable()) {
             // todo add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-                'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post)
+                'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post),
             )));
         }
 
@@ -272,13 +271,13 @@ class PostController extends Controller
 
             // todo : add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-                'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post)
+                'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post),
             )));
         }
 
         return $this->render('SonataNewsBundle:Post:view.html.twig', array(
             'post' => $post,
-            'form' => $form
+            'form' => $form,
         ));
     }
 
@@ -334,7 +333,7 @@ class PostController extends Controller
         $this->getCommentManager()->save($comment);
 
         return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-            'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($comment->getPost())
+            'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($comment->getPost()),
         )));
     }
 }

@@ -11,21 +11,18 @@
 
 namespace Sonata\NewsBundle\Admin;
 
+use Knp\Menu\ItemInterface as MenuItemInterface;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Admin\AdminInterface;
-use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
-use Sonata\CoreBundle\Model\ManagerInterface;
-
-use Knp\Menu\ItemInterface as MenuItemInterface;
 use Sonata\FormatterBundle\Formatter\Pool;
+use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
 use Sonata\UserBundle\Model\UserManagerInterface;
-use Symfony\Component\Routing\RouterInterface;
 
 class PostAdmin extends Admin
 {
@@ -66,33 +63,33 @@ class PostAdmin extends Admin
     {
         $formMapper
             ->with('Post', array(
-                    'class' => 'col-md-8'
+                    'class' => 'col-md-8',
                 ))
                 ->add('author', 'sonata_type_model_list')
                 ->add('title')
                 ->add('abstract', null, array('attr' => array('rows' => 5)))
                 ->add('content', 'sonata_formatter_type', array(
-                    'event_dispatcher' => $formMapper->getFormBuilder()->getEventDispatcher(),
-                    'format_field'   => 'contentFormatter',
-                    'source_field'   => 'rawContent',
+                    'event_dispatcher'          => $formMapper->getFormBuilder()->getEventDispatcher(),
+                    'format_field'              => 'contentFormatter',
+                    'source_field'              => 'rawContent',
                     'source_field_options'      => array(
-                        'horizontal_input_wrapper_class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'col-lg-12': '',
-                        'attr' => array('class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'span10 col-sm-10 col-md-10': '', 'rows' => 20)
+                        'horizontal_input_wrapper_class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'col-lg-12' : '',
+                        'attr'                           => array('class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'span10 col-sm-10 col-md-10' : '', 'rows' => 20),
                     ),
                     'ckeditor_context'     => 'news',
-                    'target_field'   => 'content',
-                    'listener'       => true,
+                    'target_field'         => 'content',
+                    'listener'             => true,
                 ))
             ->end()
             ->with('Status', array(
-                    'class' => 'col-md-4'
+                    'class' => 'col-md-4',
                 ))
                 ->add('enabled', null, array('required' => false))
                 ->add('image', 'sonata_type_model_list', array('required' => false), array(
                     'link_parameters' => array(
-                        'context' => 'news',
-                        'hide_context' => true
-                    )
+                        'context'      => 'news',
+                        'hide_context' => true,
+                    ),
                 ))
 
                 ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
@@ -102,11 +99,11 @@ class PostAdmin extends Admin
             ->end()
 
             ->with('Classification', array(
-                'class' => 'col-md-4'
+                'class' => 'col-md-4',
                 ))
                 ->add('tags', 'sonata_type_model_autocomplete', array(
                     'property' => 'name',
-                    'multiple' => 'true'
+                    'multiple' => 'true',
                 ))
                 ->add('collection', 'sonata_type_model_list', array('required' => false))
             ->end()
@@ -148,24 +145,14 @@ class PostAdmin extends Admin
                     $queryBuilder->andWhere('c.status = :status');
                     $queryBuilder->setParameter('status', CommentInterface::STATUS_MODERATE);
                 },
-                'field_type' => 'checkbox'
+                'field_type' => 'checkbox',
             ))
         ;
     }
 
     /**
      * {@inheritdoc}
-     *
-    public function getWithOpenCommentFilter($queryBuilder, $alias, $field, $value)
-    {
-        if (!is_array($data) || !$data['value']) {
-            return;
-        }
-
-        $queryBuilder->leftJoin(sprintf('%s.comments', $alias), 'c');
-        $queryBuilder->andWhere('c.status = :status');
-        $queryBuilder->setParameter('status', CommentInterface::STATUS_MODERATE);
-    }*/
+     }*/
 
     /**
      * {@inheritdoc}
@@ -208,8 +195,6 @@ class PostAdmin extends Admin
 
     /**
      * @param \Sonata\FormatterBundle\Formatter\Pool $formatterPool
-     *
-     * @return void
      */
     public function setPoolFormatter(FormatterPool $formatterPool)
     {

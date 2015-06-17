@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -8,23 +9,18 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\NewsBundle\Tests\Controller\Api;
 
 use Sonata\NewsBundle\Controller\Api\CommentController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\ConstraintViolationList;
 
 /**
- * Class CommentControllerTest
+ * Class CommentControllerTest.
  *
- * @package Sonata\NewsBundle\Tests\Controller\Api
  *
  * @author Hugo Briand <briand@ekino.com>
  */
 class CommentControllerTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testGetCommentAction()
     {
         $comment = $this->getMock('Sonata\NewsBundle\Model\CommentInterface');

@@ -15,7 +15,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
 
 /**
- * Abstract class for news breadcrumbs
+ * Abstract class for news breadcrumbs.
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
@@ -30,7 +30,7 @@ abstract class BaseNewsBreadcrumbBlockService extends BaseBreadcrumbMenuBlockSer
 
         $menu->addChild('sonata_news_archive_breadcrumb', array(
             'route'  => 'sonata_news_home',
-            'extras' => array('translation_domain' => 'SonataNewsBundle')
+            'extras' => array('translation_domain' => 'SonataNewsBundle'),
         ));
 
         return $menu;

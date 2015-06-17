@@ -12,9 +12,9 @@
 namespace Sonata\NewsBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Model\ManagerInterface;
 
 class CommentAdmin extends Admin
@@ -36,7 +36,6 @@ class CommentAdmin extends Admin
             ->with($this->trans('group_comment'), array('class' => 'col-md-6'))->end()
             ->with($this->trans('group_general'), array('class' => 'col-md-6'))->end()
         ;
-
 
         if (!$this->isChild()) {
             $formMapper
@@ -107,15 +106,15 @@ class CommentAdmin extends Admin
         );
 
         $actions['disabled'] = array(
-            'label'            =>  $this->trans($this->getLabelTranslatorStrategy()->getLabel('disable', 'batch', 'comment')),
-            'ask_confirmation' => false
+            'label'            => $this->trans($this->getLabelTranslatorStrategy()->getLabel('disable', 'batch', 'comment')),
+            'ask_confirmation' => false,
         );
 
         return $actions;
     }
 
     /**
-     * Update the count comment
+     * Update the count comment.
      */
     private function updateCountsComment()
     {
@@ -148,8 +147,6 @@ class CommentAdmin extends Admin
 
     /**
      * @param ManagerInterface $commentManager
-     *
-     * @return void
      */
     public function setCommentManager(ManagerInterface $commentManager)
     {

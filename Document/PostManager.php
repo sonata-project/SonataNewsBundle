@@ -8,14 +8,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Document;
 
-use Doctrine\DBAL\Connection;
 use Sonata\CoreBundle\Model\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
-
-use Doctrine\ODM\MongoDB\DocumentManager;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 class PostManager extends BaseDocumentManager implements PostManagerInterface
@@ -39,7 +37,6 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
             ->getQuery()
             ->getSingleResult();
     }
-
 
     /**
      * {@inheritdoc}
@@ -88,8 +85,8 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
             'query'  => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
             'params' => array(
                 'startDate' => new \DateTime($date),
-                'endDate'   => new \DateTime($date . '+1 ' . $step)
-            )
+                'endDate'   => new \DateTime($date.'+1 '.$step),
+            ),
         );
     }
 }

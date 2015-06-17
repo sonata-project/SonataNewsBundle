@@ -17,9 +17,7 @@ use Sonata\CoreBundle\Model\PageableManagerInterface;
 interface CommentManagerInterface extends ManagerInterface, PageableManagerInterface
 {
     /**
-     * Update the number of comment for a comment
-     *
-     * @return void
+     * Update the number of comment for a comment.
      */
     public function updateCommentsCount(PostInterface $post = null);
 }

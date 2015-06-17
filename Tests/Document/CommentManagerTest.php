@@ -8,12 +8,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Tests\Document;
 
 use Sonata\NewsBundle\Document\CommentManager;
 
 /**
- * Class CommentManagerTest
+ * Class CommentManagerTest.
  *
  * Tests the comment manager document.
  */
@@ -25,7 +26,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
         $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
 
         $commentManager = new CommentManager('Sonata\NewsBundle\Document\BaseComment', $registry, $postManager);
-        
+
         $this->assertInstanceOf('Sonata\CoreBundle\Model\PageableManagerInterface', $commentManager);
     }
 }

@@ -11,11 +11,11 @@
 
 namespace Sonata\NewsBundle\Mailer;
 
+use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Util\HashGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
-use Sonata\NewsBundle\Util\HashGeneratorInterface;
-use Sonata\NewsBundle\Model\BlogInterface;
 
 class Mailer implements MailerInterface
 {

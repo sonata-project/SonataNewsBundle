@@ -11,11 +11,9 @@
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\NewsBundle\Model\PostInterface;
-use Sonata\NewsBundle\Model\CommentInterface;
-use Sonata\ClassificationBundle\Model\TagInterface;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\ClassificationBundle\Model\Tag;
+use Sonata\ClassificationBundle\Model\TagInterface;
 
 abstract class Post implements PostInterface
 {
@@ -62,7 +60,7 @@ abstract class Post implements PostInterface
      */
     public function __construct()
     {
-        $this->setPublicationDateStart(new \DateTime);
+        $this->setPublicationDateStart(new \DateTime());
     }
 
     /**
@@ -209,7 +207,7 @@ abstract class Post implements PostInterface
      */
     public function setComments($comments)
     {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection;
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
 
         foreach ($this->comments as $comment) {
             $this->addComments($comment);
@@ -251,20 +249,20 @@ abstract class Post implements PostInterface
     public function prePersist()
     {
         if (!$this->getPublicationDateStart()) {
-            $this->setPublicationDateStart(new \DateTime);
+            $this->setPublicationDateStart(new \DateTime());
         }
 
-        $this->setCreatedAt(new \DateTime);
-        $this->setUpdatedAt(new \DateTime);
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
     }
 
     public function preUpdate()
     {
         if (!$this->getPublicationDateStart()) {
-            $this->setPublicationDateStart(new \DateTime);
+            $this->setPublicationDateStart(new \DateTime());
         }
 
-        $this->setUpdatedAt(new \DateTime);
+        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
@@ -373,7 +371,7 @@ abstract class Post implements PostInterface
         }
 
         if ($this->getCommentsCloseAt() instanceof \DateTime) {
-            return $this->getCommentsCloseAt()->diff(new \DateTime)->invert == 1 ? true : false;
+            return $this->getCommentsCloseAt()->diff(new \DateTime())->invert == 1 ? true : false;
         }
 
         return true;
@@ -388,7 +386,7 @@ abstract class Post implements PostInterface
             return false;
         }
 
-        return $this->getPublicationDateStart()->diff(new \DateTime)->invert == 0 ? true : false;
+        return $this->getPublicationDateStart()->diff(new \DateTime())->invert == 0 ? true : false;
     }
 
     /**

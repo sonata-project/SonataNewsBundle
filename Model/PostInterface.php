@@ -22,146 +22,145 @@ interface PostInterface
     public function getId();
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      */
     public function setTitle($title);
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string $title
      */
     public function getTitle();
 
     /**
-     * Set abstract
+     * Set abstract.
      *
      * @param string $abstract
      */
     public function setAbstract($abstract);
 
     /**
-     * Get abstract
+     * Get abstract.
      *
      * @return string $abstract
      */
     public function getAbstract();
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
      */
     public function setContent($content);
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string $content
      */
     public function getContent();
 
     /**
-     * Set enabled
+     * Set enabled.
      *
-     * @param boolean $enabled
+     * @param bool $enabled
      */
     public function setEnabled($enabled);
 
     /**
-     * Get enabled
+     * Get enabled.
      *
-     * @return boolean $enabled
+     * @return bool $enabled
      */
     public function getEnabled();
 
     /**
-     * Set slug
+     * Set slug.
      *
-     * @param integer $slug
+     * @param int $slug
      */
     public function setSlug($slug);
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return integer $slug
+     * @return int $slug
      */
     public function getSlug();
 
     /**
-     * Set publication_date_start
+     * Set publication_date_start.
      *
      * @param \DateTime $publicationDateStart
      */
     public function setPublicationDateStart(\DateTime $publicationDateStart = null);
 
     /**
-     * Get publication_date_start
+     * Get publication_date_start.
      *
      * @return \DateTime $publicationDateStart
      */
     public function getPublicationDateStart();
 
     /**
-     * Set created_at
+     * Set created_at.
      *
      * @param \DateTime $createdAt
      */
     public function setCreatedAt(\DateTime $createdAt = null);
 
     /**
-     * Get created_at
+     * Get created_at.
      *
      * @return \DateTime $createdAt
      */
     public function getCreatedAt();
 
     /**
-     * Set updated_at
+     * Set updated_at.
      *
      * @param \DateTime $updatedAt
      */
     public function setUpdatedAt(\DateTime $updatedAt = null);
 
     /**
-     * Get updated_at
+     * Get updated_at.
      *
      * @return \Datetime $updatedAt
      */
     public function getUpdatedAt();
 
     /**
-     * Add comments
+     * Add comments.
      *
      * @param \Sonata\NewsBundle\Model\CommentInterface $comments
      */
     public function addComments(CommentInterface $comments);
 
     /**
-     *
      * @param array $comments
      */
     public function setComments($comments);
 
     /**
-     * Get comments
+     * Get comments.
      *
      * @return array $comments
      */
     public function getComments();
 
     /**
-     * Add tags
+     * Add tags.
      *
      * @param \Sonata\ClassificationBundle\Model\TagInterface $tags
      */
     public function addTags(TagInterface $tags);
 
     /**
-     * Get tags
+     * Get tags.
      *
      * @return array $tags
      */
@@ -190,68 +189,68 @@ interface PostInterface
     public function getDay();
 
     /**
-     * Set comments_enabled
+     * Set comments_enabled.
      *
-     * @param boolean $commentsEnabled
+     * @param bool $commentsEnabled
      */
     public function setCommentsEnabled($commentsEnabled);
 
     /**
-     * Get comments_enabled
+     * Get comments_enabled.
      *
-     * @return boolean $commentsEnabled
+     * @return bool $commentsEnabled
      */
     public function getCommentsEnabled();
 
     /**
-     * Set comments_close_at
+     * Set comments_close_at.
      *
      * @param \DateTime $commentsCloseAt
      */
     public function setCommentsCloseAt(\DateTime $commentsCloseAt = null);
 
     /**
-     * Get comments_close_at
+     * Get comments_close_at.
      *
      * @return \DateTime $commentsCloseAt
      */
     public function getCommentsCloseAt();
 
     /**
-     * Set comments_default_status
+     * Set comments_default_status.
      *
-     * @param integer $commentsDefaultStatus
+     * @param int $commentsDefaultStatus
      */
     public function setCommentsDefaultStatus($commentsDefaultStatus);
 
     /**
-     * Get comments_default_status
+     * Get comments_default_status.
      *
-     * @return integer $commentsDefaultStatus
+     * @return int $commentsDefaultStatus
      */
     public function getCommentsDefaultStatus();
 
     /**
-     * Set comments_count
+     * Set comments_count.
      *
-     * @param integer $commentscount
+     * @param int $commentscount
      */
     public function setCommentsCount($commentscount);
 
     /**
-     * Get comments_count
+     * Get comments_count.
      *
-     * @return integer $commentsCount
+     * @return int $commentsCount
      */
     public function getCommentsCount();
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCommentable();
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPublic();
 
@@ -288,7 +287,6 @@ interface PostInterface
      * @param CollectionInterface $collection
      */
     public function setCollection(CollectionInterface $collection = null);
-
 
     /**
      * @param string $contentFormatter
