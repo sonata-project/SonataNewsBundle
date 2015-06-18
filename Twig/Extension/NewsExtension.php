@@ -11,10 +11,10 @@
 
 namespace Sonata\NewsBundle\Twig\Extension;
 
-use Symfony\Component\Routing\RouterInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 class NewsExtension extends \Twig_Extension
 {
@@ -49,7 +49,7 @@ class NewsExtension extends \Twig_Extension
     {
         return array(
             'sonata_news_link_tag_rss' => new \Twig_Function_Method($this, 'renderTagRss', array('is_safe' => array('html'))),
-            'sonata_news_permalink'    => new \Twig_Function_Method($this, 'generatePermalink')
+            'sonata_news_permalink'    => new \Twig_Function_Method($this, 'generatePermalink'),
         );
     }
 

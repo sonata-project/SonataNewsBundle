@@ -8,15 +8,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Tests\Entity;
 
 use Sonata\CoreBundle\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\CommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 
-
 /**
- * Class CommentManagerTest
+ * Class CommentManagerTest.
  *
  * Tests the comment manager entity.
  *
@@ -56,7 +56,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
                 $qb->expects($self->once())->method('setParameters')->with(array());
             })
             ->getPager(array(
-                'mode' => 'admin'
+                'mode' => 'admin',
             ), 1);
     }
 
@@ -69,7 +69,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
                 $qb->expects($self->once())->method('setParameters')->with(array('status' => CommentInterface::STATUS_INVALID));
             })
             ->getPager(array(
-                'status' => CommentInterface::STATUS_INVALID
+                'status' => CommentInterface::STATUS_INVALID,
             ), 1);
     }
 
@@ -82,9 +82,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
                 $qb->expects($self->once())->method('setParameters')->with(array('postId' => 50, 'status' => CommentInterface::STATUS_VALID));
             })
             ->getPager(array(
-                'postId' => 50
+                'postId' => 50,
             ), 1);
     }
-
-
 }

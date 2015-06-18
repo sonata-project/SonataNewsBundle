@@ -11,12 +11,10 @@
 
 namespace Sonata\NewsBundle\Command;
 
+use Sonata\NewsBundle\Model\Comment;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\Output;
-
-use Sonata\NewsBundle\Model\Comment;
 
 class SynchronizeCommentsCountCommand extends ContainerAwareCommand
 {
@@ -38,6 +36,6 @@ class SynchronizeCommentsCountCommand extends ContainerAwareCommand
 
         $commentManager->updateCommentsCount();
 
-        $output->writeln(" done!");
+        $output->writeln(' done!');
     }
 }

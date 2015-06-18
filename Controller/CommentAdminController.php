@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -11,9 +12,9 @@
 namespace Sonata\NewsBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class CommentAdminController extends CRUDController
 {
@@ -22,6 +23,7 @@ class CommentAdminController extends CRUDController
      * @param                                                  $status
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      */
     protected function commentChangeStatus(ProxyQueryInterface $query, $status)

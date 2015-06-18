@@ -8,23 +8,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Entity;
 
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr\Join;
-use Sonata\CoreBundle\Model\BaseEntityManager;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
-
+use Sonata\CoreBundle\Model\BaseEntityManager;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
-
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 class PostManager extends BaseEntityManager implements PostManagerInterface
 {
-
     /**
      * @param string        $permalink
      * @param BlogInterface $blog
@@ -66,7 +63,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         }
 
         if (count($parameters) == 0) {
-            return null;
+            return;
         }
 
         $query->setParameters($parameters);
@@ -77,7 +74,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
             return $results[0];
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -135,7 +132,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
 
         if (isset($criteria['author'])) {
             if (!is_array($criteria['author']) && stristr($criteria['author'], 'NULL')) {
-                $query->andWhere('p.author IS ' . $criteria['author']);
+                $query->andWhere('p.author IS '.$criteria['author']);
             } else {
                 $query->andWhere(sprintf('p.author IN (%s)', implode((array) $criteria['author'], ',')));
             }
@@ -170,8 +167,8 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
             'query'  => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
             'params' => array(
                 'startDate' => new \DateTime($date),
-                'endDate'   => new \DateTime($date . '+1 ' . $step)
-            )
+                'endDate'   => new \DateTime($date.'+1 '.$step),
+            ),
         );
     }
 

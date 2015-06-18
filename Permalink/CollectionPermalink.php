@@ -47,7 +47,7 @@ class CollectionPermalink implements PermalinkInterface
 
         return array(
             'collection' => $collection,
-            'slug'     => $slug,
+            'slug'       => $slug,
         );
     }
 }

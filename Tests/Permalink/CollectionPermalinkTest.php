@@ -12,8 +12,6 @@
 namespace Sonata\NewsBundle\Tests\Model;
 
 use Sonata\NewsBundle\Permalink\CollectionPermalink;
-use Sonata\ClassificationBundle\Model\CollectionInterface;
-use Sonata\NewsBundle\Model\PostInterface;
 
 class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
 {
@@ -45,7 +43,7 @@ class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
         $permalink = new CollectionPermalink();
         $expected = array(
             'collection' => 'the-collection',
-            'slug' => 'the-slug',
+            'slug'       => 'the-slug',
         );
 
         $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug'));
@@ -56,7 +54,7 @@ class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
         $permalink = new CollectionPermalink();
         $expected = array(
             'collection' => null,
-            'slug' => 'the-slug',
+            'slug'       => 'the-slug',
         );
 
         $this->assertEquals($expected, $permalink->getParameters('the-slug'));
@@ -69,7 +67,7 @@ class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
         $permalink = new CollectionPermalink();
         $expected = array(
             'collection' => 'the-collection',
-            'slug' => 'the-slug',
+            'slug'       => 'the-slug',
         );
 
         $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug/asdsaasds'));

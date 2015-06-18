@@ -15,12 +15,11 @@ class ModelTest_Post extends \Sonata\NewsBundle\Model\Post
 {
     public function getId()
     {
-
     }
 }
 
 /**
- * Class PostTest
+ * Class PostTest.
  *
  * Tests the post model
  */

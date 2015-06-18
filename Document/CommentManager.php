@@ -8,15 +8,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\NewsBundle\Document;
 
 use Sonata\CoreBundle\Model\BaseDocumentManager;
-use Sonata\NewsBundle\Model\CommentManager as ModelCommentManager;
-use Sonata\NewsBundle\Model\CommentInterface;
-use Doctrine\ODM\MongoDB\DocumentManager;
-
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
+use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 
@@ -54,7 +52,7 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
     }
 
     /**
-     * Update the comments count
+     * Update the comments count.
      *
      * @param \Sonata\NewsBundle\Model\PostInterface $post
      */

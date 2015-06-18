@@ -12,20 +12,17 @@
 namespace Sonata\NewsBundle\Block;
 
 use Sonata\AdminBundle\Admin\Pool;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
-
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Validator\ErrorElement;
-
-use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- *
  * @author     Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 class RecentCommentsBlockService extends BaseBlockService
@@ -54,7 +51,7 @@ class RecentCommentsBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $criteria = array(
-            'mode' => $blockContext->getSetting('mode')
+            'mode' => $blockContext->getSetting('mode'),
         );
 
         $parameters = array(
@@ -62,7 +59,7 @@ class RecentCommentsBlockService extends BaseBlockService
             'settings'   => $blockContext->getSettings(),
             'block'      => $blockContext->getBlock(),
             'pager'      => $this->manager->getPager($criteria, 1, $blockContext->getSetting('number')),
-            'admin_pool' => $this->adminPool
+            'admin_pool' => $this->adminPool,
         );
 
         if ($blockContext->getSetting('mode') === 'admin') {
@@ -92,10 +89,10 @@ class RecentCommentsBlockService extends BaseBlockService
                 array('mode', 'choice', array(
                     'choices' => array(
                         'public' => 'public',
-                        'admin'  => 'admin'
-                    )
-                ))
-            )
+                        'admin'  => 'admin',
+                    ),
+                )),
+            ),
         ));
     }
 
@@ -116,7 +113,7 @@ class RecentCommentsBlockService extends BaseBlockService
             'number'     => 5,
             'mode'       => 'public',
             'title'      => 'Recent Comments',
-            'template'   => 'SonataNewsBundle:Block:recent_comments.html.twig'
+            'template'   => 'SonataNewsBundle:Block:recent_comments.html.twig',
         ));
     }
 }

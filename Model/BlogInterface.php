@@ -11,8 +11,6 @@
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\NewsBundle\Permalink\PermalinkInterface;
-
 interface BlogInterface
 {
     /**

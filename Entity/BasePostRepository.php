@@ -13,13 +13,10 @@ namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
-use Sonata\NewsBundle\Model\PostInterface;
-
 class BasePostRepository extends EntityRepository
 {
-
     /**
-     * return last post query builder
+     * return last post query builder.
      *
      * @param int $limit
      *
@@ -30,13 +27,13 @@ class BasePostRepository extends EntityRepository
         return $this->createQueryBuilder('p')
             ->where('p.enabled = true')
             ->orderby('p.createdAt', 'DESC');
-
     }
 
     /**
-     * return count comments QueryBuilder
+     * return count comments QueryBuilder.
      *
      * @param  Sonata\NewsBundle\Model\PostInterface
+     *
      * @return \Doctrine\ORM\QueryBuilder
      */
     public function countCommentsQuery($post)

@@ -14,7 +14,7 @@ namespace Sonata\NewsBundle\Block\Breadcrumb;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 
 /**
- * BlockService for archive breadcrumb
+ * BlockService for archive breadcrumb.
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */

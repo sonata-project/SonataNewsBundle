@@ -11,8 +11,8 @@
 
 namespace Sonata\NewsBundle\Form\Type;
 
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CommentType extends AbstractType
@@ -42,9 +42,10 @@ class CommentType extends AbstractType
      * {@inheritdoc}
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {;
+    {
+        ;
         $resolver->setDefaults(array(
-            'translation_domain' => 'SonataNewsBundle'
+            'translation_domain' => 'SonataNewsBundle',
         ));
     }
 }

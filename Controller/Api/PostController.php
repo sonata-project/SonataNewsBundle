@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -8,26 +9,21 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\NewsBundle\Controller\Api;
 
+use Application\Sonata\NewsBundle\Entity\Post;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
-use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Route;
+use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-
 use JMS\Serializer\SerializationContext;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-
-use Application\Sonata\NewsBundle\Entity\Post;
-
 use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\NewsBundle\Mailer\MailerInterface;
 use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
-
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,9 +31,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class PostController
+ * Class PostController.
  *
- * @package Sonata\NewsBundle\Controller\Api
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -69,7 +64,7 @@ class PostController
     protected $formatterPool;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param PostManagerInterface    $postManager
      * @param CommentManagerInterface $commentManager
@@ -87,7 +82,7 @@ class PostController
     }
 
     /**
-     * Retrieves the list of posts (paginated) based on criteria
+     * Retrieves the list of posts (paginated) based on criteria.
      *
      * @ApiDoc(
      *  resource=true,
@@ -122,7 +117,7 @@ class PostController
     }
 
     /**
-     * Retrieves a specific post
+     * Retrieves a specific post.
      *
      * @ApiDoc(
      *  requirements={
@@ -139,7 +134,7 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param integer $id A post identifier
+     * @param int $id A post identifier
      *
      * @return Post
      */
@@ -149,7 +144,7 @@ class PostController
     }
 
     /**
-     * Adds a post
+     * Adds a post.
      *
      * @ApiDoc(
      *  input={"class"="sonata_news_api_form_post", "name"="", "groups"={"sonata_api_write"}},
@@ -174,7 +169,7 @@ class PostController
     }
 
     /**
-     * Updates a post
+     * Updates a post.
      *
      * @ApiDoc(
      *  requirements={
@@ -191,7 +186,7 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param integer $id      A Post identifier
+     * @param int     $id      A Post identifier
      * @param Request $request A Symfony request
      *
      * @return Post
@@ -204,7 +199,7 @@ class PostController
     }
 
     /**
-     * Deletes a post
+     * Deletes a post.
      *
      * @ApiDoc(
      *  requirements={
@@ -219,7 +214,7 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param integer $id A Post identifier
+     * @param int $id A Post identifier
      *
      * @return \FOS\RestBundle\View\View
      *
@@ -239,7 +234,7 @@ class PostController
     }
 
     /**
-     * Retrieves the comments of specified post
+     * Retrieves the comments of specified post.
      *
      * @ApiDoc(
      *  requirements={
@@ -259,7 +254,7 @@ class PostController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @param integer               $id A post identifier
+     * @param int                   $id           A post identifier
      * @param ParamFetcherInterface $paramFetcher
      *
      * @return PagerInterface
@@ -281,7 +276,7 @@ class PostController
     }
 
     /**
-     * Adds a comment to a post
+     * Adds a comment to a post.
      *
      * @ApiDoc(
      *  requirements={
@@ -299,7 +294,7 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int     $id A post identifier
+     * @param int     $id      A post identifier
      * @param Request $request
      *
      * @return Comment|FormInterface
@@ -344,7 +339,7 @@ class PostController
     }
 
     /**
-     * Updates a comment
+     * Updates a comment.
      *
      * @ApiDoc(
      *  requirements={
@@ -362,8 +357,8 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param integer $postId    A post identifier
-     * @param integer $commentId A comment identifier
+     * @param int     $postId    A post identifier
+     * @param int     $commentId A comment identifier
      * @param Request $request   A Symfony request
      *
      * @return Comment
@@ -382,13 +377,13 @@ class PostController
         $comment = $this->commentManager->find($commentId);
 
         if (null === $comment) {
-            throw new NotFoundHttpException(sprintf("Comment (%d) not found", $commentId));
+            throw new NotFoundHttpException(sprintf('Comment (%d) not found', $commentId));
         }
 
         $comment->setPost($post);
 
         $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, array(
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ));
 
         $form->bind($request);
@@ -409,10 +404,8 @@ class PostController
         return $form;
     }
 
-
-
     /**
-     * Filters criteria from $paramFetcher to be compatible with the Pager criteria
+     * Filters criteria from $paramFetcher to be compatible with the Pager criteria.
      *
      * @param ParamFetcherInterface $paramFetcher
      *
@@ -434,7 +427,7 @@ class PostController
             $date = new \DateTime($criteria['dateValue']);
             $criteria['date'] = array(
                 'query'  => sprintf('p.publicationDateStart %s :dateValue', $criteria['dateQuery']),
-                'params' => array('dateValue' => $date)
+                'params' => array('dateValue' => $date),
             );
             unset($criteria['dateValue'], $criteria['dateQuery']);
         } else {
@@ -445,9 +438,9 @@ class PostController
     }
 
     /**
-     * Retrieves post with id $id or throws an exception if it doesn't exist
+     * Retrieves post with id $id or throws an exception if it doesn't exist.
      *
-     * @param integer $id A Post identifier
+     * @param int $id A Post identifier
      *
      * @return Post
      *
@@ -465,10 +458,10 @@ class PostController
     }
 
     /**
-     * Write a post, this method is used by both POST and PUT action methods
+     * Write a post, this method is used by both POST and PUT action methods.
      *
-     * @param Request      $request Symfony request
-     * @param integer|null $id      A post identifier
+     * @param Request  $request Symfony request
+     * @param int|null $id      A post identifier
      *
      * @return FormInterface
      */
@@ -477,7 +470,7 @@ class PostController
         $post = $id ? $this->getPost($id) : null;
 
         $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_post', $post, array(
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ));
 
         $form->bind($request);

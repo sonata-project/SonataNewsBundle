@@ -59,7 +59,7 @@ class DatePermalink implements PermalinkInterface
             'year'  => (int) $year,
             'month' => (int) $month,
             'day'   => (int) $day,
-            'slug'  => $slug
+            'slug'  => $slug,
         );
     }
 }

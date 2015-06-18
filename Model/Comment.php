@@ -11,61 +11,59 @@
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\NewsBundle\Model\CommentInterface;
-
 abstract class Comment implements CommentInterface
 {
     /**
-     * Name of the author
+     * Name of the author.
      *
      * @var string
      */
     protected $name;
 
     /**
-     * Email of the author
+     * Email of the author.
      *
      * @var string
      */
     protected $email;
 
     /**
-     * Website url of the author
+     * Website url of the author.
      *
      * @var string
      */
     protected $url;
 
     /**
-     * Comment content
+     * Comment content.
      *
      * @var string
      */
     protected $message;
 
     /**
-     * Comment created date
+     * Comment created date.
      *
      * @var \DateTime
      */
     protected $createdAt;
 
     /**
-     * Last update date
+     * Last update date.
      *
      * @var \DateTime
      */
     protected $updatedAt;
 
     /**
-     * Moderation status
+     * Moderation status.
      *
      * @var int
      */
     protected $status = self::STATUS_VALID;
 
     /**
-     * Post for which the comment is related to
+     * Post for which the comment is related to.
      *
      * @var \Sonata\NewsBundle\Model\PostInterface
      */
@@ -174,8 +172,8 @@ abstract class Comment implements CommentInterface
     {
         return array(
             self::STATUS_MODERATE => 'moderate',
-            self::STATUS_INVALID => 'invalid',
-            self::STATUS_VALID   => 'valid',
+            self::STATUS_INVALID  => 'invalid',
+            self::STATUS_VALID    => 'valid',
         );
     }
 
@@ -191,7 +189,7 @@ abstract class Comment implements CommentInterface
 
     public function preUpdate()
     {
-        $this->setUpdatedAt(new \DateTime);
+        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
