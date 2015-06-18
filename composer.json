@@ -25,8 +25,8 @@
         "sonata-project/formatter-bundle": "~2.3",
         "sonata-project/easy-extends-bundle": "~2.1",
         "sonata-project/intl-bundle": "~2.1",
-        "sonata-project/datagrid-bundle": "~2.2@dev",
-        "sonata-project/core-bundle": "~2.3,>=2.3.1",
+        "sonata-project/datagrid-bundle": "~2.2",
+        "sonata-project/core-bundle": "^2.3.2",
 
         "friendsofsymfony/rest-bundle": "~1.1",
         "jms/serializer-bundle": "~0.11",
@@ -34,14 +34,19 @@
     },
     "require-dev": {
         "doctrine/orm": "*",
-        "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
-        "sonata-project/notification-bundle": "2.2.*@dev",
+        "sonata-project/doctrine-orm-admin-bundle": "~2.2",
+        "sonata-project/notification-bundle": "~2.2",
         "fabpot/php-cs-fixer": "~0.1|~1.0"
     },
-    "suggest": {
-        "sonata-project/doctrine-orm-admin-bundle": "~2.2.*",
-        "sonata-project/notification-bundle": "~2.*"
+    "conflict": {
+        "jms/serializer": "<0.13"
     },
+    "suggest": {
+        "sonata-project/doctrine-orm-admin-bundle": "~2.2",
+        "sonata-project/notification-bundle": "~2.2"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": { "Sonata\\NewsBundle\\": "" }
     },
