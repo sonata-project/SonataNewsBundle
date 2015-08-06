@@ -42,7 +42,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function save($comment, $andFlush = true)
     {
@@ -109,7 +109,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function delete($comment, $andFlush = true)
     {
@@ -121,7 +121,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
