@@ -100,23 +100,23 @@
             </trans-unit>
             <trans-unit id="title_leave_comment">
                 <source>title_leave_comment</source>
-                <target>Kommentar hinzufügen</target>
+                <target>Kommentar verfassen</target>
             </trans-unit>
             <trans-unit id="mail_title_comment_notification">
                 <source>mail_title_comment_notification</source>
-                <target>New comment for post '%post_title%' on blog '%blog_title%'
-                    New comment for post "%post_title%" on blog "%blog_title%"
+                <target>Neuer Kommentar für '%post_title%' in '%blog_title%'
+                    Neuer Kommentar für "%post_title%" in "%blog_title%"
 
-                    Post: %post_title% - %post_url%
-                    From: %comment_name%
-                    Email: %comment_email%
+                    Eintrag: %post_title% - %post_url%
+                    Autor: %comment_name%
+                    E-Mail: %comment_email%
                     Url: %comment_url%
-                    Message:
+                    Kommentar:
                     %comment_message%
 
-                    Quick moderation links :
-                    - validate: %comment_valid_link%
-                    - invalidate: %comment_invalid_link%
+                    Administrative Links:
+                    - freigeben: %comment_valid_link%
+                    - sperren: %comment_invalid_link%
                 </target>
             </trans-unit>
             <trans-unit id="no_comments_available">
@@ -241,7 +241,7 @@
             </trans-unit>
             <trans-unit id="list_label_email">
                 <source>list.label_email</source>
-                <target>E-mail</target>
+                <target>E-Mail</target>
             </trans-unit>
             <trans-unit id="list_label_url">
                 <source>list.label_url</source>
@@ -257,7 +257,7 @@
             </trans-unit>
             <trans-unit id="filter_label_email">
                 <source>filter.label_email</source>
-                <target>E-mail</target>
+                <target>E-Mail</target>
             </trans-unit>
             <trans-unit id="filter_label_message">
                 <source>filter.label_message</source>
@@ -273,7 +273,7 @@
             </trans-unit>
             <trans-unit id="form_label_email">
                 <source>form.label_email</source>
-                <target>E-mail</target>
+                <target>E-Mail</target>
             </trans-unit>
             <trans-unit id="form_label_url">
                 <source>form.label_url</source>
@@ -359,9 +359,13 @@
                 <source>label_comment_invalid</source>
                 <target>Ungültig</target>
             </trans-unit>
+            <trans-unit id="label_comment_moderate">
+                <source>label_comment_moderate</source>
+                <target>Moderiert</target>
+            </trans-unit>
             <trans-unit id="label_unknown_status">
                 <source>label_unknown_status</source>
-                <target>label_unknown_status</target>
+                <target>Unbekannt</target>
             </trans-unit>
             <trans-unit id="label_unknown_moderate">
                 <source>label_unknown_moderate</source>
@@ -390,6 +394,10 @@
             <trans-unit id="sidemenu.link_edit_post">
                 <source>sidemenu.link_edit_post</source>
                 <target>Bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="no_comment_found">
+                <source>no_comment_found</source>
+                <target>Keine Kommentare vorhanden.</target>
             </trans-unit>
         </body>
     </file>
