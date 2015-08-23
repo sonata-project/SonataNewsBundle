@@ -16,6 +16,7 @@ use Knp\Menu\Provider\MenuProviderInterface;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * BlockService for post breadcrumb.
@@ -61,5 +62,17 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         }
 
         return $menu;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureSettings(OptionsResolver $resolver)
+    {
+        parent::configureSettings($resolver);
+
+        $resolver->setDefaults(array(
+            'post'  => false,
+        ));
     }
 }
