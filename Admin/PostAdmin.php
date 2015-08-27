@@ -18,7 +18,6 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\FormatterBundle\Formatter\Pool;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
@@ -32,7 +31,7 @@ class PostAdmin extends Admin
     protected $userManager;
 
     /**
-     * @var Pool
+     * @var FormatterPool
      */
     protected $formatterPool;
 
