@@ -1,0 +1,396 @@
+<?xml version="1.0" standalone="yes"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="hu" datatype="plaintext" original="SonataNewsBundle.en.xliff">
+        <body>
+            <trans-unit id="title_archive">
+                <source>title_archive</source>
+                <target>Archívum</target>
+            </trans-unit>
+            <trans-unit id="title_comments">
+                <source>title_comments</source>
+                <target>Hozzászólások</target>
+            </trans-unit>
+            <trans-unit id="btn_add_comment">
+                <source>btn_add_comment</source>
+                <target>Új hozzászólás</target>
+            </trans-unit>
+            <trans-unit id="message_comments_are_closed">
+                <source>message_comments_are_closed</source>
+                <target>A hozzászólások le vannak tiltva ehhez a bejegyzéshez.</target>
+            </trans-unit>
+            <trans-unit id="no_post_found">
+                <source>no_post_found</source>
+                <target>Nincs bejegyzés.</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_view_post">
+                <source>sidemenu.link_view_post</source>
+                <target>Megtekintés</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_view_comments">
+                <source>sidemenu.link_view_comments</source>
+                <target>Hozzászólások</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_create">
+                <source>breadcrumb.link_comment_create</source>
+                <target>Létrehozás</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_list">
+                <source>breadcrumb.link_comment_list</source>
+                <target>Hozzászólások</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_comment_edit">
+                <source>breadcrumb.link_comment_edit</source>
+                <target>Szerkesztés</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_create">
+                <source>breadcrumb.link_post_create</source>
+                <target>Létrehozás</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_list">
+                <source>breadcrumb.link_post_list</source>
+                <target>Bejegyzések</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_edit">
+                <source>breadcrumb.link_post_edit</source>
+                <target>Szerkesztés</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_create">
+                <source>breadcrumb.link_tag_create</source>
+                <target>Létrehozás</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_list">
+                <source>breadcrumb.link_tag_list</source>
+                <target>Címkék</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_tag_edit">
+                <source>breadcrumb.link_tag_edit</source>
+                <target>Szerkesztés</target>
+            </trans-unit>
+            <trans-unit id="comments">
+                <source>comments</source>
+                <target>Hozzászólások</target>
+            </trans-unit>
+            <trans-unit id="posts">
+                <source>posts</source>
+                <target>Bejegyzések</target>
+            </trans-unit>
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>Kategóriák</target>
+            </trans-unit>
+            <trans-unit id="tags">
+                <source>tags</source>
+                <target>Címkék</target>
+            </trans-unit>
+            <trans-unit id="no_tag_selected">
+                <source>no_tag_selected</source>
+                <target>Nincs címke</target>
+            </trans-unit>
+            <trans-unit id="published_under">
+                <source>published_under</source>
+                <target>{0}Nincs címke|{1}Címke: |[1,Inf]Címkék:</target>
+            </trans-unit>
+            <trans-unit id="archive_author">
+                <source>archive_author</source>
+                <target>Szerző: %author%</target>
+            </trans-unit>
+            <trans-unit id="comments_count">
+                <source>comments_count</source>
+                <target>%comments_count% hozzászólás</target>
+            </trans-unit>
+            <trans-unit id="title_leave_comment">
+                <source>title_leave_comment</source>
+                <target>Új hozzászólás</target>
+            </trans-unit>
+            <trans-unit id="mail_title_comment_notification">
+                <source>mail_title_comment_notification</source>
+                <target>Új hozzászólás a(z) '%post_title%' bejegyzéshez a(z) '%blog_title%' blogon
+Új hozzászólás a(z) "%post_title%" bejegyzéshez a(z) "%blog_title%" blogon
+
+Bejegyzés: %post_title% - %post_url%
+Feladó: %comment_name%
+Email: %comment_email%
+Url: %comment_url%
+Üzenet:
+%comment_message%
+
+Gyors moderálási linkek:
+  - engedélyez: %comment_valid_link%
+  - tilt: %comment_invalid_link%
+                </target>
+            </trans-unit>
+            <trans-unit id="no_comments_available">
+                <source>no_comments_available</source>
+                <target>Nincsenek hozzászólások</target>
+            </trans-unit>
+            <trans-unit id="sonata_blog">
+                <source>sonata_blog</source>
+                <target>Blog</target>
+            </trans-unit>
+            <trans-unit id="list_label_title">
+                <source>list.label_title</source>
+                <target>Cím</target>
+            </trans-unit>
+            <trans-unit id="list_label_author">
+                <source>list.label_author</source>
+                <target>Szerző</target>
+            </trans-unit>
+            <trans-unit id="list_label_collection">
+                <source>list.label_collection</source>
+                <target>Gyűjtemény</target>
+            </trans-unit>
+            <trans-unit id="list_label_enabled">
+                <source>list.label_enabled</source>
+                <target>Engedélyezve</target>
+            </trans-unit>
+            <trans-unit id="list_label_label_tags">
+                <source>list.label_tags</source>
+                <target>Címkék</target>
+            </trans-unit>
+            <trans-unit id="list_label_comments_enabled">
+                <source>list.label_comments_enabled</source>
+                <target>Hozzászólások engedélyezve</target>
+            </trans-unit>
+            <trans-unit id="list_label_comments_count">
+                <source>list.label_comments_count</source>
+                <target>Hozzászólások száma</target>
+            </trans-unit>
+            <trans-unit id="list.label_publication_date_start">
+                <source>list.label_publication_date_start</source>
+                <target>Publikáció kezdete</target>
+            </trans-unit>
+            <trans-unit id="form_label_enabled">
+                <source>form.label_enabled</source>
+                <target>Engedélyezve</target>
+            </trans-unit>
+            <trans-unit id="form_label_author">
+                <source>form.label_author</source>
+                <target>Szerző</target>
+            </trans-unit>
+            <trans-unit id="form_label_collection">
+                <source>form.label_collection</source>
+                <target>Gyűjtemény</target>
+            </trans-unit>
+            <trans-unit id="form_label_title">
+                <source>form.label_title</source>
+                <target>Cím</target>
+            </trans-unit>
+            <trans-unit id="form_label_abstract">
+                <source>form.label_abstract</source>
+                <target>Absztrakt</target>
+            </trans-unit>
+            <trans-unit id="form_label_content">
+                <source>form.label_content</source>
+                <target>Tartalom</target>
+            </trans-unit>
+            <trans-unit id="form_label_tags">
+                <source>form.label_tags</source>
+                <target>Címkék</target>
+            </trans-unit>
+            <trans-unit id="form_label_publication_date_start">
+                <source>form.label_publication_date_start</source>
+                <target>Publikáció kezdete</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_close_at">
+                <source>form.label_comments_close_at</source>
+                <target>Hozzászzólások letiltva</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_enabled">
+                <source>form.label_comments_enabled</source>
+                <target>Hozzászólások engedélyezve</target>
+            </trans-unit>
+            <trans-unit id="form_label_comments_default_status">
+                <source>form.label_comments_default_status</source>
+                <target>Alapértelmezett hozzászólás státusz</target>
+            </trans-unit>
+            <trans-unit id="filter_label_title">
+                <source>filter.label_title</source>
+                <target>Cím</target>
+            </trans-unit>
+            <trans-unit id="filter_label_enabled">
+                <source>filter.label_enabled</source>
+                <target>Engedélyezve</target>
+            </trans-unit>
+            <trans-unit id="filter_label_tags">
+                <source>filter.label_tags</source>
+                <target>Címkék</target>
+            </trans-unit>
+            <trans-unit id="filter_label_author">
+                <source>filter.label_author</source>
+                <target>Szerző</target>
+            </trans-unit>
+            <trans-unit id="filter_label_with_open_comments">
+                <source>filter.label_with_open_comments</source>
+                <target>Nyitott hozzászólások</target>
+            </trans-unit>
+            <trans-unit id="filter.label_post">
+                <source>filter.label_post</source>
+                <target>Bejegyzés ID</target>
+            </trans-unit>
+            <trans-unit id="list_label_name">
+                <source>list.label_name</source>
+                <target>Név</target>
+            </trans-unit>
+            <trans-unit id="list_status_code">
+                <source>status_code</source>
+                <target>Státusz kód</target>
+            </trans-unit>
+            <trans-unit id="list_label_post">
+                <source>list.label_post</source>
+                <target>Bejegyzés</target>
+            </trans-unit>
+            <trans-unit id="list_label_email">
+                <source>list.label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="list_label_url">
+                <source>list.label_url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="list_label_message">
+                <source>list.label_message</source>
+                <target>Üzenet</target>
+            </trans-unit>
+            <trans-unit id="filter_label_name">
+                <source>filter.label_name</source>
+                <target>Név</target>
+            </trans-unit>
+            <trans-unit id="filter_label_email">
+                <source>filter.label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="filter_label_message">
+                <source>filter.label_message</source>
+                <target>Üzenet</target>
+            </trans-unit>
+            <trans-unit id="form_label_post">
+                <source>form.label_post</source>
+                <target>Bejegyzés</target>
+            </trans-unit>
+            <trans-unit id="form_label_name">
+                <source>form.label_name</source>
+                <target>Név</target>
+            </trans-unit>
+            <trans-unit id="form_label_email">
+                <source>form.label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="form_label_url">
+                <source>form.label_url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="form_label_message">
+                <source>form.label_message</source>
+                <target>Üzenet</target>
+            </trans-unit>
+            <trans-unit id="form_label_status">
+                <source>form.label_status</source>
+                <target>Státusz</target>
+            </trans-unit>
+            <trans-unit id="list_label_slug">
+                <source>list.label_slug</source>
+                <target>Slug</target>
+            </trans-unit>
+            <trans-unit id="list_label_description">
+                <source>list.label_description</source>
+                <target>Leírás</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb_link_collection_list">
+                <source>breadcrumb.link_collection_list</source>
+                <target>Kategóriák</target>
+            </trans-unit>
+            <trans-unit id="form_label_description">
+                <source>form.label_description</source>
+                <target>Leírás</target>
+            </trans-unit>
+            <trans-unit id="filter_label_posts">
+                <source>filter.label_posts</source>
+                <target>Bejegyzések</target>
+            </trans-unit>
+            <trans-unit id="batch.comment_enable">
+                <source>batch.comment_enable</source>
+                <target>Engedélyezés</target>
+            </trans-unit>
+            <trans-unit id="batch.comment_disable">
+                <source>batch.comment_disable</source>
+                <target>Letiltés</target>
+            </trans-unit>
+            <trans-unit id="link_previous_page">
+                <source>link_previous_page</source>
+                <target>Előző oldal</target>
+            </trans-unit>
+            <trans-unit id="link_next_page">
+                <source>link_next_page</source>
+                <target>Következő oldal</target>
+            </trans-unit>
+            <trans-unit id="form.comment.name">
+                <source>form.comment.name</source>
+                <target>Név</target>
+            </trans-unit>
+            <trans-unit id="form.comment.email">
+                <source>form.comment.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form.comment.url">
+                <source>form.comment.url</source>
+                <target>Url</target>
+            </trans-unit>
+            <trans-unit id="form.comment.message">
+                <source>form.comment.message</source>
+                <target>Üzenet</target>
+            </trans-unit>
+            <trans-unit id="view_all_posts">
+                <source>view_all_posts</source>
+                <target>Összes bejegyzés megtekintése</target>
+            </trans-unit>
+            <trans-unit id="post_is_public">
+                <source>post_is_public</source>
+                <target>Publikus</target>
+            </trans-unit>
+            <trans-unit id="post_is_not_public">
+                <source>post_is_not_public</source>
+                <target>Privát</target>
+            </trans-unit>
+            <trans-unit id="label_comment_valid">
+                <source>label_comment_valid</source>
+                <target>Érvényes</target>
+            </trans-unit>
+            <trans-unit id="label_comment_invalid">
+                <source>label_comment_invalid</source>
+                <target>Érvénytelen</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_status">
+                <source>label_unknown_status</source>
+                <target>Ismeretlen</target>
+            </trans-unit>
+            <trans-unit id="label_unknown_moderate">
+                <source>label_unknown_moderate</source>
+                <target>Mérsékelt</target>
+            </trans-unit>
+            <trans-unit id="view_all_comments">
+                <source>view_all_comments</source>
+                <target>Összes hozzászólás megtekintése</target>
+            </trans-unit>
+            <trans-unit id="sonata_news_archive_breadcrumb">
+                <source>sonata_news_archive_breadcrumb</source>
+                <target>Hírek</target>
+            </trans-unit>
+            <trans-unit id="group_general">
+                <source>group_general</source>
+                <target>Általános</target>
+            </trans-unit>
+            <trans-unit id="group_comment">
+                <source>group_comment</source>
+                <target>Hozzászólás</target>
+            </trans-unit>
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>Kép</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_edit_post">
+                <source>sidemenu.link_edit_post</source>
+                <target>Szerkesztés</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
