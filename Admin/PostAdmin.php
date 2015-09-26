@@ -193,7 +193,7 @@ class PostAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\FormatterBundle\Formatter\Pool $formatterPool
+     * @param FormatterPool $formatterPool
      */
     public function setPoolFormatter(FormatterPool $formatterPool)
     {
