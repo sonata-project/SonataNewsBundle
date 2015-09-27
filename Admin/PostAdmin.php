@@ -92,7 +92,10 @@ class PostAdmin extends Admin
                 ))
 
                 ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
-                ->add('commentsCloseAt', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+                ->add('commentsCloseAt', 'sonata_type_datetime_picker', array(
+                    'dp_side_by_side' => true,
+                    'required'        => false,
+                ))
                 ->add('commentsEnabled', null, array('required' => false))
                 ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
             ->end()
@@ -103,6 +106,7 @@ class PostAdmin extends Admin
                 ->add('tags', 'sonata_type_model_autocomplete', array(
                     'property' => 'name',
                     'multiple' => 'true',
+                    'required' => false,
                 ))
                 ->add('collection', 'sonata_type_model_list', array('required' => false))
             ->end()
