@@ -8,7 +8,7 @@ CHANGELOG
 ### 2013-10-03
 
 * Integrate classification bundle
-  Major BC Break, please refer to the UPGRADE.txt file
+  Major BC Break, please refer to the [UPGRADE.md](UPGRADE.md) file
 
 ### 2012-09-24
 
