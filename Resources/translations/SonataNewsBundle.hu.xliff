@@ -391,6 +391,30 @@ Gyors moderálási linkek:
                 <source>sidemenu.link_edit_post</source>
                 <target>Szerkesztés</target>
             </trans-unit>
+            <trans-unit id="show_label_enabled">
+                <source>show.label_enabled</source>
+                <target>show_label_enabled</target>
+            </trans-unit>
+            <trans-unit id="show_label_author">
+                <source>show.label_author</source>
+                <target>show_label_author</target>
+            </trans-unit>
+            <trans-unit id="show_label_title">
+                <source>show.label_title</source>
+                <target>show_label_title</target>
+            </trans-unit>
+            <trans-unit id="show_label_abstract">
+                <source>show.label_abstract</source>
+                <target>show_label_abstract</target>
+            </trans-unit>
+            <trans-unit id="show_label_content">
+                <source>show.label_content</source>
+                <target>show_label_content</target>
+            </trans-unit>
+            <trans-unit id="show_label_tags">
+                <source>show.label_tags</source>
+                <target>show_label_tags</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
