@@ -15,6 +15,9 @@ use Sonata\NewsBundle\Model\CommentInterface;
 
 class HashGenerator implements HashGeneratorInterface
 {
+    /**
+     * @var string
+     */
     protected $salt;
 
     /**

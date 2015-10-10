@@ -11,6 +11,7 @@
 
 namespace Sonata\NewsBundle\Twig\Extension;
 
+use Sonata\ClassificationBundle\Model\TagManagerInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
@@ -24,9 +25,14 @@ class NewsExtension extends \Twig_Extension
     private $router;
 
     /**
-     * @var CmsManagerSelectorInterface
+     * @var TagManagerInterface
      */
     private $tagManager;
+
+    /**
+     * @var \Twig_Environment
+     */
+    private $environment;
 
     /**
      * @param RouterInterface  $router
@@ -35,6 +41,10 @@ class NewsExtension extends \Twig_Extension
      */
     public function __construct(RouterInterface $router, ManagerInterface $tagManager, BlogInterface $blog)
     {
+        if (!$tagManager instanceof TagManagerInterface) {
+            @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\ClassificationBundle\Model\TagManagerInterface instead.', E_USER_DEPRECATED);
+        }
+
         $this->router     = $router;
         $this->tagManager = $tagManager;
         $this->blog       = $blog;
@@ -89,7 +99,7 @@ class NewsExtension extends \Twig_Extension
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
+     * @param PostInterface $post
      *
      * @return string|Exception
      */

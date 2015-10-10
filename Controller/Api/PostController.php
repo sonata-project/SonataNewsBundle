@@ -216,7 +216,7 @@ class PostController
      *
      * @param int $id A Post identifier
      *
-     * @return \FOS\RestBundle\View\View
+     * @return View
      *
      * @throws NotFoundHttpException
      */
@@ -444,7 +444,7 @@ class PostController
      *
      * @return Post
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      */
     protected function getPost($id)
     {

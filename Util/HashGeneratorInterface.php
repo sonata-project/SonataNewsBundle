@@ -16,7 +16,7 @@ use Sonata\NewsBundle\Model\CommentInterface;
 interface HashGeneratorInterface
 {
     /**
-     * @param \Sonata\NewsBundle\Model\CommentInterface $comment
+     * @param CommentInterface $comment
      *
      * @return string
      */

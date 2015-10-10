@@ -17,6 +17,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,17 +27,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RecentPostsBlockService extends BaseBlockService
 {
+    /**
+     * @var PostManagerInterface
+     */
     protected $manager;
 
     /**
      * @param string           $name
      * @param EngineInterface  $templating
-     * @param ManagerInterface $manager
+     * @param ManagerInterface $postManager
      * @param Pool             $adminPool
      */
-    public function __construct($name, EngineInterface $templating, ManagerInterface $manager, Pool $adminPool = null)
+    public function __construct($name, EngineInterface $templating, ManagerInterface $postManager, Pool $adminPool = null)
     {
-        $this->manager = $manager;
+        if (!$postManager instanceof PostManagerInterface) {
+            @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\NewsBundle\Model\PostManagerInterface instead.', E_USER_DEPRECATED);
+        }
+
+        $this->manager   = $postManager;
         $this->adminPool = $adminPool;
 
         parent::__construct($name, $templating);
@@ -102,7 +110,6 @@ class RecentPostsBlockService extends BaseBlockService
             'number'     => 5,
             'mode'       => 'public',
             'title'      => 'Recent Posts',
-//            'tags'      => 'Recent Posts',
             'template'   => 'SonataNewsBundle:Block:recent_posts.html.twig',
         ));
     }
