@@ -44,7 +44,7 @@ class PostController extends Controller
 
         $parameters = array_merge(array(
             'pager'            => $pager,
-            'blog'             => $this->get('sonata.news.blog'),
+            'blog'             => $this->getBlog(),
             'tag'              => false,
             'collection'       => false,
             'route'            => $this->getRequest()->get('_route'),
@@ -144,7 +144,7 @@ class PostController extends Controller
      */
     public function viewAction($permalink)
     {
-        $post = $this->getPostManager()->findOneByPermalink($permalink, $this->container->get('sonata.news.blog'));
+        $post = $this->getPostManager()->findOneByPermalink($permalink, $this->getBlog());
 
         if (!$post || !$post->isPublic()) {
             throw new NotFoundHttpException('Unable to find the post');
@@ -166,7 +166,7 @@ class PostController extends Controller
         return $this->render('SonataNewsBundle:Post:view.html.twig', array(
             'post' => $post,
             'form' => false,
-            'blog' => $this->get('sonata.news.blog'),
+            'blog' => $this->getBlog(),
         ));
     }
 
@@ -302,7 +302,7 @@ class PostController extends Controller
      */
     protected function getBlog()
     {
-        return $this->container->get('sonata.news.blog');
+        return $this->get('sonata.news.blog');
     }
 
     /**
