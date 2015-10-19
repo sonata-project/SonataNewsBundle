@@ -33,25 +33,25 @@ class CommentAdmin extends Admin
     {
         // define group zoning
         $formMapper
-            ->with($this->trans('group_comment'), array('class' => 'col-md-6'))->end()
-            ->with($this->trans('group_general'), array('class' => 'col-md-6'))->end()
+            ->with('group_comment', array('class' => 'col-md-6'))->end()
+            ->with('group_general', array('class' => 'col-md-6'))->end()
         ;
 
         if (!$this->isChild()) {
             $formMapper
-                ->with($this->trans('group_general'))
+                ->with('group_general')
                     ->add('post', 'sonata_type_model_list')
                 ->end()
             ;
         }
 
         $formMapper
-            ->with($this->trans('group_general'))
+            ->with('group_general')
                 ->add('name')
                 ->add('email')
                 ->add('url', null, array('required' => false))
             ->end()
-            ->with($this->trans('group_comment'))
+            ->with('group_comment')
                 ->add('status', 'sonata_news_comment_status', array(
                     'expanded' => true,
                     'multiple' => false,

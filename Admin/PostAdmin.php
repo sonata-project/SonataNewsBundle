@@ -61,7 +61,7 @@ class PostAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Post', array(
+            ->with('group_post', array(
                     'class' => 'col-md-8',
                 ))
                 ->add('author', 'sonata_type_model_list')
@@ -80,7 +80,7 @@ class PostAdmin extends Admin
                     'listener'             => true,
                 ))
             ->end()
-            ->with('Status', array(
+            ->with('group_status', array(
                     'class' => 'col-md-4',
                 ))
                 ->add('enabled', null, array('required' => false))
@@ -100,7 +100,7 @@ class PostAdmin extends Admin
                 ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
             ->end()
 
-            ->with('Classification', array(
+            ->with('group_classification', array(
                 'class' => 'col-md-4',
                 ))
                 ->add('tags', 'sonata_type_model_autocomplete', array(

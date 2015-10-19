@@ -415,6 +415,18 @@ Quick moderation links :
                 <source>show.label_tags</source>
                 <target>show_label_tags</target>
             </trans-unit>
+            <trans-unit id="group_post">
+                <source>group_post</source>
+                <target>Post</target>
+            </trans-unit>
+            <trans-unit id="group_status">
+                <source>group_status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="group_classification">
+                <source>group_classification</source>
+                <target>Classification</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
