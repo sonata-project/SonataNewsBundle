@@ -71,9 +71,7 @@ class PostController extends Controller
      */
     public function archiveAction(Request $request = null)
     {
-        $request = $this->resolveRequest($request);
-
-        return $this->renderArchive($request);
+        return $this->renderArchive();
     }
 
     /**
