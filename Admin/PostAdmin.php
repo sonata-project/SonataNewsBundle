@@ -155,10 +155,6 @@ class PostAdmin extends Admin
 
     /**
      * {@inheritdoc}
-     }*/
-
-    /**
-     * {@inheritdoc}
      */
     protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
