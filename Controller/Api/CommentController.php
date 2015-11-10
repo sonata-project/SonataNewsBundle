@@ -89,7 +89,7 @@ class CommentController
      *
      * @param int $id A comment identifier
      *
-     * @return \FOS\RestBundle\View\View
+     * @return View
      *
      * @throws NotFoundHttpException
      */
@@ -113,7 +113,7 @@ class CommentController
      *
      * @return Comment
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      */
     protected function getComment($id)
     {

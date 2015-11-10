@@ -19,12 +19,12 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class CommentAdminController extends CRUDController
 {
     /**
-     * @param \Sonata\AdminBundle\Datagrid\ProxyQueryInterface $query
-     * @param                                                  $status
+     * @param ProxyQueryInterface $query
+     * @param                     $status
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @throws AccessDeniedException
      */
     protected function commentChangeStatus(ProxyQueryInterface $query, $status)
     {
@@ -42,7 +42,7 @@ class CommentAdminController extends CRUDController
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\ProxyQueryInterface $query
+     * @param ProxyQueryInterface $query
      *
      * @return RedirectResponse
      */
@@ -52,7 +52,7 @@ class CommentAdminController extends CRUDController
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\ProxyQueryInterface $query
+     * @param ProxyQueryInterface $query
      *
      * @return RedirectResponse
      */

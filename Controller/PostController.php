@@ -11,9 +11,13 @@
 
 namespace Sonata\NewsBundle\Controller;
 
+use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
+use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,7 +39,7 @@ class PostController extends Controller
      * @param array   $parameters
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Reponse
      */
     public function renderArchive(array $criteria = array(), array $parameters = array(), Request $request = null)
     {
@@ -78,9 +82,9 @@ class PostController extends Controller
      * @param string  $tag
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      */
     public function tagAction($tag, Request $request = null)
     {
@@ -102,9 +106,9 @@ class PostController extends Controller
      * @param $collection
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      */
     public function collectionAction($collection, Request $request = null)
     {
@@ -192,7 +196,7 @@ class PostController extends Controller
     }
 
     /**
-     * @return \Sonata\SeoBundle\Seo\SeoPageInterface
+     * @return SeoPageInterface
      */
     public function getSeoPage()
     {
@@ -246,7 +250,7 @@ class PostController extends Controller
     /**
      * @param $post
      *
-     * @return \Symfony\Component\Form\FormInterface
+     * @return FormInterface
      */
     public function getCommentForm(PostInterface $post)
     {
@@ -303,7 +307,7 @@ class PostController extends Controller
     }
 
     /**
-     * @return \Sonata\NewsBundle\Model\PostManagerInterface
+     * @return PostManagerInterface
      */
     protected function getPostManager()
     {
@@ -311,7 +315,7 @@ class PostController extends Controller
     }
 
     /**
-     * @return \Sonata\NewsBundle\Model\CommentManagerInterface
+     * @return CommentManagerInterface
      */
     protected function getCommentManager()
     {
@@ -319,7 +323,7 @@ class PostController extends Controller
     }
 
     /**
-     * @return \Sonata\NewsBundle\Model\BlogInterface
+     * @return BlogInterface
      */
     protected function getBlog()
     {
@@ -331,9 +335,9 @@ class PostController extends Controller
      * @param string $hash
      * @param string $status
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @throws AccessDeniedException
      */
     public function commentModerationAction($commentId, $hash, $status)
     {

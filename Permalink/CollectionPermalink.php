@@ -26,9 +26,7 @@ class CollectionPermalink implements PermalinkInterface
     }
 
     /**
-     * @param string $permalink
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getParameters($permalink)
     {

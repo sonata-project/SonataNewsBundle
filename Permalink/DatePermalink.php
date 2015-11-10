@@ -15,6 +15,9 @@ use Sonata\NewsBundle\Model\PostInterface;
 
 class DatePermalink implements PermalinkInterface
 {
+    /**
+     * @var string
+     */
     protected $pattern;
 
     /**
@@ -39,11 +42,7 @@ class DatePermalink implements PermalinkInterface
     }
 
     /**
-     * @throws \InvalidArgumentException
-     *
-     * @param string $permalink
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getParameters($permalink)
     {

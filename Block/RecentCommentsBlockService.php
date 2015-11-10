@@ -17,6 +17,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,19 +27,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RecentCommentsBlockService extends BaseBlockService
 {
+    /**
+     * @var CommentManagerInterface
+     */
     protected $manager;
 
+    /**
+     * @var Pool
+     */
     protected $adminPool;
 
     /**
      * @param string           $name
      * @param EngineInterface  $templating
-     * @param ManagerInterface $manager
+     * @param ManagerInterface $commentManager
      * @param Pool             $adminPool
      */
-    public function __construct($name, EngineInterface $templating, ManagerInterface $manager, Pool $adminPool = null)
+    public function __construct($name, EngineInterface $templating, ManagerInterface $commentManager, Pool $adminPool = null)
     {
-        $this->manager = $manager;
+        if (!$commentManager instanceof CommentManagerInterface) {
+            @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.', E_USER_DEPRECATED);
+        }
+
+        $this->manager   = $commentManager;
         $this->adminPool = $adminPool;
 
         parent::__construct($name, $templating);

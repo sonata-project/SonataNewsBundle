@@ -16,7 +16,7 @@ use Sonata\NewsBundle\Model\PostInterface;
 interface PermalinkInterface
 {
     /**
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
+     * @param PostInterface $post
      */
     public function generate(PostInterface $post);
 

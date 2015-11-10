@@ -19,23 +19,42 @@ use Symfony\Component\Templating\EngineInterface;
 
 class Mailer implements MailerInterface
 {
+    /**
+     * @var RouterInterface
+     */
     protected $router;
 
+    /**
+     * @var EngineInterface
+     */
     protected $templating;
 
+    /**
+     * @var array
+     */
     protected $emails;
 
+    /**
+     * @var HashGeneratorInterface
+     */
     protected $hashGenerator;
 
+    /**
+     * @var \Swift_Mailer
+     */
     protected $mailer;
 
+    /**
+     * @var BlogInterface
+     */
     protected $blog;
 
     /**
-     * @param \Sonata\NewsBundle\Util\HashGeneratorInterface $generator
-     * @param \Symfony\Component\Routing\RouterInterface     $router
-     * @param \Symfony\Component\Templating\EngineInterface  $templating
-     * @param array                                          $emails
+     * @param \Swift_Mailer          $mailer
+     * @param HashGeneratorInterface $generator
+     * @param RouterInterface        $router
+     * @param EngineInterface        $templating
+     * @param array                  $emails
      */
     public function __construct($mailer, BlogInterface $blog, HashGeneratorInterface $generator, RouterInterface $router, EngineInterface $templating, array $emails)
     {
@@ -48,7 +67,7 @@ class Mailer implements MailerInterface
     }
 
     /**
-     * @param \Sonata\NewsBundle\Model\CommentInterface $comment
+     * {@inheritdoc}
      */
     public function sendCommentNotification(CommentInterface $comment)
     {
