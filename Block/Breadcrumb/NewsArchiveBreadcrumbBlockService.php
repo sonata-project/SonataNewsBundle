@@ -12,6 +12,7 @@
 namespace Sonata\NewsBundle\Block\Breadcrumb;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * BlockService for archive breadcrumb.
@@ -54,5 +55,18 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         }
 
         return $menu;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureSettings(OptionsResolver $resolver)
+    {
+        parent::configureSettings($resolver);
+
+        $resolver->setDefaults(array(
+            'collection'  => false,
+            'tag'         => false,
+        ));
     }
 }
