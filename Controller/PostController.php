@@ -161,14 +161,11 @@ class PostController extends Controller
      * @throws NotFoundHttpException
      *
      * @param $permalink
-     * @param Request $request
      *
      * @return Response
      */
-    public function viewAction($permalink, Request $request = null)
+    public function viewAction($permalink)
     {
-        $request = $this->resolveRequest($request);
-
         $post = $this->getPostManager()->findOneByPermalink($permalink, $this->getBlog());
 
         if (!$post || !$post->isPublic()) {
@@ -264,12 +261,15 @@ class PostController extends Controller
     /**
      * @throws NotFoundHttpException
      *
-     * @param string $id
+     * @param string  $id
+     * @param Request $request
      *
      * @return Response
      */
-    public function addCommentAction($id)
+    public function addCommentAction($id, Request $request = null)
     {
+        $request = $this->resolveRequest($request);
+
         $post = $this->getPostManager()->findOneBy(array(
             'id' => $id,
         ));
@@ -286,7 +286,7 @@ class PostController extends Controller
         }
 
         $form = $this->getCommentForm($post);
-        $form->submit($this->get('request'));
+        $form->submit($request);
 
         if ($form->isValid()) {
             $comment = $form->getData();
