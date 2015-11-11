@@ -17,6 +17,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\CoreBundle\Model\Metadata;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -96,14 +97,6 @@ class RecentPostsBlockService extends BaseBlockService
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return 'Recent Posts';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -111,6 +104,16 @@ class RecentPostsBlockService extends BaseBlockService
             'mode'       => 'public',
             'title'      => 'Recent Posts',
             'template'   => 'SonataNewsBundle:Block:recent_posts.html.twig',
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockMetadata($code = null)
+    {
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataFormatterBundle', array(
+            'class' => 'fa fa-pencil',
         ));
     }
 }

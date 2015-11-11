@@ -17,6 +17,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\CoreBundle\Model\Metadata;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -101,14 +102,6 @@ class RecentCommentsBlockService extends BaseBlockService
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return 'Recent Comments';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -116,6 +109,16 @@ class RecentCommentsBlockService extends BaseBlockService
             'mode'       => 'public',
             'title'      => 'Recent Comments',
             'template'   => 'SonataNewsBundle:Block:recent_comments.html.twig',
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockMetadata($code = null)
+    {
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataFormatterBundle', array(
+            'class' => 'fa fa-comments-o',
         ));
     }
 }
