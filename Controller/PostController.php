@@ -39,7 +39,7 @@ class PostController extends Controller
      * @param array   $parameters
      * @param Request $request
      *
-     * @return Reponse
+     * @return Response
      */
     public function renderArchive(array $criteria = array(), array $parameters = array(), Request $request = null)
     {
