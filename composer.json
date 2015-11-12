@@ -27,7 +27,6 @@
         "sonata-project/intl-bundle": "~2.1",
         "sonata-project/datagrid-bundle": "~2.2",
         "sonata-project/core-bundle": "^2.3.2",
-
         "friendsofsymfony/rest-bundle": "~1.1",
         "jms/serializer-bundle": "~0.11",
         "nelmio/api-doc-bundle": "~2.4"
@@ -36,6 +35,7 @@
         "doctrine/orm": "*",
         "sonata-project/doctrine-orm-admin-bundle": "~2.2",
         "sonata-project/notification-bundle": "~2.2",
+        "sonata-project/seo-bundle": "~1.1|~2.0",
         "fabpot/php-cs-fixer": "~0.1|~1.0"
     },
     "conflict": {
