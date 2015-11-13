@@ -427,6 +427,14 @@ Quick moderation links :
                 <source>group_classification</source>
                 <target>Classification</target>
             </trans-unit>
+            <trans-unit id="sonata_news_block_recent_comments">
+                <source>sonata.news.block.recent_comments</source>
+                <target>News - Recent comments</target>
+            </trans-unit>
+            <trans-unit id="sonata_news_block_recent_posts">
+                <source>sonata.news.block.recent_posts</source>
+                <target>News - Recent posts</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

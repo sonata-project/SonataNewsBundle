@@ -427,6 +427,14 @@ Rychlé odkazy na moderování
                 <source>group_classification</source>
                 <target>group_classification</target>
             </trans-unit>
+            <trans-unit id="sonata_news_block_recent_comments">
+                <source>sonata.news.block.recent_comments</source>
+                <target>sonata.news.block.recent_comments</target>
+            </trans-unit>
+            <trans-unit id="sonata_news_block_recent_posts">
+                <source>sonata.news.block.recent_posts</source>
+                <target>sonata.news.block.recent_posts</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
