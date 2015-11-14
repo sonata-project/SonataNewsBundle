@@ -117,7 +117,7 @@ class RecentCommentsBlockService extends BaseBlockService
      */
     public function getBlockMetadata($code = null)
     {
-        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataFormatterBundle', array(
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataNewsBundle', array(
             'class' => 'fa fa-comments-o',
         ));
     }
