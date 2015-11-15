@@ -435,6 +435,26 @@ Liens de modération rapide :
                 <source>sonata.news.block.recent_posts</source>
                 <target>sonata.news.block.recent_posts</target>
             </trans-unit>
+            <trans-unit id="form.label_number">
+                <source>form.label_number</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="form.label_mode">
+                <source>form.label_mode</source>
+                <target>Mode</target>
+            </trans-unit>
+            <trans-unit id="form.label_mode_public">
+                <source>form.label_mode_public</source>
+                <target>Mode public</target>
+            </trans-unit>
+            <trans-unit id="form.label_mode_admin">
+                <source>form.label_mode_admin</source>
+                <target>Mode administration</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
