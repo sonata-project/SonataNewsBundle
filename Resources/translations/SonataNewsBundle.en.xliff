@@ -435,6 +435,26 @@ Quick moderation links :
                 <source>sonata.news.block.recent_posts</source>
                 <target>News - Recent posts</target>
             </trans-unit>
+            <trans-unit id="form.label_number">
+                <source>form.label_number</source>
+                <target>Number</target>
+            </trans-unit>
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="form.label_mode">
+                <source>form.label_mode</source>
+                <target>Mode</target>
+            </trans-unit>
+            <trans-unit id="form.label_mode_public">
+                <source>form.label_mode_public</source>
+                <target>Public</target>
+            </trans-unit>
+            <trans-unit id="form.label_mode_admin">
+                <source>form.label_mode_admin</source>
+                <target>Admin</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

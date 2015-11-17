@@ -82,15 +82,23 @@ class RecentPostsBlockService extends BaseBlockService
     {
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
-                array('number', 'integer', array('required' => true)),
-                array('title', 'text', array('required' => false)),
+                array('number', 'integer', array(
+                    'required' => true,
+                    'label'    => 'form.label_number',
+                )),
+                array('title', 'text', array(
+                    'required' => false,
+                    'label'    => 'form.label_title',
+                )),
                 array('mode', 'choice', array(
                     'choices' => array(
-                        'public' => 'public',
-                        'admin'  => 'admin',
+                        'public' => 'form.label_mode_public',
+                        'admin'  => 'form.label_mode_admin',
                     ),
+                    'label' => 'form.label_mode',
                 )),
             ),
+            'translation_domain' => 'SonataNewsBundle',
         ));
     }
 
