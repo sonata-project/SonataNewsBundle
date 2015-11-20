@@ -17,7 +17,7 @@ use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-class NewsExtension extends \Twig_Extension
+class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRuntimeInterface
 {
     /**
      * @var RouterInterface
@@ -58,8 +58,8 @@ class NewsExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'sonata_news_link_tag_rss' => new \Twig_Function_Method($this, 'renderTagRss', array('is_safe' => array('html'))),
-            'sonata_news_permalink'    => new \Twig_Function_Method($this, 'generatePermalink'),
+            new \Twig_SimpleFunction('sonata_news_link_tag_rss', array($this, 'renderTagRss', array('is_safe' => array('html')))),
+            new \Twig_SimpleFunction('sonata_news_permalink', array($this, 'generatePermalink')),
         );
     }
 
