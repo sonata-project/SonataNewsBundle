@@ -12,6 +12,8 @@ Installation
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "sonata-project/easy-extends-bundle": "dev-master",
         "sonata-project/classification-bundle": "~2.2@dev",
+        "friendsofsymfony/rest-bundle": "~1.1", // optional when using api
+        "nelmio/api-doc-bundle": "~0.1|~1.0", // optional when using api
     //...
     }
 

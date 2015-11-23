@@ -26,17 +26,17 @@
         "sonata-project/easy-extends-bundle": "~2.1",
         "sonata-project/intl-bundle": "~2.1",
         "sonata-project/datagrid-bundle": "~2.2",
-        "sonata-project/core-bundle": "~2.3,>=2.3.10",
-        "friendsofsymfony/rest-bundle": "~1.1",
-        "jms/serializer-bundle": "~0.11|~1.0",
-        "nelmio/api-doc-bundle": "~2.4"
+        "sonata-project/core-bundle": "~2.3,>=2.3.10"
     },
     "require-dev": {
         "doctrine/orm": "*",
         "sonata-project/doctrine-orm-admin-bundle": "~2.2",
         "sonata-project/notification-bundle": "~2.2",
         "sonata-project/seo-bundle": "~1.1|~2.0",
-        "fabpot/php-cs-fixer": "~0.1|~1.0"
+        "fabpot/php-cs-fixer": "~0.1|~1.0",
+        "friendsofsymfony/rest-bundle": "~1.1",
+        "nelmio/api-doc-bundle": "~2.4",
+        "jms/serializer-bundle": "~0.11|~1.0"
     },
     "conflict": {
         "jms/serializer": "<0.13"
