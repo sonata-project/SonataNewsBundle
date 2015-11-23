@@ -212,7 +212,7 @@ class SonataNewsExtension extends Extension
                     1 => 'persist',
                 ),
             'joinTable' => array(
-                    'name'        => 'news__post_tag',
+                    'name'        => $config['table']['post_tag'],
                     'joinColumns' => array(
                             array(
                                 'name'                 => 'post_id',
