@@ -119,7 +119,11 @@ class PostAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('custom', 'string', array('template' => 'SonataNewsBundle:Admin:list_post_custom.html.twig', 'label' => 'Post'))
+            ->add('custom', 'string', array(
+                'template' => 'SonataNewsBundle:Admin:list_post_custom.html.twig',
+                'label'    => 'Post',
+                'sortable' => 'title',
+            ))
             ->add('commentsEnabled', null, array('editable' => true))
             ->add('publicationDateStart')
         ;
