@@ -15,6 +15,7 @@ use Sonata\ClassificationBundle\Model\TagManagerInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRuntimeInterface
@@ -89,7 +90,7 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
         $rss = array();
         foreach ($this->tagManager->findBy(array('enabled' => true)) as $tag) {
             $rss[] = sprintf('<link href="%s" title="%s : %s" type="application/rss+xml" rel="alternate" />',
-                $this->router->generate('sonata_news_tag', array('tag' => $tag->getSlug(), '_format' => 'rss'), true),
+                $this->router->generate('sonata_news_tag', array('tag' => $tag->getSlug(), '_format' => 'rss'), UrlGeneratorInterface::ABSOLUTE_URL),
                 $this->blog->getTitle(),
                 $tag->getName()
             );

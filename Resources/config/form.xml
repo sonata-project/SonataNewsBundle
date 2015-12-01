@@ -10,7 +10,7 @@
 
         </service>
 
-        <service id="sonata.news.form.comment.status_type" class="Sonata\CoreBundle\Form\Type\StatusType">
+        <service id="sonata.news.form.comment.status_type" class="Sonata\NewsBundle\Form\Type\CommentStatusType">
             <argument>%sonata.news.manager.comment.entity%</argument>
             <argument>getStatusList</argument>
             <argument>sonata_news_comment_status</argument>

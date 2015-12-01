@@ -33,7 +33,7 @@ class CommentType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sonata_post_comment';
     }
@@ -41,9 +41,16 @@ class CommentType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        ;
         $resolver->setDefaults(array(
             'translation_domain' => 'SonataNewsBundle',
         ));
