@@ -42,6 +42,12 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('date')->defaultValue('%%1$04d/%%2$d/%%3$d/%%4$s')->end() // year/month/day/slug
                     ->end()
                 ->end()
+                ->arrayNode('table')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('post_tag')->defaultValue('news__post_tag')->end()
+                    ->end()
+                ->end()
                 ->arrayNode('class')
                     ->addDefaultsIfNotSet()
                     ->children()
