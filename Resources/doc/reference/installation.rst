@@ -73,7 +73,7 @@ Installation
                     #query_cache_driver: apc
                     #result_cache_driver: apc
                     mappings:
-                        ApplicationSonataNewsBundle: ~
+                        #ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
 * import the ``sonata_news.yml`` file and enable json type for doctrine:
