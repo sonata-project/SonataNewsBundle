@@ -141,7 +141,7 @@ class PostController extends Controller
 
         return $this->renderArchive(array(
             'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, $month, 1), 'month'),
-        ), $request);
+        ), array(), $request);
     }
 
     /**
@@ -156,7 +156,7 @@ class PostController extends Controller
 
         return $this->renderArchive(array(
             'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, 1, 1), 'year'),
-        ), $request);
+        ), array(), $request);
     }
 
     /**
