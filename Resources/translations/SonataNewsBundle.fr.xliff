@@ -455,6 +455,18 @@ Liens de modération rapide :
                 <source>form.label_mode_admin</source>
                 <target>Mode administration</target>
             </trans-unit>
+            <trans-unit id="valid">
+                <source>valid</source>
+                <target>valid</target>
+            </trans-unit>
+            <trans-unit id="invalid">
+                <source>invalid</source>
+                <target>invalid</target>
+            </trans-unit>
+            <trans-unit id="moderate">
+                <source>moderate</source>
+                <target>moderate</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

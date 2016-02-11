@@ -463,6 +463,18 @@
                 <source>form.label_mode_admin</source>
                 <target>Administrativ</target>
             </trans-unit>
+            <trans-unit id="valid">
+                <source>valid</source>
+                <target>Gültig</target>
+            </trans-unit>
+            <trans-unit id="invalid">
+                <source>invalid</source>
+                <target>Ungültig</target>
+            </trans-unit>
+            <trans-unit id="moderate">
+                <source>moderate</source>
+                <target>Moderiert</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
