@@ -17,7 +17,7 @@ Advanced Configuration
         salt:         'secureToken'
         permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
         permalink:
-            date:     %%1$04d/%%2$02d/%%3$02d/%%4$s => 2012/02/01/slug
+            date:     '%%1$04d/%%2$02d/%%3$02d/%%4$s' # => 2012/02/01/slug
         comment:
             notification:
                 emails:   [email@example.org, email2@example.org]
