@@ -5,17 +5,19 @@ Installation
 
 .. code-block:: json
 
-    //composer.json
-    "require": {
-    //...
-        "sonata-project/news-bundle": "dev-master",
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
-        "sonata-project/easy-extends-bundle": "dev-master",
-        "sonata-project/classification-bundle": "~2.2@dev",
-        "friendsofsymfony/rest-bundle": "~1.1", // optional when using api
-        "nelmio/api-doc-bundle": "~0.1|~1.0", // optional when using api
-    //...
+    {
+        "require": {
+            "sonata-project/news-bundle": "dev-master",
+            "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+            "sonata-project/easy-extends-bundle": "dev-master",
+            "sonata-project/classification-bundle": "~2.2@dev",
+            "friendsofsymfony/rest-bundle": "~1.1",
+            "nelmio/api-doc-bundle": "~0.1|~1.0"
+        }
     }
+
+``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle`` are needed only
+if you use the API.
 
 
 * Add SonataNewsBundle to your application kernel:
