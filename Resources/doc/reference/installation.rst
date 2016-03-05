@@ -1,20 +1,17 @@
 Installation
 ============
 
-* Add SonataNewsBundle to your vendor/bundles dir with the deps file:
+* Add SonataNewsBundle and dependencies to your ``composer.json`` file:
 
-.. code-block:: json
+.. code-block:: bash
 
-    {
-        "require": {
-            "sonata-project/news-bundle": "dev-master",
-            "sonata-project/doctrine-orm-admin-bundle": "dev-master",
-            "sonata-project/easy-extends-bundle": "dev-master",
-            "sonata-project/classification-bundle": "~2.2@dev",
-            "friendsofsymfony/rest-bundle": "~1.1",
-            "nelmio/api-doc-bundle": "~0.1|~1.0"
-        }
-    }
+    composer require sonata-project/news-bundle "dev-master" --no-update
+    composer require sonata-project/doctrine-orm-admin-bundle "dev-master" --no-update
+    composer require sonata-project/easy-extends-bundle "dev-master" --no-update
+    composer require friendsofsymfony/rest-bundle "~1.1" --no-update
+    composer require nelmio/api-doc-bundle "~0.1|~1.0" --no-update
+    composer require sonata-project/classification-bundle "~2.2@dev"
+
 
 ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle`` are needed only
 if you use the API.
@@ -27,6 +24,8 @@ if you use the API.
     <?php
 
     // app/AppKernel.php
+
+    // ...
     public function registerBundles()
     {
         return array(
@@ -47,14 +46,15 @@ if you use the API.
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            // ...
         );
     }
 
 
-* Create a configuration file : ``sonata_news.yml``:
+* Create a configuration file called ``sonata_news.yml``:
 
 .. code-block:: yaml
+
+    # app/config/sonata_news.yml
 
     sonata_news:
         title:        Sonata Project
@@ -77,26 +77,32 @@ if you use the API.
                     #query_cache_driver: apc
                     #result_cache_driver: apc
                     mappings:
-                        ApplicationSonataNewsBundle: ~
+                        #ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
-* import the ``sonata_news.yml`` file and enable json type for doctrine:
+
+* Import the ``sonata_news.yml`` file and enable json type for doctrine:
 
 .. code-block:: yaml
 
+    # app/config/config.yml
+
     imports:
-        #...
+        # ...
         - { resource: sonata_news.yml }
-    #...
+    # ...
     doctrine:
         dbal:
         # ...
             types:
                 json: Sonata\Doctrine\Types\JsonType
 
+
 * Add a new context into your ``sonata_media.yml`` configuration if you don't have go there https://sonata-project.org/bundles/media/master/doc/reference/installation.html:
 
 .. code-block:: yaml
+
+    # app/config/sonata_media.yml
 
     news:
         providers:
@@ -108,9 +114,12 @@ if you use the API.
             small: { width: 150 , quality: 95}
             big:   { width: 500 , quality: 90}
 
-* create configuration file ``sonata_formatter.yml`` the text formatters available for your blog post:
+* Create configuration file ``sonata_formatter.yml`` the text formatters available for your blog post:
+
 
 .. code-block:: yaml
+
+    # app/config/sonata_formatter.yml
 
     sonata_formatter:
         formatters:
@@ -143,7 +152,7 @@ if you use the API.
                     - sonata.media.formatter.twig
 
 
-* Run the easy-extends command:
+* Generate the application bundles:
 
 .. code-block:: bash
 
@@ -152,13 +161,16 @@ if you use the API.
     php app/console sonata:easy-extends:generate SonataMediaBundle -d src
     php app/console sonata:easy-extends:generate SonataClassificationBundle -d src
 
-* Enable the new bundles:
+
+* Enable the application bundles:
 
 .. code-block:: php
 
     <?php
 
     // app/AppKernel.php
+
+    // ...
     public function registerBundles()
     {
         return array(
@@ -167,11 +179,27 @@ if you use the API.
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
-            // ...
         );
     }
 
-Update database schema by running command ``php app/console doctrine:schema:update --force``
+
+* Uncomment the ApplicationSonataNewsBundle mapping inside ``sonata_news.yml`` :
+
+.. code-block:: yaml
+
+    # app/config/sonata_news.yml
+
+    doctrine:
+        orm:
+            entity_managers:
+                default:
+                    # ...
+                    mappings:
+                        ApplicationSonataNewsBundle: ~
+                        SonataNewsBundle: ~
+
+
+* Update database schema by running command ``php app/console doctrine:schema:update --force``
 
 * Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
 
@@ -180,6 +208,7 @@ Update database schema by running command ``php app/console doctrine:schema:upda
 .. code-block:: yaml
 
     # app/config/routing.yml
+
     news:
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
         prefix: /news
