@@ -17,7 +17,6 @@ use Sonata\CoreBundle\Model\BaseEntityManager;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
 use Sonata\NewsBundle\Model\BlogInterface;
-use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 class PostManager extends BaseEntityManager implements PostManagerInterface
