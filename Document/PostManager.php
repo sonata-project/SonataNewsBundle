@@ -15,16 +15,12 @@ use Sonata\CoreBundle\Model\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 use Sonata\NewsBundle\Model\BlogInterface;
-use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 class PostManager extends BaseDocumentManager implements PostManagerInterface
 {
     /**
-     * @param string        $permalink
-     * @param BlogInterface $blog
-     *
-     * @return PostInterface
+     * {@inheritdoc}
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {

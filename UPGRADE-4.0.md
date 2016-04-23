@@ -11,4 +11,9 @@ See also the [diff code](https://github.com/sonata-project/SonataNewsBundle/comp
 
 ## PostManager
 
+If you have implemented a custom post manager, you must adapt the signature of the following new methods to match the one in `PostManagerInterface` again:
+ * `findOneByPermalink`
+ * `getPager`
+ * `getPublicationDateQueryParts`
+
 If you are using mongodb, you have to use `PostManager::findOneBySlug` instead of `PostManager::findOneByPermalink`.
