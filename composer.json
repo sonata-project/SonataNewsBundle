@@ -22,7 +22,7 @@
         "sonata-project/core-bundle": "^3.0",
         "sonata-project/admin-bundle": "^3.0",
         "sonata-project/user-bundle": "3.x-dev",
-        "sonata-project/media-bundle": "2.4.x-dev",
+        "sonata-project/media-bundle": "3.x-dev",
         "sonata-project/classification-bundle": "3.x-dev@dev",
         "sonata-project/formatter-bundle": "2.4.x-dev",
         "sonata-project/easy-extends-bundle": "~2.1",
