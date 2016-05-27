@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -52,45 +52,6 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     }
 
     /**
-     * @param string $postTableName
-     *
-     * @return string
-     */
-    private function getCommentsCountResetQuery($postTableName)
-    {
-        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
-            case 'postgresql':
-                return sprintf('UPDATE %s SET comments_count = 0', $postTableName);
-
-            default :
-                return sprintf('UPDATE %s p SET p.comments_count = 0', $postTableName);
-        }
-    }
-
-    /**
-     * @param string $postTableName
-     * @param string $commentTableName
-     *
-     * @return string
-     */
-    private function getCommentsCountQuery($postTableName, $commentTableName)
-    {
-        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
-            case 'postgresql':
-                return sprintf(
-            'UPDATE %s SET comments_count = count_comment.total
-            FROM (SELECT c.post_id, count(*) AS total FROM %s AS c WHERE c.status = 1 GROUP BY c.post_id) count_comment
-            WHERE %s.id = count_comment.post_id', $postTableName, $commentTableName, $postTableName);
-
-            default :
-                return sprintf(
-            'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
-            SET p.comments_count = count_comment.total
-            WHERE p.id = count_comment.post_id', $postTableName, $commentTableName);
-        }
-    }
-
-    /**
      * Update the number of comment for a comment.
      *
      * @param null|\Sonata\NewsBundle\Model\PostInterface $post
@@ -98,7 +59,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     public function updateCommentsCount(PostInterface $post = null)
     {
         $commentTableName = $this->getObjectManager()->getClassMetadata($this->getClass())->table['name'];
-        $postTableName    = $this->getObjectManager()->getClassMetadata($this->postManager->getClass())->table['name'];
+        $postTableName = $this->getObjectManager()->getClassMetadata($this->postManager->getClass())->table['name'];
 
         $this->getConnection()->beginTransaction();
         $this->getConnection()->query($this->getCommentsCountResetQuery($postTableName));
@@ -155,5 +116,44 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
         $pager->init();
 
         return $pager;
+    }
+
+    /**
+     * @param string $postTableName
+     *
+     * @return string
+     */
+    private function getCommentsCountResetQuery($postTableName)
+    {
+        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
+            case 'postgresql':
+                return sprintf('UPDATE %s SET comments_count = 0', $postTableName);
+
+            default:
+                return sprintf('UPDATE %s p SET p.comments_count = 0', $postTableName);
+        }
+    }
+
+    /**
+     * @param string $postTableName
+     * @param string $commentTableName
+     *
+     * @return string
+     */
+    private function getCommentsCountQuery($postTableName, $commentTableName)
+    {
+        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
+            case 'postgresql':
+                return sprintf(
+            'UPDATE %s SET comments_count = count_comment.total
+            FROM (SELECT c.post_id, count(*) AS total FROM %s AS c WHERE c.status = 1 GROUP BY c.post_id) count_comment
+            WHERE %s.id = count_comment.post_id', $postTableName, $commentTableName, $postTableName);
+
+            default:
+                return sprintf(
+            'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
+            SET p.comments_count = count_comment.total
+            WHERE p.id = count_comment.post_id', $postTableName, $commentTableName);
+        }
     }
 }

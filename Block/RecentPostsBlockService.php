@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -45,7 +45,7 @@ class RecentPostsBlockService extends BaseBlockService
             @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\NewsBundle\Model\PostManagerInterface instead.', E_USER_DEPRECATED);
         }
 
-        $this->manager   = $postManager;
+        $this->manager = $postManager;
         $this->adminPool = $adminPool;
 
         parent::__construct($name, $templating);
@@ -61,10 +61,10 @@ class RecentPostsBlockService extends BaseBlockService
         );
 
         $parameters = array(
-            'context'    => $blockContext,
-            'settings'   => $blockContext->getSettings(),
-            'block'      => $blockContext->getBlock(),
-            'pager'      => $this->manager->getPager($criteria, 1, $blockContext->getSetting('number')),
+            'context' => $blockContext,
+            'settings' => $blockContext->getSettings(),
+            'block' => $blockContext->getBlock(),
+            'pager' => $this->manager->getPager($criteria, 1, $blockContext->getSetting('number')),
             'admin_pool' => $this->adminPool,
         );
 
@@ -84,16 +84,16 @@ class RecentPostsBlockService extends BaseBlockService
             'keys' => array(
                 array('number', 'integer', array(
                     'required' => true,
-                    'label'    => 'form.label_number',
+                    'label' => 'form.label_number',
                 )),
                 array('title', 'text', array(
                     'required' => false,
-                    'label'    => 'form.label_title',
+                    'label' => 'form.label_title',
                 )),
                 array('mode', 'choice', array(
                     'choices' => array(
                         'public' => 'form.label_mode_public',
-                        'admin'  => 'form.label_mode_admin',
+                        'admin' => 'form.label_mode_admin',
                     ),
                     'label' => 'form.label_mode',
                 )),
@@ -108,10 +108,10 @@ class RecentPostsBlockService extends BaseBlockService
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'number'     => 5,
-            'mode'       => 'public',
-            'title'      => 'Recent Posts',
-            'template'   => 'SonataNewsBundle:Block:recent_posts.html.twig',
+            'number' => 5,
+            'mode' => 'public',
+            'title' => 'Recent Posts',
+            'template' => 'SonataNewsBundle:Block:recent_posts.html.twig',
         ));
     }
 

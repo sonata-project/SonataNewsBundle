@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -53,11 +53,11 @@ class PostController extends Controller
         );
 
         $parameters = array_merge(array(
-            'pager'            => $pager,
-            'blog'             => $this->getBlog(),
-            'tag'              => false,
-            'collection'       => false,
-            'route'            => $request->get('_route'),
+            'pager' => $pager,
+            'blog' => $this->getBlog(),
+            'tag' => false,
+            'collection' => false,
+            'route' => $request->get('_route'),
             'route_parameters' => $request->get('_route_params'),
         ), $parameters);
 
@@ -93,7 +93,7 @@ class PostController extends Controller
         $request = $this->resolveRequest($request);
 
         $tag = $this->get('sonata.classification.manager.tag')->findOneBy(array(
-            'slug'    => $tag,
+            'slug' => $tag,
             'enabled' => true,
         ));
 
@@ -117,7 +117,7 @@ class PostController extends Controller
         $request = $this->resolveRequest($request);
 
         $collection = $this->get('sonata.classification.manager.collection')->findOneBy(array(
-            'slug'    => $collection,
+            'slug' => $collection,
             'enabled' => true,
         ));
 
@@ -181,7 +181,7 @@ class PostController extends Controller
                 ->addMeta('property', 'og:title', $post->getTitle())
                 ->addMeta('property', 'og:type', 'blog')
                 ->addMeta('property', 'og:url', $this->generateUrl('sonata_news_view', array(
-                    'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post, true),
+                    'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post, true),
                 ), UrlGeneratorInterface::ABSOLUTE_URL))
                 ->addMeta('property', 'og:description', $post->getAbstract())
             ;
@@ -215,12 +215,12 @@ class PostController extends Controller
     {
         $pager = $this->getCommentManager()
             ->getPager(array(
-                'postId'  => $postId,
-                'status'  => CommentInterface::STATUS_VALID,
+                'postId' => $postId,
+                'status' => CommentInterface::STATUS_VALID,
             ), 1, 500); //no limit
 
         return $this->render('SonataNewsBundle:Post:comments.html.twig', array(
-            'pager'  => $pager,
+            'pager' => $pager,
         ));
     }
 
@@ -241,8 +241,8 @@ class PostController extends Controller
         }
 
         return $this->render('SonataNewsBundle:Post:comment_form.html.twig', array(
-            'form'      => $form->createView(),
-            'post_id'   => $postId,
+            'form' => $form->createView(),
+            'post_id' => $postId,
         ));
     }
 
@@ -283,7 +283,7 @@ class PostController extends Controller
         if (!$post->isCommentable()) {
             // todo add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-                'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post),
+                'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
             )));
         }
 
@@ -298,7 +298,7 @@ class PostController extends Controller
 
             // todo : add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-                'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($post),
+                'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
             )));
         }
 
@@ -306,30 +306,6 @@ class PostController extends Controller
             'post' => $post,
             'form' => $form,
         ));
-    }
-
-    /**
-     * @return PostManagerInterface
-     */
-    protected function getPostManager()
-    {
-        return $this->get('sonata.news.manager.post');
-    }
-
-    /**
-     * @return CommentManagerInterface
-     */
-    protected function getCommentManager()
-    {
-        return $this->get('sonata.news.manager.comment');
-    }
-
-    /**
-     * @return BlogInterface
-     */
-    protected function getBlog()
-    {
-        return $this->get('sonata.news.blog');
     }
 
     /**
@@ -360,8 +336,32 @@ class PostController extends Controller
         $this->getCommentManager()->save($comment);
 
         return new RedirectResponse($this->generateUrl('sonata_news_view', array(
-            'permalink'  => $this->getBlog()->getPermalinkGenerator()->generate($comment->getPost()),
+            'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($comment->getPost()),
         )));
+    }
+
+    /**
+     * @return PostManagerInterface
+     */
+    protected function getPostManager()
+    {
+        return $this->get('sonata.news.manager.post');
+    }
+
+    /**
+     * @return CommentManagerInterface
+     */
+    protected function getCommentManager()
+    {
+        return $this->get('sonata.news.manager.comment');
+    }
+
+    /**
+     * @return BlogInterface
+     */
+    protected function getBlog()
+    {
+        return $this->get('sonata.news.blog');
     }
 
     /**

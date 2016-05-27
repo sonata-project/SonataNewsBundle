@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of sonata-project.
+ * This file is part of the Sonata Project package.
  *
- * (c) 2010 Thomas Rabaix
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -46,9 +46,9 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
             @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\ClassificationBundle\Model\TagManagerInterface instead.', E_USER_DEPRECATED);
         }
 
-        $this->router     = $router;
+        $this->router = $router;
         $this->tagManager = $tagManager;
-        $this->blog       = $blog;
+        $this->blog = $blog;
     }
 
     /**

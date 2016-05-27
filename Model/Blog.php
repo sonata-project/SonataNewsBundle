@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -34,8 +34,8 @@ class Blog implements BlogInterface
      */
     public function __construct($title, $link, $description, PermalinkInterface $permalinkGenerator)
     {
-        $this->title       = $title;
-        $this->link        = $link;
+        $this->title = $title;
+        $this->link = $link;
         $this->description = $description;
         $this->permalinkGenerator = $permalinkGenerator;
     }

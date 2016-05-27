@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -74,11 +74,11 @@ class PostController
      */
     public function __construct(PostManagerInterface $postManager, CommentManagerInterface $commentManager, MailerInterface $mailer, FormFactoryInterface $formFactory, FormatterPool $formatterPool)
     {
-        $this->postManager    = $postManager;
+        $this->postManager = $postManager;
         $this->commentManager = $commentManager;
-        $this->mailer         = $mailer;
-        $this->formFactory    = $formFactory;
-        $this->formatterPool  = $formatterPool;
+        $this->mailer = $mailer;
+        $this->formFactory = $formFactory;
+        $this->formatterPool = $formatterPool;
     }
 
     /**
@@ -108,7 +108,7 @@ class PostController
      */
     public function getPostsAction(ParamFetcherInterface $paramFetcher)
     {
-        $page  = $paramFetcher->get('page');
+        $page = $paramFetcher->get('page');
         $count = $paramFetcher->get('count');
 
         $pager = $this->postManager->getPager($this->filterCriteria($paramFetcher), $page, $count);
@@ -263,10 +263,10 @@ class PostController
     {
         $post = $this->getPost($id);
 
-        $page  = $paramFetcher->get('page');
+        $page = $paramFetcher->get('page');
         $count = $paramFetcher->get('count');
 
-        $criteria           = $this->filterCriteria($paramFetcher);
+        $criteria = $this->filterCriteria($paramFetcher);
         $criteria['postId'] = $post->getId();
 
         /** @var PagerInterface $pager */
@@ -426,7 +426,7 @@ class PostController
         if (array_key_exists('dateValue', $criteria)) {
             $date = new \DateTime($criteria['dateValue']);
             $criteria['date'] = array(
-                'query'  => sprintf('p.publicationDateStart %s :dateValue', $criteria['dateQuery']),
+                'query' => sprintf('p.publicationDateStart %s :dateValue', $criteria['dateQuery']),
                 'params' => array('dateValue' => $date),
             );
             unset($criteria['dateValue'], $criteria['dateQuery']);

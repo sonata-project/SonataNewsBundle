@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -61,6 +61,14 @@ abstract class Post implements PostInterface
     public function __construct()
     {
         $this->setPublicationDateStart(new \DateTime());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->getTitle() ?: 'n/a';
     }
 
     /**
@@ -351,14 +359,6 @@ abstract class Post implements PostInterface
     public function getCommentsCount()
     {
         return $this->commentsCount;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return $this->getTitle() ?: 'n/a';
     }
 
     /**

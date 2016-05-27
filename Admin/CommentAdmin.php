@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -26,6 +26,62 @@ class CommentAdmin extends Admin
      * @var CommentManagerInterface
      */
     protected $commentManager;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBatchActions()
+    {
+        $actions = parent::getBatchActions();
+
+        $actions['enabled'] = array(
+            'label' => $this->trans($this->getLabelTranslatorStrategy()->getLabel('enable', 'batch', 'comment')),
+            'ask_confirmation' => false,
+        );
+
+        $actions['disabled'] = array(
+            'label' => $this->trans($this->getLabelTranslatorStrategy()->getLabel('disable', 'batch', 'comment')),
+            'ask_confirmation' => false,
+        );
+
+        return $actions;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postPersist($object)
+    {
+        $this->updateCountsComment();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postRemove($object)
+    {
+        $this->updateCountsComment();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postUpdate($object)
+    {
+        $this->updateCountsComment();
+    }
+
+    /**
+     * @param ManagerInterface $commentManager
+     */
+    public function setCommentManager(ManagerInterface $commentManager)
+    {
+        if (!$commentManager instanceof CommentManagerInterface) {
+            @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.', E_USER_DEPRECATED);
+        }
+
+        $this->commentManager = $commentManager;
+    }
 
     /**
      * {@inheritdoc}
@@ -95,66 +151,10 @@ class CommentAdmin extends Admin
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getBatchActions()
-    {
-        $actions = parent::getBatchActions();
-
-        $actions['enabled'] = array(
-            'label'            => $this->trans($this->getLabelTranslatorStrategy()->getLabel('enable', 'batch', 'comment')),
-            'ask_confirmation' => false,
-        );
-
-        $actions['disabled'] = array(
-            'label'            => $this->trans($this->getLabelTranslatorStrategy()->getLabel('disable', 'batch', 'comment')),
-            'ask_confirmation' => false,
-        );
-
-        return $actions;
-    }
-
-    /**
      * Update the count comment.
      */
     private function updateCountsComment()
     {
         $this->commentManager->updateCommentsCount();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postPersist($object)
-    {
-        $this->updateCountsComment();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postRemove($object)
-    {
-        $this->updateCountsComment();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postUpdate($object)
-    {
-        $this->updateCountsComment();
-    }
-
-    /**
-     * @param ManagerInterface $commentManager
-     */
-    public function setCommentManager(ManagerInterface $commentManager)
-    {
-        if (!$commentManager instanceof CommentManagerInterface) {
-            @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.', E_USER_DEPRECATED);
-        }
-
-        $this->commentManager = $commentManager;
     }
 }
