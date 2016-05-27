@@ -17,32 +17,36 @@
         }
     ],
     "require": {
-        "symfony/symfony": "~2.3|~3.0",
-        "sonata-project/admin-bundle": "~2.3",
-        "sonata-project/user-bundle": "~2.2",
-        "sonata-project/media-bundle": "~2.2",
-        "sonata-project/classification-bundle": "~2.2",
-        "sonata-project/formatter-bundle": "~2.3",
-        "sonata-project/easy-extends-bundle": "~2.1",
-        "sonata-project/intl-bundle": "~2.1",
-        "sonata-project/datagrid-bundle": "~2.2",
-        "sonata-project/core-bundle": "~2.3,>=2.3.10"
+        "php": "^5.3 || ^7.0",
+        "symfony/symfony": "^2.3 || ^3.0",
+        "sonata-project/admin-bundle": "^3.0",
+        "sonata-project/user-bundle": "^3.0",
+        "sonata-project/media-bundle": "^3.0",
+        "sonata-project/classification-bundle": "^3.0",
+        "sonata-project/formatter-bundle": "^3.0",
+        "sonata-project/easy-extends-bundle": "^2.1",
+        "sonata-project/intl-bundle": "^2.2.4",
+        "sonata-project/datagrid-bundle": "^2.2",
+        "sonata-project/core-bundle": "^3.0"
     },
     "require-dev": {
-        "doctrine/orm": "*",
-        "sonata-project/doctrine-orm-admin-bundle": "~2.2",
-        "sonata-project/notification-bundle": "~2.2",
-        "sonata-project/seo-bundle": "~1.1|~2.0",
-        "friendsofsymfony/rest-bundle": "~1.1",
-        "nelmio/api-doc-bundle": "~2.4",
-        "jms/serializer-bundle": "~0.11|~1.0"
+        "doctrine/orm": "^2.5",
+        "sonata-project/doctrine-orm-admin-bundle": "^3.0",
+        "sonata-project/notification-bundle": "^3.0",
+        "sonata-project/seo-bundle": "^2.0",
+        "friendsofsymfony/rest-bundle": "^1.1",
+        "nelmio/api-doc-bundle": "^2.4",
+        "jms/serializer-bundle": "^0.11 || ^1.0"
     },
     "conflict": {
-        "jms/serializer": "<0.13"
+        "jms/serializer": "<0.13",
+        "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
+        "sonata-project/notification-bundle": "<3.0 || >=4.0",
+        "sonata-project/seo-bundle": "<2.0 || >=3.0"
     },
     "suggest": {
-        "sonata-project/doctrine-orm-admin-bundle": "~2.2",
-        "sonata-project/notification-bundle": "~2.2"
+        "sonata-project/doctrine-orm-admin-bundle": "^2.2",
+        "sonata-project/notification-bundle": "^2.2"
     },
     "autoload": {
         "psr-4": { "Sonata\\NewsBundle\\": "" }
@@ -51,7 +55,5 @@
         "branch-alias": {
             "dev-master": "3.x-dev"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
