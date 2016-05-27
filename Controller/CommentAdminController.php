@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -18,6 +18,26 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class CommentAdminController extends CRUDController
 {
+    /**
+     * @param ProxyQueryInterface $query
+     *
+     * @return RedirectResponse
+     */
+    public function batchActionEnabled(ProxyQueryInterface $query)
+    {
+        return $this->commentChangeStatus($query, true);
+    }
+
+    /**
+     * @param ProxyQueryInterface $query
+     *
+     * @return RedirectResponse
+     */
+    public function batchActionDisabled(ProxyQueryInterface $query)
+    {
+        return $this->commentChangeStatus($query, false);
+    }
+
     /**
      * @param ProxyQueryInterface $query
      * @param                     $status
@@ -39,25 +59,5 @@ class CommentAdminController extends CRUDController
         }
 
         return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
-    }
-
-    /**
-     * @param ProxyQueryInterface $query
-     *
-     * @return RedirectResponse
-     */
-    public function batchActionEnabled(ProxyQueryInterface $query)
-    {
-        return $this->commentChangeStatus($query, true);
-    }
-
-    /**
-     * @param ProxyQueryInterface $query
-     *
-     * @return RedirectResponse
-     */
-    public function batchActionDisabled(ProxyQueryInterface $query)
-    {
-        return $this->commentChangeStatus($query, false);
     }
 }

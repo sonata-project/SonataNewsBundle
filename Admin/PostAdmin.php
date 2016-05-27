@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -41,6 +41,46 @@ class PostAdmin extends Admin
     protected $permalinkGenerator;
 
     /**
+     * @param UserManagerInterface $userManager
+     */
+    public function setUserManager($userManager)
+    {
+        $this->userManager = $userManager;
+    }
+
+    /**
+     * @param FormatterPool $formatterPool
+     */
+    public function setPoolFormatter(FormatterPool $formatterPool)
+    {
+        $this->formatterPool = $formatterPool;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($post)
+    {
+        $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($post)
+    {
+        $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
+    }
+
+    /**
+     * @param PermalinkInterface $permalinkGenerator
+     */
+    public function setPermalinkGenerator(PermalinkInterface $permalinkGenerator)
+    {
+        $this->permalinkGenerator = $permalinkGenerator;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
@@ -68,16 +108,16 @@ class PostAdmin extends Admin
                 ->add('title')
                 ->add('abstract', null, array('attr' => array('rows' => 5)))
                 ->add('content', 'sonata_formatter_type', array(
-                    'event_dispatcher'          => $formMapper->getFormBuilder()->getEventDispatcher(),
-                    'format_field'              => 'contentFormatter',
-                    'source_field'              => 'rawContent',
-                    'source_field_options'      => array(
+                    'event_dispatcher' => $formMapper->getFormBuilder()->getEventDispatcher(),
+                    'format_field' => 'contentFormatter',
+                    'source_field' => 'rawContent',
+                    'source_field_options' => array(
                         'horizontal_input_wrapper_class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'col-lg-12' : '',
-                        'attr'                           => array('class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'span10 col-sm-10 col-md-10' : '', 'rows' => 20),
+                        'attr' => array('class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'span10 col-sm-10 col-md-10' : '', 'rows' => 20),
                     ),
-                    'ckeditor_context'     => 'news',
-                    'target_field'         => 'content',
-                    'listener'             => true,
+                    'ckeditor_context' => 'news',
+                    'target_field' => 'content',
+                    'listener' => true,
                 ))
             ->end()
             ->with('group_status', array(
@@ -86,7 +126,7 @@ class PostAdmin extends Admin
                 ->add('enabled', null, array('required' => false))
                 ->add('image', 'sonata_type_model_list', array('required' => false), array(
                     'link_parameters' => array(
-                        'context'      => 'news',
+                        'context' => 'news',
                         'hide_context' => true,
                     ),
                 ))
@@ -94,7 +134,7 @@ class PostAdmin extends Admin
                 ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
                 ->add('commentsCloseAt', 'sonata_type_datetime_picker', array(
                     'dp_side_by_side' => true,
-                    'required'        => false,
+                    'required' => false,
                 ))
                 ->add('commentsEnabled', null, array('required' => false))
                 ->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
@@ -121,7 +161,7 @@ class PostAdmin extends Admin
         $listMapper
             ->add('custom', 'string', array(
                 'template' => 'SonataNewsBundle:Admin:list_post_custom.html.twig',
-                'label'    => 'Post',
+                'label' => 'Post',
                 'sortable' => 'title',
             ))
             ->add('commentsEnabled', null, array('editable' => true))
@@ -186,45 +226,5 @@ class PostAdmin extends Admin
                 array('uri' => $admin->getRouteGenerator()->generate('sonata_news_view', array('permalink' => $this->permalinkGenerator->generate($this->getSubject()))))
             );
         }
-    }
-
-    /**
-     * @param UserManagerInterface $userManager
-     */
-    public function setUserManager($userManager)
-    {
-        $this->userManager = $userManager;
-    }
-
-    /**
-     * @param FormatterPool $formatterPool
-     */
-    public function setPoolFormatter(FormatterPool $formatterPool)
-    {
-        $this->formatterPool = $formatterPool;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function prePersist($post)
-    {
-        $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function preUpdate($post)
-    {
-        $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
-    }
-
-    /**
-     * @param PermalinkInterface $permalinkGenerator
-     */
-    public function setPermalinkGenerator(PermalinkInterface $permalinkGenerator)
-    {
-        $this->permalinkGenerator = $permalinkGenerator;
     }
 }

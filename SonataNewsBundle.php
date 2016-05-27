@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Sonata Project package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sonata\NewsBundle;
 
 use Sonata\CoreBundle\Form\FormHelper;
@@ -30,10 +39,10 @@ class SonataNewsBundle extends Bundle
     public function registerFormMapping()
     {
         FormHelper::registerFormTypeMapping(array(
-            'sonata_post_comment'          => 'Sonata\NewsBundle\Form\Type\CommentType',
-            'sonata_news_comment_status'   => 'Sonata\NewsBundle\Form\Type\CommentStatusType',
+            'sonata_post_comment' => 'Sonata\NewsBundle\Form\Type\CommentType',
+            'sonata_news_comment_status' => 'Sonata\NewsBundle\Form\Type\CommentStatusType',
             'sonata_news_api_form_comment' => 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType',
-            'sonata_news_api_form_post'    => 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType',
+            'sonata_news_api_form_post' => 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType',
         ));
     }
 }

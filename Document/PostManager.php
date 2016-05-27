@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -82,10 +82,10 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
     public function getPublicationDateQueryParts($date, $step, $alias = 'p')
     {
         return array(
-            'query'  => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
+            'query' => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
             'params' => array(
                 'startDate' => new \DateTime($date),
-                'endDate'   => new \DateTime($date.'+1 '.$step),
+                'endDate' => new \DateTime($date.'+1 '.$step),
             ),
         );
     }
