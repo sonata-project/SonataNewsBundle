@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -21,16 +21,6 @@ use Sonata\NewsBundle\Entity\PostManager;
  */
 class PostManagerTest extends \PHPUnit_Framework_TestCase
 {
-    protected function getPostManager($qbCallback)
-    {
-        $em = EntityManagerMockFactory::create($this, $qbCallback, array());
-
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
-
-        return new PostManager('Sonata\NewsBundle\Entity\BasePost', $registry);
-    }
-
     public function assertRelationsEnabled($qb)
     {
         $qb
@@ -136,7 +126,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
                 $self->assertPostEnabled($qb, 1);
             })
             ->getPager(array(
-                'mode'    => 'public',
+                'mode' => 'public',
                 'enabled' => 1,
             ), 1);
     }
@@ -150,7 +140,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
                 $self->assertPostEnabled($qb, 0);
             })
             ->getPager(array(
-                'mode'    => 'public',
+                'mode' => 'public',
                 'enabled' => 0,
             ), 1);
     }
@@ -178,7 +168,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
                 $self->assertPostEnabled($qb, 1);
             })
             ->getPager(array(
-                'mode'    => 'admin',
+                'mode' => 'admin',
                 'enabled' => 1,
             ), 1);
     }
@@ -192,7 +182,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
                 $self->assertPostEnabled($qb, 0);
             })
             ->getPager(array(
-                'mode'    => 'admin',
+                'mode' => 'admin',
                 'enabled' => 0,
             ), 1);
     }
@@ -206,5 +196,15 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($result);
         $this->assertEquals(new \DateTime('2010-02-10'), $result['params']['startDate']);
         $this->assertEquals(new \DateTime('2010-03-10'), $result['params']['endDate']);
+    }
+
+    protected function getPostManager($qbCallback)
+    {
+        $em = EntityManagerMockFactory::create($this, $qbCallback, array());
+
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
+
+        return new PostManager('Sonata\NewsBundle\Entity\BasePost', $registry);
     }
 }

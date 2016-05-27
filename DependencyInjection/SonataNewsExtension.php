@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -100,12 +100,12 @@ class SonataNewsExtension extends Extension
     public function configureClass($config, ContainerBuilder $container)
     {
         // admin configuration
-        $container->setParameter('sonata.news.admin.post.entity',       $config['class']['post']);
-        $container->setParameter('sonata.news.admin.comment.entity',    $config['class']['comment']);
+        $container->setParameter('sonata.news.admin.post.entity', $config['class']['post']);
+        $container->setParameter('sonata.news.admin.comment.entity', $config['class']['comment']);
 
         // manager configuration
-        $container->setParameter('sonata.news.manager.post.entity',     $config['class']['post']);
-        $container->setParameter('sonata.news.manager.comment.entity',  $config['class']['comment']);
+        $container->setParameter('sonata.news.manager.post.entity', $config['class']['post']);
+        $container->setParameter('sonata.news.manager.comment.entity', $config['class']['comment']);
     }
 
     /**
@@ -114,12 +114,12 @@ class SonataNewsExtension extends Extension
      */
     public function configureAdmin($config, ContainerBuilder $container)
     {
-        $container->setParameter('sonata.news.admin.post.class',              $config['admin']['post']['class']);
-        $container->setParameter('sonata.news.admin.post.controller',         $config['admin']['post']['controller']);
+        $container->setParameter('sonata.news.admin.post.class', $config['admin']['post']['class']);
+        $container->setParameter('sonata.news.admin.post.controller', $config['admin']['post']['controller']);
         $container->setParameter('sonata.news.admin.post.translation_domain', $config['admin']['post']['translation']);
 
-        $container->setParameter('sonata.news.admin.comment.class',              $config['admin']['comment']['class']);
-        $container->setParameter('sonata.news.admin.comment.controller',         $config['admin']['comment']['controller']);
+        $container->setParameter('sonata.news.admin.comment.class', $config['admin']['comment']['class']);
+        $container->setParameter('sonata.news.admin.comment.controller', $config['admin']['comment']['controller']);
         $container->setParameter('sonata.news.admin.comment.translation_domain', $config['admin']['comment']['translation']);
     }
 
@@ -137,34 +137,34 @@ class SonataNewsExtension extends Extension
         }
 
         $collector->addAssociation($config['class']['post'], 'mapOneToMany', array(
-            'fieldName'    => 'comments',
+            'fieldName' => 'comments',
             'targetEntity' => $config['class']['comment'],
-            'cascade'      => array(
+            'cascade' => array(
                     0 => 'remove',
                     1 => 'persist',
                 ),
-            'mappedBy'      => 'post',
+            'mappedBy' => 'post',
             'orphanRemoval' => true,
-            'orderBy'       => array(
+            'orderBy' => array(
                     'createdAt' => 'DESC',
                 ),
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
-            'fieldName'    => 'image',
+            'fieldName' => 'image',
             'targetEntity' => $config['class']['media'],
-            'cascade'      => array(
+            'cascade' => array(
                     0 => 'remove',
                     1 => 'persist',
                     2 => 'refresh',
                     3 => 'merge',
                     4 => 'detach',
                 ),
-            'mappedBy'    => null,
-            'inversedBy'  => null,
+            'mappedBy' => null,
+            'inversedBy' => null,
             'joinColumns' => array(
                     array(
-                        'name'                 => 'image_id',
+                        'name' => 'image_id',
                         'referencedColumnName' => 'id',
                     ),
                 ),
@@ -172,16 +172,16 @@ class SonataNewsExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
-            'fieldName'    => 'author',
+            'fieldName' => 'author',
             'targetEntity' => $config['class']['user'],
-            'cascade'      => array(
+            'cascade' => array(
                     1 => 'persist',
                 ),
-            'mappedBy'    => null,
-            'inversedBy'  => null,
+            'mappedBy' => null,
+            'inversedBy' => null,
             'joinColumns' => array(
                     array(
-                        'name'                 => 'author_id',
+                        'name' => 'author_id',
                         'referencedColumnName' => 'id',
                     ),
                 ),
@@ -189,16 +189,16 @@ class SonataNewsExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
-            'fieldName'    => 'collection',
+            'fieldName' => 'collection',
             'targetEntity' => $config['class']['collection'],
-            'cascade'      => array(
+            'cascade' => array(
                     1 => 'persist',
                 ),
-            'mappedBy'    => null,
-            'inversedBy'  => null,
+            'mappedBy' => null,
+            'inversedBy' => null,
             'joinColumns' => array(
                     array(
-                        'name'                 => 'collection_id',
+                        'name' => 'collection_id',
                         'referencedColumnName' => 'id',
                     ),
                 ),
@@ -206,22 +206,22 @@ class SonataNewsExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['post'], 'mapManyToMany', array(
-            'fieldName'    => 'tags',
+            'fieldName' => 'tags',
             'targetEntity' => $config['class']['tag'],
-            'cascade'      => array(
+            'cascade' => array(
                     1 => 'persist',
                 ),
             'joinTable' => array(
-                    'name'        => $config['table']['post_tag'],
+                    'name' => $config['table']['post_tag'],
                     'joinColumns' => array(
                             array(
-                                'name'                 => 'post_id',
+                                'name' => 'post_id',
                                 'referencedColumnName' => 'id',
                             ),
                         ),
                     'inverseJoinColumns' => array(
                             array(
-                                'name'                 => 'tag_id',
+                                'name' => 'tag_id',
                                 'referencedColumnName' => 'id',
                             ),
                         ),
@@ -229,17 +229,17 @@ class SonataNewsExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['comment'], 'mapManyToOne', array(
-            'fieldName'    => 'post',
+            'fieldName' => 'post',
             'targetEntity' => $config['class']['post'],
-            'cascade'      => array(
+            'cascade' => array(
             ),
-            'mappedBy'    => null,
-            'inversedBy'  => 'comments',
+            'mappedBy' => null,
+            'inversedBy' => 'comments',
             'joinColumns' => array(
                     array(
-                        'name'                 => 'post_id',
+                        'name' => 'post_id',
                         'referencedColumnName' => 'id',
-                        'nullable'             => false,
+                        'nullable' => false,
                     ),
                 ),
             'orphanRemoval' => false,

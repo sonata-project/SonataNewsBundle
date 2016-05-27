@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -29,7 +29,7 @@ abstract class BaseNewsBreadcrumbBlockService extends BaseBreadcrumbMenuBlockSer
         $menu = parent::getRootMenu($blockContext);
 
         $menu->addChild('sonata_news_archive_breadcrumb', array(
-            'route'  => 'sonata_news_home',
+            'route' => 'sonata_news_home',
             'extras' => array('translation_domain' => 'SonataNewsBundle'),
         ));
 

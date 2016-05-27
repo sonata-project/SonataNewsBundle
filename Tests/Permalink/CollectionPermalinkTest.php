@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -43,7 +43,7 @@ class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
         $permalink = new CollectionPermalink();
         $expected = array(
             'collection' => 'the-collection',
-            'slug'       => 'the-slug',
+            'slug' => 'the-slug',
         );
 
         $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug'));
@@ -54,7 +54,7 @@ class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
         $permalink = new CollectionPermalink();
         $expected = array(
             'collection' => null,
-            'slug'       => 'the-slug',
+            'slug' => 'the-slug',
         );
 
         $this->assertEquals($expected, $permalink->getParameters('the-slug'));
@@ -67,7 +67,7 @@ class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
         $permalink = new CollectionPermalink();
         $expected = array(
             'collection' => 'the-collection',
-            'slug'       => 'the-slug',
+            'slug' => 'the-slug',
         );
 
         $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug/asdsaasds'));
