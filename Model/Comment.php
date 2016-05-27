@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -68,6 +68,14 @@ abstract class Comment implements CommentInterface
      * @var \Sonata\NewsBundle\Model\PostInterface
      */
     protected $post;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->getName() ?: 'n-a';
+    }
 
     /**
      * {@inheritdoc}
@@ -172,8 +180,8 @@ abstract class Comment implements CommentInterface
     {
         return array(
             self::STATUS_MODERATE => 'moderate',
-            self::STATUS_INVALID  => 'invalid',
-            self::STATUS_VALID    => 'valid',
+            self::STATUS_INVALID => 'invalid',
+            self::STATUS_VALID => 'valid',
         );
     }
 
@@ -222,13 +230,5 @@ abstract class Comment implements CommentInterface
     public function getPost()
     {
         return $this->post;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return $this->getName() ?: 'n-a';
     }
 }

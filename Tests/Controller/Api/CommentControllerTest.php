@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -40,20 +40,6 @@ class CommentControllerTest extends \PHPUnit_Framework_TestCase
         $this->createCommentController()->getCommentAction(42);
     }
 
-    /**
-     * @param null $commentManager
-     *
-     * @return CommentController
-     */
-    protected function createCommentController($commentManager = null)
-    {
-        if (null === $commentManager) {
-            $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        }
-
-        return new CommentController($commentManager);
-    }
-
     public function testDeleteCommentAction()
     {
         $comment = $this->getMock('Sonata\NewsBundle\Model\CommentInterface');
@@ -76,5 +62,19 @@ class CommentControllerTest extends \PHPUnit_Framework_TestCase
         $commentManager->expects($this->never())->method('delete');
 
         $this->createCommentController($commentManager)->deleteCommentAction(1);
+    }
+
+    /**
+     * @param null $commentManager
+     *
+     * @return CommentController
+     */
+    protected function createCommentController($commentManager = null)
+    {
+        if (null === $commentManager) {
+            $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
+        }
+
+        return new CommentController($commentManager);
     }
 }

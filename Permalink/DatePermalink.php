@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
- * (c) Sonata Project
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -55,10 +55,10 @@ class DatePermalink implements PermalinkInterface
         list($year, $month, $day, $slug) = $parameters;
 
         return array(
-            'year'  => (int) $year,
+            'year' => (int) $year,
             'month' => (int) $month,
-            'day'   => (int) $day,
-            'slug'  => $slug,
+            'day' => (int) $day,
+            'slug' => $slug,
         );
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -24,18 +24,6 @@ use Sonata\NewsBundle\Model\CommentInterface;
  */
 class CommentManagerTest extends \PHPUnit_Framework_TestCase
 {
-    protected function getCommentManager($qbCallback)
-    {
-        $em = EntityManagerMockFactory::create($this, $qbCallback, array());
-
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
-
-        $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
-
-        return new CommentManager('Sonata\NewsBundle\Entity\BasePost', $registry, $postManager);
-    }
-
     public function testGetPager()
     {
         $self = $this;
@@ -84,5 +72,17 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
             ->getPager(array(
                 'postId' => 50,
             ), 1);
+    }
+
+    protected function getCommentManager($qbCallback)
+    {
+        $em = EntityManagerMockFactory::create($this, $qbCallback, array());
+
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
+
+        $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
+
+        return new CommentManager('Sonata\NewsBundle\Entity\BasePost', $registry, $postManager);
     }
 }

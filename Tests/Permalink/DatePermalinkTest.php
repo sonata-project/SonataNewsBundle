@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -43,10 +43,10 @@ class DatePermalinkTest extends \PHPUnit_Framework_TestCase
     {
         $permalink = new DatePermalink();
         $expected = array(
-            'year'  => '2011',
+            'year' => '2011',
             'month' => '12',
-            'day'   => '30',
-            'slug'  => 'the-slug',
+            'day' => '30',
+            'slug' => 'the-slug',
         );
 
         $this->assertEquals($expected, $permalink->getParameters('2011/12/30/the-slug'));
@@ -58,10 +58,10 @@ class DatePermalinkTest extends \PHPUnit_Framework_TestCase
 
         $permalink = new DatePermalink();
         $expected = array(
-            'year'  => '2011',
+            'year' => '2011',
             'month' => '12',
-            'day'   => '30',
-            'slug'  => 'the-slug',
+            'day' => '30',
+            'slug' => 'the-slug',
         );
 
         $this->assertEquals($expected, $permalink->getParameters('2011/12/the-slug'));

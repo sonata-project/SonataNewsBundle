@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -48,13 +48,25 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
     /**
      * {@inheritdoc}
      */
+    public function configureSettings(OptionsResolver $resolver)
+    {
+        parent::configureSettings($resolver);
+
+        $resolver->setDefaults(array(
+            'post' => false,
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getMenu(BlockContextInterface $blockContext)
     {
         $menu = $this->getRootMenu($blockContext);
 
         if ($post = $blockContext->getBlock()->getSetting('post')) {
             $menu->addChild($post->getTitle(), array(
-                'route'           => 'sonata_news_view',
+                'route' => 'sonata_news_view',
                 'routeParameters' => array(
                     'permalink' => $this->blog->getPermalinkGenerator()->generate($post),
                 ),
@@ -62,17 +74,5 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         }
 
         return $menu;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function configureSettings(OptionsResolver $resolver)
-    {
-        parent::configureSettings($resolver);
-
-        $resolver->setDefaults(array(
-            'post'  => false,
-        ));
     }
 }
