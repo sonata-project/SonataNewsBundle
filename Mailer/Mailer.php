@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -58,12 +58,12 @@ class Mailer implements MailerInterface
      */
     public function __construct($mailer, BlogInterface $blog, HashGeneratorInterface $generator, RouterInterface $router, EngineInterface $templating, array $emails)
     {
-        $this->blog          = $blog;
-        $this->mailer        = $mailer;
+        $this->blog = $blog;
+        $this->mailer = $mailer;
         $this->hashGenerator = $generator;
-        $this->router        = $router;
-        $this->templating    = $templating;
-        $this->emails        = $emails;
+        $this->router = $router;
+        $this->templating = $templating;
+        $this->emails = $emails;
     }
 
     /**
@@ -73,9 +73,9 @@ class Mailer implements MailerInterface
     {
         $rendered = $this->templating->render($this->emails['notification']['template'], array(
             'comment' => $comment,
-            'post'    => $comment->getPost(),
-            'hash'    => $this->hashGenerator->generate($comment),
-            'blog'    => $this->blog,
+            'post' => $comment->getPost(),
+            'hash' => $this->hashGenerator->generate($comment),
+            'blog' => $this->blog,
         ));
 
         $this->sendEmailMessage($rendered, $this->emails['notification']['from'], $this->emails['notification']['emails']);

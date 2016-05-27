@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -23,7 +23,7 @@ abstract class BasePost extends ModelPost
     {
         parent::__construct();
 
-        $this->tags     = new ArrayCollection();
+        $this->tags = new ArrayCollection();
         $this->comments = new ArrayCollection();
 
         $this->setPublicationDateStart(new \DateTime());

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -32,13 +32,26 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
     /**
      * {@inheritdoc}
      */
+    public function configureSettings(OptionsResolver $resolver)
+    {
+        parent::configureSettings($resolver);
+
+        $resolver->setDefaults(array(
+            'collection' => false,
+            'tag' => false,
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getMenu(BlockContextInterface $blockContext)
     {
         $menu = $this->getRootMenu($blockContext);
 
         if ($collection = $blockContext->getBlock()->getSetting('collection')) {
             $menu->addChild($collection->getName(), array(
-                'route'           => 'sonata_news_collection',
+                'route' => 'sonata_news_collection',
                 'routeParameters' => array(
                     'collection' => $collection->getSlug(),
                 ),
@@ -47,7 +60,7 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
 
         if ($tag = $blockContext->getBlock()->getSetting('tag')) {
             $menu->addChild($tag->getName(), array(
-                'route'           => 'sonata_news_tag',
+                'route' => 'sonata_news_tag',
                 'routeParameters' => array(
                     'tag' => $tag->getSlug(),
                 ),
@@ -55,18 +68,5 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         }
 
         return $menu;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function configureSettings(OptionsResolver $resolver)
-    {
-        parent::configureSettings($resolver);
-
-        $resolver->setDefaults(array(
-            'collection'  => false,
-            'tag'         => false,
-        ));
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -13,8 +13,8 @@ namespace Sonata\NewsBundle\Model;
 
 interface CommentInterface
 {
-    const STATUS_INVALID  = 0;
-    const STATUS_VALID    = 1;
+    const STATUS_INVALID = 0;
+    const STATUS_VALID = 1;
     const STATUS_MODERATE = 2;
 
     public function getId();
