@@ -10,7 +10,7 @@ Symfony SonataNewsBundle
 [![Monthly Downloads](https://poser.pugx.org/sonata-project/news-bundle/d/monthly)](https://packagist.org/packages/sonata-project/news-bundle)
 [![Daily Downloads](https://poser.pugx.org/sonata-project/news-bundle/d/daily)](https://packagist.org/packages/sonata-project/news-bundle)
 
-master status: [![Build Status](https://travis-ci.org/sonata-project/SonataNewsBundle.svg?branch=master)](https://travis-ci.org/sonata-project/SonataNewsBundle)
+3.x status: [![Build Status](https://travis-ci.org/sonata-project/SonataNewsBundle.svg?branch=3.x)](https://travis-ci.org/sonata-project/SonataNewsBundle)
 
 master status: [![Build Status](https://travis-ci.org/sonata-project/SonataNewsBundle.svg?branch=master)](https://travis-ci.org/sonata-project/SonataNewsBundle)
 
