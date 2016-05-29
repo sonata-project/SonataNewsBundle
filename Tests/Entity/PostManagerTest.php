@@ -190,7 +190,8 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
     public function testGetPublicationDateQueryParts()
     {
         $result = $this
-            ->getPostManager(function () {})
+            ->getPostManager(function () {
+            })
             ->getPublicationDateQueryParts('2010-02-10', 'month', 'n');
 
         $this->assertNotNull($result);
