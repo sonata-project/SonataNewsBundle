@@ -128,7 +128,9 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         }
 
         if (isset($criteria['tag'])) {
-            $query->andWhere('t.slug LIKE :tag');
+            $query
+                ->leftJoin('p.tags', 't2')
+                ->andWhere('t2.slug LIKE :tag');
             $parameters['tag'] = (string) $criteria['tag'];
         }
 
