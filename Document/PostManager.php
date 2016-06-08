@@ -14,6 +14,8 @@ namespace Sonata\NewsBundle\Document;
 use Sonata\CoreBundle\Model\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
+use Sonata\NewsBundle\Model\BlogInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 class PostManager extends BaseDocumentManager implements PostManagerInterface
@@ -25,6 +27,8 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
      * @param $slug
      *
      * @return mixed
+     *
+     * @deprecated since version 3.x, to be removed in 4.0. Use PostManager::findOneByPermalink instead
      */
     public function findOneBySlug($year, $month, $day, $slug)
     {
@@ -36,6 +40,55 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
             ->andWhere($pdqp['query'])
             ->getQuery()
             ->getSingleResult();
+    }
+
+    /**
+     * @param string        $permalink
+     * @param BlogInterface $blog
+     *
+     * @return PostInterface
+     */
+    public function findOneByPermalink($permalink, BlogInterface $blog)
+    {
+        $query = $this->getRepository()->createQueryBuilder('p');
+
+        $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
+
+        $parameters = array();
+
+        if (isset($urlParameters['year'], $urlParameters['month'], $urlParameters['day'])) {
+            $dateQueryParts = $this->getPublicationDateQueryParts(
+                sprintf('%d-%d-%d', $urlParameters['year'], $urlParameters['month'], $urlParameters['day']),
+                'day'
+            );
+
+            $parameters = $dateQueryParts['params'];
+
+            $query->andWhere($dateQueryParts['query']);
+        }
+
+        if (isset($urlParameters['slug'])) {
+            $query->andWhere('p.slug = :slug');
+            $parameters['slug'] = $urlParameters['slug'];
+        }
+
+        if (isset($urlParameters['collection'])) {
+            $collectionQueryParts = $this->getPublicationCollectionQueryParts($urlParameters['collection']);
+
+            $parameters = array_merge($parameters, $collectionQueryParts['params']);
+
+            $query
+                ->leftJoin('p.collection', 'c')
+                ->andWhere($collectionQueryParts['query']);
+        }
+
+        if (count($parameters) == 0) {
+            return;
+        }
+
+        $query->setParameters($parameters);
+
+        return $query->getQuery()->getSingleResult();
     }
 
     /**
@@ -88,5 +141,24 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
                 'endDate' => new \DateTime($date.'+1 '.$step),
             ),
         );
+    }
+
+    /**
+     * @param string $collection
+     *
+     * @return array
+     */
+    final protected function getPublicationCollectionQueryParts($collection)
+    {
+        $queryParts = array('query' => '', 'params' => array());
+
+        if (null === $collection) {
+            $queryParts['query'] = 'p.collection IS NULL';
+        } else {
+            $queryParts['query'] = 'c.slug = :collection';
+            $queryParts['params'] = array('collection' => $collection);
+        }
+
+        return $queryParts;
     }
 }
