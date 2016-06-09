@@ -1,13 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<routes xmlns="http://symfony.com/schema/routing"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
     <route id="sonata_news_add_comment" path="/add-comment/{id}">
         <default key="_controller">SonataNewsBundle:Post:addComment</default>
     </route>
-
     <route id="sonata_news_archive_monthly" path="/archive/{year}/{month}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:archiveMonthly</default>
         <default key="_format">html</default>
@@ -15,43 +10,36 @@
         <requirement key="year">\d+</requirement>
         <requirement key="month">\d+</requirement>
     </route>
-
     <route id="sonata_news_tag" path="/tag/{tag}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:tag</default>
         <default key="_format">html</default>
         <requirement key="_format">html|rss</requirement>
     </route>
-
     <route id="sonata_news_collection" path="/collection/{collection}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:collection</default>
         <default key="_format">html</default>
         <requirement key="_format">html|rss</requirement>
     </route>
-
     <route id="sonata_news_archive_yearly" path="/archive/{year}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:archiveYearly</default>
         <default key="_format">html</default>
         <requirement key="_format">html|rss</requirement>
         <requirement key="year">\d+</requirement>
     </route>
-
     <route id="sonata_news_archive" path="/archive.{_format}">
         <default key="_controller">SonataNewsBundle:Post:archive</default>
         <default key="_format">html</default>
         <requirement key="_format">html|rss</requirement>
     </route>
-
     <route id="sonata_news_comment_moderation" path="/comment/moderation/{commentId}/{hash}/{status}">
         <default key="_controller">SonataNewsBundle:Post:commentModeration</default>
     </route>
-
     <route id="sonata_news_view" path="/{permalink}.{_format}">
         <default key="_controller">SonataNewsBundle:Post:view</default>
         <default key="_format">html</default>
         <requirement key="_format">html|rss</requirement>
         <requirement key="permalink">.+?</requirement>
     </route>
-
     <route id="sonata_news_home" path="/">
         <default key="_controller">SonataNewsBundle:Post:home</default>
     </route>
