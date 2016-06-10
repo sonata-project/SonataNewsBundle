@@ -52,9 +52,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     }
 
     /**
-     * Update the number of comment for a comment.
-     *
-     * @param null|\Sonata\NewsBundle\Model\PostInterface $post
+     * {@inheritdoc}
      */
     public function updateCommentsCount(PostInterface $post = null)
     {

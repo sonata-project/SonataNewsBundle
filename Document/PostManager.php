@@ -15,38 +15,12 @@ use Sonata\CoreBundle\Model\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 use Sonata\NewsBundle\Model\BlogInterface;
-use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 class PostManager extends BaseDocumentManager implements PostManagerInterface
 {
     /**
-     * @param $year
-     * @param $month
-     * @param $day
-     * @param $slug
-     *
-     * @return mixed
-     *
-     * @deprecated since version 3.x, to be removed in 4.0. Use PostManager::findOneByPermalink instead
-     */
-    public function findOneBySlug($year, $month, $day, $slug)
-    {
-        $pdqp = $this->getPublicationDateQueryParts(sprintf('%s-%s-%s', $year, $month, $day), 'day');
-
-        return $this->getRepository()
-            ->createQueryBuilder()
-            ->field('slug')->equals($slug)
-            ->andWhere($pdqp['query'])
-            ->getQuery()
-            ->getSingleResult();
-    }
-
-    /**
-     * @param string        $permalink
-     * @param BlogInterface $blog
-     *
-     * @return PostInterface
+     * {@inheritdoc}
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
