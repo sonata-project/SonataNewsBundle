@@ -12,7 +12,7 @@
 namespace Sonata\NewsBundle\Admin;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -23,7 +23,7 @@ use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
 use Sonata\UserBundle\Model\UserManagerInterface;
 
-class PostAdmin extends Admin
+class PostAdmin extends AbstractAdmin
 {
     /**
      * @var UserManagerInterface
