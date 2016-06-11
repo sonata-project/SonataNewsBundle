@@ -11,14 +11,14 @@
 
 namespace Sonata\NewsBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 
-class CommentAdmin extends Admin
+class CommentAdmin extends AbstractAdmin
 {
     protected $parentAssociationMapping = 'post';
 
