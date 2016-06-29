@@ -21,12 +21,7 @@ use Sonata\NewsBundle\Model\PostInterface;
 class CommentManager extends BaseDocumentManager implements CommentManagerInterface
 {
     /**
-     * @param array $criteria
-     * @param int   $page
-     * @param int   $limit
-     * @param array $sort
-     *
-     * @return \Sonata\AdminBundle\Datagrid\ODM\Pager
+     * {@inheritdoc}
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
@@ -52,9 +47,7 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
     }
 
     /**
-     * Update the comments count.
-     *
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
+     * {@inheritdoc}
      */
     public function updateCommentsCount(PostInterface $post = null)
     {

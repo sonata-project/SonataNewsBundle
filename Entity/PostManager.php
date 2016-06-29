@@ -17,16 +17,12 @@ use Sonata\CoreBundle\Model\BaseEntityManager;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
 use Sonata\NewsBundle\Model\BlogInterface;
-use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 class PostManager extends BaseEntityManager implements PostManagerInterface
 {
     /**
-     * @param string        $permalink
-     * @param BlogInterface $blog
-     *
-     * @return PostInterface
+     * {@inheritdoc}
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
@@ -81,14 +77,6 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
 
     /**
      * {@inheritdoc}
-     *
-     * Valid criteria are:
-     *    enabled - boolean
-     *    date - query
-     *    tag - string
-     *    author - 'NULL', 'NOT NULL', id, array of ids
-     *    collections - CollectionInterface
-     *    mode - string public|admin
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
@@ -159,11 +147,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
     }
 
     /**
-     * @param string $date  Date in format YYYY-MM-DD
-     * @param string $step  Interval step: year|month|day
-     * @param string $alias Table alias for the publicationDateStart column
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getPublicationDateQueryParts($date, $step, $alias = 'p')
     {
