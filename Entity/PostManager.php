@@ -30,53 +30,45 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
-        $repository = $this->getRepository();
+        $query = $this->getRepository()->createQueryBuilder('p');
 
-        $query = $repository->createQueryBuilder('p');
+        $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
 
-        try {
-            $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
+        $parameters = array();
 
-            $parameters = array();
+        if (isset($urlParameters['year'], $urlParameters['month'], $urlParameters['day'])) {
+            $dateQueryParts = $this->getPublicationDateQueryParts(
+                sprintf('%d-%d-%d', $urlParameters['year'], $urlParameters['month'], $urlParameters['day']),
+                'day'
+            );
 
-            if (isset($urlParameters['year']) && isset($urlParameters['month']) && isset($urlParameters['day'])) {
-                $pdqp = $this->getPublicationDateQueryParts(sprintf('%d-%d-%d', $urlParameters['year'], $urlParameters['month'], $urlParameters['day']), 'day');
+            $parameters = $dateQueryParts['params'];
 
-                $parameters = array_merge($parameters, $pdqp['params']);
-
-                $query->andWhere($pdqp['query']);
-            }
-
-            if (isset($urlParameters['slug'])) {
-                $query->andWhere('p.slug = :slug');
-                $parameters['slug'] = $urlParameters['slug'];
-            }
-
-            if (isset($urlParameters['collection'])) {
-                $pcqp = $this->getPublicationCollectionQueryParts($urlParameters['collection']);
-
-                $parameters = array_merge($parameters, $pcqp['params']);
-
-                $query
-                    ->leftJoin('p.collection', 'c')
-                    ->andWhere($pcqp['query']);
-            }
-
-            if (count($parameters) == 0) {
-                return;
-            }
-
-            $query->setParameters($parameters);
-
-            $results = $query->getQuery()->getResult();
-
-            if (count($results) > 0) {
-                return $results[0];
-            }
-        } catch (\InvalidArgumentException $e) {
+            $query->andWhere($dateQueryParts['query']);
         }
 
-        return;
+        if (isset($urlParameters['slug'])) {
+            $query->andWhere('p.slug = :slug');
+            $parameters['slug'] = $urlParameters['slug'];
+        }
+
+        if (isset($urlParameters['collection'])) {
+            $collectionQueryParts = $this->getPublicationCollectionQueryParts($urlParameters['collection']);
+
+            $parameters = array_merge($parameters, $collectionQueryParts['params']);
+
+            $query
+                ->leftJoin('p.collection', 'c')
+                ->andWhere($collectionQueryParts['query']);
+        }
+
+        if (count($parameters) == 0) {
+            return;
+        }
+
+        $query->setParameters($parameters);
+
+        return $query->getQuery()->getSingleResult();
     }
 
     /**
@@ -122,7 +114,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
             $parameters['enabled'] = $criteria['enabled'];
         }
 
-        if (isset($criteria['date']) && isset($criteria['date']['query']) && isset($criteria['date']['params'])) {
+        if (isset($criteria['date'], $criteria['date']['query'], $criteria['date']['params'])) {
             $query->andWhere($criteria['date']['query']);
             $parameters = array_merge($parameters, $criteria['date']['params']);
         }
@@ -183,15 +175,15 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
      */
     protected function getPublicationCollectionQueryParts($collection)
     {
-        $pcqp = array('query' => '', 'params' => array());
+        $queryParts = array('query' => '', 'params' => array());
 
         if (null === $collection) {
-            $pcqp['query'] = 'p.collection IS NULL';
+            $queryParts['query'] = 'p.collection IS NULL';
         } else {
-            $pcqp['query'] = 'c.slug = :collection';
-            $pcqp['params'] = array('collection' => $collection);
+            $queryParts['query'] = 'c.slug = :collection';
+            $queryParts['params'] = array('collection' => $collection);
         }
 
-        return $pcqp;
+        return $queryParts;
     }
 }
