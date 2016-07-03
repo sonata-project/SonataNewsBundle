@@ -67,35 +67,63 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
 
     /**
      * {@inheritdoc}
+     *
+     * Valid criteria are:
+     *    enabled - boolean
+     *    date - query
+     *    tag - string
+     *    author - 'NULL', 'NOT NULL', id, array of ids
+     *    collections - CollectionInterface
+     *    mode - string public|admin
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
+        if (!isset($criteria['mode'])) {
+            $criteria['mode'] = 'public';
+        }
+
         $parameters = array();
         $query = $this->getRepository()
             ->createQueryBuilder('p')
             ->select('p, t')
             ->leftJoin('p.tags', 't')
-            ->orderby('p.publicationDateStart', 'DESC');
+            ->orderBy('p.publicationDateStart', 'DESC');
 
-        // enabled
-        $criteria['enabled'] = isset($criteria['enabled']) ? $criteria['enabled'] : true;
-        $query->andWhere('p.enabled = :enabled');
-        $parameters['enabled'] = $criteria['enabled'];
+        if (!isset($criteria['enabled']) && $criteria['mode'] == 'public') {
+            $criteria['enabled'] = true;
+        }
+        if (isset($criteria['enabled'])) {
+            $query->andWhere('p.enabled = :enabled');
+            $parameters['enabled'] = $criteria['enabled'];
+        }
 
-        if (isset($criteria['date'])) {
+        if (isset($criteria['date'], $criteria['date']['query'], $criteria['date']['params'])) {
             $query->andWhere($criteria['date']['query']);
             $parameters = array_merge($parameters, $criteria['date']['params']);
         }
 
         if (isset($criteria['tag'])) {
-            $query->andWhere('t.slug LIKE :tag and t.enabled = :tag_enabled');
-            $parameters['tag'] = $criteria['tag'];
-            $parameters['tag_enabled'] = true;
+            $query->andWhere('t.slug LIKE :tag');
+            $parameters['tag'] = (string) $criteria['tag'];
+        }
+
+        if (isset($criteria['author'])) {
+            if (!is_array($criteria['author']) && stristr($criteria['author'], 'NULL')) {
+                $query->andWhere('p.author IS '.$criteria['author']);
+            } else {
+                $query->andWhere(sprintf('p.author IN (%s)', implode((array) $criteria['author'], ',')));
+            }
+        }
+
+        if (isset($criteria['collection']) && $criteria['collection'] instanceof CollectionInterface) {
+            $query->andWhere('p.collection = :collectionid');
+            $parameters['collectionid'] = $criteria['collection']->getId();
         }
 
         $query->setParameters($parameters);
 
         $pager = new Pager();
+        $pager->setMaxPerPage($limit);
         $pager->setQuery(new ProxyQuery($query));
         $pager->setPage($page);
         $pager->init();
