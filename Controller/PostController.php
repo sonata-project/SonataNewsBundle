@@ -257,7 +257,12 @@ class PostController extends Controller
         $comment->setPost($post);
         $comment->setStatus($post->getCommentsDefaultStatus());
 
-        return $this->get('form.factory')->createNamed('comment', 'sonata_post_comment', $comment);
+        return $this->get('form.factory')->createNamed('comment', 'sonata_post_comment', $comment, array(
+            'action' => $this->generateUrl('sonata_news_add_comment', array(
+                'id' => $post->getId(),
+            )),
+            'method' => 'POST',
+        ));
     }
 
     /**
