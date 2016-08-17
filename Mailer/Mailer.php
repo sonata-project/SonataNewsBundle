@@ -89,9 +89,7 @@ class Mailer implements MailerInterface
     protected function sendEmailMessage($renderedTemplate, $fromEmail, $toEmail)
     {
         // Render the email, use the first line as the subject, and the rest as the body
-        $renderedLines = explode("\n", trim($renderedTemplate));
-        $subject = $renderedLines[0];
-        $body = implode("\n", array_slice($renderedLines, 1));
+        list($subject, $body) = explode("\n", trim($renderedTemplate), 2);
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
