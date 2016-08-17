@@ -35,12 +35,14 @@ class CommentAdmin extends AbstractAdmin
         $actions = parent::getBatchActions();
 
         $actions['enabled'] = array(
-            'label' => $this->trans($this->getLabelTranslatorStrategy()->getLabel('enable', 'batch', 'comment')),
+            'label' => $this->getLabelTranslatorStrategy()->getLabel('enable', 'batch', 'comment'),
+            'translation_domain' => $this->getTranslationDomain(),
             'ask_confirmation' => false,
         );
 
         $actions['disabled'] = array(
-            'label' => $this->trans($this->getLabelTranslatorStrategy()->getLabel('disable', 'batch', 'comment')),
+            'label' => $this->getLabelTranslatorStrategy()->getLabel('disable', 'batch', 'comment'),
+            'translation_domain' => $this->getTranslationDomain(),
             'ask_confirmation' => false,
         );
 
