@@ -221,8 +221,7 @@ class PostAdmin extends AbstractAdmin
         );
 
         if ($this->hasSubject() && $this->getSubject()->getId() !== null) {
-            $menu->addChild(
-                $this->trans('sidemenu.link_view_post'),
+            $menu->addChild('sidemenu.link_view_post',
                 array('uri' => $admin->getRouteGenerator()->generate('sonata_news_view', array('permalink' => $this->permalinkGenerator->generate($this->getSubject()))))
             );
         }
