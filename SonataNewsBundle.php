@@ -41,8 +41,8 @@ class SonataNewsBundle extends Bundle
         FormHelper::registerFormTypeMapping(array(
             'sonata_post_comment' => 'Sonata\NewsBundle\Form\Type\CommentType',
             'sonata_news_comment_status' => 'Sonata\NewsBundle\Form\Type\CommentStatusType',
-            'sonata_news_api_form_comment' => 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType',
-            'sonata_news_api_form_post' => 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType',
+            'sonata_news_api_form_comment' => 'Sonata\NewsBundle\Form\Type\ApiCommentType',
+            'sonata_news_api_form_post' => 'Sonata\NewsBundle\Form\Type\ApiPostType',
         ));
     }
 }
