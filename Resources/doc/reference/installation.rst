@@ -31,7 +31,6 @@ if you use the API.
         return array(
             // ...
             new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
@@ -46,6 +45,7 @@ if you use the API.
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
         );
     }
 
@@ -151,6 +151,28 @@ if you use the API.
                     - sonata.formatter.twig.gist
                     - sonata.media.formatter.twig
 
+* Create configuration file ``sonata_block.yml`` for block rendering:
+
+.. code-block:: yaml
+
+    # app/config/sonata_block.yml
+
+    sonata_block:
+        default_contexts: [sonata_page_bundle]
+        blocks:
+            sonata.admin.block.admin_list:
+                contexts:   [admin]
+
+            #sonata.admin_doctrine_orm.block.audit:
+            #    contexts:   [admin]
+
+            sonata.block.service.text:
+            sonata.block.service.rss:
+
+            # Some specific block from the SonataMediaBundle
+            sonata.media.block.media:
+            sonata.media.block.gallery:
+            sonata.media.block.feature_media:
 
 * Generate the application bundles:
 
