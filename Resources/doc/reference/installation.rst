@@ -151,7 +151,7 @@ if you use the API.
                     - sonata.formatter.twig.gist
                     - sonata.media.formatter.twig
 
-* Create configuration file ``sonata_block.yml`` for block rendering as per [Sonata Block Configuration]:
+* Create configuration file ``sonata_block.yml`` for block rendering as per Configuration_:
 
 .. code-block:: yaml
 
@@ -235,4 +235,4 @@ if you use the API.
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
         prefix: /news
 
-[Sonata Block Configuration]: https://sonata-project.org/bundles/block/master/doc/reference/installation.html
+.. _Configuration: https://sonata-project.org/bundles/block/master/doc/reference/installation.html
