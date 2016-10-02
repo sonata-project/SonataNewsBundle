@@ -84,7 +84,7 @@ if you use the API.
 
 .. code-block:: yaml
 
-    # app/config/sonata_media.yml.
+    # app/config/sonata_media.yml
 
     news:
         providers:
