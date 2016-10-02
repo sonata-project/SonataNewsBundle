@@ -16,7 +16,6 @@ Installation
 ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle`` are needed only
 if you use the API.
 
-
 * Add SonataNewsBundle to your application kernel:
 
 .. code-block:: php
@@ -81,28 +80,11 @@ if you use the API.
                         SonataNewsBundle: ~
 
 
-* Import the ``sonata_news.yml`` file and enable json type for doctrine:
-
-.. code-block:: yaml
-
-    # app/config/config.yml
-
-    imports:
-        # ...
-        - { resource: sonata_news.yml }
-    # ...
-    doctrine:
-        dbal:
-        # ...
-            types:
-                json: Sonata\Doctrine\Types\JsonType
-
-
 * Add a new context into your ``sonata_media.yml`` configuration if you don't have go there https://sonata-project.org/bundles/media/master/doc/reference/installation.html:
 
 .. code-block:: yaml
 
-    # app/config/sonata_media.yml
+    # app/config/sonata_media.yml.
 
     news:
         providers:
@@ -114,8 +96,8 @@ if you use the API.
             small: { width: 150 , quality: 95}
             big:   { width: 500 , quality: 90}
 
-* Create configuration file ``sonata_formatter.yml`` the text formatters available for your blog post:
 
+* Create configuration file ``sonata_formatter.yml`` the text formatters available for your blog post:
 
 .. code-block:: yaml
 
@@ -173,6 +155,25 @@ if you use the API.
             sonata.media.block.media:
             sonata.media.block.gallery:
             sonata.media.block.feature_media:
+
+* Import the above sonata config files and enable json type for doctrine:
+
+.. code-block:: yaml
+
+    # app/config/config.yml
+
+    imports:
+        # ...
+        - { resource: sonata_news.yml }
+        - { resource: sonata_media.yml }
+        - { resource: sonata_formatter.yml }
+        - { resource: sonata_block.yml }
+    # ...
+    doctrine:
+        dbal:
+        # ...
+            types:
+                json: Sonata\Doctrine\Types\JsonType
 
 * Generate the application bundles:
 
