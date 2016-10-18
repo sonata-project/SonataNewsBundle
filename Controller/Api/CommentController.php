@@ -60,13 +60,12 @@ class CommentController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int $id A comment identifier
+     * @param Request $request
+     * @param int     $id A comment identifier
      *
      * @return Comment
-     *
-     * @throws NotFoundHttpException
      */
-    public function getCommentAction($id)
+    public function getCommentAction(Request $request, $id)
     {
         return $this->getComment($id);
     }
@@ -87,13 +86,12 @@ class CommentController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int $id A comment identifier
+     * @param Request $request
+     * @param int     $id A comment identifier
      *
      * @return View
-     *
-     * @throws NotFoundHttpException
      */
-    public function deleteCommentAction($id)
+    public function deleteCommentAction(Request $request, $id)
     {
         $comment = $this->getComment($id);
 

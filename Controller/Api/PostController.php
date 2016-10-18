@@ -102,11 +102,12 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
+     * @param Request               $request
      * @param ParamFetcherInterface $paramFetcher
      *
      * @return PagerInterface
      */
-    public function getPostsAction(ParamFetcherInterface $paramFetcher)
+    public function getPostsAction(Request $request, ParamFetcherInterface $paramFetcher)
     {
         $page = $paramFetcher->get('page');
         $count = $paramFetcher->get('count');
@@ -134,11 +135,12 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int $id A post identifier
+     * @param Request $request
+     * @param int     $id A post identifier
      *
      * @return Post
      */
-    public function getPostAction($id)
+    public function getPostAction(Request $request, $id)
     {
         return $this->getPost($id);
     }
@@ -186,14 +188,14 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int     $id      A Post identifier
      * @param Request $request A Symfony request
+     * @param int     $id      A Post identifier
      *
      * @return Post
      *
      * @throws NotFoundHttpException
      */
-    public function putPostAction($id, Request $request)
+    public function putPostAction(Request $request, $id)
     {
         return $this->handleWritePost($request, $id);
     }
@@ -214,13 +216,12 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int $id A Post identifier
+     * @param Request $request
+     * @param int     $id A Post identifier
      *
      * @return View
-     *
-     * @throws NotFoundHttpException
      */
-    public function deletePostAction($id)
+    public function deletePostAction(Request $request, $id)
     {
         $post = $this->getPost($id);
 
@@ -254,12 +255,13 @@ class PostController
      *
      * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @param int                   $id           A post identifier
+     * @param Request               $request
+     * @param int                   $id A post identifier
      * @param ParamFetcherInterface $paramFetcher
      *
      * @return PagerInterface
      */
-    public function getPostCommentsAction($id, ParamFetcherInterface $paramFetcher)
+    public function getPostCommentsAction(Request $request, $id, ParamFetcherInterface $paramFetcher)
     {
         $post = $this->getPost($id);
 
@@ -294,14 +296,14 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int     $id      A post identifier
      * @param Request $request
+     * @param int     $id      A post identifier
      *
      * @return Comment|FormInterface
      *
      * @throws HttpException
      */
-    public function postPostCommentsAction($id, Request $request)
+    public function postPostCommentsAction(Request $request, $id)
     {
         $post = $this->getPost($id);
 
@@ -357,16 +359,16 @@ class PostController
      *
      * @Route(requirements={"_format"="json|xml"})
      *
+     * @param Request $request   A Symfony request
      * @param int     $postId    A post identifier
      * @param int     $commentId A comment identifier
-     * @param Request $request   A Symfony request
      *
      * @return Comment
      *
      * @throws NotFoundHttpException
      * @throws HttpException
      */
-    public function putPostCommentsAction($postId, $commentId, Request $request)
+    public function putPostCommentsAction(Request $request, $postId, $commentId)
     {
         $post = $this->getPost($postId);
 
