@@ -7,13 +7,13 @@ Installation
 
     composer require sonata-project/news-bundle "dev-master" --no-update
     composer require sonata-project/doctrine-orm-admin-bundle "dev-master" --no-update
-    composer require friendsofsymfony/rest-bundle "~1.1" --no-update
-    composer require nelmio/api-doc-bundle "~0.1|~1.0" --no-update
 
 
-``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle`` are needed only
-if you use the API.
+If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle``.
 
+.. code-block:: bash
+
+    composer require nelmio/api-doc-bundle friendsofsymfony/rest-bundle
 
 * Add SonataNewsBundle to your application kernel:
 
