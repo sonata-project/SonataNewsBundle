@@ -5,8 +5,7 @@ Installation
 
 .. code-block:: bash
 
-    composer require sonata-project/news-bundle "dev-master" --no-update
-    composer require sonata-project/doctrine-orm-admin-bundle "dev-master" --no-update
+    composer require sonata-project/news-bundle sonata-project/doctrine-orm-admin-bundle
 
 
 If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle``.
