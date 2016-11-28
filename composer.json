@@ -27,7 +27,7 @@
         "sonata-project/easy-extends-bundle": "^2.1",
         "sonata-project/intl-bundle": "^2.2.4",
         "sonata-project/datagrid-bundle": "^2.2",
-        "sonata-project/core-bundle": "^3.0"
+        "sonata-project/core-bundle": "^3.0.2"
     },
     "require-dev": {
         "doctrine/orm": "^2.4",
