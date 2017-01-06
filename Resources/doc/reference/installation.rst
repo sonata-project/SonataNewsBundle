@@ -28,7 +28,6 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
         return array(
             // ...
             new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
@@ -43,6 +42,7 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
         );
     }
 
@@ -78,24 +78,7 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
                         SonataNewsBundle: ~
 
 
-* Import the ``sonata_news.yml`` file and enable json type for doctrine:
-
-.. code-block:: yaml
-
-    # app/config/config.yml
-
-    imports:
-        # ...
-        - { resource: sonata_news.yml }
-    # ...
-    doctrine:
-        dbal:
-        # ...
-            types:
-                json: Sonata\Doctrine\Types\JsonType
-
-
-* Add a new context into your ``sonata_media.yml`` configuration if you don't have go there https://sonata-project.org/bundles/media/master/doc/reference/installation.html:
+* Add a new context into your ``sonata_media.yml`` configuration. See `Sonata Media Bundle Configuration`_ for detailed instructions:
 
 .. code-block:: yaml
 
@@ -111,8 +94,8 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
             small: { width: 150 , quality: 95}
             big:   { width: 500 , quality: 90}
 
-* Create configuration file ``sonata_formatter.yml`` the text formatters available for your blog post:
 
+* Create configuration file ``sonata_formatter.yml`` the text formatters available for your blog post:
 
 .. code-block:: yaml
 
@@ -148,6 +131,47 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
                     - sonata.formatter.twig.gist
                     - sonata.media.formatter.twig
 
+* Create configuration file ``sonata_block.yml`` for block rendering as per Configuration_:
+
+.. code-block:: yaml
+
+    # app/config/sonata_block.yml
+
+    sonata_block:
+        default_contexts: [sonata_page_bundle]
+        blocks:
+            sonata.admin.block.admin_list:
+                contexts:   [admin]
+
+            #sonata.admin_doctrine_orm.block.audit:
+            #    contexts:   [admin]
+
+            sonata.block.service.text:
+            sonata.block.service.rss:
+
+            # Some specific block from the SonataMediaBundle
+            sonata.media.block.media:
+            sonata.media.block.gallery:
+            sonata.media.block.feature_media:
+
+* Import the above sonata config files and enable json type for doctrine:
+
+.. code-block:: yaml
+
+    # app/config/config.yml
+
+    imports:
+        # ...
+        - { resource: sonata_news.yml }
+        - { resource: sonata_media.yml }
+        - { resource: sonata_formatter.yml }
+        - { resource: sonata_block.yml }
+    # ...
+    doctrine:
+        dbal:
+        # ...
+            types:
+                json: Sonata\Doctrine\Types\JsonType
 
 * Generate the application bundles:
 
@@ -210,3 +234,5 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
         prefix: /news
 
+.. _Configuration: https://sonata-project.org/bundles/block/master/doc/reference/installation.html
+.. _Sonata Media Bundle Configuration: https://sonata-project.org/bundles/media/master/doc/reference/installation.htm
