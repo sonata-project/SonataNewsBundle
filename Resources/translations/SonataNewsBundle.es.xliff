@@ -429,43 +429,39 @@ Modera el comentario de forma rápida :
             </trans-unit>
             <trans-unit id="sonata_news_block_recent_comments">
                 <source>sonata.news.block.recent_comments</source>
-                <target>sonata.news.block.recent_comments</target>
+                <target>Comentarios recientes</target>
             </trans-unit>
             <trans-unit id="sonata_news_block_recent_posts">
                 <source>sonata.news.block.recent_posts</source>
-                <target>sonata.news.block.recent_posts</target>
+                <target>Artículos recientes</target>
             </trans-unit>
             <trans-unit id="form.label_number">
                 <source>form.label_number</source>
-                <target>form.label_number</target>
-            </trans-unit>
-            <trans-unit id="form.label_title">
-                <source>form.label_title</source>
-                <target>form.label_title</target>
+                <target>Número</target>
             </trans-unit>
             <trans-unit id="form.label_mode">
                 <source>form.label_mode</source>
-                <target>form.label_mode</target>
+                <target>Modo</target>
             </trans-unit>
             <trans-unit id="form.label_mode_public">
                 <source>form.label_mode_public</source>
-                <target>form.label_mode_public</target>
+                <target>Modo público</target>
             </trans-unit>
             <trans-unit id="form.label_mode_admin">
                 <source>form.label_mode_admin</source>
-                <target>form.label_mode_admin</target>
+                <target>Modo administrador</target>
             </trans-unit>
             <trans-unit id="valid">
                 <source>valid</source>
-                <target>valid</target>
+                <target>Válido</target>
             </trans-unit>
             <trans-unit id="invalid">
                 <source>invalid</source>
-                <target>invalid</target>
+                <target>No válido</target>
             </trans-unit>
             <trans-unit id="moderate">
                 <source>moderate</source>
-                <target>moderate</target>
+                <target>Moderado</target>
             </trans-unit>
         </body>
     </file>
