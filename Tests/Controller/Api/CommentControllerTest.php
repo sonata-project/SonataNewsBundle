@@ -14,9 +14,6 @@ namespace Sonata\NewsBundle\Tests\Controller\Api;
 use Sonata\NewsBundle\Controller\Api\CommentController;
 
 /**
- * Class CommentControllerTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class CommentControllerTest extends \PHPUnit_Framework_TestCase

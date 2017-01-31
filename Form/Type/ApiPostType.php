@@ -14,7 +14,7 @@ namespace Sonata\NewsBundle\Form\Type;
 use Sonata\CoreBundle\Form\Type\BaseDoctrineORMSerializationType;
 
 /**
- * @author  Thomas Rabaix <thomas.rabaix@gmail.com>
+ * @author Thomas Rabaix <thomas.rabaix@gmail.com>
  */
 class ApiPostType extends BaseDoctrineORMSerializationType
 {
