@@ -15,8 +15,6 @@ use Sonata\CoreBundle\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\PostManager;
 
 /**
- * Class PostManagerTest.
- *
  * Tests the post manager entity.
  */
 class PostManagerTest extends \PHPUnit_Framework_TestCase

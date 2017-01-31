@@ -14,8 +14,6 @@ namespace Sonata\NewsBundle\Tests\Document;
 use Sonata\NewsBundle\Document\CommentManager;
 
 /**
- * Class CommentManagerTest.
- *
  * Tests the comment manager document.
  */
 class CommentManagerTest extends \PHPUnit_Framework_TestCase

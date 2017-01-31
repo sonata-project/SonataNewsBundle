@@ -16,8 +16,6 @@ use Sonata\NewsBundle\Entity\CommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 
 /**
- * Class CommentManagerTest.
- *
  * Tests the comment manager entity.
  *
  * @author Romain Mouillard <romain.mouillard@gmail.com>
