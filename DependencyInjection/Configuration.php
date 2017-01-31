@@ -39,7 +39,10 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('permalink')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('date')->defaultValue('%%1$04d/%%2$d/%%3$d/%%4$s')->end() // year/month/day/slug
+                        ->scalarNode('date')
+                            ->info('Default format: year/month/day/slug')
+                            ->defaultValue('%%1$04d/%%2$d/%%3$d/%%4$s')
+                        ->end()
                     ->end()
                 ->end()
                 ->arrayNode('table')
