@@ -42,7 +42,12 @@ class RecentPostsBlockService extends BaseBlockService
     public function __construct($name, EngineInterface $templating, ManagerInterface $postManager, Pool $adminPool = null)
     {
         if (!$postManager instanceof PostManagerInterface) {
-            @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\NewsBundle\Model\PostManagerInterface instead.', E_USER_DEPRECATED);
+            @trigger_error(
+                'Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated'
+                .' since version 2.4 and will be removed in 3.0.'
+                .' Use the new signature with a Sonata\NewsBundle\Model\PostManagerInterface instead.',
+                E_USER_DEPRECATED
+            );
         }
 
         $this->manager = $postManager;

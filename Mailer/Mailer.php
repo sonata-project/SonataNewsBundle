@@ -78,7 +78,11 @@ class Mailer implements MailerInterface
             'blog' => $this->blog,
         ));
 
-        $this->sendEmailMessage($rendered, $this->emails['notification']['from'], $this->emails['notification']['emails']);
+        $this->sendEmailMessage(
+            $rendered,
+            $this->emails['notification']['from'],
+            $this->emails['notification']['emails']
+        );
     }
 
     /**
