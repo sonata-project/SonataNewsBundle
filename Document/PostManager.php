@@ -26,7 +26,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
      * @param $day
      * @param $slug
      *
-     * @return mixed
+     * @return PostInterface|null
      *
      * @deprecated since version 3.x, to be removed in 4.0. Use PostManager::findOneByPermalink instead
      */
@@ -39,14 +39,14 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
             ->field('slug')->equals($slug)
             ->andWhere($pdqp['query'])
             ->getQuery()
-            ->getSingleResult();
+            ->getOneOrNullResult();
     }
 
     /**
      * @param string        $permalink
      * @param BlogInterface $blog
      *
-     * @return PostInterface
+     * @return PostInterface|null
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
@@ -88,7 +88,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
 
         $query->setParameters($parameters);
 
-        return $query->getQuery()->getSingleResult();
+        return $query->getQuery()->getOneOrNullResult();
     }
 
     /**
