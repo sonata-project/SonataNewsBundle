@@ -26,7 +26,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
      * @param string        $permalink
      * @param BlogInterface $blog
      *
-     * @return PostInterface
+     * @return PostInterface|null
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
@@ -68,7 +68,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
 
         $query->setParameters($parameters);
 
-        return $query->getQuery()->getSingleResult();
+        return $query->getQuery()->getOneOrNullResult();
     }
 
     /**
