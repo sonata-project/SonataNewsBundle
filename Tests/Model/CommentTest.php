@@ -18,9 +18,6 @@ class ModelTest_Comment extends \Sonata\NewsBundle\Model\Comment
     }
 }
 
-/**
- * Tests the comment model
- */
 class CommentTest extends \PHPUnit_Framework_TestCase
 {
     public function testSettersGetters()
