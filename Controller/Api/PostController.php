@@ -31,9 +31,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class PostController.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class PostController
@@ -64,8 +61,6 @@ class PostController
     protected $formatterPool;
 
     /**
-     * Constructor.
-     *
      * @param PostManagerInterface    $postManager
      * @param CommentManagerInterface $commentManager
      * @param MailerInterface         $mailer

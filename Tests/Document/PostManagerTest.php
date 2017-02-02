@@ -14,8 +14,6 @@ namespace Sonata\NewsBundle\Tests\Document;
 use Sonata\NewsBundle\Document\PostManager;
 
 /**
- * Class PostManagerTest.
- *
  * Tests the post manager document.
  */
 class PostManagerTest extends \PHPUnit_Framework_TestCase

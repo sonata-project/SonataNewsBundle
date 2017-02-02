@@ -21,9 +21,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * SonataNewsBundleExtension.
- *
- * @author      Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 class SonataNewsExtension extends Extension
 {
@@ -58,11 +56,15 @@ class SonataNewsExtension extends Extension
         }
 
         if (!isset($config['salt'])) {
-            throw new \InvalidArgumentException("The configuration node 'salt' is not set for the SonataNewsBundle (sonata_news)");
+            throw new \InvalidArgumentException(
+                'The configuration node "salt" is not set for the SonataNewsBundle (sonata_news)'
+            );
         }
 
         if (!isset($config['comment'])) {
-            throw new \InvalidArgumentException("The configuration node 'comment' is not set for the SonataNewsBundle (sonata_news)");
+            throw new \InvalidArgumentException(
+                'The configuration node "comment" is not set for the SonataNewsBundle (sonata_news)'
+            );
         }
 
         $container->getDefinition('sonata.news.hash.generator')
