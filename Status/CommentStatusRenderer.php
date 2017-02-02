@@ -15,9 +15,6 @@ use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 
 /**
- * Class CommentStatusRenderer.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class CommentStatusRenderer implements StatusClassRendererInterface

@@ -32,6 +32,12 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
      */
     public function findOneBySlug($year, $month, $day, $slug)
     {
+        @trigger_error(
+            'Calling the '.__METHOD__.' method is deprecated since 3.x and will be removed in 4.0.'
+            .' Use Sonata\NewsBundle\Document::findOneByPermalink() instead.',
+            E_USER_DEPRECATED
+        );
+
         $pdqp = $this->getPublicationDateQueryParts(sprintf('%s-%s-%s', $year, $month, $day), 'day');
 
         return $this->getRepository()

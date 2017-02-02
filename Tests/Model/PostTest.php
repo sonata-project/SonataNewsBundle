@@ -19,9 +19,7 @@ class ModelTest_Post extends \Sonata\NewsBundle\Model\Post
 }
 
 /**
- * Class PostTest.
- *
- * Tests the post model
+ * Tests the post model.
  */
 class PostTest extends \PHPUnit_Framework_TestCase
 {

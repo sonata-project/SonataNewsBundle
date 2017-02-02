@@ -136,7 +136,7 @@ interface PostInterface
     /**
      * Add comments.
      *
-     * @param \Sonata\NewsBundle\Model\CommentInterface $comments
+     * @param CommentInterface $comments
      */
     public function addComments(CommentInterface $comments);
 
@@ -155,7 +155,7 @@ interface PostInterface
     /**
      * Add tags.
      *
-     * @param \Sonata\ClassificationBundle\Model\TagInterface $tags
+     * @param TagInterface $tags
      */
     public function addTags(TagInterface $tags);
 
@@ -279,7 +279,7 @@ interface PostInterface
     public function getImage();
 
     /**
-     * @return \Sonata\ClassificationBundle\Model\CollectionInterface
+     * @return CollectionInterface
      */
     public function getCollection();
 

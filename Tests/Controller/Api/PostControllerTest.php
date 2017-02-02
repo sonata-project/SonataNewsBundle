@@ -15,9 +15,6 @@ use Sonata\NewsBundle\Controller\Api\PostController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class PostControllerTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class PostControllerTest extends \PHPUnit_Framework_TestCase

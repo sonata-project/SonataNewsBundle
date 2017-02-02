@@ -19,9 +19,6 @@ use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class CommentController.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class CommentController
@@ -32,8 +29,6 @@ class CommentController
     protected $commentManager;
 
     /**
-     * Constructor.
-     *
      * @param CommentManagerInterface $commentManager A comment manager
      */
     public function __construct(CommentManagerInterface $commentManager)
