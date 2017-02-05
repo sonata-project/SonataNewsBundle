@@ -29,24 +29,24 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class PostController extends Controller
 {
     /**
+     * @param Request $request
+     *
      * @return RedirectResponse
      */
-    public function homeAction()
+    public function homeAction(Request $request)
     {
         return $this->redirect($this->generateUrl('sonata_news_archive'));
     }
 
     /**
+     * @param Request $request
      * @param array   $criteria
      * @param array   $parameters
-     * @param Request $request
      *
      * @return Response
      */
-    public function renderArchive(array $criteria = array(), array $parameters = array(), Request $request = null)
+    public function renderArchive(Request $request, array $criteria = array(), array $parameters = array())
     {
-        $request = $this->resolveRequest($request);
-
         $pager = $this->getPostManager()->getPager(
             $criteria,
             $request->get('page', 1)
@@ -75,23 +75,19 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function archiveAction(Request $request = null)
+    public function archiveAction(Request $request)
     {
-        return $this->renderArchive();
+        return $this->renderArchive($request);
     }
 
     /**
-     * @param string  $tag
      * @param Request $request
+     * @param string  $tag
      *
      * @return Response
-     *
-     * @throws NotFoundHttpException
      */
-    public function tagAction($tag, Request $request = null)
+    public function tagAction(Request $request, $tag)
     {
-        $request = $this->resolveRequest($request);
-
         $tag = $this->get('sonata.classification.manager.tag')->findOneBy(array(
             'slug' => $tag,
             'enabled' => true,
@@ -101,21 +97,23 @@ class PostController extends Controller
             throw new NotFoundHttpException('Unable to find the tag');
         }
 
-        return $this->renderArchive(array('tag' => $tag->getSlug()), array('tag' => $tag), $request);
+        return $this->renderArchive($request, array(
+            'tag' => $tag->getSlug()
+        ), array(
+            'tag' => $tag
+        ));
     }
 
     /**
-     * @param $collection
      * @param Request $request
+     * @param string $collection
      *
      * @return Response
      *
      * @throws NotFoundHttpException
      */
-    public function collectionAction($collection, Request $request = null)
+    public function collectionAction(Request $request, $collection)
     {
-        $request = $this->resolveRequest($request);
-
         $collection = $this->get('sonata.classification.manager.collection')->findOneBy(array(
             'slug' => $collection,
             'enabled' => true,
@@ -125,7 +123,11 @@ class PostController extends Controller
             throw new NotFoundHttpException('Unable to find the collection');
         }
 
-        return $this->renderArchive(array('collection' => $collection), array('collection' => $collection), $request);
+        return $this->renderArchive($request, array(
+            'collection' => $collection
+        ), array(
+            'collection' => $collection
+        ));
     }
 
     /**
@@ -135,13 +137,11 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function archiveMonthlyAction($year, $month, Request $request = null)
+    public function archiveMonthlyAction(Request $request, $year, $month)
     {
-        $request = $this->resolveRequest($request);
-
-        return $this->renderArchive(array(
+        return $this->renderArchive($request, array(
             'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, $month, 1), 'month'),
-        ), array(), $request);
+        ));
     }
 
     /**
@@ -150,13 +150,11 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function archiveYearlyAction($year, Request $request = null)
+    public function archiveYearlyAction(Request $request, $year)
     {
-        $request = $this->resolveRequest($request);
-
-        return $this->renderArchive(array(
+        return $this->renderArchive($request, array(
             'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, 1, 1), 'year'),
-        ), array(), $request);
+        ));
     }
 
     /**
@@ -166,7 +164,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function viewAction($permalink)
+    public function viewAction(Request $request, $permalink)
     {
         $post = $this->getPostManager()->findOneByPermalink($permalink, $this->getBlog());
 
@@ -207,11 +205,12 @@ class PostController extends Controller
     }
 
     /**
-     * @param int $postId
+     * @param Request $request
+     * @param int     $postId
      *
      * @return Response
      */
-    public function commentsAction($postId)
+    public function commentsAction(Request $request, $postId)
     {
         $pager = $this->getCommentManager()
             ->getPager(array(
@@ -225,12 +224,13 @@ class PostController extends Controller
     }
 
     /**
-     * @param $postId
-     * @param bool $form
+     * @param Request $request
+     * @param string        $postId
+     * @param bool    $form
      *
      * @return Response
      */
-    public function addCommentFormAction($postId, $form = false)
+    public function addCommentFormAction(Request $request, $postId, $form = false)
     {
         if (!$form) {
             $post = $this->getPostManager()->findOneBy(array(
@@ -247,7 +247,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param $post
+     * @param PostInterface $post
      *
      * @return FormInterface
      */
@@ -268,15 +268,13 @@ class PostController extends Controller
     /**
      * @throws NotFoundHttpException
      *
-     * @param string  $id
      * @param Request $request
+     * @param string  $id
      *
      * @return Response
      */
-    public function addCommentAction($id, Request $request = null)
+    public function addCommentAction(Request $request, $id)
     {
-        $request = $this->resolveRequest($request);
-
         $post = $this->getPostManager()->findOneBy(array(
             'id' => $id,
         ));
@@ -314,15 +312,14 @@ class PostController extends Controller
     }
 
     /**
-     * @param string $commentId
-     * @param string $hash
-     * @param string $status
+     * @param Request $request
+     * @param string  $commentId
+     * @param string  $hash
+     * @param string  $status
      *
      * @return RedirectResponse
-     *
-     * @throws AccessDeniedException
      */
-    public function commentModerationAction($commentId, $hash, $status)
+    public function commentModerationAction(Request $request, $commentId, $hash, $status)
     {
         $comment = $this->getCommentManager()->findOneBy(array('id' => $commentId));
 
@@ -367,23 +364,5 @@ class PostController extends Controller
     protected function getBlog()
     {
         return $this->get('sonata.news.blog');
-    }
-
-    /**
-     * To keep backwards compatibility with older Sonata News code.
-     *
-     * @internal
-     *
-     * @param Request $request
-     *
-     * @return Request
-     */
-    private function resolveRequest(Request $request = null)
-    {
-        if (null === $request) {
-            return $this->getRequest();
-        }
-
-        return $request;
     }
 }
