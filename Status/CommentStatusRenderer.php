@@ -40,7 +40,7 @@ class CommentStatusRenderer implements StatusClassRendererInterface
             case CommentInterface::STATUS_VALID:
                 return 'success';
             default:
-                break;
+                return null;
         }
     }
 }
