@@ -381,7 +381,7 @@ class PostController extends Controller
     private function resolveRequest(Request $request = null)
     {
         if (null === $request) {
-            return $this->getRequest();
+            return $this->get('request_stack')->getCurrentRequest();
         }
 
         return $request;
