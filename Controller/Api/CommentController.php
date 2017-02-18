@@ -84,7 +84,7 @@ class CommentController
      *
      * @param int $id A comment identifier
      *
-     * @return View
+     * @return \FOS\RestBundle\View\View
      *
      * @throws NotFoundHttpException
      */
