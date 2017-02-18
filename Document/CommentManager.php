@@ -30,8 +30,6 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
-        $parameters = array();
-
         $qb = $this->getDocumentManager()->getRepository($this->class)
             ->createQueryBuilder()
             ->sort('createdAt', 'desc');
