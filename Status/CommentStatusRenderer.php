@@ -35,13 +35,10 @@ class CommentStatusRenderer implements StatusClassRendererInterface
         switch ($object->getStatus()) {
             case CommentInterface::STATUS_INVALID:
                 return 'danger';
-                break;
             case CommentInterface::STATUS_MODERATE:
                 return 'warning';
-                break;
             case CommentInterface::STATUS_VALID:
                 return 'success';
-                break;
             default:
                 break;
         }
