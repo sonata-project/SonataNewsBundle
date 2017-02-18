@@ -105,7 +105,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param $collection
+     * @param string  $collection
      * @param Request $request
      *
      * @return Response
@@ -162,7 +162,7 @@ class PostController extends Controller
     /**
      * @throws NotFoundHttpException
      *
-     * @param $permalink
+     * @param string $permalink
      *
      * @return Response
      */
@@ -247,7 +247,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param $post
+     * @param PostInterface $post
      *
      * @return FormInterface
      */

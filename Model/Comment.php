@@ -65,7 +65,7 @@ abstract class Comment implements CommentInterface
     /**
      * Post for which the comment is related to.
      *
-     * @var \Sonata\NewsBundle\Model\PostInterface
+     * @var PostInterface
      */
     protected $post;
 

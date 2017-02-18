@@ -12,6 +12,7 @@
 namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 class BasePostRepository extends EntityRepository
 {
@@ -32,9 +33,9 @@ class BasePostRepository extends EntityRepository
     /**
      * return count comments QueryBuilder.
      *
-     * @param  Sonata\NewsBundle\Model\PostInterface
+     * @param  PostInterface
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function countCommentsQuery($post)
     {

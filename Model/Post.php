@@ -12,48 +12,108 @@
 namespace Sonata\NewsBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use FOS\UserBundle\Model\UserInterface;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\ClassificationBundle\Model\Tag;
 use Sonata\ClassificationBundle\Model\TagInterface;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 abstract class Post implements PostInterface
 {
+    /**
+     * @var string
+     */
     protected $title;
 
+    /**
+     * @var string
+     */
     protected $slug;
 
+    /**
+     * @var string
+     */
     protected $abstract;
 
+    /**
+     * @var string
+     */
     protected $content;
 
+    /**
+     * @var string
+     */
     protected $rawContent;
 
+    /**
+     * @var string
+     */
     protected $contentFormatter;
 
+    /**
+     * @var Collection|TagInterface[]
+     */
     protected $tags;
 
+    /**
+     * @var Collection|CommentInterface[]
+     */
     protected $comments;
 
+    /**
+     * @var bool
+     */
     protected $enabled;
 
+    /**
+     * @var \DateTime
+     */
     protected $publicationDateStart;
 
+    /**
+     * @var \DateTime
+     */
     protected $createdAt;
 
+    /**
+     * @var \DateTime
+     */
     protected $updatedAt;
 
+    /**
+     * @var bool
+     */
     protected $commentsEnabled = true;
 
+    /**
+     * @var \DateTime
+     */
     protected $commentsCloseAt;
 
+    /**
+     * @var int
+     */
     protected $commentsDefaultStatus;
 
+    /**
+     * @var int
+     */
     protected $commentsCount = 0;
 
+    /**
+     * @var UserInterface
+     */
     protected $author;
 
+    /**
+     * @var MediaInterface
+     */
     protected $image;
 
+    /**
+     * @var Collection|CollectionInterface[]
+     */
     protected $collection;
 
     /**
