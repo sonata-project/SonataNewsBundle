@@ -89,7 +89,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
         }
 
         if (count($parameters) == 0) {
-            return;
+            return null;
         }
 
         $query->setParameters($parameters);

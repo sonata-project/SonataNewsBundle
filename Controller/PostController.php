@@ -195,7 +195,7 @@ class PostController extends Controller
     }
 
     /**
-     * @return SeoPageInterface
+     * @return SeoPageInterface|null
      */
     public function getSeoPage()
     {
@@ -203,7 +203,7 @@ class PostController extends Controller
             return $this->get('sonata.seo.page');
         }
 
-        return;
+        return null;
     }
 
     /**
