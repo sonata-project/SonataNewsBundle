@@ -181,7 +181,7 @@ class PostController extends Controller
                 ->addMeta('property', 'og:title', $post->getTitle())
                 ->addMeta('property', 'og:type', 'blog')
                 ->addMeta('property', 'og:url', $this->generateUrl('sonata_news_view', array(
-                    'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post, true),
+                    'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
                 ), UrlGeneratorInterface::ABSOLUTE_URL))
                 ->addMeta('property', 'og:description', $post->getAbstract())
             ;
