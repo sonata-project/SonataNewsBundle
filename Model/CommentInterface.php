@@ -127,14 +127,14 @@ interface CommentInterface
     /**
      * Set post.
      *
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
+     * @param PostInterface $post
      */
     public function setPost($post);
 
     /**
      * Get post.
      *
-     * @return \Sonata\NewsBundle\Model\PostInterface $post
+     * @return PostInterface $post
      */
     public function getPost();
 }

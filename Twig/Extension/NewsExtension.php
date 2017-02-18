@@ -118,7 +118,7 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     /**
      * @param PostInterface $post
      *
-     * @return string|Exception
+     * @return string
      */
     public function generatePermalink(PostInterface $post)
     {
