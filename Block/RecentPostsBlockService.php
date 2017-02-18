@@ -34,6 +34,11 @@ class RecentPostsBlockService extends AbstractAdminBlockService
     protected $manager;
 
     /**
+     * @var Pool
+     */
+    private $adminPool;
+
+    /**
      * @param string           $name
      * @param EngineInterface  $templating
      * @param ManagerInterface $postManager

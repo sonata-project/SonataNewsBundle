@@ -36,6 +36,11 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     private $environment;
 
     /**
+     * @var BlogInterface
+     */
+    private $blog;
+
+    /**
      * @param RouterInterface  $router
      * @param ManagerInterface $tagManager
      * @param BlogInterface    $blog
