@@ -27,6 +27,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getCommentManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('c')));
                 $qb->expects($self->once())->method('andWhere');
                 $qb->expects($self->once())->method('setParameters')->with(array('status' => CommentInterface::STATUS_VALID));
             })
@@ -38,6 +39,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getCommentManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('c')));
                 $qb->expects($self->never())->method('andWhere');
                 $qb->expects($self->once())->method('setParameters')->with(array());
             })
@@ -51,6 +53,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getCommentManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('c')));
                 $qb->expects($self->once())->method('andWhere');
                 $qb->expects($self->once())->method('setParameters')->with(array('status' => CommentInterface::STATUS_INVALID));
             })
@@ -64,6 +67,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getCommentManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('c')));
                 $qb->expects($self->exactly(2))->method('andWhere')->with($self->logicalOr('c.post = :postId', 'c.status = :status'));
                 $qb->expects($self->once())->method('setParameters')->with(array('postId' => 50, 'status' => CommentInterface::STATUS_VALID));
             })
