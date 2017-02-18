@@ -11,6 +11,7 @@
 
 namespace Sonata\NewsBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\ClassificationBundle\Model\Tag;
 use Sonata\ClassificationBundle\Model\TagInterface;
@@ -215,7 +216,7 @@ abstract class Post implements PostInterface
      */
     public function setComments($comments)
     {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new ArrayCollection();
 
         foreach ($this->comments as $comment) {
             $this->addComments($comment);

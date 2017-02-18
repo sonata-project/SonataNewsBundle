@@ -211,7 +211,7 @@ class PostController
      *
      * @param int $id A Post identifier
      *
-     * @return View
+     * @return \FOS\RestBundle\View\View
      *
      * @throws NotFoundHttpException
      */

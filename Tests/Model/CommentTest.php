@@ -11,9 +11,10 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
-class ModelTest_Comment extends \Sonata\NewsBundle\Model\Comment
+class ModelTest_Comment extends Comment
 {
     public function getId()
     {
