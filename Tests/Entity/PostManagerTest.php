@@ -72,6 +72,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -83,6 +84,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -94,6 +96,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
             })
@@ -107,6 +110,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -120,6 +124,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -134,6 +139,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
             })
@@ -149,6 +155,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $this
             ->getPostManager(function ($qb) use ($self) {
                 $self->assertRelationsJoined($qb);
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $qb->expects($self->never())->method('andWhere');
                 $qb->expects($self->once())->method('setParameters')->with($self->equalTo(array()));
             })
@@ -162,6 +169,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -176,6 +184,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 0);
             })
