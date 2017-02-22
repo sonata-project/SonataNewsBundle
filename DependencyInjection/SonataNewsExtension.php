@@ -43,8 +43,11 @@ class SonataNewsExtension extends Extension
         $loader->load('twig.xml');
         $loader->load('form.xml');
         $loader->load('core.xml');
-        $loader->load('block.xml');
         $loader->load('serializer.xml');
+
+        if (isset($bundles['SonataBlockBundle'])) {
+            $loader->load('block.xml');
+        }
 
         if (isset($bundles['FOSRestBundle']) && isset($bundles['NelmioApiDocBundle'])) {
             $loader->load('api_controllers.xml');
