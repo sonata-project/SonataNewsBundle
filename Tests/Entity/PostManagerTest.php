@@ -68,6 +68,46 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $qb->expects($this->once())->method('setParameters')->with($this->equalTo(array('enabled' => $flag)));
     }
 
+    public function testFindOneByPermalinkSlug()
+    {
+        $permalink = $this->getMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
+        $permalink->expects($this->once())->method('getParameters')
+            ->with($this->equalTo('foo/bar'))
+            ->will($this->returnValue(array(
+                'slug' => 'bar',
+            )));
+
+        $blog = $this->getMock('Sonata\NewsBundle\Model\BlogInterface');
+        $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
+
+        $self = $this;
+        $this
+            ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('andWhere')->with($self->equalTo('p.slug = :slug'));
+                $qb->expects($self->once())->method('setParameters')->with($self->equalTo(array('slug' => 'bar')));
+            })
+            ->findOneByPermalink('foo/bar', $blog);
+    }
+
+    public function testFindOneByPermalinkException()
+    {
+        $permalink = $this->getMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
+        $permalink->expects($this->once())->method('getParameters')
+            ->with($this->equalTo(''))
+            ->willThrowException(new \InvalidArgumentException());
+
+        $blog = $this->getMock('Sonata\NewsBundle\Model\BlogInterface');
+        $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
+
+        $self = $this;
+        $result = $this
+            ->getPostManager(function ($qb) {
+            })
+            ->findOneByPermalink('', $blog);
+
+        $this->assertNull($result);
+    }
+
     public function testGetPagerWithoutMode()
     {
         $self = $this;
