@@ -13,11 +13,12 @@ namespace Sonata\NewsBundle\Tests\Entity;
 
 use Sonata\CoreBundle\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\PostManager;
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * Tests the post manager entity.
  */
-class PostManagerTest extends \PHPUnit_Framework_TestCase
+class PostManagerTest extends PHPUnit_Framework_TestCase
 {
     public function assertRelationsEnabled($qb)
     {
@@ -210,7 +211,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
     {
         $em = EntityManagerMockFactory::create($this, $qbCallback, array());
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
 
         return new PostManager('Sonata\NewsBundle\Entity\BasePost', $registry);

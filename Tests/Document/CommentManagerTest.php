@@ -12,16 +12,17 @@
 namespace Sonata\NewsBundle\Tests\Document;
 
 use Sonata\NewsBundle\Document\CommentManager;
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * Tests the comment manager document.
  */
-class CommentManagerTest extends \PHPUnit_Framework_TestCase
+class CommentManagerTest extends PHPUnit_Framework_TestCase
 {
     public function testImplements()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
 
         $commentManager = new CommentManager('Sonata\NewsBundle\Document\BaseComment', $registry, $postManager);
 
