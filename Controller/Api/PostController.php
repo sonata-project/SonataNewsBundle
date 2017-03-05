@@ -12,10 +12,9 @@
 namespace Sonata\NewsBundle\Controller\Api;
 
 use Application\Sonata\NewsBundle\Entity\Post;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
-use FOS\RestBundle\Controller\Annotations\Route;
-use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations as REST;
 use FOS\RestBundle\Request\ParamFetcherInterface;
+use FOS\RestBundle\View\View;
 use JMS\Serializer\SerializationContext;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sonata\DatagridBundle\Pager\PagerInterface;
@@ -84,18 +83,18 @@ class PostController
      *  output={"class"="Sonata\DatagridBundle\Pager\PagerInterface", "groups"={"sonata_api_read"}}
      * )
      *
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Page for posts list pagination")
-     * @QueryParam(name="count", requirements="\d+", default="10", description="Number of posts by page")
-     * @QueryParam(name="enabled", requirements="0|1", nullable=true, strict=true, description="Enabled/Disabled posts filter")
-     * @QueryParam(name="dateQuery", requirements=">|<|=", default=">", description="Date filter orientation (>, < or =)")
-     * @QueryParam(name="dateValue", requirements="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]([+-][0-9]{2}(:)?[0-9]{2})?", nullable=true, strict=true, description="Date filter value")
-     * @QueryParam(name="tag", requirements="\S+", nullable=true, strict=true, description="Tag name filter")
-     * @QueryParam(name="author", requirements="\S+", nullable=true, strict=true, description="Author filter")
-     * @QueryParam(name="mode", requirements="public|admin", default="public", description="'public' mode filters posts having enabled tags and author")
+     * @REST\QueryParam(name="page", requirements="\d+", default="1", description="Page for posts list pagination")
+     * @REST\QueryParam(name="count", requirements="\d+", default="10", description="Number of posts by page")
+     * @REST\QueryParam(name="enabled", requirements="0|1", nullable=true, strict=true, description="Enabled/Disabled posts filter")
+     * @REST\QueryParam(name="dateQuery", requirements=">|<|=", default=">", description="Date filter orientation (>, < or =)")
+     * @REST\QueryParam(name="dateValue", requirements="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]([+-][0-9]{2}(:)?[0-9]{2})?", nullable=true, strict=true, description="Date filter value")
+     * @REST\QueryParam(name="tag", requirements="\S+", nullable=true, strict=true, description="Tag name filter")
+     * @REST\QueryParam(name="author", requirements="\S+", nullable=true, strict=true, description="Author filter")
+     * @REST\QueryParam(name="mode", requirements="public|admin", default="public", description="'public' mode filters posts having enabled tags and author")
      *
-     * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
+     * @REST\View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param ParamFetcherInterface $paramFetcher
      *
@@ -125,9 +124,9 @@ class PostController
      *  }
      * )
      *
-     * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
+     * @REST\View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int $id A post identifier
      *
@@ -150,7 +149,7 @@ class PostController
      *  }
      * )
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param Request $request A Symfony request
      *
@@ -179,7 +178,7 @@ class PostController
      *  }
      * )
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int     $id      A Post identifier
      * @param Request $request A Symfony request
@@ -207,11 +206,11 @@ class PostController
      *  }
      * )
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int $id A Post identifier
      *
-     * @return \FOS\RestBundle\View\View
+     * @return View
      *
      * @throws NotFoundHttpException
      */
@@ -222,7 +221,7 @@ class PostController
         try {
             $this->postManager->delete($post);
         } catch (\Exception $e) {
-            return \FOS\RestBundle\View\View::create(array('error' => $e->getMessage()), 400);
+            return View::create(array('error' => $e->getMessage()), 400);
         }
 
         return array('deleted' => true);
@@ -242,12 +241,12 @@ class PostController
      *  }
      * )
      *
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Page for comments list pagination")
-     * @QueryParam(name="count", requirements="\d+", default="10", description="Number of comments by page")
+     * @REST\QueryParam(name="page", requirements="\d+", default="1", description="Page for comments list pagination")
+     * @REST\QueryParam(name="count", requirements="\d+", default="10", description="Number of comments by page")
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
-     * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
+     * @REST\View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
      * @param int                   $id           A post identifier
      * @param ParamFetcherInterface $paramFetcher
@@ -287,7 +286,7 @@ class PostController
      *  }
      * )
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int     $id      A post identifier
      * @param Request $request
@@ -321,7 +320,7 @@ class PostController
             $this->commentManager->save($comment);
             $this->mailer->sendCommentNotification($comment);
 
-            $view = \FOS\RestBundle\View\View::create($comment);
+            $view = View::create($comment);
             $serializationContext = SerializationContext::create();
             $serializationContext->setGroups(array('sonata_api_read'));
             $serializationContext->enableMaxDepthChecks();
@@ -350,7 +349,7 @@ class PostController
      *  }
      * )
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int     $postId    A post identifier
      * @param int     $commentId A comment identifier
@@ -387,7 +386,7 @@ class PostController
             $comment = $form->getData();
             $this->commentManager->save($comment);
 
-            $view = \FOS\RestBundle\View\View::create($comment);
+            $view = View::create($comment);
             $serializationContext = SerializationContext::create();
             $serializationContext->setGroups(array('sonata_api_read'));
             $serializationContext->enableMaxDepthChecks();
@@ -475,7 +474,7 @@ class PostController
             $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
             $this->postManager->save($post);
 
-            $view = \FOS\RestBundle\View\View::create($post);
+            $view = View::create($post);
             $serializationContext = SerializationContext::create();
             $serializationContext->setGroups(array('sonata_api_read'));
             $serializationContext->enableMaxDepthChecks();
