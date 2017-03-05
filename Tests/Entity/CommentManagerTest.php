@@ -14,13 +14,14 @@ namespace Sonata\NewsBundle\Tests\Entity;
 use Sonata\CoreBundle\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\CommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * Tests the comment manager entity.
  *
  * @author Romain Mouillard <romain.mouillard@gmail.com>
  */
-class CommentManagerTest extends \PHPUnit_Framework_TestCase
+class CommentManagerTest extends PHPUnit_Framework_TestCase
 {
     public function testGetPager()
     {
@@ -80,10 +81,10 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
     {
         $em = EntityManagerMockFactory::create($this, $qbCallback, array());
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
 
-        $postManager = $this->getMock('Sonata\NewsBundle\Model\PostManagerInterface');
+        $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
 
         return new CommentManager('Sonata\NewsBundle\Entity\BasePost', $registry, $postManager);
     }

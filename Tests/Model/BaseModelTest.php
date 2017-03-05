@@ -11,6 +11,8 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
+
 class BasePostTest_Post extends \Sonata\NewsBundle\Model\Post
 {
     public function getId()
@@ -19,7 +21,7 @@ class BasePostTest_Post extends \Sonata\NewsBundle\Model\Post
     }
 }
 
-class BasePostTest extends \PHPUnit_Framework_TestCase
+class BasePostTest extends PHPUnit_Framework_TestCase
 {
     public function testIsCommentable()
     {
