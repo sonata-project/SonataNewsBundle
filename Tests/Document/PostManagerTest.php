@@ -12,15 +12,16 @@
 namespace Sonata\NewsBundle\Tests\Document;
 
 use Sonata\NewsBundle\Document\PostManager;
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * Tests the post manager document.
  */
-class PostManagerTest extends \PHPUnit_Framework_TestCase
+class PostManagerTest extends PHPUnit_Framework_TestCase
 {
     public function testImplements()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
 
         $postManager = new PostManager('Sonata\NewsBundle\Document\BasePost', $registry);
 

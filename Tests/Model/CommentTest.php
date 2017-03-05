@@ -11,6 +11,8 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
+
 class ModelTest_Comment extends \Sonata\NewsBundle\Model\Comment
 {
     public function getId()
@@ -18,7 +20,7 @@ class ModelTest_Comment extends \Sonata\NewsBundle\Model\Comment
     }
 }
 
-class CommentTest extends \PHPUnit_Framework_TestCase
+class CommentTest extends PHPUnit_Framework_TestCase
 {
     public function testSettersGetters()
     {
@@ -29,7 +31,7 @@ class CommentTest extends \PHPUnit_Framework_TestCase
         $comment->setEmail('email@example.org');
         $comment->setMessage('My message');
         $comment->setName('My name');
-        $comment->setPost($this->getMock('Sonata\NewsBundle\Model\PostInterface'));
+        $comment->setPost($this->createMock('Sonata\NewsBundle\Model\PostInterface'));
         $comment->setStatus(1);
         $comment->setUpdatedAt($date);
         $comment->setUrl('http://www.example.org');
@@ -38,7 +40,7 @@ class CommentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($comment->getEmail(), 'email@example.org');
         $this->assertEquals($comment->getMessage(), 'My message');
         $this->assertEquals($comment->getName(), 'My name');
-        $this->assertEquals($comment->getPost(), $this->getMock('Sonata\NewsBundle\Model\PostInterface'));
+        $this->assertEquals($comment->getPost(), $this->createMock('Sonata\NewsBundle\Model\PostInterface'));
         $this->assertEquals($comment->getStatus(), 1);
         $this->assertEquals($comment->getUpdatedAt(), $date);
         $this->assertEquals($comment->getUrl(), 'http://www.example.org');
