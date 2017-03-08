@@ -13,8 +13,8 @@ namespace Sonata\NewsBundle\Block;
 
 use Sonata\AdminBundle\Admin\Pool;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\Service\AbstractAdminBlockService;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\CoreBundle\Model\Metadata;
@@ -26,7 +26,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class RecentCommentsBlockService extends BaseBlockService
+class RecentCommentsBlockService extends AbstractAdminBlockService
 {
     /**
      * @var CommentManagerInterface
@@ -47,7 +47,12 @@ class RecentCommentsBlockService extends BaseBlockService
     public function __construct($name, EngineInterface $templating, ManagerInterface $commentManager, Pool $adminPool = null)
     {
         if (!$commentManager instanceof CommentManagerInterface) {
-            @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.', E_USER_DEPRECATED);
+            @trigger_error(
+                'Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated'
+                .' since version 2.4 and will be removed in 3.0.'
+                .' Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.',
+                E_USER_DEPRECATED
+            );
         }
 
         $this->manager = $commentManager;

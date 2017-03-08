@@ -21,9 +21,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * SonataNewsBundleExtension.
- *
- * @author      Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 class SonataNewsExtension extends Extension
 {
@@ -45,8 +43,11 @@ class SonataNewsExtension extends Extension
         $loader->load('twig.xml');
         $loader->load('form.xml');
         $loader->load('core.xml');
-        $loader->load('block.xml');
         $loader->load('serializer.xml');
+
+        if (isset($bundles['SonataBlockBundle'])) {
+            $loader->load('block.xml');
+        }
 
         if (isset($bundles['FOSRestBundle']) && isset($bundles['NelmioApiDocBundle'])) {
             $loader->load('api_controllers.xml');
@@ -58,11 +59,15 @@ class SonataNewsExtension extends Extension
         }
 
         if (!isset($config['salt'])) {
-            throw new \InvalidArgumentException("The configuration node 'salt' is not set for the SonataNewsBundle (sonata_news)");
+            throw new \InvalidArgumentException(
+                'The configuration node "salt" is not set for the SonataNewsBundle (sonata_news)'
+            );
         }
 
         if (!isset($config['comment'])) {
-            throw new \InvalidArgumentException("The configuration node 'comment' is not set for the SonataNewsBundle (sonata_news)");
+            throw new \InvalidArgumentException(
+                'The configuration node "comment" is not set for the SonataNewsBundle (sonata_news)'
+            );
         }
 
         $container->getDefinition('sonata.news.hash.generator')
@@ -88,7 +93,7 @@ class SonataNewsExtension extends Extension
                 'notification' => $config['comment']['notification'],
             ));
 
-        $this->registerDoctrineMapping($config, $container);
+        $this->registerDoctrineMapping($config);
         $this->configureClass($config, $container);
         $this->configureAdmin($config, $container);
     }

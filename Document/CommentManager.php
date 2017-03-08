@@ -21,12 +21,15 @@ use Sonata\NewsBundle\Model\PostInterface;
 class CommentManager extends BaseDocumentManager implements CommentManagerInterface
 {
     /**
-     * {@inheritdoc}
+     * @param array $criteria
+     * @param int   $page
+     * @param int   $limit
+     * @param array $sort
+     *
+     * @return Pager
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
-        $parameters = array();
-
         $qb = $this->getDocumentManager()->getRepository($this->class)
             ->createQueryBuilder()
             ->sort('createdAt', 'desc');
@@ -47,7 +50,9 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
     }
 
     /**
-     * {@inheritdoc}
+     * Update the comments count.
+     *
+     * @param PostInterface $post
      */
     public function updateCommentsCount(PostInterface $post = null)
     {

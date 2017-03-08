@@ -29,11 +29,13 @@
         "sonata-project/formatter-bundle": "^3.0",
         "sonata-project/easy-extends-bundle": "^2.1",
         "sonata-project/intl-bundle": "^2.2.4",
-        "sonata-project/datagrid-bundle": "^2.2",
-        "sonata-project/core-bundle": "^3.0.2"
+        "sonata-project/datagrid-bundle": "^2.2.1",
+        "sonata-project/core-bundle": "^3.2",
+        "swiftmailer/swiftmailer": "^4.3 || ^5.0"
     },
     "require-dev": {
         "doctrine/orm": "^2.4",
+        "sonata-project/block-bundle": "^3.2",
         "sonata-project/doctrine-orm-admin-bundle": "^3.0",
         "sonata-project/notification-bundle": "^3.0",
         "sonata-project/seo-bundle": "^2.0",
@@ -44,11 +46,13 @@
     },
     "conflict": {
         "jms/serializer": "<0.13",
+        "sonata-project/block-bundle": "<3.2",
         "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
         "sonata-project/notification-bundle": "<3.0 || >=4.0",
         "sonata-project/seo-bundle": "<2.0 || >=3.0"
     },
     "suggest": {
+        "sonata-project/block-bundle": "For rendering block lists.",
         "sonata-project/doctrine-orm-admin-bundle": "^2.2",
         "sonata-project/notification-bundle": "^2.2"
     },

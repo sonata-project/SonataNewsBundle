@@ -22,13 +22,20 @@ use Sonata\NewsBundle\Model\PostManagerInterface;
 class PostManager extends BaseEntityManager implements PostManagerInterface
 {
     /**
-     * {@inheritdoc}
+     * @param string        $permalink
+     * @param BlogInterface $blog
+     *
+     * @return PostInterface|null
      */
     public function findOneByPermalink($permalink, BlogInterface $blog)
     {
         $query = $this->getRepository()->createQueryBuilder('p');
 
-        $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
+        try {
+            $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
+        } catch (\InvalidArgumentException $exception) {
+            return null;
+        }
 
         $parameters = array();
 
@@ -59,12 +66,12 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         }
 
         if (count($parameters) == 0) {
-            return;
+            return null;
         }
 
         $query->setParameters($parameters);
 
-        return $query->getQuery()->getSingleResult();
+        return $query->getQuery()->getOneOrNullResult();
     }
 
     /**

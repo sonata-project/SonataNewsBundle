@@ -11,17 +11,14 @@
 
 namespace Sonata\NewsBundle\Controller\Api;
 
-use FOS\RestBundle\Controller\Annotations\Route;
-use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations as REST;
+use FOS\RestBundle\View\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class CommentController.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class CommentController
@@ -32,8 +29,6 @@ class CommentController
     protected $commentManager;
 
     /**
-     * Constructor.
-     *
      * @param CommentManagerInterface $commentManager A comment manager
      */
     public function __construct(CommentManagerInterface $commentManager)
@@ -56,9 +51,9 @@ class CommentController
      *  }
      * )
      *
-     * @View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
+     * @REST\View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int $id A comment identifier
      *
@@ -85,7 +80,7 @@ class CommentController
      *  }
      * )
      *
-     * @Route(requirements={"_format"="json|xml"})
+     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int $id A comment identifier
      *
@@ -100,7 +95,7 @@ class CommentController
         try {
             $this->commentManager->delete($comment);
         } catch (\Exception $e) {
-            return \FOS\RestBundle\View\View::create(array('error' => $e->getMessage()), 400);
+            return View::create(array('error' => $e->getMessage()), 400);
         }
 
         return array('deleted' => true);

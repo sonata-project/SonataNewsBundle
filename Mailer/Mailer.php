@@ -51,6 +51,7 @@ class Mailer implements MailerInterface
 
     /**
      * @param \Swift_Mailer          $mailer
+     * @param BlogInterface          $blog
      * @param HashGeneratorInterface $generator
      * @param RouterInterface        $router
      * @param EngineInterface        $templating
@@ -78,7 +79,11 @@ class Mailer implements MailerInterface
             'blog' => $this->blog,
         ));
 
-        $this->sendEmailMessage($rendered, $this->emails['notification']['from'], $this->emails['notification']['emails']);
+        $this->sendEmailMessage(
+            $rendered,
+            $this->emails['notification']['from'],
+            $this->emails['notification']['emails']
+        );
     }
 
     /**
