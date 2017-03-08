@@ -105,7 +105,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param $collection
+     * @param string  $collection
      * @param Request $request
      *
      * @return Response
@@ -162,7 +162,7 @@ class PostController extends Controller
     /**
      * @throws NotFoundHttpException
      *
-     * @param $permalink
+     * @param string $permalink
      *
      * @return Response
      */
@@ -181,7 +181,7 @@ class PostController extends Controller
                 ->addMeta('property', 'og:title', $post->getTitle())
                 ->addMeta('property', 'og:type', 'blog')
                 ->addMeta('property', 'og:url', $this->generateUrl('sonata_news_view', array(
-                    'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post, true),
+                    'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
                 ), UrlGeneratorInterface::ABSOLUTE_URL))
                 ->addMeta('property', 'og:description', $post->getAbstract())
             ;
@@ -195,7 +195,7 @@ class PostController extends Controller
     }
 
     /**
-     * @return SeoPageInterface
+     * @return SeoPageInterface|null
      */
     public function getSeoPage()
     {
@@ -203,7 +203,7 @@ class PostController extends Controller
             return $this->get('sonata.seo.page');
         }
 
-        return;
+        return null;
     }
 
     /**
@@ -247,7 +247,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param $post
+     * @param PostInterface $post
      *
      * @return FormInterface
      */

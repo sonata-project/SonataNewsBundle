@@ -15,10 +15,19 @@ use Sonata\NewsBundle\Permalink\PermalinkInterface;
 
 class Blog implements BlogInterface
 {
+    /**
+     * @var string
+     */
     protected $title;
 
+    /**
+     * @var string
+     */
     protected $link;
 
+    /**
+     * @var string
+     */
     protected $description;
 
     /**

@@ -36,6 +36,11 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     private $environment;
 
     /**
+     * @var BlogInterface
+     */
+    private $blog;
+
+    /**
      * @param RouterInterface  $router
      * @param ManagerInterface $tagManager
      * @param BlogInterface    $blog
@@ -113,7 +118,7 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     /**
      * @param PostInterface $post
      *
-     * @return string|Exception
+     * @return string
      */
     public function generatePermalink(PostInterface $post)
     {
