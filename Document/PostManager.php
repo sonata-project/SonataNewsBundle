@@ -58,7 +58,11 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
     {
         $query = $this->getRepository()->createQueryBuilder('p');
 
-        $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
+        try {
+            $urlParameters = $blog->getPermalinkGenerator()->getParameters($permalink);
+        } catch (\InvalidArgumentException $exception) {
+            return null;
+        }
 
         $parameters = array();
 
