@@ -26,12 +26,10 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
      * @param int   $limit
      * @param array $sort
      *
-     * @return \Sonata\AdminBundle\Datagrid\ODM\Pager
+     * @return Pager
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
     {
-        $parameters = array();
-
         $qb = $this->getDocumentManager()->getRepository($this->class)
             ->createQueryBuilder()
             ->sort('createdAt', 'desc');
@@ -54,7 +52,7 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
     /**
      * Update the comments count.
      *
-     * @param \Sonata\NewsBundle\Model\PostInterface $post
+     * @param PostInterface $post
      */
     public function updateCommentsCount(PostInterface $post = null)
     {

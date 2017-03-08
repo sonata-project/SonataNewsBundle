@@ -51,6 +51,7 @@ class Mailer implements MailerInterface
 
     /**
      * @param \Swift_Mailer          $mailer
+     * @param BlogInterface          $blog
      * @param HashGeneratorInterface $generator
      * @param RouterInterface        $router
      * @param EngineInterface        $templating

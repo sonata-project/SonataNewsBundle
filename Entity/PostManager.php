@@ -63,7 +63,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         }
 
         if (count($parameters) == 0) {
-            return;
+            return null;
         }
 
         $query->setParameters($parameters);

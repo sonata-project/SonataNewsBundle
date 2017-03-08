@@ -11,13 +11,16 @@
 
 namespace Sonata\NewsBundle\Model;
 
+use Doctrine\Common\Collections\Collection;
+use FOS\UserBundle\Model\UserInterface;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\ClassificationBundle\Model\TagInterface;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 interface PostInterface
 {
     /**
-     * @return mixed
+     * @return int
      */
     public function getId();
 
@@ -80,14 +83,14 @@ interface PostInterface
     /**
      * Set slug.
      *
-     * @param int $slug
+     * @param string $slug
      */
     public function setSlug($slug);
 
     /**
      * Get slug.
      *
-     * @return int $slug
+     * @return string $slug
      */
     public function getSlug();
 
@@ -141,14 +144,14 @@ interface PostInterface
     public function addComments(CommentInterface $comments);
 
     /**
-     * @param array $comments
+     * @param Collection|CommentInterface[] $comments
      */
     public function setComments($comments);
 
     /**
      * Get comments.
      *
-     * @return array $comments
+     * @return Collection|CommentInterface[] $comments
      */
     public function getComments();
 
@@ -162,14 +165,12 @@ interface PostInterface
     /**
      * Get tags.
      *
-     * @return array $tags
+     * @return Collection|TagInterface[] $tags
      */
     public function getTags();
 
     /**
-     * @param $tags
-     *
-     * @return mixed
+     * @param Collection|TagInterface[]$tags
      */
     public function setTags($tags);
 
@@ -255,26 +256,22 @@ interface PostInterface
     public function isPublic();
 
     /**
-     * @param mixed $author
-     *
-     * @return mixed
+     * @param UserInterface $author
      */
     public function setAuthor($author);
 
     /**
-     * @return mixed
+     * @return UserInterface
      */
     public function getAuthor();
 
     /**
-     * @param mixed $image
-     *
-     * @return mixed
+     * @param MediaInterface $image
      */
     public function setImage($image);
 
     /**
-     * @return mixed
+     * @return MediaInterface
      */
     public function getImage();
 

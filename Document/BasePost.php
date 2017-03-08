@@ -11,6 +11,7 @@
 
 namespace Sonata\NewsBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\NewsBundle\Model\Post as ModelPost;
 
 abstract class BasePost extends ModelPost
@@ -20,7 +21,7 @@ abstract class BasePost extends ModelPost
      */
     public function __construct()
     {
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 }

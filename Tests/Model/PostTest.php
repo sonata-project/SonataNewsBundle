@@ -11,9 +11,10 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use Sonata\NewsBundle\Model\Post;
 use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
-class ModelTest_Post extends \Sonata\NewsBundle\Model\Post
+class ModelTest_Post extends Post
 {
     public function getId()
     {

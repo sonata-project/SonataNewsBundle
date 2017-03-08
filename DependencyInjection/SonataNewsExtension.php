@@ -93,7 +93,7 @@ class SonataNewsExtension extends Extension
                 'notification' => $config['comment']['notification'],
             ));
 
-        $this->registerDoctrineMapping($config, $container);
+        $this->registerDoctrineMapping($config);
         $this->configureClass($config, $container);
         $this->configureAdmin($config, $container);
     }
