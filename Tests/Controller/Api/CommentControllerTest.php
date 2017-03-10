@@ -12,20 +12,18 @@
 namespace Sonata\NewsBundle\Tests\Controller\Api;
 
 use Sonata\NewsBundle\Controller\Api\CommentController;
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
- * Class CommentControllerTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
-class CommentControllerTest extends \PHPUnit_Framework_TestCase
+class CommentControllerTest extends PHPUnit_Framework_TestCase
 {
     public function testGetCommentAction()
     {
-        $comment = $this->getMock('Sonata\NewsBundle\Model\CommentInterface');
+        $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
 
-        $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
+        $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
 
         $this->assertEquals($comment, $this->createCommentController($commentManager)->getCommentAction(1));
@@ -42,9 +40,9 @@ class CommentControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testDeleteCommentAction()
     {
-        $comment = $this->getMock('Sonata\NewsBundle\Model\CommentInterface');
+        $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
 
-        $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
+        $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
         $commentManager->expects($this->once())->method('delete');
 
@@ -57,7 +55,7 @@ class CommentControllerTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
 
-        $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
+        $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         $commentManager->expects($this->once())->method('find')->will($this->returnValue(null));
         $commentManager->expects($this->never())->method('delete');
 
@@ -72,7 +70,7 @@ class CommentControllerTest extends \PHPUnit_Framework_TestCase
     protected function createCommentController($commentManager = null)
     {
         if (null === $commentManager) {
-            $commentManager = $this->getMock('Sonata\NewsBundle\Model\CommentManagerInterface');
+            $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         }
 
         return new CommentController($commentManager);

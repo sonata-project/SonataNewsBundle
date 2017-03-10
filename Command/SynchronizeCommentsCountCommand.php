@@ -11,7 +11,6 @@
 
 namespace Sonata\NewsBundle\Command;
 
-use Sonata\NewsBundle\Model\Comment;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -11,7 +11,10 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
-class ModelTest_Post extends \Sonata\NewsBundle\Model\Post
+use Sonata\NewsBundle\Model\Post;
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
+
+class ModelTest_Post extends Post
 {
     public function getId()
     {
@@ -19,11 +22,9 @@ class ModelTest_Post extends \Sonata\NewsBundle\Model\Post
 }
 
 /**
- * Class PostTest.
- *
- * Tests the post model
+ * Tests the post model.
  */
-class PostTest extends \PHPUnit_Framework_TestCase
+class PostTest extends PHPUnit_Framework_TestCase
 {
     public function testSettersGetters()
     {
@@ -32,7 +33,7 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $post = new ModelTest_Post();
         $post->setAbstract('My abstract content');
         $post->setAuthor('My author');
-        $post->setCollection($this->getMock('Sonata\ClassificationBundle\Model\CollectionInterface'));
+        $post->setCollection($this->createMock('Sonata\ClassificationBundle\Model\CollectionInterface'));
         $post->setCommentsCloseAt($date);
         $post->setCommentsCount(5);
         $post->setCommentsDefaultStatus(1);
@@ -43,14 +44,14 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $post->setEnabled(true);
         $post->setPublicationDateStart($date);
         $post->setRawContent('My raw content');
-        $post->setTags($this->getMock('Sonata\ClassificationBundle\Model\TagInterface'));
+        $post->setTags($this->createMock('Sonata\ClassificationBundle\Model\TagInterface'));
         $post->setTitle('My title');
         $post->setSlug('my-post-slug');
         $post->setUpdatedAt($date);
 
         $this->assertEquals($post->getAbstract(), 'My abstract content');
         $this->assertEquals($post->getAuthor(), 'My author');
-        $this->assertEquals($post->getCollection(), $this->getMock('Sonata\ClassificationBundle\Model\CollectionInterface'));
+        $this->assertEquals($post->getCollection(), $this->createMock('Sonata\ClassificationBundle\Model\CollectionInterface'));
         $this->assertEquals($post->getCommentsCloseAt(), $date);
         $this->assertEquals($post->getCommentsCount(), 5);
         $this->assertEquals($post->getCommentsDefaultStatus(), 1);
@@ -62,7 +63,7 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($post->getPublicationDateStart(), $date);
         $this->assertEquals($post->getRawContent(), 'My raw content');
         $this->assertEquals($post->getSlug(), 'my-post-slug');
-        $this->assertEquals($post->getTags(), $this->getMock('Sonata\ClassificationBundle\Model\TagInterface'));
+        $this->assertEquals($post->getTags(), $this->createMock('Sonata\ClassificationBundle\Model\TagInterface'));
         $this->assertEquals($post->getTitle(), 'My title');
         $this->assertEquals($post->getUpdatedAt(), $date);
     }

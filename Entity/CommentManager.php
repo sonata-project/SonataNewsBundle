@@ -28,8 +28,6 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     protected $postManager;
 
     /**
-     * Constructor.
-     *
      * @param string           $class
      * @param ManagerRegistry  $registry
      * @param ManagerInterface $postManager

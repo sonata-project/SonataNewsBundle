@@ -36,6 +36,11 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     private $environment;
 
     /**
+     * @var BlogInterface
+     */
+    private $blog;
+
+    /**
      * @param RouterInterface  $router
      * @param ManagerInterface $tagManager
      * @param BlogInterface    $blog
@@ -43,7 +48,12 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     public function __construct(RouterInterface $router, ManagerInterface $tagManager, BlogInterface $blog)
     {
         if (!$tagManager instanceof TagManagerInterface) {
-            @trigger_error('Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated since version 2.4 and will be removed in 3.0. Use the new signature with a Sonata\ClassificationBundle\Model\TagManagerInterface instead.', E_USER_DEPRECATED);
+            @trigger_error(
+                'Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated'
+                .' since version 2.4 and will be removed in 4.0.'
+                .' Use the new signature with a Sonata\ClassificationBundle\Model\TagManagerInterface instead.',
+                E_USER_DEPRECATED
+            );
         }
 
         $this->router = $router;
@@ -59,8 +69,14 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('sonata_news_link_tag_rss', array($this, 'renderTagRss', array('is_safe' => array('html')))),
-            new \Twig_SimpleFunction('sonata_news_permalink', array($this, 'generatePermalink')),
+            new \Twig_SimpleFunction(
+                'sonata_news_link_tag_rss',
+                array($this, 'renderTagRss', array('is_safe' => array('html')))
+            ),
+            new \Twig_SimpleFunction(
+                'sonata_news_permalink',
+                array($this, 'generatePermalink')
+            ),
         );
     }
 
@@ -102,7 +118,7 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     /**
      * @param PostInterface $post
      *
-     * @return string|Exception
+     * @return string
      */
     public function generatePermalink(PostInterface $post)
     {

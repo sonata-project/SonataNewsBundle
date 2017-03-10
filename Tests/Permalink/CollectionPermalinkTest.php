@@ -12,15 +12,16 @@
 namespace Sonata\NewsBundle\Tests\Model;
 
 use Sonata\NewsBundle\Permalink\CollectionPermalink;
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
-class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
+class CollectionPermalinkTest extends PHPUnit_Framework_TestCase
 {
     public function testGenerateWithCollection()
     {
-        $collection = $this->getMock('Sonata\ClassificationBundle\Model\CollectionInterface');
+        $collection = $this->createMock('Sonata\ClassificationBundle\Model\CollectionInterface');
         $collection->expects($this->any())->method('getSlug')->will($this->returnValue('the-collection'));
 
-        $post = $this->getMock('Sonata\NewsBundle\Model\PostInterface');
+        $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->any())->method('getCollection')->will($this->returnValue($collection));
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
 
@@ -30,7 +31,7 @@ class CollectionPermalinkTest extends \PHPUnit_Framework_TestCase
 
     public function testGenerateWithoutCollection()
     {
-        $post = $this->getMock('Sonata\NewsBundle\Model\PostInterface');
+        $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->any())->method('getCollection')->will($this->returnValue(null));
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
 

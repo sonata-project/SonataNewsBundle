@@ -13,13 +13,12 @@ namespace Sonata\NewsBundle\Tests\Entity;
 
 use Sonata\CoreBundle\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\PostManager;
+use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
- * Class PostManagerTest.
- *
  * Tests the post manager entity.
  */
-class PostManagerTest extends \PHPUnit_Framework_TestCase
+class PostManagerTest extends PHPUnit_Framework_TestCase
 {
     public function assertRelationsEnabled($qb)
     {
@@ -69,11 +68,52 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $qb->expects($this->once())->method('setParameters')->with($this->equalTo(array('enabled' => $flag)));
     }
 
+    public function testFindOneByPermalinkSlug()
+    {
+        $permalink = $this->getMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
+        $permalink->expects($this->once())->method('getParameters')
+            ->with($this->equalTo('foo/bar'))
+            ->will($this->returnValue(array(
+                'slug' => 'bar',
+            )));
+
+        $blog = $this->getMock('Sonata\NewsBundle\Model\BlogInterface');
+        $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
+
+        $self = $this;
+        $this
+            ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('andWhere')->with($self->equalTo('p.slug = :slug'));
+                $qb->expects($self->once())->method('setParameters')->with($self->equalTo(array('slug' => 'bar')));
+            })
+            ->findOneByPermalink('foo/bar', $blog);
+    }
+
+    public function testFindOneByPermalinkException()
+    {
+        $permalink = $this->getMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
+        $permalink->expects($this->once())->method('getParameters')
+            ->with($this->equalTo(''))
+            ->willThrowException(new \InvalidArgumentException());
+
+        $blog = $this->getMock('Sonata\NewsBundle\Model\BlogInterface');
+        $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
+
+        $self = $this;
+        $result = $this
+            ->getPostManager(function ($qb) {
+            })
+            ->findOneByPermalink('', $blog);
+
+        $this->assertNull($result);
+    }
+
     public function testGetPagerWithoutMode()
     {
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -85,6 +125,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -96,6 +137,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
             })
@@ -109,6 +151,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -122,6 +165,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -136,6 +180,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
             })
@@ -151,6 +196,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $this
             ->getPostManager(function ($qb) use ($self) {
                 $self->assertRelationsJoined($qb);
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $qb->expects($self->never())->method('andWhere');
                 $qb->expects($self->once())->method('setParameters')->with($self->equalTo(array()));
             })
@@ -164,6 +210,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 1);
             })
@@ -178,6 +225,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 0);
             })
@@ -203,7 +251,7 @@ class PostManagerTest extends \PHPUnit_Framework_TestCase
     {
         $em = EntityManagerMockFactory::create($this, $qbCallback, array());
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
 
         return new PostManager('Sonata\NewsBundle\Entity\BasePost', $registry);

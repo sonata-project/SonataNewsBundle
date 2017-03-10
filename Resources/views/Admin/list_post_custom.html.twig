@@ -13,7 +13,7 @@ file that was distributed with this source code.
 
 {% block field %}
     <div class="col-sm-2 centered">
-        <center>
+        <div class="text-center">
             {% if object.image and admin.isGranted('VIEW', object.image) %}
                 {% if admin.isGranted('EDIT', object) and admin.hasRoute('edit') %}
                     <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}">{% thumbnail object.image, 'admin' with {'width': 90} %}</a>
@@ -23,7 +23,7 @@ file that was distributed with this source code.
             {% else %}
                 <i class="fa fa-chain-broken fa-3x"></i>
             {% endif %}
-        </center>
+        </div>
     </div>
     <div class="col-sm-10">
         <span class="badge pull-right">{{ object.commentsCount }}</span>
