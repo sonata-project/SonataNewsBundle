@@ -100,6 +100,7 @@ class PostAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $isHorizontal = $this->getConfigurationPool()->getOption('form_type') == 'horizontal';
         $formMapper
             ->with('group_post', array(
                     'class' => 'col-md-8',
@@ -112,8 +113,8 @@ class PostAdmin extends AbstractAdmin
                     'format_field' => 'contentFormatter',
                     'source_field' => 'rawContent',
                     'source_field_options' => array(
-                        'horizontal_input_wrapper_class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'col-lg-12' : '',
-                        'attr' => array('class' => $this->getConfigurationPool()->getOption('form_type') == 'horizontal' ? 'span10 col-sm-10 col-md-10' : '', 'rows' => 20),
+                        'horizontal_input_wrapper_class' => $isHorizontal ? 'col-lg-12' : '',
+                        'attr' => array('class' => $isHorizontal ? 'span10 col-sm-10 col-md-10' : '', 'rows' => 20),
                     ),
                     'ckeditor_context' => 'news',
                     'target_field' => 'content',
@@ -200,7 +201,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
         if (!$childAdmin && !in_array($action, array('edit'))) {
             return;
@@ -221,8 +222,12 @@ class PostAdmin extends AbstractAdmin
         );
 
         if ($this->hasSubject() && $this->getSubject()->getId() !== null) {
-            $menu->addChild('sidemenu.link_view_post',
-                array('uri' => $admin->getRouteGenerator()->generate('sonata_news_view', array('permalink' => $this->permalinkGenerator->generate($this->getSubject()))))
+            $menu->addChild(
+                'sidemenu.link_view_post',
+                array('uri' => $admin->getRouteGenerator()->generate(
+                    'sonata_news_view',
+                    array('permalink' => $this->permalinkGenerator->generate($this->getSubject()))
+                ))
             );
         }
     }
