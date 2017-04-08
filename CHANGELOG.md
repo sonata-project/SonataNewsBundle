@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.2](https://github.com/sonata-project/SonataNewsBundle/compare/3.1.1...3.1.2) - 2017-04-07
+### Changed
+- The `sonata-project/block-bundle` is an optional dependency
+
+### Fixed
+- Added missing `RecentPostsBlockService::$adminPool` parameter
+- Added missing `NewsExtension::$blog` parameter
+- Fixed wrong or missing PHPDoc
+- Fixed return null value instead of void in `PostController::getSeoPage`
+- Fixed return null value instead of void in `PostManager::findOneByPermalink`
+- Fixed return null value instead of void in `CommentStatusRenderer::getStatusClass`
+- Fixed BlockBundle deprecation messages
+- Fixed request service deprecation messages
+- Fixed old center html tag
+- Missing swiftmailer dependency
+- Fixed pager test with DatagridBundle 2.2.1
+- Catch exception when finding post by permalink
+- deprecated `configureSideMenu` usage was fixed
+
+### Removed
+ - Removed dead parameters in method calls
+
 ## [3.1.1](https://github.com/sonata-project/SonataNewsBundle/compare/3.1.0...3.1.1) - 2017-02-13
 ### Changed
 - the method `PostManager::findOneBySlug` will return null if the permalink couldn't be found
