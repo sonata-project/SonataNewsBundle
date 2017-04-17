@@ -86,7 +86,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         $parameters = array();
         $query = $this->getRepository()
             ->createQueryBuilder('p')
-            ->select('p, t')
+            ->select('p')
             ->orderBy('p.publicationDateStart', 'DESC');
 
         if ($criteria['mode'] == 'admin') {
