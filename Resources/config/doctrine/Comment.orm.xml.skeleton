@@ -9,7 +9,7 @@
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
     <entity
-        name="Application\Sonata\NewsBundle\Entity\Comment"
+        name="{{ namespace }}\Entity\Comment"
         table="news__comment"
         repository-class="Doctrine\ORM\EntityRepository">
 
