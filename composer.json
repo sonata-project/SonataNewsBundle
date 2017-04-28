@@ -27,7 +27,7 @@
         "sonata-project/media-bundle": "^3.0",
         "sonata-project/classification-bundle": "^3.0",
         "sonata-project/formatter-bundle": "^3.0",
-        "sonata-project/easy-extends-bundle": "^2.1",
+        "sonata-project/easy-extends-bundle": "^2.2",
         "sonata-project/intl-bundle": "^2.2.4",
         "sonata-project/datagrid-bundle": "^2.2.1",
         "sonata-project/core-bundle": "^3.2",
