@@ -14,7 +14,7 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
 
     composer require nelmio/api-doc-bundle friendsofsymfony/rest-bundle
 
-* Add SonataNewsBundle to your application kernel:
+* Add SonataNewsBundle to your AppKernel:
 
 .. code-block:: php
 
@@ -27,10 +27,11 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
     {
         return array(
             // ...
+
             new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
+            new Sonata\NewsBundle\SonataBlockBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
@@ -43,9 +44,14 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+
+            // ...
         );
     }
 
+.. note::
+
+    `You need to setup SonataBlockBundle first. <https://sonata-project.org/bundles/block/master/doc/reference/installation.html>`_
 
 * Create a configuration file called ``sonata_news.yml``:
 
@@ -209,4 +215,3 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
     news:
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
         prefix: /news
-
