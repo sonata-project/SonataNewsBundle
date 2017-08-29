@@ -286,7 +286,7 @@ class PostController extends Controller
         }
 
         if (!$post->isCommentable()) {
-            // todo add notice
+            // todo add notice.
             return new RedirectResponse($this->generateUrl('sonata_news_view', [
                 'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
             ]));
