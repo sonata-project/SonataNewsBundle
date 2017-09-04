@@ -47,9 +47,9 @@
     "conflict": {
         "jms/serializer": "<0.13",
         "sonata-project/block-bundle": "<3.2",
-        "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
-        "sonata-project/notification-bundle": "<3.0 || >=4.0",
-        "sonata-project/seo-bundle": "<2.0 || >=3.0"
+        "sonata-project/doctrine-orm-admin-bundle": "<3.0",
+        "sonata-project/notification-bundle": "<3.0",
+        "sonata-project/seo-bundle": "<2.0"
     },
     "suggest": {
         "sonata-project/block-bundle": "For rendering block lists.",
