@@ -12,9 +12,9 @@ language: php
 php:
   - '7.1'
   - nightly
-  - hhvm
 
 sudo: false
+dist: precise
 
 cache:
   pip: true
@@ -56,6 +56,8 @@ matrix:
       env: SONATA_USER=dev-master@dev
     - php: '7.1'
       env: SYMFONY_DEPRECATIONS_HELPER=0
+    - php: hhvm
+      dist: trusty
   allow_failures:
     - php: nightly
     - php: hhvm
