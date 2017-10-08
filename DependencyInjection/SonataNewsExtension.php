@@ -78,20 +78,20 @@ class SonataNewsExtension extends Extension
 
         $container->setAlias('sonata.news.permalink.generator', $config['permalink_generator']);
 
-        $container->setDefinition('sonata.news.blog', new Definition('Sonata\NewsBundle\Model\Blog', array(
+        $container->setDefinition('sonata.news.blog', new Definition('Sonata\NewsBundle\Model\Blog', [
             $config['title'],
             $config['link'],
             $config['description'],
             new Reference('sonata.news.permalink.generator'),
-        )));
+        ]));
 
         $container->getDefinition('sonata.news.hash.generator')
             ->replaceArgument(0, $config['salt']);
 
         $container->getDefinition('sonata.news.mailer')
-            ->replaceArgument(5, array(
+            ->replaceArgument(5, [
                 'notification' => $config['comment']['notification'],
-            ));
+            ]);
 
         $this->registerDoctrineMapping($config);
         $this->configureClass($config, $container);
@@ -141,113 +141,113 @@ class SonataNewsExtension extends Extension
             }
         }
 
-        $collector->addAssociation($config['class']['post'], 'mapOneToMany', array(
+        $collector->addAssociation($config['class']['post'], 'mapOneToMany', [
             'fieldName' => 'comments',
             'targetEntity' => $config['class']['comment'],
-            'cascade' => array(
+            'cascade' => [
                     0 => 'remove',
                     1 => 'persist',
-                ),
+                ],
             'mappedBy' => 'post',
             'orphanRemoval' => true,
-            'orderBy' => array(
+            'orderBy' => [
                     'createdAt' => 'DESC',
-                ),
-        ));
+                ],
+        ]);
 
-        $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapManyToOne', [
             'fieldName' => 'image',
             'targetEntity' => $config['class']['media'],
-            'cascade' => array(
+            'cascade' => [
                     0 => 'remove',
                     1 => 'persist',
                     2 => 'refresh',
                     3 => 'merge',
                     4 => 'detach',
-                ),
+                ],
             'mappedBy' => null,
             'inversedBy' => null,
-            'joinColumns' => array(
-                    array(
+            'joinColumns' => [
+                    [
                         'name' => 'image_id',
                         'referencedColumnName' => 'id',
-                    ),
-                ),
+                    ],
+                ],
             'orphanRemoval' => false,
-        ));
+        ]);
 
-        $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapManyToOne', [
             'fieldName' => 'author',
             'targetEntity' => $config['class']['user'],
-            'cascade' => array(
+            'cascade' => [
                     1 => 'persist',
-                ),
+                ],
             'mappedBy' => null,
             'inversedBy' => null,
-            'joinColumns' => array(
-                    array(
+            'joinColumns' => [
+                    [
                         'name' => 'author_id',
                         'referencedColumnName' => 'id',
-                    ),
-                ),
+                    ],
+                ],
             'orphanRemoval' => false,
-        ));
+        ]);
 
-        $collector->addAssociation($config['class']['post'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['post'], 'mapManyToOne', [
             'fieldName' => 'collection',
             'targetEntity' => $config['class']['collection'],
-            'cascade' => array(
+            'cascade' => [
                     1 => 'persist',
-                ),
+                ],
             'mappedBy' => null,
             'inversedBy' => null,
-            'joinColumns' => array(
-                    array(
+            'joinColumns' => [
+                    [
                         'name' => 'collection_id',
                         'referencedColumnName' => 'id',
-                    ),
-                ),
+                    ],
+                ],
             'orphanRemoval' => false,
-        ));
+        ]);
 
-        $collector->addAssociation($config['class']['post'], 'mapManyToMany', array(
+        $collector->addAssociation($config['class']['post'], 'mapManyToMany', [
             'fieldName' => 'tags',
             'targetEntity' => $config['class']['tag'],
-            'cascade' => array(
+            'cascade' => [
                     1 => 'persist',
-                ),
-            'joinTable' => array(
+                ],
+            'joinTable' => [
                     'name' => $config['table']['post_tag'],
-                    'joinColumns' => array(
-                            array(
+                    'joinColumns' => [
+                            [
                                 'name' => 'post_id',
                                 'referencedColumnName' => 'id',
-                            ),
-                        ),
-                    'inverseJoinColumns' => array(
-                            array(
+                            ],
+                        ],
+                    'inverseJoinColumns' => [
+                            [
                                 'name' => 'tag_id',
                                 'referencedColumnName' => 'id',
-                            ),
-                        ),
-                ),
-        ));
+                            ],
+                        ],
+                ],
+        ]);
 
-        $collector->addAssociation($config['class']['comment'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['comment'], 'mapManyToOne', [
             'fieldName' => 'post',
             'targetEntity' => $config['class']['post'],
-            'cascade' => array(
-            ),
+            'cascade' => [
+            ],
             'mappedBy' => null,
             'inversedBy' => 'comments',
-            'joinColumns' => array(
-                    array(
+            'joinColumns' => [
+                    [
                         'name' => 'post_id',
                         'referencedColumnName' => 'id',
                         'nullable' => false,
-                    ),
-                ),
+                    ],
+                ],
             'orphanRemoval' => false,
-        ));
+        ]);
     }
 }

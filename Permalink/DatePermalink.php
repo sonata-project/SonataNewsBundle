@@ -54,11 +54,11 @@ class DatePermalink implements PermalinkInterface
 
         list($year, $month, $day, $slug) = $parameters;
 
-        return array(
+        return [
             'year' => (int) $year,
             'month' => (int) $month,
             'day' => (int) $day,
             'slug' => $slug,
-        );
+        ];
     }
 }

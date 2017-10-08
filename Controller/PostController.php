@@ -43,7 +43,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function renderArchive(array $criteria = array(), array $parameters = array(), Request $request = null)
+    public function renderArchive(array $criteria = [], array $parameters = [], Request $request = null)
     {
         $request = $this->resolveRequest($request);
 
@@ -52,14 +52,14 @@ class PostController extends Controller
             $request->get('page', 1)
         );
 
-        $parameters = array_merge(array(
+        $parameters = array_merge([
             'pager' => $pager,
             'blog' => $this->getBlog(),
             'tag' => false,
             'collection' => false,
             'route' => $request->get('_route'),
             'route_parameters' => $request->get('_route_params'),
-        ), $parameters);
+        ], $parameters);
 
         $response = $this->render(sprintf('SonataNewsBundle:Post:archive.%s.twig', $request->getRequestFormat()), $parameters);
 
@@ -92,16 +92,16 @@ class PostController extends Controller
     {
         $request = $this->resolveRequest($request);
 
-        $tag = $this->get('sonata.classification.manager.tag')->findOneBy(array(
+        $tag = $this->get('sonata.classification.manager.tag')->findOneBy([
             'slug' => $tag,
             'enabled' => true,
-        ));
+        ]);
 
         if (!$tag || !$tag->getEnabled()) {
             throw new NotFoundHttpException('Unable to find the tag');
         }
 
-        return $this->renderArchive(array('tag' => $tag->getSlug()), array('tag' => $tag), $request);
+        return $this->renderArchive(['tag' => $tag->getSlug()], ['tag' => $tag], $request);
     }
 
     /**
@@ -116,16 +116,16 @@ class PostController extends Controller
     {
         $request = $this->resolveRequest($request);
 
-        $collection = $this->get('sonata.classification.manager.collection')->findOneBy(array(
+        $collection = $this->get('sonata.classification.manager.collection')->findOneBy([
             'slug' => $collection,
             'enabled' => true,
-        ));
+        ]);
 
         if (!$collection || !$collection->getEnabled()) {
             throw new NotFoundHttpException('Unable to find the collection');
         }
 
-        return $this->renderArchive(array('collection' => $collection), array('collection' => $collection), $request);
+        return $this->renderArchive(['collection' => $collection], ['collection' => $collection], $request);
     }
 
     /**
@@ -139,9 +139,9 @@ class PostController extends Controller
     {
         $request = $this->resolveRequest($request);
 
-        return $this->renderArchive(array(
+        return $this->renderArchive([
             'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, $month, 1), 'month'),
-        ), array(), $request);
+        ], [], $request);
     }
 
     /**
@@ -154,9 +154,9 @@ class PostController extends Controller
     {
         $request = $this->resolveRequest($request);
 
-        return $this->renderArchive(array(
+        return $this->renderArchive([
             'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, 1, 1), 'year'),
-        ), array(), $request);
+        ], [], $request);
     }
 
     /**
@@ -180,18 +180,18 @@ class PostController extends Controller
                 ->addMeta('name', 'description', $post->getAbstract())
                 ->addMeta('property', 'og:title', $post->getTitle())
                 ->addMeta('property', 'og:type', 'blog')
-                ->addMeta('property', 'og:url', $this->generateUrl('sonata_news_view', array(
+                ->addMeta('property', 'og:url', $this->generateUrl('sonata_news_view', [
                     'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
-                ), UrlGeneratorInterface::ABSOLUTE_URL))
+                ], UrlGeneratorInterface::ABSOLUTE_URL))
                 ->addMeta('property', 'og:description', $post->getAbstract())
             ;
         }
 
-        return $this->render('SonataNewsBundle:Post:view.html.twig', array(
+        return $this->render('SonataNewsBundle:Post:view.html.twig', [
             'post' => $post,
             'form' => false,
             'blog' => $this->getBlog(),
-        ));
+        ]);
     }
 
     /**
@@ -214,14 +214,14 @@ class PostController extends Controller
     public function commentsAction($postId)
     {
         $pager = $this->getCommentManager()
-            ->getPager(array(
+            ->getPager([
                 'postId' => $postId,
                 'status' => CommentInterface::STATUS_VALID,
-            ), 1, 500); //no limit
+            ], 1, 500); //no limit
 
-        return $this->render('SonataNewsBundle:Post:comments.html.twig', array(
+        return $this->render('SonataNewsBundle:Post:comments.html.twig', [
             'pager' => $pager,
-        ));
+        ]);
     }
 
     /**
@@ -233,17 +233,17 @@ class PostController extends Controller
     public function addCommentFormAction($postId, $form = false)
     {
         if (!$form) {
-            $post = $this->getPostManager()->findOneBy(array(
+            $post = $this->getPostManager()->findOneBy([
                 'id' => $postId,
-            ));
+            ]);
 
             $form = $this->getCommentForm($post);
         }
 
-        return $this->render('SonataNewsBundle:Post:comment_form.html.twig', array(
+        return $this->render('SonataNewsBundle:Post:comment_form.html.twig', [
             'form' => $form->createView(),
             'post_id' => $postId,
-        ));
+        ]);
     }
 
     /**
@@ -257,12 +257,12 @@ class PostController extends Controller
         $comment->setPost($post);
         $comment->setStatus($post->getCommentsDefaultStatus());
 
-        return $this->get('form.factory')->createNamed('comment', 'sonata_post_comment', $comment, array(
-            'action' => $this->generateUrl('sonata_news_add_comment', array(
+        return $this->get('form.factory')->createNamed('comment', 'sonata_post_comment', $comment, [
+            'action' => $this->generateUrl('sonata_news_add_comment', [
                 'id' => $post->getId(),
-            )),
+            ]),
             'method' => 'POST',
-        ));
+        ]);
     }
 
     /**
@@ -277,9 +277,9 @@ class PostController extends Controller
     {
         $request = $this->resolveRequest($request);
 
-        $post = $this->getPostManager()->findOneBy(array(
+        $post = $this->getPostManager()->findOneBy([
             'id' => $id,
-        ));
+        ]);
 
         if (!$post) {
             throw new NotFoundHttpException(sprintf('Post (%d) not found', $id));
@@ -287,9 +287,9 @@ class PostController extends Controller
 
         if (!$post->isCommentable()) {
             // todo add notice
-            return new RedirectResponse($this->generateUrl('sonata_news_view', array(
+            return new RedirectResponse($this->generateUrl('sonata_news_view', [
                 'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
-            )));
+            ]));
         }
 
         $form = $this->getCommentForm($post);
@@ -302,15 +302,15 @@ class PostController extends Controller
             $this->get('sonata.news.mailer')->sendCommentNotification($comment);
 
             // todo : add notice
-            return new RedirectResponse($this->generateUrl('sonata_news_view', array(
+            return new RedirectResponse($this->generateUrl('sonata_news_view', [
                 'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
-            )));
+            ]));
         }
 
-        return $this->render('SonataNewsBundle:Post:view.html.twig', array(
+        return $this->render('SonataNewsBundle:Post:view.html.twig', [
             'post' => $post,
             'form' => $form,
-        ));
+        ]);
     }
 
     /**
@@ -324,7 +324,7 @@ class PostController extends Controller
      */
     public function commentModerationAction($commentId, $hash, $status)
     {
-        $comment = $this->getCommentManager()->findOneBy(array('id' => $commentId));
+        $comment = $this->getCommentManager()->findOneBy(['id' => $commentId]);
 
         if (!$comment) {
             throw new AccessDeniedException();
@@ -340,9 +340,9 @@ class PostController extends Controller
 
         $this->getCommentManager()->save($comment);
 
-        return new RedirectResponse($this->generateUrl('sonata_news_view', array(
+        return new RedirectResponse($this->generateUrl('sonata_news_view', [
             'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($comment->getPost()),
-        )));
+        ]));
     }
 
     /**

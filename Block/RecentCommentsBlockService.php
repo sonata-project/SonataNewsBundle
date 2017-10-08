@@ -66,17 +66,17 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $criteria = array(
+        $criteria = [
             'mode' => $blockContext->getSetting('mode'),
-        );
+        ];
 
-        $parameters = array(
+        $parameters = [
             'context' => $blockContext,
             'settings' => $blockContext->getSettings(),
             'block' => $blockContext->getBlock(),
             'pager' => $this->manager->getPager($criteria, 1, $blockContext->getSetting('number')),
             'admin_pool' => $this->adminPool,
-        );
+        ];
 
         if ($blockContext->getSetting('mode') === 'admin') {
             return $this->renderPrivateResponse($blockContext->getTemplate(), $parameters, $response);
@@ -90,26 +90,26 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
      */
     public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
     {
-        $formMapper->add('settings', 'sonata_type_immutable_array', array(
-            'keys' => array(
-                array('number', 'integer', array(
+        $formMapper->add('settings', 'sonata_type_immutable_array', [
+            'keys' => [
+                ['number', 'integer', [
                     'required' => true,
                     'label' => 'form.label_number',
-                )),
-                array('title', 'text', array(
+                ]],
+                ['title', 'text', [
                     'required' => false,
                     'label' => 'form.label_title',
-                )),
-                array('mode', 'choice', array(
-                    'choices' => array(
+                ]],
+                ['mode', 'choice', [
+                    'choices' => [
                         'public' => 'form.label_mode_public',
                         'admin' => 'form.label_mode_admin',
-                    ),
+                    ],
                     'label' => 'form.label_mode',
-                )),
-            ),
+                ]],
+            ],
             'translation_domain' => 'SonataNewsBundle',
-        ));
+        ]);
     }
 
     /**
@@ -117,12 +117,12 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
      */
     public function configureSettings(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'number' => 5,
             'mode' => 'public',
             'title' => 'Recent Comments',
             'template' => 'SonataNewsBundle:Block:recent_comments.html.twig',
-        ));
+        ]);
     }
 
     /**
@@ -130,8 +130,8 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
      */
     public function getBlockMetadata($code = null)
     {
-        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataNewsBundle', array(
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataNewsBundle', [
             'class' => 'fa fa-comments-o',
-        ));
+        ]);
     }
 }
