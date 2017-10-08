@@ -23,10 +23,10 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, array('label' => 'form.comment.name'))
-            ->add('email', 'email', array('required' => false, 'label' => 'form.comment.email'))
-            ->add('url', 'url', array('required' => false, 'label' => 'form.comment.url'))
-            ->add('message', null, array('label' => 'form.comment.message'))
+            ->add('name', null, ['label' => 'form.comment.name'])
+            ->add('email', 'email', ['required' => false, 'label' => 'form.comment.email'])
+            ->add('url', 'url', ['required' => false, 'label' => 'form.comment.url'])
+            ->add('message', null, ['label' => 'form.comment.message'])
         ;
     }
 
@@ -51,8 +51,8 @@ class CommentType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'translation_domain' => 'SonataNewsBundle',
-        ));
+        ]);
     }
 }

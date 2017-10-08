@@ -65,7 +65,7 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
     public function assertPostEnabled($qb, $flag)
     {
         $qb->expects($this->once())->method('andWhere')->with($this->equalTo('p.enabled = :enabled'));
-        $qb->expects($this->once())->method('setParameters')->with($this->equalTo(array('enabled' => $flag)));
+        $qb->expects($this->once())->method('setParameters')->with($this->equalTo(['enabled' => $flag]));
     }
 
     public function testFindOneByPermalinkSlug()
@@ -73,9 +73,9 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $permalink = $this->getMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
         $permalink->expects($this->once())->method('getParameters')
             ->with($this->equalTo('foo/bar'))
-            ->will($this->returnValue(array(
+            ->will($this->returnValue([
                 'slug' => 'bar',
-            )));
+            ]));
 
         $blog = $this->getMock('Sonata\NewsBundle\Model\BlogInterface');
         $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
@@ -84,7 +84,7 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $this
             ->getPostManager(function ($qb) use ($self) {
                 $qb->expects($self->once())->method('andWhere')->with($self->equalTo('p.slug = :slug'));
-                $qb->expects($self->once())->method('setParameters')->with($self->equalTo(array('slug' => 'bar')));
+                $qb->expects($self->once())->method('setParameters')->with($self->equalTo(['slug' => 'bar']));
             })
             ->findOneByPermalink('foo/bar', $blog);
     }
@@ -113,11 +113,11 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
-            ->getPager(array(), 1);
+            ->getPager([], 1);
     }
 
     public function testGetPagerWithoutModeEnabled()
@@ -125,11 +125,11 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
-            ->getPager(array(), 1);
+            ->getPager([], 1);
     }
 
     public function testGetPagerWithoutModeDisabled()
@@ -137,13 +137,13 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
             })
-            ->getPager(array(
+            ->getPager([
                 'enabled' => 0,
-            ), 1);
+            ], 1);
     }
 
     public function testGetPagerWithPublicMode()
@@ -151,13 +151,13 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
-            ->getPager(array(
+            ->getPager([
                 'mode' => 'public',
-            ), 1);
+            ], 1);
     }
 
     public function testGetPagerWithPublicModeEnabled()
@@ -165,14 +165,14 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
             })
-            ->getPager(array(
+            ->getPager([
                 'mode' => 'public',
                 'enabled' => 1,
-            ), 1);
+            ], 1);
     }
 
     public function testGetPagerWithPublicModeDisabled()
@@ -180,14 +180,14 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
             })
-            ->getPager(array(
+            ->getPager([
                 'mode' => 'public',
                 'enabled' => 0,
-            ), 1);
+            ], 1);
     }
 
     public function testGetPagerWithAdminMode()
@@ -196,13 +196,13 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $this
             ->getPostManager(function ($qb) use ($self) {
                 $self->assertRelationsJoined($qb);
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $qb->expects($self->never())->method('andWhere');
-                $qb->expects($self->once())->method('setParameters')->with($self->equalTo(array()));
+                $qb->expects($self->once())->method('setParameters')->with($self->equalTo([]));
             })
-            ->getPager(array(
+            ->getPager([
                 'mode' => 'admin',
-            ), 1);
+            ], 1);
     }
 
     public function testGetPagerWithAdminModeEnabled()
@@ -210,14 +210,14 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 1);
             })
-            ->getPager(array(
+            ->getPager([
                 'mode' => 'admin',
                 'enabled' => 1,
-            ), 1);
+            ], 1);
     }
 
     public function testGetPagerWithAdminModeDisabled()
@@ -225,14 +225,14 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getPostManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('p')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 0);
             })
-            ->getPager(array(
+            ->getPager([
                 'mode' => 'admin',
                 'enabled' => 0,
-            ), 1);
+            ], 1);
     }
 
     public function testGetPublicationDateQueryParts()
@@ -249,7 +249,7 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
 
     protected function getPostManager($qbCallback)
     {
-        $em = EntityManagerMockFactory::create($this, $qbCallback, array());
+        $em = EntityManagerMockFactory::create($this, $qbCallback, []);
 
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));

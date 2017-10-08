@@ -23,7 +23,7 @@ class PostControllerTest extends PHPUnit_Framework_TestCase
     public function testGetPostsAction()
     {
         $paramFetcher = $this->createMock('FOS\RestBundle\Request\ParamFetcherInterface');
-        $paramFetcher->expects($this->once())->method('all')->will($this->returnValue(array()));
+        $paramFetcher->expects($this->once())->method('all')->will($this->returnValue([]));
 
         $pager = $this->createMock('Sonata\DatagridBundle\Pager\PagerInterface');
 
@@ -54,13 +54,13 @@ class PostControllerTest extends PHPUnit_Framework_TestCase
 
     public function testGetPostCommentsAction()
     {
-        $parameters = array(
+        $parameters = [
             'page' => 2,
             'count' => 5,
-        );
+        ];
 
         $paramFetcher = $this->createMock('FOS\RestBundle\Request\ParamFetcherInterface');
-        $paramFetcher->expects($this->once())->method('all')->will($this->returnValue(array()));
+        $paramFetcher->expects($this->once())->method('all')->will($this->returnValue([]));
         $paramFetcher->expects($this->exactly(2))->method('get')
             ->with($this->logicalOr($this->equalTo('page'), $this->equalTo('count')))
             ->will($this->returnCallback(function ($parameter) use ($parameters) {
@@ -201,7 +201,7 @@ class PostControllerTest extends PHPUnit_Framework_TestCase
 
         $view = $this->createPostController($postManager)->deletePostAction(1);
 
-        $this->assertEquals(array('deleted' => true), $view);
+        $this->assertEquals(['deleted' => true], $view);
     }
 
     public function testDeletePostInvalidAction()

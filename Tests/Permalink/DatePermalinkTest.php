@@ -43,12 +43,12 @@ class DatePermalinkTest extends PHPUnit_Framework_TestCase
     public function testGetParameters()
     {
         $permalink = new DatePermalink();
-        $expected = array(
+        $expected = [
             'year' => '2011',
             'month' => '12',
             'day' => '30',
             'slug' => 'the-slug',
-        );
+        ];
 
         $this->assertEquals($expected, $permalink->getParameters('2011/12/30/the-slug'));
     }
@@ -58,12 +58,12 @@ class DatePermalinkTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('InvalidArgumentException');
 
         $permalink = new DatePermalink();
-        $expected = array(
+        $expected = [
             'year' => '2011',
             'month' => '12',
             'day' => '30',
             'slug' => 'the-slug',
-        );
+        ];
 
         $this->assertEquals($expected, $permalink->getParameters('2011/12/the-slug'));
     }

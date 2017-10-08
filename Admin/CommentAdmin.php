@@ -34,17 +34,17 @@ class CommentAdmin extends AbstractAdmin
     {
         $actions = parent::getBatchActions();
 
-        $actions['enabled'] = array(
+        $actions['enabled'] = [
             'label' => $this->getLabelTranslatorStrategy()->getLabel('enable', 'batch', 'comment'),
             'translation_domain' => $this->getTranslationDomain(),
             'ask_confirmation' => false,
-        );
+        ];
 
-        $actions['disabled'] = array(
+        $actions['disabled'] = [
             'label' => $this->getLabelTranslatorStrategy()->getLabel('disable', 'batch', 'comment'),
             'translation_domain' => $this->getTranslationDomain(),
             'ask_confirmation' => false,
-        );
+        ];
 
         return $actions;
     }
@@ -97,8 +97,8 @@ class CommentAdmin extends AbstractAdmin
     {
         // define group zoning
         $formMapper
-            ->with('group_comment', array('class' => 'col-md-6'))->end()
-            ->with('group_general', array('class' => 'col-md-6'))->end()
+            ->with('group_comment', ['class' => 'col-md-6'])->end()
+            ->with('group_general', ['class' => 'col-md-6'])->end()
         ;
 
         if (!$this->isChild()) {
@@ -113,14 +113,14 @@ class CommentAdmin extends AbstractAdmin
             ->with('group_general')
                 ->add('name')
                 ->add('email')
-                ->add('url', null, array('required' => false))
+                ->add('url', null, ['required' => false])
             ->end()
             ->with('group_comment')
-                ->add('status', 'sonata_news_comment_status', array(
+                ->add('status', 'sonata_news_comment_status', [
                     'expanded' => true,
                     'multiple' => false,
-                ))
-                ->add('message', null, array('attr' => array('rows' => 6)))
+                ])
+                ->add('message', null, ['attr' => ['rows' => 6]])
             ->end()
         ;
     }
@@ -144,7 +144,7 @@ class CommentAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('getStatusCode', 'text', array('label' => 'status_code', 'sortable' => 'status'))
+            ->add('getStatusCode', 'text', ['label' => 'status_code', 'sortable' => 'status'])
         ;
 
         if (!$this->isChild()) {
