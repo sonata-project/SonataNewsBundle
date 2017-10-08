@@ -221,10 +221,10 @@ class PostController
         try {
             $this->postManager->delete($post);
         } catch (\Exception $e) {
-            return View::create(array('error' => $e->getMessage()), 400);
+            return View::create(['error' => $e->getMessage()], 400);
         }
 
-        return array('deleted' => true);
+        return ['deleted' => true];
     }
 
     /**
@@ -306,7 +306,7 @@ class PostController
         $comment = $this->commentManager->create();
         $comment->setPost($post);
 
-        $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, array('csrf_protection' => false));
+        $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, ['csrf_protection' => false]);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -322,7 +322,7 @@ class PostController
 
             $view = View::create($comment);
             $serializationContext = SerializationContext::create();
-            $serializationContext->setGroups(array('sonata_api_read'));
+            $serializationContext->setGroups(['sonata_api_read']);
             $serializationContext->enableMaxDepthChecks();
             $view->setSerializationContext($serializationContext);
 
@@ -376,9 +376,9 @@ class PostController
 
         $comment->setPost($post);
 
-        $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, array(
+        $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, [
             'csrf_protection' => false,
-        ));
+        ]);
 
         $form->bind($request);
 
@@ -388,7 +388,7 @@ class PostController
 
             $view = View::create($comment);
             $serializationContext = SerializationContext::create();
-            $serializationContext->setGroups(array('sonata_api_read'));
+            $serializationContext->setGroups(['sonata_api_read']);
             $serializationContext->enableMaxDepthChecks();
             $view->setSerializationContext($serializationContext);
 
@@ -419,10 +419,10 @@ class PostController
 
         if (array_key_exists('dateValue', $criteria)) {
             $date = new \DateTime($criteria['dateValue']);
-            $criteria['date'] = array(
+            $criteria['date'] = [
                 'query' => sprintf('p.publicationDateStart %s :dateValue', $criteria['dateQuery']),
-                'params' => array('dateValue' => $date),
-            );
+                'params' => ['dateValue' => $date],
+            ];
             unset($criteria['dateValue'], $criteria['dateQuery']);
         } else {
             unset($criteria['dateQuery']);
@@ -463,9 +463,9 @@ class PostController
     {
         $post = $id ? $this->getPost($id) : null;
 
-        $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_post', $post, array(
+        $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_post', $post, [
             'csrf_protection' => false,
-        ));
+        ]);
 
         $form->bind($request);
 
@@ -476,7 +476,7 @@ class PostController
 
             $view = View::create($post);
             $serializationContext = SerializationContext::create();
-            $serializationContext->setGroups(array('sonata_api_read'));
+            $serializationContext->setGroups(['sonata_api_read']);
             $serializationContext->enableMaxDepthChecks();
             $view->setSerializationContext($serializationContext);
 

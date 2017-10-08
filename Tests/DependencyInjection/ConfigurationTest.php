@@ -20,12 +20,12 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $processor = new Processor();
 
-        $config = $processor->processConfiguration(new Configuration(), array(array(
+        $config = $processor->processConfiguration(new Configuration(), [[
             'title' => 'Foo title',
             'link' => '/foo/bar',
             'description' => 'Foo description',
             'salt' => 'pepper',
-        )));
+        ]]);
 
         $this->assertSame('news__post_tag', $config['table']['post_tag']);
     }
