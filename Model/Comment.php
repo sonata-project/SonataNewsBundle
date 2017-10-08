@@ -178,11 +178,11 @@ abstract class Comment implements CommentInterface
      */
     public static function getStatusList()
     {
-        return array(
+        return [
             self::STATUS_MODERATE => 'moderate',
             self::STATUS_INVALID => 'invalid',
             self::STATUS_VALID => 'valid',
-        );
+        ];
     }
 
     /**

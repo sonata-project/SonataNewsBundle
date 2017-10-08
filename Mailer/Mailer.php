@@ -72,12 +72,12 @@ class Mailer implements MailerInterface
      */
     public function sendCommentNotification(CommentInterface $comment)
     {
-        $rendered = $this->templating->render($this->emails['notification']['template'], array(
+        $rendered = $this->templating->render($this->emails['notification']['template'], [
             'comment' => $comment,
             'post' => $comment->getPost(),
             'hash' => $this->hashGenerator->generate($comment),
             'blog' => $this->blog,
-        ));
+        ]);
 
         $this->sendEmailMessage(
             $rendered,

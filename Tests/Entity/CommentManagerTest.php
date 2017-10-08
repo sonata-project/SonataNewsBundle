@@ -28,11 +28,11 @@ class CommentManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getCommentManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('c')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['c']));
                 $qb->expects($self->once())->method('andWhere');
-                $qb->expects($self->once())->method('setParameters')->with(array('status' => CommentInterface::STATUS_VALID));
+                $qb->expects($self->once())->method('setParameters')->with(['status' => CommentInterface::STATUS_VALID]);
             })
-            ->getPager(array(), 1);
+            ->getPager([], 1);
     }
 
     public function testGetPagerWithAdminMode()
@@ -40,13 +40,13 @@ class CommentManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getCommentManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('c')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['c']));
                 $qb->expects($self->never())->method('andWhere');
-                $qb->expects($self->once())->method('setParameters')->with(array());
+                $qb->expects($self->once())->method('setParameters')->with([]);
             })
-            ->getPager(array(
+            ->getPager([
                 'mode' => 'admin',
-            ), 1);
+            ], 1);
     }
 
     public function testGetPagerWithStatus()
@@ -54,13 +54,13 @@ class CommentManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getCommentManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('c')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['c']));
                 $qb->expects($self->once())->method('andWhere');
-                $qb->expects($self->once())->method('setParameters')->with(array('status' => CommentInterface::STATUS_INVALID));
+                $qb->expects($self->once())->method('setParameters')->with(['status' => CommentInterface::STATUS_INVALID]);
             })
-            ->getPager(array(
+            ->getPager([
                 'status' => CommentInterface::STATUS_INVALID,
-            ), 1);
+            ], 1);
     }
 
     public function testGetPagerWithPostId()
@@ -68,18 +68,18 @@ class CommentManagerTest extends PHPUnit_Framework_TestCase
         $self = $this;
         $this
             ->getCommentManager(function ($qb) use ($self) {
-                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(array('c')));
+                $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['c']));
                 $qb->expects($self->exactly(2))->method('andWhere')->with($self->logicalOr('c.post = :postId', 'c.status = :status'));
-                $qb->expects($self->once())->method('setParameters')->with(array('postId' => 50, 'status' => CommentInterface::STATUS_VALID));
+                $qb->expects($self->once())->method('setParameters')->with(['postId' => 50, 'status' => CommentInterface::STATUS_VALID]);
             })
-            ->getPager(array(
+            ->getPager([
                 'postId' => 50,
-            ), 1);
+            ], 1);
     }
 
     protected function getCommentManager($qbCallback)
     {
-        $em = EntityManagerMockFactory::create($this, $qbCallback, array());
+        $em = EntityManagerMockFactory::create($this, $qbCallback, []);
 
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));

@@ -60,9 +60,9 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
     {
         parent::configureSettings($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'post' => false,
-        ));
+        ]);
     }
 
     /**
@@ -73,12 +73,12 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         $menu = $this->getRootMenu($blockContext);
 
         if ($post = $blockContext->getBlock()->getSetting('post')) {
-            $menu->addChild($post->getTitle(), array(
+            $menu->addChild($post->getTitle(), [
                 'route' => 'sonata_news_view',
-                'routeParameters' => array(
+                'routeParameters' => [
                     'permalink' => $this->blog->getPermalinkGenerator()->generate($post),
-                ),
-            ));
+                ],
+            ]);
         }
 
         return $menu;

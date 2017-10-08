@@ -48,7 +48,7 @@ class CommentControllerTest extends PHPUnit_Framework_TestCase
 
         $view = $this->createCommentController($commentManager)->deleteCommentAction(1);
 
-        $this->assertEquals(array('deleted' => true), $view);
+        $this->assertEquals(['deleted' => true], $view);
     }
 
     public function testDeletePostInvalidAction()

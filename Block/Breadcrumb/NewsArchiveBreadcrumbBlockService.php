@@ -36,10 +36,10 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
     {
         parent::configureSettings($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'collection' => false,
             'tag' => false,
-        ));
+        ]);
     }
 
     /**
@@ -50,21 +50,21 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         $menu = $this->getRootMenu($blockContext);
 
         if ($collection = $blockContext->getBlock()->getSetting('collection')) {
-            $menu->addChild($collection->getName(), array(
+            $menu->addChild($collection->getName(), [
                 'route' => 'sonata_news_collection',
-                'routeParameters' => array(
+                'routeParameters' => [
                     'collection' => $collection->getSlug(),
-                ),
-            ));
+                ],
+            ]);
         }
 
         if ($tag = $blockContext->getBlock()->getSetting('tag')) {
-            $menu->addChild($tag->getName(), array(
+            $menu->addChild($tag->getName(), [
                 'route' => 'sonata_news_tag',
-                'routeParameters' => array(
+                'routeParameters' => [
                     'tag' => $tag->getSlug(),
-                ),
-            ));
+                ],
+            ]);
         }
 
         return $menu;

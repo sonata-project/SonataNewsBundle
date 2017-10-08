@@ -28,10 +28,10 @@ abstract class BaseNewsBreadcrumbBlockService extends BaseBreadcrumbMenuBlockSer
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('sonata_news_archive_breadcrumb', array(
+        $menu->addChild('sonata_news_archive_breadcrumb', [
             'route' => 'sonata_news_home',
-            'extras' => array('translation_domain' => 'SonataNewsBundle'),
-        ));
+            'extras' => ['translation_domain' => 'SonataNewsBundle'],
+        ]);
 
         return $menu;
     }

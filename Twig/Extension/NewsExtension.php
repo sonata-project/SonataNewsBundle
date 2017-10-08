@@ -68,16 +68,16 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
      */
     public function getFunctions()
     {
-        return array(
+        return [
             new \Twig_SimpleFunction(
                 'sonata_news_link_tag_rss',
-                array($this, 'renderTagRss', array('is_safe' => array('html')))
+                [$this, 'renderTagRss', ['is_safe' => ['html']]]
             ),
             new \Twig_SimpleFunction(
                 'sonata_news_permalink',
-                array($this, 'generatePermalink')
+                [$this, 'generatePermalink']
             ),
-        );
+        ];
     }
 
     /**
@@ -103,10 +103,10 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
      */
     public function renderTagRss()
     {
-        $rss = array();
-        foreach ($this->tagManager->findBy(array('enabled' => true)) as $tag) {
+        $rss = [];
+        foreach ($this->tagManager->findBy(['enabled' => true]) as $tag) {
             $rss[] = sprintf('<link href="%s" title="%s : %s" type="application/rss+xml" rel="alternate" />',
-                $this->router->generate('sonata_news_tag', array('tag' => $tag->getSlug(), '_format' => 'rss'), UrlGeneratorInterface::ABSOLUTE_URL),
+                $this->router->generate('sonata_news_tag', ['tag' => $tag->getSlug(), '_format' => 'rss'], UrlGeneratorInterface::ABSOLUTE_URL),
                 $this->blog->getTitle(),
                 $tag->getName()
             );

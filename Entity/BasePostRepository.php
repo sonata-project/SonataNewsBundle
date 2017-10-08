@@ -43,6 +43,6 @@ class BasePostRepository extends EntityRepository
                                           FROM Application\Sonata\NewsBundle\Entity\Comment c
                                           WHERE c.status = 1
                                           AND c.post = :post')
-                    ->setParameters(array('post' => $post));
+                    ->setParameters(['post' => $post]);
     }
 }

@@ -95,10 +95,10 @@ class CommentController
         try {
             $this->commentManager->delete($comment);
         } catch (\Exception $e) {
-            return View::create(array('error' => $e->getMessage()), 400);
+            return View::create(['error' => $e->getMessage()], 400);
         }
 
-        return array('deleted' => true);
+        return ['deleted' => true];
     }
 
     /**
