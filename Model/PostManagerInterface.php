@@ -35,7 +35,7 @@ interface PostManagerInterface extends ManagerInterface, PageableManagerInterfac
      *    collections - CollectionInterface
      *    mode - string public|admin
      */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = array());
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = []);
 
     /**
      * @param string $date  Date in format YYYY-MM-DD
