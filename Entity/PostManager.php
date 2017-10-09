@@ -37,7 +37,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
             return null;
         }
 
-        $parameters = array();
+        $parameters = [];
 
         if (isset($urlParameters['year'], $urlParameters['month'], $urlParameters['day'])) {
             $dateQueryParts = $this->getPublicationDateQueryParts(
@@ -77,13 +77,13 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = array())
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = [])
     {
         if (!isset($criteria['mode'])) {
             $criteria['mode'] = 'public';
         }
 
-        $parameters = array();
+        $parameters = [];
         $query = $this->getRepository()
             ->createQueryBuilder('p')
             ->select('p, t')
@@ -150,13 +150,13 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
      */
     public function getPublicationDateQueryParts($date, $step, $alias = 'p')
     {
-        return array(
+        return [
             'query' => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
-            'params' => array(
+            'params' => [
                 'startDate' => new \DateTime($date),
                 'endDate' => new \DateTime($date.'+1 '.$step),
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -166,13 +166,13 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
      */
     protected function getPublicationCollectionQueryParts($collection)
     {
-        $queryParts = array('query' => '', 'params' => array());
+        $queryParts = ['query' => '', 'params' => []];
 
         if (null === $collection) {
             $queryParts['query'] = 'p.collection IS NULL';
         } else {
             $queryParts['query'] = 'c.slug = :collection';
-            $queryParts['params'] = array('collection' => $collection);
+            $queryParts['params'] = ['collection' => $collection];
         }
 
         return $queryParts;

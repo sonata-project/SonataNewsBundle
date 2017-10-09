@@ -42,10 +42,10 @@ class CollectionPermalinkTest extends PHPUnit_Framework_TestCase
     public function testGetParametersWithCollection()
     {
         $permalink = new CollectionPermalink();
-        $expected = array(
+        $expected = [
             'collection' => 'the-collection',
             'slug' => 'the-slug',
-        );
+        ];
 
         $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug'));
     }
@@ -53,10 +53,10 @@ class CollectionPermalinkTest extends PHPUnit_Framework_TestCase
     public function testGetParametersWithoutCollection()
     {
         $permalink = new CollectionPermalink();
-        $expected = array(
+        $expected = [
             'collection' => null,
             'slug' => 'the-slug',
-        );
+        ];
 
         $this->assertEquals($expected, $permalink->getParameters('the-slug'));
     }
@@ -66,10 +66,10 @@ class CollectionPermalinkTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('InvalidArgumentException');
 
         $permalink = new CollectionPermalink();
-        $expected = array(
+        $expected = [
             'collection' => 'the-collection',
             'slug' => 'the-slug',
-        );
+        ];
 
         $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug/asdsaasds'));
     }
