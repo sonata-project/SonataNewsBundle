@@ -15,8 +15,11 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\NewsBundle\Form\Type\CommentStatusType;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CommentAdmin extends AbstractAdmin
 {
@@ -104,7 +107,7 @@ class CommentAdmin extends AbstractAdmin
         if (!$this->isChild()) {
             $formMapper
                 ->with('group_general')
-                    ->add('post', 'sonata_type_model_list')
+                    ->add('post', ModelListType::class)
                 ->end()
             ;
         }
@@ -116,7 +119,7 @@ class CommentAdmin extends AbstractAdmin
                 ->add('url', null, ['required' => false])
             ->end()
             ->with('group_comment')
-                ->add('status', 'sonata_news_comment_status', [
+                ->add('status', CommentStatusType::class, [
                     'expanded' => true,
                     'multiple' => false,
                 ])
@@ -144,7 +147,7 @@ class CommentAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('getStatusCode', 'text', ['label' => 'status_code', 'sortable' => 'status'])
+            ->add('getStatusCode', TextType::class, ['label' => 'status_code', 'sortable' => 'status'])
         ;
 
         if (!$this->isChild()) {
