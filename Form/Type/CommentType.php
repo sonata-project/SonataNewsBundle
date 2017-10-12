@@ -12,6 +12,10 @@
 namespace Sonata\NewsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -23,10 +27,20 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, ['label' => 'form.comment.name'])
-            ->add('email', 'email', ['required' => false, 'label' => 'form.comment.email'])
-            ->add('url', 'url', ['required' => false, 'label' => 'form.comment.url'])
-            ->add('message', null, ['label' => 'form.comment.message'])
+            ->add('name', TextType::class, [
+                'label' => 'form.comment.name',
+            ])
+            ->add('email', EmailType::class, [
+                'required' => false,
+                'label' => 'form.comment.email',
+            ])
+            ->add('url', UrlType::class, [
+                'required' => false,
+                'label' => 'form.comment.url',
+            ])
+            ->add('message', TextareaType::class, [
+                'label' => 'form.comment.message',
+            ])
         ;
     }
 

@@ -17,11 +17,19 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\CoreBundle\Form\Type\DateTimePickerType;
+use Sonata\DoctrineORMAdminBundle\Filter\CallbackFilter;
+use Sonata\FormatterBundle\Form\Type\FormatterType;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
+use Sonata\NewsBundle\Form\Type\CommentStatusType;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
 use Sonata\UserBundle\Model\UserManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PostAdmin extends AbstractAdmin
 {
@@ -105,10 +113,12 @@ class PostAdmin extends AbstractAdmin
             ->with('group_post', [
                     'class' => 'col-md-8',
                 ])
-                ->add('author', 'sonata_type_model_list')
+                ->add('author', ModelListType::class)
                 ->add('title')
-                ->add('abstract', null, ['attr' => ['rows' => 5]])
-                ->add('content', 'sonata_formatter_type', [
+                ->add('abstract', TextareaType::class, [
+                    'attr' => ['rows' => 5],
+                ])
+                ->add('content', FormatterType::class, [
                     'event_dispatcher' => $formMapper->getFormBuilder()->getEventDispatcher(),
                     'format_field' => 'contentFormatter',
                     'source_field' => 'rawContent',
@@ -124,32 +134,40 @@ class PostAdmin extends AbstractAdmin
             ->with('group_status', [
                     'class' => 'col-md-4',
                 ])
-                ->add('enabled', null, ['required' => false])
-                ->add('image', 'sonata_type_model_list', ['required' => false], [
+                ->add('enabled', CheckboxType::class, ['required' => false])
+                ->add('image', ModelListType::class, ['required' => false], [
                     'link_parameters' => [
                         'context' => 'news',
                         'hide_context' => true,
                     ],
                 ])
 
-                ->add('publicationDateStart', 'sonata_type_datetime_picker', ['dp_side_by_side' => true])
-                ->add('commentsCloseAt', 'sonata_type_datetime_picker', [
+                ->add('publicationDateStart', DateTimePickerType::class, [
+                    'dp_side_by_side' => true,
+                ])
+                ->add('commentsCloseAt', DateTimePickerType::class, [
                     'dp_side_by_side' => true,
                     'required' => false,
                 ])
-                ->add('commentsEnabled', null, ['required' => false])
-                ->add('commentsDefaultStatus', 'sonata_news_comment_status', ['expanded' => true])
+                ->add('commentsEnabled', CheckboxType::class, [
+                    'required' => false,
+                ])
+                ->add('commentsDefaultStatus', CommentStatusType::class, [
+                    'expanded' => true,
+                ])
             ->end()
 
             ->with('group_classification', [
                 'class' => 'col-md-4',
                 ])
-                ->add('tags', 'sonata_type_model_autocomplete', [
+                ->add('tags', ModelAutocompleteType::class, [
                     'property' => 'name',
                     'multiple' => 'true',
                     'required' => false,
                 ])
-                ->add('collection', 'sonata_type_model_list', ['required' => false])
+                ->add('collection', ModelListType::class, [
+                    'required' => false,
+                ])
             ->end()
         ;
     }
@@ -182,7 +200,7 @@ class PostAdmin extends AbstractAdmin
             ->add('enabled')
             ->add('tags', null, ['field_options' => ['expanded' => true, 'multiple' => true]])
             ->add('author')
-            ->add('with_open_comments', 'doctrine_orm_callback', [
+            ->add('with_open_comments', CallbackFilter::class, [
 //                'callback'   => array($this, 'getWithOpenCommentFilter'),
                 'callback' => function ($queryBuilder, $alias, $field, $data) use ($that) {
                     if (!is_array($data) || !$data['value']) {
