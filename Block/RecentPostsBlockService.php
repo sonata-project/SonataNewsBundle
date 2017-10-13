@@ -16,10 +16,14 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractAdminBlockService;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\CoreBundle\Model\Metadata;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -90,17 +94,17 @@ class RecentPostsBlockService extends AbstractAdminBlockService
      */
     public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
     {
-        $formMapper->add('settings', 'sonata_type_immutable_array', [
+        $formMapper->add('settings', ImmutableArrayType::class, [
             'keys' => [
-                ['number', 'integer', [
+                ['number', IntegerType::class, [
                     'required' => true,
                     'label' => 'form.label_number',
                 ]],
-                ['title', 'text', [
+                ['title', TextType::class, [
                     'required' => false,
                     'label' => 'form.label_title',
                 ]],
-                ['mode', 'choice', [
+                ['mode', ChoiceType::class, [
                     'choices' => [
                         'public' => 'form.label_mode_public',
                         'admin' => 'form.label_mode_admin',
