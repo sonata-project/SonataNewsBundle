@@ -11,8 +11,8 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Model\Comment;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 class ModelTest_Comment extends Comment
 {
@@ -21,7 +21,7 @@ class ModelTest_Comment extends Comment
     }
 }
 
-class CommentTest extends PHPUnit_Framework_TestCase
+class CommentTest extends TestCase
 {
     public function testSettersGetters()
     {

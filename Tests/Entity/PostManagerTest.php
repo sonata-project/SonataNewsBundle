@@ -11,14 +11,14 @@
 
 namespace Sonata\NewsBundle\Tests\Entity;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\PostManager;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * Tests the post manager entity.
  */
-class PostManagerTest extends PHPUnit_Framework_TestCase
+class PostManagerTest extends TestCase
 {
     public function assertRelationsEnabled($qb)
     {
@@ -70,14 +70,14 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
 
     public function testFindOneByPermalinkSlug()
     {
-        $permalink = $this->getMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
+        $permalink = $this->createMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
         $permalink->expects($this->once())->method('getParameters')
             ->with($this->equalTo('foo/bar'))
             ->will($this->returnValue([
                 'slug' => 'bar',
             ]));
 
-        $blog = $this->getMock('Sonata\NewsBundle\Model\BlogInterface');
+        $blog = $this->createMock('Sonata\NewsBundle\Model\BlogInterface');
         $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
 
         $self = $this;
@@ -91,12 +91,12 @@ class PostManagerTest extends PHPUnit_Framework_TestCase
 
     public function testFindOneByPermalinkException()
     {
-        $permalink = $this->getMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
+        $permalink = $this->createMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
         $permalink->expects($this->once())->method('getParameters')
             ->with($this->equalTo(''))
             ->willThrowException(new \InvalidArgumentException());
 
-        $blog = $this->getMock('Sonata\NewsBundle\Model\BlogInterface');
+        $blog = $this->createMock('Sonata\NewsBundle\Model\BlogInterface');
         $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
 
         $self = $this;

@@ -11,17 +11,17 @@
 
 namespace Sonata\NewsBundle\Tests\Entity;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\CommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * Tests the comment manager entity.
  *
  * @author Romain Mouillard <romain.mouillard@gmail.com>
  */
-class CommentManagerTest extends PHPUnit_Framework_TestCase
+class CommentManagerTest extends TestCase
 {
     public function testGetPager()
     {
