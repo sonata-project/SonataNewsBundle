@@ -11,13 +11,13 @@
 
 namespace Sonata\NewsBundle\Tests\Controller\Api;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Controller\Api\CommentController;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class CommentControllerTest extends PHPUnit_Framework_TestCase
+class CommentControllerTest extends TestCase
 {
     public function testGetCommentAction()
     {

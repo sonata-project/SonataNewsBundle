@@ -11,8 +11,8 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Model\Post;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 class ModelTest_Post extends Post
 {
@@ -24,7 +24,7 @@ class ModelTest_Post extends Post
 /**
  * Tests the post model.
  */
-class PostTest extends PHPUnit_Framework_TestCase
+class PostTest extends TestCase
 {
     public function testSettersGetters()
     {
