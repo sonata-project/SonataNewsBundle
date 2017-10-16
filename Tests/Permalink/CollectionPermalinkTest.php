@@ -11,10 +11,10 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Permalink\CollectionPermalink;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
-class CollectionPermalinkTest extends PHPUnit_Framework_TestCase
+class CollectionPermalinkTest extends TestCase
 {
     public function testGenerateWithCollection()
     {

@@ -11,8 +11,8 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Model\Post;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 class BasePostTest_Post extends Post
 {
@@ -22,7 +22,7 @@ class BasePostTest_Post extends Post
     }
 }
 
-class BasePostTest extends PHPUnit_Framework_TestCase
+class BasePostTest extends TestCase
 {
     public function testIsCommentable()
     {
