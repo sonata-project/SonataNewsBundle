@@ -11,10 +11,10 @@
 
 namespace Sonata\NewsBundle\Tests\Model;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Permalink\DatePermalink;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
-class DatePermalinkTest extends PHPUnit_Framework_TestCase
+class DatePermalinkTest extends TestCase
 {
     public function testGenerate()
     {

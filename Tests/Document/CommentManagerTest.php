@@ -11,13 +11,13 @@
 
 namespace Sonata\NewsBundle\Tests\Document;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Document\CommentManager;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * Tests the comment manager document.
  */
-class CommentManagerTest extends PHPUnit_Framework_TestCase
+class CommentManagerTest extends TestCase
 {
     public function testImplements()
     {

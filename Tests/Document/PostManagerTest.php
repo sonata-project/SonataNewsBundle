@@ -11,13 +11,13 @@
 
 namespace Sonata\NewsBundle\Tests\Document;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Document\PostManager;
-use Sonata\NewsBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * Tests the post manager document.
  */
-class PostManagerTest extends PHPUnit_Framework_TestCase
+class PostManagerTest extends TestCase
 {
     public function testImplements()
     {
