@@ -108,7 +108,7 @@ class PostAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $isHorizontal = $this->getConfigurationPool()->getOption('form_type') == 'horizontal';
+        $isHorizontal = 'horizontal' == $this->getConfigurationPool()->getOption('form_type');
         $formMapper
             ->with('group_post', [
                     'class' => 'col-md-8',
@@ -239,7 +239,7 @@ class PostAdmin extends AbstractAdmin
             ['uri' => $admin->generateUrl('sonata.news.admin.comment.list', ['id' => $id])]
         );
 
-        if ($this->hasSubject() && $this->getSubject()->getId() !== null) {
+        if ($this->hasSubject() && null !== $this->getSubject()->getId()) {
             $menu->addChild(
                 'sidemenu.link_view_post',
                 ['uri' => $admin->getRouteGenerator()->generate(
