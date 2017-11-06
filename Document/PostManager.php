@@ -63,7 +63,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
                 ->andWhere($collectionQueryParts['query']);
         }
 
-        if (count($parameters) == 0) {
+        if (0 == count($parameters)) {
             return null;
         }
 
@@ -96,7 +96,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
             ->leftJoin('p.tags', 't')
             ->orderBy('p.publicationDateStart', 'DESC');
 
-        if (!isset($criteria['enabled']) && $criteria['mode'] == 'public') {
+        if (!isset($criteria['enabled']) && 'public' == $criteria['mode']) {
             $criteria['enabled'] = true;
         }
         if (isset($criteria['enabled'])) {

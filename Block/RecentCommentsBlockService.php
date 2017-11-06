@@ -82,7 +82,7 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
             'admin_pool' => $this->adminPool,
         ];
 
-        if ($blockContext->getSetting('mode') === 'admin') {
+        if ('admin' === $blockContext->getSetting('mode')) {
             return $this->renderPrivateResponse($blockContext->getTemplate(), $parameters, $response);
         }
 
