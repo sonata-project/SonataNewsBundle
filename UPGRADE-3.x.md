@@ -1,6 +1,8 @@
 UPGRADE 3.x
 ===========
 
+- Doctrine MongoDb metadata `comments_count` has been changed to `commentsCount`. In case of having problems, please update your collections.
+
 UPGRADE FROM 3.0 to 3.1
 =======================
 
