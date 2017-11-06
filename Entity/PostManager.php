@@ -65,7 +65,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
                 ->andWhere($collectionQueryParts['query']);
         }
 
-        if (count($parameters) == 0) {
+        if (0 == count($parameters)) {
             return null;
         }
 
@@ -89,7 +89,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
             ->select('p, t')
             ->orderBy('p.publicationDateStart', 'DESC');
 
-        if ($criteria['mode'] == 'admin') {
+        if ('admin' == $criteria['mode']) {
             $query
                 ->leftJoin('p.tags', 't')
                 ->leftJoin('p.author', 'a')
@@ -101,7 +101,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
             ;
         }
 
-        if (!isset($criteria['enabled']) && $criteria['mode'] == 'public') {
+        if (!isset($criteria['enabled']) && 'public' == $criteria['mode']) {
             $criteria['enabled'] = true;
         }
         if (isset($criteria['enabled'])) {
