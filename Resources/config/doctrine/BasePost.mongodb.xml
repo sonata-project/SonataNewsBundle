@@ -12,7 +12,7 @@
         <field name="commentsEnabled" type="boolean" fieldName="commentsEnabled"/>
         <field name="commentsCloseAt" type="timestamp" fieldName="commentsCloseAt"/>
         <field name="commentsDefaultStatus" type="int" fieldName="commentsDefaultStatus"/>
-        <field name="commentsCount" type="int" fieldName="comments_count" default="0"/>
+        <field name="commentsCount" type="int" fieldName="commentsCount" default="0"/>
         <field name="createdAt" type="timestamp" fieldName="createdAt"/>
         <field name="updatedAt" type="timestamp" fieldName="updatedAt"/>
         <lifecycle-callbacks>
