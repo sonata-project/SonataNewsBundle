@@ -1,6 +1,10 @@
 UPGRADE 3.x
 ===========
 
+### Deprecated
+Initializing `Sonata\NewsBundle\Block\Breadcrumb\NewsPostBreadcrumbBlockService` class without the `menuRegistry` parameter is deprecated, Use `Sonata\BlockBundle\Menu\MenuRegistryInterface` as last argument.
+
+### Changed
 - Doctrine MongoDb metadata `comments_count` has been changed to `commentsCount`. In case of having problems, please update your collections.
 
 UPGRADE FROM 3.0 to 3.1
