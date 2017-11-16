@@ -11,6 +11,7 @@
 
 namespace Sonata\NewsBundle\Controller;
 
+use Sonata\NewsBundle\Form\Type\CommentType;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
@@ -257,7 +258,7 @@ class PostController extends Controller
         $comment->setPost($post);
         $comment->setStatus($post->getCommentsDefaultStatus());
 
-        return $this->get('form.factory')->createNamed('comment', 'sonata_post_comment', $comment, [
+        return $this->get('form.factory')->createNamed('comment', CommentType::class, $comment, [
             'action' => $this->generateUrl('sonata_news_add_comment', [
                 'id' => $post->getId(),
             ]),
