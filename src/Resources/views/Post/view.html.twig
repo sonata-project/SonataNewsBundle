@@ -57,13 +57,13 @@
         {{ post.content|raw }}
     </div>
 
-    {% render(controller('SonataNewsBundle:Post:comments', {'postId': post.id})) %}
+    {{ render(controller('SonataNewsBundle:Post:comments', {'postId': post.id})) }}
 
     {% if post.iscommentable %}
-        {% render(controller('SonataNewsBundle:Post:addCommentForm', {
+        {{ render(controller('SonataNewsBundle:Post:addCommentForm', {
             'postId': post.id,
             'form': form
-        })) %}
+        })) }}
     {% else %}
         <div>
             {{ 'message_comments_are_closed'|trans({}, 'SonataNewsBundle') }}
