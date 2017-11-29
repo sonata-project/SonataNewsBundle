@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.1.2...3.2.0) - 2017-11-29
+### Changed
+- Removed usage of old form type aliases
+- Changed internal folder structure to `src`, `tests` and `docs`
+ 
+### Fixed
+- Fixed hardcoded paths to classes in `.xml.skeleton` files of config
+- Fixed `Post` Document mongoDb metadata from `comments_count` to `commentsCount`
+- Fixed calling deprecated twig tag
+
+### Removed
+- support for old versions of php and Symfony
+- Removed deprecated form alias usage
+
 ## [3.1.2](https://github.com/sonata-project/SonataNewsBundle/compare/3.1.1...3.1.2) - 2017-04-07
 ### Changed
 - The `sonata-project/block-bundle` is an optional dependency
