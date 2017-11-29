@@ -76,7 +76,7 @@
             </trans-unit>
             <trans-unit id="categories">
                 <source>categories</source>
-                <target>categories</target>
+                <target>Категории</target>
             </trans-unit>
             <trans-unit id="tags">
                 <source>tags</source>
@@ -88,156 +88,156 @@
             </trans-unit>
             <trans-unit id="published_under">
                 <source>published_under</source>
-                <target>{0}Тэг не выбран|{1}Тэг : |]1,Inf]Теги :</target>
+                <target>{0}Тэг не выбран|{1}Тэг : |[1,Inf]Теги :</target>
             </trans-unit>
             <trans-unit id="archive_author">
                 <source>archive_author</source>
-                <target>archive_author</target>
+                <target>Автор: %author%</target>
             </trans-unit>
             <trans-unit id="comments_count">
                 <source>comments_count</source>
-                <target>comments_count</target>
+                <target>%comments_count% комментариев</target>
             </trans-unit>
             <trans-unit id="title_leave_comment">
                 <source>title_leave_comment</source>
-                <target>title_leave_comment</target>
+                <target>Оставить комментарий</target>
             </trans-unit>
             <trans-unit id="mail_title_comment_notification">
                 <source>mail_title_comment_notification</source>
-                <target>New comment for post '%post_title%' on blog '%blog_title%'
-                    New comment for post "%post_title%" on blog "%blog_title%"
+                <target>Новый комментарий к записи '%post_title%' в блоге '%blog_title%'
+                    Новый комментарий к записи "%post_title%" в блоге "%blog_title%"
 
-                    Post: %post_title% - %post_url%
-                    From: %comment_name%
-                    Email: %comment_email%
-                    Url: %comment_url%
-                    Message:
+                    Запись: %post_title% - %post_url%
+                    От: %comment_name%
+                    E-mail: %comment_email%
+                    URL: %comment_url%
+                    Сообщение:
                     %comment_message%
 
-                    Quick moderation links :
-                    - validate: %comment_valid_link%
-                    - invalidate: %comment_invalid_link%
+                    Ссылки быстрой модерации :
+                    - валидировать: %comment_valid_link%
+                    - инвалидировать: %comment_invalid_link%
                 </target>
             </trans-unit>
             <trans-unit id="no_comments_available">
                 <source>no_comments_available</source>
-                <target>no_comments_available</target>
+                <target>Нет комментариев</target>
             </trans-unit>
             <trans-unit id="sonata_blog">
                 <source>sonata_blog</source>
-                <target>Blog</target>
+                <target>Блог</target>
             </trans-unit>
             <trans-unit id="list_label_title">
                 <source>list.label_title</source>
-                <target>Title</target>
+                <target>Заголовок</target>
             </trans-unit>
             <trans-unit id="list_label_author">
                 <source>list.label_author</source>
-                <target>Author</target>
+                <target>Автор</target>
             </trans-unit>
             <trans-unit id="list_label_collection">
                 <source>list.label_collection</source>
-                <target>Collection</target>
+                <target>Коллекция</target>
             </trans-unit>
             <trans-unit id="list_label_enabled">
                 <source>list.label_enabled</source>
-                <target>Enabled</target>
+                <target>Включена</target>
             </trans-unit>
             <trans-unit id="list_label_label_tags">
                 <source>list.label_tags</source>
-                <target>Tags</target>
+                <target>Тэги</target>
             </trans-unit>
             <trans-unit id="list_label_comments_enabled">
                 <source>list.label_comments_enabled</source>
-                <target>Comments enabled</target>
+                <target>Комментарии включены</target>
             </trans-unit>
             <trans-unit id="list_label_comments_count">
                 <source>list.label_comments_count</source>
-                <target>Comment count</target>
+                <target>Количество комментариев</target>
             </trans-unit>
             <trans-unit id="list.label_publication_date_start">
                 <source>list.label_publication_date_start</source>
-                <target>list.label_publication_date_start</target>
+                <target>Дата начала публикации</target>
             </trans-unit>
             <trans-unit id="form_label_enabled">
                 <source>form.label_enabled</source>
-                <target>Enabled</target>
+                <target>Включена</target>
             </trans-unit>
             <trans-unit id="form_label_author">
                 <source>form.label_author</source>
-                <target>Author</target>
+                <target>Автор</target>
             </trans-unit>
             <trans-unit id="form_label_collection">
                 <source>form.label_collection</source>
-                <target>Collection</target>
+                <target>Коллекция</target>
             </trans-unit>
             <trans-unit id="form_label_title">
                 <source>form.label_title</source>
-                <target>Title</target>
+                <target>Заголовок</target>
             </trans-unit>
             <trans-unit id="form_label_abstract">
                 <source>form.label_abstract</source>
-                <target>Abstract</target>
+                <target>Обзор</target>
             </trans-unit>
             <trans-unit id="form_label_content">
                 <source>form.label_content</source>
-                <target>Content</target>
+                <target>Содержание</target>
             </trans-unit>
             <trans-unit id="form_label_tags">
                 <source>form.label_tags</source>
-                <target>Tags</target>
+                <target>Тэги</target>
             </trans-unit>
             <trans-unit id="form_label_publication_date_start">
                 <source>form.label_publication_date_start</source>
-                <target>Publication date</target>
+                <target>Дата публикации</target>
             </trans-unit>
             <trans-unit id="form_label_comments_close_at">
                 <source>form.label_comments_close_at</source>
-                <target>Comments closed at</target>
+                <target>Комментарии закрыты в</target>
             </trans-unit>
             <trans-unit id="form_label_comments_enabled">
                 <source>form.label_comments_enabled</source>
-                <target>Comments enabled</target>
+                <target>Комментарии включены</target>
             </trans-unit>
             <trans-unit id="form_label_comments_default_status">
                 <source>form.label_comments_default_status</source>
-                <target>Comment default status</target>
+                <target>Статус комментария по умолчанию</target>
             </trans-unit>
             <trans-unit id="filter_label_title">
                 <source>filter.label_title</source>
-                <target>Title</target>
+                <target>Заголовок</target>
             </trans-unit>
             <trans-unit id="filter_label_enabled">
                 <source>filter.label_enabled</source>
-                <target>Enabled</target>
+                <target>Включена</target>
             </trans-unit>
             <trans-unit id="filter_label_tags">
                 <source>filter.label_tags</source>
-                <target>Tags</target>
+                <target>Тэги</target>
             </trans-unit>
             <trans-unit id="filter_label_author">
                 <source>filter.label_author</source>
-                <target>Author</target>
+                <target>Автор</target>
             </trans-unit>
             <trans-unit id="filter_label_with_open_comments">
                 <source>filter.label_with_open_comments</source>
-                <target>Open comments</target>
+                <target>Открыть комментарии</target>
             </trans-unit>
             <trans-unit id="filter.label_post">
                 <source>filter.label_post</source>
-                <target>filter.label_post</target>
+                <target>ID записи</target>
             </trans-unit>
             <trans-unit id="list_label_name">
                 <source>list.label_name</source>
-                <target>Name</target>
+                <target>Имя</target>
             </trans-unit>
             <trans-unit id="list_status_code">
                 <source>status_code</source>
-                <target>Status code</target>
+                <target>Код статуса</target>
             </trans-unit>
             <trans-unit id="list_label_post">
                 <source>list.label_post</source>
-                <target>Post</target>
+                <target>Запись</target>
             </trans-unit>
             <trans-unit id="list_label_email">
                 <source>list.label_email</source>
@@ -245,15 +245,15 @@
             </trans-unit>
             <trans-unit id="list_label_url">
                 <source>list.label_url</source>
-                <target>Url</target>
+                <target>URL</target>
             </trans-unit>
             <trans-unit id="list_label_message">
                 <source>list.label_message</source>
-                <target>Message</target>
+                <target>Сообщение</target>
             </trans-unit>
             <trans-unit id="filter_label_name">
                 <source>filter.label_name</source>
-                <target>Name</target>
+                <target>Имя</target>
             </trans-unit>
             <trans-unit id="filter_label_email">
                 <source>filter.label_email</source>
@@ -261,15 +261,15 @@
             </trans-unit>
             <trans-unit id="filter_label_message">
                 <source>filter.label_message</source>
-                <target>Message</target>
+                <target>Сообщение</target>
             </trans-unit>
             <trans-unit id="form_label_post">
                 <source>form.label_post</source>
-                <target>Post</target>
+                <target>Запись</target>
             </trans-unit>
             <trans-unit id="form_label_name">
                 <source>form.label_name</source>
-                <target>Name</target>
+                <target>Имя</target>
             </trans-unit>
             <trans-unit id="form_label_email">
                 <source>form.label_email</source>
@@ -277,15 +277,15 @@
             </trans-unit>
             <trans-unit id="form_label_url">
                 <source>form.label_url</source>
-                <target>Url</target>
+                <target>URL</target>
             </trans-unit>
             <trans-unit id="form_label_message">
                 <source>form.label_message</source>
-                <target>Message</target>
+                <target>Сообщение</target>
             </trans-unit>
             <trans-unit id="form_label_status">
                 <source>form.label_status</source>
-                <target>Status</target>
+                <target>Статус</target>
             </trans-unit>
             <trans-unit id="list_label_slug">
                 <source>list.label_slug</source>
@@ -293,179 +293,179 @@
             </trans-unit>
             <trans-unit id="list_label_description">
                 <source>list.label_description</source>
-                <target>Description</target>
+                <target>Описание</target>
             </trans-unit>
             <trans-unit id="breadcrumb_link_collection_list">
                 <source>breadcrumb.link_collection_list</source>
-                <target>Categories</target>
+                <target>Категории</target>
             </trans-unit>
             <trans-unit id="form_label_description">
                 <source>form.label_description</source>
-                <target>Description</target>
+                <target>Описание</target>
             </trans-unit>
             <trans-unit id="filter_label_posts">
                 <source>filter.label_posts</source>
-                <target>Posts</target>
+                <target>Записи</target>
             </trans-unit>
             <trans-unit id="batch.comment_enable">
                 <source>batch.comment_enable</source>
-                <target>batch.comment_enable</target>
+                <target>Включить</target>
             </trans-unit>
             <trans-unit id="batch.comment_disable">
                 <source>batch.comment_disable</source>
-                <target>batch.comment_disable</target>
+                <target>Отключить</target>
             </trans-unit>
             <trans-unit id="link_previous_page">
                 <source>link_previous_page</source>
-                <target>Previous page</target>
+                <target>Предыдущая страница</target>
             </trans-unit>
             <trans-unit id="link_next_page">
                 <source>link_next_page</source>
-                <target>Next page</target>
+                <target>Следующая страница</target>
             </trans-unit>
             <trans-unit id="form.comment.name">
                 <source>form.comment.name</source>
-                <target>Name</target>
+                <target>Имя</target>
             </trans-unit>
             <trans-unit id="form.comment.email">
                 <source>form.comment.email</source>
-                <target>Email</target>
+                <target>E-mail</target>
             </trans-unit>
             <trans-unit id="form.comment.url">
                 <source>form.comment.url</source>
-                <target>Url</target>
+                <target>URL</target>
             </trans-unit>
             <trans-unit id="form.comment.message">
                 <source>form.comment.message</source>
-                <target>Message</target>
+                <target>Сообщение</target>
             </trans-unit>
             <trans-unit id="view_all_posts">
                 <source>view_all_posts</source>
-                <target>view_all_posts</target>
+                <target>Посмотреть все записи</target>
             </trans-unit>
             <trans-unit id="post_is_public">
                 <source>post_is_public</source>
-                <target>post_is_public</target>
+                <target>Публичный</target>
             </trans-unit>
             <trans-unit id="post_is_not_public">
                 <source>post_is_not_public</source>
-                <target>post_is_not_public</target>
+                <target>Приватный</target>
             </trans-unit>
             <trans-unit id="label_comment_valid">
                 <source>label_comment_valid</source>
-                <target>label_comment_valid</target>
+                <target>Валидный</target>
             </trans-unit>
             <trans-unit id="label_comment_invalid">
                 <source>label_comment_invalid</source>
-                <target>label_comment_invalid</target>
+                <target>Невалидный</target>
             </trans-unit>
             <trans-unit id="label_unknown_status">
                 <source>label_unknown_status</source>
-                <target>label_unknown_status</target>
+                <target>Неизвестный</target>
             </trans-unit>
             <trans-unit id="label_unknown_moderate">
                 <source>label_unknown_moderate</source>
-                <target>label_unknown_moderate</target>
+                <target>Модерировать</target>
             </trans-unit>
             <trans-unit id="view_all_comments">
                 <source>view_all_comments</source>
-                <target>view_all_comments</target>
+                <target>Посмотреть все комментарии</target>
             </trans-unit>
             <trans-unit id="sonata_news_archive_breadcrumb">
                 <source>sonata_news_archive_breadcrumb</source>
-                <target>sonata_news_archive_breadcrumb</target>
+                <target>Новости</target>
             </trans-unit>
             <trans-unit id="group_general">
                 <source>group_general</source>
-                <target>group_general</target>
+                <target>Общие</target>
             </trans-unit>
             <trans-unit id="group_comment">
                 <source>group_comment</source>
-                <target>group_comment</target>
+                <target>Комментарий</target>
             </trans-unit>
             <trans-unit id="form.label_image">
                 <source>form.label_image</source>
-                <target>form.label_image</target>
+                <target>Изображение</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_edit_post">
                 <source>sidemenu.link_edit_post</source>
-                <target>sidemenu.link_edit_post</target>
+                <target>Редактировать</target>
             </trans-unit>
             <trans-unit id="show_label_enabled">
                 <source>show.label_enabled</source>
-                <target>show_label_enabled</target>
+                <target>Включен</target>
             </trans-unit>
             <trans-unit id="show_label_author">
                 <source>show.label_author</source>
-                <target>show_label_author</target>
+                <target>Автор</target>
             </trans-unit>
             <trans-unit id="show_label_title">
                 <source>show.label_title</source>
-                <target>show_label_title</target>
+                <target>Заголовок</target>
             </trans-unit>
             <trans-unit id="show_label_abstract">
                 <source>show.label_abstract</source>
-                <target>show_label_abstract</target>
+                <target>Обзор</target>
             </trans-unit>
             <trans-unit id="show_label_content">
                 <source>show.label_content</source>
-                <target>show_label_content</target>
+                <target>Содержание</target>
             </trans-unit>
             <trans-unit id="show_label_tags">
                 <source>show.label_tags</source>
-                <target>show_label_tags</target>
+                <target>Тэги</target>
             </trans-unit>
             <trans-unit id="group_post">
                 <source>group_post</source>
-                <target>group_post</target>
+                <target>Запись</target>
             </trans-unit>
             <trans-unit id="group_status">
                 <source>group_status</source>
-                <target>group_status</target>
+                <target>Статус</target>
             </trans-unit>
             <trans-unit id="group_classification">
                 <source>group_classification</source>
-                <target>group_classification</target>
+                <target>Классификация</target>
             </trans-unit>
             <trans-unit id="sonata_news_block_recent_comments">
                 <source>sonata.news.block.recent_comments</source>
-                <target>sonata.news.block.recent_comments</target>
+                <target>Новости - Недавние комментарии</target>
             </trans-unit>
             <trans-unit id="sonata_news_block_recent_posts">
                 <source>sonata.news.block.recent_posts</source>
-                <target>sonata.news.block.recent_posts</target>
+                <target>Новости - Недавние записи</target>
             </trans-unit>
             <trans-unit id="form.label_number">
                 <source>form.label_number</source>
-                <target>form.label_number</target>
+                <target>Число</target>
             </trans-unit>
             <trans-unit id="form.label_title">
                 <source>form.label_title</source>
-                <target>form.label_title</target>
+                <target>Заголовок</target>
             </trans-unit>
             <trans-unit id="form.label_mode">
                 <source>form.label_mode</source>
-                <target>form.label_mode</target>
+                <target>Режим</target>
             </trans-unit>
             <trans-unit id="form.label_mode_public">
                 <source>form.label_mode_public</source>
-                <target>form.label_mode_public</target>
+                <target>Публичный</target>
             </trans-unit>
             <trans-unit id="form.label_mode_admin">
                 <source>form.label_mode_admin</source>
-                <target>form.label_mode_admin</target>
+                <target>Административный</target>
             </trans-unit>
             <trans-unit id="valid">
                 <source>valid</source>
-                <target>valid</target>
+                <target>валидный</target>
             </trans-unit>
             <trans-unit id="invalid">
                 <source>invalid</source>
-                <target>invalid</target>
+                <target>невалидный</target>
             </trans-unit>
             <trans-unit id="moderate">
                 <source>moderate</source>
-                <target>moderate</target>
+                <target>модерировать</target>
             </trans-unit>
         </body>
     </file>
