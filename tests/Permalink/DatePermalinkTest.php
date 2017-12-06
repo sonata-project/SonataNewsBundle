@@ -55,7 +55,7 @@ class DatePermalinkTest extends TestCase
 
     public function testGetParametersWithWrongUrl()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
 
         $permalink = new DatePermalink();
         $expected = [

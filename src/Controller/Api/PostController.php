@@ -153,9 +153,9 @@ class PostController
      *
      * @param Request $request A Symfony request
      *
-     * @return Post
-     *
      * @throws NotFoundHttpException
+     *
+     * @return Post
      */
     public function postPostAction(Request $request)
     {
@@ -183,9 +183,9 @@ class PostController
      * @param int     $id      A Post identifier
      * @param Request $request A Symfony request
      *
-     * @return Post
-     *
      * @throws NotFoundHttpException
+     *
+     * @return Post
      */
     public function putPostAction($id, Request $request)
     {
@@ -210,9 +210,9 @@ class PostController
      *
      * @param int $id A Post identifier
      *
-     * @return View
-     *
      * @throws NotFoundHttpException
+     *
+     * @return View
      */
     public function deletePostAction($id)
     {
@@ -291,9 +291,9 @@ class PostController
      * @param int     $id      A post identifier
      * @param Request $request
      *
-     * @return Comment|FormInterface
-     *
      * @throws HttpException
+     *
+     * @return Comment|FormInterface
      */
     public function postPostCommentsAction($id, Request $request)
     {
@@ -355,10 +355,10 @@ class PostController
      * @param int     $commentId A comment identifier
      * @param Request $request   A Symfony request
      *
-     * @return Comment
-     *
      * @throws NotFoundHttpException
      * @throws HttpException
+     *
+     * @return Comment
      */
     public function putPostCommentsAction($postId, $commentId, Request $request)
     {
@@ -436,9 +436,9 @@ class PostController
      *
      * @param int $id A Post identifier
      *
-     * @return Post
-     *
      * @throws NotFoundHttpException
+     *
+     * @return Post
      */
     protected function getPost($id)
     {

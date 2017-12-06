@@ -29,12 +29,11 @@ class CommentControllerTest extends TestCase
         $this->assertEquals($comment, $this->createCommentController($commentManager)->getCommentAction(1));
     }
 
-    /**
-     * @expectedException        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @expectedExceptionMessage Comment (42) not found
-     */
     public function testGetCommentNotFoundExceptionAction()
     {
+        $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
+        $this->expectExceptionMessage('Comment (42) not found');
+
         $this->createCommentController()->getCommentAction(42);
     }
 
@@ -53,7 +52,7 @@ class CommentControllerTest extends TestCase
 
     public function testDeletePostInvalidAction()
     {
-        $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+        $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         $commentManager->expects($this->once())->method('find')->will($this->returnValue(null));

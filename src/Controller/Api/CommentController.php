@@ -57,9 +57,9 @@ class CommentController
      *
      * @param int $id A comment identifier
      *
-     * @return Comment
-     *
      * @throws NotFoundHttpException
+     *
+     * @return Comment
      */
     public function getCommentAction($id)
     {
@@ -84,9 +84,9 @@ class CommentController
      *
      * @param int $id A comment identifier
      *
-     * @return View
-     *
      * @throws NotFoundHttpException
+     *
+     * @return View
      */
     public function deleteCommentAction($id)
     {
@@ -106,9 +106,9 @@ class CommentController
      *
      * @param int $id A comment identifier
      *
-     * @return Comment
-     *
      * @throws NotFoundHttpException
+     *
+     * @return Comment
      */
     protected function getComment($id)
     {
