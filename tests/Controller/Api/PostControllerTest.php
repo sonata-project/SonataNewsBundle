@@ -43,12 +43,11 @@ class PostControllerTest extends TestCase
         $this->assertEquals($post, $this->createPostController($postManager)->getPostAction(1));
     }
 
-    /**
-     * @expectedException        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @expectedExceptionMessage Post (42) not found
-     */
     public function testGetPostNotFoundExceptionAction()
     {
+        $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
+        $this->expectExceptionMessage('Post (42) not found');
+
         $this->createPostController()->getPostAction(42);
     }
 
@@ -84,12 +83,11 @@ class PostControllerTest extends TestCase
         $this->assertEquals($pager, $this->createPostController($postManager, $commentManager)->getPostCommentsAction(1, $paramFetcher));
     }
 
-    /**
-     * @expectedException        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @expectedExceptionMessage Post (42) not found
-     */
     public function testGetPostCommentsActionNotFoundExceptionAction()
     {
+        $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
+        $this->expectExceptionMessage('Post (42) not found');
+
         $paramFetcher = $this->createMock('FOS\RestBundle\Request\ParamFetcherInterface');
 
         $this->createPostController()->getPostCommentsAction(42, $paramFetcher);
@@ -206,7 +204,7 @@ class PostControllerTest extends TestCase
 
     public function testDeletePostInvalidAction()
     {
-        $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+        $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
 
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('find')->will($this->returnValue(null));
@@ -264,12 +262,11 @@ class PostControllerTest extends TestCase
         $this->assertInstanceOf('Symfony\Component\Form\Form', $this->createPostController($postManager, $commentManager, null, $formFactory)->postPostCommentsAction(1, new Request()));
     }
 
-    /**
-     * @expectedException        \Symfony\Component\HttpKernel\Exception\HttpException
-     * @expectedExceptionMessage Post (42) not commentable
-     */
     public function testPostPostCommentsNotCommentableAction()
     {
+        $this->expectException(\Symfony\Component\HttpKernel\Exception\HttpException::class);
+        $this->expectExceptionMessage('Post (42) not commentable');
+
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('isCommentable')->will($this->returnValue(false));
 

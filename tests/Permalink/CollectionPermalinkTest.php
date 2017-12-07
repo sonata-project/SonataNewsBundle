@@ -63,7 +63,7 @@ class CollectionPermalinkTest extends TestCase
 
     public function testGetParametersWithoutCollectionAndExtra()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
 
         $permalink = new CollectionPermalink();
         $expected = [
