@@ -85,9 +85,9 @@ class PostController extends Controller
      * @param string  $tag
      * @param Request $request
      *
-     * @return Response
-     *
      * @throws NotFoundHttpException
+     *
+     * @return Response
      */
     public function tagAction($tag, Request $request = null)
     {
@@ -109,9 +109,9 @@ class PostController extends Controller
      * @param string  $collection
      * @param Request $request
      *
-     * @return Response
-     *
      * @throws NotFoundHttpException
+     *
+     * @return Response
      */
     public function collectionAction($collection, Request $request = null)
     {
@@ -161,9 +161,9 @@ class PostController extends Controller
     }
 
     /**
-     * @throws NotFoundHttpException
-     *
      * @param string $permalink
+     *
+     * @throws NotFoundHttpException
      *
      * @return Response
      */
@@ -267,10 +267,10 @@ class PostController extends Controller
     }
 
     /**
-     * @throws NotFoundHttpException
-     *
      * @param string  $id
      * @param Request $request
+     *
+     * @throws NotFoundHttpException
      *
      * @return Response
      */
@@ -319,9 +319,9 @@ class PostController extends Controller
      * @param string $hash
      * @param string $status
      *
-     * @return RedirectResponse
-     *
      * @throws AccessDeniedException
+     *
+     * @return RedirectResponse
      */
     public function commentModerationAction($commentId, $hash, $status)
     {

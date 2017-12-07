@@ -42,9 +42,9 @@ class CommentAdminController extends CRUDController
      * @param ProxyQueryInterface $query
      * @param                     $status
      *
-     * @return RedirectResponse
-     *
      * @throws AccessDeniedException
+     *
+     * @return RedirectResponse
      */
     protected function commentChangeStatus(ProxyQueryInterface $query, $status)
     {
