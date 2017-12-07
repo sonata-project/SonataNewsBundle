@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -19,7 +21,7 @@ use Sonata\NewsBundle\Controller\Api\CommentController;
  */
 class CommentControllerTest extends TestCase
 {
-    public function testGetCommentAction()
+    public function testGetCommentAction(): void
     {
         $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
 
@@ -29,7 +31,7 @@ class CommentControllerTest extends TestCase
         $this->assertEquals($comment, $this->createCommentController($commentManager)->getCommentAction(1));
     }
 
-    public function testGetCommentNotFoundExceptionAction()
+    public function testGetCommentNotFoundExceptionAction(): void
     {
         $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
         $this->expectExceptionMessage('Comment (42) not found');
@@ -37,7 +39,7 @@ class CommentControllerTest extends TestCase
         $this->createCommentController()->getCommentAction(42);
     }
 
-    public function testDeleteCommentAction()
+    public function testDeleteCommentAction(): void
     {
         $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
 
@@ -50,7 +52,7 @@ class CommentControllerTest extends TestCase
         $this->assertEquals(['deleted' => true], $view);
     }
 
-    public function testDeletePostInvalidAction()
+    public function testDeletePostInvalidAction(): void
     {
         $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
 

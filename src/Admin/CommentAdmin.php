@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -55,7 +57,7 @@ class CommentAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    public function postPersist($object)
+    public function postPersist($object): void
     {
         $this->updateCountsComment();
     }
@@ -63,7 +65,7 @@ class CommentAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    public function postRemove($object)
+    public function postRemove($object): void
     {
         $this->updateCountsComment();
     }
@@ -71,7 +73,7 @@ class CommentAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    public function postUpdate($object)
+    public function postUpdate($object): void
     {
         $this->updateCountsComment();
     }
@@ -79,7 +81,7 @@ class CommentAdmin extends AbstractAdmin
     /**
      * @param ManagerInterface $commentManager
      */
-    public function setCommentManager(ManagerInterface $commentManager)
+    public function setCommentManager(ManagerInterface $commentManager): void
     {
         if (!$commentManager instanceof CommentManagerInterface) {
             @trigger_error(
@@ -96,7 +98,7 @@ class CommentAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         // define group zoning
         $formMapper
@@ -131,7 +133,7 @@ class CommentAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('name')
@@ -143,7 +145,7 @@ class CommentAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->addIdentifier('name')
@@ -163,7 +165,7 @@ class CommentAdmin extends AbstractAdmin
     /**
      * Update the count comment.
      */
-    private function updateCountsComment()
+    private function updateCountsComment(): void
     {
         $this->commentManager->updateCommentsCount();
     }

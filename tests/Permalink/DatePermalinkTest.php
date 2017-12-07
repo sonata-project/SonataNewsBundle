@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,7 +18,7 @@ use Sonata\NewsBundle\Permalink\DatePermalink;
 
 class DatePermalinkTest extends TestCase
 {
-    public function testGenerate()
+    public function testGenerate(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
@@ -28,7 +30,7 @@ class DatePermalinkTest extends TestCase
         $this->assertEquals('2011/12/30/the-slug', $permalink->generate($post));
     }
 
-    public function testCustomFormatting()
+    public function testCustomFormatting(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
@@ -40,7 +42,7 @@ class DatePermalinkTest extends TestCase
         $this->assertEquals('2011/02/01/the-slug', $permalink->generate($post));
     }
 
-    public function testGetParameters()
+    public function testGetParameters(): void
     {
         $permalink = new DatePermalink();
         $expected = [
@@ -53,7 +55,7 @@ class DatePermalinkTest extends TestCase
         $this->assertEquals($expected, $permalink->getParameters('2011/12/30/the-slug'));
     }
 
-    public function testGetParametersWithWrongUrl()
+    public function testGetParametersWithWrongUrl(): void
     {
         $this->expectException('InvalidArgumentException');
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,14 +18,14 @@ use Sonata\NewsBundle\Model\Comment;
 
 class ModelTest_Comment extends Comment
 {
-    public function getId()
+    public function getId(): void
     {
     }
 }
 
 class CommentTest extends TestCase
 {
-    public function testSettersGetters()
+    public function testSettersGetters(): void
     {
         $date = new \DateTime();
 

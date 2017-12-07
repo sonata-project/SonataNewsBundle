@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -34,7 +36,7 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
             ->createQueryBuilder()
             ->sort('createdAt', 'desc');
 
-        $criteria['status'] = isset($criteria['status']) ? $criteria['status'] : CommentInterface::STATUS_VALID;
+        $criteria['status'] = $criteria['status'] ?? CommentInterface::STATUS_VALID;
         $qb->field('status')->equals($criteria['status']);
 
         if (isset($criteria['postId'])) {
@@ -54,7 +56,7 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
      *
      * @param PostInterface $post
      */
-    public function updateCommentsCount(PostInterface $post = null)
+    public function updateCommentsCount(PostInterface $post = null): void
     {
         $post->setCommentsCount($post->getCommentsCount() + 1);
         $this->getDocumentManager()->persist($post);

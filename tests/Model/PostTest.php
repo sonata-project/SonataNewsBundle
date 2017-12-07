@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,7 +18,7 @@ use Sonata\NewsBundle\Model\Post;
 
 class ModelTest_Post extends Post
 {
-    public function getId()
+    public function getId(): void
     {
     }
 }
@@ -26,7 +28,7 @@ class ModelTest_Post extends Post
  */
 class PostTest extends TestCase
 {
-    public function testSettersGetters()
+    public function testSettersGetters(): void
     {
         $date = new \DateTime();
 
