@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -19,7 +21,7 @@ use Sonata\NewsBundle\Document\PostManager;
  */
 class PostManagerTest extends TestCase
 {
-    public function testImplements()
+    public function testImplements(): void
     {
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
 

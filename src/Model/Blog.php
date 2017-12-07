@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -60,7 +62,7 @@ class Blog implements BlogInterface
     /**
      * {@inheritdoc}
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = $description;
     }
@@ -76,7 +78,7 @@ class Blog implements BlogInterface
     /**
      * {@inheritdoc}
      */
-    public function setLink($link)
+    public function setLink($link): void
     {
         $this->link = $link;
     }
@@ -92,7 +94,7 @@ class Blog implements BlogInterface
     /**
      * {@inheritdoc}
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }

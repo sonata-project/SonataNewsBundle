@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ use Sonata\NewsBundle\Entity\PostManager;
  */
 class PostManagerTest extends TestCase
 {
-    public function assertRelationsEnabled($qb)
+    public function assertRelationsEnabled($qb): void
     {
         $qb
             ->expects($this->exactly(2))
@@ -41,7 +43,7 @@ class PostManagerTest extends TestCase
         ;
     }
 
-    public function assertRelationsJoined($qb)
+    public function assertRelationsJoined($qb): void
     {
         $qb
             ->expects($this->exactly(2))
@@ -62,13 +64,13 @@ class PostManagerTest extends TestCase
         ;
     }
 
-    public function assertPostEnabled($qb, $flag)
+    public function assertPostEnabled($qb, $flag): void
     {
         $qb->expects($this->once())->method('andWhere')->with($this->equalTo('p.enabled = :enabled'));
         $qb->expects($this->once())->method('setParameters')->with($this->equalTo(['enabled' => $flag]));
     }
 
-    public function testFindOneByPermalinkSlug()
+    public function testFindOneByPermalinkSlug(): void
     {
         $permalink = $this->createMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
         $permalink->expects($this->once())->method('getParameters')
@@ -82,14 +84,14 @@ class PostManagerTest extends TestCase
 
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('andWhere')->with($self->equalTo('p.slug = :slug'));
                 $qb->expects($self->once())->method('setParameters')->with($self->equalTo(['slug' => 'bar']));
             })
             ->findOneByPermalink('foo/bar', $blog);
     }
 
-    public function testFindOneByPermalinkException()
+    public function testFindOneByPermalinkException(): void
     {
         $permalink = $this->createMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
         $permalink->expects($this->once())->method('getParameters')
@@ -101,18 +103,18 @@ class PostManagerTest extends TestCase
 
         $self = $this;
         $result = $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(function ($qb): void {
             })
             ->findOneByPermalink('', $blog);
 
         $this->assertNull($result);
     }
 
-    public function testGetPagerWithoutMode()
+    public function testGetPagerWithoutMode(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -120,11 +122,11 @@ class PostManagerTest extends TestCase
             ->getPager([], 1);
     }
 
-    public function testGetPagerWithoutModeEnabled()
+    public function testGetPagerWithoutModeEnabled(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -132,11 +134,11 @@ class PostManagerTest extends TestCase
             ->getPager([], 1);
     }
 
-    public function testGetPagerWithoutModeDisabled()
+    public function testGetPagerWithoutModeDisabled(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
@@ -146,11 +148,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
-    public function testGetPagerWithPublicMode()
+    public function testGetPagerWithPublicMode(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -160,11 +162,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
-    public function testGetPagerWithPublicModeEnabled()
+    public function testGetPagerWithPublicModeEnabled(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -175,11 +177,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
-    public function testGetPagerWithPublicModeDisabled()
+    public function testGetPagerWithPublicModeDisabled(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
@@ -190,11 +192,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
-    public function testGetPagerWithAdminMode()
+    public function testGetPagerWithAdminMode(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $self->assertRelationsJoined($qb);
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $qb->expects($self->never())->method('andWhere');
@@ -205,11 +207,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
-    public function testGetPagerWithAdminModeEnabled()
+    public function testGetPagerWithAdminModeEnabled(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -220,11 +222,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
-    public function testGetPagerWithAdminModeDisabled()
+    public function testGetPagerWithAdminModeDisabled(): void
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(function ($qb) use ($self): void {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 0);
@@ -235,10 +237,10 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
-    public function testGetPublicationDateQueryParts()
+    public function testGetPublicationDateQueryParts(): void
     {
         $result = $this
-            ->getPostManager(function () {
+            ->getPostManager(function (): void {
             })
             ->getPublicationDateQueryParts('2010-02-10', 'month', 'n');
 

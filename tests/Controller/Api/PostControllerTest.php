@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PostControllerTest extends TestCase
 {
-    public function testGetPostsAction()
+    public function testGetPostsAction(): void
     {
         $paramFetcher = $this->createMock('FOS\RestBundle\Request\ParamFetcherInterface');
         $paramFetcher->expects($this->once())->method('all')->will($this->returnValue([]));
@@ -33,7 +35,7 @@ class PostControllerTest extends TestCase
         $this->assertSame($pager, $this->createPostController($postManager)->getPostsAction($paramFetcher));
     }
 
-    public function testGetPostAction()
+    public function testGetPostAction(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
 
@@ -43,7 +45,7 @@ class PostControllerTest extends TestCase
         $this->assertEquals($post, $this->createPostController($postManager)->getPostAction(1));
     }
 
-    public function testGetPostNotFoundExceptionAction()
+    public function testGetPostNotFoundExceptionAction(): void
     {
         $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
         $this->expectExceptionMessage('Post (42) not found');
@@ -51,7 +53,7 @@ class PostControllerTest extends TestCase
         $this->createPostController()->getPostAction(42);
     }
 
-    public function testGetPostCommentsAction()
+    public function testGetPostCommentsAction(): void
     {
         $parameters = [
             'page' => 2,
@@ -83,7 +85,7 @@ class PostControllerTest extends TestCase
         $this->assertEquals($pager, $this->createPostController($postManager, $commentManager)->getPostCommentsAction(1, $paramFetcher));
     }
 
-    public function testGetPostCommentsActionNotFoundExceptionAction()
+    public function testGetPostCommentsActionNotFoundExceptionAction(): void
     {
         $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
         $this->expectExceptionMessage('Post (42) not found');
@@ -93,7 +95,7 @@ class PostControllerTest extends TestCase
         $this->createPostController()->getPostCommentsAction(42, $paramFetcher);
     }
 
-    public function testPostPostAction()
+    public function testPostPostAction(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('setContent');
@@ -117,7 +119,7 @@ class PostControllerTest extends TestCase
         $this->assertInstanceOf('FOS\RestBundle\View\View', $view);
     }
 
-    public function testPostPostInvalidAction()
+    public function testPostPostInvalidAction(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->never())->method('setContent');
@@ -140,7 +142,7 @@ class PostControllerTest extends TestCase
         $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $view);
     }
 
-    public function testPutPostAction()
+    public function testPutPostAction(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('setContent');
@@ -165,7 +167,7 @@ class PostControllerTest extends TestCase
         $this->assertInstanceOf('FOS\RestBundle\View\View', $view);
     }
 
-    public function testPutPostInvalidAction()
+    public function testPutPostInvalidAction(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->never())->method('setContent');
@@ -189,7 +191,7 @@ class PostControllerTest extends TestCase
         $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $view);
     }
 
-    public function testDeletePostAction()
+    public function testDeletePostAction(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
 
@@ -202,7 +204,7 @@ class PostControllerTest extends TestCase
         $this->assertEquals(['deleted' => true], $view);
     }
 
-    public function testDeletePostInvalidAction()
+    public function testDeletePostInvalidAction(): void
     {
         $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
 
@@ -213,7 +215,7 @@ class PostControllerTest extends TestCase
         $this->createPostController($postManager)->deletePostAction(1);
     }
 
-    public function testPostPostCommentsAction()
+    public function testPostPostCommentsAction(): void
     {
         $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
@@ -240,7 +242,7 @@ class PostControllerTest extends TestCase
         $this->assertInstanceOf('FOS\RestBundle\View\View', $this->createPostController($postManager, $commentManager, $mailer, $formFactory)->postPostCommentsAction(1, new Request()));
     }
 
-    public function testPostPostCommentsInvalidFormAction()
+    public function testPostPostCommentsInvalidFormAction(): void
     {
         $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
@@ -262,7 +264,7 @@ class PostControllerTest extends TestCase
         $this->assertInstanceOf('Symfony\Component\Form\Form', $this->createPostController($postManager, $commentManager, null, $formFactory)->postPostCommentsAction(1, new Request()));
     }
 
-    public function testPostPostCommentsNotCommentableAction()
+    public function testPostPostCommentsNotCommentableAction(): void
     {
         $this->expectException(\Symfony\Component\HttpKernel\Exception\HttpException::class);
         $this->expectExceptionMessage('Post (42) not commentable');
@@ -276,7 +278,7 @@ class PostControllerTest extends TestCase
         $this->createPostController($postManager)->postPostCommentsAction(42, new Request());
     }
 
-    public function testPutPostCommentAction()
+    public function testPutPostCommentAction(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('isCommentable')->will($this->returnValue(true));
@@ -302,7 +304,7 @@ class PostControllerTest extends TestCase
         $this->assertInstanceOf('FOS\RestBundle\View\View', $view);
     }
 
-    public function testPutPostCommentInvalidAction()
+    public function testPutPostCommentInvalidAction(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('isCommentable')->will($this->returnValue(true));
