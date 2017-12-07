@@ -26,10 +26,10 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class SonataNewsExtension extends Extension
 {
     /**
-     * @throws \InvalidArgumentException
-     *
      * @param array                                                   $configs
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     *
+     * @throws \InvalidArgumentException
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -49,7 +49,7 @@ class SonataNewsExtension extends Extension
             $loader->load('block.xml');
         }
 
-        if (isset($bundles['FOSRestBundle']) && isset($bundles['NelmioApiDocBundle'])) {
+        if (isset($bundles['FOSRestBundle'], $bundles['NelmioApiDocBundle'])) {
             $loader->load('api_controllers.xml');
             $loader->load('api_form.xml');
         }

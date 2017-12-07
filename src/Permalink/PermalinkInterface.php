@@ -23,9 +23,9 @@ interface PermalinkInterface
     /**
      * @param string $permalink
      *
-     * @return array
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return array
      */
     public function getParameters($permalink);
 }
