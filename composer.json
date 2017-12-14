@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^5.6 || ^7.0",
+        "php": "^7.1",
         "sonata-project/admin-bundle": "^3.28",
         "sonata-project/classification-bundle": "^3.5",
         "sonata-project/core-bundle": "^3.7.1",
