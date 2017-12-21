@@ -57,6 +57,9 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
                 'routeParameters' => [
                     'collection' => $collection->getSlug(),
                 ],
+                'extras' => [
+                    'translation_domain' => false,
+                ],
             ]);
         }
 
@@ -65,6 +68,9 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
                 'route' => 'sonata_news_tag',
                 'routeParameters' => [
                     'tag' => $tag->getSlug(),
+                ],
+                'extras' => [
+                    'translation_domain' => false,
                 ],
             ]);
         }

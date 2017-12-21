@@ -80,6 +80,9 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
                 'routeParameters' => [
                     'permalink' => $this->blog->getPermalinkGenerator()->generate($post),
                 ],
+                'extras' => [
+                    'translation_domain' => false,
+                ],
             ]);
         }
 
