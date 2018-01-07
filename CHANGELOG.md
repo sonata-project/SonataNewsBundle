@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.2](https://github.com/sonata-project/SonataNewsBundle/compare/3.2.1...3.2.2) - 2018-01-07
+### Fixed
+- Compatibility with Symfony 4
+- Missing translation to `CommentStatusType`
+- Support for swiftmailer 6
+- Fixed calling deprecated setDefaultOptions method
+- Don't call the translator in breadcrumbs
+
 ## [3.2.1](https://github.com/sonata-project/SonataNewsBundle/compare/3.2.0...3.2.1) - 2017-12-07
 ### Added
 - Added Russian translations
