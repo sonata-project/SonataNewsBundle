@@ -179,7 +179,7 @@ class PostAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('custom', 'string', [
-                'template' => 'SonataNewsBundle:Admin:list_post_custom.html.twig',
+                'template' => '@SonataNews/Admin/list_post_custom.html.twig',
                 'label' => 'Post',
                 'sortable' => 'title',
             ])
