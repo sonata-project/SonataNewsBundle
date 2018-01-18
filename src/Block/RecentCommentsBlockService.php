@@ -125,7 +125,7 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
             'number' => 5,
             'mode' => 'public',
             'title' => 'Recent Comments',
-            'template' => 'SonataNewsBundle:Block:recent_comments.html.twig',
+            'template' => '@SonataNews/Block/recent_comments.html.twig',
         ]);
     }
 
