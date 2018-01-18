@@ -22,7 +22,7 @@ Advanced Configuration
             notification:
                 emails:   [email@example.org, email2@example.org]
                 from:     no-reply@sonata-project.org
-                template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
+                template: '@SonataNews/Mail/comment_notification.txt.twig'
 
         class:
             post:       Application\Sonata\NewsBundle\Entity\Post

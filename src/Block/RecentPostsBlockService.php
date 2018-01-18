@@ -125,7 +125,7 @@ class RecentPostsBlockService extends AbstractAdminBlockService
             'number' => 5,
             'mode' => 'public',
             'title' => 'Recent Posts',
-            'template' => 'SonataNewsBundle:Block:recent_posts.html.twig',
+            'template' => '@SonataNews/Block/recent_posts.html.twig',
         ]);
     }
 
