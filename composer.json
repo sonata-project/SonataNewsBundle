@@ -40,7 +40,7 @@
     },
     "conflict": {
         "jms/serializer": "<0.13",
-        "sonata-project/block-bundle": "<3.2",
+        "sonata-project/block-bundle": "<3.11",
         "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
         "sonata-project/notification-bundle": "<3.0 || >=4.0",
         "sonata-project/seo-bundle": "<2.0 || >=3.0"
@@ -50,7 +50,7 @@
         "friendsofsymfony/rest-bundle": "^1.1",
         "jms/serializer-bundle": "^0.13 || ^1.0",
         "nelmio/api-doc-bundle": "^2.4",
-        "sonata-project/block-bundle": "^3.8",
+        "sonata-project/block-bundle": "^3.11",
         "sonata-project/doctrine-orm-admin-bundle": "^3.2",
         "sonata-project/notification-bundle": "^3.3",
         "sonata-project/seo-bundle": "^2.4"
