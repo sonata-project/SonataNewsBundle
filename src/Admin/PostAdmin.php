@@ -211,7 +211,7 @@ class PostAdmin extends AbstractAdmin
                     $queryBuilder->andWhere('c.status = :status');
                     $queryBuilder->setParameter('status', CommentInterface::STATUS_MODERATE);
                 },
-                'field_type' => 'checkbox',
+                'field_type' => CheckboxType::class,
             ])
         ;
     }
