@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.2.2...3.3.0) - 2018-01-26
+### Changed
+- Switch all templates references to Twig namespaced syntax
+- Switch from templating service to sonata.templating
+
+### Fixed
+- Fixed creating new swift message
+- Switch Field Type checkbox option to FQCN option for sf 4 compatibility
+
 ## [3.2.2](https://github.com/sonata-project/SonataNewsBundle/compare/3.2.1...3.2.2) - 2018-01-07
 ### Fixed
 - Compatibility with Symfony 4
