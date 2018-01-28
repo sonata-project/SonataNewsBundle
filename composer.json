@@ -2,7 +2,12 @@
     "name": "sonata-project/news-bundle",
     "type": "symfony-bundle",
     "description": "Symfony SonataNewsBundle",
-    "keywords": ["blog", "sonata", "news", "post"],
+    "keywords": [
+        "blog",
+        "sonata",
+        "news",
+        "post"
+    ],
     "homepage": "https://sonata-project.org/bundles/news",
     "license": "MIT",
     "authors": [
@@ -27,39 +32,33 @@
         "sonata-project/intl-bundle": "^2.4",
         "sonata-project/media-bundle": "^3.10",
         "sonata-project/user-bundle": "^3.6 || ^4.0",
-        "swiftmailer/swiftmailer": "^4.3 || ^5.0",
+        "swiftmailer/swiftmailer": "^4.3 || ^5.0 || ^6.0",
         "symfony/console": "^2.8 || ^3.2 || ^4.0",
         "symfony/form": "^2.8 || ^3.2 || ^4.0",
         "symfony/framework-bundle": "^2.8 || ^3.2 || ^4.0",
         "symfony/templating": "^2.8 || ^3.2 || ^4.0"
+    },
+    "conflict": {
+        "jms/serializer": "<0.13",
+        "sonata-project/block-bundle": "<3.11",
+        "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
+        "sonata-project/notification-bundle": "<3.0 || >=4.0",
+        "sonata-project/seo-bundle": "<2.0 || >=3.0"
     },
     "require-dev": {
         "doctrine/orm": "^2.4",
         "friendsofsymfony/rest-bundle": "^1.1",
         "jms/serializer-bundle": "^0.13 || ^1.0",
         "nelmio/api-doc-bundle": "^2.4",
-        "sonata-project/block-bundle": "^3.8",
+        "sonata-project/block-bundle": "^3.11",
         "sonata-project/doctrine-orm-admin-bundle": "^3.2",
         "sonata-project/notification-bundle": "^3.3",
         "sonata-project/seo-bundle": "^2.4"
-    },
-    "conflict": {
-        "jms/serializer": "<0.13",
-        "sonata-project/block-bundle": "<3.2",
-        "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
-        "sonata-project/notification-bundle": "<3.0 || >=4.0",
-        "sonata-project/seo-bundle": "<2.0 || >=3.0"
     },
     "suggest": {
         "sonata-project/block-bundle": "For rendering block lists.",
         "sonata-project/doctrine-orm-admin-bundle": "^2.2",
         "sonata-project/notification-bundle": "^2.2"
-    },
-    "autoload": {
-        "psr-4": { "Sonata\\NewsBundle\\": "src/" }
-    },
-    "autoload-dev": {
-        "psr-4": { "Sonata\\NewsBundle\\Tests\\": "tests/" }
     },
     "config": {
         "sort-packages": true
@@ -67,6 +66,16 @@
     "extra": {
         "branch-alias": {
             "dev-master": "4.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sonata\\NewsBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sonata\\NewsBundle\\Tests\\": "tests/"
         }
     }
 }

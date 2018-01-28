@@ -35,8 +35,8 @@
             </call>
             <call method="setTemplates">
                 <argument type="collection">
-                    <argument key="inner_list_row">SonataNewsBundle:Admin:inner_row_comment.html.twig</argument>
-                    <argument key="base_list_field">SonataAdminBundle:CRUD:base_list_flat_field.html.twig</argument>
+                    <argument key="inner_list_row">@SonataNews/Admin/inner_row_comment.html.twig</argument>
+                    <argument key="base_list_field">@SonataAdmin/CRUD/base_list_flat_field.html.twig</argument>
                 </argument>
             </call>
         </service>

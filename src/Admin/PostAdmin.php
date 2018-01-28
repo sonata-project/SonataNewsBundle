@@ -181,7 +181,7 @@ class PostAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('custom', 'string', [
-                'template' => 'SonataNewsBundle:Admin:list_post_custom.html.twig',
+                'template' => '@SonataNews/Admin/list_post_custom.html.twig',
                 'label' => 'Post',
                 'sortable' => 'title',
             ])
@@ -213,7 +213,7 @@ class PostAdmin extends AbstractAdmin
                     $queryBuilder->andWhere('c.status = :status');
                     $queryBuilder->setParameter('status', CommentInterface::STATUS_MODERATE);
                 },
-                'field_type' => 'checkbox',
+                'field_type' => CheckboxType::class,
             ])
         ;
     }

@@ -70,7 +70,7 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
             notification:
                 emails:   [email@example.org, email2@example.org]
                 from:     no-reply@sonata-project.org
-                template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
+                template: '@SonataNews/Mail/comment_notification.txt.twig'
 
     doctrine:
         orm:

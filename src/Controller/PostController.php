@@ -64,7 +64,7 @@ class PostController extends Controller
             'route_parameters' => $request->get('_route_params'),
         ], $parameters);
 
-        $response = $this->render(sprintf('SonataNewsBundle:Post:archive.%s.twig', $request->getRequestFormat()), $parameters);
+        $response = $this->render(sprintf('@SonataNews/Post/archive.%s.twig', $request->getRequestFormat()), $parameters);
 
         if ('rss' === $request->getRequestFormat()) {
             $response->headers->set('Content-Type', 'application/rss+xml');
@@ -190,7 +190,7 @@ class PostController extends Controller
             ;
         }
 
-        return $this->render('SonataNewsBundle:Post:view.html.twig', [
+        return $this->render('@SonataNews/Post/view.html.twig', [
             'post' => $post,
             'form' => false,
             'blog' => $this->getBlog(),
@@ -222,7 +222,7 @@ class PostController extends Controller
                 'status' => CommentInterface::STATUS_VALID,
             ], 1, 500); //no limit
 
-        return $this->render('SonataNewsBundle:Post:comments.html.twig', [
+        return $this->render('@SonataNews/Post/comments.html.twig', [
             'pager' => $pager,
         ]);
     }
@@ -243,7 +243,7 @@ class PostController extends Controller
             $form = $this->getCommentForm($post);
         }
 
-        return $this->render('SonataNewsBundle:Post:comment_form.html.twig', [
+        return $this->render('@SonataNews/Post/comment_form.html.twig', [
             'form' => $form->createView(),
             'post_id' => $postId,
         ]);
@@ -310,7 +310,7 @@ class PostController extends Controller
             ]));
         }
 
-        return $this->render('SonataNewsBundle:Post:view.html.twig', [
+        return $this->render('@SonataNews/Post/view.html.twig', [
             'post' => $post,
             'form' => $form,
         ]);
