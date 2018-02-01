@@ -12,16 +12,16 @@ file that was distributed with this source code.
 
 {% block block %}
 
-    <div class="sonata-news-block-recent-comment box box-primary">
+    <div class="panel panel-default">
         {% if settings.title %}
-            <div class="box-header with-border">
-                <h3 class="box-title">
+            <div class="panel-heading">
+                <h3 class="panel-title">
                     <i class="fa fa-comments fa-fw"></i> {{ settings.title }}
                 </h3>
             </div>
         {% endif %}
 
-        <div class="box-body">
+        <div class="panel-body">
             {% sonata_template_box 'This is the recent posts comments block.' %}
 
             <div class="sonata-blog-post-container list-group">
@@ -52,7 +52,7 @@ file that was distributed with this source code.
             </div>
         </div>
 
-        <div class="box-footer">
+        <div class="panel-footer">
             {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
                 <a href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.comment').generateUrl('list') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i> {{ 'view_all_comments'|trans({}, 'SonataNewsBundle') }}</a>
             {% endif %}
