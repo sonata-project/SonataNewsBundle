@@ -37,7 +37,7 @@ file that was distributed with this source code.
                            href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.post').generateUrl('edit', { 'id': post.id }) }}"
                         >
 
-                        {% if post.ispublic %}
+                        {% if post.isPublic %}
                             <span class="label label-success">{{ 'post_is_public'|trans({}, 'SonataNewsBundle') }}</span>
                         {% else %}
                             <span class="label">{{ 'post_is_not_public'|trans({}, 'SonataNewsBundle') }}</span>
