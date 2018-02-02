@@ -33,7 +33,9 @@ file that was distributed with this source code.
             <div class="list-group">
                 {% for comment in pager.getResults() %}
                     {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
-                        <a class="list-group-item" href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.comment').generateUrl('edit', { 'id': comment.id }) }}">
+                        <a class="list-group-item"
+                           href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.comment').generateUrl('edit', { 'id': comment.id }) }}"
+                        >
                             <span class="label label-{{ comment|sonata_status_class }}">
                                 {% if comment.status == constant('Sonata\\NewsBundle\\Model\\CommentInterface::STATUS_INVALID') %}
                                     {{ 'label_comment_invalid'|trans({}, 'SonataNewsBundle') }}
@@ -49,7 +51,10 @@ file that was distributed with this source code.
                             {{ comment.name }} - {{ comment.message|truncate(30) }}
                         </a>
                     {% else %}
-                        <a class="list-group-item" href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(comment.post) }) }}">{{ comment.name }} - {{ comment.message|truncate(30) }}
+                        <a class="list-group-item"
+                           href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(comment.post) }) }}"
+                        >
+                            {{ comment.name }} - {{ comment.message|truncate(30) }}
                         </a>
                     {% endif %}
                 {% else %}

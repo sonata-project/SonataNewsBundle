@@ -33,17 +33,26 @@ file that was distributed with this source code.
             <div class="list-group">
                 {% for post in pager.getResults() %}
                     {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
-                        <a class="list-group-item" href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.post').generateUrl('edit', { 'id': post.id }) }}">
-                            {% if post.ispublic %}
+                        <a class="list-group-item"
+                           href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.post').generateUrl('edit', { 'id': post.id }) }}"
+                        >
+
+                        {% if post.ispublic %}
                             <span class="label label-success">{{ 'post_is_public'|trans({}, 'SonataNewsBundle') }}</span>
                         {% else %}
                             <span class="label">{{ 'post_is_not_public'|trans({}, 'SonataNewsBundle') }}</span>
-                            {% endif %}&nbsp;
+                        {% endif %}&nbsp;
 
-                            {{ post.title }} - {{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }} - {{ post.publicationDateStart | format_date }}
+                        {{ post.title }} -
+                        {{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }} -
+                        {{ post.publicationDateStart | format_date }}
                         </a>
                     {% else %}
-                        <a class="list-group-item" href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a> - {{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }} - {{ post.publicationDateStart | format_date }}
+                        <a class="list-group-item" href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">
+                            {{ post.title }}
+                        </a> -
+                        {{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }} -
+                        {{ post.publicationDateStart | format_date }}
                     {% endif %}
                 {% else %}
                     <a class="list-group-item" href="#">{{ 'no_post_found'|trans({}, 'SonataNewsBundle') }}</a>
@@ -53,10 +62,15 @@ file that was distributed with this source code.
 
         <div class="panel-footer">
             {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
-                <a href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.post').generateUrl('list') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}
+                <a href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.post').generateUrl('list') }}"
+                   class="btn btn-primary btn-block"
+                >
+                    <i class="fa fa-list"></i> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}
                 </a>
             {% else %}
-                <a href="{{ url('sonata_news_archive') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i> {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}
+                <a href="{{ url('sonata_news_archive') }}" class="btn btn-primary btn-block">
+                    <i class="fa fa-list"></i>
+                    {{ 'view_all_posts'|trans({}, 'SonataNewsBundle') }}
                 </a>
             {% endif %}
         </div>
