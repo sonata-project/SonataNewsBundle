@@ -101,8 +101,20 @@ class RecentPostsBlockService extends AbstractAdminBlockService
                     'label' => 'form.label_number',
                 ]],
                 ['title', TextType::class, [
-                    'required' => false,
                     'label' => 'form.label_title',
+                    'required' => false,
+                ]],
+                ['translation_domain', TextType::class, [
+                    'label' => 'form.label_translation_domain',
+                    'required' => false,
+                ]],
+                ['icon', TextType::class, [
+                    'label' => 'form.label_icon',
+                    'required' => false,
+                ]],
+                ['class', TextType::class, [
+                    'label' => 'form.label_class',
+                    'required' => false,
                 ]],
                 ['mode', ChoiceType::class, [
                     'choices' => [
@@ -124,7 +136,10 @@ class RecentPostsBlockService extends AbstractAdminBlockService
         $resolver->setDefaults([
             'number' => 5,
             'mode' => 'public',
-            'title' => 'Recent Posts',
+            'title' => null,
+            'translation_domain' => null,
+            'icon' => 'fa fa-pencil',
+            'class' => null,
             'template' => '@SonataNews/Block/recent_posts.html.twig',
         ]);
     }
