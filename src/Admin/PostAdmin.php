@@ -182,7 +182,7 @@ class PostAdmin extends AbstractAdmin
         $listMapper
             ->add('custom', 'string', [
                 'template' => '@SonataNews/Admin/list_post_custom.html.twig',
-                'label' => 'Post',
+                'label' => 'list.label_post',
                 'sortable' => 'title',
             ])
             ->add('commentsEnabled', null, ['editable' => true])
