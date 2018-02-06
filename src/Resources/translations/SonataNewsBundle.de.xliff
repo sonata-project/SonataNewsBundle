@@ -475,6 +475,18 @@
                 <source>moderate</source>
                 <target>Moderiert</target>
             </trans-unit>
+            <trans-unit id="form.label_translation_domain">
+                <source>form.label_translation_domain</source>
+                <target>Übersetzungsdatei</target>
+            </trans-unit>
+            <trans-unit id="form.label_icon">
+                <source>form.label_icon</source>
+                <target>Icon</target>
+            </trans-unit>
+            <trans-unit id="form.label_class">
+                <source>form.label_class</source>
+                <target>CSS Klasse</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
