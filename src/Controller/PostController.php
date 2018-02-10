@@ -296,9 +296,9 @@ class PostController extends Controller
         }
 
         $form = $this->getCommentForm($post);
-        $form->submit($request);
+        $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
 
             $this->getCommentManager()->save($comment);

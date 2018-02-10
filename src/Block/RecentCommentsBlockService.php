@@ -120,8 +120,8 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
                 ]],
                 ['mode', ChoiceType::class, [
                     'choices' => [
-                        'public' => 'form.label_mode_public',
-                        'admin' => 'form.label_mode_admin',
+                        'form.label_mode_public' => 'public',
+                        'form.label_mode_admin' => 'admin',
                     ],
                     'label' => 'form.label_mode',
                 ]],
