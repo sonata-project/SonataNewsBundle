@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.4.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.3.0...3.4.0) - 2018-02-11
+### Added
+- added block title translation domain option
+- added block icon option
+- added block class option
+
+### Changed
+- replaced box with bootstrap panel layout in blocks
+
+### Fixed
+- Fixed wrong translation in blocks
+- Fixed calling wrong method when submitting comment
+- Check if the comment form was submitted
+- Fixed wrong translation key
+
+### Removed
+- Removed default title from blocks
+
 ## [3.3.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.2.2...3.3.0) - 2018-01-26
 ### Changed
 - Switch all templates references to Twig namespaced syntax
