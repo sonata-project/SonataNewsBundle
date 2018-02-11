@@ -44,6 +44,7 @@ class SonataNewsExtension extends Extension
         $loader->load('form.xml');
         $loader->load('core.xml');
         $loader->load('serializer.xml');
+        $loader->load('command.xml');
 
         if (isset($bundles['SonataBlockBundle'])) {
             $loader->load('block.xml');
