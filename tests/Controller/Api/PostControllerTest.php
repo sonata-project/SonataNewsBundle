@@ -13,6 +13,7 @@ namespace Sonata\NewsBundle\Tests\Controller\Api;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Controller\Api\PostController;
+use Sonata\NewsBundle\Model\CommentInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -105,7 +106,7 @@ class PostControllerTest extends TestCase
         $formatterPool->expects($this->once())->method('transform')->will($this->returnValue($post->getContent()));
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
+        $form->expects($this->once())->method('handleRequest');
         $form->expects($this->once())->method('isValid')->will($this->returnValue(true));
         $form->expects($this->once())->method('getData')->will($this->returnValue($post));
 
@@ -129,7 +130,7 @@ class PostControllerTest extends TestCase
         $formatterPool->expects($this->never())->method('transform')->will($this->returnValue($post->getContent()));
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
+        $form->expects($this->once())->method('handleRequest');
         $form->expects($this->once())->method('isValid')->will($this->returnValue(false));
 
         $formFactory = $this->createMock('Symfony\Component\Form\FormFactoryInterface');
@@ -153,7 +154,7 @@ class PostControllerTest extends TestCase
         $formatterPool->expects($this->once())->method('transform')->will($this->returnValue($post->getContent()));
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
+        $form->expects($this->once())->method('handleRequest');
         $form->expects($this->once())->method('isValid')->will($this->returnValue(true));
         $form->expects($this->once())->method('getData')->will($this->returnValue($post));
 
@@ -178,7 +179,7 @@ class PostControllerTest extends TestCase
         $formatterPool->expects($this->never())->method('transform')->will($this->returnValue($post->getContent()));
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
+        $form->expects($this->once())->method('handleRequest');
         $form->expects($this->once())->method('isValid')->will($this->returnValue(false));
 
         $formFactory = $this->createMock('Symfony\Component\Form\FormFactoryInterface');
@@ -215,7 +216,7 @@ class PostControllerTest extends TestCase
 
     public function testPostPostCommentsAction()
     {
-        $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
+        $comment = $this->createMock(CommentInterface::class);
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('isCommentable')->will($this->returnValue(true));
 
@@ -230,19 +231,23 @@ class PostControllerTest extends TestCase
         $mailer->expects($this->once())->method('sendCommentNotification');
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
+        $form->expects($this->once())->method('handleRequest');
         $form->expects($this->once())->method('isValid')->will($this->returnValue(true));
         $form->expects($this->once())->method('getData')->will($this->returnValue($comment));
 
         $formFactory = $this->createMock('Symfony\Component\Form\FormFactoryInterface');
         $formFactory->expects($this->once())->method('createNamed')->will($this->returnValue($form));
 
-        $this->assertInstanceOf('FOS\RestBundle\View\View', $this->createPostController($postManager, $commentManager, $mailer, $formFactory)->postPostCommentsAction(1, new Request()));
+        $postController = $this->createPostController($postManager, $commentManager, $mailer, $formFactory);
+
+        $postController->postPostCommentsAction(1, new Request());
+
+        $this->assertInstanceOf(CommentInterface::class, $comment);
     }
 
     public function testPostPostCommentsInvalidFormAction()
     {
-        $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
+        $comment = $this->createMock(CommentInterface::class);
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('isCommentable')->will($this->returnValue(true));
 
@@ -253,7 +258,7 @@ class PostControllerTest extends TestCase
         $commentManager->expects($this->once())->method('create')->will($this->returnValue($comment));
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
+        $form->expects($this->once())->method('handleRequest');
         $form->expects($this->once())->method('isValid')->will($this->returnValue(false));
 
         $formFactory = $this->createMock('Symfony\Component\Form\FormFactoryInterface');
@@ -284,22 +289,25 @@ class PostControllerTest extends TestCase
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('find')->will($this->returnValue($post));
 
-        $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
+        $comment = $this->createMock(CommentInterface::class);
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
-        $commentManager->expects($this->once())->method('save')->will($this->returnValue($comment));
+        $commentManager->expects($this->once())->method('save');
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
+        $form->expects($this->once())->method('handleRequest');
+        $form->expects($this->once())->method('getData')->will($this->returnValue($comment));
         $form->expects($this->once())->method('isValid')->will($this->returnValue(true));
 
         $formFactory = $this->createMock('Symfony\Component\Form\FormFactoryInterface');
         $formFactory->expects($this->once())->method('createNamed')->will($this->returnValue($form));
 
-        $view = $this->createPostController($postManager, $commentManager, null, $formFactory)->putPostCommentsAction(1, 1, new Request());
+        $postController = $this->createPostController($postManager, $commentManager, null, $formFactory);
 
-        $this->assertInstanceOf('FOS\RestBundle\View\View', $view);
+        $comment = $postController->putPostCommentsAction(1, 1, new Request());
+
+        $this->assertInstanceOf(CommentInterface::class, $comment);
     }
 
     public function testPutPostCommentInvalidAction()
@@ -310,14 +318,14 @@ class PostControllerTest extends TestCase
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('find')->will($this->returnValue($post));
 
-        $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
+        $comment = $this->createMock(CommentInterface::class);
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
-        $commentManager->expects($this->never())->method('save')->will($this->returnValue($comment));
+        $commentManager->expects($this->never())->method('save');
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())->method('bind');
+        $form->expects($this->once())->method('handleRequest');
         $form->expects($this->once())->method('isValid')->will($this->returnValue(false));
 
         $formFactory = $this->createMock('Symfony\Component\Form\FormFactoryInterface');
