@@ -44,14 +44,14 @@ class CommentController
      *  requirements={
      *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="comment id"}
      *  },
-     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"="sonata_api_read"},
+     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
      *  statusCodes={
      *      200="Returned when successful",
      *      404="Returned when comment is not found"
      *  }
      * )
      *
-     * @REST\View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
+     * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
      * @REST\Route(requirements={"_format"="json|xml"})
      *
