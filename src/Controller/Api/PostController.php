@@ -309,7 +309,7 @@ class PostController
         $comment->setPost($post);
 
         $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, ['csrf_protection' => false]);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $comment = $form->getData();
@@ -378,7 +378,7 @@ class PostController
             'csrf_protection' => false,
         ]);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $comment = $form->getData();
@@ -459,7 +459,7 @@ class PostController
             'csrf_protection' => false,
         ]);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $post = $form->getData();
