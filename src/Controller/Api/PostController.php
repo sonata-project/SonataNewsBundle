@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Controller\Api;
 
 use Application\Sonata\NewsBundle\Entity\Post;
+use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\Annotations as REST;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View;
-use JMS\Serializer\SerializationContext;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
@@ -94,7 +94,7 @@ class PostController
      * @REST\QueryParam(name="author", requirements="\S+", nullable=true, strict=true, description="Author filter")
      * @REST\QueryParam(name="mode", requirements="public|admin", default="public", description="'public' mode filters posts having enabled tags and author")
      *
-     * @REST\View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
+     * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
      * @REST\Route(requirements={"_format"="json|xml"})
      *
@@ -126,7 +126,7 @@ class PostController
      *  }
      * )
      *
-     * @REST\View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
+     * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
      * @REST\Route(requirements={"_format"="json|xml"})
      *
@@ -248,7 +248,7 @@ class PostController
      *
      * @REST\Route(requirements={"_format"="json|xml"})
      *
-     * @REST\View(serializerGroups="sonata_api_read", serializerEnableMaxDepthChecks=true)
+     * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
      * @param int                   $id           A post identifier
      * @param ParamFetcherInterface $paramFetcher
@@ -288,6 +288,8 @@ class PostController
      *  }
      * )
      *
+     * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
+     *
      * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int     $id      A post identifier
@@ -309,7 +311,7 @@ class PostController
         $comment->setPost($post);
 
         $form = $this->formFactory->createNamed(null, 'sonata_news_api_form_comment', $comment, ['csrf_protection' => false]);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $comment = $form->getData();
@@ -322,13 +324,7 @@ class PostController
             $this->commentManager->save($comment);
             $this->mailer->sendCommentNotification($comment);
 
-            $view = View::create($comment);
-            $serializationContext = SerializationContext::create();
-            $serializationContext->setGroups(['sonata_api_read']);
-            $serializationContext->enableMaxDepthChecks();
-            $view->setSerializationContext($serializationContext);
-
-            return $view;
+            return $comment;
         }
 
         return $form;
@@ -350,6 +346,8 @@ class PostController
      *      404="Returned when unable to find comment"
      *  }
      * )
+     *
+     * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
      * @REST\Route(requirements={"_format"="json|xml"})
      *
@@ -382,19 +380,13 @@ class PostController
             'csrf_protection' => false,
         ]);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $comment = $form->getData();
             $this->commentManager->save($comment);
 
-            $view = View::create($comment);
-            $serializationContext = SerializationContext::create();
-            $serializationContext->setGroups(['sonata_api_read']);
-            $serializationContext->enableMaxDepthChecks();
-            $view->setSerializationContext($serializationContext);
-
-            return $view;
+            return $comment;
         }
 
         return $form;
@@ -469,18 +461,25 @@ class PostController
             'csrf_protection' => false,
         ]);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $post = $form->getData();
             $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
             $this->postManager->save($post);
 
+            $context = new Context();
+            $context->setGroups(['sonata_api_read']);
+
+            // simplify when dropping FOSRest < 2.1
+            if (method_exists($context, 'enableMaxDepth')) {
+                $context->enableMaxDepth();
+            } else {
+                $context->setMaxDepth(10);
+            }
+
             $view = View::create($post);
-            $serializationContext = SerializationContext::create();
-            $serializationContext->setGroups(['sonata_api_read']);
-            $serializationContext->enableMaxDepthChecks();
-            $view->setSerializationContext($serializationContext);
+            $view->setContext($context);
 
             return $view;
         }
