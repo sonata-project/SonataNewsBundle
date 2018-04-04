@@ -31,7 +31,7 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
-            new Sonata\NewsBundle\SonataBlockBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
