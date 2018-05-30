@@ -5,12 +5,12 @@
         <parameter key="sonata.news.manager.post.class">Sonata\NewsBundle\Entity\PostManager</parameter>
     </parameters>
     <services>
-        <service id="sonata.news.manager.comment" class="%sonata.news.manager.comment.class%">
+        <service id="sonata.news.manager.comment" class="%sonata.news.manager.comment.class%" public="true">
             <argument>%sonata.news.manager.comment.entity%</argument>
             <argument type="service" id="doctrine"/>
             <argument type="service" id="sonata.news.manager.post"/>
         </service>
-        <service id="sonata.news.manager.post" class="%sonata.news.manager.post.class%">
+        <service id="sonata.news.manager.post" class="%sonata.news.manager.post.class%" public="true">
             <argument>%sonata.news.manager.post.entity%</argument>
             <argument type="service" id="doctrine"/>
         </service>
