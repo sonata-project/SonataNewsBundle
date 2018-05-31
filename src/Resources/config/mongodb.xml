@@ -7,12 +7,12 @@
         <parameter key="sonata.news.manager.post.entity">Application\Sonata\NewsBundle\Document\Tag</parameter>
     </parameters>
     <services>
-        <service id="sonata.news.document_manager" alias="doctrine.odm.default_document_manager"/>
-        <service id="sonata.news.manager.comment" class="%sonata.news.manager.comment.class%">
+        <service id="sonata.news.document_manager" alias="doctrine.odm.default_document_manager" public="true"/>
+        <service id="sonata.news.manager.comment" class="%sonata.news.manager.comment.class%" public="true">
             <argument type="service" id="sonata.news.document_manager"/>
             <argument>%sonata.news.manager.comment.document%</argument>
         </service>
-        <service id="sonata.news.manager.post" class="%sonata.news.manager.post.class%">
+        <service id="sonata.news.manager.post" class="%sonata.news.manager.post.class%" public="true">
             <argument type="service" id="sonata.news.document_manager"/>
             <argument>%sonata.news.manager.post.entity%</argument>
         </service>
