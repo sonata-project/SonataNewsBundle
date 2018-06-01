@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="sonata.news.admin.post" class="%sonata.news.admin.post.class%">
+        <service id="sonata.news.admin.post" class="%sonata.news.admin.post.class%" public="true">
             <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="posts" label_catalogue="%sonata.news.admin.post.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore"/>
             <argument/>
             <argument>%sonata.news.admin.post.entity%</argument>
@@ -22,7 +22,7 @@
                 <argument id="sonata.news.permalink.generator" type="service"/>
             </call>
         </service>
-        <service id="sonata.news.admin.comment" class="%sonata.news.admin.comment.class%">
+        <service id="sonata.news.admin.comment" class="%sonata.news.admin.comment.class%" public="true">
             <tag name="sonata.admin" manager_type="orm" group="sonata_blog" label="comments" label_catalogue="%sonata.news.admin.comment.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore"/>
             <argument/>
             <argument>%sonata.news.admin.comment.entity%</argument>

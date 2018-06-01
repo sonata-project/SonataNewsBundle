@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="sonata.news.block.recent_posts" class="Sonata\NewsBundle\Block\RecentPostsBlockService">
+        <service id="sonata.news.block.recent_posts" class="Sonata\NewsBundle\Block\RecentPostsBlockService" public="true">
             <tag name="sonata.block"/>
             <argument>sonata.news.block.recent_posts</argument>
             <argument type="service" id="sonata.templating"/>
             <argument type="service" id="sonata.news.manager.post"/>
             <argument type="service" id="sonata.admin.pool" on-invalid="ignore"/>
         </service>
-        <service id="sonata.news.block.recent_comments" class="Sonata\NewsBundle\Block\RecentCommentsBlockService">
+        <service id="sonata.news.block.recent_comments" class="Sonata\NewsBundle\Block\RecentCommentsBlockService" public="true">
             <tag name="sonata.block"/>
             <argument>sonata.news.block.recent_comments</argument>
             <argument type="service" id="sonata.templating"/>
             <argument type="service" id="sonata.news.manager.comment"/>
             <argument type="service" id="sonata.admin.pool" on-invalid="ignore"/>
         </service>
-        <service id="sonata.news.block.breadcrumb_archive" class="Sonata\NewsBundle\Block\Breadcrumb\NewsArchiveBreadcrumbBlockService">
+        <service id="sonata.news.block.breadcrumb_archive" class="Sonata\NewsBundle\Block\Breadcrumb\NewsArchiveBreadcrumbBlockService" public="true">
             <tag name="sonata.block"/>
             <tag name="sonata.breadcrumb"/>
             <argument>news_archive</argument>
@@ -24,7 +24,7 @@
             <argument type="service" id="knp_menu.menu_provider"/>
             <argument type="service" id="knp_menu.factory"/>
         </service>
-        <service id="sonata.news.block.breadcrumb_post" class="Sonata\NewsBundle\Block\Breadcrumb\NewsPostBreadcrumbBlockService">
+        <service id="sonata.news.block.breadcrumb_post" class="Sonata\NewsBundle\Block\Breadcrumb\NewsPostBreadcrumbBlockService" public="true">
             <tag name="sonata.block"/>
             <tag name="sonata.breadcrumb"/>
             <argument>news_post</argument>
