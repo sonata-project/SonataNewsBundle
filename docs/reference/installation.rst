@@ -7,6 +7,7 @@ Installation
 
     composer require sonata-project/news-bundle sonata-project/doctrine-orm-admin-bundle
 
+If you encounter a problem with egeloen/ckeditor-bundle during installation, review the documentation here: https://sonata-project.org/bundles/formatter/master/doc/reference/installation.html
 
 If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle``.
 
