@@ -60,7 +60,7 @@
     {{ render(controller('SonataNewsBundle:Post:comments', {'postId': post.id})) }}
 
     {% if post.iscommentable %}
-        {{ render(controller('SonataNewsBundle:Post:addCommentForm', {
+        {{ render(controller('Sonata\\NewsBundle\\Action\\CreateCommentFormAction', {
             'postId': post.id,
             'form': form
         })) }}

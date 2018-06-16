@@ -11,9 +11,26 @@
 
 namespace Sonata\NewsBundle\Controller;
 
+// NEXT_MAJOR: remove this file
+
+@trigger_error(
+    'The '.__NAMESPACE__.'\PostController class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use '.__NAMESPACE__.'\Action\* classes instead.',
+    E_USER_DEPRECATED
+);
+
+use Sonata\NewsBundle\Action\CollectionPostArchiveAction;
+use Sonata\NewsBundle\Action\CommentListAction;
+use Sonata\NewsBundle\Action\CreateCommentAction;
+use Sonata\NewsBundle\Action\CreateCommentFormAction;
+use Sonata\NewsBundle\Action\ModerateCommentAction;
+use Sonata\NewsBundle\Action\MonthlyPostArchiveAction;
+use Sonata\NewsBundle\Action\PostArchiveAction;
+use Sonata\NewsBundle\Action\TagPostArchiveAction;
+use Sonata\NewsBundle\Action\ViewPostAction;
+use Sonata\NewsBundle\Action\YearlyPostArchiveAction;
 use Sonata\NewsBundle\Form\Type\CommentType;
 use Sonata\NewsBundle\Model\BlogInterface;
-use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
@@ -24,7 +41,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PostController extends Controller
@@ -46,29 +62,9 @@ class PostController extends Controller
      */
     public function renderArchive(array $criteria = [], array $parameters = [], Request $request = null)
     {
-        $request = $this->resolveRequest($request);
+        $action = $this->container->get(PostArchiveAction::class);
 
-        $pager = $this->getPostManager()->getPager(
-            $criteria,
-            $request->get('page', 1)
-        );
-
-        $parameters = array_merge([
-            'pager' => $pager,
-            'blog' => $this->getBlog(),
-            'tag' => false,
-            'collection' => false,
-            'route' => $request->get('_route'),
-            'route_parameters' => $request->get('_route_params'),
-        ], $parameters);
-
-        $response = $this->render(sprintf('@SonataNews/Post/archive.%s.twig', $request->getRequestFormat()), $parameters);
-
-        if ('rss' === $request->getRequestFormat()) {
-            $response->headers->set('Content-Type', 'application/rss+xml');
-        }
-
-        return $response;
+        return $action->renderArchive($this->resolveRequest($request), $criteria, $parameters);
     }
 
     /**
@@ -78,7 +74,9 @@ class PostController extends Controller
      */
     public function archiveAction(Request $request = null)
     {
-        return $this->renderArchive();
+        $action = $this->container->get(PostArchiveAction::class);
+
+        return $action($this->resolveRequest($request));
     }
 
     /**
@@ -91,18 +89,9 @@ class PostController extends Controller
      */
     public function tagAction($tag, Request $request = null)
     {
-        $request = $this->resolveRequest($request);
+        $action = $this->container->get(TagPostArchiveAction::class);
 
-        $tag = $this->get('sonata.classification.manager.tag')->findOneBy([
-            'slug' => $tag,
-            'enabled' => true,
-        ]);
-
-        if (!$tag || !$tag->getEnabled()) {
-            throw new NotFoundHttpException('Unable to find the tag');
-        }
-
-        return $this->renderArchive(['tag' => $tag->getSlug()], ['tag' => $tag], $request);
+        return $action($this->resolveRequest($request), $tag);
     }
 
     /**
@@ -115,18 +104,9 @@ class PostController extends Controller
      */
     public function collectionAction($collection, Request $request = null)
     {
-        $request = $this->resolveRequest($request);
+        $action = $this->container->get(CollectionPostArchiveAction::class);
 
-        $collection = $this->get('sonata.classification.manager.collection')->findOneBy([
-            'slug' => $collection,
-            'enabled' => true,
-        ]);
-
-        if (!$collection || !$collection->getEnabled()) {
-            throw new NotFoundHttpException('Unable to find the collection');
-        }
-
-        return $this->renderArchive(['collection' => $collection], ['collection' => $collection], $request);
+        return $action($this->resolveRequest($request), $collection);
     }
 
     /**
@@ -138,11 +118,9 @@ class PostController extends Controller
      */
     public function archiveMonthlyAction($year, $month, Request $request = null)
     {
-        $request = $this->resolveRequest($request);
+        $action = $this->container->get(MonthlyPostArchiveAction::class);
 
-        return $this->renderArchive([
-            'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, $month, 1), 'month'),
-        ], [], $request);
+        return $action($this->resolveRequest($request), $year, $month);
     }
 
     /**
@@ -153,11 +131,9 @@ class PostController extends Controller
      */
     public function archiveYearlyAction($year, Request $request = null)
     {
-        $request = $this->resolveRequest($request);
+        $action = $this->container->get(YearlyPostArchiveAction::class);
 
-        return $this->renderArchive([
-            'date' => $this->getPostManager()->getPublicationDateQueryParts(sprintf('%d-%d-%d', $year, 1, 1), 'year'),
-        ], [], $request);
+        return $action($this->resolveRequest($request), $year);
     }
 
     /**
@@ -169,30 +145,9 @@ class PostController extends Controller
      */
     public function viewAction($permalink)
     {
-        $post = $this->getPostManager()->findOneByPermalink($permalink, $this->getBlog());
+        $action = $this->container->get(ViewPostAction::class);
 
-        if (!$post || !$post->isPublic()) {
-            throw new NotFoundHttpException('Unable to find the post');
-        }
-
-        if ($seoPage = $this->getSeoPage()) {
-            $seoPage
-                ->setTitle($post->getTitle())
-                ->addMeta('name', 'description', $post->getAbstract())
-                ->addMeta('property', 'og:title', $post->getTitle())
-                ->addMeta('property', 'og:type', 'blog')
-                ->addMeta('property', 'og:url', $this->generateUrl('sonata_news_view', [
-                    'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
-                ], UrlGeneratorInterface::ABSOLUTE_URL))
-                ->addMeta('property', 'og:description', $post->getAbstract())
-            ;
-        }
-
-        return $this->render('@SonataNews/Post/view.html.twig', [
-            'post' => $post,
-            'form' => false,
-            'blog' => $this->getBlog(),
-        ]);
+        return $action($permalink);
     }
 
     /**
@@ -214,15 +169,9 @@ class PostController extends Controller
      */
     public function commentsAction($postId)
     {
-        $pager = $this->getCommentManager()
-            ->getPager([
-                'postId' => $postId,
-                'status' => CommentInterface::STATUS_VALID,
-            ], 1, 500); //no limit
+        $action = $this->container->get(CommentListAction::class);
 
-        return $this->render('@SonataNews/Post/comments.html.twig', [
-            'pager' => $pager,
-        ]);
+        return $action($postId);
     }
 
     /**
@@ -233,18 +182,9 @@ class PostController extends Controller
      */
     public function addCommentFormAction($postId, $form = false)
     {
-        if (!$form) {
-            $post = $this->getPostManager()->findOneBy([
-                'id' => $postId,
-            ]);
+        $action = $this->container->get(CreateCommentFormAction::class);
 
-            $form = $this->getCommentForm($post);
-        }
-
-        return $this->render('@SonataNews/Post/comment_form.html.twig', [
-            'form' => $form->createView(),
-            'post_id' => $postId,
-        ]);
+        return $action($postId, $form);
     }
 
     /**
@@ -276,42 +216,9 @@ class PostController extends Controller
      */
     public function addCommentAction($id, Request $request = null)
     {
-        $request = $this->resolveRequest($request);
+        $action = $this->container->get(CreateCommentAction::class);
 
-        $post = $this->getPostManager()->findOneBy([
-            'id' => $id,
-        ]);
-
-        if (!$post) {
-            throw new NotFoundHttpException(sprintf('Post (%d) not found', $id));
-        }
-
-        if (!$post->isCommentable()) {
-            // todo add notice.
-            return new RedirectResponse($this->generateUrl('sonata_news_view', [
-                'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
-            ]));
-        }
-
-        $form = $this->getCommentForm($post);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $comment = $form->getData();
-
-            $this->getCommentManager()->save($comment);
-            $this->get('sonata.news.mailer')->sendCommentNotification($comment);
-
-            // todo : add notice
-            return new RedirectResponse($this->generateUrl('sonata_news_view', [
-                'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($post),
-            ]));
-        }
-
-        return $this->render('@SonataNews/Post/view.html.twig', [
-            'post' => $post,
-            'form' => $form,
-        ]);
+        return $action($this->resolveRequest($request), $id);
     }
 
     /**
@@ -325,25 +232,9 @@ class PostController extends Controller
      */
     public function commentModerationAction($commentId, $hash, $status)
     {
-        $comment = $this->getCommentManager()->findOneBy(['id' => $commentId]);
+        $action = $this->container->get(ModerateCommentAction::class);
 
-        if (!$comment) {
-            throw new AccessDeniedException();
-        }
-
-        $computedHash = $this->get('sonata.news.hash.generator')->generate($comment);
-
-        if ($computedHash != $hash) {
-            throw new AccessDeniedException();
-        }
-
-        $comment->setStatus($status);
-
-        $this->getCommentManager()->save($comment);
-
-        return new RedirectResponse($this->generateUrl('sonata_news_view', [
-            'permalink' => $this->getBlog()->getPermalinkGenerator()->generate($comment->getPost()),
-        ]));
+        return $action($commentId, $hash, $status);
     }
 
     /**
