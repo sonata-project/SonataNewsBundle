@@ -23,8 +23,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CommentAdmin extends AbstractAdmin
 {
-    protected $parentAssociationMapping = 'post';
-
     /**
      * @var CommentManagerInterface
      */
