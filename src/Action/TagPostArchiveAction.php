@@ -17,6 +17,7 @@ use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Translation\TranslatorInterface;
 
 final class TagPostArchiveAction extends AbstractPostArchiveAction
 {
@@ -25,9 +26,13 @@ final class TagPostArchiveAction extends AbstractPostArchiveAction
      */
     private $tagManager;
 
-    public function __construct(BlogInterface $blog, PostManagerInterface $postManager, TagManagerInterface $tagManager)
-    {
-        parent::__construct($blog, $postManager);
+    public function __construct(
+        BlogInterface $blog,
+        PostManagerInterface $postManager,
+        TranslatorInterface $translator,
+        TagManagerInterface $tagManager
+    ) {
+        parent::__construct($blog, $postManager, $translator);
 
         $this->tagManager = $tagManager;
     }
@@ -46,6 +51,26 @@ final class TagPostArchiveAction extends AbstractPostArchiveAction
 
         if (!$tag || !$tag->getEnabled()) {
             throw new NotFoundHttpException('Unable to find the tag');
+        }
+
+        if ($seoPage = $this->getSeoPage()) {
+            $seoPage
+                ->setTitle($this->trans('archive_tag.meta_title', [
+                    '%title%' => $this->getBlog()->getTitle(),
+                    '%tag%' => $tag->getName(),
+                ]))
+                ->addMeta('property', 'og:title', $this->trans('archive_tag.meta_title', [
+                    '%title%' => $this->getBlog()->getTitle(),
+                    '%tag%' => $tag->getName(),
+                ]))
+                ->addMeta('name', 'description', $this->trans('archive_tag.meta_description', [
+                    '%title%' => $this->getBlog()->getTitle(),
+                    '%tag%' => $tag->getName(),
+                ]))
+                ->addMeta('property', 'og:description', $this->trans('archive_tag.meta_description', [
+                    '%title%' => $this->getBlog()->getTitle(),
+                    '%tag%' => $tag->getName(),
+                ]));
         }
 
         return $this->renderArchive($request, ['tag' => $tag->getSlug()], ['tag' => $tag]);

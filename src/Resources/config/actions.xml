@@ -5,7 +5,11 @@
         <service id="Sonata\NewsBundle\Action\CollectionPostArchiveAction" class="Sonata\NewsBundle\Action\CollectionPostArchiveAction" public="true">
             <argument type="service" id="sonata.news.blog"/>
             <argument type="service" id="sonata.news.manager.post"/>
+            <argument type="service" id="translator"/>
             <argument type="service" id="sonata.classification.manager.collection"/>
+            <call method="setSeoPage">
+                <argument type="service" id="sonata.seo.page" on-invalid="null"/>
+            </call>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
@@ -13,7 +17,11 @@
         <service id="Sonata\NewsBundle\Action\TagPostArchiveAction" class="Sonata\NewsBundle\Action\TagPostArchiveAction" public="true">
             <argument type="service" id="sonata.news.blog"/>
             <argument type="service" id="sonata.news.manager.post"/>
+            <argument type="service" id="translator"/>
             <argument type="service" id="sonata.classification.manager.tag"/>
+            <call method="setSeoPage">
+                <argument type="service" id="sonata.seo.page" on-invalid="null"/>
+            </call>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
@@ -21,6 +29,10 @@
         <service id="Sonata\NewsBundle\Action\YearlyPostArchiveAction" class="Sonata\NewsBundle\Action\YearlyPostArchiveAction" public="true">
             <argument type="service" id="sonata.news.blog"/>
             <argument type="service" id="sonata.news.manager.post"/>
+            <argument type="service" id="translator"/>
+            <call method="setSeoPage">
+                <argument type="service" id="sonata.seo.page" on-invalid="null"/>
+            </call>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
@@ -28,6 +40,11 @@
         <service id="Sonata\NewsBundle\Action\MonthlyPostArchiveAction" class="Sonata\NewsBundle\Action\MonthlyPostArchiveAction" public="true">
             <argument type="service" id="sonata.news.blog"/>
             <argument type="service" id="sonata.news.manager.post"/>
+            <argument type="service" id="translator"/>
+            <argument type="service" id="sonata.intl.templating.helper.datetime"/>
+            <call method="setSeoPage">
+                <argument type="service" id="sonata.seo.page" on-invalid="null"/>
+            </call>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
@@ -35,6 +52,7 @@
         <service id="Sonata\NewsBundle\Action\PostArchiveAction" class="Sonata\NewsBundle\Action\PostArchiveAction" public="true">
             <argument type="service" id="sonata.news.blog"/>
             <argument type="service" id="sonata.news.manager.post"/>
+            <argument type="service" id="translator"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

@@ -13,9 +13,11 @@ namespace Sonata\NewsBundle\Action;
 
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
+use Sonata\SeoBundle\Seo\SeoPageInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Translation\TranslatorInterface;
 
 abstract class AbstractPostArchiveAction extends Controller
 {
@@ -29,10 +31,21 @@ abstract class AbstractPostArchiveAction extends Controller
      */
     private $postManager;
 
-    public function __construct(BlogInterface $blog, PostManagerInterface $postManager)
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
+     * @var SeoPageInterface|null
+     */
+    private $seoPage;
+
+    public function __construct(BlogInterface $blog, PostManagerInterface $postManager, TranslatorInterface $translator)
     {
         $this->blog = $blog;
         $this->postManager = $postManager;
+        $this->translator = $translator;
     }
 
     /**
@@ -68,6 +81,42 @@ abstract class AbstractPostArchiveAction extends Controller
         }
 
         return $response;
+    }
+
+    /**
+     * @param null|SeoPageInterface $seoPage
+     */
+    public function setSeoPage(SeoPageInterface $seoPage = null)
+    {
+        $this->seoPage = $seoPage;
+    }
+
+    /**
+     * @param string      $id
+     * @param string|null $domain
+     * @param string|null $locale
+     *
+     * @return string
+     */
+    final protected function trans($id, array $parameters = [], $domain = 'SonataNewsBundle', $locale = null)
+    {
+        return $this->translator->trans($id, $parameters, $domain, $locale);
+    }
+
+    /**
+     * @return BlogInterface
+     */
+    final protected function getBlog()
+    {
+        return $this->blog;
+    }
+
+    /**
+     * @return null|SeoPageInterface
+     */
+    final protected function getSeoPage()
+    {
+        return $this->seoPage;
     }
 
     /**
