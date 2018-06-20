@@ -479,6 +479,14 @@ Quick moderation links :
                 <source>form.label_class</source>
                 <target>CSS Class</target>
             </trans-unit>
+            <trans-unit id="message_close">
+                <source>message_close</source>
+                <target>Close</target>
+            </trans-unit>
+            <trans-unit id="post_is_disabled">
+                <source>post_is_disabled</source>
+                <target>Post is not public.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
