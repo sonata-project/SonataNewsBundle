@@ -487,6 +487,14 @@
                 <source>form.label_class</source>
                 <target>CSS Klasse</target>
             </trans-unit>
+            <trans-unit id="message_close">
+                <source>message_close</source>
+                <target>Schließen</target>
+            </trans-unit>
+            <trans-unit id="post_is_disabled">
+                <source>post_is_disabled</source>
+                <target>News ist noch nicht freigeschaltet.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

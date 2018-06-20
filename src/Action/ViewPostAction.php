@@ -12,12 +12,14 @@
 namespace Sonata\NewsBundle\Action;
 
 use Sonata\NewsBundle\Model\BlogInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 use Sonata\SeoBundle\Seo\SeoPageInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 final class ViewPostAction extends Controller
 {
@@ -32,14 +34,23 @@ final class ViewPostAction extends Controller
     private $postManager;
 
     /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authChecker;
+
+    /**
      * @var SeoPageInterface|null
      */
     private $seoPage;
 
-    public function __construct(BlogInterface $blog, PostManagerInterface $postManager)
-    {
+    public function __construct(
+        BlogInterface $blog,
+        PostManagerInterface $postManager,
+        AuthorizationCheckerInterface $authChecker
+    ) {
         $this->blog = $blog;
         $this->postManager = $postManager;
+        $this->authChecker = $authChecker;
     }
 
     /**
@@ -83,5 +94,15 @@ final class ViewPostAction extends Controller
     public function setSeoPage(SeoPageInterface $seoPage = null)
     {
         $this->seoPage = $seoPage;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isVisible(PostInterface $post)
+    {
+        return $post->isPublic() ||
+            $this->authChecker->isGranted('ROLE_SUPER_ADMIN') ||
+            $this->authChecker->isGranted('ROLE_SONATA_NEWS_ADMIN_POST_EDIT');
     }
 }

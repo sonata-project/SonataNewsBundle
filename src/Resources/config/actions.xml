@@ -42,6 +42,7 @@
         <service id="Sonata\NewsBundle\Action\ViewPostAction" class="Sonata\NewsBundle\Action\ViewPostAction" public="true">
             <argument type="service" id="sonata.news.blog"/>
             <argument type="service" id="sonata.news.manager.post"/>
+            <argument type="service" id="security.authorization_checker"/>
             <call method="setSeoPage">
                 <argument type="service" id="sonata.seo.page" on-invalid="null"/>
             </call>
