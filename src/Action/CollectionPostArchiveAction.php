@@ -36,14 +36,14 @@ final class CollectionPostArchiveAction extends AbstractPostArchiveAction
     }
 
     /**
-     * @param string $tag
+     * @param string $collection
      *
      * @return Response
      */
-    public function __invoke(Request $request, $tag)
+    public function __invoke(Request $request, $collection)
     {
         $collection = $this->collectionManager->findOneBy([
-            'slug' => $tag,
+            'slug' => $collection,
             'enabled' => true,
         ]);
 
