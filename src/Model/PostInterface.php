@@ -97,14 +97,14 @@ interface PostInterface
     /**
      * Set publication_date_start.
      *
-     * @param \DateTime $publicationDateStart
+     * @param \DateTime|null $publicationDateStart
      */
     public function setPublicationDateStart(\DateTime $publicationDateStart = null);
 
     /**
      * Get publication_date_start.
      *
-     * @return \DateTime $publicationDateStart
+     * @return \DateTime|null $publicationDateStart
      */
     public function getPublicationDateStart();
 
@@ -206,14 +206,14 @@ interface PostInterface
     /**
      * Set comments_close_at.
      *
-     * @param \DateTime $commentsCloseAt
+     * @param \DateTime|null $commentsCloseAt
      */
     public function setCommentsCloseAt(\DateTime $commentsCloseAt = null);
 
     /**
      * Get comments_close_at.
      *
-     * @return \DateTime $commentsCloseAt
+     * @return \DateTime|null $commentsCloseAt
      */
     public function getCommentsCloseAt();
 
@@ -276,12 +276,12 @@ interface PostInterface
     public function getImage();
 
     /**
-     * @return CollectionInterface
+     * @return CollectionInterface|null
      */
     public function getCollection();
 
     /**
-     * @param CollectionInterface $collection
+     * @param CollectionInterface|null $collection
      */
     public function setCollection(CollectionInterface $collection = null);
 
