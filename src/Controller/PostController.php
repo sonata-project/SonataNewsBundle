@@ -14,7 +14,7 @@ namespace Sonata\NewsBundle\Controller;
 // NEXT_MAJOR: remove this file
 
 @trigger_error(
-    'The '.__NAMESPACE__.'\PostController class is deprecated since version 3.x and will be removed in 4.0.'
+    'The '.__NAMESPACE__.'\PostController class is deprecated since version 3.5 and will be removed in 4.0.'
     .' Use '.__NAMESPACE__.'\Action\* classes instead.',
     E_USER_DEPRECATED
 );

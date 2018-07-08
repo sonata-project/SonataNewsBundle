@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.5.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.4.0...3.5.0) - 2018-07-08
+
+### Added
+- Compatibility with FOSRest 2.0
+- Make posts visible to admins
+- Show status message if post is not public
+- Added SEO information to archives
+- Added a daily archive
+
+### Fixed
+- Replaced deprecated `bind` by `handleRequest` on forms
+- Commands not working on Symfony 4
+- Make services public
+- Previous and next links now link to the correct location in the archive page
+- Fixed `addChild` deprecations
+
+### Changed
+- `Controller\PostController` is now deprecated in favor of `Action\*Action`
+
 ## [3.4.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.3.0...3.4.0) - 2018-02-11
 ### Added
 - added block title translation domain option
