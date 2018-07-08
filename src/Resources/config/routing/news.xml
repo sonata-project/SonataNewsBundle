@@ -3,6 +3,14 @@
     <route id="sonata_news_add_comment" path="/add-comment/{id}">
         <default key="_controller">Sonata\NewsBundle\Action\CreateCommentAction</default>
     </route>
+    <route id="sonata_news_archive_daily" path="/archive/{year}/{month}/{day}.{_format}">
+        <default key="_controller">Sonata\NewsBundle\Action\DailyPostArchiveAction</default>
+        <default key="_format">html</default>
+        <requirement key="_format">html|rss</requirement>
+        <requirement key="year">\d+</requirement>
+        <requirement key="month">\d+</requirement>
+        <requirement key="day">\d+</requirement>
+    </route>
     <route id="sonata_news_archive_monthly" path="/archive/{year}/{month}.{_format}">
         <default key="_controller">Sonata\NewsBundle\Action\MonthlyPostArchiveAction</default>
         <default key="_format">html</default>

@@ -535,6 +535,14 @@
                 <source>archive_tag.meta_description</source>
                 <target>Archiv für %tag%</target>
             </trans-unit>
+            <trans-unit id="archive_day.meta_title">
+                <source>archive_day.meta_title</source>
+                <target>Archiv für den %date%</target>
+            </trans-unit>
+            <trans-unit id="archive_day.meta_description">
+                <source>archive_day.meta_description</source>
+                <target>Archiv für den %date%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
