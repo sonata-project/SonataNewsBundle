@@ -24,42 +24,42 @@ interface CommentInterface
     /**
      * Set name.
      *
-     * @param string $name
+     * @param string|null $name
      */
     public function setName($name);
 
     /**
      * Get name.
      *
-     * @return string $name
+     * @return string|null $name
      */
     public function getName();
 
     /**
      * Set email.
      *
-     * @param string $email
+     * @param string|null $email
      */
     public function setEmail($email);
 
     /**
      * Get email.
      *
-     * @return string $email
+     * @return string|null $email
      */
     public function getEmail();
 
     /**
      * Set url.
      *
-     * @param string $url
+     * @param string|null $url
      */
     public function setUrl($url);
 
     /**
      * Get url.
      *
-     * @return string $url
+     * @return string|null $url
      */
     public function getUrl();
 

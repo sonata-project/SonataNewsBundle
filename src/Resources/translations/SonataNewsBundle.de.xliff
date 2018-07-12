@@ -487,6 +487,62 @@
                 <source>form.label_class</source>
                 <target>CSS Klasse</target>
             </trans-unit>
+            <trans-unit id="message_close">
+                <source>message_close</source>
+                <target>Schließen</target>
+            </trans-unit>
+            <trans-unit id="post_is_disabled">
+                <source>post_is_disabled</source>
+                <target>News ist noch nicht freigeschaltet.</target>
+            </trans-unit>
+            <trans-unit id="archive.meta_title">
+                <source>archive.meta_title</source>
+                <target>Archiv</target>
+            </trans-unit>
+            <trans-unit id="archive.meta_description">
+                <source>archive.meta_description</source>
+                <target>Archiv</target>
+            </trans-unit>
+            <trans-unit id="archive_month.meta_title">
+                <source>archive_month.meta_title</source>
+                <target>Archiv von %month% %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_month.meta_description">
+                <source>archive_month.meta_description</source>
+                <target>Archiv von %month% %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_year.meta_title">
+                <source>archive_year.meta_title</source>
+                <target>Archiv von %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_year.meta_description">
+                <source>archive_year.meta_description</source>
+                <target>Archiv von %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_collection.meta_title">
+                <source>archive_collection.meta_title</source>
+                <target>Archiv der %collection% Sammlung</target>
+            </trans-unit>
+            <trans-unit id="archive_collection.meta_description">
+                <source>archive_collection.meta_description</source>
+                <target>%description%</target>
+            </trans-unit>
+            <trans-unit id="archive_tag.meta_title">
+                <source>archive_tag.meta_title</source>
+                <target>Archiv für %tag%</target>
+            </trans-unit>
+            <trans-unit id="archive_tag.meta_description">
+                <source>archive_tag.meta_description</source>
+                <target>Archiv für %tag%</target>
+            </trans-unit>
+            <trans-unit id="archive_day.meta_title">
+                <source>archive_day.meta_title</source>
+                <target>Archiv für den %date%</target>
+            </trans-unit>
+            <trans-unit id="archive_day.meta_description">
+                <source>archive_day.meta_description</source>
+                <target>Archiv für den %date%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -479,6 +479,62 @@ Quick moderation links :
                 <source>form.label_class</source>
                 <target>CSS Class</target>
             </trans-unit>
+            <trans-unit id="archive.meta_title">
+                <source>archive.meta_title</source>
+                <target>Archive</target>
+            </trans-unit>
+            <trans-unit id="archive.meta_description">
+                <source>archive.meta_description</source>
+                <target>Archive</target>
+            </trans-unit>
+            <trans-unit id="archive_month.meta_title">
+                <source>archive_month.meta_title</source>
+                <target>Archive of %month% %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_month.meta_description">
+                <source>archive_month.meta_description</source>
+                <target>Archive of %month% %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_year.meta_title">
+                <source>archive_year.meta_title</source>
+                <target>Archive of %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_year.meta_description">
+                <source>archive_year.meta_description</source>
+                <target>Archive of %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_collection.meta_title">
+                <source>archive_collection.meta_title</source>
+                <target>Archive of %collection% collection</target>
+            </trans-unit>
+            <trans-unit id="archive_collection.meta_description">
+                <source>archive_collection.meta_description</source>
+                <target>%description%</target>
+            </trans-unit>
+            <trans-unit id="archive_tag.meta_title">
+                <source>archive_tag.meta_title</source>
+                <target>Archive for %tag%</target>
+            </trans-unit>
+            <trans-unit id="archive_tag.meta_description">
+                <source>archive_tag.meta_description</source>
+                <target>Archive for %tag%</target>
+            </trans-unit>
+            <trans-unit id="message_close">
+                <source>message_close</source>
+                <target>Close</target>
+            </trans-unit>
+            <trans-unit id="post_is_disabled">
+                <source>post_is_disabled</source>
+                <target>Post is not public.</target>
+            </trans-unit>
+            <trans-unit id="archive_day.meta_title">
+                <source>archive_day.meta_title</source>
+                <target>Archive of %date%</target>
+            </trans-unit>
+            <trans-unit id="archive_day.meta_description">
+                <source>archive_day.meta_description</source>
+                <target>Archive of %date%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -19,6 +19,16 @@
     </div>
 {% endblock %}
 
+
+{% if not post.isPublic %}
+    <div class="alert alert-danger alert-fixed">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-label="{{ 'message_close'|trans({}, 'SonataNewsBundle') }}"
+        >&times;</button>
+        <i class="fa fa-eye-slash" aria-hidden="true"></i> {{ 'post_is_disabled'|trans({}, 'SonataNewsBundle') }}
+    </div>
+{% endif %}
+
 <article class="sonata-blog-post-container">
     <header>
         <div class="sonata-blog-post-date-container">
@@ -60,7 +70,7 @@
     {{ render(controller('SonataNewsBundle:Post:comments', {'postId': post.id})) }}
 
     {% if post.iscommentable %}
-        {{ render(controller('SonataNewsBundle:Post:addCommentForm', {
+        {{ render(controller('Sonata\\NewsBundle\\Action\\CreateCommentFormAction', {
             'postId': post.id,
             'form': form
         })) }}
