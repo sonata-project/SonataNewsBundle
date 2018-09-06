@@ -203,7 +203,7 @@ class PostAdmin extends AbstractAdmin
             ->add('with_open_comments', CallbackFilter::class, [
 //                'callback'   => array($this, 'getWithOpenCommentFilter'),
                 'callback' => function ($queryBuilder, $alias, $field, $data) use ($that) {
-                    if (!is_array($data) || !$data['value']) {
+                    if (!\is_array($data) || !$data['value']) {
                         return;
                     }
 
@@ -221,7 +221,7 @@ class PostAdmin extends AbstractAdmin
      */
     protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
-        if (!$childAdmin && !in_array($action, ['edit'])) {
+        if (!$childAdmin && !\in_array($action, ['edit'])) {
             return;
         }
 
