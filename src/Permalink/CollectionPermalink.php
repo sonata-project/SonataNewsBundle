@@ -32,7 +32,7 @@ class CollectionPermalink implements PermalinkInterface
     {
         $parameters = explode('/', $permalink);
 
-        if (count($parameters) > 2 || 0 == count($parameters)) {
+        if (\count($parameters) > 2 || 0 == \count($parameters)) {
             throw new \InvalidArgumentException('wrong permalink format');
         }
 
