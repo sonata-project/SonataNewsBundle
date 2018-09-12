@@ -67,7 +67,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
                 ->andWhere($collectionQueryParts['query']);
         }
 
-        if (0 == count($parameters)) {
+        if (0 == \count($parameters)) {
             return null;
         }
 
@@ -124,10 +124,10 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         }
 
         if (isset($criteria['author'])) {
-            if (!is_array($criteria['author']) && stristr($criteria['author'], 'NULL')) {
+            if (!\is_array($criteria['author']) && stristr($criteria['author'], 'NULL')) {
                 $query->andWhere('p.author IS '.$criteria['author']);
             } else {
-                $query->andWhere(sprintf('p.author IN (%s)', implode((array) $criteria['author'], ',')));
+                $query->andWhere(sprintf('p.author IN (%s)', implode(',', (array) $criteria['author'])));
             }
         }
 
