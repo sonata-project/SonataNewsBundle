@@ -23,6 +23,11 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    /**
+     * NEXT_MAJOR: make constant protected/private.
+     */
+    public const DB_DRIVERS = ['doctrine_orm', 'doctrine_mongodb', 'no_driver'];
+
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('sonata_news');
@@ -48,6 +53,13 @@ class Configuration implements ConfigurationInterface
                             ->info('Default format: year/month/day/slug')
                             ->defaultValue('%%1$04d/%%2$d/%%3$d/%%4$s')
                         ->end()
+                    ->end()
+                ->end()
+                ->scalarNode('db_driver')
+                    ->defaultValue('no_driver')
+                    ->validate()
+                        ->ifNotInArray(self::DB_DRIVERS)
+                        ->thenInvalid('SonataNewsBundle - Invalid db driver %s.')
                     ->end()
                 ->end()
                 ->arrayNode('table')
