@@ -2,8 +2,9 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="sonata.news.manager.comment.class">Sonata\NewsBundle\Document\CommentManager</parameter>
-        <parameter key="sonata.news.manager.comment.entity">Application\Sonata\NewsBundle\Document\Comment</parameter>
         <parameter key="sonata.news.manager.post.class">Sonata\NewsBundle\Document\PostManager</parameter>
+        <!-- NEXT_MAJOR: Remove this keys -->
+        <parameter key="sonata.news.manager.comment.entity">Application\Sonata\NewsBundle\Document\Comment</parameter>
         <parameter key="sonata.news.manager.post.entity">Application\Sonata\NewsBundle\Document\Tag</parameter>
     </parameters>
     <services>
