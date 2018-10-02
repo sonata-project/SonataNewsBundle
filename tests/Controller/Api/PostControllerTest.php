@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Tests\Controller\Api;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\FormatterBundle\Formatter\FormatterInterface;
+use Sonata\FormatterBundle\Formatter\Pool;
 use Sonata\NewsBundle\Controller\Api\PostController;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -100,14 +102,18 @@ class PostControllerTest extends TestCase
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('setContent');
+        $post->expects($this->once())->method('getContentFormatter')->willReturn('text');
+        $post->expects($this->once())->method('getRawContent')->willReturn('');
 
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('save')->will($this->returnValue($post));
 
-        $formatterPool = $this->createMock('Sonata\FormatterBundle\Formatter\Pool');
-        $formatterPool->expects($this->once())->method('transform')->will($this->returnValue($post->getContent()));
+        $formatter = $this->createMock(FormatterInterface::class);
+        $formatter->expects($this->once())->method('transform')->will($this->returnValue(''));
+        $formatterPool = new Pool('text');
+        $formatterPool->add('text', $formatter);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->createMock('Symfony\Component\Form\Form');
         $form->expects($this->once())->method('handleRequest');
         $form->expects($this->once())->method('isValid')->will($this->returnValue(true));
         $form->expects($this->once())->method('getData')->will($this->returnValue($post));
@@ -128,8 +134,10 @@ class PostControllerTest extends TestCase
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->never())->method('save')->will($this->returnValue($post));
 
-        $formatterPool = $this->createMock('Sonata\FormatterBundle\Formatter\Pool');
-        $formatterPool->expects($this->never())->method('transform')->will($this->returnValue($post->getContent()));
+        $formatter = $this->createMock(FormatterInterface::class);
+        $formatter->expects($this->never())->method('transform');
+        $formatterPool = new Pool('text');
+        $formatterPool->add('text', $formatter);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())->method('handleRequest');
@@ -147,13 +155,18 @@ class PostControllerTest extends TestCase
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->once())->method('setContent');
+        $post->expects($this->once())->method('getContentFormatter')->willReturn('text');
+        $post->expects($this->once())->method('getRawContent')->willReturn('');
+        $post->expects($this->once())->method('getContent')->willReturn('');
 
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('find')->will($this->returnValue($post));
         $postManager->expects($this->once())->method('save')->will($this->returnValue($post));
 
-        $formatterPool = $this->createMock('Sonata\FormatterBundle\Formatter\Pool');
-        $formatterPool->expects($this->once())->method('transform')->will($this->returnValue($post->getContent()));
+        $formatter = $this->createMock(FormatterInterface::class);
+        $formatter->expects($this->once())->method('transform')->will($this->returnValue($post->getContent()));
+        $formatterPool = new Pool('text');
+        $formatterPool->add('text', $formatter);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())->method('handleRequest');
@@ -177,8 +190,10 @@ class PostControllerTest extends TestCase
         $postManager->expects($this->once())->method('find')->will($this->returnValue($post));
         $postManager->expects($this->never())->method('save')->will($this->returnValue($post));
 
-        $formatterPool = $this->createMock('Sonata\FormatterBundle\Formatter\Pool');
-        $formatterPool->expects($this->never())->method('transform')->will($this->returnValue($post->getContent()));
+        $formatter = $this->createMock(FormatterInterface::class);
+        $formatter->expects($this->never())->method('transform');
+        $formatterPool = new Pool('text');
+        $formatterPool->add('text', $formatter);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())->method('handleRequest');
@@ -362,7 +377,8 @@ class PostControllerTest extends TestCase
             $formFactory = $this->createMock('Symfony\Component\Form\FormFactoryInterface');
         }
         if (null === $formatterPool) {
-            $formatterPool = $this->createMock('Sonata\FormatterBundle\Formatter\Pool');
+            $formatterPool = new Pool('text');
+            $formatterPool->add('text', $this->createMock(FormatterInterface::class));
         }
 
         return new PostController($postManager, $commentManager, $mailer, $formFactory, $formatterPool);
