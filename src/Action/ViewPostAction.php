@@ -70,7 +70,7 @@ final class ViewPostAction extends Controller
 
         if ($seoPage = $this->seoPage) {
             $seoPage
-                ->setTitle($post->getTitle())
+                ->addTitle($post->getTitle())
                 ->addMeta('name', 'description', $post->getAbstract())
                 ->addMeta('property', 'og:title', $post->getTitle())
                 ->addMeta('property', 'og:type', 'blog')
