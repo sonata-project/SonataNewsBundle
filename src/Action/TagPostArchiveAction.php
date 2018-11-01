@@ -55,7 +55,7 @@ final class TagPostArchiveAction extends AbstractPostArchiveAction
 
         if ($seoPage = $this->getSeoPage()) {
             $seoPage
-                ->setTitle($this->trans('archive_tag.meta_title', [
+                ->addTitle($this->trans('archive_tag.meta_title', [
                     '%title%' => $this->getBlog()->getTitle(),
                     '%tag%' => $tag->getName(),
                 ]))

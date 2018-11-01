@@ -55,7 +55,7 @@ final class CollectionPostArchiveAction extends AbstractPostArchiveAction
 
         if ($seoPage = $this->getSeoPage()) {
             $seoPage
-                ->setTitle($this->trans('archive_collection.meta_title', [
+                ->addTitle($this->trans('archive_collection.meta_title', [
                     '%title%' => $this->getBlog()->getTitle(),
                     '%collection%' => $collection->getName(),
                 ]))
