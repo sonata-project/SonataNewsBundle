@@ -55,7 +55,7 @@ final class DailyPostArchiveAction extends AbstractPostArchiveAction
             $seoDate = $this->dataTimeHelper->formatDate($date);
 
             $seoPage
-                ->setTitle($this->trans('archive_day.meta_title', [
+                ->addTitle($this->trans('archive_day.meta_title', [
                     '%title%' => $this->getBlog()->getTitle(),
                     '%year%' => $year,
                     '%month%' => $seoFormat,

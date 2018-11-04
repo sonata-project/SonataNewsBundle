@@ -29,7 +29,7 @@ final class YearlyPostArchiveAction extends AbstractPostArchiveAction
 
         if ($seoPage = $this->getSeoPage()) {
             $seoPage
-                ->setTitle($this->trans('archive_year.meta_title', [
+                ->addTitle($this->trans('archive_year.meta_title', [
                     '%title%' => $this->getBlog()->getTitle(),
                     '%year%' => $year,
                 ]))

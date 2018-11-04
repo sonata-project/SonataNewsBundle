@@ -25,7 +25,7 @@ final class PostArchiveAction extends AbstractPostArchiveAction
     {
         if ($seoPage = $this->getSeoPage()) {
             $seoPage
-                ->setTitle($this->trans('archive.meta_title', [
+                ->addTitle($this->trans('archive.meta_title', [
                     '%title%' => $this->getBlog()->getTitle(),
                 ]))
                 ->addMeta('property', 'og:title', $this->trans('archive.meta_title', [
