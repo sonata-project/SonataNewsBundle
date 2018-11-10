@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.7.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.6.0...3.7.0) - 2018-11-10
+### Added
+- Added group icon to admin pages
+
+### Changed
+- SEO: Append title instead of replacing it
+
+### Fixed
+- Added missing seo information to `PostArchiveAction`
+
 ## [3.6.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.5.0...3.6.0) - 2018-10-31
 ### Added
 - Added support for latest `formatter-bundle`
