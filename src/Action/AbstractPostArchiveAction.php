@@ -84,7 +84,7 @@ abstract class AbstractPostArchiveAction extends Controller
     }
 
     /**
-     * @param null|SeoPageInterface $seoPage
+     * @param SeoPageInterface|null $seoPage
      */
     public function setSeoPage(SeoPageInterface $seoPage = null)
     {
@@ -112,7 +112,7 @@ abstract class AbstractPostArchiveAction extends Controller
     }
 
     /**
-     * @return null|SeoPageInterface
+     * @return SeoPageInterface|null
      */
     final protected function getSeoPage()
     {
