@@ -89,7 +89,7 @@ final class ViewPostAction extends Controller
     }
 
     /**
-     * @param null|SeoPageInterface $seoPage
+     * @param SeoPageInterface|null $seoPage
      */
     public function setSeoPage(SeoPageInterface $seoPage = null)
     {
