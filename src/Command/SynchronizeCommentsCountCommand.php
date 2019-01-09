@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ class SynchronizeCommentsCountCommand extends ContainerAwareCommand
     /**
      * {@inheritdoc}
      */
-    public function configure()
+    public function configure(): void
     {
         $this->setName('sonata:news:sync-comments-count');
         $this->setDescription('Synchronize comments count');
@@ -29,7 +31,7 @@ class SynchronizeCommentsCountCommand extends ContainerAwareCommand
     /**
      * {@inheritdoc}
      */
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): void
     {
         $commentManager = $this->getContainer()->get('sonata.news.manager.comment');
 

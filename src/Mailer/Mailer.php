@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -70,7 +72,7 @@ class Mailer implements MailerInterface
     /**
      * {@inheritdoc}
      */
-    public function sendCommentNotification(CommentInterface $comment)
+    public function sendCommentNotification(CommentInterface $comment): void
     {
         $rendered = $this->templating->render($this->emails['notification']['template'], [
             'comment' => $comment,
@@ -91,7 +93,7 @@ class Mailer implements MailerInterface
      * @param string $fromEmail
      * @param string $toEmail
      */
-    protected function sendEmailMessage($renderedTemplate, $fromEmail, $toEmail)
+    protected function sendEmailMessage($renderedTemplate, $fromEmail, $toEmail): void
     {
         // Render the email, use the first line as the subject, and the rest as the body
         list($subject, $body) = explode("\n", trim($renderedTemplate), 2);

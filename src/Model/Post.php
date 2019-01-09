@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -135,7 +137,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
 
@@ -153,7 +155,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setAbstract($abstract)
+    public function setAbstract($abstract): void
     {
         $this->abstract = $abstract;
     }
@@ -169,7 +171,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setContent($content)
+    public function setContent($content): void
     {
         $this->content = $content;
     }
@@ -185,7 +187,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setEnabled($enabled)
+    public function setEnabled($enabled): void
     {
         $this->enabled = $enabled;
     }
@@ -201,7 +203,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setSlug($slug)
+    public function setSlug($slug): void
     {
         $this->slug = $slug;
     }
@@ -217,7 +219,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setPublicationDateStart(\DateTime $publicationDateStart = null)
+    public function setPublicationDateStart(\DateTime $publicationDateStart = null): void
     {
         $this->publicationDateStart = $publicationDateStart;
     }
@@ -233,7 +235,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt(\DateTime $createdAt = null)
+    public function setCreatedAt(\DateTime $createdAt = null): void
     {
         $this->createdAt = $createdAt;
     }
@@ -249,7 +251,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setUpdatedAt(\DateTime $updatedAt = null)
+    public function setUpdatedAt(\DateTime $updatedAt = null): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -265,7 +267,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function addComments(CommentInterface $comment)
+    public function addComments(CommentInterface $comment): void
     {
         $this->comments[] = $comment;
         $comment->setPost($this);
@@ -274,7 +276,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setComments($comments)
+    public function setComments($comments): void
     {
         $this->comments = new ArrayCollection();
 
@@ -294,7 +296,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function addTags(TagInterface $tags)
+    public function addTags(TagInterface $tags): void
     {
         $this->tags[] = $tags;
     }
@@ -310,12 +312,12 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setTags($tags)
+    public function setTags($tags): void
     {
         $this->tags = $tags;
     }
 
-    public function prePersist()
+    public function prePersist(): void
     {
         if (!$this->getPublicationDateStart()) {
             $this->setPublicationDateStart(new \DateTime());
@@ -325,7 +327,7 @@ abstract class Post implements PostInterface
         $this->setUpdatedAt(new \DateTime());
     }
 
-    public function preUpdate()
+    public function preUpdate(): void
     {
         if (!$this->getPublicationDateStart()) {
             $this->setPublicationDateStart(new \DateTime());
@@ -361,7 +363,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setCommentsEnabled($commentsEnabled)
+    public function setCommentsEnabled($commentsEnabled): void
     {
         $this->commentsEnabled = $commentsEnabled;
     }
@@ -377,7 +379,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setCommentsCloseAt(\DateTime $commentsCloseAt = null)
+    public function setCommentsCloseAt(\DateTime $commentsCloseAt = null): void
     {
         $this->commentsCloseAt = $commentsCloseAt;
     }
@@ -393,7 +395,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setCommentsDefaultStatus($commentsDefaultStatus)
+    public function setCommentsDefaultStatus($commentsDefaultStatus): void
     {
         $this->commentsDefaultStatus = $commentsDefaultStatus;
     }
@@ -409,7 +411,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setCommentsCount($commentsCount)
+    public function setCommentsCount($commentsCount): void
     {
         $this->commentsCount = $commentsCount;
     }
@@ -453,7 +455,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setAuthor($author)
+    public function setAuthor($author): void
     {
         $this->author = $author;
     }
@@ -469,7 +471,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setImage($image)
+    public function setImage($image): void
     {
         $this->image = $image;
     }
@@ -485,7 +487,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setCollection(CollectionInterface $collection = null)
+    public function setCollection(CollectionInterface $collection = null): void
     {
         $this->collection = $collection;
     }
@@ -501,7 +503,7 @@ abstract class Post implements PostInterface
     /**
      * @param $contentFormatter
      */
-    public function setContentFormatter($contentFormatter)
+    public function setContentFormatter($contentFormatter): void
     {
         $this->contentFormatter = $contentFormatter;
     }
@@ -517,7 +519,7 @@ abstract class Post implements PostInterface
     /**
      * {@inheritdoc}
      */
-    public function setRawContent($rawContent)
+    public function setRawContent($rawContent): void
     {
         $this->rawContent = $rawContent;
     }

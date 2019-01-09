@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -80,7 +82,7 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
-    public function setName($name)
+    public function setName($name): void
     {
         $this->name = $name;
     }
@@ -96,7 +98,7 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
-    public function setEmail($email)
+    public function setEmail($email): void
     {
         $this->email = $email;
     }
@@ -112,7 +114,7 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
-    public function setUrl($url)
+    public function setUrl($url): void
     {
         $this->url = $url;
     }
@@ -128,7 +130,7 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
-    public function setMessage($message)
+    public function setMessage($message): void
     {
         $this->message = $message;
     }
@@ -144,7 +146,7 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt(\DateTime $createdAt = null)
+    public function setCreatedAt(\DateTime $createdAt = null): void
     {
         $this->createdAt = $createdAt;
     }
@@ -160,7 +162,7 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
-    public function setUpdatedAt(\DateTime $updatedAt = null)
+    public function setUpdatedAt(\DateTime $updatedAt = null): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -195,7 +197,7 @@ abstract class Comment implements CommentInterface
         return isset($status[$this->getStatus()]) ? $status[$this->getStatus()] : null;
     }
 
-    public function preUpdate()
+    public function preUpdate(): void
     {
         $this->setUpdatedAt(new \DateTime());
     }
@@ -203,7 +205,7 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
-    public function setStatus($status)
+    public function setStatus($status): void
     {
         $this->status = $status;
     }
@@ -219,7 +221,7 @@ abstract class Comment implements CommentInterface
     /**
      * {@inheritdoc}
      */
-    public function setPost($post)
+    public function setPost($post): void
     {
         $this->post = $post;
     }

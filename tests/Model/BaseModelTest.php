@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,7 +18,7 @@ use Sonata\NewsBundle\Model\Post;
 
 class BasePostTest_Post extends Post
 {
-    public function getId()
+    public function getId(): void
     {
         // TODO: Implement getId() method.
     }
@@ -24,7 +26,7 @@ class BasePostTest_Post extends Post
 
 class BasePostTest extends TestCase
 {
-    public function testIsCommentable()
+    public function testIsCommentable(): void
     {
         $post = new BasePostTest_Post();
 
@@ -43,7 +45,7 @@ class BasePostTest extends TestCase
         $this->assertTrue($post->isCommentable());
     }
 
-    public function testIsPublic()
+    public function testIsPublic(): void
     {
         $post = new BasePostTest_Post();
 
@@ -59,7 +61,7 @@ class BasePostTest extends TestCase
         $this->assertFalse($post->isPublic());
     }
 
-    public function testSlug()
+    public function testSlug(): void
     {
         $post = new BasePostTest_Post();
 

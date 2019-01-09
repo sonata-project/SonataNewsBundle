@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -51,7 +53,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * @param UserManagerInterface $userManager
      */
-    public function setUserManager($userManager)
+    public function setUserManager($userManager): void
     {
         $this->userManager = $userManager;
     }
@@ -59,7 +61,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * @param FormatterPool $formatterPool
      */
-    public function setPoolFormatter(FormatterPool $formatterPool)
+    public function setPoolFormatter(FormatterPool $formatterPool): void
     {
         $this->formatterPool = $formatterPool;
     }
@@ -67,7 +69,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    public function prePersist($post)
+    public function prePersist($post): void
     {
         $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
     }
@@ -75,7 +77,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    public function preUpdate($post)
+    public function preUpdate($post): void
     {
         $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
     }
@@ -83,7 +85,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * @param PermalinkInterface $permalinkGenerator
      */
-    public function setPermalinkGenerator(PermalinkInterface $permalinkGenerator)
+    public function setPermalinkGenerator(PermalinkInterface $permalinkGenerator): void
     {
         $this->permalinkGenerator = $permalinkGenerator;
     }
@@ -91,7 +93,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->add('author')
@@ -106,7 +108,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $isHorizontal = 'horizontal' == $this->getConfigurationPool()->getOption('form_type');
         $formMapper
@@ -175,7 +177,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add('custom', 'string', [
@@ -191,7 +193,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $that = $this;
 
@@ -202,7 +204,7 @@ class PostAdmin extends AbstractAdmin
             ->add('author')
             ->add('with_open_comments', CallbackFilter::class, [
 //                'callback'   => array($this, 'getWithOpenCommentFilter'),
-                'callback' => function ($queryBuilder, $alias, $field, $data) use ($that) {
+                'callback' => function ($queryBuilder, $alias, $field, $data) use ($that): void {
                     if (!\is_array($data) || !$data['value']) {
                         return;
                     }
@@ -219,7 +221,7 @@ class PostAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null): void
     {
         if (!$childAdmin && !\in_array($action, ['edit'])) {
             return;

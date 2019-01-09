@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -13,9 +15,9 @@ namespace Sonata\NewsBundle\Model;
 
 interface CommentInterface
 {
-    const STATUS_INVALID = 0;
-    const STATUS_VALID = 1;
-    const STATUS_MODERATE = 2;
+    public const STATUS_INVALID = 0;
+    public const STATUS_VALID = 1;
+    public const STATUS_MODERATE = 2;
 
     public function getId();
 

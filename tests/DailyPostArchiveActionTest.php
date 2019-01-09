@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -26,7 +28,7 @@ use Twig\Environment;
 
 class DailyPostArchiveActionTest extends TestCase
 {
-    public function testInvoke()
+    public function testInvoke(): void
     {
         $blog = $this->prophesize(BlogInterface::class);
         $translator = $this->prophesize(TranslatorInterface::class);

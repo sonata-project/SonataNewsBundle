@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -42,7 +44,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     /**
      * {@inheritdoc}
      */
-    public function save($comment, $andFlush = true)
+    public function save($comment, $andFlush = true): void
     {
         parent::save($comment, $andFlush);
 
@@ -54,7 +56,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
      *
      * @param \Sonata\NewsBundle\Model\PostInterface|null $post
      */
-    public function updateCommentsCount(PostInterface $post = null)
+    public function updateCommentsCount(PostInterface $post = null): void
     {
         $commentTableName = $this->getObjectManager()->getClassMetadata($this->getClass())->table['name'];
         $postTableName = $this->getObjectManager()->getClassMetadata($this->postManager->getClass())->table['name'];
@@ -70,7 +72,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     /**
      * {@inheritdoc}
      */
-    public function delete($comment, $andFlush = true)
+    public function delete($comment, $andFlush = true): void
     {
         $post = $comment->getPost();
 
@@ -95,7 +97,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
             ->orderby('c.createdAt', 'DESC');
 
         if ('public' == $criteria['mode']) {
-            $criteria['status'] = isset($criteria['status']) ? $criteria['status'] : CommentInterface::STATUS_VALID;
+            $criteria['status'] = $criteria['status'] ?? CommentInterface::STATUS_VALID;
             $query->andWhere('c.status = :status');
             $parameters['status'] = $criteria['status'];
         }

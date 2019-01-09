@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -31,7 +33,7 @@ class SonataNewsExtension extends Extension
      *
      * @throws \InvalidArgumentException
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
         $configuration = new Configuration();
@@ -104,7 +106,7 @@ class SonataNewsExtension extends Extension
      * @param array                                                   $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
-    public function configureClass($config, ContainerBuilder $container)
+    public function configureClass($config, ContainerBuilder $container): void
     {
         // admin configuration
         $container->setParameter('sonata.news.admin.post.entity', $config['class']['post']);
@@ -119,7 +121,7 @@ class SonataNewsExtension extends Extension
      * @param array                                                   $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
-    public function configureAdmin($config, ContainerBuilder $container)
+    public function configureAdmin($config, ContainerBuilder $container): void
     {
         $container->setParameter('sonata.news.admin.post.class', $config['admin']['post']['class']);
         $container->setParameter('sonata.news.admin.post.controller', $config['admin']['post']['controller']);
@@ -133,7 +135,7 @@ class SonataNewsExtension extends Extension
     /**
      * @param array $config
      */
-    public function registerDoctrineMapping(array $config)
+    public function registerDoctrineMapping(array $config): void
     {
         $collector = DoctrineCollector::getInstance();
 

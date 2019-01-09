@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,7 +18,7 @@ use Sonata\NewsBundle\Permalink\CollectionPermalink;
 
 class CollectionPermalinkTest extends TestCase
 {
-    public function testGenerateWithCollection()
+    public function testGenerateWithCollection(): void
     {
         $collection = $this->createMock('Sonata\ClassificationBundle\Model\CollectionInterface');
         $collection->expects($this->any())->method('getSlug')->will($this->returnValue('the-collection'));
@@ -29,7 +31,7 @@ class CollectionPermalinkTest extends TestCase
         $this->assertEquals('the-collection/the-slug', $permalink->generate($post));
     }
 
-    public function testGenerateWithoutCollection()
+    public function testGenerateWithoutCollection(): void
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
         $post->expects($this->any())->method('getCollection')->will($this->returnValue(null));
@@ -39,7 +41,7 @@ class CollectionPermalinkTest extends TestCase
         $this->assertEquals('the-slug', $permalink->generate($post));
     }
 
-    public function testGetParametersWithCollection()
+    public function testGetParametersWithCollection(): void
     {
         $permalink = new CollectionPermalink();
         $expected = [
@@ -50,7 +52,7 @@ class CollectionPermalinkTest extends TestCase
         $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug'));
     }
 
-    public function testGetParametersWithoutCollection()
+    public function testGetParametersWithoutCollection(): void
     {
         $permalink = new CollectionPermalink();
         $expected = [
@@ -61,7 +63,7 @@ class CollectionPermalinkTest extends TestCase
         $this->assertEquals($expected, $permalink->getParameters('the-slug'));
     }
 
-    public function testGetParametersWithoutCollectionAndExtra()
+    public function testGetParametersWithoutCollectionAndExtra(): void
     {
         $this->expectException('InvalidArgumentException');
 

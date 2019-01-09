@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -86,7 +88,7 @@ abstract class AbstractPostArchiveAction extends Controller
     /**
      * @param SeoPageInterface|null $seoPage
      */
-    public function setSeoPage(SeoPageInterface $seoPage = null)
+    public function setSeoPage(SeoPageInterface $seoPage = null): void
     {
         $this->seoPage = $seoPage;
     }
