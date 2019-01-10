@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -95,7 +97,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
             ->orderby('c.createdAt', 'DESC');
 
         if ('public' == $criteria['mode']) {
-            $criteria['status'] = isset($criteria['status']) ? $criteria['status'] : CommentInterface::STATUS_VALID;
+            $criteria['status'] = $criteria['status'] ?? CommentInterface::STATUS_VALID;
             $query->andWhere('c.status = :status');
             $parameters['status'] = $criteria['status'];
         }
