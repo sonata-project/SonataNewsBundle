@@ -13,7 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Tests\Document;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
+use Sonata\Doctrine\Model\PageableManagerInterface;
+use Sonata\NewsBundle\Document\BasePost;
 use Sonata\NewsBundle\Document\PostManager;
 
 /**
@@ -23,10 +26,10 @@ class PostManagerTest extends TestCase
 {
     public function testImplements()
     {
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock(ManagerRegistry::class);
 
-        $postManager = new PostManager('Sonata\NewsBundle\Document\BasePost', $registry);
+        $postManager = new PostManager(BasePost::class, $registry);
 
-        $this->assertInstanceOf('Sonata\CoreBundle\Model\PageableManagerInterface', $postManager);
+        $this->assertInstanceOf(PageableManagerInterface::class, $postManager);
     }
 }

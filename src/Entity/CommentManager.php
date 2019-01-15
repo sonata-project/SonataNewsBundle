@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Sonata\CoreBundle\Model\BaseEntityManager;
-use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
+use Sonata\Doctrine\Entity\BaseEntityManager;
+use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
