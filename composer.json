@@ -25,8 +25,9 @@
         "php": "^7.1",
         "sonata-project/admin-bundle": "^3.35",
         "sonata-project/classification-bundle": "^3.6",
-        "sonata-project/core-bundle": "^3.9",
+        "sonata-project/core-bundle": "^3.13.7",
         "sonata-project/datagrid-bundle": "^2.3",
+        "sonata-project/doctrine-extensions": "^1.1.3",
         "sonata-project/easy-extends-bundle": "^2.5",
         "sonata-project/formatter-bundle": "^3.4 || ^4.0",
         "sonata-project/intl-bundle": "^2.4",
@@ -48,7 +49,7 @@
     "conflict": {
         "friendsofsymfony/rest-bundle": "<1.8 || >=3.0",
         "jms/serializer": "<0.13",
-        "sonata-project/block-bundle": "<3.11",
+        "sonata-project/block-bundle": "<3.14",
         "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
         "sonata-project/notification-bundle": "<3.0 || >=4.0",
         "sonata-project/seo-bundle": "<2.0 || >=3.0"
@@ -58,7 +59,7 @@
         "friendsofsymfony/rest-bundle": "^1.8 || ^2.1",
         "jms/serializer-bundle": "^1.0 || ^2.0",
         "nelmio/api-doc-bundle": "^2.4",
-        "sonata-project/block-bundle": "^3.11",
+        "sonata-project/block-bundle": "^3.14",
         "sonata-project/doctrine-orm-admin-bundle": "^3.4",
         "sonata-project/notification-bundle": "^3.3",
         "sonata-project/seo-bundle": "^2.5",

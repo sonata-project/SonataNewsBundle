@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Status;
 
-use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\Twig\Status\StatusClassRendererInterface;
 
 /**
  * @author Hugo Briand <briand@ekino.com>

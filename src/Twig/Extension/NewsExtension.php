@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Twig\Extension;
 
 use Sonata\ClassificationBundle\Model\TagManagerInterface;
-use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -51,7 +51,7 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     {
         if (!$tagManager instanceof TagManagerInterface) {
             @trigger_error(
-                'Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated'
+                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\Model\ManagerInterface is deprecated'
                 .' since version 2.4 and will be removed in 4.0.'
                 .' Use the new signature with a Sonata\ClassificationBundle\Model\TagManagerInterface instead.',
                 E_USER_DEPRECATED

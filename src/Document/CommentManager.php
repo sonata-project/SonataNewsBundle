@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Document;
 
-use Sonata\CoreBundle\Model\BaseDocumentManager;
+use Sonata\Doctrine\Document\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 use Sonata\NewsBundle\Model\CommentInterface;

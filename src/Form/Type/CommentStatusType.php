@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Form\Type;
 
-use Sonata\CoreBundle\Form\Type\BaseStatusType;
+use Sonata\Form\Type\BaseStatusType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommentStatusType extends BaseStatusType
