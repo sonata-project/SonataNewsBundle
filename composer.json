@@ -46,6 +46,7 @@
         "symfony/templating": "^2.8 || ^3.2 || ^4.0"
     },
     "conflict": {
+        "doctrine/dbal": "<2.6.0",
         "friendsofsymfony/rest-bundle": "<1.8 || >=3.0",
         "jms/serializer": "<0.13",
         "sonata-project/block-bundle": "<3.11",
