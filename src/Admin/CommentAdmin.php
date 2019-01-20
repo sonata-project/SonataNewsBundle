@@ -18,7 +18,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelListType;
-use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\NewsBundle\Form\Type\CommentStatusType;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -83,7 +83,7 @@ class CommentAdmin extends AbstractAdmin
     {
         if (!$commentManager instanceof CommentManagerInterface) {
             @trigger_error(
-                'Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated'
+                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\Model\ManagerInterface is deprecated'
                 .' since version 2.4 and will be removed in 3.0.'
                 .' Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.',
                 E_USER_DEPRECATED

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Form\Type;
 
-use Sonata\CoreBundle\Form\Type\BaseDoctrineORMSerializationType;
+use Sonata\Form\Type\BaseDoctrineORMSerializationType;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@gmail.com>

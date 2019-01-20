@@ -15,9 +15,9 @@ namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\ORM\Query\Expr\Join;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
-use Sonata\CoreBundle\Model\BaseEntityManager;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
+use Sonata\Doctrine\Entity\BaseEntityManager;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 

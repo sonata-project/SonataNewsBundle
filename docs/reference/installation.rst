@@ -84,23 +84,6 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
                         SonataNewsBundle: ~
 
 
-* Import the ``sonata_news.yml`` file and enable json type for doctrine:
-
-.. code-block:: yaml
-
-    # app/config/config.yml
-
-    imports:
-        # ...
-        - { resource: sonata_news.yml }
-    # ...
-    doctrine:
-        dbal:
-        # ...
-            types:
-                json: Sonata\Doctrine\Types\JsonType
-
-
 * Add a new context into your ``sonata_media.yml`` configuration if you don't have go there https://sonata-project.org/bundles/media/master/doc/reference/installation.html:
 
 .. code-block:: yaml

@@ -13,8 +13,12 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Tests\Document;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
+use Sonata\Doctrine\Model\PageableManagerInterface;
+use Sonata\NewsBundle\Document\BaseComment;
 use Sonata\NewsBundle\Document\CommentManager;
+use Sonata\NewsBundle\Model\PostManagerInterface;
 
 /**
  * Tests the comment manager document.
@@ -23,11 +27,11 @@ class CommentManagerTest extends TestCase
 {
     public function testImplements(): void
     {
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
+        $registry = $this->createMock(ManagerRegistry::class);
+        $postManager = $this->createMock(PostManagerInterface::class);
 
-        $commentManager = new CommentManager('Sonata\NewsBundle\Document\BaseComment', $registry, $postManager);
+        $commentManager = new CommentManager(BaseComment::class, $registry, $postManager);
 
-        $this->assertInstanceOf('Sonata\CoreBundle\Model\PageableManagerInterface', $commentManager);
+        $this->assertInstanceOf(PageableManagerInterface::class, $commentManager);
     }
 }

@@ -17,10 +17,10 @@ use Sonata\AdminBundle\Admin\Pool;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractAdminBlockService;
+use Sonata\BlockBundle\Meta\Metadata;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
-use Sonata\CoreBundle\Model\ManagerInterface;
-use Sonata\CoreBundle\Model\Metadata;
+use Sonata\Doctrine\Model\ManagerInterface;
+use Sonata\Form\Type\ImmutableArrayType;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -54,7 +54,7 @@ class RecentPostsBlockService extends AbstractAdminBlockService
     {
         if (!$postManager instanceof PostManagerInterface) {
             @trigger_error(
-                'Calling the '.__METHOD__.' method with a Sonata\CoreBundle\Model\ManagerInterface is deprecated'
+                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\ModelManagerInterface is deprecated'
                 .' since version 2.4 and will be removed in 3.0.'
                 .' Use the new signature with a Sonata\NewsBundle\Model\PostManagerInterface instead.',
                 E_USER_DEPRECATED

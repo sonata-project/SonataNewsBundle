@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Test\EntityManagerMockFactory;
+use Sonata\Doctrine\Test\EntityManagerMockFactory;
 use Sonata\NewsBundle\Entity\PostManager;
 
 /**
