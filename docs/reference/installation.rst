@@ -159,10 +159,10 @@ Enable the application bundles
 
     return [
         // ...
-        Application\Sonata\NewsBundle\ApplicationSonataNewsBundle::class => ['all' => true],
-        Application\Sonata\UserBundle\ApplicationSonataUserBundle::class => ['all' => true],
-        Application\Sonata\MediaBundle\ApplicationSonataMediaBundle::class => ['all' => true],
-        Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle::class => ['all' => true],
+        App\Application\Sonata\NewsBundle\ApplicationSonataNewsBundle::class => ['all' => true],
+        App\Application\Sonata\UserBundle\ApplicationSonataUserBundle::class => ['all' => true],
+        App\Application\Sonata\MediaBundle\ApplicationSonataMediaBundle::class => ['all' => true],
+        App\Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle::class => ['all' => true],
     ];
 
 Uncomment the ApplicationSonataNewsBundle mapping
@@ -188,7 +188,7 @@ Update Database Schema
 
     bin/console doctrine:schema:update --force
 
-* Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
+* Complete the FOS/UserBundle install and use the ``App\Application\Sonata\UserBundle\Entity\User`` as the user class
 
 Add SonataNewsBundle routes
 ---------------------------
