@@ -1,63 +1,64 @@
 Installation
 ============
 
-* Add SonataNewsBundle and dependencies to your ``composer.json`` file:
+Download the Bundle(s)
+----------------------
 
 .. code-block:: bash
 
-    composer require sonata-project/news-bundle sonata-project/doctrine-orm-admin-bundle
+    composer require sonata-project/news-bundle
 
+.. code-block:: bash
+
+     composer require sonata-project/doctrine-orm-admin-bundle
 
 If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle``.
 
 .. code-block:: bash
 
-    composer require nelmio/api-doc-bundle friendsofsymfony/rest-bundle
+    composer require nelmio/api-doc-bundle
 
-* Add SonataNewsBundle to your AppKernel:
+    composer require friendsofsymfony/rest-bundle
 
-.. code-block:: php
+Enable the Bundle(s)
+--------------------
 
-    <?php
+Then, enable the bundle by adding it to the list of registered bundles
+in ``bundles.php`` file of your project::
 
-    // app/AppKernel.php
+    // config/bundles.php
 
-    // ...
-    public function registerBundles()
-    {
-        return array(
-            // ...
-
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new Sonata\NewsBundle\SonataNewsBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
-            new Sonata\UserBundle\SonataUserBundle(),
-            new Sonata\MediaBundle\SonataMediaBundle(),
-            new Sonata\AdminBundle\SonataAdminBundle(),
-            new Sonata\IntlBundle\SonataIntlBundle(),
-            new Sonata\FormatterBundle\SonataFormatterBundle(),
-            new Sonata\ClassificationBundle\SonataClassificationBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
-            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
-
-            // ...
-        );
-    }
+    return [
+        // ...
+        Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],
+        Ivory\CKEditorBundle\IvoryCKEditorBundle::class => ['all' => true],
+        Sonata\NewsBundle\SonataNewsBundle::class => ['all' => true],
+        Sonata\BlockBundle\SonataBlockBundle::class => ['all' => true],
+        Sonata\UserBundle\SonataUserBundle::class => ['all' => true],
+        Sonata\MediaBundle\SonataMediaBundle::class => ['all' => true],
+        Sonata\AdminBundle\SonataAdminBundle::class => ['all' => true],
+        Sonata\IntlBundle\SonataIntlBundle::class => ['all' => true],
+        Sonata\FormatterBundle\SonataFormatterBundle::class => ['all' => true],
+        Sonata\ClassificationBundle\SonataClassificationBundle::class => ['all' => true],
+        FOS\UserBundle\FOSUserBundle::class => ['all' => true],
+        Knp\Bundle\MarkdownBundle\KnpMarkdownBundle::class => ['all' => true],
+        Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
+        Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle::class => ['all' => true],
+        JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
+        Sonata\TranslationBundle\SonataTranslationBundle::class => ['all' => true],
+        Sonata\EasyExtendsBundle\SonataEasyExtendsBundle::class => ['dev' => true],
+    ];
 
 .. note::
 
     `You need to setup SonataBlockBundle first. <https://sonata-project.org/bundles/block/master/doc/reference/installation.html>`_
 
-* Create a configuration file called ``sonata_news.yml``:
+Default configuration
+---------------------
 
 .. code-block:: yaml
 
-    # app/config/sonata_news.yml
+    # config/packages/sonata_news.yaml
 
     sonata_news:
         title:        Sonata Project
@@ -72,6 +73,10 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
                 from:     no-reply@sonata-project.org
                 template: '@SonataNews/Mail/comment_notification.txt.twig'
 
+.. code-block:: yaml
+
+    # config/packages/doctrine.yaml
+
     doctrine:
         orm:
             entity_managers:
@@ -83,12 +88,11 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
                         #ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
-
 * Add a new context into your ``sonata_media.yml`` configuration if you don't have go there https://sonata-project.org/bundles/media/master/doc/reference/installation.html:
 
 .. code-block:: yaml
 
-    # app/config/sonata_media.yml
+    # config/packages/sonata_media.yaml
 
     news:
         providers:
@@ -100,12 +104,11 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
             small: { width: 150 , quality: 95}
             big:   { width: 500 , quality: 90}
 
-* Create configuration file ``sonata_formatter.yml`` the text formatters available for your blog post:
-
+* Create configuration file ``sonata_formatter.yaml`` the text formatters available for your blog post:
 
 .. code-block:: yaml
 
-    # app/config/sonata_formatter.yml
+    # config/packages/sonata_formatter.yaml
 
     sonata_formatter:
         formatters:
@@ -137,43 +140,37 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
                     - sonata.formatter.twig.gist
                     - sonata.media.formatter.twig
 
-
-* Generate the application bundles:
+Generate the application bundles
+--------------------------------
 
 .. code-block:: bash
 
-    php app/console sonata:easy-extends:generate SonataNewsBundle -d src
-    php app/console sonata:easy-extends:generate SonataUserBundle -d src
-    php app/console sonata:easy-extends:generate SonataMediaBundle -d src
-    php app/console sonata:easy-extends:generate SonataClassificationBundle -d src
+    bin/console sonata:easy-extends:generate SonataNewsBundle -d src
+    bin/console sonata:easy-extends:generate SonataUserBundle -d src
+    bin/console sonata:easy-extends:generate SonataMediaBundle -d src
+    bin/console sonata:easy-extends:generate SonataClassificationBundle -d src
 
-
-* Enable the application bundles:
+Enable the application bundles
+------------------------------
 
 .. code-block:: php
 
-    <?php
+    // config/bundles.php
 
-    // app/AppKernel.php
+    return [
+        // ...
+        App\Application\Sonata\NewsBundle\ApplicationSonataNewsBundle::class => ['all' => true],
+        App\Application\Sonata\UserBundle\ApplicationSonataUserBundle::class => ['all' => true],
+        App\Application\Sonata\MediaBundle\ApplicationSonataMediaBundle::class => ['all' => true],
+        App\Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle::class => ['all' => true],
+    ];
 
-    // ...
-    public function registerBundles()
-    {
-        return array(
-            // ...
-            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
-            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
-        );
-    }
-
-
-* Uncomment the ApplicationSonataNewsBundle mapping inside ``sonata_news.yml`` :
+Uncomment the ApplicationSonataNewsBundle mapping
+-------------------------------------------------
 
 .. code-block:: yaml
 
-    # app/config/sonata_news.yml
+    # config/packages/sonata_news.yaml
 
     doctrine:
         orm:
@@ -184,16 +181,21 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
                         ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
+Update Database Schema
+----------------------
 
-* Update database schema by running command ``php app/console doctrine:schema:update --force``
+.. code-block:: bash
 
-* Complete the FOS/UserBundle install and use the ``Application\Sonata\UserBundle\Entity\User`` as the user class
+    bin/console doctrine:schema:update --force
 
-* Add SonataNewsBundle routes to your application routing.yml:
+* Complete the FOS/UserBundle install and use the ``App\Application\Sonata\UserBundle\Entity\User`` as the user class
+
+Add SonataNewsBundle routes
+---------------------------
 
 .. code-block:: yaml
 
-    # app/config/routing.yml
+    # config/packages/routes.yaml
 
     news:
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
