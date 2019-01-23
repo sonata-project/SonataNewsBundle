@@ -40,14 +40,14 @@ class CommentTest extends TestCase
         $comment->setUpdatedAt($date);
         $comment->setUrl('http://www.example.org');
 
-        $this->assertSame($comment->getCreatedAt(), $date);
-        $this->assertSame($comment->getEmail(), 'email@example.org');
-        $this->assertSame($comment->getMessage(), 'My message');
-        $this->assertSame($comment->getName(), 'My name');
+        $this->assertSame($date, $comment->getCreatedAt());
+        $this->assertSame('email@example.org', $comment->getEmail());
+        $this->assertSame('My message', $comment->getMessage());
+        $this->assertSame('My name', $comment->getName());
         $this->assertInstanceOf(PostInterface::class, $post);
-        $this->assertSame($comment->getPost(), $post);
-        $this->assertSame($comment->getStatus(), 1);
-        $this->assertSame($comment->getUpdatedAt(), $date);
-        $this->assertSame($comment->getUrl(), 'http://www.example.org');
+        $this->assertSame($post, $comment->getPost());
+        $this->assertSame(1, $comment->getStatus());
+        $this->assertSame($date, $comment->getUpdatedAt());
+        $this->assertSame('http://www.example.org', $comment->getUrl());
     }
 }
