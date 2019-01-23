@@ -14,13 +14,14 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Permalink\DatePermalink;
 
 class DatePermalinkTest extends TestCase
 {
     public function testGenerate()
     {
-        $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
+        $post = $this->createMock(PostInterface::class);
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
         $post->expects($this->any())->method('getYear')->will($this->returnValue('2011'));
         $post->expects($this->any())->method('getMonth')->will($this->returnValue('12'));
@@ -32,7 +33,7 @@ class DatePermalinkTest extends TestCase
 
     public function testCustomFormatting()
     {
-        $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
+        $post = $this->createMock(PostInterface::class);
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
         $post->expects($this->any())->method('getYear')->will($this->returnValue('2011'));
         $post->expects($this->any())->method('getMonth')->will($this->returnValue('2'));
