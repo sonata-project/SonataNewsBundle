@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\ClassificationBundle\Model\CollectionInterface;
+use Sonata\ClassificationBundle\Model\TagInterface;
 use Sonata\NewsBundle\Model\Post;
 
 class ModelTest_Post extends Post
@@ -35,7 +37,7 @@ class PostTest extends TestCase
         $post = new ModelTest_Post();
         $post->setAbstract('My abstract content');
         $post->setAuthor('My author');
-        $post->setCollection($this->createMock('Sonata\ClassificationBundle\Model\CollectionInterface'));
+        $post->setCollection($collection = $this->createMock(CollectionInterface::class));
         $post->setCommentsCloseAt($date);
         $post->setCommentsCount(5);
         $post->setCommentsDefaultStatus(1);
@@ -46,14 +48,15 @@ class PostTest extends TestCase
         $post->setEnabled(true);
         $post->setPublicationDateStart($date);
         $post->setRawContent('My raw content');
-        $post->setTags($this->createMock('Sonata\ClassificationBundle\Model\TagInterface'));
+        $post->setTags($tags = [$this->createMock(TagInterface::class)]);
         $post->setTitle('My title');
         $post->setSlug('my-post-slug');
         $post->setUpdatedAt($date);
 
         $this->assertSame($post->getAbstract(), 'My abstract content');
         $this->assertSame($post->getAuthor(), 'My author');
-        $this->assertSame($post->getCollection(), $this->createMock('Sonata\ClassificationBundle\Model\CollectionInterface'));
+        $this->assertSame($post->getCollection(), $collection);
+        $this->assertInstanceOf(CollectionInterface::class, $post->getCollection());
         $this->assertSame($post->getCommentsCloseAt(), $date);
         $this->assertSame($post->getCommentsCount(), 5);
         $this->assertSame($post->getCommentsDefaultStatus(), 1);
@@ -65,7 +68,7 @@ class PostTest extends TestCase
         $this->assertSame($post->getPublicationDateStart(), $date);
         $this->assertSame($post->getRawContent(), 'My raw content');
         $this->assertSame($post->getSlug(), 'my-post-slug');
-        $this->assertSame($post->getTags(), $this->createMock('Sonata\ClassificationBundle\Model\TagInterface'));
+        $this->assertSame($post->getTags(), $tags);
         $this->assertSame($post->getTitle(), 'My title');
         $this->assertSame($post->getUpdatedAt(), $date);
     }

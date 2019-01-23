@@ -46,9 +46,9 @@ class DatePermalinkTest extends TestCase
     {
         $permalink = new DatePermalink();
         $expected = [
-            'year' => '2011',
-            'month' => '12',
-            'day' => '30',
+            'year' => 2011,
+            'month' => 12,
+            'day' => 30,
             'slug' => 'the-slug',
         ];
 

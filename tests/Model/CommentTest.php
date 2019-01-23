@@ -15,6 +15,7 @@ namespace Sonata\NewsBundle\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Model\Comment;
+use Sonata\NewsBundle\Model\PostInterface;
 
 class ModelTest_Comment extends Comment
 {
@@ -34,7 +35,7 @@ class CommentTest extends TestCase
         $comment->setEmail('email@example.org');
         $comment->setMessage('My message');
         $comment->setName('My name');
-        $comment->setPost($this->createMock('Sonata\NewsBundle\Model\PostInterface'));
+        $comment->setPost($post = $this->createMock(PostInterface::class));
         $comment->setStatus(1);
         $comment->setUpdatedAt($date);
         $comment->setUrl('http://www.example.org');
@@ -43,7 +44,8 @@ class CommentTest extends TestCase
         $this->assertSame($comment->getEmail(), 'email@example.org');
         $this->assertSame($comment->getMessage(), 'My message');
         $this->assertSame($comment->getName(), 'My name');
-        $this->assertSame($comment->getPost(), $this->createMock('Sonata\NewsBundle\Model\PostInterface'));
+        $this->assertInstanceOf(PostInterface::class, $post);
+        $this->assertSame($comment->getPost(), $post);
         $this->assertSame($comment->getStatus(), 1);
         $this->assertSame($comment->getUpdatedAt(), $date);
         $this->assertSame($comment->getUrl(), 'http://www.example.org');

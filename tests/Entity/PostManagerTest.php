@@ -245,8 +245,10 @@ class PostManagerTest extends TestCase
             ->getPublicationDateQueryParts('2010-02-10', 'month', 'n');
 
         $this->assertNotNull($result);
-        $this->assertSame(new \DateTime('2010-02-10'), $result['params']['startDate']);
-        $this->assertSame(new \DateTime('2010-03-10'), $result['params']['endDate']);
+        $this->assertInstanceOf(\DateTimeInterface::class, $result['params']['startDate']);
+        $this->assertInstanceOf(\DateTimeInterface::class, $result['params']['endDate']);
+        $this->assertSame('2010-02-10', $result['params']['startDate']->format('Y-m-d'));
+        $this->assertSame('2010-03-10', $result['params']['endDate']->format('Y-m-d'));
     }
 
     protected function getPostManager($qbCallback)
