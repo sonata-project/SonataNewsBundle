@@ -22,7 +22,7 @@ class CollectionPermalink implements PermalinkInterface
      */
     public function generate(PostInterface $post)
     {
-        return null == $post->getCollection()
+        return null === $post->getCollection()
             ? $post->getSlug()
             : sprintf('%s/%s', $post->getCollection()->getSlug(), $post->getSlug());
     }
@@ -34,7 +34,7 @@ class CollectionPermalink implements PermalinkInterface
     {
         $parameters = explode('/', $permalink);
 
-        if (\count($parameters) > 2 || 0 == \count($parameters)) {
+        if (\count($parameters) > 2 || 0 === \count($parameters)) {
             throw new \InvalidArgumentException('wrong permalink format');
         }
 

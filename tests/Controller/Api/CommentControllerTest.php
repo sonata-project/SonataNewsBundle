@@ -28,7 +28,7 @@ class CommentControllerTest extends TestCase
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
         $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
 
-        $this->assertEquals($comment, $this->createCommentController($commentManager)->getCommentAction(1));
+        $this->assertSame($comment, $this->createCommentController($commentManager)->getCommentAction(1));
     }
 
     public function testGetCommentNotFoundExceptionAction()
@@ -49,7 +49,7 @@ class CommentControllerTest extends TestCase
 
         $view = $this->createCommentController($commentManager)->deleteCommentAction(1);
 
-        $this->assertEquals(['deleted' => true], $view);
+        $this->assertSame(['deleted' => true], $view);
     }
 
     public function testDeletePostInvalidAction()
