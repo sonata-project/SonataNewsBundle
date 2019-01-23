@@ -50,23 +50,24 @@ class PostTest extends TestCase
         $post->setSlug('my-post-slug');
         $post->setUpdatedAt($date);
 
-        $this->assertSame($post->getAbstract(), 'My abstract content');
-        $this->assertSame($post->getAuthor(), 'My author');
-        $this->assertSame($post->getCollection(), $collection);
+
+        $this->assertSame('My abstract content', $post->getAbstract());
+        $this->assertSame('My author', $post->getAuthor());
+        $this->assertSame($collection, $post->getCollection());
         $this->assertInstanceOf(CollectionInterface::class, $post->getCollection());
-        $this->assertSame($post->getCommentsCloseAt(), $date);
-        $this->assertSame($post->getCommentsCount(), 5);
-        $this->assertSame($post->getCommentsDefaultStatus(), 1);
-        $this->assertSame($post->getCommentsEnabled(), true);
-        $this->assertSame($post->getContent(), 'My content');
-        $this->assertSame($post->getContentFormatter(), 'markdown');
-        $this->assertSame($post->getCreatedAt(), $date);
-        $this->assertSame($post->getEnabled(), true);
-        $this->assertSame($post->getPublicationDateStart(), $date);
-        $this->assertSame($post->getRawContent(), 'My raw content');
-        $this->assertSame($post->getSlug(), 'my-post-slug');
-        $this->assertSame($post->getTags(), $tags);
-        $this->assertSame($post->getTitle(), 'My title');
-        $this->assertSame($post->getUpdatedAt(), $date);
+        $this->assertSame($date, $post->getCommentsCloseAt());
+        $this->assertSame(5, $post->getCommentsCount());
+        $this->assertSame(1, $post->getCommentsDefaultStatus());
+        $this->assertTrue($post->getCommentsEnabled());
+        $this->assertSame('My content', $post->getContent());
+        $this->assertSame('markdown', $post->getContentFormatter());
+        $this->assertSame($date, $post->getCreatedAt());
+        $this->assertTrue($post->getEnabled());
+        $this->assertSame($date, $post->getPublicationDateStart());
+        $this->assertSame('My raw content', $post->getRawContent());
+        $this->assertSame('my-post-slug', $post->getSlug());
+        $this->assertSame($tags, $post->getTags());
+        $this->assertSame('My title', $post->getTitle());
+        $this->assertSame($date, $post->getUpdatedAt());
     }
 }
