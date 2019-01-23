@@ -25,9 +25,6 @@ class ModelTest_Post extends Post
     }
 }
 
-/**
- * Tests the post model.
- */
 class PostTest extends TestCase
 {
     public function testSettersGetters()
