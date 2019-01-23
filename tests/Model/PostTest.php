@@ -50,7 +50,6 @@ class PostTest extends TestCase
         $post->setSlug('my-post-slug');
         $post->setUpdatedAt($date);
 
-
         $this->assertSame('My abstract content', $post->getAbstract());
         $this->assertSame('My author', $post->getAuthor());
         $this->assertSame($collection, $post->getCollection());
