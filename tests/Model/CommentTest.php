@@ -39,13 +39,13 @@ class CommentTest extends TestCase
         $comment->setUpdatedAt($date);
         $comment->setUrl('http://www.example.org');
 
-        $this->assertEquals($comment->getCreatedAt(), $date);
-        $this->assertEquals($comment->getEmail(), 'email@example.org');
-        $this->assertEquals($comment->getMessage(), 'My message');
-        $this->assertEquals($comment->getName(), 'My name');
-        $this->assertEquals($comment->getPost(), $this->createMock('Sonata\NewsBundle\Model\PostInterface'));
-        $this->assertEquals($comment->getStatus(), 1);
-        $this->assertEquals($comment->getUpdatedAt(), $date);
-        $this->assertEquals($comment->getUrl(), 'http://www.example.org');
+        $this->assertSame($comment->getCreatedAt(), $date);
+        $this->assertSame($comment->getEmail(), 'email@example.org');
+        $this->assertSame($comment->getMessage(), 'My message');
+        $this->assertSame($comment->getName(), 'My name');
+        $this->assertSame($comment->getPost(), $this->createMock('Sonata\NewsBundle\Model\PostInterface'));
+        $this->assertSame($comment->getStatus(), 1);
+        $this->assertSame($comment->getUpdatedAt(), $date);
+        $this->assertSame($comment->getUrl(), 'http://www.example.org');
     }
 }

@@ -27,7 +27,7 @@ class DatePermalinkTest extends TestCase
         $post->expects($this->any())->method('getDay')->will($this->returnValue('30'));
 
         $permalink = new DatePermalink();
-        $this->assertEquals('2011/12/30/the-slug', $permalink->generate($post));
+        $this->assertSame('2011/12/30/the-slug', $permalink->generate($post));
     }
 
     public function testCustomFormatting()
@@ -39,7 +39,7 @@ class DatePermalinkTest extends TestCase
         $post->expects($this->any())->method('getDay')->will($this->returnValue('01'));
 
         $permalink = new DatePermalink('%1$02d/%2$02d/%3$02d/%4$s');
-        $this->assertEquals('2011/02/01/the-slug', $permalink->generate($post));
+        $this->assertSame('2011/02/01/the-slug', $permalink->generate($post));
     }
 
     public function testGetParameters()
@@ -52,7 +52,7 @@ class DatePermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertEquals($expected, $permalink->getParameters('2011/12/30/the-slug'));
+        $this->assertSame($expected, $permalink->getParameters('2011/12/30/the-slug'));
     }
 
     public function testGetParametersWithWrongUrl()
@@ -67,6 +67,6 @@ class DatePermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertEquals($expected, $permalink->getParameters('2011/12/the-slug'));
+        $this->assertSame($expected, $permalink->getParameters('2011/12/the-slug'));
     }
 }
