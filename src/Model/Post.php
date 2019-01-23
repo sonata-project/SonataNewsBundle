@@ -434,7 +434,7 @@ abstract class Post implements PostInterface
         }
 
         if ($this->getCommentsCloseAt() instanceof \DateTime) {
-            return 1 == $this->getCommentsCloseAt()->diff(new \DateTime())->invert ? true : false;
+            return 1 === $this->getCommentsCloseAt()->diff(new \DateTime())->invert ? true : false;
         }
 
         return true;
@@ -449,7 +449,7 @@ abstract class Post implements PostInterface
             return false;
         }
 
-        return 0 == $this->getPublicationDateStart()->diff(new \DateTime())->invert ? true : false;
+        return 0 === $this->getPublicationDateStart()->diff(new \DateTime())->invert ? true : false;
     }
 
     /**

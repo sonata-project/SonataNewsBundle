@@ -50,7 +50,7 @@ class DatePermalink implements PermalinkInterface
     {
         $parameters = explode('/', $permalink);
 
-        if (4 != \count($parameters)) {
+        if (4 !== \count($parameters)) {
             throw new \InvalidArgumentException('wrong permalink format');
         }
 
