@@ -73,7 +73,7 @@ final class ModerateCommentAction
 
         $computedHash = $this->hashGenerator->generate($comment);
 
-        if ($computedHash != $hash) {
+        if ($computedHash !== $hash) {
             throw new AccessDeniedException();
         }
 

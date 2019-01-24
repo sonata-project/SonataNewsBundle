@@ -28,7 +28,7 @@ class CollectionPermalinkTest extends TestCase
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
 
         $permalink = new CollectionPermalink();
-        $this->assertEquals('the-collection/the-slug', $permalink->generate($post));
+        $this->assertSame('the-collection/the-slug', $permalink->generate($post));
     }
 
     public function testGenerateWithoutCollection(): void
@@ -38,7 +38,7 @@ class CollectionPermalinkTest extends TestCase
         $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
 
         $permalink = new CollectionPermalink();
-        $this->assertEquals('the-slug', $permalink->generate($post));
+        $this->assertSame('the-slug', $permalink->generate($post));
     }
 
     public function testGetParametersWithCollection(): void
@@ -49,7 +49,7 @@ class CollectionPermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug'));
+        $this->assertSame($expected, $permalink->getParameters('the-collection/the-slug'));
     }
 
     public function testGetParametersWithoutCollection(): void
@@ -60,7 +60,7 @@ class CollectionPermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertEquals($expected, $permalink->getParameters('the-slug'));
+        $this->assertSame($expected, $permalink->getParameters('the-slug'));
     }
 
     public function testGetParametersWithoutCollectionAndExtra(): void
@@ -73,6 +73,6 @@ class CollectionPermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertEquals($expected, $permalink->getParameters('the-collection/the-slug/asdsaasds'));
+        $this->assertSame($expected, $permalink->getParameters('the-collection/the-slug/asdsaasds'));
     }
 }

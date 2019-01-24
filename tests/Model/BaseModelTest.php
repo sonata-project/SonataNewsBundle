@@ -67,6 +67,6 @@ class BasePostTest extends TestCase
 
         $post->setTitle('Salut Symfony2');
 
-        $this->assertEquals('salut-symfony2', $post->getSlug());
+        $this->assertSame('salut-symfony2', $post->getSlug());
     }
 }

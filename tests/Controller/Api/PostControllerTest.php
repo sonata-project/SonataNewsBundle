@@ -45,7 +45,7 @@ class PostControllerTest extends TestCase
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
         $postManager->expects($this->once())->method('find')->will($this->returnValue($post));
 
-        $this->assertEquals($post, $this->createPostController($postManager)->getPostAction(1));
+        $this->assertSame($post, $this->createPostController($postManager)->getPostAction(1));
     }
 
     public function testGetPostNotFoundExceptionAction(): void
@@ -85,7 +85,7 @@ class PostControllerTest extends TestCase
             ->with($this->anything(), $this->equalTo($parameters['page']), $this->equalTo($parameters['count']))
             ->will($this->returnValue($pager));
 
-        $this->assertEquals($pager, $this->createPostController($postManager, $commentManager)->getPostCommentsAction(1, $paramFetcher));
+        $this->assertSame($pager, $this->createPostController($postManager, $commentManager)->getPostCommentsAction(1, $paramFetcher));
     }
 
     public function testGetPostCommentsActionNotFoundExceptionAction(): void
@@ -217,7 +217,7 @@ class PostControllerTest extends TestCase
 
         $view = $this->createPostController($postManager)->deletePostAction(1);
 
-        $this->assertEquals(['deleted' => true], $view);
+        $this->assertSame(['deleted' => true], $view);
     }
 
     public function testDeletePostInvalidAction(): void

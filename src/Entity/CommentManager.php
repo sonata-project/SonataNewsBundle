@@ -94,7 +94,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
             ->createQueryBuilder('c')
             ->orderby('c.createdAt', 'DESC');
 
-        if ('public' == $criteria['mode']) {
+        if ('public' === $criteria['mode']) {
             $criteria['status'] = $criteria['status'] ?? CommentInterface::STATUS_VALID;
             $query->andWhere('c.status = :status');
             $parameters['status'] = $criteria['status'];

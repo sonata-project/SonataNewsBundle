@@ -15,6 +15,7 @@ namespace Sonata\NewsBundle\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Model\Comment;
+use Sonata\NewsBundle\Model\PostInterface;
 
 class ModelTest_Comment extends Comment
 {
@@ -34,18 +35,19 @@ class CommentTest extends TestCase
         $comment->setEmail('email@example.org');
         $comment->setMessage('My message');
         $comment->setName('My name');
-        $comment->setPost($this->createMock('Sonata\NewsBundle\Model\PostInterface'));
+        $comment->setPost($post = $this->createMock(PostInterface::class));
         $comment->setStatus(1);
         $comment->setUpdatedAt($date);
         $comment->setUrl('http://www.example.org');
 
-        $this->assertEquals($comment->getCreatedAt(), $date);
-        $this->assertEquals($comment->getEmail(), 'email@example.org');
-        $this->assertEquals($comment->getMessage(), 'My message');
-        $this->assertEquals($comment->getName(), 'My name');
-        $this->assertEquals($comment->getPost(), $this->createMock('Sonata\NewsBundle\Model\PostInterface'));
-        $this->assertEquals($comment->getStatus(), 1);
-        $this->assertEquals($comment->getUpdatedAt(), $date);
-        $this->assertEquals($comment->getUrl(), 'http://www.example.org');
+        $this->assertSame($date, $comment->getCreatedAt());
+        $this->assertSame('email@example.org', $comment->getEmail());
+        $this->assertSame('My message', $comment->getMessage());
+        $this->assertSame('My name', $comment->getName());
+        $this->assertInstanceOf(PostInterface::class, $post);
+        $this->assertSame($post, $comment->getPost());
+        $this->assertSame(1, $comment->getStatus());
+        $this->assertSame($date, $comment->getUpdatedAt());
+        $this->assertSame('http://www.example.org', $comment->getUrl());
     }
 }

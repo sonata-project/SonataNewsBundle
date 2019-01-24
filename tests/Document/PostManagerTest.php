@@ -19,9 +19,6 @@ use Sonata\Doctrine\Model\PageableManagerInterface;
 use Sonata\NewsBundle\Document\BasePost;
 use Sonata\NewsBundle\Document\PostManager;
 
-/**
- * Tests the post manager document.
- */
 class PostManagerTest extends TestCase
 {
     public function testImplements(): void

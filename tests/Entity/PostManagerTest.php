@@ -13,13 +13,14 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Tests\Entity;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Sonata\Doctrine\Test\EntityManagerMockFactory;
+use Sonata\NewsBundle\Entity\BasePost;
 use Sonata\NewsBundle\Entity\PostManager;
+use Sonata\NewsBundle\Model\BlogInterface;
+use Sonata\NewsBundle\Permalink\PermalinkInterface;
 
-/**
- * Tests the post manager entity.
- */
 class PostManagerTest extends TestCase
 {
     public function assertRelationsEnabled($qb): void
@@ -72,14 +73,14 @@ class PostManagerTest extends TestCase
 
     public function testFindOneByPermalinkSlug(): void
     {
-        $permalink = $this->createMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
+        $permalink = $this->createMock(PermalinkInterface::class);
         $permalink->expects($this->once())->method('getParameters')
             ->with($this->equalTo('foo/bar'))
             ->will($this->returnValue([
                 'slug' => 'bar',
             ]));
 
-        $blog = $this->createMock('Sonata\NewsBundle\Model\BlogInterface');
+        $blog = $this->createMock(BlogInterface::class);
         $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
 
         $self = $this;
@@ -93,12 +94,12 @@ class PostManagerTest extends TestCase
 
     public function testFindOneByPermalinkException(): void
     {
-        $permalink = $this->createMock('Sonata\NewsBundle\Permalink\PermalinkInterface');
+        $permalink = $this->createMock(PermalinkInterface::class);
         $permalink->expects($this->once())->method('getParameters')
             ->with($this->equalTo(''))
             ->willThrowException(new \InvalidArgumentException());
 
-        $blog = $this->createMock('Sonata\NewsBundle\Model\BlogInterface');
+        $blog = $this->createMock(BlogInterface::class);
         $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
 
         $self = $this;
@@ -245,17 +246,19 @@ class PostManagerTest extends TestCase
             ->getPublicationDateQueryParts('2010-02-10', 'month', 'n');
 
         $this->assertNotNull($result);
-        $this->assertEquals(new \DateTime('2010-02-10'), $result['params']['startDate']);
-        $this->assertEquals(new \DateTime('2010-03-10'), $result['params']['endDate']);
+        $this->assertInstanceOf(\DateTimeInterface::class, $result['params']['startDate']);
+        $this->assertInstanceOf(\DateTimeInterface::class, $result['params']['endDate']);
+        $this->assertSame('2010-02-10', $result['params']['startDate']->format('Y-m-d'));
+        $this->assertSame('2010-03-10', $result['params']['endDate']->format('Y-m-d'));
     }
 
     protected function getPostManager($qbCallback)
     {
         $em = EntityManagerMockFactory::create($this, $qbCallback, []);
 
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock(ManagerRegistry::class);
         $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
 
-        return new PostManager('Sonata\NewsBundle\Entity\BasePost', $registry);
+        return new PostManager(BasePost::class, $registry);
     }
 }

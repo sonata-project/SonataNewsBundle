@@ -110,7 +110,7 @@ class PostAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper): void
     {
-        $isHorizontal = 'horizontal' == $this->getConfigurationPool()->getOption('form_type');
+        $isHorizontal = 'horizontal' === $this->getConfigurationPool()->getOption('form_type');
         $formMapper
             ->with('group_post', [
                     'class' => 'col-md-8',
@@ -223,7 +223,7 @@ class PostAdmin extends AbstractAdmin
      */
     protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null): void
     {
-        if (!$childAdmin && !\in_array($action, ['edit'])) {
+        if (!$childAdmin && !\in_array($action, ['edit'], true)) {
             return;
         }
 
