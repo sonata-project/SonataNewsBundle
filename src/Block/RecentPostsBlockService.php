@@ -54,7 +54,7 @@ class RecentPostsBlockService extends AbstractAdminBlockService
     {
         if (!$postManager instanceof PostManagerInterface) {
             @trigger_error(
-                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\ModelManagerInterface is deprecated'
+                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\Model\ManagerInterface is deprecated'
                 .' since version 2.4 and will be removed in 3.0.'
                 .' Use the new signature with a Sonata\NewsBundle\Model\PostManagerInterface instead.',
                 E_USER_DEPRECATED
