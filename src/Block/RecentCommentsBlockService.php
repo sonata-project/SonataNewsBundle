@@ -19,6 +19,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractAdminBlockService;
 use Sonata\BlockBundle\Meta\Metadata;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\Form\Type\ImmutableArrayType;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -53,7 +54,7 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
     {
         if (!$commentManager instanceof CommentManagerInterface) {
             @trigger_error(
-                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\ModelManagerInterface is deprecated'
+                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\Model\ManagerInterface is deprecated'
                 .' since version 2.4 and will be removed in 3.0.'
                 .' Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.',
                 E_USER_DEPRECATED
