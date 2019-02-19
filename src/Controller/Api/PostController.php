@@ -411,7 +411,7 @@ class PostController
             }
         }
 
-        if (array_key_exists('dateValue', $criteria)) {
+        if (\array_key_exists('dateValue', $criteria)) {
             $date = new \DateTime($criteria['dateValue']);
             $criteria['date'] = [
                 'query' => sprintf('p.publicationDateStart %s :dateValue', $criteria['dateQuery']),
