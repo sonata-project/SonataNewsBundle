@@ -34,14 +34,6 @@ Advanced Configuration
                 class:       Sonata\NewsBundle\Admin\CommentAdmin
                 controller:  SonataNewsBundle:CommentAdmin
                 translation: SonataNewsBundle
-            collection:
-                class:       Sonata\NewsBundle\Admin\CollectionAdmin
-                controller:  SonataAdminBundle:CRUD
-                translation: SonataNewsBundle
-            tag:
-                class:       Sonata\NewsBundle\Admin\TagAdmin
-                controller:  SonataAdminBundle:CRUD
-                translation: SonataNewsBundle
 
 .. code-block:: yaml
 
