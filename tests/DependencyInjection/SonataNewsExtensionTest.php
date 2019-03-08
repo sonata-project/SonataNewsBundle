@@ -66,16 +66,16 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
         $this->load(array_merge($minimalConfiguration, $tagAndCollectionDeclaration));
         $collector = DoctrineCollector::getInstance();
         //assert our model have associations
-        $this->assertSame(2, count($collector->getAssociations()));
+        $this->assertCount(2, $collector->getAssociations());
         $postManyToOneAssociation = $collector->getAssociations()[Post::class]['mapManyToOne'];
         //assert the post model has  3 many to one associations (user,media,collection)
-        $this->assertSame(3, count($postManyToOneAssociation));
+        $this->assertCount(3, $postManyToOneAssociation);
         $postManyToManyAssociation = $collector->getAssociations()[Post::class]['mapManyToMany'];
         //assert the post model has  1 many to many associations (tag)
-        $this->assertSame(1, count($postManyToManyAssociation));
+        $this->assertCount(1, $postManyToManyAssociation);
         $postOneToManyAssociation = $collector->getAssociations()[Post::class]['mapOneToMany'];
         //assert the post model has  1 one to many associations (comment)
-        $this->assertSame(1, count($postOneToManyAssociation));
+        $this->assertCount(1, $postOneToManyAssociation);
     }
 
     public function getMinimalConfiguration(): array
