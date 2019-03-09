@@ -33,7 +33,7 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * Test if the deprecation notice is trigger when the tag (or collection) class declaration is missing.
+     * Test if the deprecation notice is triggered when the tag (or collection) class declaration is missing.
      * It should trigger a deprecation notice but doesn't break anything
      * You should have 0 associations.
      *
