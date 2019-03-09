@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Sonata\ClassificationBundle\Model\Collection;
+use Sonata\ClassificationBundle\Model\Tag;
 use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector;
 use Sonata\MediaBundle\Model\Media;
 use Sonata\NewsBundle\DependencyInjection\SonataNewsExtension;
@@ -35,17 +37,17 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
     /**
      * Test if the deprecation notice is triggered when the tag (or collection) class declaration is missing.
      * It should trigger a deprecation notice but doesn't break anything
-     * You should have 0 associations.
+     * You should have 0 association.
      *
      * @group legacy
-     * @expectedDeprecation The class %s is not defined or doesn't exist. This is tolerated now but will be forbidden in 4.0
+     * @expectedDeprecation The %s class is not defined or does not exist. This is tolerated now but will be forbidden in 4.0
      */
     public function testLoadWithoutTagWithoutCollection(): void
     {
         $this->load($this->getMinimalConfiguration());
         $collector = DoctrineCollector::getInstance();
 
-        $this->assertEmpty($collector->getAssociations());
+        $this->assertEmpty($collector->getAssociations(), 'Our models should have 0 association');
     }
 
     /**
@@ -56,29 +58,18 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
      */
     public function testLoadWithTagWithCollection(): void
     {
-        $minimalConfiguration = $this->getMinimalConfiguration();
-        $tagAndCollectionDeclaration = [
-                'class' => [
-                        'collection' => \stdClass::class,
-                        'tag' => \stdClass::class,
-                ],
-            ];
-        $this->load(array_merge($minimalConfiguration, $tagAndCollectionDeclaration));
+        $this->load($this->getConfigurationWithTagWithCollection());
         $collector = DoctrineCollector::getInstance();
-        // assert our model has associations
-        $this->assertCount(2, $collector->getAssociations());
+        $this->assertCount(2, $collector->getAssociations(), 'Our models should have 2 associations (post, comment)');
         $postManyToOneAssociation = $collector->getAssociations()[Post::class]['mapManyToOne'];
-        // assert the post model has 3 many to one associations (user, media, collection)
-        $this->assertCount(3, $postManyToOneAssociation);
+        $this->assertCount(3, $postManyToOneAssociation, 'The post model should have 3 many to one associations (user, media, collection)');
         $postManyToManyAssociation = $collector->getAssociations()[Post::class]['mapManyToMany'];
-        // assert the post model has 1 many to many association (tag)
-        $this->assertCount(1, $postManyToManyAssociation);
+        $this->assertCount(1, $postManyToManyAssociation, 'The post model should have 1 many to many association (tag)');
         $postOneToManyAssociation = $collector->getAssociations()[Post::class]['mapOneToMany'];
-        // assert the post model has 1 one to many association (comment)
-        $this->assertCount(1, $postOneToManyAssociation);
+        $this->assertCount(1, $postOneToManyAssociation, 'The post model should have 1 one to many association (comment)');
     }
 
-    public function getMinimalConfiguration(): array
+    protected function getMinimalConfiguration(): array
     {
         return [
                 'title' => 'Foo title',
@@ -99,6 +90,19 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
                     'user' => User::class,
                 ],
             ];
+    }
+
+    protected function getConfigurationWithTagWithCollection(): array
+    {
+        $minimalConfiguration = $this->getMinimalConfiguration();
+        $tagAndCollectionDeclaration = [
+                'class' => [
+                        'collection' => Collection::class,
+                        'tag' => Tag::class,
+                ],
+            ];
+
+        return array_merge($minimalConfiguration, $tagAndCollectionDeclaration);
     }
 
     /**
