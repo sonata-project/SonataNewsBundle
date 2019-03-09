@@ -25,7 +25,6 @@ use Sonata\UserBundle\Model\User;
 
 class SonataNewsExtensionTest extends AbstractExtensionTestCase
 {
-    
     protected function setUp(): void
     {
         parent::setUp();
