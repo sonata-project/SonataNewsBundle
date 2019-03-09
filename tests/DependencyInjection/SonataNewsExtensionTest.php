@@ -25,9 +25,7 @@ use Sonata\UserBundle\Model\User;
 
 class SonataNewsExtensionTest extends AbstractExtensionTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
+    
     protected function setUp(): void
     {
         parent::setUp();
@@ -105,9 +103,6 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
         return array_merge($minimalConfiguration, $tagAndCollectionDeclaration);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getContainerExtensions()
     {
         return [
