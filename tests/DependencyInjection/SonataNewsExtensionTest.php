@@ -49,10 +49,10 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * Test if the deprecation notice is trigger when the tag (or collection) class declaration is present.
+     * Test if the deprecation notice is triggered when the tag (or collection) class declaration is present.
      * It shouldn't trigger a deprecation notice but doesn't break anything
      * You should have 2 associations (Post, Comment).
-     * The Post model should have an associations with (Media, User, Collection, Tag).
+     * The Post model should have an association with (Media, User, Collection, Tag).
      */
     public function testLoadWithTagWithCollection(): void
     {
@@ -65,16 +65,16 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
             ];
         $this->load(array_merge($minimalConfiguration, $tagAndCollectionDeclaration));
         $collector = DoctrineCollector::getInstance();
-        //assert our model have associations
+        // assert our model has associations
         $this->assertCount(2, $collector->getAssociations());
         $postManyToOneAssociation = $collector->getAssociations()[Post::class]['mapManyToOne'];
-        //assert the post model has  3 many to one associations (user,media,collection)
+        // assert the post model has 3 many to one associations (user, media, collection)
         $this->assertCount(3, $postManyToOneAssociation);
         $postManyToManyAssociation = $collector->getAssociations()[Post::class]['mapManyToMany'];
-        //assert the post model has  1 many to many associations (tag)
+        // assert the post model has 1 many to many association (tag)
         $this->assertCount(1, $postManyToManyAssociation);
         $postOneToManyAssociation = $collector->getAssociations()[Post::class]['mapOneToMany'];
-        //assert the post model has  1 one to many associations (comment)
+        // assert the post model has 1 one to many association (comment)
         $this->assertCount(1, $postOneToManyAssociation);
     }
 
