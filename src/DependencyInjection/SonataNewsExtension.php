@@ -145,7 +145,10 @@ class SonataNewsExtension extends Extension
                  * NEXT_MAJOR:
                  * Throw an exception if the class is not defined
                  */
-                @trigger_error('The class '.$class.' is not defined or doesn\'t exist. This is tolerated now but will be forbidden in 4.0', E_USER_DEPRECATED);
+                @trigger_error(sprintf(
+                    'The "%s" class is not defined or does not exist. This is tolerated now but will be forbidden in 4.0',
+                    $class
+                ), E_USER_DEPRECATED);
 
                 return;
             }
