@@ -141,6 +141,15 @@ class SonataNewsExtension extends Extension
 
         foreach ($config['class'] as $type => $class) {
             if (!class_exists($class)) {
+                /*
+                 * NEXT_MAJOR:
+                 * Throw an exception if the class is not defined
+                 */
+                @trigger_error(sprintf(
+                    'The "%s" class is not defined or does not exist. This is tolerated now but will be forbidden in 4.0',
+                    $class
+                ), E_USER_DEPRECATED);
+
                 return;
             }
         }
