@@ -56,7 +56,8 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->scalarNode('db_driver')
-                    ->defaultValue('no_driver')
+                    // NEXT_MAJOR: Change default value to: no_driver
+                    ->defaultValue('doctrine_orm')
                     ->validate()
                         ->ifNotInArray(self::DB_DRIVERS)
                         ->thenInvalid('SonataNewsBundle - Invalid db driver %s.')
