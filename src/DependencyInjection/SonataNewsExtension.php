@@ -39,7 +39,6 @@ class SonataNewsExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('actions.xml');
-        $loader->load('orm.xml');
         $loader->load('twig.xml');
         $loader->load('form.xml');
         $loader->load('core.xml');
