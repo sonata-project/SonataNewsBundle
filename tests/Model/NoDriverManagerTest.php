@@ -20,7 +20,7 @@ use Sonata\NewsBundle\Model\NoDriverManager;
 class NoDriverManagerTest extends TestCase
 {
     /**
-     * @dataProvider mangerMethods
+     * @dataProvider managerMethods
      */
     public function testException(string $method, array $arguments)
     {
@@ -28,7 +28,7 @@ class NoDriverManagerTest extends TestCase
         \call_user_func_array([new NoDriverManager(), $method], $arguments);
     }
 
-    public function mangerMethods()
+    public function managerMethods()
     {
         return [
             ['getClass', []],
