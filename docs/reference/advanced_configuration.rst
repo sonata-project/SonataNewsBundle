@@ -24,6 +24,8 @@ Advanced Configuration
             comment:    Application\Sonata\NewsBundle\Entity\Comment
             media:      Application\Sonata\MediaBundle\Entity\Media
             user:       Application\Sonata\UserBundle\Entity\User
+            tag:        Application\Sonata\ClassificationBundle\Entity\Tag
+            collection: Application\Sonata\ClassificationBundle\Entity\Collection
 
         admin:
             post:
