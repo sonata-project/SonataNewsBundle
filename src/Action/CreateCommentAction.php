@@ -90,7 +90,7 @@ final class CreateCommentAction extends Controller
             'id' => $id,
         ]);
 
-        if (!$post) {
+        if (!$post instanceof PostInterface) {
             throw new NotFoundHttpException(sprintf('Post (%d) not found', $id));
         }
 
