@@ -88,6 +88,16 @@ Default configuration
                         #ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
+* Define default ``news`` FOS CKEditor configuration
+
+.. code-block:: yaml
+
+    # config/packages/fos_ckeditor.yaml
+
+    fos_ck_editor:
+        configs:
+            news: ~
+
 * Add a new context into your ``sonata_media.yml`` configuration if you don't have go there https://sonata-project.org/bundles/media/master/doc/reference/installation.html:
 
 .. code-block:: yaml
