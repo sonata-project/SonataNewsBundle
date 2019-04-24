@@ -204,7 +204,7 @@ class PostAdmin extends AbstractAdmin
             ->add('author')
             ->add('with_open_comments', CallbackFilter::class, [
 //                'callback'   => array($this, 'getWithOpenCommentFilter'),
-                'callback' => function ($queryBuilder, $alias, $field, $data) use ($that) {
+                'callback' => static function ($queryBuilder, $alias, $field, $data) use ($that) {
                     if (!\is_array($data) || !$data['value']) {
                         return;
                     }
