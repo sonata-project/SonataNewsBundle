@@ -85,7 +85,7 @@ class PostManagerTest extends TestCase
 
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('andWhere')->with($self->equalTo('p.slug = :slug'));
                 $qb->expects($self->once())->method('setParameters')->with($self->equalTo(['slug' => 'bar']));
             })
@@ -104,7 +104,7 @@ class PostManagerTest extends TestCase
 
         $self = $this;
         $result = $this
-            ->getPostManager(function ($qb) {
+            ->getPostManager(static function ($qb) {
             })
             ->findOneByPermalink('', $blog);
 
@@ -115,7 +115,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -127,7 +127,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -139,7 +139,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
@@ -153,7 +153,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -167,7 +167,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -182,7 +182,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsEnabled($qb);
                 $self->assertPostEnabled($qb, 0);
@@ -197,7 +197,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $self->assertRelationsJoined($qb);
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $qb->expects($self->never())->method('andWhere');
@@ -212,7 +212,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 1);
@@ -227,7 +227,7 @@ class PostManagerTest extends TestCase
     {
         $self = $this;
         $this
-            ->getPostManager(function ($qb) use ($self) {
+            ->getPostManager(static function ($qb) use ($self) {
                 $qb->expects($self->once())->method('getRootAliases')->will($self->returnValue(['p']));
                 $self->assertRelationsJoined($qb);
                 $self->assertPostEnabled($qb, 0);
@@ -241,7 +241,7 @@ class PostManagerTest extends TestCase
     public function testGetPublicationDateQueryParts()
     {
         $result = $this
-            ->getPostManager(function () {
+            ->getPostManager(static function () {
             })
             ->getPublicationDateQueryParts('2010-02-10', 'month', 'n');
 

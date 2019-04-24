@@ -67,7 +67,7 @@ class PostControllerTest extends TestCase
         $paramFetcher->expects($this->once())->method('all')->will($this->returnValue([]));
         $paramFetcher->expects($this->exactly(2))->method('get')
             ->with($this->logicalOr($this->equalTo('page'), $this->equalTo('count')))
-            ->will($this->returnCallback(function ($parameter) use ($parameters) {
+            ->will($this->returnCallback(static function ($parameter) use ($parameters) {
                 return $parameters[$parameter];
             }));
 
