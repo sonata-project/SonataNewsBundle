@@ -40,7 +40,7 @@ class PostManagerTest extends TestCase
                 'WITH',
                 $this->stringEndsWith('.enabled = true')
             )
-            ->will($this->returnValue($qb))
+            ->willReturn($qb)
         ;
     }
 
@@ -61,7 +61,7 @@ class PostManagerTest extends TestCase
                 $this->isNull(),
                 $this->isNull()
             )
-            ->will($this->returnValue($qb))
+            ->willReturn($qb)
         ;
     }
 
@@ -76,12 +76,12 @@ class PostManagerTest extends TestCase
         $permalink = $this->createMock(PermalinkInterface::class);
         $permalink->expects($this->once())->method('getParameters')
             ->with($this->equalTo('foo/bar'))
-            ->will($this->returnValue([
+            ->willReturn([
                 'slug' => 'bar',
-            ]));
+            ]);
 
         $blog = $this->createMock(BlogInterface::class);
-        $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
+        $blog->expects($this->once())->method('getPermalinkGenerator')->willReturn($permalink);
 
         $self = $this;
         $this
@@ -100,7 +100,7 @@ class PostManagerTest extends TestCase
             ->willThrowException(new \InvalidArgumentException());
 
         $blog = $this->createMock(BlogInterface::class);
-        $blog->expects($this->once())->method('getPermalinkGenerator')->will($this->returnValue($permalink));
+        $blog->expects($this->once())->method('getPermalinkGenerator')->willReturn($permalink);
 
         $self = $this;
         $result = $this
@@ -257,7 +257,7 @@ class PostManagerTest extends TestCase
         $em = EntityManagerMockFactory::create($this, $qbCallback, []);
 
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
+        $registry->expects($this->any())->method('getManagerForClass')->willReturn($em);
 
         return new PostManager(BasePost::class, $registry);
     }
