@@ -26,7 +26,7 @@ class CommentControllerTest extends TestCase
         $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
+        $commentManager->expects($this->once())->method('find')->willReturn($comment);
 
         $this->assertSame($comment, $this->createCommentController($commentManager)->getCommentAction(1));
     }
@@ -44,7 +44,7 @@ class CommentControllerTest extends TestCase
         $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        $commentManager->expects($this->once())->method('find')->will($this->returnValue($comment));
+        $commentManager->expects($this->once())->method('find')->willReturn($comment);
         $commentManager->expects($this->once())->method('delete');
 
         $view = $this->createCommentController($commentManager)->deleteCommentAction(1);
@@ -57,7 +57,7 @@ class CommentControllerTest extends TestCase
         $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        $commentManager->expects($this->once())->method('find')->will($this->returnValue(null));
+        $commentManager->expects($this->once())->method('find')->willReturn(null);
         $commentManager->expects($this->never())->method('delete');
 
         $this->createCommentController($commentManager)->deleteCommentAction(1);

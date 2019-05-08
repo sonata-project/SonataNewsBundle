@@ -22,10 +22,10 @@ class DatePermalinkTest extends TestCase
     public function testGenerate(): void
     {
         $post = $this->createMock(PostInterface::class);
-        $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
-        $post->expects($this->any())->method('getYear')->will($this->returnValue('2011'));
-        $post->expects($this->any())->method('getMonth')->will($this->returnValue('12'));
-        $post->expects($this->any())->method('getDay')->will($this->returnValue('30'));
+        $post->expects($this->any())->method('getSlug')->willReturn('the-slug');
+        $post->expects($this->any())->method('getYear')->willReturn('2011');
+        $post->expects($this->any())->method('getMonth')->willReturn('12');
+        $post->expects($this->any())->method('getDay')->willReturn('30');
 
         $permalink = new DatePermalink();
         $this->assertSame('2011/12/30/the-slug', $permalink->generate($post));
@@ -34,10 +34,10 @@ class DatePermalinkTest extends TestCase
     public function testCustomFormatting(): void
     {
         $post = $this->createMock(PostInterface::class);
-        $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
-        $post->expects($this->any())->method('getYear')->will($this->returnValue('2011'));
-        $post->expects($this->any())->method('getMonth')->will($this->returnValue('2'));
-        $post->expects($this->any())->method('getDay')->will($this->returnValue('01'));
+        $post->expects($this->any())->method('getSlug')->willReturn('the-slug');
+        $post->expects($this->any())->method('getYear')->willReturn('2011');
+        $post->expects($this->any())->method('getMonth')->willReturn('2');
+        $post->expects($this->any())->method('getDay')->willReturn('01');
 
         $permalink = new DatePermalink('%1$02d/%2$02d/%3$02d/%4$s');
         $this->assertSame('2011/02/01/the-slug', $permalink->generate($post));
