@@ -102,6 +102,7 @@
             <argument type="service" id="sonata.news.manager.comment"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="sonata.news.mailer"/>
+            <argument type="service" id="event_dispatcher"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
