@@ -84,7 +84,7 @@ class CommentManagerTest extends TestCase
         $em = EntityManagerMockFactory::create($this, $qbCallback, []);
 
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($em));
+        $registry->expects($this->any())->method('getManagerForClass')->willReturn($em);
 
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
 

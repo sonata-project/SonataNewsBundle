@@ -21,11 +21,11 @@ class CollectionPermalinkTest extends TestCase
     public function testGenerateWithCollection()
     {
         $collection = $this->createMock('Sonata\ClassificationBundle\Model\CollectionInterface');
-        $collection->expects($this->any())->method('getSlug')->will($this->returnValue('the-collection'));
+        $collection->expects($this->any())->method('getSlug')->willReturn('the-collection');
 
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
-        $post->expects($this->any())->method('getCollection')->will($this->returnValue($collection));
-        $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
+        $post->expects($this->any())->method('getCollection')->willReturn($collection);
+        $post->expects($this->any())->method('getSlug')->willReturn('the-slug');
 
         $permalink = new CollectionPermalink();
         $this->assertSame('the-collection/the-slug', $permalink->generate($post));
@@ -34,8 +34,8 @@ class CollectionPermalinkTest extends TestCase
     public function testGenerateWithoutCollection()
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
-        $post->expects($this->any())->method('getCollection')->will($this->returnValue(null));
-        $post->expects($this->any())->method('getSlug')->will($this->returnValue('the-slug'));
+        $post->expects($this->any())->method('getCollection')->willReturn(null);
+        $post->expects($this->any())->method('getSlug')->willReturn('the-slug');
 
         $permalink = new CollectionPermalink();
         $this->assertSame('the-slug', $permalink->generate($post));
