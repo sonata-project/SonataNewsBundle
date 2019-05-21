@@ -19,8 +19,12 @@ use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\InitRuntimeInterface;
+use Twig\TwigFunction;
 
-class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRuntimeInterface
+class NewsExtension extends AbstractExtension implements InitRuntimeInterface
 {
     /**
      * @var RouterInterface
@@ -33,7 +37,7 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     private $tagManager;
 
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
     private $environment;
 
@@ -71,11 +75,11 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'sonata_news_link_tag_rss',
                 [$this, 'renderTagRss', ['is_safe' => ['html']]]
             ),
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'sonata_news_permalink',
                 [$this, 'generatePermalink']
             ),
@@ -85,7 +89,7 @@ class NewsExtension extends \Twig_Extension implements \Twig_Extension_InitRunti
     /**
      * {@inheritdoc}
      */
-    public function initRuntime(\Twig_Environment $environment): void
+    public function initRuntime(Environment $environment): void
     {
         $this->environment = $environment;
     }
