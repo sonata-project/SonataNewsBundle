@@ -67,7 +67,7 @@
         "sonata-project/doctrine-orm-admin-bundle": "^3.4",
         "sonata-project/notification-bundle": "^3.3",
         "sonata-project/seo-bundle": "^2.5",
-        "symfony/phpunit-bridge": "^4.2"
+        "symfony/phpunit-bridge": "^4.3"
     },
     "suggest": {
         "sonata-project/block-bundle": "For rendering block lists.",
