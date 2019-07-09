@@ -56,8 +56,6 @@ class PostController extends Controller
     }
 
     /**
-     * @param array   $criteria
-     * @param array   $parameters
      * @param Request $request
      *
      * @return Response
@@ -190,8 +188,6 @@ class PostController extends Controller
     }
 
     /**
-     * @param PostInterface $post
-     *
      * @return FormInterface
      */
     public function getCommentForm(PostInterface $post)

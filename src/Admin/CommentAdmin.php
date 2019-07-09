@@ -76,9 +76,6 @@ class CommentAdmin extends AbstractAdmin
         $this->updateCountsComment();
     }
 
-    /**
-     * @param ManagerInterface $commentManager
-     */
     public function setCommentManager(ManagerInterface $commentManager)
     {
         if (!$commentManager instanceof CommentManagerInterface) {

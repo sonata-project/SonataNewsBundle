@@ -45,10 +45,8 @@ class RecentPostsBlockService extends AbstractAdminBlockService
     private $adminPool;
 
     /**
-     * @param string           $name
-     * @param EngineInterface  $templating
-     * @param ManagerInterface $postManager
-     * @param Pool             $adminPool
+     * @param string $name
+     * @param Pool   $adminPool
      */
     public function __construct($name, EngineInterface $templating, ManagerInterface $postManager, Pool $adminPool = null)
     {

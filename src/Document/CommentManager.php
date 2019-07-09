@@ -23,10 +23,8 @@ use Sonata\NewsBundle\Model\PostInterface;
 class CommentManager extends BaseDocumentManager implements CommentManagerInterface
 {
     /**
-     * @param array $criteria
-     * @param int   $page
-     * @param int   $limit
-     * @param array $sort
+     * @param int $page
+     * @param int $limit
      *
      * @return Pager
      */

@@ -46,11 +46,6 @@ class NewsExtension extends AbstractExtension implements InitRuntimeInterface
      */
     private $blog;
 
-    /**
-     * @param RouterInterface  $router
-     * @param ManagerInterface $tagManager
-     * @param BlogInterface    $blog
-     */
     public function __construct(RouterInterface $router, ManagerInterface $tagManager, BlogInterface $blog)
     {
         if (!$tagManager instanceof TagManagerInterface) {
@@ -122,8 +117,6 @@ class NewsExtension extends AbstractExtension implements InitRuntimeInterface
     }
 
     /**
-     * @param PostInterface $post
-     *
      * @return string
      */
     public function generatePermalink(PostInterface $post)
