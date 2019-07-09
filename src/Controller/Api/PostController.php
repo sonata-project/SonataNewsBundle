@@ -61,13 +61,6 @@ class PostController
      */
     protected $formatterPool;
 
-    /**
-     * @param PostManagerInterface    $postManager
-     * @param CommentManagerInterface $commentManager
-     * @param MailerInterface         $mailer
-     * @param FormFactoryInterface    $formFactory
-     * @param FormatterPool           $formatterPool
-     */
     public function __construct(PostManagerInterface $postManager, CommentManagerInterface $commentManager, MailerInterface $mailer, FormFactoryInterface $formFactory, FormatterPool $formatterPool)
     {
         $this->postManager = $postManager;
@@ -97,8 +90,6 @@ class PostController
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
      * @REST\Route(requirements={"_format"="json|xml"})
-     *
-     * @param ParamFetcherInterface $paramFetcher
      *
      * @return PagerInterface
      */
@@ -250,8 +241,7 @@ class PostController
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
-     * @param int                   $id           A post identifier
-     * @param ParamFetcherInterface $paramFetcher
+     * @param int $id A post identifier
      *
      * @return PagerInterface
      */
@@ -292,8 +282,7 @@ class PostController
      *
      * @REST\Route(requirements={"_format"="json|xml"})
      *
-     * @param int     $id      A post identifier
-     * @param Request $request
+     * @param int $id A post identifier
      *
      * @throws HttpException
      *
@@ -395,7 +384,6 @@ class PostController
     /**
      * Filters criteria from $paramFetcher to be compatible with the Pager criteria.
      *
-     * @param ParamFetcherInterface $paramFetcher
      *
      * @return array The filtered criteria
      */

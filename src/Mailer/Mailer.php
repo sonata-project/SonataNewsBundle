@@ -52,12 +52,7 @@ class Mailer implements MailerInterface
     protected $blog;
 
     /**
-     * @param \Swift_Mailer          $mailer
-     * @param BlogInterface          $blog
-     * @param HashGeneratorInterface $generator
-     * @param RouterInterface        $router
-     * @param EngineInterface        $templating
-     * @param array                  $emails
+     * @param \Swift_Mailer $mailer
      */
     public function __construct($mailer, BlogInterface $blog, HashGeneratorInterface $generator, RouterInterface $router, EngineInterface $templating, array $emails)
     {
