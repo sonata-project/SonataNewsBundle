@@ -85,9 +85,6 @@ abstract class AbstractPostArchiveAction extends Controller
         return $response;
     }
 
-    /**
-     * @param SeoPageInterface|null $seoPage
-     */
     public function setSeoPage(SeoPageInterface $seoPage = null)
     {
         $this->seoPage = $seoPage;

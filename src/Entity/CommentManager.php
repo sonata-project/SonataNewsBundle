@@ -30,9 +30,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
     protected $postManager;
 
     /**
-     * @param string           $class
-     * @param ManagerRegistry  $registry
-     * @param ManagerInterface $postManager
+     * @param string $class
      */
     public function __construct($class, ManagerRegistry $registry, ManagerInterface $postManager)
     {
@@ -53,8 +51,6 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
 
     /**
      * Update the number of comment for a comment.
-     *
-     * @param \Sonata\NewsBundle\Model\PostInterface|null $post
      */
     public function updateCommentsCount(PostInterface $post = null)
     {

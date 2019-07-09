@@ -51,8 +51,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
     }
 
     /**
-     * @param string        $permalink
-     * @param BlogInterface $blog
+     * @param string $permalink
      *
      * @return PostInterface|null
      */

@@ -98,8 +98,7 @@ final class CreateCommentAction extends Controller
     }
 
     /**
-     * @param string  $id
-     * @param Request $request
+     * @param string $id
      *
      * @throws NotFoundHttpException
      *

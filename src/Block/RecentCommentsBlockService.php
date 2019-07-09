@@ -45,10 +45,8 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
     protected $adminPool;
 
     /**
-     * @param string           $name
-     * @param EngineInterface  $templating
-     * @param ManagerInterface $commentManager
-     * @param Pool             $adminPool
+     * @param string $name
+     * @param Pool   $adminPool
      */
     public function __construct($name, EngineInterface $templating, ManagerInterface $commentManager, Pool $adminPool = null)
     {

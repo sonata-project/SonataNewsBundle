@@ -33,12 +33,8 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
     protected $blog;
 
     /**
-     * @param string                $context
-     * @param string                $name
-     * @param EngineInterface       $templating
-     * @param MenuProviderInterface $menuProvider
-     * @param FactoryInterface      $factory
-     * @param BlogInterface         $blog
+     * @param string $context
+     * @param string $name
      */
     public function __construct($context, $name, EngineInterface $templating, MenuProviderInterface $menuProvider, FactoryInterface $factory, BlogInterface $blog)
     {
