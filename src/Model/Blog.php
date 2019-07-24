@@ -38,10 +38,9 @@ class Blog implements BlogInterface
     protected $permalinkGenerator;
 
     /**
-     * @param string             $title
-     * @param string             $link
-     * @param string             $description
-     * @param PermalinkInterface $permalinkGenerator
+     * @param string $title
+     * @param string $link
+     * @param string $description
      */
     public function __construct($title, $link, $description, PermalinkInterface $permalinkGenerator)
     {

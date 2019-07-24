@@ -58,9 +58,6 @@ class PostAdmin extends AbstractAdmin
         $this->userManager = $userManager;
     }
 
-    /**
-     * @param FormatterPool $formatterPool
-     */
     public function setPoolFormatter(FormatterPool $formatterPool): void
     {
         $this->formatterPool = $formatterPool;
@@ -82,9 +79,6 @@ class PostAdmin extends AbstractAdmin
         $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
     }
 
-    /**
-     * @param PermalinkInterface $permalinkGenerator
-     */
     public function setPermalinkGenerator(PermalinkInterface $permalinkGenerator): void
     {
         $this->permalinkGenerator = $permalinkGenerator;

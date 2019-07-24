@@ -18,8 +18,6 @@ use Sonata\NewsBundle\Model\CommentInterface;
 interface HashGeneratorInterface
 {
     /**
-     * @param CommentInterface $comment
-     *
      * @return string
      */
     public function generate(CommentInterface $comment);

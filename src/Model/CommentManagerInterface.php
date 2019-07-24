@@ -20,8 +20,6 @@ interface CommentManagerInterface extends ManagerInterface, PageableManagerInter
 {
     /**
      * Update the number of comment for a comment.
-     *
-     * @param PostInterface|null $post
      */
     public function updateCommentsCount(PostInterface $post = null);
 }

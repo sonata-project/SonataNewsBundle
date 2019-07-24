@@ -98,8 +98,6 @@ interface PostInterface
 
     /**
      * Set publication_date_start.
-     *
-     * @param \DateTime|null $publicationDateStart
      */
     public function setPublicationDateStart(\DateTime $publicationDateStart = null);
 
@@ -140,8 +138,6 @@ interface PostInterface
 
     /**
      * Add comments.
-     *
-     * @param CommentInterface $comments
      */
     public function addComments(CommentInterface $comments);
 
@@ -159,8 +155,6 @@ interface PostInterface
 
     /**
      * Add tags.
-     *
-     * @param TagInterface $tags
      */
     public function addTags(TagInterface $tags);
 
@@ -207,8 +201,6 @@ interface PostInterface
 
     /**
      * Set comments_close_at.
-     *
-     * @param \DateTime|null $commentsCloseAt
      */
     public function setCommentsCloseAt(\DateTime $commentsCloseAt = null);
 
@@ -282,9 +274,6 @@ interface PostInterface
      */
     public function getCollection();
 
-    /**
-     * @param CollectionInterface|null $collection
-     */
     public function setCollection(CollectionInterface $collection = null);
 
     /**

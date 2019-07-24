@@ -28,9 +28,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class SonataNewsExtension extends Extension
 {
     /**
-     * @param array                                                   $configs
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     *
      * @throws \InvalidArgumentException
      */
     public function load(array $configs, ContainerBuilder $container): void
@@ -103,8 +100,7 @@ class SonataNewsExtension extends Extension
     }
 
     /**
-     * @param array                                                   $config
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param array $config
      */
     public function configureClass($config, ContainerBuilder $container): void
     {
@@ -118,8 +114,7 @@ class SonataNewsExtension extends Extension
     }
 
     /**
-     * @param array                                                   $config
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param array $config
      */
     public function configureAdmin($config, ContainerBuilder $container): void
     {
@@ -132,9 +127,6 @@ class SonataNewsExtension extends Extension
         $container->setParameter('sonata.news.admin.comment.translation_domain', $config['admin']['comment']['translation']);
     }
 
-    /**
-     * @param array $config
-     */
     public function registerDoctrineMapping(array $config): void
     {
         $collector = DoctrineCollector::getInstance();

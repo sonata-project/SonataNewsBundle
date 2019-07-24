@@ -19,8 +19,7 @@ use Sonata\Doctrine\Model\PageableManagerInterface;
 interface PostManagerInterface extends ManagerInterface, PageableManagerInterface
 {
     /**
-     * @param string        $permalink
-     * @param BlogInterface $blog
+     * @param string $permalink
      *
      * @return PostInterface
      */
