@@ -18,21 +18,21 @@ abstract class Comment implements CommentInterface
     /**
      * Name of the author.
      *
-     * @var string
+     * @var string|null
      */
     protected $name;
 
     /**
      * Email of the author.
      *
-     * @var string
+     * @var string|null
      */
     protected $email;
 
     /**
      * Website url of the author.
      *
-     * @var string
+     * @var string|null
      */
     protected $url;
 

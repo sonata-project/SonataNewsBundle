@@ -69,7 +69,7 @@ abstract class Post implements PostInterface
     protected $enabled;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $publicationDateStart;
 
@@ -89,7 +89,7 @@ abstract class Post implements PostInterface
     protected $commentsEnabled = true;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $commentsCloseAt;
 
