@@ -64,9 +64,6 @@ class Mailer implements MailerInterface
         $this->emails = $emails;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function sendCommentNotification(CommentInterface $comment)
     {
         $rendered = $this->templating->render($this->emails['notification']['template'], [

@@ -39,9 +39,6 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
         $this->postManager = $postManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function save($comment, $andFlush = true)
     {
         parent::save($comment, $andFlush);
@@ -65,9 +62,6 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
         $this->getConnection()->commit();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function delete($comment, $andFlush = true)
     {
         $post = $comment->getPost();
@@ -77,9 +71,6 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
         $this->updateCommentsCount($post);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = [])
     {
         if (!isset($criteria['mode'])) {

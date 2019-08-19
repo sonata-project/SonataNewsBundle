@@ -30,9 +30,6 @@ class DatePermalink implements PermalinkInterface
         $this->pattern = $pattern;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function generate(PostInterface $post)
     {
         return sprintf($this->pattern,
@@ -43,9 +40,6 @@ class DatePermalink implements PermalinkInterface
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParameters($permalink)
     {
         $parameters = explode('/', $permalink);

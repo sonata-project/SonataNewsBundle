@@ -18,9 +18,6 @@ use Sonata\NewsBundle\Model\Post as ModelPost;
 
 abstract class BasePost extends ModelPost
 {
-    /**
-     * {@inheritdoc}
-     */
     public function __construct()
     {
         $this->tags = new ArrayCollection();

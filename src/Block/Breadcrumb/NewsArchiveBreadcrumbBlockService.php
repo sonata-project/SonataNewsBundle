@@ -23,17 +23,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sonata.news.block.breadcrumb_archive';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureSettings(OptionsResolver $resolver)
     {
         parent::configureSettings($resolver);
@@ -44,9 +38,6 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getMenu(BlockContextInterface $blockContext)
     {
         $menu = $this->getRootMenu($blockContext);

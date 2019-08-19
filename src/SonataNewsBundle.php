@@ -19,17 +19,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataNewsBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container)
     {
         $this->registerFormMapping();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function boot()
     {
         $this->registerFormMapping();
