@@ -30,9 +30,6 @@ class HashGenerator implements HashGeneratorInterface
         $this->salt = $salt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function generate(CommentInterface $comment)
     {
         return md5(sprintf('%s/%s/%s', $comment->getPost()->getId(), $comment->getId(), $this->salt));

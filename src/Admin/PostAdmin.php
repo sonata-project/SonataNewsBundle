@@ -63,17 +63,11 @@ class PostAdmin extends AbstractAdmin
         $this->formatterPool = $formatterPool;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function prePersist($post)
     {
         $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function preUpdate($post)
     {
         $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
@@ -84,9 +78,6 @@ class PostAdmin extends AbstractAdmin
         $this->permalinkGenerator = $permalinkGenerator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
@@ -99,9 +90,6 @@ class PostAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $isHorizontal = 'horizontal' === $this->getConfigurationPool()->getOption('form_type');
@@ -168,9 +156,6 @@ class PostAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -184,9 +169,6 @@ class PostAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $that = $this;
@@ -212,9 +194,6 @@ class PostAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
         if (!$childAdmin && !\in_array($action, ['edit'], true)) {
