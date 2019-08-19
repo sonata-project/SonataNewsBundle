@@ -166,7 +166,7 @@ interface PostInterface
     public function getTags();
 
     /**
-     * @param Collection|TagInterface[]$tags
+     * @param Collection|TagInterface[] $tags
      */
     public function setTags($tags);
 
