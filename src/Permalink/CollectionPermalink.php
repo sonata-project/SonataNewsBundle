@@ -17,9 +17,6 @@ use Sonata\NewsBundle\Model\PostInterface;
 
 class CollectionPermalink implements PermalinkInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function generate(PostInterface $post)
     {
         return null === $post->getCollection()
@@ -27,9 +24,6 @@ class CollectionPermalink implements PermalinkInterface
             : sprintf('%s/%s', $post->getCollection()->getSlug(), $post->getSlug());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParameters($permalink)
     {
         $parameters = explode('/', $permalink);

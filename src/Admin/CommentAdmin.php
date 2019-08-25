@@ -30,9 +30,6 @@ class CommentAdmin extends AbstractAdmin
      */
     protected $commentManager;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBatchActions()
     {
         $actions = parent::getBatchActions();
@@ -52,25 +49,16 @@ class CommentAdmin extends AbstractAdmin
         return $actions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function postPersist($object): void
     {
         $this->updateCountsComment();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function postRemove($object): void
     {
         $this->updateCountsComment();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function postUpdate($object): void
     {
         $this->updateCountsComment();
@@ -90,9 +78,6 @@ class CommentAdmin extends AbstractAdmin
         $this->commentManager = $commentManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureFormFields(FormMapper $formMapper): void
     {
         // define group zoning
@@ -125,9 +110,6 @@ class CommentAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
@@ -137,9 +119,6 @@ class CommentAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper

@@ -81,9 +81,6 @@ class NewsExtension extends AbstractExtension implements InitRuntimeInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function initRuntime(Environment $environment): void
     {
         $this->environment = $environment;

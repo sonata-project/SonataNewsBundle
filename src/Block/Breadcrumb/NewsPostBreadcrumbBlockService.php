@@ -43,17 +43,11 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         parent::__construct($context, $name, $templating, $menuProvider, $factory);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sonata.news.block.breadcrumb_post';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureSettings(OptionsResolver $resolver): void
     {
         parent::configureSettings($resolver);
@@ -63,9 +57,6 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getMenu(BlockContextInterface $blockContext)
     {
         $menu = $this->getRootMenu($blockContext);

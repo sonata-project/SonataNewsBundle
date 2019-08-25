@@ -35,7 +35,7 @@ class BasePostRepository extends EntityRepository
     /**
      * return count comments QueryBuilder.
      *
-     * @param  PostInterface
+     * @param PostInterface $post
      *
      * @return QueryBuilder
      */

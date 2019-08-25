@@ -69,7 +69,7 @@ abstract class Post implements PostInterface
     protected $enabled;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $publicationDateStart;
 
@@ -89,7 +89,7 @@ abstract class Post implements PostInterface
     protected $commentsEnabled = true;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $commentsCloseAt;
 
@@ -118,25 +118,16 @@ abstract class Post implements PostInterface
      */
     protected $collection;
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct()
     {
         $this->setPublicationDateStart(new \DateTime());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __toString()
     {
         return $this->getTitle() ?: 'n/a';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTitle($title): void
     {
         $this->title = $title;
@@ -144,138 +135,87 @@ abstract class Post implements PostInterface
         $this->setSlug(Tag::slugify($title));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTitle()
     {
         return $this->title;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setAbstract($abstract): void
     {
         $this->abstract = $abstract;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAbstract()
     {
         return $this->abstract;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setContent($content): void
     {
         $this->content = $content;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getContent()
     {
         return $this->content;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setEnabled($enabled): void
     {
         $this->enabled = $enabled;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getEnabled()
     {
         return $this->enabled;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSlug($slug): void
     {
         $this->slug = $slug;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSlug()
     {
         return $this->slug;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPublicationDateStart(\DateTime $publicationDateStart = null): void
     {
         $this->publicationDateStart = $publicationDateStart;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPublicationDateStart()
     {
         return $this->publicationDateStart;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCreatedAt(\DateTime $createdAt = null): void
     {
         $this->createdAt = $createdAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setUpdatedAt(\DateTime $updatedAt = null): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addComments(CommentInterface $comment): void
     {
         $this->comments[] = $comment;
         $comment->setPost($this);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setComments($comments): void
     {
         $this->comments = new ArrayCollection();
@@ -285,33 +225,21 @@ abstract class Post implements PostInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getComments()
     {
         return $this->comments;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addTags(TagInterface $tags): void
     {
         $this->tags[] = $tags;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTags()
     {
         return $this->tags;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTags($tags): void
     {
         $this->tags = $tags;
@@ -336,97 +264,61 @@ abstract class Post implements PostInterface
         $this->setUpdatedAt(new \DateTime());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getYear()
     {
         return $this->getPublicationDateStart()->format('Y');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMonth()
     {
         return $this->getPublicationDateStart()->format('m');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDay()
     {
         return $this->getPublicationDateStart()->format('d');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCommentsEnabled($commentsEnabled): void
     {
         $this->commentsEnabled = $commentsEnabled;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCommentsEnabled()
     {
         return $this->commentsEnabled;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCommentsCloseAt(\DateTime $commentsCloseAt = null): void
     {
         $this->commentsCloseAt = $commentsCloseAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCommentsCloseAt()
     {
         return $this->commentsCloseAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCommentsDefaultStatus($commentsDefaultStatus): void
     {
         $this->commentsDefaultStatus = $commentsDefaultStatus;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCommentsDefaultStatus()
     {
         return $this->commentsDefaultStatus;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCommentsCount($commentsCount): void
     {
         $this->commentsCount = $commentsCount;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCommentsCount()
     {
         return $this->commentsCount;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isCommentable()
     {
         if (!$this->getCommentsEnabled() || !$this->getEnabled()) {
@@ -440,9 +332,6 @@ abstract class Post implements PostInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isPublic()
     {
         if (!$this->getEnabled()) {
@@ -452,49 +341,31 @@ abstract class Post implements PostInterface
         return 0 === $this->getPublicationDateStart()->diff(new \DateTime())->invert ? true : false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setAuthor($author): void
     {
         $this->author = $author;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAuthor()
     {
         return $this->author;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setImage($image): void
     {
         $this->image = $image;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getImage()
     {
         return $this->image;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCollection(CollectionInterface $collection = null): void
     {
         $this->collection = $collection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCollection()
     {
         return $this->collection;
@@ -508,25 +379,16 @@ abstract class Post implements PostInterface
         $this->contentFormatter = $contentFormatter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getContentFormatter()
     {
         return $this->contentFormatter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRawContent($rawContent): void
     {
         $this->rawContent = $rawContent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRawContent()
     {
         return $this->rawContent;

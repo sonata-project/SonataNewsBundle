@@ -21,17 +21,11 @@ use Sonata\Twig\Status\StatusClassRendererInterface;
  */
 class CommentStatusRenderer implements StatusClassRendererInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function handlesObject($object, $statusName = null)
     {
         return $object instanceof CommentInterface;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getStatusClass($object, $statusName = null, $default = '')
     {
         switch ($object->getStatus()) {

@@ -50,57 +50,36 @@ class Blog implements BlogInterface
         $this->permalinkGenerator = $permalinkGenerator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPermalinkGenerator()
     {
         return $this->permalinkGenerator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setDescription($description): void
     {
         $this->description = $description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription()
     {
         return $this->description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setLink($link): void
     {
         $this->link = $link;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLink()
     {
         return $this->link;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTitle($title): void
     {
         $this->title = $title;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTitle()
     {
         return $this->title;

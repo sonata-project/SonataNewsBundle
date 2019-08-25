@@ -18,9 +18,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommentStatusType extends BaseStatusType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);

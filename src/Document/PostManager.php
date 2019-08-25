@@ -74,15 +74,13 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * Valid criteria are:
      *    enabled - boolean
      *    date - query
      *    tag - string
      *    author - 'NULL', 'NOT NULL', id, array of ids
      *    collections - CollectionInterface
-     *    mode - string public|admin
+     *    mode - string public|admin.
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = [])
     {
@@ -139,9 +137,6 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
         return $pager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPublicationDateQueryParts($date, $step, $alias = 'p')
     {
         return [

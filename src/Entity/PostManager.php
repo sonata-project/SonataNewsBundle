@@ -76,7 +76,13 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Valid criteria are:
+     *    enabled - boolean
+     *    date - query
+     *    tag - string
+     *    author - 'NULL', 'NOT NULL', id, array of ids
+     *    collections - CollectionInterface
+     *    mode - string public|admin.
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = [])
     {
