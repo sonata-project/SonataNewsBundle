@@ -25,7 +25,7 @@ class NoDriverManagerTest extends TestCase
     public function testException(string $method, array $arguments)
     {
         $this->expectException(NoDriverException::class);
-        \call_user_func_array([new NoDriverManager(), $method], $arguments);
+        (new NoDriverManager())->{$method}(...$arguments);
     }
 
     public function managerMethods()
