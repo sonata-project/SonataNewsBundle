@@ -66,6 +66,7 @@ Default configuration
         description:  Cool bundles on top of Symfony2
         salt:         'secureToken'
         permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
+        db_driver:    'no_driver' # doctrine_orm or doctrine_mongodb it is mandatory to choose one here
 
         comment:
             notification:

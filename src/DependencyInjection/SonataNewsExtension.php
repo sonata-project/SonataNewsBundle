@@ -39,7 +39,6 @@ class SonataNewsExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('actions.xml');
-        $loader->load('orm.xml');
         $loader->load('twig.xml');
         $loader->load('form.xml');
         $loader->load('core.xml');
@@ -51,12 +50,16 @@ class SonataNewsExtension extends Extension
         }
 
         if (isset($bundles['FOSRestBundle'], $bundles['NelmioApiDocBundle'])) {
-            $loader->load('api_controllers.xml');
-            $loader->load('api_form.xml');
+            $loader->load(sprintf('api_form_%s.xml', $config['db_driver']));
+            if ('doctrine_orm' === $config['db_driver']) {
+                $loader->load('api_controllers.xml');
+            }
         }
 
+        $loader->load(sprintf('%s.xml', $config['db_driver']));
+
         if (isset($bundles['SonataAdminBundle'])) {
-            $loader->load('admin.xml');
+            $loader->load(sprintf('%s_admin.xml', $config['db_driver']));
         }
 
         if (!isset($config['salt'])) {
@@ -94,7 +97,10 @@ class SonataNewsExtension extends Extension
                 'notification' => $config['comment']['notification'],
             ]);
 
-        $this->registerDoctrineMapping($config);
+        if ('doctrine_orm' === $config['db_driver']) {
+            $this->registerDoctrineMapping($config);
+        }
+
         $this->configureClass($config, $container);
         $this->configureAdmin($config, $container);
     }
