@@ -22,7 +22,7 @@ use Sonata\MediaBundle\Model\MediaInterface;
 interface PostInterface
 {
     /**
-     * @return int
+     * @return mixed
      */
     public function getId();
 
