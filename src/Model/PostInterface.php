@@ -250,22 +250,22 @@ interface PostInterface
     public function isPublic();
 
     /**
-     * @param UserInterface $author
+     * @param UserInterface|null $author
      */
     public function setAuthor($author);
 
     /**
-     * @return UserInterface
+     * @return UserInterface|null
      */
     public function getAuthor();
 
     /**
-     * @param MediaInterface $image
+     * @param MediaInterface|null $image
      */
     public function setImage($image);
 
     /**
-     * @return MediaInterface
+     * @return MediaInterface|null
      */
     public function getImage();
 
