@@ -104,17 +104,17 @@ abstract class Post implements PostInterface
     protected $commentsCount = 0;
 
     /**
-     * @var UserInterface
+     * @var UserInterface|null
      */
     protected $author;
 
     /**
-     * @var MediaInterface
+     * @var MediaInterface|null
      */
     protected $image;
 
     /**
-     * @var Collection|CollectionInterface[]
+     * @var CollectionInterface|null
      */
     protected $collection;
 

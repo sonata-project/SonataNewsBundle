@@ -19,6 +19,9 @@ interface CommentInterface
     public const STATUS_VALID = 1;
     public const STATUS_MODERATE = 2;
 
+    /**
+     * @return mixed
+     */
     public function getId();
 
     /**
