@@ -52,7 +52,7 @@
         "doctrine/dbal": "<2.6.0",
         "friendsofsymfony/rest-bundle": "<1.8 || >=3.0",
         "jms/serializer": "<0.13",
-        "sonata-project/block-bundle": "<3.14",
+        "sonata-project/block-bundle": "<3.18",
         "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
         "sonata-project/notification-bundle": "<3.0 || >=4.0",
         "sonata-project/seo-bundle": "<2.0 || >=3.0"
@@ -63,7 +63,7 @@
         "jms/serializer-bundle": "^1.0 || ^2.0",
         "matthiasnoback/symfony-dependency-injection-test": "^3.1",
         "nelmio/api-doc-bundle": "^2.4",
-        "sonata-project/block-bundle": "^3.14",
+        "sonata-project/block-bundle": "^3.18",
         "sonata-project/doctrine-orm-admin-bundle": "^3.4",
         "sonata-project/notification-bundle": "^3.3",
         "sonata-project/seo-bundle": "^2.5",

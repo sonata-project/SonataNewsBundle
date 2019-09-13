@@ -16,7 +16,7 @@
             <argument type="service" id="sonata.admin.pool" on-invalid="ignore"/>
         </service>
         <service id="sonata.news.block.breadcrumb_archive" class="Sonata\NewsBundle\Block\Breadcrumb\NewsArchiveBreadcrumbBlockService" public="true">
-            <tag name="sonata.block"/>
+            <tag name="sonata.block" context="breadcrumb"/>
             <tag name="sonata.breadcrumb"/>
             <argument>news_archive</argument>
             <argument>sonata.news.block.breadcrumb_archive</argument>
@@ -25,7 +25,7 @@
             <argument type="service" id="knp_menu.factory"/>
         </service>
         <service id="sonata.news.block.breadcrumb_post" class="Sonata\NewsBundle\Block\Breadcrumb\NewsPostBreadcrumbBlockService" public="true">
-            <tag name="sonata.block"/>
+            <tag name="sonata.block" context="breadcrumb"/>
             <tag name="sonata.breadcrumb"/>
             <argument>news_post</argument>
             <argument>sonata.news.block.breadcrumb_post</argument>
