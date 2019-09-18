@@ -52,6 +52,7 @@
         "doctrine/dbal": "<2.6.0",
         "friendsofsymfony/rest-bundle": "<1.8 || >=3.0",
         "jms/serializer": "<0.13",
+        "nelmio/api-doc-bundle": "<2.0 || >=3.0",
         "sonata-project/block-bundle": "<3.18",
         "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
         "sonata-project/notification-bundle": "<3.0 || >=4.0",
@@ -70,6 +71,7 @@
         "symfony/phpunit-bridge": "^4.3"
     },
     "suggest": {
+        "nelmio/api-doc-bundle": "If you want to use the API",
         "sonata-project/block-bundle": "For rendering block lists.",
         "sonata-project/doctrine-orm-admin-bundle": "^2.2",
         "sonata-project/notification-bundle": "^2.2"
