@@ -16,7 +16,7 @@ If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and `
 
 .. code-block:: bash
 
-    composer require nelmio/api-doc-bundle
+    composer require nelmio/api-doc-bundle:^2.10
 
     composer require friendsofsymfony/rest-bundle
 
