@@ -46,6 +46,23 @@ Here's the configuration we used, you may adapt it to your needs:
         twig:
             exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
+    .. code-block:: yaml
+
+        # config/packages/jms_serializer.yaml
+
+        jms_serializer:
+            visitors:
+                xml_serialization:
+                    format_output: '%kernel.debug%'
+            metadata:
+                directories:
+                    ApplicationSonataNewsBundle:
+                        namespace_prefix: 'Application\Sonata\NewsBundle\'
+                        path: '@ApplicationSonataNewsBundle/Resources/config/serializer'
+                    SonataDatagridBundle:
+                        namespace_prefix: 'Sonata\DatagridBundle\'
+                        path: '@SonataDatagridBundle/Resources/config/serializer'
+
 In order to activate the API's, you'll also need to add this to your routing:
 
 .. code-block:: yaml
