@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.10.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.9.0...3.10.0) - 2019-09-20
+### Added
+- Added conflict for unsupported `nelmio/api-doc-bundle` versions
+- Add default context to breadcrumbs
+
+### Changed
+- Changed id type to mixed
+
+### Fixed
+- Match PHPDoc with doctrine model
+
 ## [3.9.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.8.0...3.9.0) - 2019-09-02
 ### Added
 - Add missing `twig/twig` required in `composer.json` with versions `^1.35 || ^2.4`
