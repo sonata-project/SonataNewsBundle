@@ -66,7 +66,7 @@ final class ViewPostAction extends Controller
     {
         $post = $this->postManager->findOneByPermalink($permalink, $this->blog);
 
-        if (!$post || !$post->isPublic()) {
+        if (!$post || !$this->isVisible($post)) {
             throw new NotFoundHttpException('Unable to find the post');
         }
 
