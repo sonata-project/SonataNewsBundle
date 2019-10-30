@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\DatagridBundle\Pager\PageableInterface;
+use Sonata\Doctrine\Model\ManagerInterface;
 
 interface CommentManagerInterface extends ManagerInterface, PageableInterface
 {
