@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Model;
 
 use Sonata\Doctrine\Model\ManagerInterface;
-use Sonata\Doctrine\Model\PageableManagerInterface;
+use Sonata\DatagridBundle\Pager\PageableInterface;
 
-interface PostManagerInterface extends ManagerInterface, PageableManagerInterface
+interface PostManagerInterface extends ManagerInterface, PageableInterface
 {
 }

@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Model;
 
 use Sonata\Doctrine\Model\ManagerInterface;
-use Sonata\Doctrine\Model\PageableManagerInterface;
+use Sonata\DatagridBundle\Pager\PageableInterface;
 
-interface CommentManagerInterface extends ManagerInterface, PageableManagerInterface
+interface CommentManagerInterface extends ManagerInterface, PageableInterface
 {
     /**
      * Update the number of comment for a comment.
