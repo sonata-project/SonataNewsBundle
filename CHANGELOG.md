@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.10.1](https://github.com/sonata-project/SonataNewsBundle/compare/3.10.0...3.10.1) - 2019-11-11
+### Added
+- Add missing translation for admin menu
+
+### Fixed
+- Fix missing call to isVisible
+
 ## [3.10.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.9.0...3.10.0) - 2019-09-20
 ### Added
 - Added conflict for unsupported `nelmio/api-doc-bundle` versions
