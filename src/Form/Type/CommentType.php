@@ -48,11 +48,6 @@ class CommentType extends AbstractType
         return 'sonata_post_comment';
     }
 
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
