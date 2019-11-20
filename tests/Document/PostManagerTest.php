@@ -15,7 +15,7 @@ namespace Sonata\NewsBundle\Tests\Document;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
-use Sonata\Doctrine\Model\PageableManagerInterface;
+use Sonata\DatagridBundle\Pager\PageableInterface;
 use Sonata\NewsBundle\Document\BasePost;
 use Sonata\NewsBundle\Document\PostManager;
 
@@ -27,6 +27,6 @@ class PostManagerTest extends TestCase
 
         $postManager = new PostManager(BasePost::class, $registry);
 
-        $this->assertInstanceOf(PageableManagerInterface::class, $postManager);
+        $this->assertInstanceOf(PageableInterface::class, $postManager);
     }
 }
