@@ -7,7 +7,7 @@
             <argument>%sonata.news.admin.post.entity%</argument>
             <argument>%sonata.news.admin.post.controller%</argument>
             <call method="setUserManager">
-                <argument type="service" id="fos_user.user_manager"/>
+                <argument type="service" id="fos_user.user_manager" on-invalid="null"/>
             </call>
             <call method="setPoolFormatter">
                 <argument type="service" id="sonata.formatter.pool"/>
