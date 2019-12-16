@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\Doctrine\Test\EntityManagerMockFactory;
+use Sonata\Doctrine\Test\EntityManagerMockFactoryTrait;
 use Sonata\NewsBundle\Entity\CommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 
@@ -25,6 +25,8 @@ use Sonata\NewsBundle\Model\CommentInterface;
  */
 class CommentManagerTest extends TestCase
 {
+    use EntityManagerMockFactoryTrait;
+
     public function testGetPager()
     {
         $self = $this;
@@ -81,7 +83,7 @@ class CommentManagerTest extends TestCase
 
     protected function getCommentManager($qbCallback)
     {
-        $em = EntityManagerMockFactory::create($this, $qbCallback, []);
+        $em = $this->createEntityManagerMock($qbCallback, []);
 
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->any())->method('getManagerForClass')->willReturn($em);
