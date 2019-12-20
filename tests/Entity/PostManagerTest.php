@@ -15,7 +15,7 @@ namespace Sonata\NewsBundle\Tests\Entity;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
-use Sonata\Doctrine\Test\EntityManagerMockFactory;
+use Sonata\Doctrine\Test\EntityManagerMockFactoryTrait;
 use Sonata\NewsBundle\Entity\BasePost;
 use Sonata\NewsBundle\Entity\PostManager;
 use Sonata\NewsBundle\Model\BlogInterface;
@@ -23,6 +23,8 @@ use Sonata\NewsBundle\Permalink\PermalinkInterface;
 
 class PostManagerTest extends TestCase
 {
+    use EntityManagerMockFactoryTrait;
+
     public function assertRelationsEnabled($qb): void
     {
         $qb
@@ -254,7 +256,7 @@ class PostManagerTest extends TestCase
 
     protected function getPostManager($qbCallback)
     {
-        $em = EntityManagerMockFactory::create($this, $qbCallback, []);
+        $em = $this->createEntityManagerMock($qbCallback, []);
 
         $registry = $this->createMock(ManagerRegistry::class);
         $registry->expects($this->any())->method('getManagerForClass')->willReturn($em);

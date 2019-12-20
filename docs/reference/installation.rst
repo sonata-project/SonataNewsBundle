@@ -34,13 +34,11 @@ in ``bundles.php`` file of your project::
         Ivory\CKEditorBundle\IvoryCKEditorBundle::class => ['all' => true],
         Sonata\NewsBundle\SonataNewsBundle::class => ['all' => true],
         Sonata\BlockBundle\SonataBlockBundle::class => ['all' => true],
-        Sonata\UserBundle\SonataUserBundle::class => ['all' => true],
         Sonata\MediaBundle\SonataMediaBundle::class => ['all' => true],
         Sonata\AdminBundle\SonataAdminBundle::class => ['all' => true],
         Sonata\IntlBundle\SonataIntlBundle::class => ['all' => true],
         Sonata\FormatterBundle\SonataFormatterBundle::class => ['all' => true],
         Sonata\ClassificationBundle\SonataClassificationBundle::class => ['all' => true],
-        FOS\UserBundle\FOSUserBundle::class => ['all' => true],
         Knp\Bundle\MarkdownBundle\KnpMarkdownBundle::class => ['all' => true],
         Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
         Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle::class => ['all' => true],
@@ -157,7 +155,6 @@ Generate the application bundles
 .. code-block:: bash
 
     bin/console sonata:easy-extends:generate SonataNewsBundle -d src
-    bin/console sonata:easy-extends:generate SonataUserBundle -d src
     bin/console sonata:easy-extends:generate SonataMediaBundle -d src
     bin/console sonata:easy-extends:generate SonataClassificationBundle -d src
 
@@ -171,7 +168,6 @@ Enable the application bundles
     return [
         // ...
         App\Application\Sonata\NewsBundle\ApplicationSonataNewsBundle::class => ['all' => true],
-        App\Application\Sonata\UserBundle\ApplicationSonataUserBundle::class => ['all' => true],
         App\Application\Sonata\MediaBundle\ApplicationSonataMediaBundle::class => ['all' => true],
         App\Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle::class => ['all' => true],
     ];
@@ -198,8 +194,6 @@ Update Database Schema
 .. code-block:: bash
 
     bin/console doctrine:schema:update --force
-
-* Complete the FOS/UserBundle install and use the ``App\Application\Sonata\UserBundle\Entity\User`` as the user class
 
 Add SonataNewsBundle routes
 ---------------------------

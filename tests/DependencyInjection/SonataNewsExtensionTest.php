@@ -21,7 +21,7 @@ use Sonata\MediaBundle\Model\Media;
 use Sonata\NewsBundle\DependencyInjection\SonataNewsExtension;
 use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\Post;
-use Sonata\UserBundle\Model\User;
+use Sonata\NewsBundle\Tests\Fixtures\UserMock;
 
 class SonataNewsExtensionTest extends AbstractExtensionTestCase
 {
@@ -84,7 +84,7 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
                     'post' => Post::class,
                     'comment' => Comment::class,
                     'media' => Media::class,
-                    'user' => User::class,
+                    'user' => UserMock::class,
                 ],
             ];
     }

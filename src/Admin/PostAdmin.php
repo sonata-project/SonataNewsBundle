@@ -36,7 +36,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 class PostAdmin extends AbstractAdmin
 {
     /**
-     * @var UserManagerInterface
+     * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
+     *
+     * @var UserManagerInterface|null
      */
     protected $userManager;
 
@@ -51,7 +53,9 @@ class PostAdmin extends AbstractAdmin
     protected $permalinkGenerator;
 
     /**
-     * @param UserManagerInterface $userManager
+     * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
+     *
+     * @param UserManagerInterface|null $userManager
      */
     public function setUserManager($userManager): void
     {

@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Model;
 
 use Doctrine\Common\Collections\Collection;
-use FOS\UserBundle\Model\UserInterface;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\ClassificationBundle\Model\TagInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 interface PostInterface
 {
