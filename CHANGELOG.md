@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.11.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.10.1...3.11.0) - 2020-01-06
+### Removed
+- Removed tight coupling to user bundle
+- Removed `sonata-project/user-bundle` dependency
+- Support for Symfony < 3.4
+- Support for Symfony >= 4, < 4.2
+
 ## [3.10.1](https://github.com/sonata-project/SonataNewsBundle/compare/3.10.0...3.10.1) - 2019-11-11
 ### Added
 - Add missing translation for admin menu
