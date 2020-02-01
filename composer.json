@@ -61,13 +61,13 @@
         "doctrine/orm": "^2.4",
         "friendsofsymfony/rest-bundle": "^1.8 || ^2.1",
         "jms/serializer-bundle": "^1.0 || ^2.0",
-        "matthiasnoback/symfony-dependency-injection-test": "^3.1",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "nelmio/api-doc-bundle": "^2.4",
         "sonata-project/block-bundle": "^3.18",
         "sonata-project/doctrine-orm-admin-bundle": "^3.4",
         "sonata-project/notification-bundle": "^3.3",
         "sonata-project/seo-bundle": "^2.5",
-        "symfony/phpunit-bridge": "^4.3"
+        "symfony/phpunit-bridge": "^5.0"
     },
     "suggest": {
         "nelmio/api-doc-bundle": "If you want to use the API",

@@ -102,7 +102,7 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
         return array_merge($minimalConfiguration, $tagAndCollectionDeclaration);
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new SonataNewsExtension(),
