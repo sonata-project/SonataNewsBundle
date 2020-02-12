@@ -132,15 +132,22 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
         switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
             case 'postgresql':
                 return sprintf(
-            'UPDATE %s SET comments_count = count_comment.total
+                    'UPDATE %s SET comments_count = count_comment.total
             FROM (SELECT c.post_id, count(*) AS total FROM %s AS c WHERE c.status = 1 GROUP BY c.post_id) count_comment
-            WHERE %s.id = count_comment.post_id', $postTableName, $commentTableName, $postTableName);
+            WHERE %s.id = count_comment.post_id',
+                    $postTableName,
+                    $commentTableName,
+                    $postTableName
+                );
 
             default:
                 return sprintf(
-            'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
+                    'UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
             SET p.comments_count = count_comment.total
-            WHERE p.id = count_comment.post_id', $postTableName, $commentTableName);
+            WHERE p.id = count_comment.post_id',
+                    $postTableName,
+                    $commentTableName
+                );
         }
     }
 }
