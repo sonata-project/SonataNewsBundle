@@ -103,7 +103,8 @@ class NewsExtension extends AbstractExtension implements InitRuntimeInterface
     {
         $rss = [];
         foreach ($this->tagManager->findBy(['enabled' => true]) as $tag) {
-            $rss[] = sprintf('<link href="%s" title="%s : %s" type="application/rss+xml" rel="alternate" />',
+            $rss[] = sprintf(
+                '<link href="%s" title="%s : %s" type="application/rss+xml" rel="alternate" />',
                 $this->router->generate('sonata_news_tag', ['tag' => $tag->getSlug(), '_format' => 'rss'], UrlGeneratorInterface::ABSOLUTE_URL),
                 $this->blog->getTitle(),
                 $tag->getName()
