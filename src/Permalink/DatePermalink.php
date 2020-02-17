@@ -32,7 +32,8 @@ class DatePermalink implements PermalinkInterface
 
     public function generate(PostInterface $post)
     {
-        return sprintf($this->pattern,
+        return sprintf(
+            $this->pattern,
             $post->getYear(),
             $post->getMonth(),
             $post->getDay(),
