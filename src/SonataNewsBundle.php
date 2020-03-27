@@ -13,32 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle;
 
-use Sonata\CoreBundle\Form\FormHelper;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataNewsBundle extends Bundle
 {
-    public function build(ContainerBuilder $container): void
-    {
-        $this->registerFormMapping();
-    }
-
-    public function boot(): void
-    {
-        $this->registerFormMapping();
-    }
-
-    /**
-     * Register form mapping information.
-     */
-    public function registerFormMapping(): void
-    {
-        FormHelper::registerFormTypeMapping([
-            'sonata_post_comment' => 'Sonata\NewsBundle\Form\Type\CommentType',
-            'sonata_news_comment_status' => 'Sonata\NewsBundle\Form\Type\CommentStatusType',
-            'sonata_news_api_form_comment' => 'Sonata\NewsBundle\Form\Type\ApiCommentType',
-            'sonata_news_api_form_post' => 'Sonata\NewsBundle\Form\Type\ApiPostType',
-        ]);
-    }
 }

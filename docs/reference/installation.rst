@@ -30,7 +30,8 @@ in ``bundles.php`` file of your project::
 
     return [
         // ...
-        Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],
+        Sonata\Form\Bridge\Symfony\Bundle\SonataFormBundle::class => ['all' => true],
+        Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle::class => ['all' => true],
         Ivory\CKEditorBundle\IvoryCKEditorBundle::class => ['all' => true],
         Sonata\NewsBundle\SonataNewsBundle::class => ['all' => true],
         Sonata\BlockBundle\SonataBlockBundle::class => ['all' => true],
