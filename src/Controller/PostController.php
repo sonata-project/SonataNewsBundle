@@ -60,7 +60,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function renderArchive(array $criteria = [], array $parameters = [], Request $request = null)
+    public function renderArchive(array $criteria = [], array $parameters = [], ?Request $request = null)
     {
         $action = $this->container->get(PostArchiveAction::class);
 
@@ -72,7 +72,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function archiveAction(Request $request = null)
+    public function archiveAction(?Request $request = null)
     {
         $action = $this->container->get(PostArchiveAction::class);
 
@@ -87,7 +87,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function tagAction($tag, Request $request = null)
+    public function tagAction($tag, ?Request $request = null)
     {
         $action = $this->container->get(TagPostArchiveAction::class);
 
@@ -102,7 +102,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function collectionAction($collection, Request $request = null)
+    public function collectionAction($collection, ?Request $request = null)
     {
         $action = $this->container->get(CollectionPostArchiveAction::class);
 
@@ -116,7 +116,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function archiveMonthlyAction($year, $month, Request $request = null)
+    public function archiveMonthlyAction($year, $month, ?Request $request = null)
     {
         $action = $this->container->get(MonthlyPostArchiveAction::class);
 
@@ -129,7 +129,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function archiveYearlyAction($year, Request $request = null)
+    public function archiveYearlyAction($year, ?Request $request = null)
     {
         $action = $this->container->get(YearlyPostArchiveAction::class);
 
@@ -212,7 +212,7 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function addCommentAction($id, Request $request = null)
+    public function addCommentAction($id, ?Request $request = null)
     {
         $action = $this->container->get(CreateCommentAction::class);
 
@@ -268,7 +268,7 @@ class PostController extends Controller
      *
      * @return Request
      */
-    private function resolveRequest(Request $request = null)
+    private function resolveRequest(?Request $request = null)
     {
         if (null === $request) {
             return $this->get('request_stack')->getCurrentRequest();

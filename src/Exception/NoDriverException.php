@@ -20,7 +20,7 @@ class NoDriverException extends \RuntimeException
 {
     public const DEFAULT_MESSAGE = 'The child node "db_driver" at path "sonata_news" must be configured.';
 
-    public function __construct($message = self::DEFAULT_MESSAGE, $code = 0, \Throwable $previous = null)
+    public function __construct($message = self::DEFAULT_MESSAGE, $code = 0, ?\Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
