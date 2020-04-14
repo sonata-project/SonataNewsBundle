@@ -99,7 +99,7 @@ interface PostInterface
     /**
      * Set publication_date_start.
      */
-    public function setPublicationDateStart(\DateTime $publicationDateStart = null);
+    public function setPublicationDateStart(?\DateTime $publicationDateStart = null);
 
     /**
      * Get publication_date_start.
@@ -113,7 +113,7 @@ interface PostInterface
      *
      * @param \DateTime $createdAt
      */
-    public function setCreatedAt(\DateTime $createdAt = null);
+    public function setCreatedAt(?\DateTime $createdAt = null);
 
     /**
      * Get created_at.
@@ -127,7 +127,7 @@ interface PostInterface
      *
      * @param \DateTime $updatedAt
      */
-    public function setUpdatedAt(\DateTime $updatedAt = null);
+    public function setUpdatedAt(?\DateTime $updatedAt = null);
 
     /**
      * Get updated_at.
@@ -202,7 +202,7 @@ interface PostInterface
     /**
      * Set comments_close_at.
      */
-    public function setCommentsCloseAt(\DateTime $commentsCloseAt = null);
+    public function setCommentsCloseAt(?\DateTime $commentsCloseAt = null);
 
     /**
      * Get comments_close_at.
@@ -274,7 +274,7 @@ interface PostInterface
      */
     public function getCollection();
 
-    public function setCollection(CollectionInterface $collection = null);
+    public function setCollection(?CollectionInterface $collection = null);
 
     /**
      * @param string $contentFormatter

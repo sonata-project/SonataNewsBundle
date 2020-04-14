@@ -54,7 +54,7 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
      *
      * @param PostInterface $post
      */
-    public function updateCommentsCount(PostInterface $post = null)
+    public function updateCommentsCount(?PostInterface $post = null)
     {
         $post->setCommentsCount($post->getCommentsCount() + 1);
         $this->getDocumentManager()->persist($post);

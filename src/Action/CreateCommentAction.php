@@ -79,7 +79,7 @@ final class CreateCommentAction extends Controller
         CommentManagerInterface $commentManager,
         FormFactoryInterface $formFactory,
         MailerInterface $mailer,
-        EventDispatcherInterface $eventDispatcher = null
+        ?EventDispatcherInterface $eventDispatcher = null
     ) {
         $this->router = $router;
         $this->blog = $blog;
