@@ -48,7 +48,7 @@ class RecentPostsBlockService extends AbstractAdminBlockService
      * @param string $name
      * @param Pool   $adminPool
      */
-    public function __construct($name, EngineInterface $templating, ManagerInterface $postManager, Pool $adminPool = null)
+    public function __construct($name, EngineInterface $templating, ManagerInterface $postManager, ?Pool $adminPool = null)
     {
         if (!$postManager instanceof PostManagerInterface) {
             @trigger_error(
@@ -65,7 +65,7 @@ class RecentPostsBlockService extends AbstractAdminBlockService
         parent::__construct($name, $templating);
     }
 
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null)
     {
         $criteria = [
             'mode' => $blockContext->getSetting('mode'),

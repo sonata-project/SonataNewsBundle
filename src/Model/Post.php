@@ -180,7 +180,7 @@ abstract class Post implements PostInterface
         return $this->slug;
     }
 
-    public function setPublicationDateStart(\DateTime $publicationDateStart = null): void
+    public function setPublicationDateStart(?\DateTime $publicationDateStart = null): void
     {
         $this->publicationDateStart = $publicationDateStart;
     }
@@ -190,7 +190,7 @@ abstract class Post implements PostInterface
         return $this->publicationDateStart;
     }
 
-    public function setCreatedAt(\DateTime $createdAt = null): void
+    public function setCreatedAt(?\DateTime $createdAt = null): void
     {
         $this->createdAt = $createdAt;
     }
@@ -200,7 +200,7 @@ abstract class Post implements PostInterface
         return $this->createdAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt = null): void
+    public function setUpdatedAt(?\DateTime $updatedAt = null): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -289,7 +289,7 @@ abstract class Post implements PostInterface
         return $this->commentsEnabled;
     }
 
-    public function setCommentsCloseAt(\DateTime $commentsCloseAt = null): void
+    public function setCommentsCloseAt(?\DateTime $commentsCloseAt = null): void
     {
         $this->commentsCloseAt = $commentsCloseAt;
     }
@@ -361,7 +361,7 @@ abstract class Post implements PostInterface
         return $this->image;
     }
 
-    public function setCollection(CollectionInterface $collection = null): void
+    public function setCollection(?CollectionInterface $collection = null): void
     {
         $this->collection = $collection;
     }
