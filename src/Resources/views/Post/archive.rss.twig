@@ -19,7 +19,7 @@
                   <title>{{ post.title }}</title>
                   <link>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true) }}</link>
                   <description><![CDATA[ {{ post.abstract }} ]]></description>
-                  <pubDate>{{ post.publicationDateStart | format_datetime('eee, MM LLL yyyy HH:mm:ss ZZZ', 'en')}}</pubDate>
+                  <pubDate>{{ post.publicationDateStart | date('Y-m-d\\TH:i:sP', 'UTC') }}</pubDate>
                   <guid>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true) }}</guid>
              </item>
         {% endfor %}
