@@ -112,13 +112,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
      */
     private function getCommentsCountResetQuery($postTableName)
     {
-        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
-            case 'postgresql':
-                return sprintf('UPDATE %s SET comments_count = 0', $postTableName);
-
-            default:
-                return sprintf('UPDATE %s p SET p.comments_count = 0', $postTableName);
-        }
+        return sprintf('UPDATE %s SET comments_count = 0', $postTableName);
     }
 
     /**
@@ -129,31 +123,12 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
      */
     private function getCommentsCountQuery($postTableName, $commentTableName)
     {
-        switch ($this->getConnection()->getDriver()->getDatabasePlatform()->getName()) {
-            case 'postgresql':
-                return sprintf(
-                    <<<'SQL'
-UPDATE %s SET comments_count = count_comment.total
-FROM (SELECT c.post_id, count(*) AS total FROM %s AS c WHERE c.status = 1 GROUP BY c.post_id) count_comment
-WHERE %s.id = count_comment.post_id
-SQL
-                    ,
-                    $postTableName,
-                    $commentTableName,
-                    $postTableName
-                );
-
-            default:
-                return sprintf(
-                    <<<'SQL'
-UPDATE %s p, (SELECT c.post_id, count(*) as total FROM %s as c WHERE c.status = 1 GROUP BY c.post_id) as count_comment
-SET p.comments_count = count_comment.total
-WHERE p.id = count_comment.post_id
-SQL
-                    ,
-                    $postTableName,
-                    $commentTableName
-                );
-        }
+        return sprintf(
+            'UPDATE %s SET comments_count = (select COUNT(*) from %s where %s.id = %s.post_id)',
+            $postTableName,
+            $commentTableName,
+            $postTableName,
+            $commentTableName
+        );
     }
 }
