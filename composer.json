@@ -54,6 +54,7 @@
         "nelmio/api-doc-bundle": "<2.0 || >=3.0",
         "sonata-project/admin-bundle": "<3.59",
         "sonata-project/block-bundle": "<3.18",
+        "sonata-project/core-bundle": "<3.20",
         "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
         "sonata-project/notification-bundle": "<3.0 || >=4.0",
         "sonata-project/seo-bundle": "<2.0 || >=3.0"
