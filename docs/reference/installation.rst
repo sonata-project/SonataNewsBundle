@@ -1,78 +1,93 @@
+.. index::
+    single: Installation
+    single: Configuration
+
 Installation
 ============
 
-Download the Bundle(s)
-----------------------
+Prerequisites
+-------------
 
-.. code-block:: bash
+PHP ^7.2 and Symfony ^4.4 are needed to make this bundle work, there are
+also some Sonata dependencies that need to be installed and configured beforehand.
+
+Required dependencies:
+
+* `SonataAdminBundle <https://sonata-project.org/bundles/admin>`_
+* `SonataBlockBundle <https://sonata-project.org/bundles/block>`_
+* `SonataFormatterBundle <https://sonata-project.org/bundles/formatter>`_
+* `SonataIntlBundle <https://sonata-project.org/bundles/intl>`_
+* `SonataClassificationBundle <https://sonata-project.org/bundles/classification>`_
+* `SonataMediaBundle <https://sonata-project.org/bundles/media>`_
+
+And the persistence bundle (choose one):
+
+* `SonataDoctrineOrmAdminBundle <https://sonata-project.org/bundles/doctrine-orm-admin>`_
+* `SonataDoctrineMongoDBAdminBundle <https://sonata-project.org/bundles/mongo-admin>`_
+
+Follow also their configuration step; you will find everything you need in
+their own installation chapter.
+
+.. note::
+
+    If a dependency is already installed somewhere in your project or in
+    another dependency, you won't need to install it again.
+
+Enable the Bundle
+-----------------
+
+Add ``SonataNewsBundle`` via composer::
 
     composer require sonata-project/news-bundle
 
-.. code-block:: bash
+If you want to use the REST API, you also need ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle``::
 
-     composer require sonata-project/doctrine-orm-admin-bundle
+    composer require friendsofsymfony/rest-bundle nelmio/api-doc-bundle
 
-If you want to use the API, you also need ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle``.
-
-.. code-block:: bash
-
-    composer require nelmio/api-doc-bundle
-
-    composer require friendsofsymfony/rest-bundle
-
-Enable the Bundle(s)
---------------------
-
-Then, enable the bundle by adding it to the list of registered bundles
-in ``bundles.php`` file of your project::
+Next, be sure to enable the bundles in your ``config/bundles.php`` file if they
+are not already enabled::
 
     // config/bundles.php
 
     return [
         // ...
-        Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],
-        Ivory\CKEditorBundle\IvoryCKEditorBundle::class => ['all' => true],
         Sonata\NewsBundle\SonataNewsBundle::class => ['all' => true],
-        Sonata\BlockBundle\SonataBlockBundle::class => ['all' => true],
-        Sonata\MediaBundle\SonataMediaBundle::class => ['all' => true],
-        Sonata\AdminBundle\SonataAdminBundle::class => ['all' => true],
-        Sonata\IntlBundle\SonataIntlBundle::class => ['all' => true],
-        Sonata\FormatterBundle\SonataFormatterBundle::class => ['all' => true],
-        Sonata\ClassificationBundle\SonataClassificationBundle::class => ['all' => true],
-        Knp\Bundle\MarkdownBundle\KnpMarkdownBundle::class => ['all' => true],
-        Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
-        Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle::class => ['all' => true],
-        JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
-        Sonata\TranslationBundle\SonataTranslationBundle::class => ['all' => true],
-        Sonata\EasyExtendsBundle\SonataEasyExtendsBundle::class => ['dev' => true],
     ];
 
-.. note::
+Configuration
+=============
 
-    `You need to setup SonataBlockBundle first. <https://sonata-project.org/bundles/block/master/doc/reference/installation.html>`_
-
-Default configuration
----------------------
+Sonata Configuration
+--------------------
 
 .. code-block:: yaml
 
     # config/packages/sonata_news.yaml
 
     sonata_news:
-        title:        Sonata Project
-        link:         https://sonata-project.org
-        description:  Cool bundles on top of Symfony2
-        salt:         'secureToken'
+        title: Sonata Project
+        link: https://sonata-project.org
+        description: Cool bundles on top of Symfony
+        salt: secureToken
         permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
-        db_driver:    'no_driver' # doctrine_orm or doctrine_mongodb it is mandatory to choose one here
-
+        db_driver: doctrine_orm
+        class:
+            post: App\Entity\SonataNewsPost
+            comment: App\Entity\SonataNewsComment
+            media: App\Entity\SonataMediaMedia
+            user: App\Entity\SonataUserUser
+            tag: App\Entity\SonataClassificationTag
+            collection: App\Entity\SonataClassificationCollection
         comment:
             notification:
-                emails:   [email@example.org, email2@example.org]
-                from:     no-reply@sonata-project.org
+                emails: [email@example.org, email2@example.org]
+                from: no-reply@sonata-project.org
                 template: '@SonataNews/Mail/comment_notification.txt.twig'
 
-.. code-block:: yaml
+Doctrine ORM Configuration
+--------------------------
+
+Add the bundle in the config mapping definition (or enable `auto_mapping`_)::
 
     # config/packages/doctrine.yaml
 
@@ -80,110 +95,107 @@ Default configuration
         orm:
             entity_managers:
                 default:
-                    #metadata_cache_driver: apc
-                    #query_cache_driver: apc
-                    #result_cache_driver: apc
                     mappings:
-                        #ApplicationSonataNewsBundle: ~
                         SonataNewsBundle: ~
 
-* Add a new context into your ``sonata_media.yaml`` configuration if you don't have go there https://sonata-project.org/bundles/media/master/doc/reference/installation.html:
+And then create the corresponding entities, ``src/Entity/SonataNewsComment``::
 
-.. code-block:: yaml
+    // src/Entity/SonataNewsComment.php
 
-    # config/packages/sonata_media.yaml
+    use Doctrine\ORM\Mapping as ORM;
+    use Sonata\NewsBundle\Entity\BaseComment;
 
-    news:
-        providers:
-            - sonata.media.provider.dailymotion
-            - sonata.media.provider.youtube
-            - sonata.media.provider.image
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="news__comment")
+     */
+    class SonataNewsComment extends BaseComment
+    {
+        /**
+         * @ORM\Id
+         * @ORM\GeneratedValue
+         * @ORM\Column(type="integer")
+         */
+        protected $id;
+    }
 
-        formats:
-            small: { width: 150 , quality: 95}
-            big:   { width: 500 , quality: 90}
+and ``src/Entity/SonataNewsPost``::
 
-* Create configuration file ``sonata_formatter.yaml`` the text formatters available for your blog post:
+    // src/Entity/SonataNewsPost.php
 
-.. code-block:: yaml
+    use Doctrine\ORM\Mapping as ORM;
+    use Sonata\NewsBundle\Entity\BasePost;
 
-    # config/packages/sonata_formatter.yaml
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="news__post")
+     */
+    class SonataNewsPost extends BasePost
+    {
+        /**
+         * @ORM\Id
+         * @ORM\GeneratedValue
+         * @ORM\Column(type="integer")
+         */
+        protected $id;
+    }
 
-    sonata_formatter:
-        formatters:
-            markdown:
-                service: sonata.formatter.text.markdown
-                extensions:
-                    - sonata.formatter.twig.control_flow
-                    - sonata.formatter.twig.gist
-                    - sonata.media.formatter.twig
+The only thing left is to update your schema::
 
-            text:
-                service: sonata.formatter.text.text
-                extensions:
-                    - sonata.formatter.twig.control_flow
-                    - sonata.formatter.twig.gist
-                    - sonata.media.formatter.twig
+    bin/console doctrine:schema:update --force
 
-            rawhtml:
-                service: sonata.formatter.text.raw
-                extensions:
-                    - sonata.formatter.twig.control_flow
-                    - sonata.formatter.twig.gist
-                    - sonata.media.formatter.twig
-
-            richhtml:
-                service: sonata.formatter.text.raw
-                extensions:
-                    - sonata.formatter.twig.control_flow
-                    - sonata.formatter.twig.gist
-                    - sonata.media.formatter.twig
-
-Generate the application bundles
---------------------------------
-
-.. code-block:: bash
-
-    bin/console sonata:easy-extends:generate SonataNewsBundle -d src
-    bin/console sonata:easy-extends:generate SonataMediaBundle -d src
-    bin/console sonata:easy-extends:generate SonataClassificationBundle -d src
-
-Enable the application bundles
+Doctrine MongoDB Configuration
 ------------------------------
 
-.. code-block:: php
+You have to create the corresponding documents, ``src/Document/SonataNewsComment``::
 
-    // config/bundles.php
+    // src/Document/SonataNewsComment.php
 
-    return [
-        // ...
-        App\Application\Sonata\NewsBundle\ApplicationSonataNewsBundle::class => ['all' => true],
-        App\Application\Sonata\MediaBundle\ApplicationSonataMediaBundle::class => ['all' => true],
-        App\Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle::class => ['all' => true],
-    ];
+    use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+    use Sonata\NewsBundle\Document\BaseComment;
 
-Uncomment the ApplicationSonataNewsBundle mapping
--------------------------------------------------
+    /**
+     * @MongoDB\Document
+     */
+    class SonataNewsComment extends BaseComment
+    {
+        /**
+         * @MongoDB\Id
+         */
+        protected $id;
+    }
 
-.. code-block:: yaml
+and ``src/Document/SonataNewsPost``::
+
+    // src/Document/SonataNewsPost.php
+
+    use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+    use Sonata\NewsBundle\Document\BasePost;
+
+    /**
+     * @MongoDB\Document
+     */
+    class SonataNewsPost extends BasePost
+    {
+        /**
+         * @MongoDB\Id
+         */
+        protected $id;
+    }
+
+Then configure ``SonataNewsBundle`` to use the newly generated classes::
 
     # config/packages/sonata_news.yaml
 
-    doctrine:
-        orm:
-            entity_managers:
-                default:
-                    # ...
-                    mappings:
-                        ApplicationSonataNewsBundle: ~
-                        SonataNewsBundle: ~
-
-Update Database Schema
-----------------------
-
-.. code-block:: bash
-
-    bin/console doctrine:schema:update --force
+    sonata_news:
+        manager_type: doctrine_mongodb
+        class:
+            post: App\Document\SonataNewsPost
+            comment: App\Document\SonataNewsComment
+            media: App\Document\SonataMediaMedia
+            user: App\Document\SonataUserUser
+            tag: App\Document\SonataClassificationTag
+            collection: App\Document\SonataClassificationCollection
 
 Add SonataNewsBundle routes
 ---------------------------
@@ -195,3 +207,18 @@ Add SonataNewsBundle routes
     news:
         resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
         prefix: /news
+
+Next Steps
+----------
+
+At this point, your Symfony installation should be fully functional, without errors
+showing up from SonataNewsBundle. If, at this point or during the installation,
+you come across any errors, don't panic:
+
+    - Read the error message carefully. Try to find out exactly which bundle is causing the error.
+      Is it SonataNewsBundle or one of the dependencies?
+    - Make sure you followed all the instructions correctly, for both SonataNewsBundle and its dependencies.
+    - Still no luck? Try checking the project's `open issues on GitHub`_.
+
+.. _`open issues on GitHub`: https://github.com/sonata-project/SonataNewsBundle/issues
+.. _`auto_mapping`: http://symfony.com/doc/4.4/reference/configuration/doctrine.html#configuration-overviews

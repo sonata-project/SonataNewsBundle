@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\DependencyInjection;
 
-use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector;
+use Sonata\Doctrine\Mapper\Builder\OptionsBuilder;
+use Sonata\Doctrine\Mapper\DoctrineCollector;
+use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector as DeprecatedDoctrineCollector;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -98,7 +100,12 @@ class SonataNewsExtension extends Extension
             ]);
 
         if ('doctrine_orm' === $config['db_driver']) {
-            $this->registerDoctrineMapping($config);
+            if (isset($bundles['SonataDoctrineBundle'])) {
+                $this->registerSonataDoctrineMapping($config);
+            } else {
+                // NEXT MAJOR: Remove next line and throw error when not registering SonataDoctrineBundle
+                $this->registerDoctrineMapping($config);
+            }
         }
 
         $this->configureClass($config, $container);
@@ -133,9 +140,17 @@ class SonataNewsExtension extends Extension
         $container->setParameter('sonata.news.admin.comment.translation_domain', $config['admin']['comment']['translation']);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this method.
+     */
     public function registerDoctrineMapping(array $config)
     {
-        $collector = DoctrineCollector::getInstance();
+        @trigger_error(
+            'Using SonataEasyExtendsBundle is deprecated since sonata-project/news-bundle 3.x. Please register SonataDoctrineBundle as a bundle instead.',
+            E_USER_DEPRECATED
+        );
+
+        $collector = DeprecatedDoctrineCollector::getInstance();
 
         foreach ($config['class'] as $type => $class) {
             if (!class_exists($class)) {
@@ -260,5 +275,85 @@ class SonataNewsExtension extends Extension
                 ],
             'orphanRemoval' => false,
         ]);
+    }
+
+    private function registerSonataDoctrineMapping(array $config): void
+    {
+        foreach ($config['class'] as $type => $class) {
+            if (!class_exists($class)) {
+                return;
+            }
+        }
+
+        $collector = DoctrineCollector::getInstance();
+
+        $collector->addAssociation(
+            $config['class']['post'],
+            'mapOneToMany',
+            OptionsBuilder::createOneToMany('comments', $config['class']['comment'])
+                ->cascade(['remove', 'persist'])
+                ->mappedBy('post')
+                ->orphanRemoval()
+                ->addOrder('createdAt', 'DESC')
+        );
+
+        $collector->addAssociation(
+            $config['class']['post'],
+            'mapManyToOne',
+            OptionsBuilder::createManyToOne('image', $config['class']['media'])
+                ->cascade(['remove', 'persist', 'refresh', 'merge', 'detach'])
+                ->addJoin([
+                    'name' => 'image_id',
+                    'referencedColumnName' => 'id',
+                ])
+        );
+
+        $collector->addAssociation(
+            $config['class']['post'],
+            'mapManyToOne',
+            OptionsBuilder::createManyToOne('author', $config['class']['user'])
+                ->cascade(['persist'])
+                ->addJoin([
+                    'name' => 'author_id',
+                    'referencedColumnName' => 'id',
+                ])
+        );
+
+        $collector->addAssociation(
+            $config['class']['post'],
+            'mapManyToOne',
+            OptionsBuilder::createManyToOne('collection', $config['class']['collection'])
+                ->cascade(['persist'])
+                ->addJoin([
+                    'name' => 'collection_id',
+                    'referencedColumnName' => 'id',
+                ])
+        );
+
+        $collector->addAssociation(
+            $config['class']['post'],
+            'mapManyToMany',
+            OptionsBuilder::createManyToMany('tags', $config['class']['tag'])
+                ->cascade(['persist'])
+                ->addJoinTable($config['table']['post_tag'], [[
+                    'name' => 'post_id',
+                    'referencedColumnName' => 'id',
+                ]], [[
+                    'name' => 'tag_id',
+                    'referencedColumnName' => 'id',
+                ]])
+        );
+
+        $collector->addAssociation(
+            $config['class']['comment'],
+            'mapManyToOne',
+            OptionsBuilder::createManyToOne('post', $config['class']['post'])
+                ->inversedBy('comments')
+                ->addJoin([
+                    'name' => 'post_id',
+                    'referencedColumnName' => 'id',
+                    'nullable' => false,
+                ])
+        );
     }
 }

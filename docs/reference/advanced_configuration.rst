@@ -6,36 +6,36 @@ Advanced Configuration
     # config/packages/sonata_news.yaml
 
     sonata_news:
-        title:        Sonata Project
-        link:         https://sonata-project.org
-        description:  Cool bundles on top of Symfony2
-        salt:         'secureToken'
+        title: Sonata Project
+        link: https://sonata-project.org
+        description: Cool bundles on top of Symfony2
+        salt: 'secureToken'
         permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
         permalink:
-            date:     '%%1$04d/%%2$02d/%%3$02d/%%4$s' # => 2012/02/01/slug
-        db_driver:    'no_driver'
+            date: '%%1$04d/%%2$02d/%%3$02d/%%4$s' # => 2012/02/01/slug
+        db_driver: 'no_driver'
         comment:
             notification:
-                emails:   [email@example.org, email2@example.org]
-                from:     no-reply@sonata-project.org
+                emails: [email@example.org, email2@example.org]
+                from: no-reply@sonata-project.org
                 template: '@SonataNews/Mail/comment_notification.txt.twig'
 
         class:
-            post:       Application\Sonata\NewsBundle\Entity\Post
-            comment:    Application\Sonata\NewsBundle\Entity\Comment
-            media:      Application\Sonata\MediaBundle\Entity\Media
-            user:       Application\Sonata\UserBundle\Entity\User
-            tag:        Application\Sonata\ClassificationBundle\Entity\Tag
-            collection: Application\Sonata\ClassificationBundle\Entity\Collection
+            post: App\Entity\SonataNewsPost
+            comment: App\Entity\SonataNewsComment
+            media: App\Entity\SonataMediaMedia
+            user: App\Entity\SonataUserUser
+            tag: App\Entity\SonataClassificationTag
+            collection: App\Entity\SonataClassificationCollection
 
         admin:
             post:
-                class:       Sonata\NewsBundle\Admin\PostAdmin
-                controller:  SonataAdminBundle:CRUD
+                class: Sonata\NewsBundle\Admin\PostAdmin
+                controller: SonataAdminBundle:CRUD
                 translation: SonataNewsBundle
             comment:
-                class:       Sonata\NewsBundle\Admin\CommentAdmin
-                controller:  SonataNewsBundle:CommentAdmin
+                class: Sonata\NewsBundle\Admin\CommentAdmin
+                controller: SonataNewsBundle:CommentAdmin
                 translation: SonataNewsBundle
 
 .. code-block:: yaml
@@ -45,8 +45,8 @@ Advanced Configuration
     sonata_classification:
         class:
             collection: Application\Sonata\ClassificationBundle\Entity\Collection
-            tag:        Application\Sonata\ClassificationBundle\Entity\Tag
-            category:   Application\Sonata\ClassificationBundle\Entity\Category
+            tag: Application\Sonata\ClassificationBundle\Entity\Tag
+            category: Application\Sonata\ClassificationBundle\Entity\Category
 
 .. code-block:: yaml
 
