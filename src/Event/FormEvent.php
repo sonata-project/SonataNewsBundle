@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\EventDispatcher\Event;
 
 final class FormEvent extends Event
 {

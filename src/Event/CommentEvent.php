@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Event;
 
 use Sonata\NewsBundle\Model\CommentInterface;
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class CommentEvent extends Event
 {
