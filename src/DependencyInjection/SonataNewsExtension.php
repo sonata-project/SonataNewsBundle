@@ -21,6 +21,7 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Twig\Extra\String\StringExtension;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -103,6 +104,7 @@ class SonataNewsExtension extends Extension
 
         $this->configureClass($config, $container);
         $this->configureAdmin($config, $container);
+        $this->configureStringExtension($container);
     }
 
     /**
@@ -260,5 +262,15 @@ class SonataNewsExtension extends Extension
                 ],
             'orphanRemoval' => false,
         ]);
+    }
+
+    private function configureStringExtension(ContainerBuilder $container): void
+    {
+        if (!$container->hasDefinition('twig.extension.string') || !is_a($container->getDefinition('twig.extension.string')->getClass(), StringExtension::class)) {
+            $definition = new Definition(StringExtension::class);
+            $definition->addTag('twig.extension');
+
+            $container->setDefinition(StringExtension::class, $definition);
+        }
     }
 }
