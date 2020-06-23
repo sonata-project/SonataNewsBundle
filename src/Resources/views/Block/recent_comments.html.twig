@@ -48,13 +48,13 @@ file that was distributed with this source code.
                                 {% endif %}
                             </span>&nbsp;
 
-                            {{ comment.name }} - {{ comment.message|truncate(30) }}
+                            {{ comment.name }} - {{ comment.message|u.truncate(30) }}
                         </a>
                     {% else %}
                         <a class="list-group-item"
                            href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(comment.post) }) }}"
                         >
-                            {{ comment.name }} - {{ comment.message|truncate(30) }}
+                            {{ comment.name }} - {{ comment.message|u.truncate(30) }}
                         </a>
                     {% endif %}
                 {% else %}
