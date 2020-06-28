@@ -25,7 +25,6 @@ use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 use Sonata\NewsBundle\SonataNewsEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -33,6 +32,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final class CreateCommentAction extends Controller
 {
@@ -126,7 +126,7 @@ final class CreateCommentAction extends Controller
         // NEXT_MAJOR: Remove the if code
         if (null !== $this->eventDispatcher) {
             $event = new GetResponseCommentEvent($comment, $request);
-            $this->eventDispatcher->dispatch(SonataNewsEvents::COMMENT_INITIALIZE, $event);
+            $this->eventDispatcher->dispatch($event, SonataNewsEvents::COMMENT_INITIALIZE);
 
             if (null !== $event->getResponse()) {
                 return $event->getResponse();
@@ -140,7 +140,7 @@ final class CreateCommentAction extends Controller
             // NEXT_MAJOR: Remove the if code
             if (null !== $this->eventDispatcher) {
                 $event = new FormEvent($form, $request);
-                $this->eventDispatcher->dispatch(SonataNewsEvents::COMMENT_SUCCESS, $event);
+                $this->eventDispatcher->dispatch($event, SonataNewsEvents::COMMENT_SUCCESS);
             }
 
             $comment = $form->getData();
@@ -156,8 +156,8 @@ final class CreateCommentAction extends Controller
             // NEXT_MAJOR: Remove the if code
             if (null !== $this->eventDispatcher) {
                 $this->eventDispatcher->dispatch(
-                    SonataNewsEvents::COMMENT_COMPLETED,
-                    new FilterCommentResponseEvent($comment, $request, $response)
+                    new FilterCommentResponseEvent($comment, $request, $response),
+                    SonataNewsEvents::COMMENT_COMPLETED
                 );
             }
 
