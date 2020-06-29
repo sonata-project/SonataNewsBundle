@@ -22,7 +22,6 @@ use Sonata\NewsBundle\DependencyInjection\SonataNewsExtension;
 use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\Post;
 use Sonata\NewsBundle\Tests\Fixtures\UserMock;
-use Twig\Extra\String\StringExtension;
 
 class SonataNewsExtensionTest extends AbstractExtensionTestCase
 {
@@ -65,13 +64,6 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
         $this->assertCount(1, $postManyToManyAssociation, 'The post model should have 1 many to many association (tag)');
         $postOneToManyAssociation = $collector->getAssociations()[Post::class]['mapOneToMany'];
         $this->assertCount(1, $postOneToManyAssociation, 'The post model should have 1 one to many association (comment)');
-    }
-
-    public function testLoadTwigStringExtension(): void
-    {
-        $this->load($this->getConfigurationWithTagWithCollection());
-
-        $this->assertContainerBuilderHasServiceDefinitionWithTag(StringExtension::class, 'twig.extension');
     }
 
     protected function getMinimalConfiguration(): array

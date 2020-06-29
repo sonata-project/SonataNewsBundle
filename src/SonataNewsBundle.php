@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle;
 
 use Sonata\CoreBundle\Form\FormHelper;
+use Sonata\NewsBundle\DependencyInjection\Compiler\TwigStringExtensionCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -21,6 +22,8 @@ class SonataNewsBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
+        $container->addCompilerPass(new TwigStringExtensionCompilerPass());
+
         $this->registerFormMapping();
     }
 
