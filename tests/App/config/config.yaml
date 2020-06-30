@@ -1,0 +1,37 @@
+imports:
+    - security.yaml
+    - sonata.yaml
+
+framework:
+    test: true
+    secret: secret
+    session:
+        handler_id: session.handler.native_file
+        storage_id: session.storage.mock_file
+        name: MOCKSESSID
+    translator:
+        enabled: true
+    form:
+        enabled: true
+    csrf_protection:
+        enabled: true
+    templating:
+        engines: [twig]
+
+twig:
+    form_themes:
+
+doctrine:
+    dbal:
+        url: 'sqlite:///%kernel.cache_dir%/data.db'
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/../../src/Entity'
+                prefix: 'App\Entity'
+                alias: App

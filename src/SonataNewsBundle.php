@@ -15,6 +15,7 @@ namespace Sonata\NewsBundle;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\NewsBundle\DependencyInjection\Compiler\TwigStringExtensionCompilerPass;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -22,7 +23,7 @@ class SonataNewsBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new TwigStringExtensionCompilerPass());
+        $container->addCompilerPass(new TwigStringExtensionCompilerPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1);
 
         $this->registerFormMapping();
     }
