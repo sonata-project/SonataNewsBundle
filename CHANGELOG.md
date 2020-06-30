@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.13.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.12.0...3.13.0) - 2020-06-29
+### Added
+- [[#602](https://github.com/sonata-project/SonataNewsBundle/pull/602)] Added
+  `twig/string-extra` dependency. ([@wbloszyk](https://github.com/wbloszyk))
+
+### Changed
+- [[#602](https://github.com/sonata-project/SonataNewsBundle/pull/602)] Changed
+  use of `truncate` filter with `u` filter.
+([@wbloszyk](https://github.com/wbloszyk))
+
+### Fixed
+- [[#603](https://github.com/sonata-project/SonataNewsBundle/pull/603)]
+  Deprecations for event dispatching ([@wbloszyk](https://github.com/wbloszyk))
+- [[#594](https://github.com/sonata-project/SonataNewsBundle/pull/594)] Fixed
+  sql to work with mssql ([@wbloszyk](https://github.com/wbloszyk))
+
+### Removed
+- [[#603](https://github.com/sonata-project/SonataNewsBundle/pull/603)] Remove
+  support for Symfony <4.3 and php <7.2
+([@wbloszyk](https://github.com/wbloszyk))
+- [[#595](https://github.com/sonata-project/SonataNewsBundle/pull/595)] Remove
+  SonataCoreBundle dependencies ([@wbloszyk](https://github.com/wbloszyk))
+
 ## [3.12.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.11.0...3.12.0) - 2020-05-02
 ### Changed
 - Make admin bundle optional
