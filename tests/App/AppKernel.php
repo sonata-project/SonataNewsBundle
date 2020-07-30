@@ -18,7 +18,7 @@ use JMS\SerializerBundle\JMSSerializerBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
 use Sonata\BlockBundle\SonataBlockBundle;
 use Sonata\ClassificationBundle\SonataClassificationBundle;
-use Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle;
+use Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle;
 use Sonata\Form\Bridge\Symfony\SonataFormBundle;
 use Sonata\IntlBundle\SonataIntlBundle;
 use Sonata\MediaBundle\SonataMediaBundle;
