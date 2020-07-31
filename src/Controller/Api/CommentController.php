@@ -31,7 +31,7 @@ class CommentController
     protected $commentManager;
 
     /**
-     * @param CommentManagerInterface $commentManager A comment manager
+     * @param CommentManagerInterface $commentManager Comment manager
      */
     public function __construct(CommentManagerInterface $commentManager)
     {
@@ -44,7 +44,7 @@ class CommentController
      * @ApiDoc(
      *  resource=true,
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="comment id"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Comment identifier"}
      *  },
      *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
      *  statusCodes={
@@ -55,9 +55,7 @@ class CommentController
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
-     * @param int $id A comment identifier
+     * @param int $id Comment identifier
      *
      * @throws NotFoundHttpException
      *
@@ -73,7 +71,7 @@ class CommentController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="comment identifier"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Comment identifier"}
      *  },
      *  statusCodes={
      *      200="Returned when comment is successfully deleted",
@@ -82,9 +80,7 @@ class CommentController
      *  }
      * )
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
-     * @param int $id A comment identifier
+     * @param int $id Comment identifier
      *
      * @throws NotFoundHttpException
      *
@@ -106,7 +102,7 @@ class CommentController
     /**
      * Returns a comment entity instance.
      *
-     * @param int $id A comment identifier
+     * @param int $id Comment identifier
      *
      * @throws NotFoundHttpException
      *
