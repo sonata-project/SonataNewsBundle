@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Controller\Api;
 
-use Application\Sonata\NewsBundle\Entity\Post;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\Annotations as REST;
 use FOS\RestBundle\Request\ParamFetcherInterface;
@@ -24,6 +23,7 @@ use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\NewsBundle\Mailer\MailerInterface;
 use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Sonata\NewsBundle\Model\Post;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
