@@ -15,6 +15,7 @@ namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Sonata\NewsBundle\Model\CommentInterface;
 
 class BasePostRepository extends EntityRepository
 {
@@ -41,10 +42,15 @@ class BasePostRepository extends EntityRepository
      */
     public function countCommentsQuery($post)
     {
-        return $this->getEntityManager()->createQuery('SELECT COUNT(c.id)
-                                          FROM Application\Sonata\NewsBundle\Entity\Comment c
-                                          WHERE c.status = 1
-                                          AND c.post = :post')
-                    ->setParameters(['post' => $post]);
+        $qb = $this->createQueryBuilder('c');
+
+        return $qb
+            ->select('COUNT(c.id)')
+            ->where($qb->expr()->eq('c.status', ':status'))
+            ->andWhere($qb->expr()->eq('c.post', ':post'))
+            ->setParameters([
+                'status' => CommentInterface::STATUS_VALID,
+                'post' => $post,
+            ]);
     }
 }

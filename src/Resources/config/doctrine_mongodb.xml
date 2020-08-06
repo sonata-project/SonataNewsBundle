@@ -3,7 +3,7 @@
     <parameters>
         <parameter key="sonata.news.manager.comment.class">Sonata\NewsBundle\Document\CommentManager</parameter>
         <parameter key="sonata.news.manager.post.class">Sonata\NewsBundle\Document\PostManager</parameter>
-        <!-- NEXT_MAJOR: Remove this keys -->
+        <!-- NEXT_MAJOR: Remove these keys -->
         <parameter key="sonata.news.manager.comment.entity">Application\Sonata\NewsBundle\Document\Comment</parameter>
         <parameter key="sonata.news.manager.post.entity">Application\Sonata\NewsBundle\Document\Tag</parameter>
     </parameters>
