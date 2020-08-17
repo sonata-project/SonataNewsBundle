@@ -16,6 +16,7 @@ namespace Sonata\NewsBundle\Tests\App;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use JMS\SerializerBundle\JMSSerializerBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
+use Nelmio\ApiDocBundle\NelmioApiDocBundle;
 use Sonata\BlockBundle\SonataBlockBundle;
 use Sonata\ClassificationBundle\SonataClassificationBundle;
 use Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle;
@@ -65,6 +66,7 @@ final class AppKernel extends Kernel
             new SonataNewsBundle(),
             new JMSSerializerBundle(),
             new SwiftmailerBundle(),
+            new NelmioApiDocBundle(),
         ];
     }
 
@@ -91,6 +93,7 @@ final class AppKernel extends Kernel
     protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader): void
     {
         $loader->load($this->getProjectDir().'/config/config.yaml');
+        $containerBuilder->setParameter('app.base_dir', $this->getBaseDir());
     }
 
     private function getBaseDir(): string
