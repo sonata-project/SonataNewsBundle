@@ -4,7 +4,7 @@ imports:
 
 framework:
     test: true
-    secret: secret
+    secret: '50n474.U53r'
     session:
         handler_id: session.handler.native_file
         storage_id: session.storage.mock_file
@@ -19,11 +19,15 @@ framework:
         engines: [twig]
 
 twig:
-    form_themes:
+    exception_controller: null
+    paths:
+        - '%kernel.project_dir%/Resources/views'
+    strict_variables: '%kernel.debug%'
 
 doctrine:
     dbal:
-        url: 'sqlite:///%kernel.cache_dir%/data.db'
+        driver: pdo_sqlite
+        path: '%app.base_dir%sonata_news_test.db3'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore

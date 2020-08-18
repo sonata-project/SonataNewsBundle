@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
+    <route id="get_comment" path="/comments/{id}.{_format}" methods="GET" controller="Sonata\NewsBundle\Controller\Api\CommentController::getCommentAction" format="json">
+        <requirement key="_format">json|xml|html</requirement>
+    </route>
+    <route id="delete_comment" path="/comments/{id}.{_format}" methods="DELETE" controller="Sonata\NewsBundle\Controller\Api\CommentController::deleteCommentAction" format="json">
+        <requirement key="_format">json|xml|html</requirement>
+    </route>
+</routes>

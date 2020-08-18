@@ -89,8 +89,6 @@ class PostController
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
      * @return PagerInterface
      */
     public function getPostsAction(ParamFetcherInterface $paramFetcher)
@@ -108,7 +106,7 @@ class PostController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post id"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Post identifier"}
      *  },
      *  output={"class"="sonata_news_api_form_post", "groups"={"sonata_api_read"}},
      *  statusCodes={
@@ -118,8 +116,6 @@ class PostController
      * )
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
-     *
-     * @REST\Route(requirements={"_format"="json|xml"})
      *
      * @param int $id A post identifier
      *
@@ -142,9 +138,7 @@ class PostController
      *  }
      * )
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
-     * @param Request $request A Symfony request
+     * @param Request $request Symfony request
      *
      * @throws NotFoundHttpException
      *
@@ -160,7 +154,7 @@ class PostController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post identifier"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Post identifier"}
      *  },
      *  input={"class"="sonata_news_api_form_post", "name"="", "groups"={"sonata_api_write"}},
      *  output={"class"="sonata_news_api_form_post", "groups"={"sonata_api_read"}},
@@ -171,10 +165,8 @@ class PostController
      *  }
      * )
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
-     * @param int     $id      A Post identifier
-     * @param Request $request A Symfony request
+     * @param int     $id      Post identifier
+     * @param Request $request Symfony request
      *
      * @throws NotFoundHttpException
      *
@@ -190,7 +182,7 @@ class PostController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post identifier"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Post identifier"}
      *  },
      *  statusCodes={
      *      200="Returned when post is successfully deleted",
@@ -199,9 +191,7 @@ class PostController
      *  }
      * )
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
-     * @param int $id A Post identifier
+     * @param int $id Post identifier
      *
      * @throws NotFoundHttpException
      *
@@ -225,7 +215,7 @@ class PostController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Post id"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Post identifier"}
      *  },
      *  output={"class"="Sonata\DatagridBundle\Pager\PagerInterface", "groups"={"sonata_api_read"}},
      *  statusCodes={
@@ -237,11 +227,9 @@ class PostController
      * @REST\QueryParam(name="page", requirements="\d+", default="1", description="Page for comments list pagination")
      * @REST\QueryParam(name="count", requirements="\d+", default="10", description="Number of comments by page")
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
-     * @param int $id A post identifier
+     * @param int $id Post identifier
      *
      * @return PagerInterface
      */
@@ -266,7 +254,7 @@ class PostController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="post id"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Post identifier"}
      *  },
      *  input={"class"="sonata_news_api_form_comment", "name"="", "groups"={"sonata_api_write"}},
      *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
@@ -280,9 +268,7 @@ class PostController
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
-     * @param int $id A post identifier
+     * @param int $id Post identifier
      *
      * @throws HttpException
      *
@@ -324,8 +310,8 @@ class PostController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="postId", "dataType"="integer", "requirement"="\d+", "description"="post identifier"},
-     *      {"name"="commentId", "dataType"="integer", "requirement"="\d+", "description"="comment identifier"}
+     *      {"name"="postId", "dataType"="integer", "requirement"="\d+", "description"="Post identifier"},
+     *      {"name"="commentId", "dataType"="integer", "requirement"="\d+", "description"="Comment identifier"}
      *  },
      *  input={"class"="sonata_news_api_form_comment", "name"="", "groups"={"sonata_api_write"}},
      *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
@@ -338,11 +324,9 @@ class PostController
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
-     * @REST\Route(requirements={"_format"="json|xml"})
-     *
-     * @param int     $postId    A post identifier
-     * @param int     $commentId A comment identifier
-     * @param Request $request   A Symfony request
+     * @param int     $postId    Post identifier
+     * @param int     $commentId Comment identifier
+     * @param Request $request   Symfony request
      *
      * @throws NotFoundHttpException
      * @throws HttpException
@@ -415,7 +399,7 @@ class PostController
     /**
      * Retrieves post with id $id or throws an exception if it doesn't exist.
      *
-     * @param int $id A Post identifier
+     * @param int $id Post identifier
      *
      * @throws NotFoundHttpException
      *
@@ -436,9 +420,9 @@ class PostController
      * Write a post, this method is used by both POST and PUT action methods.
      *
      * @param Request  $request Symfony request
-     * @param int|null $id      A post identifier
+     * @param int|null $id      Post identifier
      *
-     * @return FormInterface
+     * @return View|FormInterface
      */
     protected function handleWritePost($request, $id = null)
     {
