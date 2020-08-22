@@ -2,6 +2,51 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.14.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.13.0...3.14.0) - 2020-08-22
+### Added
+- [[#612](https://github.com/sonata-project/SonataNewsBundle/pull/612)] Added
+  support for "friendsofsymfony/rest-bundle:^3.0"
+([@wbloszyk](https://github.com/wbloszyk))
+- [[#610](https://github.com/sonata-project/SonataNewsBundle/pull/610)] Added
+  public alias `Sonata\NewsBundle\Controller\Api\CommentController` for
+`sonata.news.controller.api.comment` service
+([@wbloszyk](https://github.com/wbloszyk))
+- [[#610](https://github.com/sonata-project/SonataNewsBundle/pull/610)] Added
+  public alias `Sonata\NewsBundle\Controller\Api\PostController` for
+`sonata.news.controller.api.post` service
+([@wbloszyk](https://github.com/wbloszyk))
+
+### Change
+- [[#612](https://github.com/sonata-project/SonataNewsBundle/pull/612)] Support
+  for deprecated "rest" routing type in favor for xml
+([@wbloszyk](https://github.com/wbloszyk))
+
+### Changed
+- [[#601](https://github.com/sonata-project/SonataNewsBundle/pull/601)]
+  SonataEasyExtendsBundle is now optional, using SonataDoctrineBundle is
+preferred ([@jordisala1991](https://github.com/jordisala1991))
+
+### Deprecated
+- [[#601](https://github.com/sonata-project/SonataNewsBundle/pull/601)] Using
+  SonataEasyExtendsBundle to add Doctrine mapping information
+([@jordisala1991](https://github.com/jordisala1991))
+
+### Fixed
+- [[#615](https://github.com/sonata-project/SonataNewsBundle/pull/615)] Fixed
+  references to `Application\` namespace at
+`BasePostRepository::countCommentsQuery()`.
+([@phansys](https://github.com/phansys))
+- [[#610](https://github.com/sonata-project/SonataNewsBundle/pull/610)] Fix
+  RestFul API - `Class could not be determined for Controller identified` Error
+([@wbloszyk](https://github.com/wbloszyk))
+- [[#609](https://github.com/sonata-project/SonataNewsBundle/pull/609)] Fix
+  missing `u` filter when `SonataNewsBundle` is register after `TwigBundle`
+([@wbloszyk](https://github.com/wbloszyk))
+
+### Removed
+- [[#611](https://github.com/sonata-project/SonataNewsBundle/pull/611)] Support
+  for Symfony < 4.4 ([@wbloszyk](https://github.com/wbloszyk))
+
 ## [3.13.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.12.0...3.13.0) - 2020-06-29
 ### Added
 - [[#602](https://github.com/sonata-project/SonataNewsBundle/pull/602)] Added
