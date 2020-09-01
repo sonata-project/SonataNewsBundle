@@ -63,7 +63,7 @@ In order to activate the ReST API, you'll also need to add this to your routing:
     # config/routes.yaml
 
     NelmioApiDocBundle:
-        resource: '@NelmioApiDocBundle/Resources/config/routing.yml'
+        resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
         prefix: /api/doc
 
     sonata_api_news:
