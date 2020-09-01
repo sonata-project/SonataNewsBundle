@@ -44,7 +44,7 @@ class CommentController
      * @ApiDoc(
      *  resource=true,
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Comment identifier"}
+     *      {"name"="id", "dataType"="string", "description"="Comment identifier"}
      *  },
      *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
      *  statusCodes={
@@ -55,7 +55,7 @@ class CommentController
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
      *
-     * @param int $id Comment identifier
+     * @param string $id Comment identifier
      *
      * @throws NotFoundHttpException
      *
@@ -71,7 +71,7 @@ class CommentController
      *
      * @ApiDoc(
      *  requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Comment identifier"}
+     *      {"name"="id", "dataType"="string", "description"="Comment identifier"}
      *  },
      *  statusCodes={
      *      200="Returned when comment is successfully deleted",
@@ -80,7 +80,7 @@ class CommentController
      *  }
      * )
      *
-     * @param int $id Comment identifier
+     * @param string $id Comment identifier
      *
      * @throws NotFoundHttpException
      *
@@ -102,7 +102,7 @@ class CommentController
     /**
      * Returns a comment entity instance.
      *
-     * @param int $id Comment identifier
+     * @param string $id Comment identifier
      *
      * @throws NotFoundHttpException
      *
