@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="sonata.news.controller.api.comment" class="Sonata\NewsBundle\Controller\Api\Legacy\CommentController">
+            <argument type="service" id="sonata.news.manager.comment"/>
+        </service>
+        <service id="Sonata\NewsBundle\Controller\Api\Legacy\CommentController" alias="sonata.news.controller.api.comment" public="true"/>
+        <service id="sonata.news.controller.api.post" class="Sonata\NewsBundle\Controller\Api\Legacy\PostController">
+            <argument type="service" id="sonata.news.manager.post"/>
+            <argument type="service" id="sonata.news.manager.comment"/>
+            <argument type="service" id="sonata.news.mailer"/>
+            <argument type="service" id="form.factory"/>
+            <argument type="service" id="sonata.formatter.pool"/>
+        </service>
+        <service id="Sonata\NewsBundle\Controller\Api\Legacy\PostController" alias="sonata.news.controller.api.post" public="true"/>
+    </services>
+</container>

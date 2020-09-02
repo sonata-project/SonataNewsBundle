@@ -11,14 +11,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\NewsBundle\Controller\Api;
+namespace Sonata\NewsBundle\Controller\Api\Legacy;
 
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\Annotations as REST;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View;
-use Nelmio\ApiDocBundle\Annotation\Model;
-use Nelmio\ApiDocBundle\Annotation\Operation;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\NewsBundle\Mailer\MailerInterface;
@@ -26,7 +25,6 @@ use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\Post;
 use Sonata\NewsBundle\Model\PostManagerInterface;
-use Swagger\Annotations as SWG;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,70 +73,9 @@ class PostController
     /**
      * Retrieves the list of posts (paginated) based on criteria.
      *
-     * @Operation(
-     *     tags={"/api/news/posts"},
-     *     summary="Retrieves the list of posts (paginated) based on criteria.",
-     *     @SWG\Parameter(
-     *         name="page",
-     *         in="query",
-     *         description="Page for posts list pagination",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="count",
-     *         in="query",
-     *         description="Number of posts per page",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="enabled",
-     *         in="query",
-     *         description="Enables or disables the posts filter",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="dateQuery",
-     *         in="query",
-     *         description="Date filter orientation (>, < or =)",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="dateValue",
-     *         in="query",
-     *         description="Date filter value",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="tag",
-     *         in="query",
-     *         description="Tag name filter",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="author",
-     *         in="query",
-     *         description="Author filter",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="mode",
-     *         in="query",
-     *         description="'public' mode filters posts having enabled tags and author",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when successful",
-     *         @SWG\Schema(ref=@Model(type="Sonata\DatagridBundle\Pager\PagerInterface"))
-     *     )
+     * @ApiDoc(
+     *  resource=true,
+     *  output={"class"="Sonata\DatagridBundle\Pager\PagerInterface", "groups"={"sonata_api_read"}}
      * )
      *
      * @REST\QueryParam(name="page", requirements="\d+", default="1", description="Page for posts list pagination")
@@ -165,18 +102,15 @@ class PostController
     /**
      * Retrieves a specific post.
      *
-     * @Operation(
-     *     tags={"/api/news/posts"},
-     *     summary="Retrieves a specific post.",
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when successful",
-     *         @SWG\Schema(ref=@Model(type="sonata_news_api_form_post"))
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Returned when post is not found"
-     *     )
+     * @ApiDoc(
+     *  requirements={
+     *      {"name"="id", "dataType"="string", "description"="Post identifier"}
+     *  },
+     *  output={"class"="sonata_news_api_form_post", "groups"={"sonata_api_read"}},
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when post is not found"
+     *  }
      * )
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
@@ -193,18 +127,13 @@ class PostController
     /**
      * Adds a post.
      *
-     * @Operation(
-     *     tags={"/api/news/posts"},
-     *     summary="Adds a post.",
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when successful",
-     *         @SWG\Schema(ref=@Model(type="sonata_news_api_form_post"))
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Returned when an error has occurred while post creation"
-     *     )
+     * @ApiDoc(
+     *  input={"class"="sonata_news_api_form_post", "name"="", "groups"={"sonata_api_write"}},
+     *  output={"class"="sonata_news_api_form_post", "groups"={"sonata_api_read"}},
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      400="Returned when an error has occurred while post creation",
+     *  }
      * )
      *
      * @param Request $request Symfony request
@@ -221,22 +150,17 @@ class PostController
     /**
      * Updates a post.
      *
-     * @Operation(
-     *     tags={"/api/news/posts"},
-     *     summary="Updates a post.",
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when successful",
-     *         @SWG\Schema(ref=@Model(type="sonata_news_api_form_post"))
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Returned when an error has occurred while post update"
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Returned when unable to find post"
-     *     )
+     * @ApiDoc(
+     *  requirements={
+     *      {"name"="id", "dataType"="string", "description"="Post identifier"}
+     *  },
+     *  input={"class"="sonata_news_api_form_post", "name"="", "groups"={"sonata_api_write"}},
+     *  output={"class"="sonata_news_api_form_post", "groups"={"sonata_api_read"}},
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      400="Returned when an error has occurred while post update",
+     *      404="Returned when unable to find post"
+     *  }
      * )
      *
      * @param string  $id      Post identifier
@@ -254,21 +178,15 @@ class PostController
     /**
      * Deletes a post.
      *
-     * @Operation(
-     *     tags={"/api/news/posts"},
-     *     summary="Deletes a post.",
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when post is successfully deleted"
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Returned when an error has occurred while post deletion"
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Returned when unable to find post"
-     *     )
+     * @ApiDoc(
+     *  requirements={
+     *      {"name"="id", "dataType"="string", "description"="Post identifier"}
+     *  },
+     *  statusCodes={
+     *      200="Returned when post is successfully deleted",
+     *      400="Returned when an error has occurred while post deletion",
+     *      404="Returned when unable to find post"
+     *  }
      * )
      *
      * @param string $id Post identifier
@@ -293,32 +211,15 @@ class PostController
     /**
      * Retrieves the comments of specified post.
      *
-     * @Operation(
-     *     tags={"/api/news/posts"},
-     *     summary="Retrieves the comments of specified post.",
-     *     @SWG\Parameter(
-     *         name="page",
-     *         in="query",
-     *         description="Page for comments list pagination",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="count",
-     *         in="query",
-     *         description="Number of comments per page",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when successful",
-     *         @SWG\Schema(ref=@Model(type="Sonata\DatagridBundle\Pager\PagerInterface"))
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Returned when post is not found"
-     *     )
+     * @ApiDoc(
+     *  requirements={
+     *      {"name"="id", "dataType"="string", "description"="Post identifier"}
+     *  },
+     *  output={"class"="Sonata\DatagridBundle\Pager\PagerInterface", "groups"={"sonata_api_read"}},
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when post is not found"
+     *  }
      * )
      *
      * @REST\QueryParam(name="page", requirements="\d+", default="1", description="Page for comments list pagination")
@@ -346,26 +247,18 @@ class PostController
     /**
      * Adds a comment to a post.
      *
-     * @Operation(
-     *     tags={"/api/news/posts"},
-     *     summary="Adds a comment to a post.",
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when successful",
-     *         @SWG\Schema(ref=@Model(type="Sonata\NewsBundle\Model\Comment"))
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Returned when an error has occurred while comment creation"
-     *     ),
-     *     @SWG\Response(
-     *         response="403",
-     *         description="Returned when commenting is not enabled on the related post"
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Returned when post is not found"
-     *     )
+     * @ApiDoc(
+     *  requirements={
+     *      {"name"="id", "dataType"="string", "description"="Post identifier"}
+     *  },
+     *  input={"class"="sonata_news_api_form_comment", "name"="", "groups"={"sonata_api_write"}},
+     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      400="Returned when an error has occurred while comment creation",
+     *      403="Returned when commenting is not enabled on the related post",
+     *      404="Returned when post is not found"
+     *  }
      * )
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
@@ -410,22 +303,18 @@ class PostController
     /**
      * Updates a comment.
      *
-     * @Operation(
-     *     tags={"/api/news/posts"},
-     *     summary="Updates a comment.",
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when successful",
-     *         @SWG\Schema(ref=@Model(type="Sonata\NewsBundle\Model\Comment"))
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Returned when an error has occurred while comment update"
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Returned when unable to find comment"
-     *     )
+     * @ApiDoc(
+     *  requirements={
+     *      {"name"="postId", "dataType"="string", "description"="Post identifier"},
+     *      {"name"="commentId", "dataType"="string", "description"="Comment identifier"}
+     *  },
+     *  input={"class"="sonata_news_api_form_comment", "name"="", "groups"={"sonata_api_write"}},
+     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      400="Returned when an error has occurred while comment update",
+     *      404="Returned when unable to find comment"
+     *  }
      * )
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
@@ -444,7 +333,7 @@ class PostController
         $post = $this->getPost($postId);
 
         if (!$post->isCommentable()) {
-            throw new HttpException(403, sprintf('Post not commentable for identifier %s.', var_export($postId, true)));
+            throw new HttpException(403, sprintf('Post (%s) not commentable', $postId));
         }
 
         $comment = $this->commentManager->find($commentId);

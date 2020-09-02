@@ -15,6 +15,7 @@ namespace Sonata\NewsBundle\Tests\Controller\Api;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Controller\Api\CommentController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
@@ -31,12 +32,28 @@ class CommentControllerTest extends TestCase
         $this->assertSame($comment, $this->createCommentController($commentManager)->getCommentAction(1));
     }
 
-    public function testGetCommentNotFoundExceptionAction()
+    /**
+     * @dataProvider getIdsForNotFound
+     */
+    public function testGetCommentNotFoundExceptionAction($identifier, string $message): void
     {
-        $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
-        $this->expectExceptionMessage('Comment (42) not found');
+        $this->expectException(NotFoundHttpException::class);
+        $this->expectExceptionMessage($message);
 
-        $this->createCommentController()->getCommentAction(42);
+        $this->createCommentController()->getCommentAction($identifier);
+    }
+
+    /**
+     * @phpstan-return list<array{mixed, string}>
+     */
+    public function getIdsForNotFound(): array
+    {
+        return [
+            [42, 'Comment not found for identifier 42.'],
+            ['42', 'Comment not found for identifier \'42\'.'],
+            [null, 'Comment not found for identifier NULL.'],
+            ['', 'Comment not found for identifier \'\'.'],
+        ];
     }
 
     public function testDeleteCommentAction()

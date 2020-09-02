@@ -32,6 +32,31 @@ Here's the configuration we used, you may adapt it to your needs:
 
     .. code-block:: yaml
 
+        # config/packages/jms_serializer.yaml
+
+        jms_serializer:
+            metadata:
+                directories:
+                    - { name: 'sonata_datagrid', path: "%kernel.project_dir%/vendor/sonata-project/datagrid-bundle/src/Resources/config/serializer", namespace_prefix: 'Sonata\DatagridBundle' }
+                    - { name: 'sonata_news', path: "%kernel.project_dir%/vendor/sonata-project/news-bundle/src/Resources/config/serializer", namespace_prefix: 'Sonata\NewsBundle' }
+
+
+    .. code-block:: yaml
+
+        # config/packages/framework.yaml
+
+        framework:
+            error_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
+
+    .. code-block:: yaml
+
+        # config/packages/twig.yaml
+
+        twig:
+            exception_controller: null
+
+    .. code-block:: yaml
+
         # config/packages/sensio_framework_extra.yaml
 
         sensio_framework_extra:
@@ -62,24 +87,19 @@ In order to activate the ReST API, you'll also need to add this to your routing:
 
     # config/routes.yaml
 
-    NelmioApiDocBundle:
-        resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-        prefix: /api/doc
-
     sonata_api_news:
-        type: rest
-        prefix: /api
-        resource: '@SonataNewsBundle/Resources/config/routing/api.xml'
+        prefix: /api/news
+        resource: "@SonataNewsBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 Serialization
 -------------
 
-We're using `JMSSerializerBundle <https://jmsyst.com/bundles/JMSSerializerBundle>`_'s serializations groups to customize the inputs and outputs.
+We're using `JMSSerializerBundle <https://jmsyst.com/bundles/JMSSerializerBundle>`_'s serialization groups to customize the inputs and outputs.
 
 The taxonomy is as follows:
 
 * ``sonata_api_read`` is the group used to display entities
 * ``sonata_api_write`` is the group used for input entities (when used instead of forms)
 
-If you wish to customize the outputted data, feel free to setup your own serialization options
+If you wish to customize the outputted data, feel free to set up your own serialization options
 by configuring `JMSSerializer <https://jmsyst.com/libs/serializer>`_ with those groups.

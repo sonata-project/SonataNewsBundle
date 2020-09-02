@@ -50,6 +50,16 @@ Advanced Configuration
 
 .. code-block:: yaml
 
+    # config/packages/jms_serializer.yaml
+
+    jms_serializer:
+        metadata:
+            directories:
+                - { name: 'sonata_datagrid', path: "%kernel.project_dir%/vendor/sonata-project/datagrid-bundle/src/Resources/config/serializer", namespace_prefix: 'Sonata\DatagridBundle' }
+                - { name: 'sonata_news', path: "%kernel.project_dir%/vendor/sonata-project/news-bundle/src/Resources/config/serializer", namespace_prefix: 'Sonata\NewsBundle' }
+
+.. code-block:: yaml
+
     # config/packages/doctrine.yaml
 
     doctrine:

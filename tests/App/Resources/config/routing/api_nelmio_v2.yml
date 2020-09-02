@@ -2,10 +2,6 @@ NelmioApiDocBundle:
     prefix: /api/doc
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
 
-sonata_api_news:
+sonata_api_classification:
     prefix: /api/news
     resource: "@SonataNewsBundle/Resources/config/routing/api.xml"
-
-test_page:
-    path: /u_truncate_test
-    controller: Sonata\NewsBundle\Tests\App\Controller\TruncateController:test

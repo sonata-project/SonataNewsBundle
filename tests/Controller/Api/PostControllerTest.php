@@ -19,6 +19,7 @@ use Sonata\FormatterBundle\Formatter\Pool;
 use Sonata\NewsBundle\Controller\Api\PostController;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
@@ -48,12 +49,28 @@ class PostControllerTest extends TestCase
         $this->assertSame($post, $this->createPostController($postManager)->getPostAction(1));
     }
 
-    public function testGetPostNotFoundExceptionAction()
+    /**
+     * @dataProvider getIdsForNotFound
+     */
+    public function testGetPostNotFoundExceptionAction($identifier, string $message): void
     {
-        $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
-        $this->expectExceptionMessage('Post (42) not found');
+        $this->expectException(NotFoundHttpException::class);
+        $this->expectExceptionMessage($message);
 
-        $this->createPostController()->getPostAction(42);
+        $this->createPostController()->getPostAction($identifier);
+    }
+
+    /**
+     * @phpstan-return list<array{mixed, string}>
+     */
+    public function getIdsForNotFound(): array
+    {
+        return [
+            [42, 'Post not found for identifier 42.'],
+            ['42', 'Post not found for identifier \'42\'.'],
+            [null, 'Post not found for identifier NULL.'],
+            ['', 'Post not found for identifier \'\'.'],
+        ];
     }
 
     public function testGetPostCommentsAction()
@@ -91,7 +108,7 @@ class PostControllerTest extends TestCase
     public function testGetPostCommentsActionNotFoundExceptionAction()
     {
         $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
-        $this->expectExceptionMessage('Post (42) not found');
+        $this->expectExceptionMessage('Post not found for identifier 42');
 
         $paramFetcher = $this->createMock('FOS\RestBundle\Request\ParamFetcherInterface');
 

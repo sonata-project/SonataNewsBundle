@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\DependencyInjection;
 
+use Nelmio\ApiDocBundle\Annotation\Operation;
 use Sonata\Doctrine\Mapper\Builder\OptionsBuilder;
 use Sonata\Doctrine\Mapper\DoctrineCollector;
 use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector as DeprecatedDoctrineCollector;
@@ -54,7 +55,11 @@ class SonataNewsExtension extends Extension
         if (isset($bundles['FOSRestBundle'], $bundles['NelmioApiDocBundle'])) {
             $loader->load(sprintf('api_form_%s.xml', $config['db_driver']));
             if ('doctrine_orm' === $config['db_driver']) {
-                $loader->load('api_controllers.xml');
+                if (class_exists(Operation::class)) {
+                    $loader->load('api_controllers.xml');
+                } else {
+                    $loader->load('api_controllers_legacy.xml');
+                }
             }
         }
 

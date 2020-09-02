@@ -11,15 +11,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\NewsBundle\Controller\Api;
+namespace Sonata\NewsBundle\Controller\Api\Legacy;
 
 use FOS\RestBundle\Controller\Annotations as REST;
 use FOS\RestBundle\View\View;
-use Nelmio\ApiDocBundle\Annotation\Model;
-use Nelmio\ApiDocBundle\Annotation\Operation;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
-use Swagger\Annotations as SWG;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -43,18 +41,16 @@ class CommentController
     /**
      * Retrieves a specific comment.
      *
-     * @Operation(
-     *     tags={"/api/news/comments/{id}"},
-     *     summary="Retrieves a specific comment.",
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when successful",
-     *         @SWG\Schema(ref=@Model(type="Sonata\NewsBundle\Model\Comment"))
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Returned when comment is not found"
-     *     )
+     * @ApiDoc(
+     *  resource=true,
+     *  requirements={
+     *      {"name"="id", "dataType"="string", "description"="Comment identifier"}
+     *  },
+     *  output={"class"="Sonata\NewsBundle\Model\Comment", "groups"={"sonata_api_read"}},
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when comment is not found"
+     *  }
      * )
      *
      * @REST\View(serializerGroups={"sonata_api_read"}, serializerEnableMaxDepthChecks=true)
@@ -73,21 +69,15 @@ class CommentController
     /**
      * Deletes a comment.
      *
-     * @Operation(
-     *     tags={"/api/news/comments/{id}"},
-     *     summary="Deletes a comment.",
-     *     @SWG\Response(
-     *         response="200",
-     *         description="Returned when comment is successfully deleted"
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Returned when an error has occurred while comment deletion"
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Returned when unable to find comment"
-     *     )
+     * @ApiDoc(
+     *  requirements={
+     *      {"name"="id", "dataType"="string", "description"="Comment identifier"}
+     *  },
+     *  statusCodes={
+     *      200="Returned when comment is successfully deleted",
+     *      400="Returned when an error has occurred while comment deletion",
+     *      404="Returned when unable to find comment"
+     *  }
      * )
      *
      * @param string $id Comment identifier

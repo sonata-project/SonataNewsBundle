@@ -1,6 +1,13 @@
 UPGRADE 3.x
 ===========
 
+UPGRADE FROM 3.x to 3.x
+=======================
+
+### Support for NelmioApiDocBundle > 3.6 is added
+
+Controllers for NelmioApiDocBundle v2 were moved under `Sonata\NewsBundle\Controller\Api\Legacy\` namespace and controllers for NelmioApiDocBundle v3 were added as replacement. If you extend them, you must ensure they are using the corresponding inheritance.
+
 UPGRADE FROM 3.16 to 3.17
 =========================
 

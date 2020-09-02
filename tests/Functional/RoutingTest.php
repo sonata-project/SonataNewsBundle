@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Tests\Functional\Routing;
 
+use Nelmio\ApiDocBundle\Annotation\Operation;
 use Sonata\NewsBundle\Tests\App\AppKernel;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -39,7 +40,7 @@ final class RoutingTest extends WebTestCase
 
         $matchingPath = $path;
         $matchingFormat = '';
-        if (false !== strpos($matchingPath, '.{_format}', -10)) {
+        if (\strlen($matchingPath) >= 10 && false !== strpos($matchingPath, '.{_format}', -10)) {
             $matchingFormat = '.json';
             $matchingPath = str_replace('.{_format}', $matchingFormat, $path);
         }
@@ -75,8 +76,12 @@ final class RoutingTest extends WebTestCase
     public function getRoutes(): iterable
     {
         // API
-        yield ['nelmio_api_doc_index', '/api/doc/{view}', ['GET']];
-
+        if (class_exists(Operation::class)) {
+            yield ['app.swagger_ui', '/api/doc', ['GET']];
+            yield ['app.swagger', '/api/doc.json', ['GET']];
+        } else {
+            yield ['nelmio_api_doc_index', '/api/doc/{view}', ['GET']];
+        }
         // API - comment
         yield ['sonata_api_news_comment_get_comment', '/api/news/comments/{id}.{_format}', ['GET']];
         yield ['sonata_api_news_comment_delete_comment', '/api/news/comments/{id}.{_format}', ['DELETE']];

@@ -1,0 +1,73 @@
+sonata_news:
+    title: 'Sonata Project'
+    link: 'https://sonata-project.org'
+    description: 'Cool bundles on top of Symfony'
+    salt: 'secureToken'
+    permalink_generator: sonata.news.permalink.date
+    db_driver: 'doctrine_orm'
+    comment:
+        notification:
+            emails: ['email@example.org', 'email2@example.org']
+            from: 'no-reply@sonata-project.org'
+            template: '@SonataNews/Mail/comment_notification.txt.twig'
+
+sonata_media:
+    db_driver: 'doctrine_orm'
+    default_context: 'default'
+    contexts:
+        default:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+            formats:
+                small: {width: 100, quality: 70}
+                big: {width: 500, quality: 70}
+    cdn:
+        server:
+            path: /uploads/media
+    filesystem:
+        local:
+            directory: '%kernel.root_dir%/../public/uploads/media'
+            create: false
+
+sonata_formatter:
+    default_formatter: text
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig #keep this commented unless you are using media bundle.
+
+
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: [] # Twig formatter cannot have extensions
