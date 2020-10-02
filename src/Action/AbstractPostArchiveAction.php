@@ -16,12 +16,12 @@ namespace Sonata\NewsBundle\Action;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 use Sonata\SeoBundle\Seo\SeoPageInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\TranslatorInterface;
 
-abstract class AbstractPostArchiveAction extends Controller
+abstract class AbstractPostArchiveAction extends AbstractController
 {
     /**
      * @var BlogInterface
