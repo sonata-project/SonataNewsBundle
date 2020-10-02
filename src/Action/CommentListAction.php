@@ -15,10 +15,10 @@ namespace Sonata\NewsBundle\Action;
 
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-final class CommentListAction extends Controller
+final class CommentListAction extends AbstractController
 {
     /**
      * @var CommentManagerInterface

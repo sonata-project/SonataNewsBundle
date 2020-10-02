@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Document;
 
+use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\Doctrine\Document\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
@@ -25,10 +26,8 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
     /**
      * @param int $page
      * @param int $limit
-     *
-     * @return Pager
      */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = [])
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = []): PagerInterface
     {
         $qb = $this->getDocumentManager()->getRepository($this->class)
             ->createQueryBuilder()
