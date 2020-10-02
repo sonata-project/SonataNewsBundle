@@ -15,6 +15,7 @@ namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
+use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
 use Sonata\Doctrine\Entity\BaseEntityManager;
 use Sonata\Doctrine\Model\ManagerInterface;
@@ -71,7 +72,7 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
         $this->updateCommentsCount($post);
     }
 
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = [])
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = []): PagerInterface
     {
         if (!isset($criteria['mode'])) {
             $criteria['mode'] = 'public';

@@ -16,6 +16,7 @@ namespace Sonata\NewsBundle\Entity;
 use Doctrine\ORM\Query\Expr\Join;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
+use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
 use Sonata\Doctrine\Entity\BaseEntityManager;
 use Sonata\NewsBundle\Model\BlogInterface;
@@ -85,7 +86,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
      *    collections - CollectionInterface
      *    mode - string public|admin.
      */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = [])
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = []): PagerInterface
     {
         if (!isset($criteria['mode'])) {
             $criteria['mode'] = 'public';

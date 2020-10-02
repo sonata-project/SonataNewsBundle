@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Document;
 
+use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\Doctrine\Document\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
@@ -111,7 +112,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
      *    collections - CollectionInterface
      *    mode - string public|admin.
      */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = [])
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = []): PagerInterface
     {
         if (!isset($criteria['mode'])) {
             $criteria['mode'] = 'public';

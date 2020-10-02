@@ -27,13 +27,26 @@ class PostControllerTest extends TestCase
 {
     public function testGetPostsAction()
     {
+        $parameters = [
+            'page' => 2,
+            'count' => 5,
+        ];
+
         $paramFetcher = $this->createMock('FOS\RestBundle\Request\ParamFetcherInterface');
         $paramFetcher->expects($this->once())->method('all')->willReturn([]);
+        $paramFetcher->expects($this->exactly(2))->method('get')
+            ->with($this->logicalOr($this->equalTo('page'), $this->equalTo('count')))
+            ->willReturnCallback(static function ($parameter) use ($parameters) {
+                return $parameters[$parameter];
+            });
 
         $pager = $this->createMock('Sonata\DatagridBundle\Pager\PagerInterface');
 
         $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
-        $postManager->expects($this->once())->method('getPager')->willReturn($pager);
+        $postManager->expects($this->once())
+            ->method('getPager')
+            ->with($this->anything(), $this->equalTo($parameters['page']), $this->equalTo($parameters['count']))
+            ->willReturn($pager);
 
         $this->assertSame($pager, $this->createPostController($postManager)->getPostsAction($paramFetcher));
     }
