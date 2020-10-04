@@ -18,7 +18,8 @@ use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class MonthlyPostArchiveAction extends AbstractPostArchiveAction
 {
@@ -27,10 +28,15 @@ final class MonthlyPostArchiveAction extends AbstractPostArchiveAction
      */
     private $dateTimeHelper;
 
+    /**
+     * NEXT_MAJOR: Remove usage of LegacyTranslator.
+     *
+     * @param TranslatorInterface|LegacyTranslator $translator
+     */
     public function __construct(
         BlogInterface $blog,
         PostManagerInterface $postManager,
-        TranslatorInterface $translator,
+        object $translator,
         DateTimeHelper $dateTimeHelper
     ) {
         parent::__construct($blog, $postManager, $translator);

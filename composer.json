@@ -44,7 +44,8 @@
         "symfony/routing": "^4.4",
         "symfony/security-core": "^4.4",
         "symfony/swiftmailer-bundle": "^3.4",
-        "symfony/templating": "^4.4",
+        "symfony/templating": "^4.4 || ^5.1",
+        "symfony/translation-contracts": "^1.1 || ^2.0",
         "twig/string-extra": "^3.0",
         "twig/twig": "^2.12.1"
     },
