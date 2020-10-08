@@ -19,7 +19,8 @@ use Sonata\SeoBundle\Seo\SeoPageInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractPostArchiveAction extends Controller
 {
@@ -34,7 +35,7 @@ abstract class AbstractPostArchiveAction extends Controller
     private $postManager;
 
     /**
-     * @var TranslatorInterface
+     * @var TranslatorInterface|LegacyTranslator
      */
     private $translator;
 
@@ -43,8 +44,28 @@ abstract class AbstractPostArchiveAction extends Controller
      */
     private $seoPage;
 
-    public function __construct(BlogInterface $blog, PostManagerInterface $postManager, TranslatorInterface $translator)
+    /**
+     * @param TranslatorInterface|LegacyTranslator $translator
+     */
+    public function __construct(BlogInterface $blog, PostManagerInterface $postManager, object $translator)
     {
+        // NEXT_MAJOR: Remove usage of LegacyTranslator
+        if (!$translator instanceof LegacyTranslator && !$translator instanceof TranslatorInterface) {
+            throw new \TypeError(sprintf(
+                'Argument 3 passed to %s() must be an instance of %s, %s given.',
+                __METHOD__,
+                TranslatorInterface::class,
+                \get_class($translator)
+            ));
+        }
+
+        if ($translator instanceof LegacyTranslator) {
+            @trigger_error(
+                sprintf('Argument 3 passed to %s() must be an instance of %s.', __METHOD__, TranslatorInterface::class),
+                E_USER_DEPRECATED
+            );
+        }
+
         $this->blog = $blog;
         $this->postManager = $postManager;
         $this->translator = $translator;

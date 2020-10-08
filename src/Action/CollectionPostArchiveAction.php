@@ -19,7 +19,8 @@ use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class CollectionPostArchiveAction extends AbstractPostArchiveAction
 {
@@ -28,10 +29,15 @@ final class CollectionPostArchiveAction extends AbstractPostArchiveAction
      */
     private $collectionManager;
 
+    /**
+     * NEXT_MAJOR: Remove usage of LegacyTranslator.
+     *
+     * @param TranslatorInterface|LegacyTranslator $translator
+     */
     public function __construct(
         BlogInterface $blog,
         PostManagerInterface $postManager,
-        TranslatorInterface $translator,
+        object $translator,
         CollectionManagerInterface $collectionManager
     ) {
         parent::__construct($blog, $postManager, $translator);
