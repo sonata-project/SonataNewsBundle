@@ -49,7 +49,7 @@ class DatePermalink implements PermalinkInterface
             throw new \InvalidArgumentException('wrong permalink format');
         }
 
-        list($year, $month, $day, $slug) = $parameters;
+        [$year, $month, $day, $slug] = $parameters;
 
         return [
             'year' => (int) $year,
