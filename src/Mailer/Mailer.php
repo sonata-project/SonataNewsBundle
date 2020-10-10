@@ -88,7 +88,7 @@ class Mailer implements MailerInterface
     protected function sendEmailMessage($renderedTemplate, $fromEmail, $toEmail)
     {
         // Render the email, use the first line as the subject, and the rest as the body
-        list($subject, $body) = explode("\n", trim($renderedTemplate), 2);
+        [$subject, $body] = explode("\n", trim($renderedTemplate), 2);
 
         $message = $this->mailer->createMessage()
             ->setSubject($subject)
