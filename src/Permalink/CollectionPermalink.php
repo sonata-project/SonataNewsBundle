@@ -36,7 +36,7 @@ class CollectionPermalink implements PermalinkInterface
             $collection = null;
             $slug = $permalink;
         } else {
-            list($collection, $slug) = $parameters;
+            [$collection, $slug] = $parameters;
         }
 
         return [
