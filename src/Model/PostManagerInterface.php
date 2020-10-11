@@ -26,19 +26,6 @@ interface PostManagerInterface extends ManagerInterface, PageableInterface
     public function findOneByPermalink($permalink, BlogInterface $blog);
 
     /**
-     * {@inheritdoc}
-     *
-     * Valid criteria are:
-     *    enabled - boolean
-     *    date - query
-     *    tag - string
-     *    author - 'NULL', 'NOT NULL', id, array of ids
-     *    collections - CollectionInterface
-     *    mode - string public|admin
-     */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = []);
-
-    /**
      * @param string $date  Date in format YYYY-MM-DD
      * @param string $step  Interval step: year|month|day
      * @param string $alias Table alias for the publicationDateStart column
