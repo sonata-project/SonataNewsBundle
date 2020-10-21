@@ -11,10 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Tests\Action;
+namespace Sonata\NewsBundle\Tests\Action;
 
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
 use Sonata\NewsBundle\Action\DailyPostArchiveAction;
@@ -30,9 +29,9 @@ class DailyPostArchiveActionTest extends TestCase
 {
     public function testInvoke()
     {
-        $blog = $this->prophesize(BlogInterface::class);
-        $translator = $this->prophesize(TranslatorInterface::class);
-        $dateTimeHelper = $this->prophesize(DateTimeHelper::class);
+        $blog = $this->createStub(BlogInterface::class);
+        $translator = $this->createStub(TranslatorInterface::class);
+        $dateTimeHelper = $this->createStub(DateTimeHelper::class);
 
         $dataParams = [
             'query' => 'foo.publicationDateStart >= :startDate AND bar.publicationDateStart < :endDate',
@@ -42,26 +41,24 @@ class DailyPostArchiveActionTest extends TestCase
             ],
         ];
 
-        $postManager = $this->prophesize(PostManager::class);
-        $postManager->getPublicationDateQueryParts('2018-7-8', 'day')
+        $postManager = $this->createStub(PostManager::class);
+        $postManager->method('getPublicationDateQueryParts')->with('2018-7-8', 'day')
             ->willReturn($dataParams);
-        $postManager->getPager([
-            'date' => $dataParams,
-        ], 1)
-            ->willReturn($this->prophesize(PagerInterface::class));
+        $postManager->method('getPager')->with(['date' => $dataParams], 1)
+            ->willReturn($this->createStub(PagerInterface::class));
 
-        $twig = $this->prophesize(Environment::class);
-        $twig->render('@SonataNews/Post/archive.html.twig', Argument::any())
+        $twig = $this->createStub(Environment::class);
+        $twig->method('render')->with('@SonataNews/Post/archive.html.twig', $this->anything())
             ->willReturn('HTML CONTENT');
 
         $container = new Container();
-        $container->set('twig', $twig->reveal());
+        $container->set('twig', $twig);
 
         $action = new DailyPostArchiveAction(
-            $blog->reveal(),
-            $postManager->reveal(),
-            $translator->reveal(),
-            $dateTimeHelper->reveal()
+            $blog,
+            $postManager,
+            $translator,
+            $dateTimeHelper
         );
         $action->setContainer($container);
 
