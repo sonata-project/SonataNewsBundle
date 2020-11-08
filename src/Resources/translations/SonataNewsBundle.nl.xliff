@@ -344,27 +344,27 @@ Quick moderation links :
             </trans-unit>
             <trans-unit id="post_is_public">
                 <source>post_is_public</source>
-                <target>publiek</target>
+                <target>Publiek</target>
             </trans-unit>
             <trans-unit id="post_is_not_public">
                 <source>post_is_not_public</source>
-                <target>niet publiek</target>
+                <target>Niet publiek</target>
             </trans-unit>
             <trans-unit id="label_comment_valid">
                 <source>label_comment_valid</source>
-                <target>geldig</target>
+                <target>Geldig</target>
             </trans-unit>
             <trans-unit id="label_comment_invalid">
                 <source>label_comment_invalid</source>
-                <target>ongeldig</target>
+                <target>Ongeldig</target>
             </trans-unit>
             <trans-unit id="label_unknown_status">
                 <source>label_unknown_status</source>
-                <target>onbekend</target>
+                <target>Onbekend</target>
             </trans-unit>
             <trans-unit id="label_unknown_moderate">
                 <source>label_unknown_moderate</source>
-                <target>moderate</target>
+                <target>Modereren</target>
             </trans-unit>
             <trans-unit id="view_all_comments">
                 <source>view_all_comments</source>
@@ -392,79 +392,147 @@ Quick moderation links :
             </trans-unit>
             <trans-unit id="show_label_enabled">
                 <source>show.label_enabled</source>
-                <target>show_label_enabled</target>
+                <target>Ingeschakeld</target>
             </trans-unit>
             <trans-unit id="show_label_author">
                 <source>show.label_author</source>
-                <target>show_label_author</target>
+                <target>Autheur</target>
             </trans-unit>
             <trans-unit id="show_label_title">
                 <source>show.label_title</source>
-                <target>show_label_title</target>
+                <target>Titel</target>
             </trans-unit>
             <trans-unit id="show_label_abstract">
                 <source>show.label_abstract</source>
-                <target>show_label_abstract</target>
+                <target>Korte inleiding</target>
             </trans-unit>
             <trans-unit id="show_label_content">
                 <source>show.label_content</source>
-                <target>show_label_content</target>
+                <target>Inhoud</target>
             </trans-unit>
             <trans-unit id="show_label_tags">
                 <source>show.label_tags</source>
-                <target>show_label_tags</target>
+                <target>Tags</target>
             </trans-unit>
             <trans-unit id="group_post">
                 <source>group_post</source>
-                <target>group_post</target>
+                <target>Post</target>
             </trans-unit>
             <trans-unit id="group_status">
                 <source>group_status</source>
-                <target>group_status</target>
+                <target>Status</target>
             </trans-unit>
             <trans-unit id="group_classification">
                 <source>group_classification</source>
-                <target>group_classification</target>
+                <target>Classificatie</target>
             </trans-unit>
             <trans-unit id="sonata_news_block_recent_comments">
                 <source>sonata.news.block.recent_comments</source>
-                <target>sonata.news.block.recent_comments</target>
+                <target>Nieuws - Recente reacties</target>
             </trans-unit>
             <trans-unit id="sonata_news_block_recent_posts">
                 <source>sonata.news.block.recent_posts</source>
-                <target>sonata.news.block.recent_posts</target>
+                <target>Nieuws - Recente posts</target>
             </trans-unit>
             <trans-unit id="form.label_number">
                 <source>form.label_number</source>
-                <target>form.label_number</target>
+                <target>Nummer</target>
             </trans-unit>
             <trans-unit id="form.label_title">
                 <source>form.label_title</source>
-                <target>form.label_title</target>
+                <target>Titel</target>
             </trans-unit>
             <trans-unit id="form.label_mode">
                 <source>form.label_mode</source>
-                <target>form.label_mode</target>
+                <target>Mode</target>
             </trans-unit>
             <trans-unit id="form.label_mode_public">
                 <source>form.label_mode_public</source>
-                <target>form.label_mode_public</target>
+                <target>Publiek</target>
             </trans-unit>
             <trans-unit id="form.label_mode_admin">
                 <source>form.label_mode_admin</source>
-                <target>form.label_mode_admin</target>
+                <target>Admin</target>
             </trans-unit>
             <trans-unit id="valid">
                 <source>valid</source>
-                <target>valid</target>
+                <target>geldig</target>
             </trans-unit>
             <trans-unit id="invalid">
                 <source>invalid</source>
-                <target>invalid</target>
+                <target>ongeldig</target>
             </trans-unit>
             <trans-unit id="moderate">
                 <source>moderate</source>
-                <target>moderate</target>
+                <target>modereren</target>
+            </trans-unit>
+            <trans-unit id="form.label_translation_domain">
+                <source>form.label_translation_domain</source>
+                <target>Vertaling domein</target>
+            </trans-unit>
+            <trans-unit id="form.label_icon">
+                <source>form.label_icon</source>
+                <target>Icoon</target>
+            </trans-unit>
+            <trans-unit id="form.label_class">
+                <source>form.label_class</source>
+                <target>CSS Class</target>
+            </trans-unit>
+            <trans-unit id="archive.meta_title">
+                <source>archive.meta_title</source>
+                <target>Archief</target>
+            </trans-unit>
+            <trans-unit id="archive.meta_description">
+                <source>archive.meta_description</source>
+                <target>Archief</target>
+            </trans-unit>
+            <trans-unit id="archive_month.meta_title">
+                <source>archive_month.meta_title</source>
+                <target>Archief van %month% %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_month.meta_description">
+                <source>archive_month.meta_description</source>
+                <target>Archief van %month% %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_year.meta_title">
+                <source>archive_year.meta_title</source>
+                <target>Archied van %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_year.meta_description">
+                <source>archive_year.meta_description</source>
+                <target>Archief van %year%</target>
+            </trans-unit>
+            <trans-unit id="archive_collection.meta_title">
+                <source>archive_collection.meta_title</source>
+                <target>Archief van de verzameling %collection%</target>
+            </trans-unit>
+            <trans-unit id="archive_collection.meta_description">
+                <source>archive_collection.meta_description</source>
+                <target>%description%</target>
+            </trans-unit>
+            <trans-unit id="archive_tag.meta_title">
+                <source>archive_tag.meta_title</source>
+                <target>Archief voor %tag%</target>
+            </trans-unit>
+            <trans-unit id="archive_tag.meta_description">
+                <source>archive_tag.meta_description</source>
+                <target>Archief voor %tag%</target>
+            </trans-unit>
+            <trans-unit id="message_close">
+                <source>message_close</source>
+                <target>Sluiten</target>
+            </trans-unit>
+            <trans-unit id="post_is_disabled">
+                <source>post_is_disabled</source>
+                <target>Post is niet publiek.</target>
+            </trans-unit>
+            <trans-unit id="archive_day.meta_title">
+                <source>archive_day.meta_title</source>
+                <target>Archief van %date%</target>
+            </trans-unit>
+            <trans-unit id="archive_day.meta_description">
+                <source>archive_day.meta_description</source>
+                <target>Archief van %date%</target>
             </trans-unit>
         </body>
     </file>
