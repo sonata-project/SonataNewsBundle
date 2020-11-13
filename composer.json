@@ -72,7 +72,7 @@
         "sonata-project/notification-bundle": "^3.4",
         "sonata-project/seo-bundle": "^2.5",
         "symfony/browser-kit": "^4.3",
-        "symfony/phpunit-bridge": "^5.1"
+        "symfony/phpunit-bridge": "^5.1.8"
     },
     "suggest": {
         "nelmio/api-doc-bundle": "If you want to use the API.",
