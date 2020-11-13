@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.15.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.14.0...3.15.0) - 2020-11-09
+### Added
+- [[#639](https://github.com/sonata-project/SonataNewsBundle/pull/639)] Support for sonata-project/datagrid-bundle v3 ([@wbloszyk](https://github.com/wbloszyk))
+
+### Changed
+- [[#666](https://github.com/sonata-project/SonataNewsBundle/pull/666)] Updates Dutch translations ([@zghosts](https://github.com/zghosts))
+
+### Fixed
+- [[#634](https://github.com/sonata-project/SonataNewsBundle/pull/634)] Fixed support for string model identifiers at Open API definitions ([@wbloszyk](https://github.com/wbloszyk))
+
+### Removed
+- [[#650](https://github.com/sonata-project/SonataNewsBundle/pull/650)] Remove translator deprecations ([@core23](https://github.com/core23))
+- [[#634](https://github.com/sonata-project/SonataNewsBundle/pull/634)] Removed requirements that were only allowing integers for model identifiers at Open API definitions ([@wbloszyk](https://github.com/wbloszyk))
+
 ## [3.14.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.13.0...3.14.0) - 2020-08-22
 ### Added
 - [[#612](https://github.com/sonata-project/SonataNewsBundle/pull/612)] Added
@@ -199,7 +213,7 @@ preferred ([@jordisala1991](https://github.com/jordisala1991))
 ### Changed
 - Removed usage of old form type aliases
 - Changed internal folder structure to `src`, `tests` and `docs`
- 
+
 ### Fixed
 - Fixed hardcoded paths to classes in `.xml.skeleton` files of config
 - Fixed `Post` Document mongoDb metadata from `comments_count` to `commentsCount`
