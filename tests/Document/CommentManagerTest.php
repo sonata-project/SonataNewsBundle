@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Tests\Document;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Sonata\Doctrine\Model\PageableManagerInterface;
 use Sonata\NewsBundle\Document\BaseComment;
