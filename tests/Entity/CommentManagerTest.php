@@ -13,10 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Tests\Entity;
 
+use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Sonata\Doctrine\Test\EntityManagerMockFactoryTrait;
+use Sonata\NewsBundle\Entity\BasePost;
 use Sonata\NewsBundle\Entity\CommentManager;
 use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Model\PostManagerInterface;
 
 /**
  * Tests the comment manager entity.
@@ -85,11 +88,11 @@ class CommentManagerTest extends TestCase
     {
         $em = $this->createEntityManagerMock($qbCallback, []);
 
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock(ManagerRegistry::class);
         $registry->expects($this->any())->method('getManagerForClass')->willReturn($em);
 
-        $postManager = $this->createMock('Sonata\NewsBundle\Model\PostManagerInterface');
+        $postManager = $this->createMock(PostManagerInterface::class);
 
-        return new CommentManager('Sonata\NewsBundle\Entity\BasePost', $registry, $postManager);
+        return new CommentManager(BasePost::class, $registry, $postManager);
     }
 }
