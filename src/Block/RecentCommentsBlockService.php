@@ -55,7 +55,7 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
                 'Calling the '.__METHOD__.' method with a Sonata\Doctrine\Model\ManagerInterface is deprecated'
                 .' since version 2.4 and will be removed in 3.0.'
                 .' Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.',
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
         }
 

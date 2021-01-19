@@ -37,7 +37,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
         @trigger_error(
             'Calling the '.__METHOD__.' method is deprecated since 3.2 and will be removed in 4.0.'
             .' Use Sonata\NewsBundle\Document::findOneByPermalink() instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $pdqp = $this->getPublicationDateQueryParts(sprintf('%s-%s-%s', $year, $month, $day), 'day');

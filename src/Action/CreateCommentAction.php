@@ -93,7 +93,7 @@ final class CreateCommentAction extends Controller
             @trigger_error(sprintf(
                 'Not providing an event dispatcher to %s is deprecated since sonata-project/news-bundle 3.9',
                 __CLASS__
-            ), E_USER_DEPRECATED);
+            ), \E_USER_DEPRECATED);
         }
     }
 
