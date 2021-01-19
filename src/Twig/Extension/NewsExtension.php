@@ -53,7 +53,7 @@ class NewsExtension extends AbstractExtension implements InitRuntimeInterface
                 'Calling the '.__METHOD__.' method with a Sonata\Doctrine\Model\ManagerInterface is deprecated'
                 .' since version 2.4 and will be removed in 4.0.'
                 .' Use the new signature with a Sonata\ClassificationBundle\Model\TagManagerInterface instead.',
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
         }
 

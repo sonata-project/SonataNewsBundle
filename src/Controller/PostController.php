@@ -18,7 +18,7 @@ namespace Sonata\NewsBundle\Controller;
 @trigger_error(
     'The '.__NAMESPACE__.'\PostController class is deprecated since version 3.5 and will be removed in 4.0.'
     .' Use '.__NAMESPACE__.'\Action\* classes instead.',
-    E_USER_DEPRECATED
+    \E_USER_DEPRECATED
 );
 
 use Sonata\NewsBundle\Action\CollectionPostArchiveAction;
