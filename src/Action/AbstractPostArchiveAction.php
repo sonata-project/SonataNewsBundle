@@ -62,7 +62,7 @@ abstract class AbstractPostArchiveAction extends AbstractController
         if ($translator instanceof LegacyTranslator) {
             @trigger_error(
                 sprintf('Argument 3 passed to %s() must be an instance of %s.', __METHOD__, TranslatorInterface::class),
-                E_USER_DEPRECATED
+                \E_USER_DEPRECATED
             );
         }
 

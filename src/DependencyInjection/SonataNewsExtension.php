@@ -143,7 +143,7 @@ class SonataNewsExtension extends Extension
     {
         @trigger_error(
             'Using SonataEasyExtendsBundle is deprecated since sonata-project/news-bundle 3.14. Please register SonataDoctrineBundle as a bundle instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         $collector = DeprecatedDoctrineCollector::getInstance();
@@ -157,7 +157,7 @@ class SonataNewsExtension extends Extension
                 @trigger_error(sprintf(
                     'The "%s" class is not defined or does not exist. This is tolerated now but will be forbidden in 4.0',
                     $class
-                ), E_USER_DEPRECATED);
+                ), \E_USER_DEPRECATED);
 
                 return;
             }
