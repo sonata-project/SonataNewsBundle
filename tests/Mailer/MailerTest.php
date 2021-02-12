@@ -25,7 +25,7 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
 
-class MailerTest extends TestCase
+final class MailerTest extends TestCase
 {
     /**
      * @var RouterInterface|MockObject
@@ -48,7 +48,9 @@ class MailerTest extends TestCase
     private $templating;
 
     /**
-     * @var Mailer
+     * NEXT_MAJOR: Remove the support for `\Swift_Mailer` in this property.
+     *
+     * @var SymfonyMailerInterface|\Swift_Mailer
      */
     private $mailer;
 
@@ -60,9 +62,9 @@ class MailerTest extends TestCase
     protected function setUp(): void
     {
         $this->mailer = $this->createMock(SymfonyMailerInterface::class);
-        $this->blog = $this->createMock(BlogInterface::class);
+        $this->blog = $this->createStub(BlogInterface::class);
         $this->generator = $this->createMock(HashGeneratorInterface::class);
-        $this->router = $this->createMock(RouterInterface::class);
+        $this->router = $this->createStub(RouterInterface::class);
         $this->templating = $this->createMock(EngineInterface::class);
         $this->emails = [
             'notification' => [
@@ -182,14 +184,11 @@ class MailerTest extends TestCase
         $mailer->sendCommentNotification($comment);
     }
 
-    public function emailTemplateData(): array
+    public function emailTemplateData(): iterable
     {
         return [
-            //'CR' => ["Subject\rFirst line\rSecond line", 'Subject', "First line\rSecond line"],
             'LF' => ["Subject\nFirst line\nSecond line", 'Subject', "First line\nSecond line"],
-            //'CRLF' => ["Subject\r\nFirst line\r\nSecond line", 'Subject', "First line\r\nSecond line"],
             'LFLF' => ["Subject\n\nFirst line\n\nSecond line", 'Subject', "\nFirst line\n\nSecond line"],
-            //'CRCR' => ["Subject\r\rFirst line\r\rSecond line", 'Subject', "\rFirst line\r\rSecond line"],
         ];
     }
 
