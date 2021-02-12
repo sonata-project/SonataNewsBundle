@@ -1,6 +1,14 @@
 UPGRADE 3.x
 ===========
 
+UPGRADE FROM 3.x to 3.x
+=======================
+
+### Sonata\NewsBundle\Mailer\Mailer
+
+Passing an instance of `\Swift_Mailer` as argument 1  for `Sonata\NewsBundle\Mailer\Mailer::__construct()`
+is deprecated. Pass an instance of `Symfony\Component\Mailer\MailerInterface` instead.
+
 UPGRADE FROM 3.13 to 3.14
 =========================
 
