@@ -1,8 +1,8 @@
 UPGRADE 3.x
 ===========
 
-UPGRADE FROM 3.x to 3.x
-=======================
+UPGRADE FROM 3.16 to 3.17
+=========================
 
 ### Sonata\NewsBundle\Mailer\Mailer
 
