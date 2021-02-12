@@ -124,12 +124,15 @@ class Mailer implements MailerInterface
             return;
         }
 
-        $this->mailer->send(
-            (new Email())
+        $email = (new Email())
                 ->from($fromEmail)
-                ->to($toEmail)
                 ->subject($subject)
-                ->html($body)
-        );
+                ->html($body);
+
+        foreach ($this->emails['notification']['emails'] as $address) {
+            $email->addTo($address);
+        }
+
+        $this->mailer->send($email);
     }
 }
