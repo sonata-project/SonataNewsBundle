@@ -16,6 +16,8 @@ namespace Sonata\NewsBundle\Mailer;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Util\HashGeneratorInterface;
+use Symfony\Component\Mailer\MailerInterface as SymfonyMailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
 
@@ -42,7 +44,9 @@ class Mailer implements MailerInterface
     protected $hashGenerator;
 
     /**
-     * @var \Swift_Mailer
+     * NEXT_MAJOR: Remove the support for `\Swift_Mailer` in this property.
+     *
+     * @var SymfonyMailerInterface|\Swift_Mailer
      */
     protected $mailer;
 
@@ -51,11 +55,28 @@ class Mailer implements MailerInterface
      */
     protected $blog;
 
-    /**
-     * @param \Swift_Mailer $mailer
-     */
-    public function __construct($mailer, BlogInterface $blog, HashGeneratorInterface $generator, RouterInterface $router, EngineInterface $templating, array $emails)
+    public function __construct(object $mailer, BlogInterface $blog, HashGeneratorInterface $generator, RouterInterface $router, EngineInterface $templating, array $emails)
     {
+        // NEXT_MAJOR: Remove the following 2 conditions and use `Symfony\Component\Mailer\MailerInterface` as argument declaration for `$mailer`.
+        if (!$mailer instanceof SymfonyMailerInterface && !$mailer instanceof \Swift_Mailer) {
+            throw new \TypeError(sprintf(
+                'Argument 1 passed to "%s()" must be an instance of "%s" or "%s", instance of "%s" given.',
+                __METHOD__,
+                SymfonyMailerInterface::class,
+                \Swift_Mailer::class,
+                \get_class($mailer)
+            ));
+        }
+
+        if (!$mailer instanceof SymfonyMailerInterface) {
+            @trigger_error(sprintf(
+                'Passing other type than "%s" as argument 1 for "%s()" is deprecated since sonata-project/user-bundle 4.x'
+                .' and will be not supported in version 5.x.',
+                SymfonyMailerInterface::class,
+                __METHOD__
+            ), \E_USER_DEPRECATED);
+        }
+
         $this->blog = $blog;
         $this->mailer = $mailer;
         $this->hashGenerator = $generator;
@@ -90,12 +111,25 @@ class Mailer implements MailerInterface
         // Render the email, use the first line as the subject, and the rest as the body
         [$subject, $body] = explode("\n", trim($renderedTemplate), 2);
 
-        $message = $this->mailer->createMessage()
-            ->setSubject($subject)
-            ->setFrom($fromEmail)
-            ->setTo($toEmail)
-            ->setBody($body);
+        // NEXT_MAJOR: Remove this condition.
+        if ($this->mailer instanceof \Swift_Mailer) {
+            $message = $this->mailer->createMessage()
+                ->setSubject($subject)
+                ->setFrom($fromEmail)
+                ->setTo($toEmail)
+                ->setBody($body);
 
-        $this->mailer->send($message);
+            $this->mailer->send($message);
+
+            return;
+        }
+
+        $this->mailer->send(
+            (new Email())
+                ->from($fromEmail)
+                ->to($toEmail)
+                ->subject($subject)
+                ->html($body)
+        );
     }
 }
