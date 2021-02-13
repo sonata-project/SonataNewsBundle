@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.17.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.16.0...3.17.0) - 2021-02-12
+### Added
+- [[#711](https://github.com/sonata-project/SonataNewsBundle/pull/711)] Support for "symfony/mailer" in `Sonata\NewsBundle\Mailer\Mailer`. ([@wbloszyk](https://github.com/wbloszyk))
+
+### Deprecated
+- [[#711](https://github.com/sonata-project/SonataNewsBundle/pull/711)] Support for "swiftmailer/swiftmailer" in `Sonata\NewsBundle\Mailer\Mailer`. ([@wbloszyk](https://github.com/wbloszyk))
+
 ## [3.16.0](https://github.com/sonata-project/SonataNewsBundle/compare/3.15.0...3.16.0) - 2020-12-05
 ### Added
 - [[#678](https://github.com/sonata-project/SonataNewsBundle/pull/678)] Addded support for `doctrine/persistence` 2 ([@core23](https://github.com/core23))
