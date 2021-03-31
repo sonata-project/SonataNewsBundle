@@ -79,8 +79,7 @@ final class ViewPostAction extends Controller
                 ->addMeta('property', 'og:url', $this->generateUrl('sonata_news_view', [
                     'permalink' => $this->blog->getPermalinkGenerator()->generate($post),
                 ], UrlGeneratorInterface::ABSOLUTE_URL))
-                ->addMeta('property', 'og:description', $post->getAbstract())
-            ;
+                ->addMeta('property', 'og:description', $post->getAbstract());
         }
 
         return $this->render('@SonataNews/Post/view.html.twig', [
