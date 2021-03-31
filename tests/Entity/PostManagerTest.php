@@ -42,8 +42,7 @@ class PostManagerTest extends TestCase
                 'WITH',
                 $this->stringEndsWith('.enabled = true')
             )
-            ->willReturn($qb)
-        ;
+            ->willReturn($qb);
     }
 
     public function assertRelationsJoined($qb): void
@@ -63,8 +62,7 @@ class PostManagerTest extends TestCase
                 $this->isNull(),
                 $this->isNull()
             )
-            ->willReturn($qb)
-        ;
+            ->willReturn($qb);
     }
 
     public function assertPostEnabled($qb, $flag): void
