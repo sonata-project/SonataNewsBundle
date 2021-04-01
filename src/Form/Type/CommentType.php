@@ -39,8 +39,7 @@ class CommentType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'form.comment.message',
-            ])
-        ;
+            ]);
     }
 
     public function getBlockPrefix()

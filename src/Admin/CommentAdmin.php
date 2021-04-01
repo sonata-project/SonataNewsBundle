@@ -83,15 +83,13 @@ class CommentAdmin extends AbstractAdmin
         // define group zoning
         $formMapper
             ->with('group_comment', ['class' => 'col-md-6'])->end()
-            ->with('group_general', ['class' => 'col-md-6'])->end()
-        ;
+            ->with('group_general', ['class' => 'col-md-6'])->end();
 
         if (!$this->isChild()) {
             $formMapper
                 ->with('group_general')
                     ->add('post', ModelListType::class)
-                ->end()
-            ;
+                ->end();
         }
 
         $formMapper
@@ -106,8 +104,7 @@ class CommentAdmin extends AbstractAdmin
                     'multiple' => false,
                 ])
                 ->add('message', null, ['attr' => ['rows' => 6]])
-            ->end()
-        ;
+            ->end();
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
@@ -115,16 +112,14 @@ class CommentAdmin extends AbstractAdmin
         $datagridMapper
             ->add('name')
             ->add('email')
-            ->add('message')
-        ;
+            ->add('message');
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('getStatusCode', TextType::class, ['label' => 'status_code', 'sortable' => 'status'])
-        ;
+            ->add('getStatusCode', TextType::class, ['label' => 'status_code', 'sortable' => 'status']);
 
         if (!$this->isChild()) {
             $listMapper->add('post');

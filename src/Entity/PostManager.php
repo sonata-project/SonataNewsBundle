@@ -100,13 +100,11 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
         if ('admin' === $criteria['mode']) {
             $query
                 ->leftJoin('p.tags', 't')
-                ->leftJoin('p.author', 'a')
-            ;
+                ->leftJoin('p.author', 'a');
         } else {
             $query
                 ->leftJoin('p.tags', 't', Join::WITH, 't.enabled = true')
-                ->leftJoin('p.author', 'a', Join::WITH, 'a.enabled = true')
-            ;
+                ->leftJoin('p.author', 'a', Join::WITH, 'a.enabled = true');
         }
 
         if (!isset($criteria['enabled']) && 'public' === $criteria['mode']) {
