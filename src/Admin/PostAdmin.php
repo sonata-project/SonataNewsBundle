@@ -90,8 +90,7 @@ class PostAdmin extends AbstractAdmin
             ->add('title')
             ->add('abstract')
             ->add('content', null, ['safe' => true])
-            ->add('tags')
-        ;
+            ->add('tags');
     }
 
     protected function configureFormFields(FormMapper $formMapper): void
@@ -156,8 +155,7 @@ class PostAdmin extends AbstractAdmin
                 ->add('collection', ModelListType::class, [
                     'required' => false,
                 ])
-            ->end()
-        ;
+            ->end();
     }
 
     protected function configureListFields(ListMapper $listMapper): void
@@ -169,8 +167,7 @@ class PostAdmin extends AbstractAdmin
                 'sortable' => 'title',
             ])
             ->add('commentsEnabled', null, ['editable' => true])
-            ->add('publicationDateStart')
-        ;
+            ->add('publicationDateStart');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
@@ -194,8 +191,7 @@ class PostAdmin extends AbstractAdmin
                     $queryBuilder->setParameter('status', CommentInterface::STATUS_MODERATE);
                 },
                 'field_type' => CheckboxType::class,
-            ])
-        ;
+            ]);
     }
 
     protected function configureTabMenu(MenuItemInterface $menu, $action, ?AdminInterface $childAdmin = null): void
