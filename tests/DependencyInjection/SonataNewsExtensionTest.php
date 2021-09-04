@@ -35,13 +35,13 @@ class SonataNewsExtensionTest extends AbstractExtensionTestCase
     {
         $this->load($this->getConfigurationWithTagWithCollection());
         $collector = DoctrineCollector::getInstance();
-        $this->assertCount(2, $collector->getAssociations(), 'Our models should have 2 associations (post, comment)');
+        static::assertCount(2, $collector->getAssociations(), 'Our models should have 2 associations (post, comment)');
         $postManyToOneAssociation = $collector->getAssociations()[Post::class]['mapManyToOne'];
-        $this->assertCount(3, $postManyToOneAssociation, 'The post model should have 3 many to one associations (user, media, collection)');
+        static::assertCount(3, $postManyToOneAssociation, 'The post model should have 3 many to one associations (user, media, collection)');
         $postManyToManyAssociation = $collector->getAssociations()[Post::class]['mapManyToMany'];
-        $this->assertCount(1, $postManyToManyAssociation, 'The post model should have 1 many to many association (tag)');
+        static::assertCount(1, $postManyToManyAssociation, 'The post model should have 1 many to many association (tag)');
         $postOneToManyAssociation = $collector->getAssociations()[Post::class]['mapOneToMany'];
-        $this->assertCount(1, $postOneToManyAssociation, 'The post model should have 1 one to many association (comment)');
+        static::assertCount(1, $postOneToManyAssociation, 'The post model should have 1 one to many association (comment)');
     }
 
     protected function getConfigurationWithTagWithCollection(): array

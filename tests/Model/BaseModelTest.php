@@ -32,17 +32,17 @@ class BasePostTest extends TestCase
 
         $post->setEnabled(true);
         $post->setCommentsEnabled(false);
-        $this->assertFalse($post->isCommentable());
+        static::assertFalse($post->isCommentable());
 
         $post->setCommentsEnabled(true);
 
         $past = new \DateTime('-1 hour');
         $post->setCommentsCloseAt($past);
-        $this->assertFalse($post->isCommentable());
+        static::assertFalse($post->isCommentable());
 
         $futur = new \DateTime('+1 hour');
         $post->setCommentsCloseAt($futur);
-        $this->assertTrue($post->isCommentable());
+        static::assertTrue($post->isCommentable());
     }
 
     public function testIsPublic()
@@ -50,15 +50,15 @@ class BasePostTest extends TestCase
         $post = new BasePostTest_Post();
 
         $post->setEnabled(true);
-        $this->assertTrue($post->isPublic());
+        static::assertTrue($post->isPublic());
 
         $post->setEnabled(false);
-        $this->assertFalse($post->isPublic());
+        static::assertFalse($post->isPublic());
 
         $post->setEnabled(true);
         $post->setPublicationDateStart(new \DateTime('+1 year'));
 
-        $this->assertFalse($post->isPublic());
+        static::assertFalse($post->isPublic());
     }
 
     public function testSlug()
@@ -67,6 +67,6 @@ class BasePostTest extends TestCase
 
         $post->setTitle('Salut Symfony2');
 
-        $this->assertSame('salut-symfony2', $post->getSlug());
+        static::assertSame('salut-symfony2', $post->getSlug());
     }
 }
