@@ -48,7 +48,7 @@ class DailyPostArchiveActionTest extends TestCase
             ->willReturn($this->createStub(PagerInterface::class));
 
         $twig = $this->createStub(Environment::class);
-        $twig->method('render')->with('@SonataNews/Post/archive.html.twig', $this->anything())
+        $twig->method('render')->with('@SonataNews/Post/archive.html.twig', static::anything())
             ->willReturn('HTML CONTENT');
 
         $container = new Container();
@@ -67,6 +67,6 @@ class DailyPostArchiveActionTest extends TestCase
 
         $response = $action($request, 2018, 7, 8);
 
-        $this->assertInstanceOf(Response::class, $response);
+        static::assertInstanceOf(Response::class, $response);
     }
 }

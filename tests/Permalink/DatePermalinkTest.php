@@ -22,25 +22,25 @@ class DatePermalinkTest extends TestCase
     public function testGenerate()
     {
         $post = $this->createMock(PostInterface::class);
-        $post->expects($this->any())->method('getSlug')->willReturn('the-slug');
-        $post->expects($this->any())->method('getYear')->willReturn('2011');
-        $post->expects($this->any())->method('getMonth')->willReturn('12');
-        $post->expects($this->any())->method('getDay')->willReturn('30');
+        $post->expects(static::any())->method('getSlug')->willReturn('the-slug');
+        $post->expects(static::any())->method('getYear')->willReturn('2011');
+        $post->expects(static::any())->method('getMonth')->willReturn('12');
+        $post->expects(static::any())->method('getDay')->willReturn('30');
 
         $permalink = new DatePermalink();
-        $this->assertSame('2011/12/30/the-slug', $permalink->generate($post));
+        static::assertSame('2011/12/30/the-slug', $permalink->generate($post));
     }
 
     public function testCustomFormatting()
     {
         $post = $this->createMock(PostInterface::class);
-        $post->expects($this->any())->method('getSlug')->willReturn('the-slug');
-        $post->expects($this->any())->method('getYear')->willReturn('2011');
-        $post->expects($this->any())->method('getMonth')->willReturn('2');
-        $post->expects($this->any())->method('getDay')->willReturn('01');
+        $post->expects(static::any())->method('getSlug')->willReturn('the-slug');
+        $post->expects(static::any())->method('getYear')->willReturn('2011');
+        $post->expects(static::any())->method('getMonth')->willReturn('2');
+        $post->expects(static::any())->method('getDay')->willReturn('01');
 
         $permalink = new DatePermalink('%1$02d/%2$02d/%3$02d/%4$s');
-        $this->assertSame('2011/02/01/the-slug', $permalink->generate($post));
+        static::assertSame('2011/02/01/the-slug', $permalink->generate($post));
     }
 
     public function testGetParameters()
@@ -53,7 +53,7 @@ class DatePermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertSame($expected, $permalink->getParameters('2011/12/30/the-slug'));
+        static::assertSame($expected, $permalink->getParameters('2011/12/30/the-slug'));
     }
 
     public function testGetParametersWithWrongUrl()
@@ -68,6 +68,6 @@ class DatePermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertSame($expected, $permalink->getParameters('2011/12/the-slug'));
+        static::assertSame($expected, $permalink->getParameters('2011/12/the-slug'));
     }
 }

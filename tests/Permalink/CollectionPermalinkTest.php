@@ -21,24 +21,24 @@ class CollectionPermalinkTest extends TestCase
     public function testGenerateWithCollection()
     {
         $collection = $this->createMock('Sonata\ClassificationBundle\Model\CollectionInterface');
-        $collection->expects($this->any())->method('getSlug')->willReturn('the-collection');
+        $collection->expects(static::any())->method('getSlug')->willReturn('the-collection');
 
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
-        $post->expects($this->any())->method('getCollection')->willReturn($collection);
-        $post->expects($this->any())->method('getSlug')->willReturn('the-slug');
+        $post->expects(static::any())->method('getCollection')->willReturn($collection);
+        $post->expects(static::any())->method('getSlug')->willReturn('the-slug');
 
         $permalink = new CollectionPermalink();
-        $this->assertSame('the-collection/the-slug', $permalink->generate($post));
+        static::assertSame('the-collection/the-slug', $permalink->generate($post));
     }
 
     public function testGenerateWithoutCollection()
     {
         $post = $this->createMock('Sonata\NewsBundle\Model\PostInterface');
-        $post->expects($this->any())->method('getCollection')->willReturn(null);
-        $post->expects($this->any())->method('getSlug')->willReturn('the-slug');
+        $post->expects(static::any())->method('getCollection')->willReturn(null);
+        $post->expects(static::any())->method('getSlug')->willReturn('the-slug');
 
         $permalink = new CollectionPermalink();
-        $this->assertSame('the-slug', $permalink->generate($post));
+        static::assertSame('the-slug', $permalink->generate($post));
     }
 
     public function testGetParametersWithCollection()
@@ -49,7 +49,7 @@ class CollectionPermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertSame($expected, $permalink->getParameters('the-collection/the-slug'));
+        static::assertSame($expected, $permalink->getParameters('the-collection/the-slug'));
     }
 
     public function testGetParametersWithoutCollection()
@@ -60,7 +60,7 @@ class CollectionPermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertSame($expected, $permalink->getParameters('the-slug'));
+        static::assertSame($expected, $permalink->getParameters('the-slug'));
     }
 
     public function testGetParametersWithoutCollectionAndExtra()
@@ -73,6 +73,6 @@ class CollectionPermalinkTest extends TestCase
             'slug' => 'the-slug',
         ];
 
-        $this->assertSame($expected, $permalink->getParameters('the-collection/the-slug/asdsaasds'));
+        static::assertSame($expected, $permalink->getParameters('the-collection/the-slug/asdsaasds'));
     }
 }

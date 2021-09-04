@@ -89,7 +89,7 @@ class CommentManagerTest extends TestCase
         $em = $this->createEntityManagerMock($qbCallback, []);
 
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->any())->method('getManagerForClass')->willReturn($em);
+        $registry->expects(static::any())->method('getManagerForClass')->willReturn($em);
 
         $postManager = $this->createMock(PostManagerInterface::class);
 
