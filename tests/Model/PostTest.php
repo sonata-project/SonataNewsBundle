@@ -50,23 +50,23 @@ class PostTest extends TestCase
         $post->setSlug('my-post-slug');
         $post->setUpdatedAt($date);
 
-        $this->assertSame('My abstract content', $post->getAbstract());
-        $this->assertSame('My author', $post->getAuthor());
-        $this->assertSame($collection, $post->getCollection());
-        $this->assertInstanceOf(CollectionInterface::class, $post->getCollection());
-        $this->assertSame($date, $post->getCommentsCloseAt());
-        $this->assertSame(5, $post->getCommentsCount());
-        $this->assertSame(1, $post->getCommentsDefaultStatus());
-        $this->assertTrue($post->getCommentsEnabled());
-        $this->assertSame('My content', $post->getContent());
-        $this->assertSame('markdown', $post->getContentFormatter());
-        $this->assertSame($date, $post->getCreatedAt());
-        $this->assertTrue($post->getEnabled());
-        $this->assertSame($date, $post->getPublicationDateStart());
-        $this->assertSame('My raw content', $post->getRawContent());
-        $this->assertSame('my-post-slug', $post->getSlug());
-        $this->assertSame($tags, $post->getTags());
-        $this->assertSame('My title', $post->getTitle());
-        $this->assertSame($date, $post->getUpdatedAt());
+        static::assertSame('My abstract content', $post->getAbstract());
+        static::assertSame('My author', $post->getAuthor());
+        static::assertSame($collection, $post->getCollection());
+        static::assertInstanceOf(CollectionInterface::class, $post->getCollection());
+        static::assertSame($date, $post->getCommentsCloseAt());
+        static::assertSame(5, $post->getCommentsCount());
+        static::assertSame(1, $post->getCommentsDefaultStatus());
+        static::assertTrue($post->getCommentsEnabled());
+        static::assertSame('My content', $post->getContent());
+        static::assertSame('markdown', $post->getContentFormatter());
+        static::assertSame($date, $post->getCreatedAt());
+        static::assertTrue($post->getEnabled());
+        static::assertSame($date, $post->getPublicationDateStart());
+        static::assertSame('My raw content', $post->getRawContent());
+        static::assertSame('my-post-slug', $post->getSlug());
+        static::assertSame($tags, $post->getTags());
+        static::assertSame('My title', $post->getTitle());
+        static::assertSame($date, $post->getUpdatedAt());
     }
 }

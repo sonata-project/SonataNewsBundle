@@ -88,7 +88,7 @@ final class MailerTest extends TestCase
 
         $comment = $this->createStub(CommentInterface::class);
         $comment
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('getPost')
             ->willReturn($post);
 
@@ -101,7 +101,7 @@ final class MailerTest extends TestCase
         $this->emails['notification']['template'] = $template;
 
         $this->templating
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('render')
             ->with($this->emails['notification']['template'], [
                 'comment' => $comment,
@@ -119,12 +119,12 @@ final class MailerTest extends TestCase
 
         $this->mailer = $this->createStub(\Swift_Mailer::class);
         $this->mailer
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('createMessage')
             ->willReturn($message);
 
         $this->mailer
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('send')
             ->with($message);
 
@@ -142,7 +142,7 @@ final class MailerTest extends TestCase
 
         $comment = $this->createStub(CommentInterface::class);
         $comment
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('getPost')
             ->willReturn($post);
 
@@ -155,7 +155,7 @@ final class MailerTest extends TestCase
         $this->emails['notification']['template'] = $template;
 
         $this->templating
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('render')
             ->with($this->emails['notification']['template'], [
                 'comment' => $comment,
@@ -175,7 +175,7 @@ final class MailerTest extends TestCase
         }
 
         $this->mailer
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('send')
             ->with($email);
 

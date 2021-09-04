@@ -28,19 +28,19 @@ class PostManagerTest extends TestCase
     public function assertRelationsEnabled($qb): void
     {
         $qb
-            ->expects($this->exactly(2))
+            ->expects(static::exactly(2))
             ->method('leftJoin')
             ->with(
-                $this->logicalOr(
-                    $this->equalTo('p.tags'),
-                    $this->equalTo('p.author')
+                static::logicalOr(
+                    static::equalTo('p.tags'),
+                    static::equalTo('p.author')
                 ),
-                $this->logicalOr(
-                    $this->equalTo('t'),
-                    $this->equalTo('a')
+                static::logicalOr(
+                    static::equalTo('t'),
+                    static::equalTo('a')
                 ),
                 'WITH',
-                $this->stringEndsWith('.enabled = true')
+                static::stringEndsWith('.enabled = true')
             )
             ->willReturn($qb);
     }
@@ -48,40 +48,40 @@ class PostManagerTest extends TestCase
     public function assertRelationsJoined($qb): void
     {
         $qb
-            ->expects($this->exactly(2))
+            ->expects(static::exactly(2))
             ->method('leftJoin')
             ->with(
-                $this->logicalOr(
-                    $this->equalTo('p.tags'),
-                    $this->equalTo('p.author')
+                static::logicalOr(
+                    static::equalTo('p.tags'),
+                    static::equalTo('p.author')
                 ),
-                $this->logicalOr(
-                    $this->equalTo('t'),
-                    $this->equalTo('a')
+                static::logicalOr(
+                    static::equalTo('t'),
+                    static::equalTo('a')
                 ),
-                $this->isNull(),
-                $this->isNull()
+                static::isNull(),
+                static::isNull()
             )
             ->willReturn($qb);
     }
 
     public function assertPostEnabled($qb, $flag): void
     {
-        $qb->expects($this->once())->method('andWhere')->with($this->equalTo('p.enabled = :enabled'));
-        $qb->expects($this->once())->method('setParameters')->with($this->equalTo(['enabled' => $flag]));
+        $qb->expects(static::once())->method('andWhere')->with(static::equalTo('p.enabled = :enabled'));
+        $qb->expects(static::once())->method('setParameters')->with(static::equalTo(['enabled' => $flag]));
     }
 
     public function testFindOneByPermalinkSlug(): void
     {
         $permalink = $this->createMock(PermalinkInterface::class);
-        $permalink->expects($this->once())->method('getParameters')
-            ->with($this->equalTo('foo/bar'))
+        $permalink->expects(static::once())->method('getParameters')
+            ->with(static::equalTo('foo/bar'))
             ->willReturn([
                 'slug' => 'bar',
             ]);
 
         $blog = $this->createMock(BlogInterface::class);
-        $blog->expects($this->once())->method('getPermalinkGenerator')->willReturn($permalink);
+        $blog->expects(static::once())->method('getPermalinkGenerator')->willReturn($permalink);
 
         $self = $this;
         $this
@@ -95,12 +95,12 @@ class PostManagerTest extends TestCase
     public function testFindOneByPermalinkException(): void
     {
         $permalink = $this->createMock(PermalinkInterface::class);
-        $permalink->expects($this->once())->method('getParameters')
-            ->with($this->equalTo(''))
+        $permalink->expects(static::once())->method('getParameters')
+            ->with(static::equalTo(''))
             ->willThrowException(new \InvalidArgumentException());
 
         $blog = $this->createMock(BlogInterface::class);
-        $blog->expects($this->once())->method('getPermalinkGenerator')->willReturn($permalink);
+        $blog->expects(static::once())->method('getPermalinkGenerator')->willReturn($permalink);
 
         $self = $this;
         $result = $this
@@ -108,7 +108,7 @@ class PostManagerTest extends TestCase
             })
             ->findOneByPermalink('', $blog);
 
-        $this->assertNull($result);
+        static::assertNull($result);
     }
 
     public function testGetPagerWithoutMode(): void
@@ -245,11 +245,11 @@ class PostManagerTest extends TestCase
             })
             ->getPublicationDateQueryParts('2010-02-10', 'month', 'n');
 
-        $this->assertNotNull($result);
-        $this->assertInstanceOf(\DateTimeInterface::class, $result['params']['startDate']);
-        $this->assertInstanceOf(\DateTimeInterface::class, $result['params']['endDate']);
-        $this->assertSame('2010-02-10', $result['params']['startDate']->format('Y-m-d'));
-        $this->assertSame('2010-03-10', $result['params']['endDate']->format('Y-m-d'));
+        static::assertNotNull($result);
+        static::assertInstanceOf(\DateTimeInterface::class, $result['params']['startDate']);
+        static::assertInstanceOf(\DateTimeInterface::class, $result['params']['endDate']);
+        static::assertSame('2010-02-10', $result['params']['startDate']->format('Y-m-d'));
+        static::assertSame('2010-03-10', $result['params']['endDate']->format('Y-m-d'));
     }
 
     protected function getPostManager($qbCallback)
@@ -257,7 +257,7 @@ class PostManagerTest extends TestCase
         $em = $this->createEntityManagerMock($qbCallback, []);
 
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->any())->method('getManagerForClass')->willReturn($em);
+        $registry->expects(static::any())->method('getManagerForClass')->willReturn($em);
 
         return new PostManager(BasePost::class, $registry);
     }

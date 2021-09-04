@@ -27,6 +27,6 @@ class PostManagerTest extends TestCase
 
         $postManager = new PostManager(BasePost::class, $registry);
 
-        $this->assertInstanceOf(PageableInterface::class, $postManager);
+        static::assertInstanceOf(PageableInterface::class, $postManager);
     }
 }

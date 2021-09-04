@@ -26,9 +26,9 @@ class CommentControllerTest extends TestCase
         $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        $commentManager->expects($this->once())->method('find')->willReturn($comment);
+        $commentManager->expects(static::once())->method('find')->willReturn($comment);
 
-        $this->assertSame($comment, $this->createCommentController($commentManager)->getCommentAction(1));
+        static::assertSame($comment, $this->createCommentController($commentManager)->getCommentAction(1));
     }
 
     public function testGetCommentNotFoundExceptionAction(): void
@@ -44,12 +44,12 @@ class CommentControllerTest extends TestCase
         $comment = $this->createMock('Sonata\NewsBundle\Model\CommentInterface');
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        $commentManager->expects($this->once())->method('find')->willReturn($comment);
-        $commentManager->expects($this->once())->method('delete');
+        $commentManager->expects(static::once())->method('find')->willReturn($comment);
+        $commentManager->expects(static::once())->method('delete');
 
         $view = $this->createCommentController($commentManager)->deleteCommentAction(1);
 
-        $this->assertSame(['deleted' => true], $view);
+        static::assertSame(['deleted' => true], $view);
     }
 
     public function testDeletePostInvalidAction(): void
@@ -57,8 +57,8 @@ class CommentControllerTest extends TestCase
         $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
 
         $commentManager = $this->createMock('Sonata\NewsBundle\Model\CommentManagerInterface');
-        $commentManager->expects($this->once())->method('find')->willReturn(null);
-        $commentManager->expects($this->never())->method('delete');
+        $commentManager->expects(static::once())->method('find')->willReturn(null);
+        $commentManager->expects(static::never())->method('delete');
 
         $this->createCommentController($commentManager)->deleteCommentAction(1);
     }

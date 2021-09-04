@@ -32,6 +32,6 @@ class CommentManagerTest extends TestCase
 
         $commentManager = new CommentManager(BaseComment::class, $registry, $postManager);
 
-        $this->assertInstanceOf(PageableInterface::class, $commentManager);
+        static::assertInstanceOf(PageableInterface::class, $commentManager);
     }
 }
