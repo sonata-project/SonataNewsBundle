@@ -102,5 +102,6 @@
         "psr-4": {
             "Sonata\\NewsBundle\\Tests\\": "tests/"
         }
-    }
+    },
+    "abandoned": true
 }
