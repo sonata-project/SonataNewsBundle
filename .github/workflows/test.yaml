@@ -62,10 +62,6 @@ jobs:
             - name: Add PHPUnit matcher
               run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            - name: Configuration required for PHP 8.0
-              if: matrix.php-version == '8.0'
-              run: composer config platform.php 7.4.99
-
             - name: "Globally install symfony/flex"
               if: matrix.symfony-require != ''
               run: "composer global require --no-progress --no-scripts --no-plugins symfony/flex"
