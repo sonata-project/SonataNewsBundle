@@ -21,6 +21,8 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
+ * @final since sonata-project/news-bundle 3.x
+ *
  * BlockService for post breadcrumb.
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>

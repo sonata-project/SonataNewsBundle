@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @group legacy
  */
-class PostControllerTest extends TestCase
+final class PostControllerTest extends TestCase
 {
     public function testGetPostsAction()
     {

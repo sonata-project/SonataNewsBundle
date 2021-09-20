@@ -45,6 +45,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/**
+ * NEXT_MAJOR: remove this method.
+ *
+ * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
+ */
 class PostController extends Controller
 {
     /**

@@ -15,7 +15,7 @@ namespace Sonata\NewsBundle\Tests\Fixtures;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class UserMock implements UserInterface
+final class UserMock implements UserInterface
 {
     public function getRoles()
     {

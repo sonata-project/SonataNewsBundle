@@ -23,7 +23,7 @@ use Sonata\NewsBundle\Controller\Api\CommentController;
  *
  * @group legacy
  */
-class CommentControllerTest extends TestCase
+final class CommentControllerTest extends TestCase
 {
     public function testGetCommentAction()
     {

@@ -27,7 +27,7 @@ use Sonata\NewsBundle\Model\PostManagerInterface;
  *
  * @group legacy
  */
-class CommentManagerTest extends TestCase
+final class CommentManagerTest extends TestCase
 {
     public function testImplements()
     {

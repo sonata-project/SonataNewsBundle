@@ -24,7 +24,7 @@ use Sonata\NewsBundle\Document\PostManager;
  *
  * @group legacy
  */
-class PostManagerTest extends TestCase
+final class PostManagerTest extends TestCase
 {
     public function testImplements()
     {

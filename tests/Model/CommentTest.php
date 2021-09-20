@@ -24,7 +24,7 @@ class ModelTest_Comment extends Comment
     }
 }
 
-class CommentTest extends TestCase
+final class CommentTest extends TestCase
 {
     public function testSettersGetters()
     {
