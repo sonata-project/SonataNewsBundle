@@ -16,6 +16,9 @@ namespace Sonata\NewsBundle\Form\Type;
 use Sonata\Form\Type\BaseStatusType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @final since sonata-project/news-bundle 3.x
+ */
 class CommentStatusType extends BaseStatusType
 {
     public function configureOptions(OptionsResolver $resolver)

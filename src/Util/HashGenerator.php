@@ -15,6 +15,9 @@ namespace Sonata\NewsBundle\Util;
 
 use Sonata\NewsBundle\Model\CommentInterface;
 
+/**
+ * @final since sonata-project/news-bundle 3.x
+ */
 class HashGenerator implements HashGeneratorInterface
 {
     /**

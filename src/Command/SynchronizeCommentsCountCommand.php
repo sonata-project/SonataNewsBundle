@@ -17,6 +17,9 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @final since sonata-project/news-bundle 3.x
+ */
 class SynchronizeCommentsCountCommand extends ContainerAwareCommand
 {
     public function configure()

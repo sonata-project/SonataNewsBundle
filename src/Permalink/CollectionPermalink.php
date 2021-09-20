@@ -15,6 +15,9 @@ namespace Sonata\NewsBundle\Permalink;
 
 use Sonata\NewsBundle\Model\PostInterface;
 
+/**
+ * @final since sonata-project/news-bundle 3.x
+ */
 class CollectionPermalink implements PermalinkInterface
 {
     public function generate(PostInterface $post)

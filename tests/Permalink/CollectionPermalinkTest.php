@@ -16,7 +16,7 @@ namespace Sonata\NewsBundle\Tests\Model;
 use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Permalink\CollectionPermalink;
 
-class CollectionPermalinkTest extends TestCase
+final class CollectionPermalinkTest extends TestCase
 {
     public function testGenerateWithCollection()
     {

@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Exception\NoDriverException;
 use Sonata\NewsBundle\Model\NoDriverManager;
 
-class NoDriverManagerTest extends TestCase
+final class NoDriverManagerTest extends TestCase
 {
     /**
      * @dataProvider managerMethods

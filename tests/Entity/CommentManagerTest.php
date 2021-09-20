@@ -22,11 +22,15 @@ use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 /**
+ * NEXT_MAJOR: Remove this class.
+ *
  * Tests the comment manager entity.
  *
  * @author Romain Mouillard <romain.mouillard@gmail.com>
+ *
+ * @group legacy
  */
-class CommentManagerTest extends TestCase
+final class CommentManagerTest extends TestCase
 {
     use EntityManagerMockFactoryTrait;
 

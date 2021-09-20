@@ -21,6 +21,9 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
 
+/**
+ * @final since sonata-project/news-bundle 3.x
+ */
 class Mailer implements MailerInterface
 {
     /**
