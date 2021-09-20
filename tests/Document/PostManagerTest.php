@@ -19,6 +19,11 @@ use Sonata\Doctrine\Model\PageableManagerInterface;
 use Sonata\NewsBundle\Document\BasePost;
 use Sonata\NewsBundle\Document\PostManager;
 
+/**
+ * NEXT_MAJOR: Remove this class.
+ *
+ * @group legacy
+ */
 class PostManagerTest extends TestCase
 {
     public function testImplements()
