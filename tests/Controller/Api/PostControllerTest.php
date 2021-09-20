@@ -21,7 +21,11 @@ use Sonata\NewsBundle\Model\CommentInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * NEXT_MAJOR: Remove this class.
+ *
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * @group legacy
  */
 class PostControllerTest extends TestCase
 {

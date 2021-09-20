@@ -16,6 +16,9 @@ namespace Sonata\NewsBundle\Model;
 use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\Doctrine\Model\PageableManagerInterface;
 
+/**
+ * NEXT_MAJOR: Remove PageableManagerInterface extension.
+ */
 interface CommentManagerInterface extends ManagerInterface, PageableManagerInterface
 {
     /**
