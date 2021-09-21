@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Document;
 
+use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\Doctrine\Document\BaseDocumentManager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
 use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
@@ -23,10 +24,10 @@ use Sonata\NewsBundle\Model\PostManagerInterface;
 class PostManager extends BaseDocumentManager implements PostManagerInterface
 {
     /**
-     * @param $year
-     * @param $month
-     * @param $day
-     * @param $slug
+     * @param string $year
+     * @param string $month
+     * @param string $day
+     * @param string$slug
      *
      * @return PostInterface|null
      *

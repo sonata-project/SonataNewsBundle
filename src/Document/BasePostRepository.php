@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Document;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
+use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
 
 class BasePostRepository extends DocumentRepository
 {

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -65,70 +66,6 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('post_tag')->defaultValue('news__post_tag')->end()
                     ->end()
                 ->end()
-                ->arrayNode('class')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('tag')
-                            ->defaultValue('Application\\Sonata\\ClassificationBundle\\Entity\\Tag')
-                        ->end()
-                        ->scalarNode('collection')
-                            ->defaultValue('Application\\Sonata\\ClassificationBundle\\Entity\\Collection')
-                        ->end()
-                        ->scalarNode('post')
-                            ->defaultValue('Application\\Sonata\\NewsBundle\\Entity\\Post')
-                        ->end()
-                        ->scalarNode('comment')
-                            ->defaultValue('Application\\Sonata\\NewsBundle\\Entity\\Comment')
-                        ->end()
-                        ->scalarNode('media')
-                            ->defaultValue('Application\\Sonata\\MediaBundle\\Entity\\Media')
-                        ->end()
-                        ->scalarNode('user')
-                            ->defaultValue('Application\\Sonata\\UserBundle\\Entity\\User')
-                        ->end()
-                    ->end()
-                ->end()
-
-                ->arrayNode('admin')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('post')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('class')
-                                    ->cannotBeEmpty()
-                                    ->defaultValue('Sonata\\NewsBundle\\Admin\\PostAdmin')
-                                ->end()
-                                ->scalarNode('controller')
-                                    ->cannotBeEmpty()
-                                    ->defaultValue('SonataAdminBundle:CRUD')
-                                ->end()
-                                ->scalarNode('translation')
-                                    ->cannotBeEmpty()
-                                    ->defaultValue('SonataNewsBundle')
-                                ->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('comment')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('class')
-                                    ->cannotBeEmpty()
-                                    ->defaultValue('Sonata\\NewsBundle\\Admin\\CommentAdmin')
-                                ->end()
-                                ->scalarNode('controller')
-                                    ->cannotBeEmpty()
-                                    ->defaultValue('SonataNewsBundle:CommentAdmin')
-                                ->end()
-                                ->scalarNode('translation')
-                                    ->cannotBeEmpty()
-                                    ->defaultValue('SonataNewsBundle')
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
-
                 ->arrayNode('comment')
                     ->children()
                         ->arrayNode('notification')
@@ -144,6 +81,55 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end();
 
+        $this->addAdminSection($rootNode);
+        $this->addModelSection($rootNode);
+
         return $treeBuilder;
+    }
+
+    private function addAdminSection(ArrayNodeDefinition $node): void
+    {
+        $node
+            ->children()
+                ->arrayNode('admin')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('post')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('class')->cannotBeEmpty()->defaultValue('Sonata\\NewsBundle\\Admin\\PostAdmin')->end()
+                                ->scalarNode('controller')->cannotBeEmpty()->defaultValue('SonataAdminBundle:CRUD')->end()
+                                ->scalarNode('translation')->cannotBeEmpty()->defaultValue('SonataNewsBundle')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('comment')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('class')->cannotBeEmpty()->defaultValue('Sonata\\NewsBundle\\Admin\\CommentAdmin')->end()
+                                ->scalarNode('controller')->cannotBeEmpty()->defaultValue('SonataNewsBundle:CommentAdmin')->end()
+                                ->scalarNode('translation')->cannotBeEmpty()->defaultValue('SonataNewsBundle')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
+    }
+
+    private function addModelSection(ArrayNodeDefinition $node): void
+    {
+        $node
+            ->children()
+                ->arrayNode('class')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('tag')->defaultValue('Application\\Sonata\\ClassificationBundle\\Entity\\Tag')->end()
+                        ->scalarNode('collection')->defaultValue('Application\\Sonata\\ClassificationBundle\\Entity\\Collection')->end()
+                        ->scalarNode('post')->defaultValue('Application\\Sonata\\NewsBundle\\Entity\\Post')->end()
+                        ->scalarNode('comment')->defaultValue('Application\\Sonata\\NewsBundle\\Entity\\Comment')->end()
+                        ->scalarNode('media')->defaultValue('Application\\Sonata\\MediaBundle\\Entity\\Media')->end()
+                        ->scalarNode('user')->defaultValue('Application\\Sonata\\UserBundle\\Entity\\User')->end()
+                    ->end()
+                ->end()
+            ->end();
     }
 }

@@ -78,21 +78,21 @@ class CommentAdmin extends AbstractAdmin
         $this->commentManager = $commentManager;
     }
 
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $form)
     {
         // define group zoning
-        $formMapper
+        $form
             ->with('group_comment', ['class' => 'col-md-6'])->end()
             ->with('group_general', ['class' => 'col-md-6'])->end();
 
         if (!$this->isChild()) {
-            $formMapper
+            $form
                 ->with('group_general')
                     ->add('post', ModelListType::class)
                 ->end();
         }
 
-        $formMapper
+        $form
             ->with('group_general')
                 ->add('name')
                 ->add('email')
@@ -107,25 +107,25 @@ class CommentAdmin extends AbstractAdmin
             ->end();
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $filter)
     {
-        $datagridMapper
+        $filter
             ->add('name')
             ->add('email')
             ->add('message');
     }
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $list)
     {
-        $listMapper
+        $list
             ->addIdentifier('name')
             ->add('getStatusCode', TextType::class, ['label' => 'status_code', 'sortable' => 'status']);
 
         if (!$this->isChild()) {
-            $listMapper->add('post');
+            $list->add('post');
         }
 
-        $listMapper
+        $list
             ->add('email')
             ->add('url')
             ->add('message');
