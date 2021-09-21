@@ -16,7 +16,6 @@ namespace Sonata\NewsBundle\Model;
 use Sonata\DatagridBundle\Pager\PageableInterface;
 use Sonata\Doctrine\Model\ManagerInterface;
 
-
 /**
  * NEXT_MAJOR: Remove PageableInterface extension.
  */
