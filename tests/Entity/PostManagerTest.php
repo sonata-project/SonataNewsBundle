@@ -21,7 +21,7 @@ use Sonata\NewsBundle\Entity\PostManager;
 use Sonata\NewsBundle\Model\BlogInterface;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
 
-class PostManagerTest extends TestCase
+final class PostManagerTest extends TestCase
 {
     use EntityManagerMockFactoryTrait;
 
@@ -111,6 +111,11 @@ class PostManagerTest extends TestCase
         static::assertNull($result);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithoutMode(): void
     {
         $self = $this;
@@ -123,6 +128,11 @@ class PostManagerTest extends TestCase
             ->getPager([], 1);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithoutModeEnabled(): void
     {
         $self = $this;
@@ -135,6 +145,11 @@ class PostManagerTest extends TestCase
             ->getPager([], 1);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithoutModeDisabled(): void
     {
         $self = $this;
@@ -149,6 +164,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithPublicMode(): void
     {
         $self = $this;
@@ -163,6 +183,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithPublicModeEnabled(): void
     {
         $self = $this;
@@ -178,6 +203,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithPublicModeDisabled(): void
     {
         $self = $this;
@@ -193,6 +223,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithAdminMode(): void
     {
         $self = $this;
@@ -208,6 +243,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithAdminModeEnabled(): void
     {
         $self = $this;
@@ -223,6 +263,11 @@ class PostManagerTest extends TestCase
             ], 1);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testGetPagerWithAdminModeDisabled(): void
     {
         $self = $this;

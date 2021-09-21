@@ -19,6 +19,9 @@ use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+/**
+ * @final since sonata-project/news-bundle 3.x
+ */
 class SonataNewsBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
@@ -34,7 +37,11 @@ class SonataNewsBundle extends Bundle
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Register form mapping information.
+     *
+     * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
      */
     public function registerFormMapping(): void
     {

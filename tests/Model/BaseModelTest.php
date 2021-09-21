@@ -16,7 +16,7 @@ namespace Sonata\NewsBundle\Tests\Model;
 use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Model\Post;
 
-class BasePostTest_Post extends Post
+final class BasePostTest_Post extends Post
 {
     public function getId(): void
     {
@@ -24,7 +24,7 @@ class BasePostTest_Post extends Post
     }
 }
 
-class BasePostTest extends TestCase
+final class BasePostTest extends TestCase
 {
     public function testIsCommentable(): void
     {

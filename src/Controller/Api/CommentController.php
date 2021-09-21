@@ -21,7 +21,11 @@ use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
  */
 class CommentController
 {

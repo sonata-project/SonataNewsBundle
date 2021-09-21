@@ -25,6 +25,8 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
+ * @final since sonata-project/news-bundle 3.x
+ *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 class SonataNewsExtension extends Extension
@@ -44,6 +46,7 @@ class SonataNewsExtension extends Extension
         $loader->load('twig.xml');
         $loader->load('form.xml');
         $loader->load('core.xml');
+        // NEXT_MAJOR: Remove next line and the file.
         $loader->load('serializer.xml');
         $loader->load('command.xml');
 
@@ -51,6 +54,7 @@ class SonataNewsExtension extends Extension
             $loader->load('block.xml');
         }
 
+        // NEXT_MAJOR: Remove this condition and remove all configuration files related to this.
         if (isset($bundles['FOSRestBundle'], $bundles['NelmioApiDocBundle'])) {
             $loader->load(sprintf('api_form_%s.xml', $config['db_driver']));
             if ('doctrine_orm' === $config['db_driver']) {

@@ -24,6 +24,9 @@ use Twig\Extension\AbstractExtension;
 use Twig\Extension\InitRuntimeInterface;
 use Twig\TwigFunction;
 
+/**
+ * @final since sonata-project/news-bundle 3.x
+ */
 class NewsExtension extends AbstractExtension implements InitRuntimeInterface
 {
     /**

@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Exception;
 
 /**
+ * @final since sonata-project/news-bundle 3.x
+ *
  * @author Christian Gripp <mail@core23.de>
  */
 class NoDriverException extends \RuntimeException

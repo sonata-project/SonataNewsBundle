@@ -17,6 +17,8 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
+ * @final since sonata-project/news-bundle 3.x
+ *
  * BlockService for archive breadcrumb.
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>

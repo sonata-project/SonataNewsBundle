@@ -19,7 +19,12 @@ use Sonata\DatagridBundle\Pager\PageableInterface;
 use Sonata\NewsBundle\Document\BasePost;
 use Sonata\NewsBundle\Document\PostManager;
 
-class PostManagerTest extends TestCase
+/**
+ * NEXT_MAJOR: Remove this class.
+ *
+ * @group legacy
+ */
+final class PostManagerTest extends TestCase
 {
     public function testImplements(): void
     {

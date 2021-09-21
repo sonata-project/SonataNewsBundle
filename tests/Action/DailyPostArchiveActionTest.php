@@ -25,7 +25,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
-class DailyPostArchiveActionTest extends TestCase
+final class DailyPostArchiveActionTest extends TestCase
 {
     public function testInvoke(): void
     {

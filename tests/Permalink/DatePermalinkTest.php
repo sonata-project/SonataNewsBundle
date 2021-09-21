@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Permalink\DatePermalink;
 
-class DatePermalinkTest extends TestCase
+final class DatePermalinkTest extends TestCase
 {
     public function testGenerate(): void
     {

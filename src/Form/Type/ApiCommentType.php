@@ -16,7 +16,11 @@ namespace Sonata\NewsBundle\Form\Type;
 use Sonata\Form\Type\BaseDoctrineORMSerializationType;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * @author Thomas Rabaix <thomas.rabaix@gmail.com>
+ *
+ * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
  */
 class ApiCommentType extends BaseDoctrineORMSerializationType
 {

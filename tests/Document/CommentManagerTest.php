@@ -21,9 +21,13 @@ use Sonata\NewsBundle\Document\CommentManager;
 use Sonata\NewsBundle\Model\PostManagerInterface;
 
 /**
+ * NEXT_MAJOR: Remove this class.
+ *
  * Tests the comment manager document.
+ *
+ * @group legacy
  */
-class CommentManagerTest extends TestCase
+final class CommentManagerTest extends TestCase
 {
     public function testImplements(): void
     {

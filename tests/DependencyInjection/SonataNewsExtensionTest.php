@@ -23,7 +23,7 @@ use Sonata\NewsBundle\Model\Comment;
 use Sonata\NewsBundle\Model\Post;
 use Sonata\NewsBundle\Tests\Fixtures\UserMock;
 
-class SonataNewsExtensionTest extends AbstractExtensionTestCase
+final class SonataNewsExtensionTest extends AbstractExtensionTestCase
 {
     protected function setUp(): void
     {

@@ -18,14 +18,14 @@ use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\ClassificationBundle\Model\TagInterface;
 use Sonata\NewsBundle\Model\Post;
 
-class ModelTest_Post extends Post
+final class ModelTest_Post extends Post
 {
     public function getId(): void
     {
     }
 }
 
-class PostTest extends TestCase
+final class PostTest extends TestCase
 {
     public function testSettersGetters(): void
     {

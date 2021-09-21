@@ -17,9 +17,13 @@ use PHPUnit\Framework\TestCase;
 use Sonata\NewsBundle\Controller\Api\CommentController;
 
 /**
+ * NEXT_MAJOR: Remove this class.
+ *
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * @group legacy
  */
-class CommentControllerTest extends TestCase
+final class CommentControllerTest extends TestCase
 {
     public function testGetCommentAction(): void
     {

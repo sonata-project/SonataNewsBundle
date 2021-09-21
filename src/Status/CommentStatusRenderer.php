@@ -17,6 +17,8 @@ use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\Twig\Status\StatusClassRendererInterface;
 
 /**
+ * @final since sonata-project/news-bundle 3.x
+ *
  * @author Hugo Briand <briand@ekino.com>
  */
 class CommentStatusRenderer implements StatusClassRendererInterface
