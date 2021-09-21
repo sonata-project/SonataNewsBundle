@@ -37,7 +37,6 @@ class PostAdmin extends AbstractAdmin
     /**
      * @deprecated since sonata-project/news-bundle 3.13, to be removed in 4.0.
      *
-     * @var null
      */
     protected $userManager;
 
