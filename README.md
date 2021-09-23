@@ -10,6 +10,7 @@ Symfony SonataNewsBundle
 
 [![Latest Stable Version](https://poser.pugx.org/sonata-project/news-bundle/v/stable)](https://packagist.org/packages/sonata-project/news-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/sonata-project/news-bundle/v/unstable)](https://packagist.org/packages/sonata-project/news-bundle)
+[![Psalm Type Coverage][shepherd_stable_badge]][shepherd_stable_link]
 [![License](https://poser.pugx.org/sonata-project/news-bundle/license)](https://packagist.org/packages/sonata-project/news-bundle)
 
 [![Total Downloads](https://poser.pugx.org/sonata-project/news-bundle/downloads)](https://packagist.org/packages/sonata-project/news-bundle)
@@ -46,12 +47,12 @@ This package is available under the [MIT license](LICENSE).
 [test_stable_link]: https://github.com/sonata-project/SonataNewsBundle/actions?query=workflow:test+branch:3.x
 [test_unstable_badge]: https://github.com/sonata-project/SonataNewsBundle/workflows/Test/badge.svg?branch=4.x
 [test_unstable_link]: https://github.com/sonata-project/SonataNewsBundle/actions?query=workflow:test+branch:4.x
-
 [coverage_stable_badge]: https://codecov.io/gh/sonata-project/SonataNewsBundle/branch/3.x/graph/badge.svg
 [coverage_stable_link]: https://codecov.io/gh/sonata-project/SonataNewsBundle/branch/3.x
 [coverage_unstable_badge]: https://codecov.io/gh/sonata-project/SonataNewsBundle/branch/4.x/graph/badge.svg
 [coverage_unstable_link]: https://codecov.io/gh/sonata-project/SonataNewsBundle/branch/4.x
-
+[shepherd_stable_badge]: https://shepherd.dev/github/sonata-project/SonataNewsBundle/coverage.svg
+[shepherd_stable_link]: https://shepherd.dev/github/sonata-project/SonataNewsBundle
 [documentation_stable_badge]: https://readthedocs.org/projects/sonatanewsbundle/badge/?version=3.x
 [documentation_stable_link]: https://docs.sonata-project.org/projects/SonataNewsBundle/en/3.x/?badge=3.x
 [documentation_unstable_badge]: https://readthedocs.org/projects/sonatanewsbundle/badge/?version=4.x
