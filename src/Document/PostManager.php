@@ -27,7 +27,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
      * @param string $year
      * @param string $month
      * @param string $day
-     * @param string$slug
+     * @param string $slug
      *
      * @return PostInterface|null
      *
