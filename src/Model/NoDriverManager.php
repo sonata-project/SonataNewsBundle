@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\Doctrine\Model\ManagerInterface;
+use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\NewsBundle\Exception\NoDriverException;
 
 /**
@@ -21,7 +21,7 @@ use Sonata\NewsBundle\Exception\NoDriverException;
  *
  * @author Christian Gripp <mail@core23.de>
  */
-final class NoDriverManager implements ManagerInterface
+final class NoDriverManager implements PostManagerInterface, CommentManagerInterface
 {
     public function getClass()
     {
@@ -84,6 +84,26 @@ final class NoDriverManager implements ManagerInterface
     }
 
     public function getConnection()
+    {
+        throw new NoDriverException();
+    }
+
+    public function updateCommentsCount(?PostInterface $post = null)
+    {
+        throw new NoDriverException();
+    }
+
+    public function getPager(array $criteria, int $page, int $limit = 10, array $sort = []): PagerInterface
+    {
+        throw new NoDriverException();
+    }
+
+    public function findOneByPermalink($permalink, BlogInterface $blog)
+    {
+        throw new NoDriverException();
+    }
+
+    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
     {
         throw new NoDriverException();
     }
