@@ -13,12 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Document;
 
-use Sonata\DatagridBundle\Pager\PagerInterface;
+use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\Doctrine\Document\BaseDocumentManager;
-use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
-use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 use Sonata\NewsBundle\Model\BlogInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
+use Sonata\NewsBundle\Pagination\BasePaginator;
+use Sonata\NewsBundle\Pagination\MongoDBPaginator;
 
 class PostManager extends BaseDocumentManager implements PostManagerInterface
 {
@@ -74,20 +75,18 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
         return $query->getQuery()->getOneOrNullResult();
     }
 
-    /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
-     *
-     * Valid criteria are:
-     *    enabled - boolean
-     *    date - query
-     *    tag - string
-     *    author - 'NULL', 'NOT NULL', id, array of ids
-     *    collections - CollectionInterface
-     *    mode - string public|admin.
-     */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = []): PagerInterface
+    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
+    {
+        return [
+            'query' => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
+            'params' => [
+                'startDate' => new \DateTime($date),
+                'endDate' => new \DateTime($date.'+1 '.$step),
+            ],
+        ];
+    }
+
+    public function getPaginator(array $criteria = [], $page = 1, $limit = 10, array $sort = []): BasePaginator
     {
         if (!isset($criteria['mode'])) {
             $criteria['mode'] = 'public';
@@ -133,24 +132,7 @@ class PostManager extends BaseDocumentManager implements PostManagerInterface
 
         $query->setParameters($parameters);
 
-        $pager = new Pager();
-        $pager->setMaxPerPage($limit);
-        $pager->setQuery(new ProxyQuery($query));
-        $pager->setPage($page);
-        $pager->init();
-
-        return $pager;
-    }
-
-    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
-    {
-        return [
-            'query' => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
-            'params' => [
-                'startDate' => new \DateTime($date),
-                'endDate' => new \DateTime($date.'+1 '.$step),
-            ],
-        ];
+        return (new MongoDBPaginator($query))->paginate($page);
     }
 
     /**

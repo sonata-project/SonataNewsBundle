@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\NewsBundle\Exception\NoDriverException;
+use Sonata\NewsBundle\Pagination\BasePaginator;
 
 /**
  * @internal
@@ -90,12 +90,6 @@ final class NoDriverManager implements PostManagerInterface, CommentManagerInter
 
     public function updateCommentsCount(?PostInterface $post = null)
     {
-        throw new NoDriverException();
-    }
-
-    public function getPager(array $criteria, int $page, int $limit = 10, array $sort = []): PagerInterface
-    {
-        throw new NoDriverException();
     }
 
     public function findOneByPermalink($permalink, BlogInterface $blog)
@@ -104,6 +98,11 @@ final class NoDriverManager implements PostManagerInterface, CommentManagerInter
     }
 
     public function getPublicationDateQueryParts($date, $step, $alias = 'p')
+    {
+        return [];
+    }
+
+    public function getPaginator(array $criteria = [], $page = 1, $limit = 10, array $sort = []): BasePaginator
     {
         throw new NoDriverException();
     }

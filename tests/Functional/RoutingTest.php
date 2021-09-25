@@ -21,6 +21,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 final class RoutingTest extends WebTestCase
 {
+    private const PREFIX_URL = '/news';
+
     /**
      * @dataProvider getRoutes
      */
@@ -32,7 +34,7 @@ final class RoutingTest extends WebTestCase
         $route = $router->getRouteCollection()->get($name);
 
         static::assertNotNull($route);
-        static::assertSame($path, $route->getPath());
+        static::assertSame(self::PREFIX_URL.$path, $route->getPath());
         static::assertEmpty(array_diff($methods, $route->getMethods()));
 
         if ($formats) {

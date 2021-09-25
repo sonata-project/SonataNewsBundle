@@ -38,7 +38,7 @@ final class CommentListAction extends AbstractController
     public function __invoke($postId)
     {
         $pager = $this->commentManager
-            ->getPager([
+            ->getPaginator([
                 'postId' => $postId,
                 'status' => CommentInterface::STATUS_VALID,
             ], 1, 500); //no limit

@@ -1,10 +1,13 @@
 sonata_news:
+    class:
+        post: Sonata\NewsBundle\Tests\Fixtures\SonataNewsPost
+        comment: Sonata\NewsBundle\Tests\Fixtures\SonataNewsComment
     title: Sonata Project
     link: https://sonata-project.org
     description: Cool bundles on top of Symfony2
     salt: 'secureToken'
     permalink_generator: sonata.news.permalink.date
-    db_driver: 'no_driver'
+    db_driver: 'doctrine_orm'
     comment:
         notification:
             emails: [email@example.org, email2@example.org]

@@ -15,12 +15,12 @@ namespace Sonata\NewsBundle\Entity;
 
 use Doctrine\ORM\Query\Expr\Join;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
-use Sonata\DatagridBundle\Pager\Doctrine\Pager;
-use Sonata\DatagridBundle\Pager\PagerInterface;
-use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
 use Sonata\Doctrine\Entity\BaseEntityManager;
 use Sonata\NewsBundle\Model\BlogInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
+use Sonata\NewsBundle\Pagination\BasePaginator;
+use Sonata\NewsBundle\Pagination\ORMPaginator;
 
 class PostManager extends BaseEntityManager implements PostManagerInterface
 {
@@ -77,19 +77,20 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
     }
 
     /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
-     *
-     * Valid criteria are:
-     *    enabled - boolean
-     *    date - query
-     *    tag - string
-     *    author - 'NULL', 'NOT NULL', id, array of ids
-     *    collections - CollectionInterface
-     *    mode - string public|admin.
+     * {@inheritdoc}
      */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = []): PagerInterface
+    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
+    {
+        return [
+            'query' => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
+            'params' => [
+                'startDate' => new \DateTime($date),
+                'endDate' => new \DateTime($date.'+1 '.$step),
+            ],
+        ];
+    }
+
+    public function getPaginator(array $criteria = [], $page = 1, $limit = 10, array $sort = []): BasePaginator
     {
         if (!isset($criteria['mode'])) {
             $criteria['mode'] = 'public';
@@ -146,27 +147,7 @@ class PostManager extends BaseEntityManager implements PostManagerInterface
 
         $query->setParameters($parameters);
 
-        $pager = new Pager();
-        $pager->setMaxPerPage($limit);
-        $pager->setQuery(new ProxyQuery($query));
-        $pager->setPage($page);
-        $pager->init();
-
-        return $pager;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
-    {
-        return [
-            'query' => sprintf('%s.publicationDateStart >= :startDate AND %s.publicationDateStart < :endDate', $alias, $alias),
-            'params' => [
-                'startDate' => new \DateTime($date),
-                'endDate' => new \DateTime($date.'+1 '.$step),
-            ],
-        ];
+        return (new ORMPaginator($query))->paginate($page);
     }
 
     /**
