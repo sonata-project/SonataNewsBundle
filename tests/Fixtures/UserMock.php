@@ -19,18 +19,22 @@ final class UserMock implements UserInterface
 {
     public function getRoles()
     {
+        return [];
     }
 
     public function getPassword()
     {
+        return '';
     }
 
     public function getSalt()
     {
+        return '';
     }
 
     public function getUsername()
     {
+        return '';
     }
 
     public function eraseCredentials()

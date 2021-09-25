@@ -372,7 +372,7 @@ abstract class Post implements PostInterface
     }
 
     /**
-     * @param $contentFormatter
+     * @param string $contentFormatter
      */
     public function setContentFormatter($contentFormatter)
     {

@@ -29,7 +29,6 @@ use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\NewsBundle\Form\Type\CommentStatusType;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
-use Sonata\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -37,8 +36,6 @@ class PostAdmin extends AbstractAdmin
 {
     /**
      * @deprecated since sonata-project/news-bundle 3.13, to be removed in 4.0.
-     *
-     * @var UserManagerInterface|null
      */
     protected $userManager;
 
@@ -54,8 +51,6 @@ class PostAdmin extends AbstractAdmin
 
     /**
      * @deprecated since sonata-project/news-bundle 3.13, to be removed in 4.0.
-     *
-     * @param UserManagerInterface|null $userManager
      */
     public function setUserManager($userManager)
     {
@@ -82,9 +77,9 @@ class PostAdmin extends AbstractAdmin
         $this->permalinkGenerator = $permalinkGenerator;
     }
 
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $show)
     {
-        $showMapper
+        $show
             ->add('author')
             ->add('enabled')
             ->add('title')
@@ -93,10 +88,10 @@ class PostAdmin extends AbstractAdmin
             ->add('tags');
     }
 
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $form)
     {
         $isHorizontal = 'horizontal' === $this->getConfigurationPool()->getOption('form_type');
-        $formMapper
+        $form
             ->with('group_post', [
                     'class' => 'col-md-8',
                 ])
@@ -106,7 +101,7 @@ class PostAdmin extends AbstractAdmin
                     'attr' => ['rows' => 5],
                 ])
                 ->add('content', FormatterType::class, [
-                    'event_dispatcher' => $formMapper->getFormBuilder()->getEventDispatcher(),
+                    'event_dispatcher' => $form->getFormBuilder()->getEventDispatcher(),
                     'format_field' => 'contentFormatter',
                     'source_field' => 'rawContent',
                     'source_field_options' => [
@@ -158,9 +153,9 @@ class PostAdmin extends AbstractAdmin
             ->end();
     }
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $list)
     {
-        $listMapper
+        $list
             ->add('custom', 'string', [
                 'template' => '@SonataNews/Admin/list_post_custom.html.twig',
                 'label' => 'list.label_post',
@@ -170,11 +165,9 @@ class PostAdmin extends AbstractAdmin
             ->add('publicationDateStart');
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $filter)
     {
-        $that = $this;
-
-        $datagridMapper
+        $filter
             ->add('title')
             ->add('enabled')
             ->add('tags', null, ['field_options' => ['expanded' => true, 'multiple' => true]])

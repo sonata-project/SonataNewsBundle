@@ -16,6 +16,7 @@ namespace Sonata\NewsBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 
 class BasePostRepository extends EntityRepository
 {
@@ -24,7 +25,7 @@ class BasePostRepository extends EntityRepository
      *
      * @param int $limit
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function findLastPostQueryBuilder($limit)
     {

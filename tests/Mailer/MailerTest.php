@@ -174,6 +174,7 @@ final class MailerTest extends TestCase
             $email->addTo($address);
         }
 
+        $this->mailer = $this->createMock(SymfonyMailerInterface::class);
         $this->mailer
             ->expects(static::once())
             ->method('send')

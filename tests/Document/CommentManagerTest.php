@@ -18,7 +18,6 @@ use PHPUnit\Framework\TestCase;
 use Sonata\Doctrine\Model\PageableManagerInterface;
 use Sonata\NewsBundle\Document\BaseComment;
 use Sonata\NewsBundle\Document\CommentManager;
-use Sonata\NewsBundle\Model\PostManagerInterface;
 
 /**
  * NEXT_MAJOR: Remove this class.
@@ -32,9 +31,8 @@ final class CommentManagerTest extends TestCase
     public function testImplements()
     {
         $registry = $this->createMock(ManagerRegistry::class);
-        $postManager = $this->createMock(PostManagerInterface::class);
 
-        $commentManager = new CommentManager(BaseComment::class, $registry, $postManager);
+        $commentManager = new CommentManager(BaseComment::class, $registry);
 
         static::assertInstanceOf(PageableManagerInterface::class, $commentManager);
     }
