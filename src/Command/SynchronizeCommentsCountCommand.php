@@ -29,7 +29,7 @@ class SynchronizeCommentsCountCommand extends ContainerAwareCommand
     }
 
     /**
-     * @return void
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -38,5 +38,7 @@ class SynchronizeCommentsCountCommand extends ContainerAwareCommand
         $commentManager->updateCommentsCount();
 
         $output->writeln(' done!');
+
+        return 0;
     }
 }
