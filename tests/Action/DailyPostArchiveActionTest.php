@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Tests\Action;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
 use Sonata\NewsBundle\Action\DailyPostArchiveAction;
 use Sonata\NewsBundle\Entity\PostManager;
 use Sonata\NewsBundle\Model\BlogInterface;
+use Sonata\NewsBundle\Pagination\BasePaginator;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,8 +44,8 @@ final class DailyPostArchiveActionTest extends TestCase
         $postManager = $this->createStub(PostManager::class);
         $postManager->method('getPublicationDateQueryParts')->with('2018-7-8', 'day')
             ->willReturn($dataParams);
-        $postManager->method('getPager')->with(['date' => $dataParams], 1)
-            ->willReturn($this->createStub(PagerInterface::class));
+        $postManager->method('getPaginator')->with(['date' => $dataParams], 1)
+            ->willReturn($this->createStub(BasePaginator::class));
 
         $twig = $this->createStub(Environment::class);
         $twig->method('render')->with('@SonataNews/Post/archive.html.twig', static::anything())

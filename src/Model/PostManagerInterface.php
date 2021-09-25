@@ -13,13 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\DatagridBundle\Pager\PageableInterface;
 use Sonata\Doctrine\Model\ManagerInterface;
+use Sonata\NewsBundle\Pagination\BasePaginator;
 
-/**
- * NEXT_MAJOR: Remove PageableInterface extension.
- */
-interface PostManagerInterface extends ManagerInterface, PageableInterface
+interface PostManagerInterface extends ManagerInterface
 {
     /**
      * @param string $permalink
@@ -36,4 +33,6 @@ interface PostManagerInterface extends ManagerInterface, PageableInterface
      * @return array
      */
     public function getPublicationDateQueryParts($date, $step, $alias = 'p');
+
+    public function getPaginator(array $criteria = [], $page = 1, $limit = 10, array $sort = []): BasePaginator;
 }

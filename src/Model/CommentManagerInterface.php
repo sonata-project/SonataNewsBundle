@@ -13,16 +13,15 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\DatagridBundle\Pager\PageableInterface;
 use Sonata\Doctrine\Model\ManagerInterface;
+use Sonata\NewsBundle\Pagination\BasePaginator;
 
-/**
- * NEXT_MAJOR: Remove PageableInterface extension.
- */
-interface CommentManagerInterface extends ManagerInterface, PageableInterface
+interface CommentManagerInterface extends ManagerInterface
 {
     /**
      * Update the number of comment for a comment.
      */
     public function updateCommentsCount(?PostInterface $post = null);
+
+    public function getPaginator(array $criteria = [], $page = 1, $limit = 10, array $sort = []): BasePaginator;
 }

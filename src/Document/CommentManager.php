@@ -13,25 +13,28 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Document;
 
-use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\Doctrine\Document\BaseDocumentManager;
-use Sonata\DoctrineMongoDBAdminBundle\Datagrid\Pager;
-use Sonata\DoctrineMongoDBAdminBundle\Datagrid\ProxyQuery;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostInterface;
+use Sonata\NewsBundle\Pagination\BasePaginator;
+use Sonata\NewsBundle\Pagination\MongoDBPaginator;
 
 class CommentManager extends BaseDocumentManager implements CommentManagerInterface
 {
     /**
-     * NEXT_MAJOR: remove this method.
+     * Update the comments count.
      *
-     * @deprecated since sonata-project/news-bundle 3.x, to be removed in 4.0.
-     *
-     * @param int $page
-     * @param int $limit
+     * @param PostInterface $post
      */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = []): PagerInterface
+    public function updateCommentsCount(?PostInterface $post = null): void
+    {
+        $post->setCommentsCount($post->getCommentsCount() + 1);
+        $this->getDocumentManager()->persist($post);
+        $this->getDocumentManager()->flush();
+    }
+
+    public function getPaginator(array $criteria = [], $page = 1, $limit = 10, array $sort = []): BasePaginator
     {
         $qb = $this->getDocumentManager()->getRepository($this->class)
             ->createQueryBuilder()
@@ -44,23 +47,6 @@ class CommentManager extends BaseDocumentManager implements CommentManagerInterf
             $qb->field('post')->equals($criteria['postId']);
         }
 
-        $pager = new Pager(500); // no limit
-        $pager->setQuery(new ProxyQuery($qb));
-        $pager->setPage($page);
-        $pager->init();
-
-        return $pager;
-    }
-
-    /**
-     * Update the comments count.
-     *
-     * @param PostInterface $post
-     */
-    public function updateCommentsCount(?PostInterface $post = null): void
-    {
-        $post->setCommentsCount($post->getCommentsCount() + 1);
-        $this->getDocumentManager()->persist($post);
-        $this->getDocumentManager()->flush();
+        return (new MongoDBPaginator($qb))->paginate($page);
     }
 }

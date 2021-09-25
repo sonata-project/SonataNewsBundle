@@ -40,10 +40,6 @@ Add ``SonataNewsBundle`` via composer::
 
     composer require sonata-project/news-bundle
 
-If you want to use the REST API, you also need ``friendsofsymfony/rest-bundle`` and ``nelmio/api-doc-bundle``::
-
-    composer require friendsofsymfony/rest-bundle nelmio/api-doc-bundle
-
 Next, be sure to enable the bundles in your ``config/bundles.php`` file if they
 are not already enabled::
 

@@ -77,7 +77,7 @@ class RecentCommentsBlockService extends AbstractAdminBlockService
             'context' => $blockContext,
             'settings' => $blockContext->getSettings(),
             'block' => $blockContext->getBlock(),
-            'pager' => $this->manager->getPager($criteria, 1, $blockContext->getSetting('number')),
+            'pager' => $this->manager->getPaginator($criteria, 1, $blockContext->getSetting('number')),
             'admin_pool' => $this->adminPool,
         ];
 

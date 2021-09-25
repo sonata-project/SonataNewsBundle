@@ -46,20 +46,10 @@ class SonataNewsExtension extends Extension
         $loader->load('twig.xml');
         $loader->load('form.xml');
         $loader->load('core.xml');
-        // NEXT_MAJOR: Remove next line and the file.
-        $loader->load('serializer.xml');
         $loader->load('command.xml');
 
         if (isset($bundles['SonataBlockBundle'])) {
             $loader->load('block.xml');
-        }
-
-        // NEXT_MAJOR: Remove this condition and remove all configuration files related to this.
-        if (isset($bundles['FOSRestBundle'], $bundles['NelmioApiDocBundle'])) {
-            $loader->load(sprintf('api_form_%s.xml', $config['db_driver']));
-            if ('doctrine_orm' === $config['db_driver']) {
-                $loader->load('api_controllers.xml');
-            }
         }
 
         $loader->load(sprintf('%s.xml', $config['db_driver']));

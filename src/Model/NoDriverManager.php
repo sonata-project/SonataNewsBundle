@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Sonata\NewsBundle\Model;
 
-use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\NewsBundle\Exception\NoDriverException;
+use Sonata\NewsBundle\Pagination\BasePaginator;
 
 /**
  * @internal
  *
  * @author Christian Gripp <mail@core23.de>
  */
-final class NoDriverManager implements ManagerInterface
+final class NoDriverManager implements PostManagerInterface, CommentManagerInterface
 {
     public function getClass()
     {
@@ -84,6 +84,25 @@ final class NoDriverManager implements ManagerInterface
     }
 
     public function getConnection()
+    {
+        throw new NoDriverException();
+    }
+
+    public function updateCommentsCount(?PostInterface $post = null)
+    {
+    }
+
+    public function findOneByPermalink($permalink, BlogInterface $blog)
+    {
+        throw new NoDriverException();
+    }
+
+    public function getPublicationDateQueryParts($date, $step, $alias = 'p')
+    {
+        return [];
+    }
+
+    public function getPaginator(array $criteria = [], $page = 1, $limit = 10, array $sort = []): BasePaginator
     {
         throw new NoDriverException();
     }

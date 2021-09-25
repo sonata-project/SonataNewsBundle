@@ -14,9 +14,7 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Tests\App;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use JMS\SerializerBundle\JMSSerializerBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
-use Nelmio\ApiDocBundle\NelmioApiDocBundle;
 use Sonata\BlockBundle\SonataBlockBundle;
 use Sonata\ClassificationBundle\SonataClassificationBundle;
 use Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle;
@@ -64,9 +62,7 @@ final class AppKernel extends Kernel
             new SonataIntlBundle(),
             new SonataMediaBundle(),
             new SonataNewsBundle(),
-            new JMSSerializerBundle(),
             new SwiftmailerBundle(),
-            new NelmioApiDocBundle(),
         ];
     }
 

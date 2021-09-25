@@ -80,7 +80,7 @@ abstract class AbstractPostArchiveAction extends AbstractController
      */
     final public function renderArchive(Request $request, array $criteria = [], array $parameters = [])
     {
-        $pager = $this->postManager->getPager(
+        $pager = $this->postManager->getPaginator(
             $criteria,
             $request->get('page', 1)
         );
