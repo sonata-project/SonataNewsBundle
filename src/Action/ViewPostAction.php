@@ -66,8 +66,6 @@ final class ViewPostAction extends AbstractController
     {
         $post = $this->postManager->findOneByPermalink($permalink, $this->blog);
 
-        dump($permalink);
-        dump($this->blog);
         if (!$post || !$this->isVisible($post)) {
             throw new NotFoundHttpException('Unable to find the post');
         }

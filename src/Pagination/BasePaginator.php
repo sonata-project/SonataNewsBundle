@@ -33,7 +33,7 @@ abstract class BasePaginator
     protected $results;
 
     /**
-     * @var
+     * @var int
      */
     protected $numResults;
 
