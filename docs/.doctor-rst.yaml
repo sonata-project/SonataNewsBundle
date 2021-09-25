@@ -44,4 +44,3 @@ rules:
 whitelist:
     lines:
         - '.. versionadded:: 3.x'
-        - 'resource: "@NelmioApiDocBundle/Resources/config/routing.yml"'
