@@ -5,10 +5,6 @@ parameters:
       count: 3
       path: src/Action/CreateCommentAction.php
     - # NEXT_MAJOR: Remove this issue.
-      message: "#^Call to an undefined method FOS\\\\RestBundle\\\\Context\\\\Context::setMaxDepth\\(\\)\\.$#"
-      count: 1
-      path: src/Controller/Api/PostController.php
-    - # NEXT_MAJOR: Remove this issue.
       message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition::children\\(\\)\\.$#"
       count: 1
       path: src/DependencyInjection/Configuration.php
@@ -26,6 +22,6 @@ parameters:
       path: src/Document/CommentManager.php
     - # NEXT_MAJOR: Remove this issue.
       message: "#^Call to an undefined method Doctrine\\\\Persistence\\\\ObjectRepository::createQueryBuilder\\(\\)\\.$#"
-      count: 3
+      count: 2
       path: src/Document/PostManager.php
 
