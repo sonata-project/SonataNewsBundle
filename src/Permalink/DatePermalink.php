@@ -26,7 +26,7 @@ class DatePermalink implements PermalinkInterface
     protected $pattern;
 
     /**
-     * @param $pattern
+     * @param string $pattern
      */
     public function __construct($pattern = '%1$04d/%2$d/%3$d/%4$s')
     {

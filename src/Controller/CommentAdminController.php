@@ -37,7 +37,7 @@ class CommentAdminController extends CRUDController
     }
 
     /**
-     * @param $status
+     * @param int $status
      *
      * @throws AccessDeniedException
      *

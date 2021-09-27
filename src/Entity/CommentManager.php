@@ -51,13 +51,17 @@ class CommentManager extends BaseEntityManager implements CommentManagerInterfac
      */
     public function updateCommentsCount(?PostInterface $post = null): void
     {
-        $commentTableName = $this->getObjectManager()->getClassMetadata($this->getClass())->table['name'];
-        $postTableName = $this->getObjectManager()->getClassMetadata($this->postManager->getClass())->table['name'];
+        $commentTable = $this->getObjectManager()->getClassMetadata($this->getClass());
+        $postTable = $this->getObjectManager()->getClassMetadata($this->postManager->getClass());
+
+        if (!property_exists($commentTable, 'table') || !property_exists($postTable, 'table')) {
+            return;
+        }
 
         $this->getConnection()->beginTransaction();
-        $this->getConnection()->query($this->getCommentsCountResetQuery($postTableName));
+        $this->getConnection()->query($this->getCommentsCountResetQuery($postTable->table['name']));
 
-        $this->getConnection()->query($this->getCommentsCountQuery($postTableName, $commentTableName));
+        $this->getConnection()->query($this->getCommentsCountQuery($postTable->table['name'], $commentTable->table['name']));
 
         $this->getConnection()->commit();
     }

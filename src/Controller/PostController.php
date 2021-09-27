@@ -180,8 +180,8 @@ class PostController extends AbstractController
     }
 
     /**
-     * @param $postId
-     * @param bool $form
+     * @param string $postId
+     * @param bool   $form
      *
      * @return Response
      */
