@@ -11,18 +11,20 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\NewsBundle\Tests\Fixtures;
+namespace Sonata\NewsBundle\Tests\App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sonata\NewsBundle\Entity\BaseComment;
+use Sonata\MediaBundle\Entity\BaseMedia;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="news__comment")
+ * @ORM\Table(name="media__media")
  */
-class SonataNewsComment extends BaseComment
+class SonataMediaMedia extends BaseMedia
 {
     /**
+     * @var int|null
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -31,5 +33,6 @@ class SonataNewsComment extends BaseComment
 
     public function getId()
     {
+        return $this->id;
     }
 }

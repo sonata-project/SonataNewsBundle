@@ -15,7 +15,7 @@
             <argument type="service" id="sonata.news.blog"/>
             <argument type="service" id="sonata.news.hash.generator"/>
             <argument type="service" id="router"/>
-            <argument type="service" id="sonata.templating"/>
+            <argument type="service" id="twig"/>
             <argument/>
         </service>
     </services>

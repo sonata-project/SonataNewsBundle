@@ -17,19 +17,12 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @final since sonata-project/news-bundle 3.x
- *
  * BlockService for archive breadcrumb.
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
-class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
+final class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
 {
-    public function getName()
-    {
-        return 'sonata.news.block.breadcrumb_archive';
-    }
-
     public function configureSettings(OptionsResolver $resolver): void
     {
         parent::configureSettings($resolver);
@@ -69,5 +62,10 @@ class NewsArchiveBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         }
 
         return $menu;
+    }
+
+    protected function getContext(): string
+    {
+        return 'sonata_news';
     }
 }

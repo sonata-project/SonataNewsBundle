@@ -10,6 +10,7 @@
             <argument/>
             <argument>%sonata.news.admin.post.entity%</argument>
             <argument>%sonata.news.admin.post.controller%</argument>
+            <argument type="service" id="sonata.admin.configuration"/>
             <call method="setUserManager">
                 <argument type="service" id="fos_user.user_manager" on-invalid="null"/>
             </call>

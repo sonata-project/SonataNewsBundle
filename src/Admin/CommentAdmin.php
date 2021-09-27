@@ -18,7 +18,6 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelListType;
-use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\NewsBundle\Form\Type\CommentStatusType;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,10 +29,8 @@ class CommentAdmin extends AbstractAdmin
      */
     protected $commentManager;
 
-    public function getBatchActions()
+    public function configureBatchActions(array $actions): array
     {
-        $actions = parent::getBatchActions();
-
         $actions['enabled'] = [
             'label' => $this->getLabelTranslatorStrategy()->getLabel('enable', 'batch', 'comment'),
             'translation_domain' => $this->getTranslationDomain(),
@@ -49,32 +46,23 @@ class CommentAdmin extends AbstractAdmin
         return $actions;
     }
 
-    public function postPersist($object): void
+    public function postPersist(object $object): void
     {
         $this->updateCountsComment();
     }
 
-    public function postRemove($object): void
+    public function postRemove(object $object): void
     {
         $this->updateCountsComment();
     }
 
-    public function postUpdate($object): void
+    public function postUpdate(object $object): void
     {
         $this->updateCountsComment();
     }
 
-    public function setCommentManager(ManagerInterface $commentManager): void
+    public function setCommentManager(CommentManagerInterface $commentManager): void
     {
-        if (!$commentManager instanceof CommentManagerInterface) {
-            @trigger_error(
-                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\Model\ManagerInterface is deprecated'
-                .' since version 2.4 and will be removed in 3.0.'
-                .' Use the new signature with a Sonata\NewsBundle\Model\CommentManagerInterface instead.',
-                \E_USER_DEPRECATED
-            );
-        }
-
         $this->commentManager = $commentManager;
     }
 

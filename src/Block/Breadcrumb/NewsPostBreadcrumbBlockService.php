@@ -14,40 +14,28 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Block\Breadcrumb;
 
 use Knp\Menu\FactoryInterface;
-use Knp\Menu\Provider\MenuProviderInterface;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\NewsBundle\Model\BlogInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Twig\Environment;
 
 /**
- * @final since sonata-project/news-bundle 3.x
- *
  * BlockService for post breadcrumb.
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
-class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
+final class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
 {
     /**
      * @var BlogInterface
      */
     protected $blog;
 
-    /**
-     * @param string $context
-     * @param string $name
-     */
-    public function __construct($context, $name, EngineInterface $templating, MenuProviderInterface $menuProvider, FactoryInterface $factory, BlogInterface $blog)
+    public function __construct(Environment $twig, FactoryInterface $factory, BlogInterface $blog)
     {
         $this->blog = $blog;
 
-        parent::__construct($context, $name, $templating, $menuProvider, $factory);
-    }
-
-    public function getName()
-    {
-        return 'sonata.news.block.breadcrumb_post';
+        parent::__construct($twig, $factory);
     }
 
     public function configureSettings(OptionsResolver $resolver): void
@@ -76,5 +64,10 @@ class NewsPostBreadcrumbBlockService extends BaseNewsBreadcrumbBlockService
         }
 
         return $menu;
+    }
+
+    protected function getContext(): string
+    {
+        return 'sonata_news';
     }
 }

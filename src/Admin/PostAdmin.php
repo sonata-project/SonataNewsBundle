@@ -22,23 +22,20 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
 use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\SonataConfiguration;
 use Sonata\DoctrineORMAdminBundle\Filter\CallbackFilter;
 use Sonata\Form\Type\DateTimePickerType;
 use Sonata\FormatterBundle\Form\Type\FormatterType;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 use Sonata\NewsBundle\Form\Type\CommentStatusType;
 use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\NewsBundle\Model\PostInterface;
 use Sonata\NewsBundle\Permalink\PermalinkInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PostAdmin extends AbstractAdmin
 {
-    /**
-     * @deprecated since sonata-project/news-bundle 3.13, to be removed in 4.0.
-     */
-    protected $userManager;
-
     /**
      * @var FormatterPool
      */
@@ -48,13 +45,16 @@ class PostAdmin extends AbstractAdmin
      * @var PermalinkInterface
      */
     protected $permalinkGenerator;
-
     /**
-     * @deprecated since sonata-project/news-bundle 3.13, to be removed in 4.0.
+     * @var SonataConfiguration
      */
-    public function setUserManager($userManager): void
+    private $sonataConfiguration;
+
+    public function __construct(string $code, string $class, string $baseControllerName, SonataConfiguration $sonataConfiguration)
     {
-        $this->userManager = $userManager;
+        parent::__construct($code, $class, $baseControllerName);
+
+        $this->sonataConfiguration = $sonataConfiguration;
     }
 
     public function setPoolFormatter(FormatterPool $formatterPool): void
@@ -62,12 +62,12 @@ class PostAdmin extends AbstractAdmin
         $this->formatterPool = $formatterPool;
     }
 
-    public function prePersist($post): void
+    public function prePersist(object $post): void
     {
         $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
     }
 
-    public function preUpdate($post): void
+    public function preUpdate(object $post): void
     {
         $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
     }
@@ -90,66 +90,64 @@ class PostAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $form): void
     {
-        $isHorizontal = 'horizontal' === $this->getConfigurationPool()->getOption('form_type');
+        $isHorizontal = 'horizontal' === $this->sonataConfiguration->getOption('form_type');
         $form
             ->with('group_post', [
-                    'class' => 'col-md-8',
-                ])
-                ->add('author', ModelListType::class)
-                ->add('title')
-                ->add('abstract', TextareaType::class, [
-                    'attr' => ['rows' => 5],
-                ])
-                ->add('content', FormatterType::class, [
-                    'event_dispatcher' => $form->getFormBuilder()->getEventDispatcher(),
-                    'format_field' => 'contentFormatter',
-                    'source_field' => 'rawContent',
-                    'source_field_options' => [
-                        'horizontal_input_wrapper_class' => $isHorizontal ? 'col-lg-12' : '',
-                        'attr' => ['class' => $isHorizontal ? 'span10 col-sm-10 col-md-10' : '', 'rows' => 20],
-                    ],
-                    'ckeditor_context' => 'news',
-                    'target_field' => 'content',
-                    'listener' => true,
-                ])
+                'class' => 'col-md-8',
+            ])
+            ->add('author', ModelListType::class)
+            ->add('title')
+            ->add('abstract', TextareaType::class, [
+                'attr' => ['rows' => 5],
+            ])
+            ->add('content', FormatterType::class, [
+                'event_dispatcher' => $form->getFormBuilder()->getEventDispatcher(),
+                'format_field' => 'contentFormatter',
+                'source_field' => 'rawContent',
+                'source_field_options' => [
+                    'horizontal_input_wrapper_class' => $isHorizontal ? 'col-lg-12' : '',
+                    'attr' => ['class' => $isHorizontal ? 'span10 col-sm-10 col-md-10' : '', 'rows' => 20],
+                ],
+                'ckeditor_context' => 'news',
+                'target_field' => 'content',
+                'listener' => true,
+            ])
             ->end()
             ->with('group_status', [
-                    'class' => 'col-md-4',
-                ])
-                ->add('enabled', CheckboxType::class, ['required' => false])
-                ->add('image', ModelListType::class, ['required' => false], [
-                    'link_parameters' => [
-                        'context' => 'news',
-                        'hide_context' => true,
-                    ],
-                ])
-
-                ->add('publicationDateStart', DateTimePickerType::class, [
-                    'dp_side_by_side' => true,
-                ])
-                ->add('commentsCloseAt', DateTimePickerType::class, [
-                    'dp_side_by_side' => true,
-                    'required' => false,
-                ])
-                ->add('commentsEnabled', CheckboxType::class, [
-                    'required' => false,
-                ])
-                ->add('commentsDefaultStatus', CommentStatusType::class, [
-                    'expanded' => true,
-                ])
+                'class' => 'col-md-4',
+            ])
+            ->add('enabled', CheckboxType::class, ['required' => false])
+            ->add('image', ModelListType::class, ['required' => false], [
+                'link_parameters' => [
+                    'context' => 'news',
+                    'hide_context' => true,
+                ],
+            ])
+            ->add('publicationDateStart', DateTimePickerType::class, [
+                'dp_side_by_side' => true,
+            ])
+            ->add('commentsCloseAt', DateTimePickerType::class, [
+                'dp_side_by_side' => true,
+                'required' => false,
+            ])
+            ->add('commentsEnabled', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('commentsDefaultStatus', CommentStatusType::class, [
+                'expanded' => true,
+            ])
             ->end()
-
             ->with('group_classification', [
                 'class' => 'col-md-4',
-                ])
-                ->add('tags', ModelAutocompleteType::class, [
-                    'property' => 'name',
-                    'multiple' => 'true',
-                    'required' => false,
-                ])
-                ->add('collection', ModelListType::class, [
-                    'required' => false,
-                ])
+            ])
+            ->add('tags', ModelAutocompleteType::class, [
+                'property' => 'name',
+                'multiple' => 'true',
+                'required' => false,
+            ])
+            ->add('collection', ModelListType::class, [
+                'required' => false,
+            ])
             ->end();
     }
 
@@ -187,7 +185,7 @@ class PostAdmin extends AbstractAdmin
             ]);
     }
 
-    protected function configureTabMenu(MenuItemInterface $menu, $action, ?AdminInterface $childAdmin = null): void
+    protected function configureTabMenu(MenuItemInterface $menu, string $action, ?AdminInterface $childAdmin = null): void
     {
         if (!$childAdmin && !\in_array($action, ['edit'], true)) {
             return;
@@ -198,21 +196,27 @@ class PostAdmin extends AbstractAdmin
         $id = $admin->getRequest()->get('id');
 
         $menu->addChild(
-            $this->trans('sidemenu.link_edit_post'),
+            'sidemenu.link_edit_post',
             ['uri' => $admin->generateUrl('edit', ['id' => $id])]
         );
 
         $menu->addChild(
-            $this->trans('sidemenu.link_view_comments'),
+            'sidemenu.link_view_comments',
             ['uri' => $admin->generateUrl('sonata.news.admin.comment.list', ['id' => $id])]
         );
 
-        if ($this->hasSubject() && null !== $this->getSubject()->getId()) {
+        if (!$this->hasSubject()) {
+            return;
+        }
+
+        $subject = $this->getSubject();
+
+        if (null !== $subject->getId() && $subject instanceof PostInterface) {
             $menu->addChild(
                 'sidemenu.link_view_post',
                 ['uri' => $admin->getRouteGenerator()->generate(
                     'sonata_news_view',
-                    ['permalink' => $this->permalinkGenerator->generate($this->getSubject())]
+                    ['permalink' => $this->permalinkGenerator->generate($subject)]
                 )]
             );
         }

@@ -15,10 +15,13 @@ namespace Sonata\NewsBundle\Tests\App;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
+use Sonata\AdminBundle\SonataAdminBundle;
 use Sonata\BlockBundle\SonataBlockBundle;
 use Sonata\ClassificationBundle\SonataClassificationBundle;
 use Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle;
+use Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle;
 use Sonata\Form\Bridge\Symfony\SonataFormBundle;
+use Sonata\FormatterBundle\SonataFormatterBundle;
 use Sonata\IntlBundle\SonataIntlBundle;
 use Sonata\MediaBundle\SonataMediaBundle;
 use Sonata\NewsBundle\SonataNewsBundle;
@@ -63,6 +66,9 @@ final class AppKernel extends Kernel
             new SonataMediaBundle(),
             new SonataNewsBundle(),
             new SwiftmailerBundle(),
+            new SonataAdminBundle(),
+            new SonataDoctrineORMAdminBundle(),
+            new SonataFormatterBundle(),
         ];
     }
 

@@ -8,7 +8,7 @@ framework:
     session:
         handler_id: session.handler.native_file
         storage_id: session.storage.mock_file
-        name: MOCKSESSID
+        name: 'MOCKSESSID'
     translator:
         enabled: true
     form:
@@ -16,7 +16,7 @@ framework:
     csrf_protection:
         enabled: true
     templating:
-        engines: [twig]
+        engines: ['twig']
 
 twig:
     exception_controller: null
@@ -26,22 +26,14 @@ twig:
 
 doctrine:
     dbal:
-        driver: pdo_sqlite
+        driver: 'pdo_sqlite'
         path: '%app.base_dir%sonata_news_test.db3'
     orm:
-        auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
         mappings:
-            App:
+            SonataNewsBundle: null
+            SonataNewsTest:
                 is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/../../src/Entity'
-                prefix: 'App\Entity'
-                alias: App
-            Tests:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/../../tests/Fixtures'
-                prefix: 'Sonata\NewsBundle\Tests\Fixtures'
-                alias: Tests
+                type: 'annotation'
+                dir: '%kernel.project_dir%/Entity'
+                prefix: 'Sonata\NewsBundle\Tests\App\Entity'
+                alias: 'Tests'

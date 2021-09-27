@@ -11,18 +11,20 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\NewsBundle\Tests\Fixtures;
+namespace Sonata\NewsBundle\Tests\App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sonata\NewsBundle\Entity\BasePost;
+use Sonata\MediaBundle\Entity\BaseGallery;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="news__post")
+ * @ORM\Table(name="media__gallery")
  */
-class SonataNewsPost extends BasePost
+class SonataMediaGallery extends BaseGallery
 {
     /**
+     * @var int|null
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -31,5 +33,6 @@ class SonataNewsPost extends BasePost
 
     public function getId()
     {
+        return $this->id;
     }
 }

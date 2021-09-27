@@ -14,27 +14,27 @@ declare(strict_types=1);
 namespace Sonata\NewsBundle\Block;
 
 use Sonata\AdminBundle\Admin\Pool;
-use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\Service\AbstractAdminBlockService;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
+use Sonata\BlockBundle\Block\Service\EditableBlockService;
+use Sonata\BlockBundle\Form\Mapper\FormMapper;
 use Sonata\BlockBundle\Meta\Metadata;
+use Sonata\BlockBundle\Meta\MetadataInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\Form\Type\ImmutableArrayType;
+use Sonata\Form\Validator\ErrorElement;
 use Sonata\NewsBundle\Model\PostManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Twig\Environment;
 
 /**
- * @final since sonata-project/news-bundle 3.x
- *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class RecentPostsBlockService extends AbstractAdminBlockService
+final class RecentPostsBlockService extends AbstractBlockService implements EditableBlockService
 {
     /**
      * @var PostManagerInterface
@@ -46,28 +46,15 @@ class RecentPostsBlockService extends AbstractAdminBlockService
      */
     private $adminPool;
 
-    /**
-     * @param string $name
-     * @param Pool   $adminPool
-     */
-    public function __construct($name, EngineInterface $templating, ManagerInterface $postManager, ?Pool $adminPool = null)
+    public function __construct(Environment $twig, PostManagerInterface $postManager, ?Pool $adminPool = null)
     {
-        if (!$postManager instanceof PostManagerInterface) {
-            @trigger_error(
-                'Calling the '.__METHOD__.' method with a Sonata\Doctrine\Model\ManagerInterface is deprecated'
-                .' since version 2.4 and will be removed in 3.0.'
-                .' Use the new signature with a Sonata\NewsBundle\Model\PostManagerInterface instead.',
-                \E_USER_DEPRECATED
-            );
-        }
-
         $this->manager = $postManager;
         $this->adminPool = $adminPool;
 
-        parent::__construct($name, $templating);
+        parent::__construct($twig);
     }
 
-    public function execute(BlockContextInterface $blockContext, ?Response $response = null)
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
         $criteria = [
             'mode' => $blockContext->getSetting('mode'),
@@ -88,9 +75,9 @@ class RecentPostsBlockService extends AbstractAdminBlockService
         return $this->renderResponse($blockContext->getTemplate(), $parameters, $response);
     }
 
-    public function buildEditForm(FormMapper $formMapper, BlockInterface $block): void
+    public function configureEditForm(FormMapper $form, BlockInterface $block): void
     {
-        $formMapper->add('settings', ImmutableArrayType::class, [
+        $form->add('settings', ImmutableArrayType::class, [
             'keys' => [
                 ['number', IntegerType::class, [
                     'required' => true,
@@ -137,9 +124,18 @@ class RecentPostsBlockService extends AbstractAdminBlockService
         ]);
     }
 
-    public function getBlockMetadata($code = null)
+    public function configureCreateForm(FormMapper $form, BlockInterface $block): void
     {
-        return new Metadata($this->getName(), (null !== $code ? $code : $this->getName()), false, 'SonataNewsBundle', [
+        $this->configureEditForm($form, $block);
+    }
+
+    public function validate(ErrorElement $errorElement, BlockInterface $block): void
+    {
+    }
+
+    public function getMetadata(): MetadataInterface
+    {
+        return new Metadata($this->getName(), (null !== $code ? $code : $this->getName()), null, 'SonataNewsBundle', [
             'class' => 'fa fa-pencil',
         ]);
     }
