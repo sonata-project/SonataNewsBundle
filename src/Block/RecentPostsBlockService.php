@@ -135,7 +135,7 @@ final class RecentPostsBlockService extends AbstractBlockService implements Edit
 
     public function getMetadata(): MetadataInterface
     {
-        return new Metadata($this->getName(), (null !== $code ? $code : $this->getName()), null, 'SonataNewsBundle', [
+        return new Metadata('sonata.news.block.recent_posts', null, null, 'SonataNewsBundle', [
             'class' => 'fa fa-pencil',
         ]);
     }

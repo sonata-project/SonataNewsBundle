@@ -135,7 +135,7 @@ final class RecentCommentsBlockService extends AbstractBlockService implements E
 
     public function getMetadata(): MetadataInterface
     {
-        return new Metadata($this->getName(), (null !== $code ? $code : $this->getName()), false, 'SonataNewsBundle', [
+        return new Metadata('sonata.news.block.recent_comments', null, null, 'SonataNewsBundle', [
             'class' => 'fa fa-comments-o',
         ]);
     }
