@@ -73,7 +73,7 @@
         "psalm/plugin-phpunit": "^0.16.1",
         "sonata-project/admin-bundle": "^3.59",
         "sonata-project/block-bundle": "^3.18",
-        "sonata-project/doctrine-mongodb-admin-bundle": "3.10",
+        "sonata-project/doctrine-mongodb-admin-bundle": "^3.10",
         "sonata-project/doctrine-orm-admin-bundle": "^3.5",
         "sonata-project/notification-bundle": "^3.4",
         "sonata-project/seo-bundle": "^2.5",
