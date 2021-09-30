@@ -8,7 +8,7 @@
         "news",
         "post"
     ],
-    "homepage": "https://sonata-project.org/bundles/news",
+    "homepage": "https://docs.sonata-project.org/projects/SonataNewsBundle",
     "license": "MIT",
     "authors": [
         {
