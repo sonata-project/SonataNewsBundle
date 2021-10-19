@@ -70,6 +70,7 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^0.12.99",
         "phpstan/phpstan-phpunit": "^0.12.22",
+        "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
         "sonata-project/admin-bundle": "^3.59",
         "sonata-project/block-bundle": "^3.18",
@@ -100,14 +101,6 @@
         "psr-4": {
             "Sonata\\NewsBundle\\Tests\\": "tests/"
         }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/simple-phpunit install"
-        ],
-        "post-update-cmd": [
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/simple-phpunit install"
-        ]
     },
     "abandoned": true
 }
