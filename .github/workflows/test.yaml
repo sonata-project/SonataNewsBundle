@@ -25,7 +25,6 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - '7.3'
                     - '7.4'
                     - '8.0'
                 dependencies: [highest]
@@ -33,14 +32,14 @@ jobs:
                 symfony-require: ['']
                 variant: [normal]
                 include:
-                    - php-version: '7.3'
+                    - php-version: '7.4'
                       dependencies: lowest
                       allowed-to-fail: false
                       variant: normal
                     - php-version: '8.0'
                       dependencies: highest
                       allowed-to-fail: false
-                      variant: sonata-project/admin-bundle:"3.*"
+                      variant: sonata-project/admin-bundle:"4.*"
                     - php-version: '8.0'
                       dependencies: highest
                       allowed-to-fail: false
