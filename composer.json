@@ -1,15 +1,15 @@
 {
     "name": "sonata-project/news-bundle",
-    "type": "symfony-bundle",
     "description": "Symfony SonataNewsBundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "abandoned": true,
     "keywords": [
         "blog",
         "sonata",
         "news",
         "post"
     ],
-    "homepage": "https://docs.sonata-project.org/projects/SonataNewsBundle",
-    "license": "MIT",
     "authors": [
         {
             "name": "Thomas Rabaix",
@@ -21,6 +21,7 @@
             "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
         }
     ],
+    "homepage": "https://docs.sonata-project.org/projects/SonataNewsBundle",
     "require": {
         "php": "^7.3 || ^8.0",
         "doctrine/persistence": "^1.3 || ^2.0",
@@ -51,18 +52,6 @@
         "twig/string-extra": "^3.0",
         "twig/twig": "^2.12.1"
     },
-    "conflict": {
-        "doctrine/dbal": "<2.6.0",
-        "doctrine/mongodb-odm": "<2.0",
-        "friendsofsymfony/rest-bundle": "<2.3",
-        "jms/serializer": "<0.13",
-        "sonata-project/admin-bundle": "<3.59",
-        "sonata-project/block-bundle": "<3.18",
-        "sonata-project/core-bundle": "<3.20",
-        "sonata-project/doctrine-orm-admin-bundle": "<3.5 || >=4.0",
-        "sonata-project/notification-bundle": "<3.4 || >=4.0",
-        "sonata-project/seo-bundle": "<2.5 || >=3.0"
-    },
     "require-dev": {
         "doctrine/mongodb-odm": "^2.0",
         "doctrine/orm": "^2.4",
@@ -87,20 +76,24 @@
         "symfony/swiftmailer-bundle": "^3.4",
         "vimeo/psalm": "^4.10"
     },
+    "conflict": {
+        "doctrine/dbal": "<2.6.0",
+        "doctrine/mongodb-odm": "<2.0",
+        "friendsofsymfony/rest-bundle": "<2.3",
+        "jms/serializer": "<0.13",
+        "sonata-project/admin-bundle": "<3.59",
+        "sonata-project/block-bundle": "<3.18",
+        "sonata-project/core-bundle": "<3.20",
+        "sonata-project/doctrine-orm-admin-bundle": "<3.5 || >=4.0",
+        "sonata-project/notification-bundle": "<3.4 || >=4.0",
+        "sonata-project/seo-bundle": "<2.5 || >=3.0"
+    },
     "suggest": {
         "nelmio/api-doc-bundle": "If you want to use the API.",
         "sonata-project/block-bundle": "For rendering block lists.",
         "sonata-project/doctrine-orm-admin-bundle": "For integrate Doctrine ORM into the SonataAdminBundle.",
         "sonata-project/notification-bundle": "If you want to send comment notification asynchronously.",
         "twig/extra-bundle": "Auto configures the Twig Intl extension."
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        }
     },
     "autoload": {
         "psr-4": {
@@ -112,5 +105,12 @@
             "Sonata\\NewsBundle\\Tests\\": "tests/"
         }
     },
-    "abandoned": true
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.x-dev"
+        }
+    }
 }
